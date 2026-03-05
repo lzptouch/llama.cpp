@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llava_surgery_v2.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/legacy-models/llava_surgery_v2.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 import argparse
 import glob
 import os
@@ -7,11 +14,27 @@ from safetensors.torch import save_file
 from typing import Any, ContextManager, cast
 
 # Function to determine if file is a SafeTensor file
+    # 函数: is_safetensor_file
+    # 描述: is_safetensor_file函数提供相关功能
+    # 参数: file_path
+    # 返回: 有返回值
+    # 函数: is_safetensor_file
+    # 描述: is_safetensor_file函数提供相关功能
+    # 参数: file_path
+    # 返回: 有返回值
 def is_safetensor_file(file_path):
     return file_path.endswith('.safetensors')
 
 
 # Unified loading function
+    # 函数: load_model
+    # 描述: load_model函数提供相关功能
+    # 参数: file_path
+    # 返回: 无返回值
+    # 函数: load_model
+    # 描述: load_model函数提供相关功能
+    # 参数: file_path
+    # 返回: 无返回值
 def load_model(file_path):
     if is_safetensor_file(file_path):
         tensors = {}
@@ -26,6 +49,14 @@ def load_model(file_path):
 
 
 # Unified saving function
+    # 函数: save_model
+    # 描述: save_model函数提供相关功能
+    # 参数: model, file_path, file_type
+    # 返回: 无返回值
+    # 函数: save_model
+    # 描述: save_model函数提供相关功能
+    # 参数: model, file_path, file_type
+    # 返回: 无返回值
 def save_model(model, file_path, file_type):
     if file_type == 'safetensor':
         # safe_save(model, file_path)
@@ -35,6 +66,14 @@ def save_model(model, file_path, file_type):
 
 # Helpers to match weight names from specific components or
 # determine if a saved shard contains that component
+    # 函数: is_vision_tower
+    # 描述: is_vision_tower函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
+    # 函数: is_vision_tower
+    # 描述: is_vision_tower函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
 def is_vision_tower(weight_name):
     return (
         weight_name.startswith("model.vision_tower") or
@@ -42,12 +81,28 @@ def is_vision_tower(weight_name):
         weight_name.startswith("vision_tower")
     )
 
+    # 函数: is_newline
+    # 描述: is_newline函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
+    # 函数: is_newline
+    # 描述: is_newline函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
 def is_newline(weight_name):
     return (
         weight_name.startswith("model.image_newline") or
         weight_name.startswith("image_newline")
     )
 
+    # 函数: is_mm_projector
+    # 描述: is_mm_projector函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
+    # 函数: is_mm_projector
+    # 描述: is_mm_projector函数提供相关功能
+    # 参数: weight_name
+    # 返回: 有返回值
 def is_mm_projector(weight_name):
     return (
         weight_name.startswith("model.mm_projector") or
@@ -55,13 +110,37 @@ def is_mm_projector(weight_name):
         weight_name.startswith("multi_modal_projector")
     )
 
+    # 函数: newline_criteria
+    # 描述: newline_criteria函数提供相关功能
+    # 参数: checkpoint
+    # 返回: 有返回值
+    # 函数: newline_criteria
+    # 描述: newline_criteria函数提供相关功能
+    # 参数: checkpoint
+    # 返回: 有返回值
 def newline_criteria(checkpoint):
     return any(is_newline(k) for k in checkpoint.keys())
 
+    # 函数: proj_criteria
+    # 描述: proj_criteria函数提供相关功能
+    # 参数: checkpoint
+    # 返回: 有返回值
+    # 函数: proj_criteria
+    # 描述: proj_criteria函数提供相关功能
+    # 参数: checkpoint
+    # 返回: 有返回值
 def proj_criteria(checkpoint):
     return any(is_mm_projector(k) for k in checkpoint.keys())
 
 # Adapted function to clean vision tower from checkpoint
+    # 函数: clean_vision_tower_from_checkpoint
+    # 描述: clean_vision_tower_from_checkpoint函数提供相关功能
+    # 参数: checkpoint_path
+    # 返回: 无返回值
+    # 函数: clean_vision_tower_from_checkpoint
+    # 描述: clean_vision_tower_from_checkpoint函数提供相关功能
+    # 参数: checkpoint_path
+    # 返回: 无返回值
 def clean_vision_tower_from_checkpoint(checkpoint_path):
     checkpoint, file_type = load_model(checkpoint_path)
     # file_type = 'pytorch'
@@ -98,6 +177,14 @@ def clean_vision_tower_from_checkpoint(checkpoint_path):
         return True
     return False
 
+    # 函数: find_relevant_checkpoints
+    # 描述: find_relevant_checkpoints函数提供相关功能
+    # 参数: checkpoint_paths, newline_criteria, projector
+    # 返回: 无返回值
+    # 函数: find_relevant_checkpoints
+    # 描述: find_relevant_checkpoints函数提供相关功能
+    # 参数: checkpoint_paths, newline_criteria, projector
+    # 返回: 无返回值
 def find_relevant_checkpoints(checkpoint_paths, newline_criteria, projector):
     newline_checkpoint_path = None
     projector_checkpoint_path = None

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/README.md
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 # llama.cpp Jinja Engine
 
 A Jinja template engine implementation in C++, originally inspired by [huggingface.js's jinja package](https://github.com/huggingface/huggingface.js). The engine was introduced in [PR#18462](https://github.com/ggml-org/llama.cpp/pull/18462).

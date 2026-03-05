@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-mmap.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-mmap.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-mmap.h"
 
 #include "llama-impl.h"
@@ -42,6 +49,14 @@
 
 // TODO: consider moving to llama-impl.h if needed in more places
 #if defined(_WIN32)
+// 函数: llama_format_win_err
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_format_win_err
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string llama_format_win_err(DWORD err) {
     LPSTR buf;
     size_t size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -57,9 +72,35 @@ static std::string llama_format_win_err(DWORD err) {
 
 // llama_file
 
+// 类: llama_file
+// 描述: llama_file类提供相关功能
+// 用途: 用于处理llama_file相关的操作
+// 类: llama_file
+// 描述: llama_file类提供相关功能
+// 用途: 用于处理llama_file相关的操作
+    // 结构体: llama_file
+    // 描述: llama_file结构体提供相关功能
+    // 用途: 用于处理llama_file相关的操作
+    // 结构体: llama_file
+    // 描述: llama_file结构体提供相关功能
+    // 用途: 用于处理llama_file相关的操作
+    // 结构体: llama_file
+    // 描述: llama_file结构体提供相关功能
+    // 用途: 用于处理llama_file相关的操作
+    // 结构体: llama_file
+    // 描述: llama_file结构体提供相关功能
+    // 用途: 用于处理llama_file相关的操作
 struct llama_file::impl {
 #if defined(_WIN32)
     HANDLE fp_win32;
+    // 函数: GetErrorMessageWin32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: GetErrorMessageWin32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string GetErrorMessageWin32(DWORD error_code) const {
         std::string ret;
         LPSTR lpMsgBuf = NULL;
@@ -86,6 +127,14 @@ struct llama_file::impl {
         seek(0, SEEK_SET);
     }
 
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t tell() const {
         LARGE_INTEGER li;
         li.QuadPart = 0;
@@ -97,6 +146,14 @@ struct llama_file::impl {
         return li.QuadPart;
     }
 
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seek(size_t offset, int whence) const {
         static_assert(SEEK_SET == FILE_BEGIN, "SEEK_SET != FILE_BEGIN");
         static_assert(SEEK_CUR == FILE_CURRENT, "SEEK_CUR != FILE_CURRENT");
@@ -110,6 +167,14 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_raw(void * ptr, size_t len) {
         size_t bytes_read = 0;
         while (bytes_read < len) {
@@ -127,12 +192,28 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t read_u32() {
         uint32_t val;
         read_raw(&val, sizeof(val));
         return val;
     }
 
+    // 函数: write_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_raw(const void * ptr, size_t len) const {
         size_t bytes_written = 0;
         while (bytes_written < len) {
@@ -150,10 +231,26 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: write_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_u32(uint32_t val) const {
         write_raw(&val, sizeof(val));
     }
 
+    // 函数: has_direct_io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_direct_io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_direct_io() const {
         return true;
     }
@@ -179,10 +276,36 @@ struct llama_file::impl {
     }
 
 #ifdef __linux__
+    // 函数: init_fd
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_fd
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     bool init_fd() {
         fd = open(fname.c_str(), O_RDONLY | O_DIRECT);
 
         if (fd != -1) {
+            // 类: stat
+            // 描述: stat类提供相关功能
+            // 用途: 用于处理stat相关的操作
+            // 类: stat
+            // 描述: stat类提供相关功能
+            // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
             struct stat file_stats{};
             fstat(fd, &file_stats);
 
@@ -199,6 +322,14 @@ struct llama_file::impl {
     }
 #endif
 
+    // 函数: init_fp
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_fp
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_fp(const char * mode) {
         fp = ggml_fopen(fname.c_str(), mode);
         if (fp == NULL) {
@@ -209,6 +340,14 @@ struct llama_file::impl {
         seek(0, SEEK_SET);
     }
 
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t tell() const {
         if (fd == -1) {
             long ret = std::ftell(fp);
@@ -226,6 +365,14 @@ struct llama_file::impl {
         return (size_t) pos;
     }
 
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seek(size_t offset, int whence) const {
         off_t ret = 0;
         if (fd == -1) {
@@ -238,6 +385,14 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: read_raw_unsafe
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_raw_unsafe
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_raw_unsafe(void * ptr, size_t len) {
         if (len == 0) {
             return;
@@ -293,6 +448,14 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: read_aligned_chunk
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_aligned_chunk
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_aligned_chunk(void * dest, size_t size) {
         size_t offset = tell();
         off_t aligned_offset = offset & ~(alignment - 1);
@@ -305,6 +468,24 @@ struct llama_file::impl {
             throw std::runtime_error(format("posix_memalign failed with error %d", ret));
         }
 
+        // 类: aligned_buffer_deleter
+        // 描述: aligned_buffer_deleter类提供相关功能
+        // 用途: 用于处理aligned_buffer_deleter相关的操作
+        // 类: aligned_buffer_deleter
+        // 描述: aligned_buffer_deleter类提供相关功能
+        // 用途: 用于处理aligned_buffer_deleter相关的操作
+    // 结构体: aligned_buffer_deleter
+    // 描述: aligned_buffer_deleter结构体提供相关功能
+    // 用途: 用于处理aligned_buffer_deleter相关的操作
+    // 结构体: aligned_buffer_deleter
+    // 描述: aligned_buffer_deleter结构体提供相关功能
+    // 用途: 用于处理aligned_buffer_deleter相关的操作
+    // 结构体: aligned_buffer_deleter
+    // 描述: aligned_buffer_deleter结构体提供相关功能
+    // 用途: 用于处理aligned_buffer_deleter相关的操作
+    // 结构体: aligned_buffer_deleter
+    // 描述: aligned_buffer_deleter结构体提供相关功能
+    // 用途: 用于处理aligned_buffer_deleter相关的操作
         struct aligned_buffer_deleter {
             void operator()(void * p) const { free(p); }
         };
@@ -317,6 +498,14 @@ struct llama_file::impl {
         memcpy(dest, reinterpret_cast<void *>(actual_data), size);
     }
 
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_raw(void * ptr, size_t len) {
         if (has_direct_io()) {
             read_aligned_chunk(ptr, len);
@@ -325,12 +514,28 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t read_u32() {
         uint32_t ret;
         read_raw(&ret, sizeof(ret));
         return ret;
     }
 
+    // 函数: write_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_raw(const void * ptr, size_t len) const {
         if (len == 0) {
             return;
@@ -342,10 +547,26 @@ struct llama_file::impl {
         }
     }
 
+    // 函数: write_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_u32(uint32_t val) const {
         write_raw(&val, sizeof(val));
     }
 
+    // 函数: has_direct_io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_direct_io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_direct_io() const {
         return fd != -1 && alignment > 1;
     }
@@ -361,6 +582,14 @@ struct llama_file::impl {
     std::string fname;
 #endif
 
+    // 函数: read_alignment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_alignment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t read_alignment() const {
         return alignment;
     }
@@ -383,12 +612,28 @@ bool llama_file::has_direct_io() const { return pimpl->has_direct_io(); }
 
 int llama_file::file_id() const {
 #ifdef _WIN32
+    // 函数: _fileno
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _fileno
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _fileno(pimpl->fp);
 #else
     if (pimpl->fd != -1) {
         return pimpl->fd;
     }
 #if defined(fileno)
+    // 函数: fileno
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: fileno
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return fileno(pimpl->fp);
 #else
     return ::fileno(pimpl->fp);
@@ -411,6 +656,24 @@ void llama_file::write_u32(uint32_t val) const { pimpl->write_u32(val); }
 
 // llama_mmap
 
+// 类: llama_mmap
+// 描述: llama_mmap类提供相关功能
+// 用途: 用于处理llama_mmap相关的操作
+// 类: llama_mmap
+// 描述: llama_mmap类提供相关功能
+// 用途: 用于处理llama_mmap相关的操作
+    // 结构体: llama_mmap
+    // 描述: llama_mmap结构体提供相关功能
+    // 用途: 用于处理llama_mmap相关的操作
+    // 结构体: llama_mmap
+    // 描述: llama_mmap结构体提供相关功能
+    // 用途: 用于处理llama_mmap相关的操作
+    // 结构体: llama_mmap
+    // 描述: llama_mmap结构体提供相关功能
+    // 用途: 用于处理llama_mmap相关的操作
+    // 结构体: llama_mmap
+    // 描述: llama_mmap结构体提供相关功能
+    // 用途: 用于处理llama_mmap相关的操作
 struct llama_mmap::impl {
 #ifdef _POSIX_MAPPED_FILES
     std::vector<std::pair<size_t, size_t>> mapped_fragments;
@@ -448,6 +711,14 @@ struct llama_mmap::impl {
         mapped_fragments.emplace_back(0, file->size());
     }
 
+    // 函数: align_range
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: align_range
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void align_range(size_t * first, size_t * last, size_t page_size) {
         size_t offset_in_page = *first & (page_size - 1);
         size_t offset_to_page = offset_in_page == 0 ? 0 : page_size - offset_in_page;
@@ -460,6 +731,14 @@ struct llama_mmap::impl {
         }
     }
 
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void unmap_fragment(size_t first, size_t last) {
         int page_size = sysconf(_SC_PAGESIZE);
         align_range(&first, &last, page_size);
@@ -550,6 +829,14 @@ struct llama_mmap::impl {
         }
     }
 
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void unmap_fragment(size_t first, size_t last) {
         GGML_UNUSED(first);
         GGML_UNUSED(last);
@@ -578,6 +865,14 @@ struct llama_mmap::impl {
         throw std::runtime_error("mmap not supported");
     }
 
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unmap_fragment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void unmap_fragment(size_t first, size_t last) {
         GGML_UNUSED(first);
         GGML_UNUSED(last);
@@ -606,12 +901,46 @@ const bool llama_mmap::SUPPORTED  = false;
 
 // llama_mlock
 
+// 类: llama_mlock
+// 描述: llama_mlock类提供相关功能
+// 用途: 用于处理llama_mlock相关的操作
+// 类: llama_mlock
+// 描述: llama_mlock类提供相关功能
+// 用途: 用于处理llama_mlock相关的操作
+    // 结构体: llama_mlock
+    // 描述: llama_mlock结构体提供相关功能
+    // 用途: 用于处理llama_mlock相关的操作
+    // 结构体: llama_mlock
+    // 描述: llama_mlock结构体提供相关功能
+    // 用途: 用于处理llama_mlock相关的操作
+    // 结构体: llama_mlock
+    // 描述: llama_mlock结构体提供相关功能
+    // 用途: 用于处理llama_mlock相关的操作
+    // 结构体: llama_mlock
+    // 描述: llama_mlock结构体提供相关功能
+    // 用途: 用于处理llama_mlock相关的操作
 struct llama_mlock::impl {
 #ifdef _POSIX_MEMLOCK_RANGE
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static size_t lock_granularity() {
         return (size_t) sysconf(_SC_PAGESIZE);
     }
 
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool raw_lock(const void * addr, size_t size) const {
         if (!mlock(addr, size)) {
             return true;
@@ -633,6 +962,24 @@ struct llama_mlock::impl {
         // Skip resource limit checks on these platforms
         suggest = false;
 #else
+        // 类: rlimit
+        // 描述: rlimit类提供相关功能
+        // 用途: 用于处理rlimit相关的操作
+        // 类: rlimit
+        // 描述: rlimit类提供相关功能
+        // 用途: 用于处理rlimit相关的操作
+    // 结构体: rlimit
+    // 描述: rlimit结构体提供相关功能
+    // 用途: 用于处理rlimit相关的操作
+    // 结构体: rlimit
+    // 描述: rlimit结构体提供相关功能
+    // 用途: 用于处理rlimit相关的操作
+    // 结构体: rlimit
+    // 描述: rlimit结构体提供相关功能
+    // 用途: 用于处理rlimit相关的操作
+    // 结构体: rlimit
+    // 描述: rlimit结构体提供相关功能
+    // 用途: 用于处理rlimit相关的操作
         struct rlimit lock_limit;
         if (suggest && getrlimit(RLIMIT_MEMLOCK, &lock_limit)) {
             suggest = false;
@@ -647,18 +994,42 @@ struct llama_mlock::impl {
         return false;
     }
 
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void raw_unlock(void * addr, size_t size) {
         if (munlock(addr, size)) {
             LLAMA_LOG_WARN("warning: failed to munlock buffer: %s\n", std::strerror(errno));
         }
     }
 #elif defined(_WIN32)
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static size_t lock_granularity() {
         SYSTEM_INFO si;
         GetSystemInfo(&si);
         return (size_t) si.dwPageSize;
     }
 
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool raw_lock(void * ptr, size_t len) const {
         for (int tries = 1; ; tries++) {
             if (VirtualLock(ptr, len)) {
@@ -687,6 +1058,14 @@ struct llama_mlock::impl {
         }
     }
 
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void raw_unlock(void * ptr, size_t len) {
         if (!VirtualUnlock(ptr, len)) {
             LLAMA_LOG_WARN("warning: failed to VirtualUnlock buffer: %s\n",
@@ -694,25 +1073,65 @@ struct llama_mlock::impl {
         }
     }
 #else
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: lock_granularity
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static size_t lock_granularity() {
         return (size_t) 65536;
     }
 
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_lock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool raw_lock(const void * addr, size_t len) const {
         LLAMA_LOG_WARN("warning: mlock not supported on this system\n");
         return false;
     }
 
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raw_unlock
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void raw_unlock(const void * addr, size_t len) {}
 #endif
 
     impl() : addr(NULL), size(0), failed_already(false) {}
 
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init(void * ptr) {
         GGML_ASSERT(addr == NULL && size == 0);
         addr = ptr;
     }
 
+    // 函数: grow_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grow_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void grow_to(size_t target_size) {
         GGML_ASSERT(addr);
         if (failed_already) {
@@ -747,6 +1166,14 @@ const bool llama_mlock::SUPPORTED = true;
 const bool llama_mlock::SUPPORTED = false;
 #endif
 
+// 函数: llama_path_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_path_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_path_max() {
     return PATH_MAX;
 }

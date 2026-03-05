@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: rwkv7-base.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/rwkv7-base.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "llama-memory-recurrent.h"
@@ -133,5 +140,13 @@ ggml_tensor * llm_build_rwkv7_base::build_rwkv7_time_mix(llm_graph_input_rs * in
     }
     cur = build_lora_mm(layer.time_mix_output, cur);
 
+    // 函数: ggml_reshape_3d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_reshape_3d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_reshape_3d(ctx0, cur, n_embd, n_seq_tokens, n_seqs);
 }

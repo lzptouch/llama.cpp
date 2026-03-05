@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: binary-ops.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "binary-ops.h"
 
 #if defined(GGML_USE_ACCELERATE)
@@ -6,23 +13,63 @@
 using vDSP_fn_t = void (*)(const float *, vDSP_Stride, const float *, vDSP_Stride, float *, vDSP_Stride, vDSP_Length);
 #endif
 
+// 函数: op_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_add(float a, float b) {
     return a + b;
 }
 
+// 函数: op_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sub(float a, float b) {
     return a - b;
 }
 
+// 函数: op_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_mul(float a, float b) {
     return a * b;
 }
 
+// 函数: op_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_div(float a, float b) {
     return a / b;
 }
 
 template <float (*op)(float, float), typename src0_t, typename src1_t, typename dst_t>
+// 函数: vec_binary_op_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_binary_op_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void vec_binary_op_contiguous(const int64_t n, dst_t * z, const src0_t * x, const src1_t * y) {
     constexpr auto src0_to_f32 = type_conversion_table<src0_t>::to_f32;
     constexpr auto src1_to_f32 = type_conversion_table<src1_t>::to_f32;
@@ -34,6 +81,14 @@ static inline void vec_binary_op_contiguous(const int64_t n, dst_t * z, const sr
 }
 
 template <float (*op)(float, float), typename src0_t, typename src1_t, typename dst_t>
+// 函数: vec_binary_op_non_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_binary_op_non_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void vec_binary_op_non_contiguous(const int64_t n, const int64_t ne10, const int64_t nb10, dst_t * z, const src0_t * x, const src1_t * y) {
     constexpr auto src0_to_f32 = type_conversion_table<src0_t>::to_f32;
     constexpr auto src1_to_f32 = type_conversion_table<src1_t>::to_f32;
@@ -47,6 +102,14 @@ static inline void vec_binary_op_non_contiguous(const int64_t n, const int64_t n
 }
 
 template <float (*op)(float, float), typename src0_t, typename src1_t, typename dst_t>
+// 函数: apply_binary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apply_binary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void apply_binary_op(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -113,6 +176,14 @@ static void apply_binary_op(const ggml_compute_params * params, ggml_tensor * ds
 
 // TODO: Use the 'traits' lookup table (for type conversion fns), instead of a mass of 'if' conditions with long templates
 template <float (*op)(float, float)>
+// 函数: binary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_op(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -137,18 +208,50 @@ static void binary_op(const ggml_compute_params * params, ggml_tensor * dst) {
     }
 }
 
+// 函数: ggml_compute_forward_add_non_quantized
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_add_non_quantized
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_add_non_quantized(const ggml_compute_params * params, ggml_tensor * dst) {
     binary_op<op_add>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sub
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sub
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sub(const ggml_compute_params * params, ggml_tensor * dst) {
     binary_op<op_sub>(params, dst);
 }
 
+// 函数: ggml_compute_forward_mul
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_mul
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_mul(const ggml_compute_params * params, ggml_tensor * dst) {
     binary_op<op_mul>(params, dst);
 }
 
+// 函数: ggml_compute_forward_div
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_div
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_div(const ggml_compute_params * params, ggml_tensor * dst) {
     binary_op<op_div>(params, dst);
 }

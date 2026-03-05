@@ -61,6 +61,24 @@ enum virt_gpu_result_t {
 
 #define PRINTFLIKE(f, a) __attribute__((format(__printf__, f, a)))
 
+// 类: virtgpu
+// 描述: virtgpu类提供相关功能
+// 用途: 用于处理virtgpu相关的操作
+// 类: virtgpu
+// 描述: virtgpu类提供相关功能
+// 用途: 用于处理virtgpu相关的操作
+    // 结构体: virtgpu
+    // 描述: virtgpu结构体提供相关功能
+    // 用途: 用于处理virtgpu相关的操作
+    // 结构体: virtgpu
+    // 描述: virtgpu结构体提供相关功能
+    // 用途: 用于处理virtgpu相关的操作
+    // 结构体: virtgpu
+    // 描述: virtgpu结构体提供相关功能
+    // 用途: 用于处理virtgpu相关的操作
+    // 结构体: virtgpu
+    // 描述: virtgpu结构体提供相关功能
+    // 用途: 用于处理virtgpu相关的操作
 struct virtgpu {
     bool use_apir_capset;
 
@@ -100,12 +118,36 @@ struct virtgpu {
     } cached_buffer_type;
 };
 
+// 函数: virtgpu_ioctl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int virtgpu_ioctl(virtgpu * gpu, unsigned long request, void * args) {
     return drmIoctl(gpu->fd, request, args);
 }
 
+// 函数: create_virtgpu
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_virtgpu
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 virtgpu * create_virtgpu();
 
+// 函数: remote_call_prepare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remote_call_prepare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 apir_encoder * remote_call_prepare(virtgpu * gpu, ApirCommandType apir_cmd_type, int32_t cmd_flags);
 
 uint32_t remote_call(virtgpu *       gpu,
@@ -114,4 +156,12 @@ uint32_t remote_call(virtgpu *       gpu,
                      float           max_wait_ms,
                      long long *     call_duration_ns);
 
+// 函数: remote_call_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remote_call_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void remote_call_finish(virtgpu * gpu, apir_encoder * enc, apir_decoder * dec);

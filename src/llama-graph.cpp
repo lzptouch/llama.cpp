@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-graph.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-graph.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-graph.h"
 
 #include "llama-impl.h"
@@ -28,6 +35,14 @@ static ggml_tensor * build_kq_mask(
     const auto n_tokens = ubatch.n_tokens;
     const auto n_stream = cparams.kv_unified ? 1 : ubatch.n_seqs_unq;
 
+    // 函数: ggml_new_tensor_4d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor_4d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_new_tensor_4d(ctx, GGML_TYPE_F32, n_kv, n_tokens/n_stream, 1, n_stream);
 }
 
@@ -323,6 +338,14 @@ void llm_graph_input_cross_embd::set_input(const llama_ubatch * ubatch) {
     }
 }
 
+// 函数: print_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_mask(const float * data, int64_t n_tokens, int64_t n_kv, int64_t n_swa, llama_swa_type swa_type) {
     LLAMA_LOG_DEBUG("%s: === Attention mask ===\n", __func__);
     const char * swa_type_str = "unknown";
@@ -2609,6 +2632,24 @@ void llm_graph_context::build_sampling() const {
         ggml_tensor * logits_seq = ggml_view_1d(ctx0, logits_t, logits_t->ne[0], row_idx * logits_t->nb[1]);
         ggml_format_name(logits_seq, "logits_seq_%d", seq_id);
 
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data data = {
             /*.logits      =*/ logits_seq,
             /*.probs       =*/ nullptr,
@@ -2657,6 +2698,14 @@ void llm_graph_context::build_sampling() const {
     */
 }
 
+// 函数: llama_relative_position_bucket
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_relative_position_bucket
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_relative_position_bucket(llama_pos x, llama_pos y, uint64_t n_buckets, bool bidirectional) {
     // TODO move to hparams if a T5 variant appears that uses a different value
     const int64_t max_distance = 128;

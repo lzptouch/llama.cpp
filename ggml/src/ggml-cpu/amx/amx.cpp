@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: amx.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/amx/amx.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "amx.h"
 #include "common.h"
 #include "mmq.h"
@@ -20,12 +27,34 @@
 
 // AMX type_trais
 namespace ggml::cpu::amx {
+// 类: tensor_traits
+// 描述: tensor_traits类提供相关功能
+// 用途: 用于处理tensor_traits相关的操作
+// 类: tensor_traits
+// 描述: tensor_traits类提供相关功能
+// 用途: 用于处理tensor_traits相关的操作
 class tensor_traits : public ggml::cpu::tensor_traits {
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool work_size(int /* n_threads */, const struct ggml_tensor * op, size_t & size) override {
         size = ggml_backend_amx_desired_wsize(op);
         return true;
     }
 
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward(struct ggml_compute_params * params, struct ggml_tensor * op) override {
         if (op->op == GGML_OP_MUL_MAT) {
             ggml_backend_amx_mul_mat(params, op);
@@ -35,6 +64,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
     }
 };
 
+// 函数: get_tensor_traits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_tensor_traits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml::cpu::tensor_traits * get_tensor_traits(ggml_backend_buffer_t, struct ggml_tensor *) {
     static tensor_traits traits;
     return &traits;
@@ -42,10 +79,26 @@ static ggml::cpu::tensor_traits * get_tensor_traits(ggml_backend_buffer_t, struc
 }  // namespace ggml::cpu::amx
 
 // AMX buffer interface
+// 函数: ggml_backend_amx_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_amx_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     free(buffer->context);
 }
 
+// 函数: ggml_backend_amx_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_amx_buffer_get_base(ggml_backend_buffer_t buffer) {
     return (void *) (buffer->context);
 }
@@ -78,6 +131,14 @@ static void ggml_backend_amx_buffer_set_tensor(ggml_backend_buffer_t buffer, str
 
 /*
 // need to figure what we need to do with buffer->extra.
+// 函数: ggml_backend_amx_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_amx_buffer_get_tensor(ggml_backend_buffer_t buffer, const struct ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_ASSERT(!qtype_has_amx_kernels(tensor->type));
     memcpy(data, (const char *)tensor->data + offset, size);
@@ -85,6 +146,14 @@ static void ggml_backend_amx_buffer_get_tensor(ggml_backend_buffer_t buffer, con
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_amx_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_amx_buffer_cpy_tensor(ggml_backend_buffer_t buffer, const struct ggml_tensor * src, struct ggml_tensor * dst) {
     if (ggml_backend_buffer_is_host(src->buffer)) {
         if (qtype_has_amx_kernels(src->type)) {
@@ -100,6 +169,14 @@ static bool ggml_backend_amx_buffer_cpy_tensor(ggml_backend_buffer_t buffer, con
 }
 */
 
+// 函数: ggml_backend_amx_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_amx_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     memset(buffer->context, value, buffer->size);
 }
@@ -116,12 +193,28 @@ static ggml_backend_buffer_i ggml_backend_amx_buffer_interface = {
     /* .reset           = */ nullptr,
 };
 
+// 函数: ggml_backend_amx_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_amx_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "AMX";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_amx_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_amx_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     void * data = ggml_aligned_malloc(size);
     if (data == NULL) {
@@ -132,6 +225,14 @@ static ggml_backend_buffer_t ggml_backend_amx_buffer_type_alloc_buffer(ggml_back
     return ggml_backend_buffer_init(buft, ggml_backend_amx_buffer_interface, data, size);
 }
 
+// 函数: ggml_backend_amx_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_amx_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return TENSOR_ALIGNMENT;
 
@@ -139,7 +240,21 @@ static size_t ggml_backend_amx_buffer_type_get_alignment(ggml_backend_buffer_typ
 }
 
 namespace ggml::cpu::amx {
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
 class extra_buffer_type : ggml::cpu::extra_buffer_type {
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool supports_op(ggml_backend_dev_t, const struct ggml_tensor * op) override {
         if (op->op != GGML_OP_MUL_MAT) {
             return false;
@@ -187,6 +302,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
         return true;
     }
 
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml::cpu::tensor_traits * get_tensor_traits(const struct ggml_tensor * op) override {
         if (op->op == GGML_OP_MUL_MAT && op->src[0]->buffer &&
             op->src[0]->buffer->buft == ggml_backend_amx_buffer_type()) {
@@ -198,6 +321,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
 };
 }  // namespace ggml::cpu::amx
 
+// 函数: ggml_backend_amx_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_amx_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     return ggml_backend_amx_get_alloc_size(tensor);
 
@@ -209,6 +340,14 @@ static size_t ggml_backend_amx_buffer_type_get_alloc_size(ggml_backend_buffer_ty
 #define XFEATURE_XTILECFG       17
 #define XFEATURE_XTILEDATA      18
 
+// 函数: ggml_amx_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_amx_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_amx_init() {
 #if defined(__linux__)
     if (syscall(SYS_arch_prctl, ARCH_REQ_XCOMP_PERM, XFEATURE_XTILEDATA)) {
@@ -223,6 +362,14 @@ static bool ggml_amx_init() {
 #endif
 }
 
+// 函数: ggml_backend_amx_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_amx_buffer_type() {
     static struct ggml_backend_buffer_type ggml_backend_buffer_type_amx = {
         /* .iface = */ {

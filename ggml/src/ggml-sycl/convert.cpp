@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: convert.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/convert.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "convert.hpp"
 #include "dequantize.hpp"
 #include "presets.hpp"
@@ -191,6 +198,14 @@ static void dequantize_row_q4_K_sycl(const void *vx, dst_t *y, const int64_t k,
 }
 
 template <typename dst_t>
+// 函数: dequantize_row_q4_K_sycl_reorder
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dequantize_row_q4_K_sycl_reorder
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void dequantize_row_q4_K_sycl_reorder(const void * vx, dst_t * y, const int64_t k, dpct::queue_ptr stream) {
     const int64_t nb = k / QK_K;
     const size_t  local_size  = 32;
@@ -273,6 +288,14 @@ static void dequantize_row_q6_K_sycl(const void *vx, dst_t *y, const int64_t k,
 }
 
 template <typename dst_t>
+// 函数: dequantize_row_q6_K_sycl_reorder
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dequantize_row_q6_K_sycl_reorder
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void dequantize_row_q6_K_sycl_reorder(const void * vx, dst_t * y, const int64_t k, dpct::queue_ptr stream) {
     const int64_t nb = k / QK_K;
 
@@ -473,6 +496,14 @@ static void dequantize_row_iq4_nl_sycl(const void *vx, dst_t *y, const int64_t k
 }
 
 template <typename dst_t>
+// 函数: dequantize_row_mxfp4_sycl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dequantize_row_mxfp4_sycl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void dequantize_row_mxfp4_sycl(const void * vx, dst_t * y, const int64_t k, dpct::queue_ptr stream) {
     const int nb = (k + QK_K - 1) / QK_K;
     stream->parallel_for(
@@ -524,11 +555,27 @@ static void convert_unary_nc_sycl(const void * __restrict__ vx, dst_t * __restri
 }
 
 template <typename src_t, typename dst_t>
+// 函数: convert_unary_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_unary_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void convert_unary_sycl(const void * vx, dst_t * y, const int64_t k, dpct::queue_ptr queue) {
     convert_unary_nc_sycl<src_t>(vx, y, k, 1, 1, 1, k, k, k, queue);
 }
 
 
+// 函数: ggml_get_to_fp16_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_to_fp16_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 to_fp16_sycl_t ggml_get_to_fp16_sycl(ggml_type type, ggml_tensor * dst) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -595,6 +642,14 @@ to_fp16_sycl_t ggml_get_to_fp16_sycl(ggml_type type, ggml_tensor * dst) {
     }
 }
 
+// 函数: ggml_get_to_fp32_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_to_fp32_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 to_fp32_sycl_t ggml_get_to_fp32_sycl(ggml_type type, ggml_tensor *dst) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -662,6 +717,14 @@ to_fp32_sycl_t ggml_get_to_fp32_sycl(ggml_type type, ggml_tensor *dst) {
     }
 }
 
+// 函数: get_to_fp16_nc_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_to_fp16_nc_sycl
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 to_fp16_nc_sycl_t get_to_fp16_nc_sycl(ggml_type type) {
     switch (type) {
         case GGML_TYPE_F32:

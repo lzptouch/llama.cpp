@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 # common
 
 find_package(Threads REQUIRED)

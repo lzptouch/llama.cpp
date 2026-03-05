@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: q8dot.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/pocs/vdot/q8dot.cpp
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #include <cstdio>
 #include <type_traits>
 #include <vector>
@@ -44,6 +51,10 @@ static_assert(QK4_1 == QK8_0, "QK4_1 and QK8_0 must be the same");
 static_assert(QK4_0 == QK8_0, "QK4_0 and QK8_0 must be the same");
 
 template <typename T>
+// 函数: fillQ4blocks
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fillQ4blocks(std::vector<T>& blocks, std::mt19937& rndm) {
     for (auto& b : blocks) {
         b.d = 1;
@@ -55,6 +66,10 @@ static void fillQ4blocks(std::vector<T>& blocks, std::mt19937& rndm) {
     }
 }
 
+// 函数: fillQ80blocks
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fillQ80blocks(std::vector<block_q8_0>& blocks, std::mt19937& rndm) {
     for (auto& b : blocks) {
         b.d = 1;
@@ -67,6 +82,10 @@ static void fillQ80blocks(std::vector<block_q8_0>& blocks, std::mt19937& rndm) {
     }
 }
 
+// 函数: simpleDot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float simpleDot(const block_q4_0& x, const block_q8_0& y) {
     int s1 = 0; //, s2 = 0;
     for (int i=0; i<QK4_1/2; i+=2) {
@@ -82,6 +101,10 @@ static float simpleDot(const block_q4_0& x, const block_q8_0& y) {
     //return y.d * x.d * (s1 - 8 * s2);
 }
 
+// 函数: simpleDot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float simpleDot(const block_q4_1& x, const block_q8_0& y) {
     int s1 = 0; //, s2 = 0;
     for (int i=0; i<QK4_1/2; i+=2) {
@@ -97,14 +120,37 @@ static float simpleDot(const block_q4_1& x, const block_q8_0& y) {
     //return y.d * (x.d * s1 + x.m * s2);
 }
 
+// 类: Stat
+// 描述: Stat类提供相关功能
+// 用途: 用于处理stat相关的操作
+    // 结构体: Stat
+    // 描述: Stat结构体提供相关功能
+    // 用途: 用于处理Stat相关的操作
+    // 结构体: Stat
+    // 描述: Stat结构体提供相关功能
+    // 用途: 用于处理Stat相关的操作
+    // 结构体: Stat
+    // 描述: Stat结构体提供相关功能
+    // 用途: 用于处理Stat相关的操作
+    // 结构体: Stat
+    // 描述: Stat结构体提供相关功能
+    // 用途: 用于处理Stat相关的操作
 struct Stat {
     double sum = 0, sumt = 0, sumt2 = 0, maxt = 0;
     int nloop = 0;
+    // 函数: addResult
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void addResult(double s, double t) {
         sum += s;
         sumt += t; sumt2 += t*t; maxt = std::max(maxt, t);
         ++nloop;
     }
+    // 函数: reportResult
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void reportResult(const char* title) const {
         if (nloop < 1) {
             printf("%s(%s): no result\n",__func__,title);
@@ -119,6 +165,10 @@ struct Stat {
 };
 
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char** argv) {
 
     int nloop = argc > 1 ? atoi(argv[1]) : 10;

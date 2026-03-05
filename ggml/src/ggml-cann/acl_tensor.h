@@ -42,10 +42,26 @@
  * @return	The corresponding aclDataType. If the input type is not recognized,
  *			ACL_DT_UNDEFINED is returned.
  */
+// 函数: ggml_cann_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 aclDataType ggml_cann_type_mapping(ggml_type type);
 
 // Deleter for acl objects.
 template <typename T, aclError (*DestroyFunc)(const T *)> struct acl_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(T * ptr) const noexcept {
         if (ptr) {
             ACL_CHECK(DestroyFunc(ptr));
@@ -132,6 +148,14 @@ acl_tensor_ptr ggml_cann_create_tensor(void *      data_ptr,
     aclTensor * raw =
         aclCreateTensor(tmp_ne, dims, dtype, tmp_stride, offset / type_size, format, &acl_storage_len, 1, data_ptr);
 
+    // 函数: acl_tensor_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: acl_tensor_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return acl_tensor_ptr(raw);
 }
 
@@ -148,6 +172,14 @@ acl_tensor_ptr ggml_cann_create_tensor(void *      data_ptr,
  *
  * @return A smart pointer managing the created ACL int array.
  */
+// 函数: ggml_cann_create_int_array
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_create_int_array
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 acl_int_array_ptr ggml_cann_create_int_array(const int64_t * value, uint64_t size);
 
 /**
@@ -163,6 +195,14 @@ acl_int_array_ptr ggml_cann_create_int_array(const int64_t * value, uint64_t siz
  *
  * @return A smart pointer managing the created ACL scalar.
  */
+// 函数: ggml_cann_create_scalar
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_create_scalar
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 acl_scalar_ptr ggml_cann_create_scalar(void * value, aclDataType dataType);
 
 /**
@@ -197,6 +237,14 @@ template <typename... acl_tensor_ptr> acl_tensor_list_ptr ggml_cann_create_tenso
     // destroying the tensor
     int             dummy[]       = { (tensors.release(), 0)... };
     GGML_UNUSED(dummy);
+    // 函数: acl_tensor_list_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: acl_tensor_list_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return acl_tensor_list_ptr(raw);
 }
 
@@ -216,6 +264,14 @@ template <typename... acl_tensor_ptr> acl_tensor_list_ptr ggml_cann_create_tenso
  *          to 1. If such a dimension is found, broadcasting is required to align t1
  *          with t0 for element-wise operations.
  */
+// 函数: ggml_cann_need_bcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_need_bcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_cann_need_bcast(const ggml_tensor * t0, const ggml_tensor * t1);
 
 /**

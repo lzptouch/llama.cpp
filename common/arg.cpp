@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: arg.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/arg.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "arg.h"
 
 #include "chat.h"
@@ -60,6 +67,14 @@ static std::initializer_list<enum llama_example> mmproj_examples = {
     LLAMA_EXAMPLE_CLI,
 };
 
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read_file(const std::string & fname) {
     std::ifstream file(fname);
     if (!file) {
@@ -147,12 +162,28 @@ bool common_arg::has_value_from_env() const {
 
 static std::vector<std::string> break_str_into_lines(std::string input, size_t max_char_per_line) {
     std::vector<std::string> result;
+    // 函数: iss
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: iss
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::istringstream iss(input);
     std::string line;
     auto add_line = [&](const std::string& l) {
         if (l.length() <= max_char_per_line) {
             result.push_back(l);
         } else {
+            // 函数: line_stream
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: line_stream
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::istringstream line_stream(l);
             std::string word, current_line;
             while (line_stream >> word) {
@@ -176,6 +207,14 @@ std::string common_arg::to_string() const {
     // params for printing to console
     const static int n_leading_spaces = 40;
     const static int n_char_per_line_help = 70; // TODO: detect this based on current console
+    // 函数: leading_spaces
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: leading_spaces
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string leading_spaces(n_leading_spaces, ' ');
 
     std::ostringstream ss;
@@ -240,6 +279,14 @@ std::vector<std::string> common_arg::get_env() const {
 //
 
 // Helper function to parse tensor buffer override strings
+// 函数: parse_tensor_buffer_overrides
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_tensor_buffer_overrides
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void parse_tensor_buffer_overrides(const std::string & value, std::vector<llama_model_tensor_buft_override> & overrides) {
     std::map<std::string, ggml_backend_buffer_type_t> buft_list;
     for (size_t i = 0; i < ggml_backend_dev_count(); ++i) {
@@ -272,6 +319,14 @@ static void parse_tensor_buffer_overrides(const std::string & value, std::vector
     }
 }
 
+// 函数: clean_file_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clean_file_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string clean_file_name(const std::string & fname) {
     std::string clean_fname = fname;
     string_replace_all(clean_fname, "\\", "_");
@@ -279,6 +334,14 @@ static std::string clean_file_name(const std::string & fname) {
     return clean_fname;
 }
 
+// 函数: common_params_handle_remote_preset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_handle_remote_preset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static bool common_params_handle_remote_preset(common_params & params, llama_example ex) {
     GGML_ASSERT(!params.model.hf_repo.empty());
 
@@ -321,12 +384,48 @@ static bool common_params_handle_remote_preset(common_params & params, llama_exa
     return has_preset;
 }
 
+// 类: handle_model_result
+// 描述: handle_model_result类提供相关功能
+// 用途: 用于处理handle_model_result相关的操作
+// 类: handle_model_result
+// 描述: handle_model_result类提供相关功能
+// 用途: 用于处理handle_model_result相关的操作
+    // 结构体: handle_model_result
+    // 描述: handle_model_result结构体提供相关功能
+    // 用途: 用于处理handle_model_result相关的操作
+    // 结构体: handle_model_result
+    // 描述: handle_model_result结构体提供相关功能
+    // 用途: 用于处理handle_model_result相关的操作
+    // 结构体: handle_model_result
+    // 描述: handle_model_result结构体提供相关功能
+    // 用途: 用于处理handle_model_result相关的操作
+    // 结构体: handle_model_result
+    // 描述: handle_model_result结构体提供相关功能
+    // 用途: 用于处理handle_model_result相关的操作
 struct handle_model_result {
     bool found_mmproj = false;
     common_params_model mmproj;
 };
 
 static handle_model_result common_params_handle_model(
+        // 类: common_params_model
+        // 描述: common_params_model类提供相关功能
+        // 用途: 用于处理common_params_model相关的操作
+        // 类: common_params_model
+        // 描述: common_params_model类提供相关功能
+        // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
         struct common_params_model & model,
         const std::string & bearer_token,
         bool offline) {
@@ -400,6 +499,14 @@ const std::vector<ggml_type> kv_cache_types = {
     GGML_TYPE_Q5_1,
 };
 
+// 函数: kv_cache_type_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: kv_cache_type_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_type kv_cache_type_from_str(const std::string & s) {
     for (const auto & type : kv_cache_types) {
         if (ggml_type_name(type) == s) {
@@ -409,6 +516,14 @@ static ggml_type kv_cache_type_from_str(const std::string & s) {
     throw std::runtime_error("Unsupported cache type: " + s);
 }
 
+// 函数: get_all_kv_cache_types
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_all_kv_cache_types
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_all_kv_cache_types() {
     std::ostringstream msg;
     for (const auto & type : kv_cache_types) {
@@ -417,6 +532,14 @@ static std::string get_all_kv_cache_types() {
     return msg.str();
 }
 
+// 函数: parse_bool_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_bool_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool parse_bool_value(const std::string & value) {
     if (is_truthy(value)) {
         return true;
@@ -431,6 +554,14 @@ static bool parse_bool_value(const std::string & value) {
 // CLI argument parsing functions
 //
 
+// 函数: common_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool common_params_parse_ex(int argc, char ** argv, common_params_context & ctx_arg) {
     common_params & params = ctx_arg.params;
 
@@ -640,6 +771,14 @@ static bool common_params_parse_ex(int argc, char ** argv, common_params_context
     return true;
 }
 
+// 函数: common_params_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_params_print_usage(common_params_context & ctx_arg) {
     auto print_options = [](std::vector<common_arg *> & options) {
         for (common_arg * opt : options) {
@@ -669,6 +808,14 @@ static void common_params_print_usage(common_params_context & ctx_arg) {
     print_options(specific_options);
 }
 
+// 函数: common_params_print_completion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_print_completion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_params_print_completion(common_params_context & ctx_arg) {
     std::vector<common_arg *> common_options;
     std::vector<common_arg *> sparam_options;
@@ -793,6 +940,14 @@ static std::vector<ggml_backend_dev_t> parse_device_list(const std::string & val
     return devices;
 }
 
+// 函数: add_rpc_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add_rpc_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void add_rpc_devices(const std::string & servers) {
     auto rpc_servers = string_split<std::string>(servers, ',');
     if (rpc_servers.empty()) {
@@ -813,6 +968,14 @@ static void add_rpc_devices(const std::string & servers) {
     }
 }
 
+// 函数: common_params_to_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_to_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_params_to_map(int argc, char ** argv, llama_example ex, std::map<common_arg, std::string> & out_map) {
     common_params dummy_params;
     common_params_context ctx_arg = common_params_parser_init(dummy_params, ex, nullptr);
@@ -873,6 +1036,14 @@ bool common_params_to_map(int argc, char ** argv, llama_example ex, std::map<com
     return true;
 }
 
+// 函数: common_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_params_parse(int argc, char ** argv, common_params & params, llama_example ex, void(*print_usage)(int, char **)) {
     auto ctx_arg = common_params_parser_init(params, ex, print_usage);
     const common_params params_org = ctx_arg.params; // the example can modify the default params
@@ -906,6 +1077,14 @@ bool common_params_parse(int argc, char ** argv, common_params & params, llama_e
     return true;
 }
 
+// 函数: list_builtin_chat_templates
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: list_builtin_chat_templates
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string list_builtin_chat_templates() {
     std::vector<const char *> supported_tmpl;
     int32_t res = llama_chat_builtin_templates(nullptr, 0);
@@ -978,6 +1157,14 @@ static std::vector<std::string> parse_csv_row(const std::string& input) {
     return fields;
 }
 
+// 函数: common_params_parser_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_parser_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 common_params_context common_params_parser_init(common_params & params, llama_example ex, void(*print_usage)(int, char **)) {
     // per-example default params
     // we define here to make sure it's included in llama-gen-docs
@@ -3794,6 +3981,14 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
     return ctx_arg;
 }
 
+// 函数: common_params_add_preset_options
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_add_preset_options
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_params_add_preset_options(std::vector<common_arg> & args) {
     // arguments below won't be treated as CLI args, only preset options
     args.push_back(common_arg(

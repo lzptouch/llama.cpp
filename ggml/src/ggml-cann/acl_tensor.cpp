@@ -25,6 +25,14 @@
 #include <algorithm>
 #include <cstring>
 
+// 函数: ggml_cann_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 aclDataType ggml_cann_type_mapping(ggml_type type) {
     switch (type) {
         case GGML_TYPE_F32:
@@ -89,19 +97,51 @@ acl_tensor_ptr ggml_cann_create_tensor(const ggml_tensor * tensor,
     aclTensor * raw = aclCreateTensor(acl_ne, final_dims, ggml_cann_type_mapping(tensor->type), acl_stride, elem_offset,
                                       format, &acl_storage_len, 1, tensor->data);
 
+    // 函数: acl_tensor_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: acl_tensor_ptr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return acl_tensor_ptr(raw);
 }
 
+// 函数: ggml_cann_create_int_array
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_create_int_array
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 acl_int_array_ptr ggml_cann_create_int_array(const int64_t * value, uint64_t size) {
     aclIntArray * raw = aclCreateIntArray(value, size);
     return acl_int_array_ptr(raw);
 }
 
+// 函数: ggml_cann_create_scalar
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_create_scalar
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 acl_scalar_ptr ggml_cann_create_scalar(void * value, aclDataType dataType) {
     aclScalar * raw = aclCreateScalar(value, dataType);
     return acl_scalar_ptr(raw);
 }
 
+// 函数: ggml_cann_need_bcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_need_bcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_cann_need_bcast(const ggml_tensor * t0, const ggml_tensor * t1) {
     for (int i = 0; i < GGML_MAX_DIMS; i++) {
         if (t1->ne[i] != t0->ne[i] && t1->ne[i] != 1) {

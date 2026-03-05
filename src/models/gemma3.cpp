@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gemma3.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/gemma3.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 template <bool iswa>
@@ -20,6 +27,14 @@ llm_build_gemma3<iswa>::llm_build_gemma3(const llama_model & model, const llm_gr
     using inp_attn_type = std::conditional_t<iswa, llm_graph_input_attn_kv_iswa, llm_graph_input_attn_kv>;
     inp_attn_type * inp_attn = nullptr;
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (iswa) {
         inp_attn = build_attn_inp_kv_iswa();
     } else {
@@ -32,6 +47,14 @@ llm_build_gemma3<iswa>::llm_build_gemma3(const llama_model & model, const llm_gr
         float freq_base_l  = 0.0f;
         float freq_scale_l = 0.0f;
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (iswa) {
             freq_base_l  = model.get_rope_freq_base (cparams, il);
             freq_scale_l = model.get_rope_freq_scale(cparams, il);

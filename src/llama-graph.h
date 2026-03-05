@@ -12,18 +12,138 @@
 #include <functional>
 #include <map>
 
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
 struct ggml_cgraph;
+// 类: ggml_context
+// 描述: ggml_context类提供相关功能
+// 用途: 用于处理ggml_context相关的操作
+// 类: ggml_context
+// 描述: ggml_context类提供相关功能
+// 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
 struct ggml_context;
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor;
 
+// 类: llama_cparams
+// 描述: llama_cparams类提供相关功能
+// 用途: 用于处理llama_cparams相关的操作
+// 类: llama_cparams
+// 描述: llama_cparams类提供相关功能
+// 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
 struct llama_cparams;
 
+// 类: llama_memory_context_i
+// 描述: llama_memory_context_i类提供相关功能
+// 用途: 用于处理llama_memory_context_i相关的操作
+// 类: llama_memory_context_i
+// 描述: llama_memory_context_i类提供相关功能
+// 用途: 用于处理llama_memory_context_i相关的操作
+    // 结构体: llama_memory_context_i
+    // 描述: llama_memory_context_i结构体提供相关功能
+    // 用途: 用于处理llama_memory_context_i相关的操作
+    // 结构体: llama_memory_context_i
+    // 描述: llama_memory_context_i结构体提供相关功能
+    // 用途: 用于处理llama_memory_context_i相关的操作
+    // 结构体: llama_memory_context_i
+    // 描述: llama_memory_context_i结构体提供相关功能
+    // 用途: 用于处理llama_memory_context_i相关的操作
+    // 结构体: llama_memory_context_i
+    // 描述: llama_memory_context_i结构体提供相关功能
+    // 用途: 用于处理llama_memory_context_i相关的操作
 struct llama_memory_context_i;
 
+// 类: llama_kv_cache_context
+// 描述: llama_kv_cache_context类提供相关功能
+// 用途: 用于处理llama_kv_cache_context相关的操作
+// 类: llama_kv_cache_context
+// 描述: llama_kv_cache_context类提供相关功能
+// 用途: 用于处理llama_kv_cache_context相关的操作
 class llama_kv_cache_context;
+// 类: llama_kv_cache_iswa_context
+// 描述: llama_kv_cache_iswa_context类提供相关功能
+// 用途: 用于处理llama_kv_cache_iswa_context相关的操作
+// 类: llama_kv_cache_iswa_context
+// 描述: llama_kv_cache_iswa_context类提供相关功能
+// 用途: 用于处理llama_kv_cache_iswa_context相关的操作
 class llama_kv_cache_iswa_context;
+// 类: llama_memory_recurrent_context
+// 描述: llama_memory_recurrent_context类提供相关功能
+// 用途: 用于处理llama_memory_recurrent_context相关的操作
+// 类: llama_memory_recurrent_context
+// 描述: llama_memory_recurrent_context类提供相关功能
+// 用途: 用于处理llama_memory_recurrent_context相关的操作
 class llama_memory_recurrent_context;
+// 类: llama_memory_hybrid_context
+// 描述: llama_memory_hybrid_context类提供相关功能
+// 用途: 用于处理llama_memory_hybrid_context相关的操作
+// 类: llama_memory_hybrid_context
+// 描述: llama_memory_hybrid_context类提供相关功能
+// 用途: 用于处理llama_memory_hybrid_context相关的操作
 class llama_memory_hybrid_context;
+// 类: llama_memory_hybrid_iswa_context
+// 描述: llama_memory_hybrid_iswa_context类提供相关功能
+// 用途: 用于处理llama_memory_hybrid_iswa_context相关的操作
+// 类: llama_memory_hybrid_iswa_context
+// 描述: llama_memory_hybrid_iswa_context类提供相关功能
+// 用途: 用于处理llama_memory_hybrid_iswa_context相关的操作
 class llama_memory_hybrid_iswa_context;
 
 // certain models (typically multi-modal) can produce different types of graphs
@@ -56,6 +176,24 @@ enum llm_norm_type {
 };
 
 // TODO: tmp - need something better to pass the data from the encoder to the decoder
+// 类: llama_cross
+// 描述: llama_cross类提供相关功能
+// 用途: 用于处理llama_cross相关的操作
+// 类: llama_cross
+// 描述: llama_cross类提供相关功能
+// 用途: 用于处理llama_cross相关的操作
+    // 结构体: llama_cross
+    // 描述: llama_cross结构体提供相关功能
+    // 用途: 用于处理llama_cross相关的操作
+    // 结构体: llama_cross
+    // 描述: llama_cross结构体提供相关功能
+    // 用途: 用于处理llama_cross相关的操作
+    // 结构体: llama_cross
+    // 描述: llama_cross结构体提供相关功能
+    // 用途: 用于处理llama_cross相关的操作
+    // 结构体: llama_cross
+    // 描述: llama_cross结构体提供相关功能
+    // 用途: 用于处理llama_cross相关的操作
 struct llama_cross {
     // the output embeddings from the encoder as a ggml tensor
     // TODO: this needs more work to be correct, for now copy the embeddings data to host memory
@@ -72,12 +210,36 @@ struct llama_cross {
     std::vector<std::set<llama_seq_id>> seq_ids_enc;
 };
 
+// 类: llm_graph_params
+// 描述: llm_graph_params类提供相关功能
+// 用途: 用于处理llm_graph_params相关的操作
+// 类: llm_graph_params
+// 描述: llm_graph_params类提供相关功能
+// 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
 struct llm_graph_params;
 
 //
 // llm_graph_input
 //
 
+// 类: llm_graph_input_i
+// 描述: llm_graph_input_i类提供相关功能
+// 用途: 用于处理llm_graph_input_i相关的操作
+// 类: llm_graph_input_i
+// 描述: llm_graph_input_i类提供相关功能
+// 用途: 用于处理llm_graph_input_i相关的操作
 class llm_graph_input_i {
 public:
     llm_graph_input_i() {
@@ -87,10 +249,26 @@ public:
 
     virtual ~llm_graph_input_i() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     virtual void set_input(const llama_ubatch * ubatch) = 0;
 
     // return true if the resulting input tensors using the provided graph parameters would be
     //   the same as the previous input tensors that we have currently stored in the object
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool can_reuse(const llm_graph_params & params) {
         // returning false here by default will prevent from reusing the graph if the check
         //   for the input type has not been implemented yet
@@ -104,13 +282,35 @@ protected:
 
 using llm_graph_input_ptr = std::unique_ptr<llm_graph_input_i>;
 
+// 类: llm_graph_input_embd
+// 描述: llm_graph_input_embd类提供相关功能
+// 用途: 用于处理llm_graph_input_embd相关的操作
+// 类: llm_graph_input_embd
+// 描述: llm_graph_input_embd类提供相关功能
+// 用途: 用于处理llm_graph_input_embd相关的操作
 class llm_graph_input_embd : public llm_graph_input_i {
 public:
     llm_graph_input_embd(int64_t n_embd) : n_embd(n_embd) {}
     virtual ~llm_graph_input_embd() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     ggml_tensor * tokens = nullptr; // I32 [n_batch]
@@ -119,13 +319,35 @@ public:
     const int64_t n_embd = 0;
 };
 
+// 类: llm_graph_input_pos
+// 描述: llm_graph_input_pos类提供相关功能
+// 用途: 用于处理llm_graph_input_pos相关的操作
+// 类: llm_graph_input_pos
+// 描述: llm_graph_input_pos类提供相关功能
+// 用途: 用于处理llm_graph_input_pos相关的操作
 class llm_graph_input_pos : public llm_graph_input_i {
 public:
     llm_graph_input_pos(uint32_t n_pos_per_embd) : n_pos_per_embd(n_pos_per_embd) {}
     virtual ~llm_graph_input_pos() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     ggml_tensor * pos = nullptr; // I32 [n_batch]
@@ -134,12 +356,26 @@ public:
 };
 
 // temperature tuning, used by llama4
+// 类: llm_graph_input_attn_temp
+// 描述: llm_graph_input_attn_temp类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_temp相关的操作
+// 类: llm_graph_input_attn_temp
+// 描述: llm_graph_input_attn_temp类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_temp相关的操作
 class llm_graph_input_attn_temp : public llm_graph_input_i {
 public:
     llm_graph_input_attn_temp(uint32_t n_attn_temp_floor_scale, float f_attn_temp_scale, float f_attn_temp_offset)
         : n_attn_temp_floor_scale(n_attn_temp_floor_scale), f_attn_temp_scale(f_attn_temp_scale), f_attn_temp_offset(f_attn_temp_offset) {}
     virtual ~llm_graph_input_attn_temp() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * attn_scale = nullptr; // F32 [n_batch]
@@ -149,11 +385,25 @@ public:
     const float    f_attn_temp_offset;
 };
 
+// 类: llm_graph_input_pos_bucket
+// 描述: llm_graph_input_pos_bucket类提供相关功能
+// 用途: 用于处理llm_graph_input_pos_bucket相关的操作
+// 类: llm_graph_input_pos_bucket
+// 描述: llm_graph_input_pos_bucket类提供相关功能
+// 用途: 用于处理llm_graph_input_pos_bucket相关的操作
 class llm_graph_input_pos_bucket : public llm_graph_input_i {
 public:
     llm_graph_input_pos_bucket(const llama_hparams & hparams) : hparams(hparams) {}
     virtual ~llm_graph_input_pos_bucket() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * pos_bucket = nullptr; // I32 [n_batch, n_batch]
@@ -161,6 +411,12 @@ public:
     const llama_hparams hparams;
 };
 
+// 类: llm_graph_input_pos_bucket_kv
+// 描述: llm_graph_input_pos_bucket_kv类提供相关功能
+// 用途: 用于处理llm_graph_input_pos_bucket_kv相关的操作
+// 类: llm_graph_input_pos_bucket_kv
+// 描述: llm_graph_input_pos_bucket_kv类提供相关功能
+// 用途: 用于处理llm_graph_input_pos_bucket_kv相关的操作
 class llm_graph_input_pos_bucket_kv : public llm_graph_input_i {
 public:
     llm_graph_input_pos_bucket_kv(
@@ -168,6 +424,14 @@ public:
             const llama_kv_cache_context * mctx) : hparams(hparams), mctx(mctx) {}
     virtual ~llm_graph_input_pos_bucket_kv() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * pos_bucket = nullptr; // I32 [n_kv, n_batch]
@@ -177,6 +441,12 @@ public:
     const llama_kv_cache_context * mctx;
 };
 
+// 类: llm_graph_input_out_ids
+// 描述: llm_graph_input_out_ids类提供相关功能
+// 用途: 用于处理llm_graph_input_out_ids相关的操作
+// 类: llm_graph_input_out_ids
+// 描述: llm_graph_input_out_ids类提供相关功能
+// 用途: 用于处理llm_graph_input_out_ids相关的操作
 class llm_graph_input_out_ids : public llm_graph_input_i {
 public:
     llm_graph_input_out_ids(
@@ -185,8 +455,24 @@ public:
             uint32_t n_outputs) : hparams(hparams), cparams(cparams), n_outputs(n_outputs) {}
     virtual ~llm_graph_input_out_ids() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     ggml_tensor * out_ids; // I32 [n_outputs]
@@ -197,11 +483,25 @@ public:
     const uint32_t n_outputs;
 };
 
+// 类: llm_graph_input_mean
+// 描述: llm_graph_input_mean类提供相关功能
+// 用途: 用于处理llm_graph_input_mean相关的操作
+// 类: llm_graph_input_mean
+// 描述: llm_graph_input_mean类提供相关功能
+// 用途: 用于处理llm_graph_input_mean相关的操作
 class llm_graph_input_mean : public llm_graph_input_i {
 public:
     llm_graph_input_mean(const llama_cparams & cparams) : cparams(cparams) {}
     virtual ~llm_graph_input_mean() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * mean; // F32 [n_batch, n_batch]
@@ -209,11 +509,25 @@ public:
     const llama_cparams cparams;
 };
 
+// 类: llm_graph_input_cls
+// 描述: llm_graph_input_cls类提供相关功能
+// 用途: 用于处理llm_graph_input_cls相关的操作
+// 类: llm_graph_input_cls
+// 描述: llm_graph_input_cls类提供相关功能
+// 用途: 用于处理llm_graph_input_cls相关的操作
 class llm_graph_input_cls : public llm_graph_input_i {
 public:
     llm_graph_input_cls(const llama_cparams & cparams, const llm_arch arch) : cparams(cparams), arch(arch) {}
     virtual ~llm_graph_input_cls() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * cls; // I32 [n_batch]
@@ -222,13 +536,35 @@ public:
     const llm_arch arch;
 };
 
+// 类: llm_graph_input_rs
+// 描述: llm_graph_input_rs类提供相关功能
+// 用途: 用于处理llm_graph_input_rs相关的操作
+// 类: llm_graph_input_rs
+// 描述: llm_graph_input_rs类提供相关功能
+// 用途: 用于处理llm_graph_input_rs相关的操作
 class llm_graph_input_rs : public llm_graph_input_i {
 public:
     llm_graph_input_rs(const llama_memory_recurrent_context * mctx) : mctx(mctx) {}
     virtual ~llm_graph_input_rs() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     ggml_tensor * s_copy;  // I32 [n_rs]
@@ -245,12 +581,26 @@ public:
     int32_t rs_z;
 };
 
+// 类: llm_graph_input_cross_embd
+// 描述: llm_graph_input_cross_embd类提供相关功能
+// 用途: 用于处理llm_graph_input_cross_embd相关的操作
+// 类: llm_graph_input_cross_embd
+// 描述: llm_graph_input_cross_embd类提供相关功能
+// 用途: 用于处理llm_graph_input_cross_embd相关的操作
 class llm_graph_input_cross_embd : public llm_graph_input_i {
 public:
     llm_graph_input_cross_embd(
             const llama_cross * cross) : cross(cross) {}
     virtual ~llm_graph_input_cross_embd() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * cross_embd; // F32 [n_embd, n_outputs_enc]
@@ -258,6 +608,12 @@ public:
     const llama_cross * cross;
 };
 
+// 类: llm_graph_input_attn_no_cache
+// 描述: llm_graph_input_attn_no_cache类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_no_cache相关的操作
+// 类: llm_graph_input_attn_no_cache
+// 描述: llm_graph_input_attn_no_cache类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_no_cache相关的操作
 class llm_graph_input_attn_no_cache : public llm_graph_input_i {
 public:
     llm_graph_input_attn_no_cache(const llama_hparams & hparams, const llama_cparams & cparams) :
@@ -266,9 +622,33 @@ public:
     }
     ~llm_graph_input_attn_no_cache() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask()     const { return self_kq_mask_cnv; }
+    // 函数: get_kq_mask_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask_swa() const { return self_kq_mask_swa_cnv; }
 
     // n_tokens == n_batch
@@ -281,6 +661,12 @@ public:
     const llama_cparams cparams;
 };
 
+// 类: llm_graph_input_attn_kv
+// 描述: llm_graph_input_attn_kv类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_kv相关的操作
+// 类: llm_graph_input_attn_kv
+// 描述: llm_graph_input_attn_kv类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_kv相关的操作
 class llm_graph_input_attn_kv : public llm_graph_input_i {
 public:
     llm_graph_input_attn_kv(
@@ -293,13 +679,53 @@ public:
     }
     ~llm_graph_input_attn_kv() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_k_idxs() const { return self_k_idxs; }
+    // 函数: get_v_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_v_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_v_idxs() const { return self_v_idxs; }
 
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask() const { return self_kq_mask_cnv; }
 
     ggml_tensor * self_k_idxs = nullptr; // I64 [n_batch]
@@ -319,6 +745,12 @@ public:
 
 // V-less input for the KV cache
 // ref: https://github.com/ggml-org/llama.cpp/pull/19067
+// 类: llm_graph_input_attn_k
+// 描述: llm_graph_input_attn_k类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_k相关的操作
+// 类: llm_graph_input_attn_k
+// 描述: llm_graph_input_attn_k类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_k相关的操作
 class llm_graph_input_attn_k : public llm_graph_input_i {
 public:
     llm_graph_input_attn_k(
@@ -331,12 +763,44 @@ public:
     }
     ~llm_graph_input_attn_k() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_k_idxs() const { return self_k_idxs; }
 
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask() const { return self_kq_mask_cnv; }
 
     ggml_tensor * self_k_idxs = nullptr; // I64 [n_batch]
@@ -350,6 +814,12 @@ public:
     const llama_kv_cache_context * mctx;
 };
 
+// 类: llm_graph_input_attn_kv_iswa
+// 描述: llm_graph_input_attn_kv_iswa类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_kv_iswa相关的操作
+// 类: llm_graph_input_attn_kv_iswa
+// 描述: llm_graph_input_attn_kv_iswa类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_kv_iswa相关的操作
 class llm_graph_input_attn_kv_iswa : public llm_graph_input_i {
 public:
     llm_graph_input_attn_kv_iswa(
@@ -362,16 +832,80 @@ public:
     }
     ~llm_graph_input_attn_kv_iswa() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_k_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_k_idxs()     const { return self_k_idxs; }
+    // 函数: get_v_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_v_idxs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_v_idxs()     const { return self_v_idxs; }
+    // 函数: get_k_idxs_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_k_idxs_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_k_idxs_swa() const { return self_k_idxs_swa; }
+    // 函数: get_v_idxs_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_v_idxs_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_v_idxs_swa() const { return self_v_idxs_swa; }
 
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask()     const { return self_kq_mask_cnv; }
+    // 函数: get_kq_mask_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask_swa
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask_swa() const { return self_kq_mask_swa_cnv; }
 
     ggml_tensor * self_k_idxs     = nullptr; // I64 [n_batch]
@@ -390,13 +924,35 @@ public:
     const llama_kv_cache_iswa_context * mctx;
 };
 
+// 类: llm_graph_input_attn_cross
+// 描述: llm_graph_input_attn_cross类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_cross相关的操作
+// 类: llm_graph_input_attn_cross
+// 描述: llm_graph_input_attn_cross类提供相关功能
+// 用途: 用于处理llm_graph_input_attn_cross相关的操作
 class llm_graph_input_attn_cross : public llm_graph_input_i {
 public:
     llm_graph_input_attn_cross(const llama_cross * cross) : cross(cross) {}
     ~llm_graph_input_attn_cross() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: get_kq_mask_cross
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kq_mask_cross
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_kq_mask_cross() const { return cross_kq_mask_cnv; }
 
     ggml_tensor * cross_kq_mask     = nullptr; // F32 [n_outputs_enc, n_batch, 1, 1]
@@ -405,6 +961,12 @@ public:
     const llama_cross * cross = nullptr;
 };
 
+// 类: llm_graph_input_mem_hybrid
+// 描述: llm_graph_input_mem_hybrid类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid相关的操作
+// 类: llm_graph_input_mem_hybrid
+// 描述: llm_graph_input_mem_hybrid类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid相关的操作
 class llm_graph_input_mem_hybrid : public llm_graph_input_i {
 public:
     llm_graph_input_mem_hybrid(
@@ -418,14 +980,46 @@ public:
         mctx(mctx) { }
     virtual ~llm_graph_input_mem_hybrid() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     std::unique_ptr<llm_graph_input_attn_kv> inp_attn;
     std::unique_ptr<llm_graph_input_rs>      inp_rs;
 
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_attn_kv * get_attn() const { return inp_attn.get(); }
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_rs      * get_recr() const { return inp_rs.get(); }
 
     const llama_cparams cparams;
@@ -433,6 +1027,12 @@ public:
     const llama_memory_hybrid_context * mctx;
 };
 
+// 类: llm_graph_input_mem_hybrid_k
+// 描述: llm_graph_input_mem_hybrid_k类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid_k相关的操作
+// 类: llm_graph_input_mem_hybrid_k
+// 描述: llm_graph_input_mem_hybrid_k类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid_k相关的操作
 class llm_graph_input_mem_hybrid_k : public llm_graph_input_i {
 public:
     llm_graph_input_mem_hybrid_k(
@@ -446,14 +1046,46 @@ public:
         mctx(mctx) { }
     virtual ~llm_graph_input_mem_hybrid_k() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     std::unique_ptr<llm_graph_input_attn_k> inp_attn;
     std::unique_ptr<llm_graph_input_rs>      inp_rs;
 
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_attn_k * get_attn() const { return inp_attn.get(); }
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_rs      * get_recr() const { return inp_rs.get(); }
 
     const llama_cparams cparams;
@@ -461,6 +1093,12 @@ public:
     const llama_memory_hybrid_context * mctx;
 };
 
+// 类: llm_graph_input_mem_hybrid_iswa
+// 描述: llm_graph_input_mem_hybrid_iswa类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid_iswa相关的操作
+// 类: llm_graph_input_mem_hybrid_iswa
+// 描述: llm_graph_input_mem_hybrid_iswa类提供相关功能
+// 用途: 用于处理llm_graph_input_mem_hybrid_iswa相关的操作
 class llm_graph_input_mem_hybrid_iswa : public llm_graph_input_i {
 public:
     llm_graph_input_mem_hybrid_iswa(
@@ -474,14 +1112,46 @@ public:
         mctx(mctx) { }
     virtual ~llm_graph_input_mem_hybrid_iswa() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     std::unique_ptr<llm_graph_input_attn_kv_iswa> inp_attn;
     std::unique_ptr<llm_graph_input_rs>          inp_rs;
 
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_attn
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_attn_kv_iswa * get_attn() const { return inp_attn.get(); }
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_recr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llm_graph_input_rs           * get_recr() const { return inp_rs.get(); }
 
     const llama_cparams cparams;
@@ -489,13 +1159,35 @@ public:
     const llama_memory_hybrid_iswa_context * mctx;
 };
 
+// 类: llm_graph_input_sampling
+// 描述: llm_graph_input_sampling类提供相关功能
+// 用途: 用于处理llm_graph_input_sampling相关的操作
+// 类: llm_graph_input_sampling
+// 描述: llm_graph_input_sampling类提供相关功能
+// 用途: 用于处理llm_graph_input_sampling相关的操作
 class llm_graph_input_sampling : public llm_graph_input_i {
 public:
     llm_graph_input_sampling(std::map<llama_seq_id, llama_sampler *> samplers) :
         samplers(std::move(samplers)) { }
     virtual ~llm_graph_input_sampling() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params) override;
 
     std::map<llama_seq_id, llama_sampler *> samplers;
@@ -514,8 +1206,32 @@ public:
 // callback that allows us to apply custom logic to each tensor (e.g. ggml-alloc, offloading, etc.)
 using llm_graph_cb = std::function<void(const llama_ubatch & ubatch, ggml_tensor * cur, const char * name, int il)>;
 
+// 类: llm_graph_result
+// 描述: llm_graph_result类提供相关功能
+// 用途: 用于处理llm_graph_result相关的操作
+// 类: llm_graph_result
+// 描述: llm_graph_result类提供相关功能
+// 用途: 用于处理llm_graph_result相关的操作
 class llm_graph_result;
 
+// 类: llm_graph_params
+// 描述: llm_graph_params类提供相关功能
+// 用途: 用于处理llm_graph_params相关的操作
+// 类: llm_graph_params
+// 描述: llm_graph_params类提供相关功能
+// 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
+    // 结构体: llm_graph_params
+    // 描述: llm_graph_params结构体提供相关功能
+    // 用途: 用于处理llm_graph_params相关的操作
 struct llm_graph_params {
     llm_arch arch = LLM_ARCH_UNKNOWN;
 
@@ -559,6 +1275,14 @@ struct llm_graph_params {
 
     // return true if the "other" params would result in a graph with the same topology as with the current params
     //   having the same topology allows us to reuse the graph in some cases
+    // 函数: allow_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: allow_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool allow_reuse(const llm_graph_params & other) const {
         // first check the ubatch
         bool can_reuse_ubatch =
@@ -623,25 +1347,111 @@ struct llm_graph_params {
     }
 };
 
+// 类: llm_graph_result
+// 描述: llm_graph_result类提供相关功能
+// 用途: 用于处理llm_graph_result相关的操作
+// 类: llm_graph_result
+// 描述: llm_graph_result类提供相关功能
+// 用途: 用于处理llm_graph_result相关的操作
 class llm_graph_result {
 public:
     llm_graph_result(int64_t max_nodes);
 
     virtual ~llm_graph_result() = default;
 
+    // 函数: get_inp_tokens
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_inp_tokens
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_inp_tokens()  const { return t_inp_tokens; }
+    // 函数: get_logits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_logits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_logits()      const { return t_logits; }
+    // 函数: get_embd
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_embd
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_embd()        const { return t_embd; }
+    // 函数: get_embd_pooled
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_embd_pooled
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_embd_pooled() const { return t_embd_pooled; }
 
+    // 函数: get_gf
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_gf
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_cgraph  * get_gf()  const { return gf; }
+    // 函数: get_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_context * get_ctx() const { return ctx_compute.get(); }
 
+    // 函数: get_max_nodes
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_max_nodes
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     int64_t get_max_nodes() const;
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset();
 
+    // 函数: set_inputs
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_inputs
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_inputs(const llama_ubatch * ubatch);
+    // 函数: set_outputs
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_outputs
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_outputs();
 
     // try to update the existing graph result using the new graph parameters in order to reuse it
@@ -649,10 +1459,34 @@ public:
     //   would be identical to the existing graph. in that case, we simply have to update the memory
     //   contexts of the input tensors of the graph and we can reuse it for another computation
     // return true if the graph was updated and can be reused
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_reuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_reuse(const llm_graph_params & params);
 
+    // 函数: add_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_i * add_input(llm_graph_input_ptr input);
 
+    // 函数: set_params
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_params
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_params(const llm_graph_params & params);
 
     // important graph nodes
@@ -697,6 +1531,24 @@ using llm_graph_result_ptr = std::unique_ptr<llm_graph_result>;
 // used in build_rs to properly order writes and avoid unnecessary copies
 using llm_graph_get_rows_fn = std::function<ggml_tensor * (ggml_context *, ggml_tensor * states, ggml_tensor * ids)>;
 
+// 类: llm_graph_context
+// 描述: llm_graph_context类提供相关功能
+// 用途: 用于处理llm_graph_context相关的操作
+// 类: llm_graph_context
+// 描述: llm_graph_context类提供相关功能
+// 用途: 用于处理llm_graph_context相关的操作
+    // 结构体: llm_graph_context
+    // 描述: llm_graph_context结构体提供相关功能
+    // 用途: 用于处理llm_graph_context相关的操作
+    // 结构体: llm_graph_context
+    // 描述: llm_graph_context结构体提供相关功能
+    // 用途: 用于处理llm_graph_context相关的操作
+    // 结构体: llm_graph_context
+    // 描述: llm_graph_context结构体提供相关功能
+    // 用途: 用于处理llm_graph_context相关的操作
+    // 结构体: llm_graph_context
+    // 描述: llm_graph_context结构体提供相关功能
+    // 用途: 用于处理llm_graph_context相关的操作
 struct llm_graph_context {
     const llm_arch arch;
 
@@ -754,6 +1606,14 @@ struct llm_graph_context {
     llm_graph_context(const llm_graph_params & params);
     virtual ~llm_graph_context() = default;
 
+    // 函数: cb
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cb
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cb(ggml_tensor * cur, const char * name, int il) const;
 
     //
@@ -844,16 +1704,96 @@ struct llm_graph_context {
     // inputs
     //
 
+    // 函数: build_inp_embd
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_embd
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_embd(ggml_tensor * tok_embd) const;
+    // 函数: build_inp_pos
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_pos
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_pos() const;
+    // 函数: build_inp_attn_scale
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_attn_scale
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_attn_scale() const;
+    // 函数: build_inp_out_ids
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_out_ids
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_out_ids() const;
+    // 函数: build_inp_mean
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_mean
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_mean() const;
+    // 函数: build_inp_cls
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_cls
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_cls() const;
 
+    // 函数: build_inp_cross_embd
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_cross_embd
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_cross_embd() const;
+    // 函数: build_inp_pos_bucket_enc
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_pos_bucket_enc
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_pos_bucket_enc() const;
+    // 函数: build_inp_pos_bucket_dec
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_pos_bucket_dec
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_pos_bucket_dec() const;
+    // 函数: build_pos_bias
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_pos_bias
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_pos_bias(ggml_tensor * pos_bucket, ggml_tensor * attn_rel_b) const;
 
     //
@@ -871,6 +1811,14 @@ struct llm_graph_context {
                   float   kq_scale,
                     int   il) const;
 
+    // 函数: build_attn_inp_no_cache
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_attn_inp_no_cache
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_attn_no_cache * build_attn_inp_no_cache() const;
 
     ggml_tensor * build_attn(
@@ -886,6 +1834,14 @@ struct llm_graph_context {
                   float   kq_scale,
                     int   il) const;
 
+    // 函数: build_attn_inp_kv
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_attn_inp_kv
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_attn_kv * build_attn_inp_kv() const;
 
     ggml_tensor * build_attn(
@@ -901,6 +1857,14 @@ struct llm_graph_context {
                   float   kq_scale,
                     int   il) const;
 
+    // 函数: build_attn_inp_k
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_attn_inp_k
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_attn_k  * build_attn_inp_k() const;
 
     ggml_tensor * build_attn(
@@ -916,6 +1880,14 @@ struct llm_graph_context {
                   float   kq_scale,
                     int   il) const;
 
+    // 函数: build_attn_inp_kv_iswa
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_attn_inp_kv_iswa
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_attn_kv_iswa * build_attn_inp_kv_iswa() const;
 
     // note: if k_cur or v_cur are not provided, they will not be stored in the memory
@@ -932,6 +1904,14 @@ struct llm_graph_context {
                   float   kq_scale,
                     int   il) const;
 
+    // 函数: build_attn_inp_cross
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_attn_inp_cross
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_attn_cross * build_attn_inp_cross() const;
 
     ggml_tensor * build_attn(
@@ -968,6 +1948,14 @@ struct llm_graph_context {
                 int32_t   rs_zero,
             const llm_graph_get_rows_fn & get_state_rows = ggml_get_rows) const;
 
+    // 函数: build_rs_inp
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_rs_inp
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_rs * build_rs_inp() const;
 
     ggml_tensor * build_rs(
@@ -990,9 +1978,33 @@ struct llm_graph_context {
     // hybrid
     //
 
+    // 函数: build_inp_mem_hybrid
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_mem_hybrid
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_mem_hybrid * build_inp_mem_hybrid() const;
+    // 函数: build_inp_mem_hybrid_k
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_mem_hybrid_k
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_mem_hybrid_k * build_inp_mem_hybrid_k() const;
 
+    // 函数: build_inp_mem_hybrid_iswa
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_mem_hybrid_iswa
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     llm_graph_input_mem_hybrid_iswa * build_inp_mem_hybrid_iswa() const;
 
     //
@@ -1010,6 +2022,14 @@ struct llm_graph_context {
     // sampling (backend sampling)
     //
 
+    // 函数: build_sampling
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_sampling
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     void build_sampling() const;
 
     //
@@ -1023,4 +2043,12 @@ struct llm_graph_context {
 };
 
 // TODO: better name
+// 函数: llama_relative_position_bucket
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_relative_position_bucket
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_relative_position_bucket(llama_pos x, llama_pos y, uint64_t n_buckets, bool bidirectional);

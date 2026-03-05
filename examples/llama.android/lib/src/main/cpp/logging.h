@@ -22,6 +22,14 @@
 #endif
 #endif
 
+// 函数: ai_should_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ai_should_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int ai_should_log(int prio) {
     return __android_log_is_loggable(prio, LOG_TAG, LOG_MIN_LEVEL);
 }
@@ -42,6 +50,14 @@ static inline int ai_should_log(int prio) {
 #define LOGw(...)   do { if (ai_should_log(ANDROID_LOG_WARN )) __android_log_print(ANDROID_LOG_WARN , LOG_TAG, __VA_ARGS__); } while (0)
 #define LOGe(...)   do { if (ai_should_log(ANDROID_LOG_ERROR)) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__); } while (0)
 
+// 函数: android_log_prio_from_ggml
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: android_log_prio_from_ggml
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int android_log_prio_from_ggml(enum ggml_log_level level) {
     switch (level) {
         case GGML_LOG_LEVEL_ERROR: return ANDROID_LOG_ERROR;

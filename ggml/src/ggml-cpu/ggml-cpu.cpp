@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-cpu.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-backend.h"
 #include "ggml-backend-impl.h"
 #include "ggml-cpu.h"
@@ -73,6 +80,14 @@ std::vector<ggml_backend_buffer_type_t> & ggml_backend_cpu_get_extra_buffer_type
     return bufts;
 }
 
+// 函数: ggml_backend_cpu_device_get_extra_buffers_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_extra_buffers_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t * ggml_backend_cpu_device_get_extra_buffers_type(ggml_backend_dev_t device) {
     static std::vector<ggml_backend_buffer_type_t> extra_bufts = [] {
         std::vector<ggml_backend_buffer_type_t> bufts = ggml_backend_cpu_get_extra_buffer_types();
@@ -85,6 +100,14 @@ static ggml_backend_buffer_type_t * ggml_backend_cpu_device_get_extra_buffers_ty
     GGML_UNUSED(device);
 }
 
+// 函数: ggml_backend_cpu_is_extra_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_is_extra_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cpu_is_extra_buffer_type(ggml_backend_buffer_type_t buft) {
     for (auto * extra : ggml_backend_cpu_get_extra_buffer_types()) {
         if (extra == buft) {
@@ -96,6 +119,24 @@ static bool ggml_backend_cpu_is_extra_buffer_type(ggml_backend_buffer_type_t buf
 
 // CPU backend - backend (stream)
 
+// 类: ggml_backend_cpu_context
+// 描述: ggml_backend_cpu_context类提供相关功能
+// 用途: 用于处理ggml_backend_cpu_context相关的操作
+// 类: ggml_backend_cpu_context
+// 描述: ggml_backend_cpu_context类提供相关功能
+// 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
 struct ggml_backend_cpu_context {
     int                 n_threads;
     ggml_threadpool_t   threadpool;
@@ -109,27 +150,159 @@ struct ggml_backend_cpu_context {
     bool                use_ref;  // use reference implementation
 };
 
+// 函数: ggml_backend_cpu_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_get_name(ggml_backend_t backend) {
     return "CPU";
 
     GGML_UNUSED(backend);
 }
 
+// 函数: ggml_backend_cpu_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_free(ggml_backend_t backend) {
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * cpu_ctx = (struct ggml_backend_cpu_context *)backend->context;
     delete[] cpu_ctx->work_data;
     delete cpu_ctx;
     delete backend;
 }
 
+// 类: ggml_backend_plan_cpu
+// 描述: ggml_backend_plan_cpu类提供相关功能
+// 用途: 用于处理ggml_backend_plan_cpu相关的操作
+// 类: ggml_backend_plan_cpu
+// 描述: ggml_backend_plan_cpu类提供相关功能
+// 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
 struct ggml_backend_plan_cpu {
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan cplan;
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph cgraph;
 };
 
+// 函数: ggml_backend_cpu_graph_plan_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_graph_plan_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_graph_plan_t ggml_backend_cpu_graph_plan_create(ggml_backend_t backend, const struct ggml_cgraph * cgraph) {
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * cpu_ctx = (struct ggml_backend_cpu_context *)backend->context;
 
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
     struct ggml_backend_plan_cpu * cpu_plan = new ggml_backend_plan_cpu;
 
     cpu_plan->cplan = ggml_graph_plan(cgraph, cpu_ctx->n_threads, cpu_ctx->threadpool);
@@ -150,7 +323,33 @@ static ggml_backend_graph_plan_t ggml_backend_cpu_graph_plan_create(ggml_backend
     return cpu_plan;
 }
 
+// 函数: ggml_backend_cpu_graph_plan_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_graph_plan_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_graph_plan_free(ggml_backend_t backend, ggml_backend_graph_plan_t plan) {
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
     struct ggml_backend_plan_cpu * cpu_plan = (struct ggml_backend_plan_cpu *)plan;
 
     delete[] cpu_plan->cplan.work_data;
@@ -160,16 +359,78 @@ static void ggml_backend_cpu_graph_plan_free(ggml_backend_t backend, ggml_backen
 }
 
 static enum ggml_status ggml_backend_cpu_graph_plan_compute(ggml_backend_t backend, ggml_backend_graph_plan_t plan) {
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 类: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu类提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
+    // 结构体: ggml_backend_plan_cpu
+    // 描述: ggml_backend_plan_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_backend_plan_cpu相关的操作
     struct ggml_backend_plan_cpu * cpu_plan = (struct ggml_backend_plan_cpu *)plan;
 
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_graph_compute(&cpu_plan->cgraph, &cpu_plan->cplan);
 
     GGML_UNUSED(backend);
 }
 
 static enum ggml_status ggml_backend_cpu_graph_compute(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * cpu_ctx = (struct ggml_backend_cpu_context *)backend->context;
 
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan cplan = ggml_graph_plan(cgraph, cpu_ctx->n_threads, cpu_ctx->threadpool);
 
     if (cpu_ctx->work_size < cplan.work_size) {
@@ -187,6 +448,14 @@ static enum ggml_status ggml_backend_cpu_graph_compute(ggml_backend_t backend, s
     cplan.abort_callback_data = cpu_ctx->abort_callback_data;
     cplan.use_ref             = cpu_ctx->use_ref;
 
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_graph_compute(cgraph, &cplan);
 }
 
@@ -207,15 +476,49 @@ static const struct ggml_backend_i ggml_backend_cpu_i = {
     /* .graph_optimize          = */ NULL,
 };
 
+// 函数: ggml_backend_cpu_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_cpu_guid(void) {
     static ggml_guid guid = { 0xaa, 0x67, 0xc7, 0x43, 0x96, 0xe6, 0xa3, 0x8a, 0xe3, 0xaf, 0xea, 0x92, 0x36, 0xbc, 0xfc, 0x89 };
     return &guid;
 }
 
+// 函数: ggml_backend_cpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_cpu_init(void) {
     // initialize CPU backend now to avoid slowing the first graph computation
     ggml_cpu_init();
 
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * ctx = new ggml_backend_cpu_context;
     if (ctx == NULL) {
         return NULL;
@@ -244,20 +547,80 @@ ggml_backend_t ggml_backend_cpu_init(void) {
     return cpu_backend;
 }
 
+// 函数: ggml_backend_is_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_cpu(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_cpu_guid());
 }
 
+// 函数: ggml_backend_cpu_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cpu_set_n_threads(ggml_backend_t backend_cpu, int n_threads) {
     GGML_ASSERT(ggml_backend_is_cpu(backend_cpu));
 
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * ctx = (struct ggml_backend_cpu_context *)backend_cpu->context;
     ctx->n_threads = n_threads;
 }
 
+// 函数: ggml_backend_cpu_set_threadpool
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_set_threadpool
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cpu_set_threadpool(ggml_backend_t backend_cpu, ggml_threadpool_t threadpool) {
     GGML_ASSERT(ggml_backend_is_cpu(backend_cpu));
 
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * ctx = (struct ggml_backend_cpu_context *)backend_cpu->context;
 
     if (ctx->threadpool && ctx->threadpool != threadpool) {
@@ -267,23 +630,93 @@ void ggml_backend_cpu_set_threadpool(ggml_backend_t backend_cpu, ggml_threadpool
     ctx->threadpool = threadpool;
 }
 
+// 函数: ggml_backend_cpu_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cpu_set_abort_callback(ggml_backend_t backend_cpu, ggml_abort_callback abort_callback, void * abort_callback_data) {
     GGML_ASSERT(ggml_backend_is_cpu(backend_cpu));
 
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * ctx = (struct ggml_backend_cpu_context *)backend_cpu->context;
     ctx->abort_callback = abort_callback;
     ctx->abort_callback_data = abort_callback_data;
 }
 
+// 函数: ggml_backend_cpu_set_use_ref
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_set_use_ref
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cpu_set_use_ref(ggml_backend_t backend_cpu, bool use_ref) {
     GGML_ASSERT(ggml_backend_is_cpu(backend_cpu));
 
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 类: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
+    // 结构体: ggml_backend_cpu_context
+    // 描述: ggml_backend_cpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_context相关的操作
     struct ggml_backend_cpu_context * ctx = (struct ggml_backend_cpu_context *)backend_cpu->context;
     ctx->use_ref = use_ref;
 }
 
 // CPU backend - device
 
+// 类: ggml_backend_cpu_device_context
+// 描述: ggml_backend_cpu_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+// 类: ggml_backend_cpu_device_context
+// 描述: ggml_backend_cpu_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
 struct ggml_backend_cpu_device_context {
     std::string description = "CPU";
 
@@ -348,18 +781,60 @@ struct ggml_backend_cpu_device_context {
     }
 };
 
+// 函数: ggml_backend_cpu_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_device_get_name(ggml_backend_dev_t dev) {
     return "CPU";
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_cpu_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_device_get_description(ggml_backend_dev_t dev) {
+    // 类: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 类: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context类提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
+    // 结构体: ggml_backend_cpu_device_context
+    // 描述: ggml_backend_cpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cpu_device_context相关的操作
     struct ggml_backend_cpu_device_context * ctx = (struct ggml_backend_cpu_device_context *)dev->context;
 
     return ctx->description.c_str();
 }
 
+// 函数: ggml_backend_cpu_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
 #ifdef _WIN32
     MEMORYSTATUSEX status;
@@ -385,6 +860,14 @@ static enum ggml_backend_dev_type ggml_backend_cpu_device_get_type(ggml_backend_
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_cpu_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_cpu_device_get_name(dev);
     props->description = ggml_backend_cpu_device_get_description(dev);
@@ -398,6 +881,14 @@ static void ggml_backend_cpu_device_get_props(ggml_backend_dev_t dev, struct ggm
     };
 }
 
+// 函数: ggml_backend_cpu_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_cpu_device_init_backend(ggml_backend_dev_t dev, const char * params) {
     return ggml_backend_cpu_init();
 
@@ -405,12 +896,28 @@ static ggml_backend_t ggml_backend_cpu_device_init_backend(ggml_backend_dev_t de
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_cpu_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_cpu_device_get_buffer_type(ggml_backend_dev_t dev) {
     return ggml_backend_cpu_buffer_type();
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_cpu_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_cpu_device_buffer_from_host_ptr(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     return ggml_backend_cpu_buffer_from_ptr(ptr, size);
 
@@ -418,6 +925,14 @@ static ggml_backend_buffer_t ggml_backend_cpu_device_buffer_from_host_ptr(ggml_b
     GGML_UNUSED(max_tensor_size);
 }
 
+// 函数: ggml_backend_cpu_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cpu_device_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -471,6 +986,14 @@ static bool ggml_backend_cpu_device_supports_op(ggml_backend_dev_t dev, const st
     }
 }
 
+// 函数: ggml_backend_cpu_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cpu_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     return ggml_backend_buft_is_host(buft) || ggml_backend_cpu_is_extra_buffer_type(buft);
     GGML_UNUSED(dev);
@@ -496,18 +1019,42 @@ static const struct ggml_backend_device_i ggml_backend_cpu_device_i = {
 
 // CPU backend - backend (reg)
 
+// 函数: ggml_backend_cpu_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_reg_get_name(ggml_backend_reg_t reg) {
     return "CPU";
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_cpu_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_reg_get_device_count(ggml_backend_reg_t reg) {
     return 1;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_cpu_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_cpu_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(index == 0);
 
@@ -523,6 +1070,14 @@ static ggml_backend_dev_t ggml_backend_cpu_reg_get_device(ggml_backend_reg_t reg
 
 // This is intended to replace the the ggml_cpu_has_* functions when loading the CPU backend dynamically,
 // and additionally to allow other backends to expose their own list of features that applications can query using the same API
+// 函数: ggml_backend_cpu_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_feature * ggml_backend_cpu_get_features(ggml_backend_reg_t reg) {
     static std::vector<ggml_backend_feature> features = []() {
         ggml_cpu_init();
@@ -637,6 +1192,14 @@ static ggml_backend_feature * ggml_backend_cpu_get_features(ggml_backend_reg_t r
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_cpu_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_cpu_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (strcmp(name, "ggml_backend_set_n_threads") == 0) {
         ggml_backend_set_n_threads_t fct = ggml_backend_cpu_set_n_threads;
@@ -685,6 +1248,14 @@ static const struct ggml_backend_reg_i ggml_backend_cpu_reg_i = {
     /* .get_proc_address = */ ggml_backend_cpu_get_proc_address,
 };
 
+// 函数: ggml_backend_cpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_cpu_reg(void) {
     // init CPU feature detection
     ggml_cpu_init();

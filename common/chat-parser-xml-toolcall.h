@@ -12,6 +12,24 @@
 // Sample config:
 // MiniMax-M2 (left): <minimax:tool_call>\n<invoke name="tool-name">\n<parameter name="key">value</parameter>\n...</invoke>\n...</minimax:tool_call>
 // GLM 4.5   (right): <tool_call>function_name\n<arg_key>key</arg_key>\n<arg_value>value</arg_value>\n</tool_call>
+// 类: xml_tool_call_format
+// 描述: xml_tool_call_format类提供相关功能
+// 用途: 用于处理xml_tool_call_format相关的操作
+// 类: xml_tool_call_format
+// 描述: xml_tool_call_format类提供相关功能
+// 用途: 用于处理xml_tool_call_format相关的操作
+    // 结构体: xml_tool_call_format
+    // 描述: xml_tool_call_format结构体提供相关功能
+    // 用途: 用于处理xml_tool_call_format相关的操作
+    // 结构体: xml_tool_call_format
+    // 描述: xml_tool_call_format结构体提供相关功能
+    // 用途: 用于处理xml_tool_call_format相关的操作
+    // 结构体: xml_tool_call_format
+    // 描述: xml_tool_call_format结构体提供相关功能
+    // 用途: 用于处理xml_tool_call_format相关的操作
+    // 结构体: xml_tool_call_format
+    // 描述: xml_tool_call_format结构体提供相关功能
+    // 用途: 用于处理xml_tool_call_format相关的操作
 struct xml_tool_call_format {
     std::string scope_start; // <minimax:tool_call>\n  // \n                      // can be empty
     std::string tool_start;  // <invoke name=\"        // <tool_call>
@@ -35,6 +53,14 @@ struct xml_tool_call_format {
 };
 
 // make a GBNF that accept any strings except those containing any of the forbidden strings.
+// 函数: make_gbnf_excluding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_gbnf_excluding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string make_gbnf_excluding(std::vector<std::string> forbids);
 
 /**
@@ -42,4 +68,12 @@ std::string make_gbnf_excluding(std::vector<std::string> forbids);
  * form.scope_start and form.scope_end can be empty.
  * Requires data.format for model-specific hacks.
  */
+// 函数: build_grammar_xml_tool_call
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_grammar_xml_tool_call
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 void build_grammar_xml_tool_call(common_chat_params & data, const nlohmann::ordered_json & tools, const struct xml_tool_call_format & form);

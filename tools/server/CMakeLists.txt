@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 # server-context containing the core server logic, used by llama-server and CLI

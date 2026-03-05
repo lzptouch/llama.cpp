@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: peg-parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/peg-parser.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "common.h"
 #include "peg-parser.h"
 #include "json-schema-to-grammar.h"
@@ -17,6 +24,14 @@
 template <typename T>
 inline constexpr bool is_always_false_v = false;
 
+// 函数: common_peg_parse_result_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_peg_parse_result_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * common_peg_parse_result_type_name(common_peg_parse_result_type type) {
     switch (type) {
         case COMMON_PEG_PARSE_RESULT_FAIL:            return "fail";
@@ -26,13 +41,57 @@ const char * common_peg_parse_result_type_name(common_peg_parse_result_type type
     }
 }
 
+// 函数: is_hex_digit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_hex_digit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_hex_digit(const char c) {
     return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
 }
 
 // Trie for matching multiple literals.
 // This is used in common_peg_until_parser and to build a GBNF exclusion grammar
+// 类: trie
+// 描述: trie类提供相关功能
+// 用途: 用于处理trie相关的操作
+// 类: trie
+// 描述: trie类提供相关功能
+// 用途: 用于处理trie相关的操作
+    // 结构体: trie
+    // 描述: trie结构体提供相关功能
+    // 用途: 用于处理trie相关的操作
+    // 结构体: trie
+    // 描述: trie结构体提供相关功能
+    // 用途: 用于处理trie相关的操作
+    // 结构体: trie
+    // 描述: trie结构体提供相关功能
+    // 用途: 用于处理trie相关的操作
+    // 结构体: trie
+    // 描述: trie结构体提供相关功能
+    // 用途: 用于处理trie相关的操作
 struct trie {
+    // 类: node
+    // 描述: node类提供相关功能
+    // 用途: 用于处理node相关的操作
+    // 类: node
+    // 描述: node类提供相关功能
+    // 用途: 用于处理node相关的操作
+    // 结构体: node
+    // 描述: node结构体提供相关功能
+    // 用途: 用于处理node相关的操作
+    // 结构体: node
+    // 描述: node结构体提供相关功能
+    // 用途: 用于处理node相关的操作
+    // 结构体: node
+    // 描述: node结构体提供相关功能
+    // 用途: 用于处理node相关的操作
+    // 结构体: node
+    // 描述: node结构体提供相关功能
+    // 用途: 用于处理node相关的操作
     struct node {
         size_t depth = 0;
         std::map<unsigned char, size_t> children;
@@ -51,6 +110,14 @@ struct trie {
     enum match_result { NO_MATCH, PARTIAL_MATCH, COMPLETE_MATCH };
 
     // Check if a delimiter starts at the given position
+    // 函数: check_at
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_at
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     match_result check_at(std::string_view sv, size_t start_pos) const {
         size_t current = 0; // Start at root
         size_t pos = start_pos;
@@ -81,6 +148,24 @@ struct trie {
         return match_result{match_result::NO_MATCH};
     }
 
+    // 类: prefix_and_next
+    // 描述: prefix_and_next类提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
+    // 类: prefix_and_next
+    // 描述: prefix_and_next类提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
+    // 结构体: prefix_and_next
+    // 描述: prefix_and_next结构体提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
+    // 结构体: prefix_and_next
+    // 描述: prefix_and_next结构体提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
+    // 结构体: prefix_and_next
+    // 描述: prefix_and_next结构体提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
+    // 结构体: prefix_and_next
+    // 描述: prefix_and_next结构体提供相关功能
+    // 用途: 用于处理prefix_and_next相关的操作
     struct prefix_and_next {
         std::string prefix;
         std::string next_chars;
@@ -94,6 +179,14 @@ struct trie {
     }
 
   private:
+    // 函数: collect_prefix_and_next
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: collect_prefix_and_next
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void collect_prefix_and_next(size_t index, std::string & prefix, std::vector<prefix_and_next> & out) {
         if (!nodes[index].is_word) {
             if (!nodes[index].children.empty()) {
@@ -115,12 +208,28 @@ struct trie {
         }
     }
 
+    // 函数: create_node
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: create_node
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t create_node() {
         size_t index = nodes.size();
         nodes.emplace_back();
         return index;
     }
 
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void insert(const std::string & word) {
         size_t current = 0;
         for (unsigned char ch : word) {
@@ -258,6 +367,24 @@ void common_peg_ast_arena::visit(const common_peg_parse_result & result, const c
     }
 }
 
+// 类: parser_executor
+// 描述: parser_executor类提供相关功能
+// 用途: 用于处理parser_executor相关的操作
+// 类: parser_executor
+// 描述: parser_executor类提供相关功能
+// 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
 struct parser_executor;
 
 common_peg_parser_id common_peg_arena::add_parser(common_peg_parser_variant parser) {
@@ -278,6 +405,24 @@ common_peg_parser_id common_peg_arena::get_rule(const std::string & name) const 
     return it->second;
 }
 
+// 类: parser_executor
+// 描述: parser_executor类提供相关功能
+// 用途: 用于处理parser_executor相关的操作
+// 类: parser_executor
+// 描述: parser_executor类提供相关功能
+// 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
+    // 结构体: parser_executor
+    // 描述: parser_executor结构体提供相关功能
+    // 用途: 用于处理parser_executor相关的操作
 struct parser_executor {
     const common_peg_arena & arena;
     common_peg_parse_context & ctx;
@@ -286,10 +431,26 @@ struct parser_executor {
     parser_executor(const common_peg_arena & arena, common_peg_parse_context & ctx, size_t start)
         : arena(arena), ctx(ctx), start_pos(start) {}
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_epsilon_parser & /* p */) const {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_start_parser & /* p */) const {
         return common_peg_parse_result(
             start_pos == 0 ? COMMON_PEG_PARSE_RESULT_SUCCESS : COMMON_PEG_PARSE_RESULT_FAIL,
@@ -297,6 +458,14 @@ struct parser_executor {
         );
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_end_parser & /* p */) const {
         return common_peg_parse_result(
             start_pos >= ctx.input.size() ? COMMON_PEG_PARSE_RESULT_SUCCESS : COMMON_PEG_PARSE_RESULT_FAIL,
@@ -304,6 +473,14 @@ struct parser_executor {
         );
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_literal_parser & p) {
         auto pos = start_pos;
         for (auto i = 0u; i < p.literal.size(); ++i) {
@@ -322,6 +499,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_sequence_parser & p) {
         auto pos = start_pos;
         std::vector<common_peg_ast_id> nodes;
@@ -346,6 +531,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, pos, std::move(nodes));
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_choice_parser & p) {
         auto pos = start_pos;
         for (const auto & child_id : p.children) {
@@ -358,6 +551,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_FAIL, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_repetition_parser & p) {
         auto pos = start_pos;
         int match_count = 0;
@@ -409,12 +610,28 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, pos, std::move(nodes));
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_and_parser & p) {
         auto result = arena.parse(p.child, ctx, start_pos);
         // Pass result but don't consume input
         return common_peg_parse_result(result.type, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_not_parser & p) {
         auto result = arena.parse(p.child, ctx, start_pos);
 
@@ -432,6 +649,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_any_parser & /* p */) const {
         // Parse a single UTF-8 codepoint (not just a single byte)
         auto result = parse_utf8_codepoint(ctx.input, start_pos);
@@ -448,6 +673,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, start_pos + result.bytes_consumed);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_space_parser & /* p */) {
         auto pos = start_pos;
         while (pos < ctx.input.size()) {
@@ -462,6 +695,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_chars_parser & p) const {
         auto pos = start_pos;
         int match_count = 0;
@@ -526,6 +767,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, pos);
     }
 
+    // 函数: handle_escape_sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: handle_escape_sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static common_peg_parse_result handle_escape_sequence(common_peg_parse_context & ctx, size_t start, size_t & pos) {
         ++pos; // consume '\'
         if (pos >= ctx.input.size()) {
@@ -554,6 +803,14 @@ struct parser_executor {
         }
     }
 
+    // 函数: handle_unicode_escape
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: handle_unicode_escape
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static common_peg_parse_result handle_unicode_escape(common_peg_parse_context & ctx, size_t start, size_t & pos) {
         ++pos; // consume 'u'
         for (int i = 0; i < 4; ++i) {
@@ -571,6 +828,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start, pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_json_string_parser & /* p */) {
         auto pos = start_pos;
 
@@ -613,6 +878,14 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_NEED_MORE_INPUT, start_pos, pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_until_parser & p) const {
         trie matcher(p.delimiters);
 
@@ -662,10 +935,26 @@ struct parser_executor {
         return common_peg_parse_result(COMMON_PEG_PARSE_RESULT_SUCCESS, start_pos, last_valid_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_schema_parser & p) {
         return arena.parse(p.child, ctx, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_rule_parser & p) {
         // Parse the child
         auto result = arena.parse(p.child, ctx, start_pos);
@@ -692,6 +981,14 @@ struct parser_executor {
         return result;
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_tag_parser & p) {
         // Parse the child
         auto result = arena.parse(p.child, ctx, start_pos);
@@ -718,11 +1015,27 @@ struct parser_executor {
         return result;
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_ref_parser & p) {
         auto rule_id = arena.get_rule(p.name);
         return arena.parse(rule_id, ctx, start_pos);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_result operator()(const common_peg_atomic_parser & p) {
         auto result = arena.parse(p.child, ctx, start_pos);
         if (result.need_more_input()) {
@@ -737,12 +1050,28 @@ common_peg_parse_result common_peg_arena::parse(common_peg_parse_context & ctx, 
     if (root_ == COMMON_PEG_INVALID_PARSER_ID) {
         throw std::runtime_error("No root parser set");
     }
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return parse(root_, ctx, start);
 }
 
 common_peg_parse_result common_peg_arena::parse(common_peg_parser_id id, common_peg_parse_context & ctx, size_t start) const {
     // Execute parser
     const auto & parser = parsers_.at(id);
+    // 函数: exec
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: exec
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     parser_executor exec(*this, ctx, start);
     return std::visit(exec, parser);
 }
@@ -750,6 +1079,14 @@ common_peg_parse_result common_peg_arena::parse(common_peg_parser_id id, common_
 common_peg_parser_id common_peg_arena::resolve_ref(common_peg_parser_id id) {
     const auto & parser = parsers_.at(id);
     if (auto ref = std::get_if<common_peg_ref_parser>(&parser)) {
+        // 函数: get_rule
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_rule
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_rule(ref->name);
     }
     return id;
@@ -761,6 +1098,14 @@ void common_peg_arena::resolve_refs() {
         std::visit([this](auto & p) {
             using T = std::decay_t<decltype(p)>;
 
+            // 函数: constexpr
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: constexpr
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             if constexpr (std::is_same_v<T, common_peg_sequence_parser>) {
                 for (auto & child : p.children) {
                     child = resolve_ref(child);
@@ -808,6 +1153,14 @@ std::string common_peg_arena::dump(common_peg_parser_id id) const {
     return std::visit([this](const auto & p) -> std::string {
         using T = std::decay_t<decltype(p)>;
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (std::is_same_v<T, common_peg_epsilon_parser>) {
             return "Epsilon";
         } else if constexpr (std::is_same_v<T, common_peg_start_parser>) {
@@ -937,6 +1290,14 @@ common_peg_parser operator|(const std::string & str, const common_peg_parser & p
     return operator|(str.c_str(), p);
 }
 
+// 函数: rule_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rule_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string rule_name(const std::string & name) {
     static const std::regex invalid_rule_chars_re("[^a-zA-Z0-9-]+");
     return std::regex_replace(name, invalid_rule_chars_re, "-");
@@ -955,6 +1316,14 @@ common_peg_parser common_peg_parser_builder::sequence(const std::vector<common_p
             flattened.push_back(p);
         }
     }
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return wrap(arena_.add_parser(common_peg_sequence_parser{flattened}));
 }
 
@@ -964,6 +1333,14 @@ common_peg_parser common_peg_parser_builder::sequence(const std::vector<common_p
     for (const auto & p : parsers) {
         ids.push_back(p.id());
     }
+    // 函数: sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return sequence(ids);
 }
 
@@ -973,6 +1350,14 @@ common_peg_parser common_peg_parser_builder::sequence(std::initializer_list<comm
     for (const auto & p : parsers) {
         ids.push_back(p.id());
     }
+    // 函数: sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return sequence(ids);
 }
 
@@ -987,6 +1372,14 @@ common_peg_parser common_peg_parser_builder::choice(const std::vector<common_peg
             flattened.push_back(p);
         }
     }
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return wrap(arena_.add_parser(common_peg_choice_parser{flattened}));
 }
 
@@ -996,6 +1389,14 @@ common_peg_parser common_peg_parser_builder::choice(const std::vector<common_peg
     for (const auto & p : parsers) {
         ids.push_back(p.id());
     }
+    // 函数: choice
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: choice
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return choice(ids);
 }
 
@@ -1005,15 +1406,39 @@ common_peg_parser common_peg_parser_builder::choice(std::initializer_list<common
     for (const auto & p : parsers) {
         ids.push_back(p.id());
     }
+    // 函数: choice
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: choice
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return choice(ids);
 }
 
 common_peg_parser common_peg_parser_builder::chars(const std::string & classes, int min, int max) {
     auto [ranges, negated] = parse_char_classes(classes);
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return wrap(arena_.add_parser(common_peg_chars_parser{classes, ranges, negated, min, max}));
 }
 
 common_peg_parser common_peg_parser_builder::schema(const common_peg_parser & p, const std::string & name, const nlohmann::ordered_json & schema, bool raw) {
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return wrap(arena_.add_parser(common_peg_schema_parser{p.id(), name, std::make_shared<nlohmann::ordered_json>(schema), raw}));
 }
 
@@ -1021,12 +1446,28 @@ common_peg_parser common_peg_parser_builder::rule(const std::string & name, cons
     auto clean_name = rule_name(name);
     auto rule_id = arena_.add_parser(common_peg_rule_parser{clean_name, p.id(), trigger});
     arena_.add_rule(clean_name, rule_id);
+    // 函数: ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ref(clean_name);
 }
 
 common_peg_parser common_peg_parser_builder::rule(const std::string & name, const std::function<common_peg_parser()> & builder_fn, bool trigger) {
     auto clean_name = rule_name(name);
     if (arena_.has_rule(clean_name)) {
+        // 函数: ref
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ref
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ref(clean_name);
     }
 
@@ -1042,6 +1483,14 @@ common_peg_parser common_peg_parser_builder::rule(const std::string & name, cons
     auto rule_id = arena_.add_parser(common_peg_rule_parser{clean_name, parser.id(), trigger});
     arena_.rules_[clean_name] = rule_id;
 
+    // 函数: ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ref(clean_name);
 }
 
@@ -1056,6 +1505,14 @@ common_peg_arena common_peg_parser_builder::build() {
 
 // JSON parsers
 common_peg_parser common_peg_parser_builder::json_number() {
+   // 函数: rule
+   // 描述: 执行主要功能
+   // 参数: 无参数
+   // 返回: 无返回值
+   // 函数: rule
+   // 描述: 执行主要功能
+   // 参数: 无参数
+   // 返回: 无返回值
    return rule("json-number", [this]() {
         auto digit1_9 = chars("[1-9]", 1, 1);
         auto digits = chars("[0-9]");
@@ -1067,24 +1524,56 @@ common_peg_parser common_peg_parser_builder::json_number() {
 }
 
 common_peg_parser common_peg_parser_builder::json_string() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-string", [this]() {
         return sequence({literal("\""), json_string_content(), literal("\""), space()});
     });
 }
 
 common_peg_parser common_peg_parser_builder::json_bool() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-bool", [this]() {
         return sequence({choice({literal("true"), literal("false")}), space()});
     });
 }
 
 common_peg_parser common_peg_parser_builder::json_null() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-null", [this]() {
         return sequence({literal("null"), space()});
     });
 }
 
 common_peg_parser common_peg_parser_builder::json_object() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-object", [this]() {
         auto ws = space();
         auto member = sequence({json_string(), ws, literal(":"), ws, json()});
@@ -1102,6 +1591,14 @@ common_peg_parser common_peg_parser_builder::json_object() {
 }
 
 common_peg_parser common_peg_parser_builder::json_array() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-array", [this]() {
         auto ws = space();
         auto elements = sequence({json(), zero_or_more(sequence({literal(","), ws, json()}))});
@@ -1118,6 +1615,14 @@ common_peg_parser common_peg_parser_builder::json_array() {
 }
 
 common_peg_parser common_peg_parser_builder::json() {
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return rule("json-value", [this]() {
         return choice({
             json_object(),
@@ -1131,6 +1636,14 @@ common_peg_parser common_peg_parser_builder::json() {
 }
 
 common_peg_parser common_peg_parser_builder::json_string_content() {
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wrap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return wrap(arena_.add_parser(common_peg_json_string_parser{}));
 }
 
@@ -1146,6 +1659,14 @@ common_peg_parser common_peg_parser_builder::json_member(const std::string & key
 }
 
 
+// 函数: gbnf_escape_char_class
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gbnf_escape_char_class
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string gbnf_escape_char_class(char c) {
     switch (c) {
         case '\n': return "\\n";
@@ -1158,6 +1679,14 @@ static std::string gbnf_escape_char_class(char c) {
     }
 }
 
+// 函数: gbnf_excluding_pattern
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gbnf_excluding_pattern
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string gbnf_excluding_pattern(const std::vector<std::string> & strings) {
     trie matcher(strings);
     auto pieces = matcher.collect_prefix_and_next();
@@ -1259,6 +1788,14 @@ void common_peg_arena::build_grammar(const common_grammar_builder & builder, boo
                           std::is_same_v<T, common_peg_end_parser>) {
                 return "";
             } else if constexpr (std::is_same_v<T, common_peg_literal_parser>) {
+                // 函数: gbnf_format_literal
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: gbnf_format_literal
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return gbnf_format_literal(p.literal);
             } else if constexpr (std::is_same_v<T, common_peg_sequence_parser>) {
                 std::string s;
@@ -1350,16 +1887,40 @@ void common_peg_arena::build_grammar(const common_grammar_builder & builder, boo
                 if (p.delimiters.empty()) {
                     return ".*";
                 }
+                // 函数: gbnf_excluding_pattern
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: gbnf_excluding_pattern
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return gbnf_excluding_pattern(p.delimiters);
             } else if constexpr (std::is_same_v<T, common_peg_schema_parser>) {
                 if (p.schema) {
                     if (p.raw && p.schema->contains("type") && p.schema->at("type").is_string() && p.schema->at("type") == "string") {
                         // TODO: Implement more comprehensive grammar generation for raw strings.
                         // For now, use the grammar emitted from the underlying parser.
+                        // 函数: to_gbnf
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: to_gbnf
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         return to_gbnf(p.child);
                     }
                     return builder.add_schema(p.name, *p.schema);
                 }
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return to_gbnf(p.child);
             } else if constexpr (std::is_same_v<T, common_peg_rule_parser>) {
                 return p.name;
@@ -1367,8 +1928,24 @@ void common_peg_arena::build_grammar(const common_grammar_builder & builder, boo
                 // Refs should not exist after flattening, but kept just in case
                 return p.name;
             } else if constexpr (std::is_same_v<T, common_peg_tag_parser>) {
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return to_gbnf(p.child);
             } else if constexpr (std::is_same_v<T, common_peg_atomic_parser>) {
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: to_gbnf
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return to_gbnf(p.child);
             } else {
                 static_assert(is_always_false_v<T>);
@@ -1429,6 +2006,14 @@ void common_peg_arena::build_grammar(const common_grammar_builder & builder, boo
     }
 }
 
+// 函数: serialize_parser_variant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: serialize_parser_variant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static nlohmann::json serialize_parser_variant(const common_peg_parser_variant & variant) {
     using json = nlohmann::json;
 
@@ -1520,6 +2105,14 @@ nlohmann::json common_peg_arena::to_json() const {
     };
 }
 
+// 函数: deserialize_parser_variant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: deserialize_parser_variant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_peg_parser_variant deserialize_parser_variant(const nlohmann::json & j) {
     if (!j.contains("type") || !j["type"].is_string()) {
         throw std::runtime_error("Parser variant JSON missing or invalid 'type' field");
@@ -1698,6 +2291,14 @@ common_peg_arena common_peg_arena::from_json(const nlohmann::json & j) {
 }
 
 std::string common_peg_arena::save() const {
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return to_json().dump();
 }
 
@@ -1705,6 +2306,14 @@ void common_peg_arena::load(const std::string & data) {
     *this = from_json(nlohmann::json::parse(data));
 }
 
+// 函数: build_peg_parser
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_peg_parser
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 common_peg_arena build_peg_parser(const std::function<common_peg_parser(common_peg_parser_builder & builder)> & fn) {
     common_peg_parser_builder builder;
     builder.set_root(fn(builder));

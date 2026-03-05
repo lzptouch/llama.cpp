@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: vdot.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/pocs/vdot/vdot.cpp
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #include <cstdio>
 #include <vector>
 #include <random>
@@ -17,6 +24,10 @@
 
 constexpr int kVecSize = 1 << 18;
 
+// 函数: drawFromGaussianPdf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float drawFromGaussianPdf(std::mt19937& rndm) {
     constexpr double kScale = 1./(1. + std::mt19937::max());
     constexpr double kTwoPiTimesScale = 6.28318530717958647692*kScale;
@@ -30,6 +41,10 @@ static float drawFromGaussianPdf(std::mt19937& rndm) {
     return r*cos(phi);
 }
 
+// 函数: fillRandomGaussianFloats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fillRandomGaussianFloats(std::vector<float>& values, std::mt19937& rndm, float mean = 0) {
     for (auto& v : values) v = mean + drawFromGaussianPdf(rndm);
 }
@@ -59,6 +74,10 @@ typedef struct {
 static_assert(sizeof(block_q8_0) == sizeof(float) + QK8_0, "wrong q8_0 block size/padding");
 
 // "Scalar" dot product between the quantized vector x and float vector y
+// 函数: dot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline double dot(int n, const block_q4_0* x, const float* y) {
     const static float kValues[16] = {-8.f, -7.f, -6.f, -5.f, -4.f, -3.f, -2.f, -1.f, 0.f, 1.f, 2.f, 3.f, 4.f, 5.f, 6.f, 7.f};
     constexpr uint32_t kMask1 = 0x0f0f0f0f;
@@ -86,6 +105,10 @@ inline double dot(int n, const block_q4_0* x, const float* y) {
 }
 // Alternative version of the above. Faster on my Mac (~45 us vs ~55 us per dot product),
 // but about the same on X86_64 (Ryzen 7950X CPU).
+// 函数: dot3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline double dot3(int n, const block_q4_0* x, const float* y) {
     const static std::pair<float,float> kValues[256] = {
         {-8.f, -8.f}, {-7.f, -8.f}, {-6.f, -8.f}, {-5.f, -8.f}, {-4.f, -8.f}, {-3.f, -8.f}, {-2.f, -8.f}, {-1.f, -8.f},
@@ -139,6 +162,10 @@ inline double dot3(int n, const block_q4_0* x, const float* y) {
     return sum;
 }
 
+// 函数: dot41
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline double dot41(int n, const block_q4_1* x, const float* y) {
     const static float kValues[16] = {0.f, 1.f, 2.f, 3.f, 4.f, 5.f, 6.f, 7.f, 8.f, 9.f, 10.f, 11.f, 12.f, 13.f, 14.f, 15.f};
     constexpr uint32_t kMask1 = 0x0f0f0f0f;
@@ -166,6 +193,10 @@ inline double dot41(int n, const block_q4_1* x, const float* y) {
 }
 
 // Copy-pasted from ggml.c
+// 函数: quantize_row_q8_0_reference
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_row_q8_0_reference(const float *x, block_q8_0 *y, int k) {
     assert(k % QK8_0 == 0);
     const int nb = k / QK8_0;
@@ -191,6 +222,10 @@ static void quantize_row_q8_0_reference(const float *x, block_q8_0 *y, int k) {
 }
 
 // Copy-pasted from ggml.c
+// 函数: dot_q4_q8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dot_q4_q8(const int n, float* s, const void* vx, const void* vy) {
     const int nb = n / QK8_0;
     const block_q4_0* x = (const block_q4_0*)vx;
@@ -220,6 +255,10 @@ static void dot_q4_q8(const int n, float* s, const void* vx, const void* vy) {
     *s = sumf;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char** argv) {
 
     int nloop = argc > 1 ? atoi(argv[1]) : 10;

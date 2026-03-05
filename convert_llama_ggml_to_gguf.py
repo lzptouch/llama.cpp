@@ -18,12 +18,24 @@ import gguf
 logger = logging.getLogger("ggml-to-gguf")
 
 
+    # 类: GGMLFormat
+    # 描述: GGMLFormat类提供相关功能
+    # 用途: 用于处理GGMLFormat相关的操作
+    # 类: GGMLFormat
+    # 描述: GGMLFormat类提供相关功能
+    # 用途: 用于处理GGMLFormat相关的操作
 class GGMLFormat(IntEnum):
     GGML = 0
     GGMF = 1
     GGJT = 2
 
 
+    # 类: GGMLFType
+    # 描述: GGMLFType类提供相关功能
+    # 用途: 用于处理GGMLFType相关的操作
+    # 类: GGMLFType
+    # 描述: GGMLFType类提供相关功能
+    # 用途: 用于处理GGMLFType相关的操作
 class GGMLFType(IntEnum):
     ALL_F32              = 0
     MOSTLY_F16           = 1
@@ -44,18 +56,48 @@ class GGMLFType(IntEnum):
     MOSTLY_Q6_K          = 18
 
 
+    # 类: Hyperparameters
+    # 描述: Hyperparameters类提供相关功能
+    # 用途: 用于处理Hyperparameters相关的操作
+    # 类: Hyperparameters
+    # 描述: Hyperparameters类提供相关功能
+    # 用途: 用于处理Hyperparameters相关的操作
 class Hyperparameters:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(self):
         self.n_vocab = self.n_embd = self.n_mult = self.n_head = 0
         self.n_layer = self.n_rot = self.n_ff = 0
         self.ftype = GGMLFType.ALL_F32
 
+    # 函数: set_n_ff
+    # 描述: set_n_ff函数提供相关功能
+    # 参数: self, model
+    # 返回: 无返回值
+    # 函数: set_n_ff
+    # 描述: set_n_ff函数提供相关功能
+    # 参数: self, model
+    # 返回: 无返回值
     def set_n_ff(self, model):
         ff_tensor_idx = model.tensor_map.get(b'layers.0.feed_forward.w1.weight')
         assert ff_tensor_idx is not None, 'Missing layer 0 FF tensor'
         ff_tensor = model.tensors[ff_tensor_idx]
         self.n_ff = ff_tensor.dims[1]
 
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
     def load(self, data, offset):
         (
             self.n_vocab,
@@ -72,15 +114,45 @@ class Hyperparameters:
             raise ValueError(f'Invalid ftype {ftype}')
         return 4 * 7
 
+    # 函数: __str__
+    # 描述: __str__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: __str__
+    # 描述: __str__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def __str__(self):
         return f'<Hyperparameters: n_vocab={self.n_vocab}, n_embd={self.n_embd}, n_mult={self.n_mult}, n_head={self.n_head}, n_layer={self.n_layer}, n_rot={self.n_rot}, n_ff={self.n_ff}, ftype={self.ftype.name}>'
 
 
+    # 类: Vocab
+    # 描述: Vocab类提供相关功能
+    # 用途: 用于处理Vocab相关的操作
+    # 类: Vocab
+    # 描述: Vocab类提供相关功能
+    # 用途: 用于处理Vocab相关的操作
 class Vocab:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, load_scores = True
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, load_scores = True
+    # 返回: 无返回值
     def __init__(self, load_scores = True):
         self.items = []
         self.load_scores = load_scores
 
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset, n_vocab
+    # 返回: 无返回值
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset, n_vocab
+    # 返回: 无返回值
     def load(self, data, offset, n_vocab):
         orig_offset = offset
         for _ in range(n_vocab):
@@ -98,7 +170,21 @@ class Vocab:
         return offset - orig_offset
 
 
+    # 类: Tensor
+    # 描述: Tensor类提供相关功能
+    # 用途: 用于处理Tensor相关的操作
+    # 类: Tensor
+    # 描述: Tensor类提供相关功能
+    # 用途: 用于处理Tensor相关的操作
 class Tensor:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, use_padding = True
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, use_padding = True
+    # 返回: 无返回值
     def __init__(self, use_padding = True):
         self.name = None
         self.dims: tuple[int, ...] = ()
@@ -107,6 +193,14 @@ class Tensor:
         self.len_bytes = np.int64(0)
         self.use_padding = use_padding
 
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
     def load(self, data, offset):
         orig_offset = offset
         (n_dims, name_len, dtype) = struct.unpack('<3I', data[offset:offset + 12])
@@ -131,17 +225,39 @@ class Tensor:
         return offset - orig_offset
 
 
+    # 类: GGMLModel
+    # 描述: GGMLModel类提供相关功能
+    # 用途: 用于处理GGMLModel相关的操作
+    # 类: GGMLModel
+    # 描述: GGMLModel类提供相关功能
+    # 用途: 用于处理GGMLModel相关的操作
 class GGMLModel:
 
     file_format: GGMLFormat
     format_version: int
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(self):
         self.hyperparameters = None
         self.vocab = None
         self.tensor_map = {}
         self.tensors = []
 
+    # 函数: validate_header
+    # 描述: validate_header函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
+    # 函数: validate_header
+    # 描述: validate_header函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
     def validate_header(self, data, offset):
         magic = bytes(data[offset:offset + 4])
         if magic == b'GGUF':
@@ -165,6 +281,14 @@ class GGMLModel:
             return 8
         raise ValueError(f"Unexpected file magic {magic!r}! This doesn't look like a GGML format file.")
 
+    # 函数: validate_conversion
+    # 描述: validate_conversion函数提供相关功能
+    # 参数: self, ftype
+    # 返回: 无返回值
+    # 函数: validate_conversion
+    # 描述: validate_conversion函数提供相关功能
+    # 参数: self, ftype
+    # 返回: 无返回值
     def validate_conversion(self, ftype):
         err = ''
         if (self.file_format < GGMLFormat.GGJT or self.format_version < 2):
@@ -177,6 +301,14 @@ class GGMLModel:
         if len(err) > 0:
             raise ValueError(f'{err} Sorry, your {self.file_format.name}v{self.format_version} file of type {ftype.name} is not eligible for conversion.')
 
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
+    # 函数: load
+    # 描述: load函数提供相关功能
+    # 参数: self, data, offset
+    # 返回: 无返回值
     def load(self, data, offset):
         offset += self.validate_header(data, offset)
         hp = Hyperparameters()
@@ -200,7 +332,21 @@ class GGMLModel:
         return offset
 
 
+    # 类: GGMLToGGUF
+    # 描述: GGMLToGGUF类提供相关功能
+    # 用途: 用于处理GGMLToGGUF相关的操作
+    # 类: GGMLToGGUF
+    # 描述: GGMLToGGUF类提供相关功能
+    # 用途: 用于处理GGMLToGGUF相关的操作
 class GGMLToGGUF:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, ggml_model, data, cfg, params_override = None, vocab_override = None, special_vocab = None
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, ggml_model, data, cfg, params_override = None, vocab_override = None, special_vocab = None
+    # 返回: 无返回值
     def __init__(self, ggml_model, data, cfg, params_override = None, vocab_override = None, special_vocab = None):
         hp = ggml_model.hyperparameters
         self.model = ggml_model
@@ -225,6 +371,14 @@ class GGMLToGGUF:
         self.n_kv_head = n_kv_head
         self.name_map = gguf.get_tensor_name_map(gguf.MODEL_ARCH.LLAMA, ggml_model.hyperparameters.n_layer)
 
+    # 函数: save
+    # 描述: save函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: save
+    # 描述: save函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def save(self):
         logger.info('* Preparing to save GGUF file')
         gguf_writer = gguf.GGUFWriter(
@@ -244,6 +398,14 @@ class GGMLToGGUF:
         gguf_writer.write_tensors_to_file()
         gguf_writer.close()
 
+    # 函数: add_params
+    # 描述: add_params函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
+    # 函数: add_params
+    # 描述: add_params函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
     def add_params(self, gguf_writer):
         hp = self.model.hyperparameters
         cfg = self.cfg
@@ -284,6 +446,14 @@ class GGMLToGGUF:
         gguf_writer.add_head_count_kv(self.n_kv_head)
         gguf_writer.add_layer_norm_rms_eps(float(cfg.eps))
 
+    # 函数: add_vocab
+    # 描述: add_vocab函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
+    # 函数: add_vocab
+    # 描述: add_vocab函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
     def add_vocab(self, gguf_writer):
         hp = self.model.hyperparameters
         gguf_writer.add_tokenizer_model('llama')
@@ -337,6 +507,14 @@ class GGMLToGGUF:
         gguf_writer.add_bos_token_id(1)
         gguf_writer.add_eos_token_id(2)
 
+    # 函数: add_tensors
+    # 描述: add_tensors函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
+    # 函数: add_tensors
+    # 描述: add_tensors函数提供相关功能
+    # 参数: self, gguf_writer
+    # 返回: 无返回值
     def add_tensors(self, gguf_writer):
         tensor_map = self.name_map
         data = self.data
@@ -357,6 +535,14 @@ class GGMLToGGUF:
                 raw_dtype = tensor.dtype)
 
 
+    # 函数: handle_metadata
+    # 描述: handle_metadata函数提供相关功能
+    # 参数: cfg, hp
+    # 返回: 无返回值
+    # 函数: handle_metadata
+    # 描述: handle_metadata函数提供相关功能
+    # 参数: cfg, hp
+    # 返回: 无返回值
 def handle_metadata(cfg, hp):
     import examples.convert_legacy_llama as convert
 
@@ -385,6 +571,14 @@ def handle_metadata(cfg, hp):
     return params, vocab, special_vocab
 
 
+    # 函数: handle_args
+    # 描述: handle_args函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: handle_args
+    # 描述: handle_args函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def handle_args():
     parser = argparse.ArgumentParser(description = 'Convert GGML models to GGUF')
     parser.add_argument('--input', '-i', type = Path, required = True,
@@ -411,6 +605,14 @@ def handle_args():
     return parser.parse_args()
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     cfg = handle_args()
     logging.basicConfig(level=logging.DEBUG if cfg.verbose else logging.INFO)

@@ -22,14 +22,158 @@
 #endif
 
 // Context for binary operations
+// 类: htp_binary_context
+// 描述: htp_binary_context类提供相关功能
+// 用途: 用于处理htp_binary_context相关的操作
+// 类: htp_binary_context
+// 描述: htp_binary_context类提供相关功能
+// 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
 struct htp_binary_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values dim1_div;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values dim2_div;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values dim12_div;
 
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src1_dim1_div; // ne11
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src1_dim2_div; // ne12
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src1_dim3_div; // ne13
 
     uint32_t nrows_per_thread;
@@ -48,6 +192,24 @@ struct htp_binary_context {
 #define htp_binary_preamble            \
     const struct htp_tensor * src0 = &octx->src0; \
     const struct htp_tensor * src1 = &octx->src1; \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;  \
                                        \
     const uint32_t ne00 = src0->ne[0]; \
@@ -91,6 +253,14 @@ static inline uint32_t calc_block_size(struct htp_binary_context * bctx, uint32_
          block_limit = MIN(block_limit, rows_in_plane);
     }
 
+    // 函数: MIN
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: MIN
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return MIN(bctx->block_max, block_limit);
 }
 
@@ -135,8 +305,52 @@ static inline uint32_t calc_block_size(struct htp_binary_context * bctx, uint32_
     }
 
 // 1. Scalar src1 (ne10 == 1)
+// 函数: binary_job_scalar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_scalar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_scalar(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
     htp_binary_preamble;
 
@@ -225,8 +439,52 @@ static void binary_job_scalar(unsigned int nth, unsigned int ith, void * data) {
 }
 
 // 2. Vector Same Shape (ne1x == ne0x) or Simple Broadcast
+// 函数: binary_job_vector_same_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_vector_same_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_vector_same_shape(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
     htp_binary_preamble;
 
@@ -321,8 +579,52 @@ static void binary_job_vector_same_shape(unsigned int nth, unsigned int ith, voi
 }
 
 // 3. Row Broadcast (ne11 == 1, ne12 == 1, single row src1)
+// 函数: binary_job_vector_row_broadcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_vector_row_broadcast
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_vector_row_broadcast(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
     htp_binary_preamble;
 
@@ -401,8 +703,52 @@ static void binary_job_vector_row_broadcast(unsigned int nth, unsigned int ith, 
 }
 
 // 4. Vector Complex (ne10 == ne00, complex broadcast)
+// 函数: binary_job_vector_complex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_vector_complex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_vector_complex(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
     htp_binary_preamble;
 
@@ -485,8 +831,52 @@ static void binary_job_vector_complex(unsigned int nth, unsigned int ith, void *
 }
 
 // 5. Element Repeat (ne10 != ne00)
+// 函数: binary_job_element_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_element_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_element_repeat(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
     htp_binary_preamble;
 
@@ -573,13 +963,75 @@ static void binary_job_element_repeat(unsigned int nth, unsigned int ith, void *
 }
 
 // 6. ADD_ID (src1 gathered via src2 indices)
+// 函数: binary_job_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: binary_job_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void binary_job_add_id(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context * bctx = (struct htp_binary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = bctx->octx;
 
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
     const struct htp_tensor * src2 = &octx->src2;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     const uint32_t ne00 = src0->ne[0];
@@ -672,9 +1124,35 @@ static void binary_job_add_id(unsigned int nth, unsigned int ith, void * data) {
     dma_queue_flush(q);
 }
 
+// 函数: execute_op_binary_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_op_binary_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int execute_op_binary_f32(struct htp_ops_context * octx) {
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     const uint32_t n_threads  = octx->n_threads;
@@ -768,6 +1246,24 @@ static int execute_op_binary_f32(struct htp_ops_context * octx) {
         dma_queue_push(q, dma_make_ptr(octx->src1_spad.data, (const void *) src1->data), src1_row_size_aligned, 0, src1->ne[0] * sizeof(float), 1);
     }
 
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 类: htp_binary_context
+    // 描述: htp_binary_context类提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
+    // 结构体: htp_binary_context
+    // 描述: htp_binary_context结构体提供相关功能
+    // 用途: 用于处理htp_binary_context相关的操作
     struct htp_binary_context bctx;
     bctx.octx = octx;
     bctx.nrows_per_thread = (src0_nrows + n_jobs - 1) / n_jobs;
@@ -819,6 +1315,14 @@ static int execute_op_binary_f32(struct htp_ops_context * octx) {
     return HTP_STATUS_OK;
 }
 
+// 函数: op_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_binary(struct htp_ops_context * octx) {
     if (octx->src0.type == HTP_TYPE_F32) {
         return execute_op_binary_f32(octx);

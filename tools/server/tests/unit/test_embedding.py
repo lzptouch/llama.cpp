@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_embedding.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_embedding.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import base64
 import struct
 import pytest
@@ -9,11 +16,27 @@ server = ServerPreset.bert_bge_small()
 EPSILON = 1e-3
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.bert_bge_small()
 
 
+    # 函数: test_embedding_single
+    # 描述: test_embedding_single函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_single
+    # 描述: test_embedding_single函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_single():
     global server
     server.pooling = 'last'
@@ -30,6 +53,14 @@ def test_embedding_single():
     assert abs(sum([x ** 2 for x in res.body['data'][0]['embedding']]) - 1) < EPSILON
 
 
+    # 函数: test_embedding_multiple
+    # 描述: test_embedding_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_multiple
+    # 描述: test_embedding_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_multiple():
     global server
     server.pooling = 'last'
@@ -49,6 +80,14 @@ def test_embedding_multiple():
         assert len(d['embedding']) > 1
 
 
+    # 函数: test_embedding_multiple_with_fa
+    # 描述: test_embedding_multiple_with_fa函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_multiple_with_fa
+    # 描述: test_embedding_multiple_with_fa函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_multiple_with_fa():
     server = ServerPreset.bert_bge_small_with_fa()
     server.pooling = 'last'
@@ -85,6 +124,14 @@ def test_embedding_multiple_with_fa():
         ([[12, 34, 56], [12, "string", 34, 56]], True),
     ]
 )
+    # 函数: test_embedding_mixed_input
+    # 描述: test_embedding_mixed_input函数提供相关功能
+    # 参数: input, is_multi_prompt: bool
+    # 返回: 无返回值
+    # 函数: test_embedding_mixed_input
+    # 描述: test_embedding_mixed_input函数提供相关功能
+    # 参数: input, is_multi_prompt: bool
+    # 返回: 无返回值
 def test_embedding_mixed_input(input, is_multi_prompt: bool):
     global server
     server.start()
@@ -101,6 +148,14 @@ def test_embedding_mixed_input(input, is_multi_prompt: bool):
         assert len(data[0]['embedding']) > 1
 
 
+    # 函数: test_embedding_pooling_none
+    # 描述: test_embedding_pooling_none函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_pooling_none
+    # 描述: test_embedding_pooling_none函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_pooling_none():
     global server
     server.pooling = 'none'
@@ -117,6 +172,14 @@ def test_embedding_pooling_none():
         assert abs(sum([x ** 2 for x in x]) - 1) > EPSILON
 
 
+    # 函数: test_embedding_pooling_none_oai
+    # 描述: test_embedding_pooling_none_oai函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_pooling_none_oai
+    # 描述: test_embedding_pooling_none_oai函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_pooling_none_oai():
     global server
     server.pooling = 'none'
@@ -130,6 +193,14 @@ def test_embedding_pooling_none_oai():
     assert "error" in res.body
 
 
+    # 函数: test_embedding_openai_library_single
+    # 描述: test_embedding_openai_library_single函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_openai_library_single
+    # 描述: test_embedding_openai_library_single函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_openai_library_single():
     global server
     server.pooling = 'last'
@@ -140,6 +211,14 @@ def test_embedding_openai_library_single():
     assert len(res.data[0].embedding) > 1
 
 
+    # 函数: test_embedding_openai_library_multiple
+    # 描述: test_embedding_openai_library_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_openai_library_multiple
+    # 描述: test_embedding_openai_library_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_openai_library_multiple():
     global server
     server.pooling = 'last'
@@ -156,6 +235,14 @@ def test_embedding_openai_library_multiple():
         assert len(d.embedding) > 1
 
 
+    # 函数: test_embedding_error_prompt_too_long
+    # 描述: test_embedding_error_prompt_too_long函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_error_prompt_too_long
+    # 描述: test_embedding_error_prompt_too_long函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_error_prompt_too_long():
     global server
     server.pooling = 'last'
@@ -167,6 +254,14 @@ def test_embedding_error_prompt_too_long():
     assert "too large" in res.body["error"]["message"]
 
 
+    # 函数: test_same_prompt_give_same_result
+    # 描述: test_same_prompt_give_same_result函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_same_prompt_give_same_result
+    # 描述: test_same_prompt_give_same_result函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_same_prompt_give_same_result():
     server.pooling = 'last'
     server.start()
@@ -195,6 +290,14 @@ def test_same_prompt_give_same_result():
         ("This is a test", 6),
     ]
 )
+    # 函数: test_embedding_usage_single
+    # 描述: test_embedding_usage_single函数提供相关功能
+    # 参数: content, n_tokens
+    # 返回: 无返回值
+    # 函数: test_embedding_usage_single
+    # 描述: test_embedding_usage_single函数提供相关功能
+    # 参数: content, n_tokens
+    # 返回: 无返回值
 def test_embedding_usage_single(content, n_tokens):
     global server
     server.start()
@@ -204,6 +307,14 @@ def test_embedding_usage_single(content, n_tokens):
     assert res.body['usage']['prompt_tokens'] == n_tokens
 
 
+    # 函数: test_embedding_usage_multiple
+    # 描述: test_embedding_usage_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_usage_multiple
+    # 描述: test_embedding_usage_multiple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_usage_multiple():
     global server
     server.start()
@@ -218,6 +329,14 @@ def test_embedding_usage_multiple():
     assert res.body['usage']['prompt_tokens'] == 2 * 9
 
 
+    # 函数: test_embedding_openai_library_base64
+    # 描述: test_embedding_openai_library_base64函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_embedding_openai_library_base64
+    # 描述: test_embedding_openai_library_base64函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_embedding_openai_library_base64():
     server.start()
     test_input = "Test base64 embedding output"

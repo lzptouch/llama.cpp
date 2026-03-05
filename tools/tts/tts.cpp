@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: tts.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/tts/tts.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #define _USE_MATH_DEFINES // For M_PI on MSVC
 
 #include "arg.h"
@@ -36,6 +43,14 @@ enum outetts_version {
 /**
  * Quantizes 24-bit RGB to xterm256 code range [16,256).
  */
+// 函数: rgb2xterm256
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rgb2xterm256
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int rgb2xterm256(int r, int g, int b) {
     unsigned char cube[] = {0, 0137, 0207, 0257, 0327, 0377};
     int av, ir, ig, ib, il, qr, qg, qb, ql;
@@ -50,6 +65,14 @@ static int rgb2xterm256(int r, int g, int b) {
     return il + 0350;
 }
 
+// 函数: set_xterm256_foreground
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_xterm256_foreground
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static std::string set_xterm256_foreground(int r, int g, int b) {
     int x = rgb2xterm256(r, g, b);
     std::ostringstream oss;
@@ -67,12 +90,44 @@ const std::vector<std::string> k_colors = {
     set_xterm256_foreground( 78, 178, 101),
 };
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int, char ** argv) {
     LOG("\nexample usage:\n");
     LOG("\n    %s -m model.gguf -p \"Hello!\"\n", argv[0]);
     LOG("\n");
 }
 
+// 类: wav_header
+// 描述: wav_header类提供相关功能
+// 用途: 用于处理wav_header相关的操作
+// 类: wav_header
+// 描述: wav_header类提供相关功能
+// 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
+    // 结构体: wav_header
+    // 描述: wav_header结构体提供相关功能
+    // 用途: 用于处理wav_header相关的操作
 struct wav_header {
     char riff[4] = {'R', 'I', 'F', 'F'};
     uint32_t chunk_size;
@@ -89,6 +144,14 @@ struct wav_header {
     uint32_t data_size;
 };
 
+// 函数: save_wav16
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: save_wav16
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 static bool save_wav16(const std::string & fname, const std::vector<float> & data, int sample_rate) {
     std::ofstream file(fname, std::ios::binary);
     if (!file) {
@@ -113,6 +176,14 @@ static bool save_wav16(const std::string & fname, const std::vector<float> & dat
     return file.good();
 }
 
+// 函数: fill_hann_window
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fill_hann_window
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fill_hann_window(int length, bool periodic, float * output) {
     int offset = -1;
     if (periodic) {
@@ -124,12 +195,28 @@ static void fill_hann_window(int length, bool periodic, float * output) {
 }
 
 // very poor-man fft
+// 函数: twiddle
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: twiddle
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void twiddle(float * real, float * imag, int k, int N) {
     float angle = 2 * M_PI * k / N;
     *real = cos(angle);
     *imag = sin(angle);
 }
 
+// 函数: irfft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: irfft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void irfft(int n, const float * inp_cplx, float * out_real) {
     int N = n / 2 + 1;
 
@@ -173,6 +260,14 @@ static void irfft(int n, const float * inp_cplx, float * out_real) {
 // hop_length =  320
 // pad =  480
 //
+// 函数: fold
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fold
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fold(const std::vector<float> & data, int64_t n_out, int64_t n_win, int64_t n_hop, int64_t n_pad, std::vector<float> & output) {
     int64_t output_height = n_out;
     int64_t kernel_w = n_win;
@@ -292,6 +387,14 @@ static const std::map<int, std::string> tens = {
 };
 
 // Convert a number less than 1000 to words
+// 函数: convert_less_than_thousand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_less_than_thousand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string convert_less_than_thousand(int num) {
     std::string result;
 
@@ -312,6 +415,14 @@ static std::string convert_less_than_thousand(int num) {
     return result;
 }
 
+// 函数: number_to_words
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: number_to_words
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string number_to_words(const std::string & number_str) {
     try {
         size_t decimal_pos = number_str.find('.');
@@ -362,6 +473,14 @@ static std::string number_to_words(const std::string & number_str) {
     }
 }
 
+// 函数: replace_numbers_with_words
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: replace_numbers_with_words
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string replace_numbers_with_words(const std::string & input_text) {
     std::regex number_pattern(R"(\d+(\.\d+)?)");
     std::string result;
@@ -381,6 +500,14 @@ static std::string replace_numbers_with_words(const std::string & input_text) {
 }
 
 // Based on: https://github.com/edwko/OuteTTS/blob/a613e79c489d8256dd657ea9168d78de75895d82/outetts/version/v1/prompt_processor.py#L39
+// 函数: process_text
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_text
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static std::string process_text(const std::string & text, const outetts_version tts_version = OUTETTS_V0_2) {
 
     // For now I skipped text romanization as I am unsure how to handle

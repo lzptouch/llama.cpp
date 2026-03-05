@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: debug.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/debug/debug.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "debug.h"
 #include "arg.h"
 #include "common.h"
@@ -11,6 +18,14 @@
 #include <fstream>
 #include <regex>
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int /*argc*/, char ** argv) {
     const std::string usage_template = R"(
         example usage:
@@ -33,6 +48,14 @@ static void print_usage(int /*argc*/, char ** argv) {
     LOG("%s\n", usage.c_str());
 }
 
+// 函数: has_pooling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: has_pooling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool has_pooling(llama_context * ctx) {
     switch (llama_pooling_type(ctx)) {
         case LLAMA_POOLING_TYPE_NONE:
@@ -43,6 +66,24 @@ static bool has_pooling(llama_context * ctx) {
     }
 }
 
+// 类: output_data
+// 描述: output_data类提供相关功能
+// 用途: 用于处理output_data相关的操作
+// 类: output_data
+// 描述: output_data类提供相关功能
+// 用途: 用于处理output_data相关的操作
+    // 结构体: output_data
+    // 描述: output_data结构体提供相关功能
+    // 用途: 用于处理output_data相关的操作
+    // 结构体: output_data
+    // 描述: output_data结构体提供相关功能
+    // 用途: 用于处理output_data相关的操作
+    // 结构体: output_data
+    // 描述: output_data结构体提供相关功能
+    // 用途: 用于处理output_data相关的操作
+    // 结构体: output_data
+    // 描述: output_data结构体提供相关功能
+    // 用途: 用于处理output_data相关的操作
 struct output_data {
     float *                  data_ptr    = nullptr;
     int                      data_size   = 0;
@@ -96,6 +137,14 @@ struct output_data {
     }
 };
 
+// 函数: save_output_data
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: save_output_data
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 static void save_output_data(const output_data & output, const std::string & model_name, const std::string & output_dir) {
     std::filesystem::create_directory(output_dir);
     auto base_path = std::filesystem::path{output_dir} / ("llamacpp-" + model_name + output.type_suffix);
@@ -159,6 +208,14 @@ static void save_output_data(const output_data & output, const std::string & mod
 
 }
 
+// 函数: print_tokenized_prompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_tokenized_prompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_tokenized_prompt(llama_context * ctx, const std::vector<llama_token> & tokens, const std::string & prompt) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -180,6 +237,14 @@ static void print_tokenized_prompt(llama_context * ctx, const std::vector<llama_
     LOG("\n");
 }
 
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool run(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -210,6 +275,14 @@ static bool run(llama_context * ctx, const common_params & params) {
     return true;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 

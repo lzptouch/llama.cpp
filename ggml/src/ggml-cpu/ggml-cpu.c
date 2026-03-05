@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-cpu.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define _CRT_SECURE_NO_DEPRECATE // Disables "unsafe" warnings on Windows
 #define _USE_MATH_DEFINES // For M_PI on MSVC
 
@@ -79,12 +86,48 @@ float ggml_table_f32_f16[1 << 16];
 float ggml_table_f32_e8m0_half[1 << 8];
 
 #if defined(__ARM_ARCH)
+// 类: ggml_arm_arch_features_type
+// 描述: ggml_arm_arch_features_type类提供相关功能
+// 用途: 用于处理ggml_arm_arch_features_type相关的操作
+// 类: ggml_arm_arch_features_type
+// 描述: ggml_arm_arch_features_type类提供相关功能
+// 用途: 用于处理ggml_arm_arch_features_type相关的操作
+    // 结构体: ggml_arm_arch_features_type
+    // 描述: ggml_arm_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_arm_arch_features_type相关的操作
+    // 结构体: ggml_arm_arch_features_type
+    // 描述: ggml_arm_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_arm_arch_features_type相关的操作
+    // 结构体: ggml_arm_arch_features_type
+    // 描述: ggml_arm_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_arm_arch_features_type相关的操作
+    // 结构体: ggml_arm_arch_features_type
+    // 描述: ggml_arm_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_arm_arch_features_type相关的操作
 struct ggml_arm_arch_features_type {
     int sve_cnt;
 } ggml_arm_arch_features = { 0 };
 #endif
 
 #if defined(__riscv)
+// 类: ggml_riscv_arch_features_type
+// 描述: ggml_riscv_arch_features_type类提供相关功能
+// 用途: 用于处理ggml_riscv_arch_features_type相关的操作
+// 类: ggml_riscv_arch_features_type
+// 描述: ggml_riscv_arch_features_type类提供相关功能
+// 用途: 用于处理ggml_riscv_arch_features_type相关的操作
+    // 结构体: ggml_riscv_arch_features_type
+    // 描述: ggml_riscv_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_riscv_arch_features_type相关的操作
+    // 结构体: ggml_riscv_arch_features_type
+    // 描述: ggml_riscv_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_riscv_arch_features_type相关的操作
+    // 结构体: ggml_riscv_arch_features_type
+    // 描述: ggml_riscv_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_riscv_arch_features_type相关的操作
+    // 结构体: ggml_riscv_arch_features_type
+    // 描述: ggml_riscv_arch_features_type结构体提供相关功能
+    // 用途: 用于处理ggml_riscv_arch_features_type相关的操作
 struct ggml_riscv_arch_features_type {
     int rvv_vlen;
 } ggml_riscv_arch_features = { 0 };
@@ -116,33 +159,105 @@ typedef enum {
     memory_order_seq_cst
 } memory_order;
 
+// 函数: atomic_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void atomic_store(atomic_int * ptr, LONG val) {
     InterlockedExchange(ptr, val);
 }
+// 函数: atomic_store_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_store_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void atomic_store_explicit(atomic_int * ptr, LONG val, memory_order mo) {
     // TODO: add support for explicit memory order
     InterlockedExchange(ptr, val);
 }
+// 函数: atomic_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static LONG atomic_load(atomic_int * ptr) {
     return InterlockedCompareExchange(ptr, 0, 0);
 }
+// 函数: atomic_load_explicit
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_load_explicit
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static LONG atomic_load_explicit(atomic_int * ptr, memory_order mo) {
     // TODO: add support for explicit memory order
     return InterlockedCompareExchange(ptr, 0, 0);
 }
+// 函数: atomic_fetch_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_fetch_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static LONG atomic_fetch_add(atomic_int * ptr, LONG inc) {
     return InterlockedExchangeAdd(ptr, inc);
 }
+// 函数: atomic_fetch_add_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_fetch_add_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static LONG atomic_fetch_add_explicit(atomic_int * ptr, LONG inc, memory_order mo) {
     // TODO: add support for explicit memory order
     return InterlockedExchangeAdd(ptr, inc);
 }
+// 函数: atomic_flag_test_and_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_flag_test_and_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static atomic_bool atomic_flag_test_and_set(atomic_flag * ptr) {
     return InterlockedExchange(ptr, 1);
 }
+// 函数: atomic_flag_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_flag_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void atomic_flag_clear(atomic_flag * ptr) {
     InterlockedExchange(ptr, 0);
 }
+// 函数: atomic_thread_fence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: atomic_thread_fence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void atomic_thread_fence(memory_order mo) {
     MemoryBarrier();
 }
@@ -153,6 +268,14 @@ static void atomic_thread_fence(memory_order mo) {
 typedef HANDLE pthread_t;
 
 typedef DWORD thread_ret_t;
+// 函数: pthread_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pthread_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int pthread_create(pthread_t * out, void * unused, thread_ret_t(*func)(void *), void * arg) {
     (void) unused;
     HANDLE handle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) func, arg, 0, NULL);
@@ -165,6 +288,14 @@ static int pthread_create(pthread_t * out, void * unused, thread_ret_t(*func)(vo
     return 0;
 }
 
+// 函数: pthread_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pthread_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int pthread_join(pthread_t thread, void * unused) {
     (void) unused;
     int ret = (int) WaitForSingleObject(thread, INFINITE);
@@ -172,6 +303,14 @@ static int pthread_join(pthread_t thread, void * unused) {
     return ret;
 }
 
+// 函数: sched_yield
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sched_yield
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int sched_yield (void) {
     Sleep (0);
     return 0;
@@ -452,11 +591,65 @@ typedef pthread_mutex_t    ggml_mutex_t;
 #endif
 
 // Threadpool def
+// 类: ggml_threadpool
+// 描述: ggml_threadpool类提供相关功能
+// 用途: 用于处理ggml_threadpool相关的操作
+// 类: ggml_threadpool
+// 描述: ggml_threadpool类提供相关功能
+// 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
 struct ggml_threadpool {
     ggml_mutex_t mutex;       // mutex for cond.var
     ggml_cond_t  cond;        // cond.var for waiting for new work
 
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * cgraph;
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan  * cplan;
 
     // synchronization primitives
@@ -470,6 +663,24 @@ struct ggml_threadpool {
     atomic_bool pause;        // Used for pausing the threadpool or individual threads
     atomic_int  abort;        // Used for aborting processing of a graph
 
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
     struct ggml_compute_state * workers;   // per thread state
     int          n_threads;   // Number of threads in the pool
     int32_t      prio;        // Scheduling priority
@@ -479,6 +690,24 @@ struct ggml_threadpool {
 };
 
 // Per-thread state
+// 类: ggml_compute_state
+// 描述: ggml_compute_state类提供相关功能
+// 用途: 用于处理ggml_compute_state相关的操作
+// 类: ggml_compute_state
+// 描述: ggml_compute_state类提供相关功能
+// 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
 struct ggml_compute_state {
 #ifndef GGML_USE_OPENMP
     ggml_thread_t thrd;
@@ -486,20 +715,62 @@ struct ggml_compute_state {
     bool pending;
 #endif
     bool cpumask[GGML_MAX_N_THREADS];
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool;
     int ith;
 };
 
 // Helpers for polling loops
 #if defined(__aarch64__) && ( defined(__clang__) || defined(__GNUC__) )
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_thread_cpu_relax(void) {
     __asm__ volatile("yield" ::: "memory");
 }
 #elif defined(__x86_64__)
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_thread_cpu_relax(void) {
     _mm_pause();
 }
 #elif defined(__riscv)
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_thread_cpu_relax(void) {
     #ifdef __riscv_zihintpause
         __asm__ __volatile__ ("pause");
@@ -509,6 +780,14 @@ static inline void ggml_thread_cpu_relax(void) {
     #endif
 }
 #else
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpu_relax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_thread_cpu_relax(void) {;}
 #endif
 
@@ -519,13 +798,67 @@ static inline void ggml_thread_cpu_relax(void) {;}
 #define GGML_NUMA_MAX_NODES 8
 #define GGML_NUMA_MAX_CPUS 512
 
+// 类: ggml_numa_node
+// 描述: ggml_numa_node类提供相关功能
+// 用途: 用于处理ggml_numa_node相关的操作
+// 类: ggml_numa_node
+// 描述: ggml_numa_node类提供相关功能
+// 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
 struct ggml_numa_node {
     uint32_t cpus[GGML_NUMA_MAX_CPUS]; // hardware threads on this node
     uint32_t n_cpus;
 };
 
+// 类: ggml_numa_nodes
+// 描述: ggml_numa_nodes类提供相关功能
+// 用途: 用于处理ggml_numa_nodes相关的操作
+// 类: ggml_numa_nodes
+// 描述: ggml_numa_nodes类提供相关功能
+// 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
 struct ggml_numa_nodes {
     enum ggml_numa_strategy numa_strategy;
+    // 类: ggml_numa_node
+    // 描述: ggml_numa_node类提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 类: ggml_numa_node
+    // 描述: ggml_numa_node类提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
     struct ggml_numa_node nodes[GGML_NUMA_MAX_NODES];
     uint32_t n_nodes;
     uint32_t total_cpus; // hardware threads on system
@@ -541,12 +874,56 @@ struct ggml_numa_nodes {
 // ggml state
 //
 
+// 类: ggml_state
+// 描述: ggml_state类提供相关功能
+// 用途: 用于处理ggml_state相关的操作
+// 类: ggml_state
+// 描述: ggml_state类提供相关功能
+// 用途: 用于处理ggml_state相关的操作
+    // 结构体: ggml_state
+    // 描述: ggml_state结构体提供相关功能
+    // 用途: 用于处理ggml_state相关的操作
+    // 结构体: ggml_state
+    // 描述: ggml_state结构体提供相关功能
+    // 用途: 用于处理ggml_state相关的操作
+    // 结构体: ggml_state
+    // 描述: ggml_state结构体提供相关功能
+    // 用途: 用于处理ggml_state相关的操作
+    // 结构体: ggml_state
+    // 描述: ggml_state结构体提供相关功能
+    // 用途: 用于处理ggml_state相关的操作
 struct ggml_state {
+    // 类: ggml_numa_nodes
+    // 描述: ggml_numa_nodes类提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 类: ggml_numa_nodes
+    // 描述: ggml_numa_nodes类提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
+    // 结构体: ggml_numa_nodes
+    // 描述: ggml_numa_nodes结构体提供相关功能
+    // 用途: 用于处理ggml_numa_nodes相关的操作
     struct ggml_numa_nodes numa;
 };
 
 static struct ggml_state g_state = {0};
 
+// 函数: ggml_barrier
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_barrier
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_barrier(struct ggml_threadpool * tp) {
     int n_threads = atomic_load_explicit(&tp->n_graph, memory_order_relaxed) & GGML_THREADPOOL_N_THREADS_MASK;
     if (n_threads == 1) {
@@ -585,15 +962,39 @@ void ggml_barrier(struct ggml_threadpool * tp) {
 #endif
 }
 
+// 函数: ggml_threadpool_chunk_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_chunk_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_threadpool_chunk_set(struct ggml_threadpool * tp, int value) {
     atomic_store_explicit(&tp->current_chunk, value, memory_order_relaxed);
 }
 
+// 函数: ggml_threadpool_chunk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_chunk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_threadpool_chunk_add(struct ggml_threadpool * tp, int value) {
     return atomic_fetch_add_explicit(&tp->current_chunk, value, memory_order_relaxed);
 }
 
 #if defined(__gnu_linux__)
+// 函数: ggml_get_numa_affinity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_numa_affinity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static cpu_set_t ggml_get_numa_affinity(void) {
     cpu_set_t cpuset;
     pthread_t thread;
@@ -603,11 +1004,27 @@ static cpu_set_t ggml_get_numa_affinity(void) {
     return cpuset;
 }
 #else
+// 函数: ggml_get_numa_affinity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_numa_affinity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_get_numa_affinity(void) {
     return 0; // no NUMA support
 }
 #endif
 
+// 函数: ggml_numa_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_numa_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_numa_init(enum ggml_numa_strategy numa_flag) {
     if (g_state.numa.n_nodes > 0) {
         fprintf(stderr, "ggml_numa_init: NUMA already initialized\n");
@@ -616,6 +1033,24 @@ void ggml_numa_init(enum ggml_numa_strategy numa_flag) {
     }
 
 #if defined(__gnu_linux__)
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
     struct stat st;
     char path[256];
     int rv;
@@ -666,6 +1101,24 @@ void ggml_numa_init(enum ggml_numa_strategy numa_flag) {
     GGML_PRINT_DEBUG("found our process on numa node %u, CPU %u\n", g_state.numa.current_node, current_cpu);
 
     for (uint32_t n = 0; n < g_state.numa.n_nodes; ++n) {
+        // 类: ggml_numa_node
+        // 描述: ggml_numa_node类提供相关功能
+        // 用途: 用于处理ggml_numa_node相关的操作
+        // 类: ggml_numa_node
+        // 描述: ggml_numa_node类提供相关功能
+        // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
         struct ggml_numa_node * node = &g_state.numa.nodes[n];
         GGML_PRINT_DEBUG("CPUs on node %u:", n);
         node->n_cpus = 0;
@@ -696,6 +1149,14 @@ void ggml_numa_init(enum ggml_numa_strategy numa_flag) {
 #endif
 }
 
+// 函数: ggml_is_numa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_is_numa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_is_numa(void) {
     return g_state.numa.n_nodes > 1;
 }
@@ -703,26 +1164,94 @@ bool ggml_is_numa(void) {
 #if defined(__ARM_ARCH)
 #if defined(__aarch64__) && defined(__ARM_FEATURE_SVE)
 #include <arm_sve.h>
+// 函数: ggml_init_arm_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_init_arm_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_init_arm_arch_features(void) {
     ggml_arm_arch_features.sve_cnt = svcntb();
 }
 #else
+// 函数: ggml_init_arm_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_init_arm_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_init_arm_arch_features(void) {}
 #endif
 #endif // __ARM_ARCH
 
 #if defined(__riscv) && defined(__riscv_v_intrinsic)
 #include <riscv_vector.h>
+// 函数: ggml_init_riscv_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_init_riscv_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_init_riscv_arch_features(void) {
     ggml_riscv_arch_features.rvv_vlen = __riscv_vlenb();
 }
 #else
+// 函数: ggml_init_riscv_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_init_riscv_arch_features
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_init_riscv_arch_features(void) {}
 #endif
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * ggml_new_i32(struct ggml_context * ctx, int32_t value) {
     GGML_ASSERT(!ggml_get_no_alloc(ctx));
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * result = ggml_new_tensor_1d(ctx, GGML_TYPE_I32, 1);
 
     ggml_set_i32(result, value);
@@ -730,9 +1259,45 @@ struct ggml_tensor * ggml_new_i32(struct ggml_context * ctx, int32_t value) {
     return result;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * ggml_new_f32(struct ggml_context * ctx, float value) {
     GGML_ASSERT(!ggml_get_no_alloc(ctx));
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * result = ggml_new_tensor_1d(ctx, GGML_TYPE_F32, 1);
 
     ggml_set_f32(result, value);
@@ -740,6 +1305,24 @@ struct ggml_tensor * ggml_new_f32(struct ggml_context * ctx, float value) {
     return result;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * ggml_set_i32 (struct ggml_tensor * tensor, int32_t value) {
     const int n     = ggml_nrows(tensor);
     const int nc    = tensor->ne[0];
@@ -799,6 +1382,24 @@ struct ggml_tensor * ggml_set_i32 (struct ggml_tensor * tensor, int32_t value) {
     return tensor;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * ggml_set_f32(struct ggml_tensor * tensor, float value) {
     const int n     = ggml_nrows(tensor);
     const int nc    = tensor->ne[0];
@@ -858,6 +1459,14 @@ struct ggml_tensor * ggml_set_f32(struct ggml_tensor * tensor, float value) {
     return tensor;
 }
 
+// 函数: ggml_get_i32_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_i32_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t ggml_get_i32_1d(const struct ggml_tensor * tensor, int i) {
     if (!ggml_is_contiguous(tensor)) {
         int64_t id[4] = { 0, 0, 0, 0 };
@@ -902,6 +1511,14 @@ int32_t ggml_get_i32_1d(const struct ggml_tensor * tensor, int i) {
     }
 }
 
+// 函数: ggml_set_i32_1d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_i32_1d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_set_i32_1d(const struct ggml_tensor * tensor, int i, int32_t value) {
     if (!ggml_is_contiguous(tensor)) {
         int64_t id[4] = { 0, 0, 0, 0 };
@@ -947,6 +1564,14 @@ void ggml_set_i32_1d(const struct ggml_tensor * tensor, int i, int32_t value) {
     }
 }
 
+// 函数: ggml_get_i32_nd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_i32_nd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t ggml_get_i32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, int i3) {
     void * data   = (char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1] + i2*tensor->nb[2] + i3*tensor->nb[3];
     switch (tensor->type) {
@@ -967,6 +1592,14 @@ int32_t ggml_get_i32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i
     }
 }
 
+// 函数: ggml_set_i32_nd
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_i32_nd
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_set_i32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, int i3, int32_t value) {
     void * data   = (char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1] + i2*tensor->nb[2] + i3*tensor->nb[3];
     switch (tensor->type) {
@@ -1001,6 +1634,14 @@ void ggml_set_i32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, 
     }
 }
 
+// 函数: ggml_get_f32_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_f32_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float ggml_get_f32_1d(const struct ggml_tensor * tensor, int i) {
     if (!ggml_is_contiguous(tensor)) {
         int64_t id[4] = { 0, 0, 0, 0 };
@@ -1039,6 +1680,14 @@ float ggml_get_f32_1d(const struct ggml_tensor * tensor, int i) {
     }
 }
 
+// 函数: ggml_set_f32_1d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_f32_1d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_set_f32_1d(const struct ggml_tensor * tensor, int i, float value) {
     if (!ggml_is_contiguous(tensor)) {
         int64_t id[4] = { 0, 0, 0, 0 };
@@ -1078,6 +1727,14 @@ void ggml_set_f32_1d(const struct ggml_tensor * tensor, int i, float value) {
     }
 }
 
+// 函数: ggml_get_f32_nd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_f32_nd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float ggml_get_f32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, int i3) {
     void * data   = (char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1] + i2*tensor->nb[2] + i3*tensor->nb[3];
     switch (tensor->type) {
@@ -1098,6 +1755,14 @@ float ggml_get_f32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2,
     }
 }
 
+// 函数: ggml_set_f32_nd
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_f32_nd
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_set_f32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, int i3, float value) {
     void * data   = (char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1] + i2*tensor->nb[2] + i3*tensor->nb[3];
     switch (tensor->type) {
@@ -1138,6 +1803,24 @@ void ggml_set_f32_nd(const struct ggml_tensor * tensor, int i0, int i1, int i2, 
 
 static void ggml_compute_forward_mul_mat_one_chunk(
     const struct ggml_compute_params * params,
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dst,
     const enum ggml_type type,
     const int64_t num_rows_per_vec_dot,
@@ -1228,6 +1911,24 @@ static void ggml_compute_forward_mul_mat_one_chunk(
 
 void ggml_compute_forward_mul_mat(
         const struct ggml_compute_params * params,
+              // 类: ggml_tensor
+              // 描述: ggml_tensor类提供相关功能
+              // 用途: 用于处理ggml_tensor相关的操作
+              // 类: ggml_tensor
+              // 描述: ggml_tensor类提供相关功能
+              // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
               struct ggml_tensor * dst) {
 
     const struct ggml_tensor * src0 = dst->src[0];
@@ -1424,12 +2125,48 @@ UseGgmlGemm2:;
 
 #define MMID_MATRIX_ROW(row_id, i1) matrix_rows[(row_id)*ids->ne[0]*ids->ne[1] + (i1)]
 
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
 struct mmid_row_mapping {
     int32_t i1;
     int32_t i2;
 };
 
 static void ggml_compute_forward_mul_mat_id_one_chunk(
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dst,
     const struct ggml_tensor * src0,
     const struct ggml_tensor * src1,
@@ -1462,6 +2199,24 @@ static void ggml_compute_forward_mul_mat_id_one_chunk(
             for (int64_t ir1 = iir1; ir1 < iir1 + blck_1 && ir1 < ir1_end; ++ir1) {
                 const int64_t _i12 = ir1; // logical row index for this expert
 
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
                 struct mmid_row_mapping row_mapping = MMID_MATRIX_ROW(cur_a, _i12);
                 const int id       = row_mapping.i1; // selected expert index
 
@@ -1492,6 +2247,14 @@ static void ggml_compute_forward_mul_mat_id_one_chunk(
     }
 }
 
+// 函数: incr_ptr_aligned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: incr_ptr_aligned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void * incr_ptr_aligned(void ** p, size_t size, size_t align) {
 
     void * ptr = *p;
@@ -1502,6 +2265,24 @@ static void * incr_ptr_aligned(void ** p, size_t size, size_t align) {
 
 static void ggml_compute_forward_mul_mat_id(
         const struct ggml_compute_params * params,
+              // 类: ggml_tensor
+              // 描述: ggml_tensor类提供相关功能
+              // 用途: 用于处理ggml_tensor相关的操作
+              // 类: ggml_tensor
+              // 描述: ggml_tensor类提供相关功能
+              // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
               struct ggml_tensor * dst) {
 
     const struct ggml_tensor * src0 = dst->src[0];
@@ -1543,6 +2324,24 @@ static void ggml_compute_forward_mul_mat_id(
     int64_t * matrix_row_counts = // [n_as]
         incr_ptr_aligned(&wdata_cur, n_as*sizeof(int64_t), sizeof(int64_t));
 
+    // 类: mmid_row_mapping
+    // 描述: mmid_row_mapping类提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 类: mmid_row_mapping
+    // 描述: mmid_row_mapping类提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
     struct mmid_row_mapping * matrix_rows = // [n_as][ids->ne[0]*ids->ne[1]]
         incr_ptr_aligned(&wdata_cur, n_as*ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping), sizeof(int64_t));
 
@@ -1677,6 +2476,14 @@ static void ggml_compute_forward_mul_mat_id(
 
 /////////////////////////////////
 
+// 函数: ggml_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_compute_forward(struct ggml_compute_params * params, struct ggml_tensor * tensor) {
     GGML_ASSERT(params);
 
@@ -2090,6 +2897,14 @@ static void ggml_compute_forward(struct ggml_compute_params * params, struct ggm
 
 // Android's libc implementation "bionic" does not support setting affinity
 #if defined(__gnu_linux__)
+// 函数: set_numa_thread_affinity
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_numa_thread_affinity
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_numa_thread_affinity(int thread_n) {
     if (!ggml_is_numa()) {
         return;
@@ -2119,6 +2934,24 @@ static void set_numa_thread_affinity(int thread_n) {
             return;
     }
 
+    // 类: ggml_numa_node
+    // 描述: ggml_numa_node类提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 类: ggml_numa_node
+    // 描述: ggml_numa_node类提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
+    // 结构体: ggml_numa_node
+    // 描述: ggml_numa_node结构体提供相关功能
+    // 用途: 用于处理ggml_numa_node相关的操作
     struct ggml_numa_node * node = &g_state.numa.nodes[node_num];
 
     cpu_set_t * cpus = CPU_ALLOC(g_state.numa.total_cpus);
@@ -2135,6 +2968,14 @@ static void set_numa_thread_affinity(int thread_n) {
     CPU_FREE(cpus);
 }
 
+// 函数: clear_numa_thread_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clear_numa_thread_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void clear_numa_thread_affinity(void) {
     if (!ggml_is_numa()) {
         return;
@@ -2158,10 +2999,34 @@ static void clear_numa_thread_affinity(void) {
 #else
 // TODO: Windows etc.
 // (the linux implementation may also work on BSD, someone should test)
+// 函数: set_numa_thread_affinity
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_numa_thread_affinity
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_numa_thread_affinity(int thread_n) { UNUSED(thread_n);  }
+// 函数: clear_numa_thread_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clear_numa_thread_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void clear_numa_thread_affinity(void) {}
 #endif
 
+// 函数: ggml_get_n_tasks
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_n_tasks
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
     int n_tasks = 0;
 
@@ -2353,6 +3218,24 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
             } break;
         case GGML_OP_MAP_CUSTOM1:
             {
+                // 类: ggml_map_custom1_op_params
+                // 描述: ggml_map_custom1_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+                // 类: ggml_map_custom1_op_params
+                // 描述: ggml_map_custom1_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
                 struct ggml_map_custom1_op_params p;
                 memcpy(&p, node->op_params, sizeof(p));
                 if (p.n_tasks == GGML_N_TASKS_MAX) {
@@ -2363,6 +3246,24 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
             } break;
         case GGML_OP_MAP_CUSTOM2:
             {
+                // 类: ggml_map_custom2_op_params
+                // 描述: ggml_map_custom2_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+                // 类: ggml_map_custom2_op_params
+                // 描述: ggml_map_custom2_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
                 struct ggml_map_custom2_op_params p;
                 memcpy(&p, node->op_params, sizeof(p));
                 if (p.n_tasks == GGML_N_TASKS_MAX) {
@@ -2373,6 +3274,24 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
             } break;
         case GGML_OP_MAP_CUSTOM3:
             {
+                // 类: ggml_map_custom3_op_params
+                // 描述: ggml_map_custom3_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+                // 类: ggml_map_custom3_op_params
+                // 描述: ggml_map_custom3_op_params类提供相关功能
+                // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
                 struct ggml_map_custom3_op_params p;
                 memcpy(&p, node->op_params, sizeof(p));
                 if (p.n_tasks == GGML_N_TASKS_MAX) {
@@ -2383,6 +3302,24 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
             } break;
         case GGML_OP_CUSTOM:
             {
+                // 类: ggml_custom_op_params
+                // 描述: ggml_custom_op_params类提供相关功能
+                // 用途: 用于处理ggml_custom_op_params相关的操作
+                // 类: ggml_custom_op_params
+                // 描述: ggml_custom_op_params类提供相关功能
+                // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
                 struct ggml_custom_op_params p;
                 memcpy(&p, node->op_params, sizeof(p));
                 if (p.n_tasks == GGML_N_TASKS_MAX) {
@@ -2423,12 +3360,28 @@ static int ggml_get_n_tasks(struct ggml_tensor * node, int n_threads) {
     return n_tasks;
 }
 
+// 函数: ggml_graph_compute_secondary_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_secondary_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static thread_ret_t ggml_graph_compute_secondary_thread(void* data);
 
 #if defined(_WIN32)
 #include "windows.h"
 
 // TODO: support > 64 CPUs
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_affinity(bool * mask) {
     HANDLE    h = GetCurrentThread();
     uint64_t  bitmask = 0ULL;
@@ -2463,6 +3416,14 @@ static bool ggml_thread_apply_affinity(bool * mask) {
     return m != 0;
 }
 
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_priority(int32_t prio) {
     // Note that on Windows the Process Priority Class must be updated in order to set Thread priority.
     // This is up to the applications.
@@ -2511,13 +3472,47 @@ static bool ggml_thread_apply_priority(int32_t prio) {
 #include <sys/types.h>
 #include <sys/resource.h>
 
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_affinity(const bool * mask) {
     // Not supported on Apple platforms
     UNUSED(mask);
     return true;
 }
 
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_priority(int32_t prio) {
+    // 类: sched_param
+    // 描述: sched_param类提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 类: sched_param
+    // 描述: sched_param类提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
     struct sched_param p;
     int32_t policy = SCHED_OTHER;
     switch (prio) {
@@ -2546,6 +3541,14 @@ static bool ggml_thread_apply_priority(int32_t prio) {
 #elif defined(__gnu_linux__)
 // TODO: this may not work on BSD, to be verified
 
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_affinity(const bool * mask) {
     cpu_set_t cpuset;
     int err;
@@ -2575,7 +3578,33 @@ static bool ggml_thread_apply_affinity(const bool * mask) {
     return true;
 }
 
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_priority(int32_t prio) {
+    // 类: sched_param
+    // 描述: sched_param类提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 类: sched_param
+    // 描述: sched_param类提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
+    // 结构体: sched_param
+    // 描述: sched_param结构体提供相关功能
+    // 用途: 用于处理sched_param相关的操作
     struct sched_param p;
     int32_t policy = SCHED_OTHER;
     switch (prio) {
@@ -2602,11 +3631,27 @@ static bool ggml_thread_apply_priority(int32_t prio) {
 
 #else // unsupported platforms
 
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_affinity
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_affinity(const bool * mask) {
     UNUSED(mask);
     return true;
 }
 
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_apply_priority
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_apply_priority(int32_t prio) {
     UNUSED(prio);
     return true;
@@ -2614,6 +3659,14 @@ static bool ggml_thread_apply_priority(int32_t prio) {
 
 #endif
 
+// 函数: ggml_thread_cpumask_is_valid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpumask_is_valid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_thread_cpumask_is_valid(const bool * mask) {
     for (int i = 0; i < GGML_MAX_N_THREADS; i++) {
         if (mask[i]) { return true; }
@@ -2621,6 +3674,14 @@ static bool ggml_thread_cpumask_is_valid(const bool * mask) {
     return false;
 }
 
+// 函数: ggml_thread_cpumask_next
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_thread_cpumask_next
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_thread_cpumask_next(const bool * global_mask, bool * local_mask, bool strict, int32_t* iter) {
     if (!strict) {
         memcpy(local_mask, global_mask, GGML_MAX_N_THREADS);
@@ -2643,12 +3704,38 @@ static void ggml_thread_cpumask_next(const bool * global_mask, bool * local_mask
     }
 }
 
+// 函数: ggml_threadpool_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_threadpool_free(struct ggml_threadpool* threadpool) {
     if (!threadpool) return;
 
     const int n_threads = threadpool->n_threads;
 
 #ifndef GGML_USE_OPENMP
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
     struct ggml_compute_state* workers = threadpool->workers;
 
     ggml_mutex_lock(&threadpool->mutex);
@@ -2676,12 +3763,28 @@ void ggml_threadpool_free(struct ggml_threadpool* threadpool) {
 
 #ifndef GGML_USE_OPENMP
 // pause/resume must be called under mutex
+// 函数: ggml_threadpool_pause_locked
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_pause_locked
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_threadpool_pause_locked(struct ggml_threadpool * threadpool) {
     GGML_PRINT_DEBUG("Pausing threadpool\n");
     threadpool->pause = true;
     ggml_cond_broadcast(&threadpool->cond);
 }
 
+// 函数: ggml_threadpool_resume_locked
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_resume_locked
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_threadpool_resume_locked(struct ggml_threadpool * threadpool) {
     GGML_PRINT_DEBUG("Resuming threadpool\n");
     threadpool->pause = false;
@@ -2689,6 +3792,14 @@ static void ggml_threadpool_resume_locked(struct ggml_threadpool * threadpool) {
 }
 #endif
 
+// 函数: ggml_threadpool_pause
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_pause
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_threadpool_pause(struct ggml_threadpool * threadpool) {
 #ifndef GGML_USE_OPENMP
     ggml_mutex_lock(&threadpool->mutex);
@@ -2701,6 +3812,14 @@ void ggml_threadpool_pause(struct ggml_threadpool * threadpool) {
 #endif
 }
 
+// 函数: ggml_threadpool_resume
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_resume
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_threadpool_resume(struct ggml_threadpool * threadpool) {
 #ifndef GGML_USE_OPENMP
     ggml_mutex_lock(&threadpool->mutex);
@@ -2713,9 +3832,45 @@ void ggml_threadpool_resume(struct ggml_threadpool * threadpool) {
 #endif
 }
 
+// 类: ggml_cplan
+// 描述: ggml_cplan类提供相关功能
+// 用途: 用于处理ggml_cplan相关的操作
+// 类: ggml_cplan
+// 描述: ggml_cplan类提供相关功能
+// 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
 struct ggml_cplan ggml_graph_plan(
           const struct ggml_cgraph * cgraph,
                                int   n_threads,
+            // 类: ggml_threadpool
+            // 描述: ggml_threadpool类提供相关功能
+            // 用途: 用于处理ggml_threadpool相关的操作
+            // 类: ggml_threadpool
+            // 描述: ggml_threadpool类提供相关功能
+            // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
             struct ggml_threadpool * threadpool) {
 
     if (threadpool == NULL) {
@@ -2732,6 +3887,24 @@ struct ggml_cplan ggml_graph_plan(
 
     size_t work_size = 0;
 
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan cplan;
     memset(&cplan, 0, sizeof(struct ggml_cplan));
 
@@ -2739,6 +3912,24 @@ struct ggml_cplan ggml_graph_plan(
 
     // thread scheduling for the different operations + work buffer size estimation
     for (int i = 0; i < cgraph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = cgraph->nodes[i];
 
         const int n_tasks = ggml_get_n_tasks(node, n_threads);
@@ -2929,8 +4120,52 @@ struct ggml_cplan ggml_graph_plan(
     return cplan;
 }
 
+// 函数: ggml_graph_compute_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static thread_ret_t ggml_graph_compute_thread(void * data) {
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
     struct ggml_compute_state * state = (struct ggml_compute_state *) data;
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool    * tp    = state->threadpool;
 
     const struct ggml_cgraph * cgraph = tp->cgraph;
@@ -2938,6 +4173,24 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
 
     set_numa_thread_affinity(state->ith);
 
+    // 类: ggml_compute_params
+    // 描述: ggml_compute_params类提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 类: ggml_compute_params
+    // 描述: ggml_compute_params类提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
     struct ggml_compute_params params = {
         /*.ith        =*/ state->ith,
         /*.nth        =*/ atomic_load_explicit(&tp->n_graph, memory_order_relaxed) & GGML_THREADPOOL_N_THREADS_MASK,
@@ -2954,6 +4207,24 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
 #endif
 
     for (int node_n = 0; node_n < cgraph->n_nodes && atomic_load_explicit(&tp->abort, memory_order_relaxed) != node_n; node_n++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = cgraph->nodes[node_n];
 
         if (ggml_op_is_empty(node->op)) {
@@ -2993,7 +4264,33 @@ static thread_ret_t ggml_graph_compute_thread(void * data) {
 
 // check if thread is ready to proceed (exit from polling or sleeping)
 // returns true if loops should exit, sets state->pending to indicate new work
+// 函数: ggml_graph_compute_thread_ready
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_thread_ready
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_graph_compute_thread_ready(struct ggml_compute_state * state) {
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = state->threadpool;
 
     if (state->pending || threadpool->stop || threadpool->pause) { return true; }
@@ -3011,6 +4308,14 @@ static inline bool ggml_graph_compute_thread_ready(struct ggml_compute_state * s
 }
 
 // sync thread state after polling
+// 函数: ggml_graph_compute_thread_sync
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_thread_sync
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_graph_compute_thread_sync(struct ggml_compute_state * state) {
     // TSAN doesn't support standalone fence yet, we use a dummy read-modify-write instead
     #ifdef GGML_TSAN_ENABLED
@@ -3021,7 +4326,33 @@ static inline void ggml_graph_compute_thread_sync(struct ggml_compute_state * st
     UNUSED(state);
 }
 
+// 函数: ggml_graph_compute_poll_for_work
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_poll_for_work
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_graph_compute_poll_for_work(struct ggml_compute_state * state) {
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = state->threadpool;
 
     // This seems to make 0 ... 100 a decent range for polling level across modern processors.
@@ -3036,7 +4367,33 @@ static inline bool ggml_graph_compute_poll_for_work(struct ggml_compute_state * 
     return state->pending;
 }
 
+// 函数: ggml_graph_compute_check_for_work
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_check_for_work
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_graph_compute_check_for_work(struct ggml_compute_state * state) {
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = state->threadpool;
 
     if (ggml_graph_compute_poll_for_work(state)) {
@@ -3055,8 +4412,52 @@ static inline bool ggml_graph_compute_check_for_work(struct ggml_compute_state *
     return state->pending;
 }
 
+// 函数: ggml_graph_compute_secondary_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_secondary_thread
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static thread_ret_t ggml_graph_compute_secondary_thread(void* data) {
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
     struct ggml_compute_state * state = (struct ggml_compute_state *) data;
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = state->threadpool;
 
     ggml_thread_apply_priority(threadpool->prio);
@@ -3093,6 +4494,14 @@ static thread_ret_t ggml_graph_compute_secondary_thread(void* data) {
 }
 
 // Start processing new graph
+// 函数: ggml_graph_compute_kickoff
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_kickoff
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_graph_compute_kickoff(struct ggml_threadpool * threadpool, int n_threads)
 {
     // Always take the mutex here because the worker threads are doing hybrid poll/wait
@@ -3128,10 +4537,82 @@ static void ggml_graph_compute_kickoff(struct ggml_threadpool * threadpool, int 
 #endif // GGML_USE_OPENMP
 
 static struct ggml_threadpool * ggml_threadpool_new_impl(
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
     struct ggml_threadpool_params * tpp,
+               // 类: ggml_cgraph
+               // 描述: ggml_cgraph类提供相关功能
+               // 用途: 用于处理ggml_cgraph相关的操作
+               // 类: ggml_cgraph
+               // 描述: ggml_cgraph类提供相关功能
+               // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
                struct ggml_cgraph * cgraph,
+                // 类: ggml_cplan
+                // 描述: ggml_cplan类提供相关功能
+                // 用途: 用于处理ggml_cplan相关的操作
+                // 类: ggml_cplan
+                // 描述: ggml_cplan类提供相关功能
+                // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
                 struct ggml_cplan * cplan) {
 
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool =
         ggml_aligned_malloc(sizeof(struct ggml_threadpool));
     {
@@ -3153,6 +4634,24 @@ static struct ggml_threadpool * ggml_threadpool_new_impl(
 
     // Allocate and init workers state
     const size_t workers_size = sizeof(struct ggml_compute_state) * tpp->n_threads;
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 类: ggml_compute_state
+    // 描述: ggml_compute_state类提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
+    // 结构体: ggml_compute_state
+    // 描述: ggml_compute_state结构体提供相关功能
+    // 用途: 用于处理ggml_compute_state相关的操作
     struct ggml_compute_state * workers = ggml_aligned_malloc(workers_size);
 
     memset(workers, 0, workers_size);
@@ -3200,7 +4699,33 @@ static struct ggml_threadpool * ggml_threadpool_new_impl(
     return threadpool;
 }
 
+// 类: ggml_threadpool
+// 描述: ggml_threadpool类提供相关功能
+// 用途: 用于处理ggml_threadpool相关的操作
+// 类: ggml_threadpool
+// 描述: ggml_threadpool类提供相关功能
+// 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
 struct ggml_threadpool * ggml_threadpool_new(struct ggml_threadpool_params * tpp) {
+    // 函数: ggml_threadpool_new_impl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_threadpool_new_impl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_threadpool_new_impl(tpp, NULL, NULL);
 }
 
@@ -3212,6 +4737,24 @@ enum ggml_status ggml_graph_compute(struct ggml_cgraph * cgraph, struct ggml_cpl
     GGML_ASSERT(cplan->work_size == 0 || cplan->work_data != NULL);
 
     int n_threads                               = cplan->n_threads;
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = cplan->threadpool;
 
     bool disposable_threadpool = false;
@@ -3220,6 +4763,24 @@ enum ggml_status ggml_graph_compute(struct ggml_cgraph * cgraph, struct ggml_cpl
         //GGML_PRINT_DEBUG("Threadpool is not specified. Will create a disposable threadpool : n_threads %d\n", n_threads);
         disposable_threadpool = true;
 
+        // 类: ggml_threadpool_params
+        // 描述: ggml_threadpool_params类提供相关功能
+        // 用途: 用于处理ggml_threadpool_params相关的操作
+        // 类: ggml_threadpool_params
+        // 描述: ggml_threadpool_params类提供相关功能
+        // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
         struct ggml_threadpool_params ttp = ggml_threadpool_params_default(n_threads);
         threadpool = ggml_threadpool_new_impl(&ttp, cgraph, cplan);
     } else {
@@ -3282,17 +4843,59 @@ enum ggml_status ggml_graph_compute(struct ggml_cgraph * cgraph, struct ggml_cpl
 }
 
 enum ggml_status ggml_graph_compute_with_ctx(struct ggml_context * ctx, struct ggml_cgraph * cgraph, int n_threads) {
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan cplan = ggml_graph_plan(cgraph, n_threads, NULL);
 
     cplan.work_data = (uint8_t *)ggml_new_buffer(ctx, cplan.work_size);
 
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_graph_compute(cgraph, &cplan);
 }
 
+// 函数: ggml_cpu_fp32_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_fp32_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_fp32_to_fp32(const float * x, float * y, int64_t n) {
     memcpy(y, x, n * sizeof(float));
 }
 
+// 函数: ggml_cpu_fp32_to_fp16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_fp32_to_fp16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_fp32_to_fp16(const float * x, ggml_fp16_t * y, int64_t n) {
     int64_t i = 0;
 #if defined(__F16C__)
@@ -3326,6 +4929,14 @@ void ggml_cpu_fp32_to_fp16(const float * x, ggml_fp16_t * y, int64_t n) {
     }
 }
 
+// 函数: ggml_cpu_fp16_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_fp16_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_fp16_to_fp32(const ggml_fp16_t * x, float * y, int64_t n) {
     int64_t i = 0;
 #if defined(__F16C__)
@@ -3380,6 +4991,14 @@ void ggml_cpu_fp16_to_fp32(const ggml_fp16_t * x, float * y, int64_t n) {
     }
 }
 
+// 函数: ggml_cpu_fp32_to_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_fp32_to_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_fp32_to_bf16(const float * x, ggml_bf16_t * y, int64_t n) {
     int64_t i = 0;
     for (; i < n; ++i) {
@@ -3387,6 +5006,14 @@ void ggml_cpu_fp32_to_bf16(const float * x, ggml_bf16_t * y, int64_t n) {
     }
 }
 
+// 函数: ggml_cpu_fp32_to_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_fp32_to_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_fp32_to_i32(const float * x, int32_t * y, int64_t n) {
     int64_t i = 0;
     for (; i < n; ++i) {
@@ -3394,6 +5021,14 @@ void ggml_cpu_fp32_to_i32(const float * x, int32_t * y, int64_t n) {
     }
 }
 
+// 函数: ggml_cpu_bf16_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_bf16_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_bf16_to_fp32(const ggml_bf16_t * x, float * y, int64_t n) {
     int64_t i = 0;
 #if defined(__AVX2__)
@@ -3448,6 +5083,14 @@ void ggml_cpu_bf16_to_fp32(const ggml_bf16_t * x, float * y, int64_t n) {
     }
 }
 
+// 函数: ggml_cpu_has_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx(void) {
 #if defined(__AVX__)
     return 1;
@@ -3456,6 +5099,14 @@ int ggml_cpu_has_avx(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx_vnni
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx_vnni
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx_vnni(void) {
 #if defined(__AVXVNNI__)
     return 1;
@@ -3464,6 +5115,14 @@ int ggml_cpu_has_avx_vnni(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx2(void) {
 #if defined(__AVX2__)
     return 1;
@@ -3472,6 +5131,14 @@ int ggml_cpu_has_avx2(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx512
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx512
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx512(void) {
 #if defined(__AVX512F__)
     return 1;
@@ -3480,6 +5147,14 @@ int ggml_cpu_has_avx512(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx512_vbmi
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx512_vbmi
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx512_vbmi(void) {
 #if defined(__AVX512VBMI__)
     return 1;
@@ -3488,6 +5163,14 @@ int ggml_cpu_has_avx512_vbmi(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx512_vnni
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx512_vnni
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx512_vnni(void) {
 #if defined(__AVX512VNNI__)
     return 1;
@@ -3496,6 +5179,14 @@ int ggml_cpu_has_avx512_vnni(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_avx512_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_avx512_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_avx512_bf16(void) {
 #if defined(__AVX512BF16__)
     return 1;
@@ -3504,6 +5195,14 @@ int ggml_cpu_has_avx512_bf16(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_amx_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_amx_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_amx_int8(void) {
 #if defined(__AMX_INT8__)
     return 1;
@@ -3512,6 +5211,14 @@ int ggml_cpu_has_amx_int8(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_bmi2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_bmi2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_bmi2(void) {
 #if defined(__BMI2__)
     return 1;
@@ -3520,6 +5227,14 @@ int ggml_cpu_has_bmi2(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_fma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_fma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_fma(void) {
 #if defined(__FMA__)
     return 1;
@@ -3528,6 +5243,14 @@ int ggml_cpu_has_fma(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_arm_fma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_arm_fma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_arm_fma(void) {
 #if defined(__ARM_FEATURE_FMA)
     return 1;
@@ -3536,6 +5259,14 @@ int ggml_cpu_has_arm_fma(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_riscv_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_riscv_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_riscv_v(void) {
 #if defined(__riscv_v_intrinsic)
     return 1;
@@ -3544,6 +5275,14 @@ int ggml_cpu_has_riscv_v(void) {
 #endif
 }
 
+// 函数: ggml_cpu_get_rvv_vlen
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_get_rvv_vlen
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_get_rvv_vlen(void) {
 #if defined(__riscv) && defined(__riscv_v_intrinsic)
     return ggml_riscv_arch_features.rvv_vlen;
@@ -3552,6 +5291,14 @@ int ggml_cpu_get_rvv_vlen(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_f16c
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_f16c
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_f16c(void) {
 #if defined(__F16C__)
     return 1;
@@ -3560,6 +5307,14 @@ int ggml_cpu_has_f16c(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_fp16_va
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_fp16_va
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_fp16_va(void) {
 #if defined(__ARM_FEATURE_FP16_VECTOR_ARITHMETIC)
     return 1;
@@ -3568,6 +5323,14 @@ int ggml_cpu_has_fp16_va(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_wasm_simd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_wasm_simd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_wasm_simd(void) {
 #if defined(__wasm_simd128__)
     return 1;
@@ -3576,6 +5339,14 @@ int ggml_cpu_has_wasm_simd(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_llamafile
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_llamafile
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_llamafile(void) {
 #if defined(GGML_USE_LLAMAFILE)
     return 1;
@@ -3584,6 +5355,14 @@ int ggml_cpu_has_llamafile(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_sse3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_sse3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_sse3(void) {
 #if defined(__SSE3__)
     return 1;
@@ -3592,6 +5371,14 @@ int ggml_cpu_has_sse3(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_ssse3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_ssse3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_ssse3(void) {
 #if defined(__SSSE3__)
     return 1;
@@ -3600,6 +5387,14 @@ int ggml_cpu_has_ssse3(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_vsx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_vsx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_vsx(void) {
 #if defined(__POWER9_VECTOR__)
     return 1;
@@ -3608,6 +5403,14 @@ int ggml_cpu_has_vsx(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_vxe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_vxe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_vxe(void) {
 #if defined(__VXE__) || defined(__VXE2__)
     return 1;
@@ -3616,6 +5419,14 @@ int ggml_cpu_has_vxe(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_neon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_neon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_neon(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_NEON)
     return 1;
@@ -3624,6 +5435,14 @@ int ggml_cpu_has_neon(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_dotprod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_dotprod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_dotprod(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_FEATURE_DOTPROD)
     return 1;
@@ -3632,6 +5451,14 @@ int ggml_cpu_has_dotprod(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_sve
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_sve
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_sve(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_FEATURE_SVE)
     return 1;
@@ -3640,6 +5467,14 @@ int ggml_cpu_has_sve(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_matmul_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_matmul_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_matmul_int8(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_FEATURE_MATMUL_INT8)
     return 1;
@@ -3648,6 +5483,14 @@ int ggml_cpu_has_matmul_int8(void) {
 #endif
 }
 
+// 函数: ggml_cpu_get_sve_cnt
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_get_sve_cnt
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_get_sve_cnt(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_FEATURE_SVE)
     return ggml_arm_arch_features.sve_cnt;
@@ -3656,6 +5499,14 @@ int ggml_cpu_get_sve_cnt(void) {
 #endif
 }
 
+// 函数: ggml_cpu_has_sme
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_has_sme
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_cpu_has_sme(void) {
 #if defined(__ARM_ARCH) && defined(__ARM_FEATURE_SME)
     return 1;
@@ -3664,10 +5515,54 @@ int ggml_cpu_has_sme(void) {
 #endif
 }
 
+// 函数: ggml_cpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cpu_init(void) {
     // needed to initialize ggml_time
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = { 0, NULL, false };
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx = ggml_init(params);
         ggml_free(ctx);
     }

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend-dispatched-buffer-type.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend-dispatched-buffer-type.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 #include "backend-virgl-apir.h"
 #include "ggml-backend-impl.h"
@@ -6,6 +13,14 @@
 
 #include <cstdint>
 
+// 函数: backend_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_get_name(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_type_t buft;
@@ -20,6 +35,14 @@ uint32_t backend_buffer_type_get_name(apir_encoder * enc, apir_decoder * dec, vi
     return 0;
 }
 
+// 函数: backend_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_get_alignment(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_type_t buft;
@@ -31,6 +54,14 @@ uint32_t backend_buffer_type_get_alignment(apir_encoder * enc, apir_decoder * de
     return 0;
 }
 
+// 函数: backend_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_get_max_size(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_type_t buft;
@@ -47,6 +78,14 @@ uint32_t backend_buffer_type_get_max_size(apir_encoder * enc, apir_decoder * dec
 }
 
 /* APIR_COMMAND_TYPE_BUFFER_TYPE_IS_HOST is deprecated. Keeping the handler for backward compatibility. */
+// 函数: backend_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_is_host(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -57,6 +96,14 @@ uint32_t backend_buffer_type_is_host(apir_encoder * enc, apir_decoder * dec, vir
     return 0;
 }
 
+// 函数: backend_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_alloc_buffer(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_type_t buft;
@@ -78,6 +125,14 @@ uint32_t backend_buffer_type_alloc_buffer(apir_encoder * enc, apir_decoder * dec
     return 0;
 }
 
+// 函数: backend_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_type_get_alloc_size(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_type_t buft;

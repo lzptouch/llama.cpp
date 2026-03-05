@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gguf.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/gguf.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml.h"
 #include "ggml-backend.h"
 #include "ggml-impl.h"
@@ -27,64 +34,298 @@
 #endif
 
 template <typename T>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type;
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<uint8_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_UINT8;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<int8_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_INT8;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<uint16_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_UINT16;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<int16_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_INT16;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<uint32_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_UINT32;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<int32_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_INT32;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<float> {
     static constexpr enum gguf_type value = GGUF_TYPE_FLOAT32;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<bool> {
     static constexpr enum gguf_type value = GGUF_TYPE_BOOL;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<std::string> {
     static constexpr enum gguf_type value = GGUF_TYPE_STRING;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<uint64_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_UINT64;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<int64_t> {
     static constexpr enum gguf_type value = GGUF_TYPE_INT64;
 };
 
 template <>
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+// 类: type_to_gguf_type
+// 描述: type_to_gguf_type类提供相关功能
+// 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
+    // 结构体: type_to_gguf_type
+    // 描述: type_to_gguf_type结构体提供相关功能
+    // 用途: 用于处理type_to_gguf_type相关的操作
 struct type_to_gguf_type<double> {
     static constexpr enum gguf_type value = GGUF_TYPE_FLOAT64;
 };
@@ -123,11 +364,37 @@ static const std::map<gguf_type, const char *> GGUF_TYPE_NAME = {
 };
 static_assert(GGUF_TYPE_COUNT == 13, "GGUF_TYPE_COUNT != 13");
 
+// 函数: gguf_type_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_type_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_type_size(enum gguf_type type) {
     auto it = GGUF_TYPE_SIZE.find(type);
     return it == GGUF_TYPE_SIZE.end() ? 0 : it->second;
 }
 
+// 类: gguf_kv
+// 描述: gguf_kv类提供相关功能
+// 用途: 用于处理gguf_kv相关的操作
+// 类: gguf_kv
+// 描述: gguf_kv类提供相关功能
+// 用途: 用于处理gguf_kv相关的操作
+    // 结构体: gguf_kv
+    // 描述: gguf_kv结构体提供相关功能
+    // 用途: 用于处理gguf_kv相关的操作
+    // 结构体: gguf_kv
+    // 描述: gguf_kv结构体提供相关功能
+    // 用途: 用于处理gguf_kv相关的操作
+    // 结构体: gguf_kv
+    // 描述: gguf_kv结构体提供相关功能
+    // 用途: 用于处理gguf_kv相关的操作
+    // 结构体: gguf_kv
+    // 描述: gguf_kv结构体提供相关功能
+    // 用途: 用于处理gguf_kv相关的操作
 struct gguf_kv {
     std::string key;
 
@@ -176,6 +443,14 @@ struct gguf_kv {
         return type;
     }
 
+    // 函数: get_ne
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_ne
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     size_t get_ne() const {
         if (type == GGUF_TYPE_STRING) {
             const size_t ne = data_string.size();
@@ -192,6 +467,14 @@ struct gguf_kv {
     template <typename T>
     const T & get_val(const size_t i = 0) const {
         GGML_ASSERT(type_to_gguf_type<T>::value == type);
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (std::is_same<T, std::string>::value) {
             GGML_ASSERT(data_string.size() >= i+1);
             return data_string[i];
@@ -202,6 +485,14 @@ struct gguf_kv {
         return reinterpret_cast<const T *>(data.data())[i];
     }
 
+    // 函数: cast
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cast
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cast(const enum gguf_type new_type) {
         const size_t new_type_size = gguf_type_size(new_type);
         GGML_ASSERT(data.size() % new_type_size == 0);
@@ -209,11 +500,65 @@ struct gguf_kv {
     }
 };
 
+// 类: gguf_tensor_info
+// 描述: gguf_tensor_info类提供相关功能
+// 用途: 用于处理gguf_tensor_info相关的操作
+// 类: gguf_tensor_info
+// 描述: gguf_tensor_info类提供相关功能
+// 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
 struct gguf_tensor_info {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor t; // for holding the equivalent info
     uint64_t offset;      // offset from start of `data`, must be a multiple of `ALIGNMENT`
 };
 
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
 struct gguf_context {
     uint32_t version = GGUF_VERSION;
 
@@ -227,6 +572,24 @@ struct gguf_context {
     void * data = nullptr;
 };
 
+// 类: gguf_reader
+// 描述: gguf_reader类提供相关功能
+// 用途: 用于处理gguf_reader相关的操作
+// 类: gguf_reader
+// 描述: gguf_reader类提供相关功能
+// 用途: 用于处理gguf_reader相关的操作
+    // 结构体: gguf_reader
+    // 描述: gguf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_reader相关的操作
+    // 结构体: gguf_reader
+    // 描述: gguf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_reader相关的操作
+    // 结构体: gguf_reader
+    // 描述: gguf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_reader相关的操作
+    // 结构体: gguf_reader
+    // 描述: gguf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_reader相关的操作
 struct gguf_reader {
     gguf_reader(FILE * file) : file(file) {
         // read the remaining bytes once and update on each read
@@ -234,6 +597,14 @@ struct gguf_reader {
     }
 
     // helper for remaining bytes in a file
+    // 函数: file_remain
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file_remain
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static uint64_t file_remain(FILE * file) {
         const int64_t cur = gguf_ftell(file);
         if (cur < 0) {
@@ -255,6 +626,14 @@ struct gguf_reader {
     }
 
     template <typename T>
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(T & dst) const {
         const size_t size = sizeof(dst);
         if (nbytes_remain < size) {
@@ -266,6 +645,14 @@ struct gguf_reader {
     }
 
     template <typename T>
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(std::vector<T> & dst, const size_t n) const {
         if (n > GGUF_MAX_ARRAY_ELEMENTS) {
             return false;
@@ -303,6 +690,14 @@ struct gguf_reader {
         return true;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(bool & dst) const {
         int8_t tmp = -1;
         if (!read(tmp)) {
@@ -312,6 +707,14 @@ struct gguf_reader {
         return true;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(enum ggml_type & dst) const {
         int32_t tmp = -1;
         if (!read(tmp)) {
@@ -321,6 +724,14 @@ struct gguf_reader {
         return true;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(enum gguf_type & dst) const {
         int32_t tmp = -1;
         if (!read(tmp)) {
@@ -330,6 +741,14 @@ struct gguf_reader {
         return true;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(std::string & dst) const {
         uint64_t size = 0;
         if (!read(size)) {
@@ -349,6 +768,14 @@ struct gguf_reader {
         return nread == size;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(void * dst, const size_t size) const {
         if (size > nbytes_remain) {
             return false;
@@ -364,11 +791,37 @@ private:
     mutable uint64_t nbytes_remain;
 };
 
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
 struct gguf_context * gguf_init_empty(void) {
     return new gguf_context;
 }
 
 template<typename T>
+// 函数: gguf_read_emplace_helper
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_read_emplace_helper
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool gguf_read_emplace_helper(const struct gguf_reader & gr, std::vector<struct gguf_kv> & kv, const std::string & key, const bool is_array, const size_t n) {
     if (is_array) {
         std::vector<T> value;
@@ -394,8 +847,44 @@ bool gguf_read_emplace_helper(const struct gguf_reader & gr, std::vector<struct 
     return true;
 }
 
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
 struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_params params) {
     const struct gguf_reader gr(file);
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx = new gguf_context;
 
     bool ok = true;
@@ -565,6 +1054,24 @@ struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_par
 
     // read the tensor info
     for (int64_t i = 0; ok && i < n_tensors; ++i) {
+        // 类: gguf_tensor_info
+        // 描述: gguf_tensor_info类提供相关功能
+        // 用途: 用于处理gguf_tensor_info相关的操作
+        // 类: gguf_tensor_info
+        // 描述: gguf_tensor_info类提供相关功能
+        // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
         struct gguf_tensor_info info;
 
         // tensor name
@@ -764,6 +1271,24 @@ struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_par
             mem_size = overhead + ctx->size;
         }
 
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params pdata = {
             /*mem_size   =*/ mem_size,
             /*mem_buffer =*/ nullptr,
@@ -777,8 +1302,44 @@ struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_par
             return nullptr;
         }
 
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_data = *params.ctx;
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * data = nullptr;
 
         if (!params.no_alloc) {
@@ -810,6 +1371,24 @@ struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_par
         for (size_t i = 0; i < ctx->info.size(); ++i) {
             const struct gguf_tensor_info & info = ctx->info[i];
 
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * cur = ggml_new_tensor(ctx_data, info.t.type, GGML_MAX_DIMS, info.t.ne);
 
             ok = ok && cur != nullptr;
@@ -840,6 +1419,24 @@ struct gguf_context * gguf_init_from_file_impl(FILE * file, struct gguf_init_par
     return ctx;
 }
 
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+// 类: gguf_context
+// 描述: gguf_context类提供相关功能
+// 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
 struct gguf_context * gguf_init_from_file(const char * fname, struct gguf_init_params params) {
     FILE * file = ggml_fopen(fname, "rb");
 
@@ -848,11 +1445,37 @@ struct gguf_context * gguf_init_from_file(const char * fname, struct gguf_init_p
         return nullptr;
     }
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * result = gguf_init_from_file_impl(file, params);
     fclose(file);
     return result;
 }
 
+// 函数: gguf_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_free(struct gguf_context * ctx) {
     if (ctx == nullptr) {
         return;
@@ -860,27 +1483,75 @@ void gguf_free(struct gguf_context * ctx) {
     delete ctx;
 }
 
+// 函数: gguf_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * gguf_type_name(enum gguf_type type) {
     auto it = GGUF_TYPE_NAME.find(type);
     return it == GGUF_TYPE_NAME.end() ? nullptr : it->second;
 }
 
+// 函数: gguf_get_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t gguf_get_version(const struct gguf_context * ctx) {
     return ctx->version;
 }
 
+// 函数: gguf_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_alignment(const struct gguf_context * ctx) {
     return ctx->alignment;
 }
 
+// 函数: gguf_get_data_offset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_data_offset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_data_offset(const struct gguf_context * ctx) {
     return ctx->offset;
 }
 
+// 函数: gguf_get_n_kv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_n_kv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_get_n_kv(const struct gguf_context * ctx) {
     return ctx->kv.size();
 }
 
+// 函数: gguf_find_key
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_find_key
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_find_key(const struct gguf_context * ctx, const char * key) {
     // return -1 if key not found
     int64_t keyfound = -1;
@@ -897,6 +1568,14 @@ int64_t gguf_find_key(const struct gguf_context * ctx, const char * key) {
     return keyfound;
 }
 
+// 函数: gguf_get_key
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_key
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * gguf_get_key(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     return ctx->kv[key_id].get_key().c_str();
@@ -913,18 +1592,42 @@ enum gguf_type gguf_get_arr_type(const struct gguf_context * ctx, int64_t key_id
     return ctx->kv[key_id].get_type();
 }
 
+// 函数: gguf_get_arr_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_arr_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const void * gguf_get_arr_data(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_type() != GGUF_TYPE_STRING);
     return ctx->kv[key_id].data.data();
 }
 
+// 函数: gguf_get_arr_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_arr_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * gguf_get_arr_str(const struct gguf_context * ctx, int64_t key_id, size_t i) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_type() == GGUF_TYPE_STRING);
     return ctx->kv[key_id].data_string[i].c_str();
 }
 
+// 函数: gguf_get_arr_n
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_arr_n
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_arr_n(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
 
@@ -937,78 +1640,182 @@ size_t gguf_get_arr_n(const struct gguf_context * ctx, int64_t key_id) {
     return ctx->kv[key_id].data.size() / type_size;
 }
 
+// 函数: gguf_get_val_u8
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_u8
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint8_t gguf_get_val_u8(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<uint8_t>();
 }
 
+// 函数: gguf_get_val_i8
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_i8
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int8_t gguf_get_val_i8(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<int8_t>();
 }
 
+// 函数: gguf_get_val_u16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_u16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint16_t gguf_get_val_u16(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<uint16_t>();
 }
 
+// 函数: gguf_get_val_i16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_i16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int16_t gguf_get_val_i16(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<int16_t>();
 }
 
+// 函数: gguf_get_val_u32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_u32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t gguf_get_val_u32(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<uint32_t>();
 }
 
+// 函数: gguf_get_val_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t gguf_get_val_i32(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<int32_t>();
 }
 
+// 函数: gguf_get_val_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float gguf_get_val_f32(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<float>();
 }
 
+// 函数: gguf_get_val_u64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_u64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint64_t gguf_get_val_u64(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<uint64_t>();
 }
 
+// 函数: gguf_get_val_i64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_i64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_get_val_i64(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<int64_t>();
 }
 
+// 函数: gguf_get_val_f64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_f64
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 double gguf_get_val_f64(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<double>();
 }
 
+// 函数: gguf_get_val_bool
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_bool
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool gguf_get_val_bool(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<bool>();
 }
 
+// 函数: gguf_get_val_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * gguf_get_val_str(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
     return ctx->kv[key_id].get_val<std::string>().c_str();
 }
 
+// 函数: gguf_get_val_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_val_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const void * gguf_get_val_data(const struct gguf_context * ctx, int64_t key_id) {
     GGML_ASSERT(key_id >= 0 && key_id < gguf_get_n_kv(ctx));
     GGML_ASSERT(ctx->kv[key_id].get_ne() == 1);
@@ -1016,10 +1823,26 @@ const void * gguf_get_val_data(const struct gguf_context * ctx, int64_t key_id) 
     return ctx->kv[key_id].data.data();
 }
 
+// 函数: gguf_get_n_tensors
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_n_tensors
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_get_n_tensors(const struct gguf_context * ctx) {
     return ctx->info.size();
 }
 
+// 函数: gguf_find_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_find_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_find_tensor(const struct gguf_context * ctx, const char * name) {
     // return -1 if tensor not found
     int64_t tensor_id = -1;
@@ -1036,11 +1859,27 @@ int64_t gguf_find_tensor(const struct gguf_context * ctx, const char * name) {
     return tensor_id;
 }
 
+// 函数: gguf_get_tensor_offset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_tensor_offset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_tensor_offset(const struct gguf_context * ctx, int64_t tensor_id) {
     GGML_ASSERT(tensor_id >= 0 && tensor_id < gguf_get_n_tensors(ctx));
     return ctx->info[tensor_id].offset;
 }
 
+// 函数: gguf_get_tensor_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_tensor_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * gguf_get_tensor_name(const struct gguf_context * ctx, int64_t tensor_id) {
     GGML_ASSERT(tensor_id >= 0 && tensor_id < gguf_get_n_tensors(ctx));
     return ctx->info[tensor_id].t.name;
@@ -1051,11 +1890,27 @@ enum ggml_type gguf_get_tensor_type(const struct gguf_context * ctx, int64_t ten
     return ctx->info[tensor_id].t.type;
 }
 
+// 函数: gguf_get_tensor_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_tensor_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_tensor_size(const struct gguf_context * ctx, int64_t tensor_id) {
     GGML_ASSERT(tensor_id >= 0 && tensor_id < gguf_get_n_tensors(ctx));
     return ggml_nbytes(&ctx->info[tensor_id].t);
 }
 
+// 函数: gguf_remove_key
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_remove_key
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int64_t gguf_remove_key(struct gguf_context * ctx, const char * key) {
     const int64_t key_id = gguf_find_key(ctx, key);
     if (key_id >= 0) {
@@ -1065,6 +1920,14 @@ int64_t gguf_remove_key(struct gguf_context * ctx, const char * key) {
 }
 
 template<typename T>
+// 函数: gguf_check_reserved_keys
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_check_reserved_keys
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
 static void gguf_check_reserved_keys(const std::string & key, const T val) {
     if (key == GGUF_KEY_GENERAL_ALIGNMENT) {
         if constexpr (std::is_same<T, uint32_t>::value) {
@@ -1076,78 +1939,182 @@ static void gguf_check_reserved_keys(const std::string & key, const T val) {
     }
 }
 
+// 函数: gguf_set_val_u8
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_u8
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_u8(struct gguf_context * ctx, const char * key, uint8_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_i8
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_i8
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_i8(struct gguf_context * ctx, const char * key, int8_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_u16
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_u16
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_u16(struct gguf_context * ctx, const char * key, uint16_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_i16
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_i16
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_i16(struct gguf_context * ctx, const char * key, int16_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_u32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_u32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_u32(struct gguf_context * ctx, const char * key, uint32_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_i32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_i32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_i32(struct gguf_context * ctx, const char * key, int32_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_f32(struct gguf_context * ctx, const char * key, float val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_u64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_u64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_u64(struct gguf_context * ctx, const char * key, uint64_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_i64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_i64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_i64(struct gguf_context * ctx, const char * key, int64_t val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_f64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_f64
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_f64(struct gguf_context * ctx, const char * key, double val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_bool
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_bool
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_bool(struct gguf_context * ctx, const char * key, bool val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, val);
 }
 
+// 函数: gguf_set_val_str
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_val_str
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_val_str(struct gguf_context * ctx, const char * key, const char * val) {
     gguf_check_reserved_keys(key, val);
     gguf_remove_key(ctx, key);
     ctx->kv.emplace_back(key, std::string(val));
 }
 
+// 函数: gguf_set_arr_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_arr_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_arr_data(struct gguf_context * ctx, const char * key, enum gguf_type type, const void * data, size_t n) {
     gguf_check_reserved_keys(key, data);
     gguf_remove_key(ctx, key);
@@ -1161,6 +2128,14 @@ void gguf_set_arr_data(struct gguf_context * ctx, const char * key, enum gguf_ty
     ctx->kv.back().cast(type);
 }
 
+// 函数: gguf_set_arr_str
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_arr_str
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_arr_str(struct gguf_context * ctx, const char * key, const char ** data, size_t n) {
     gguf_check_reserved_keys(key, data);
     gguf_remove_key(ctx, key);
@@ -1173,6 +2148,14 @@ void gguf_set_arr_str(struct gguf_context * ctx, const char * key, const char **
 }
 
 // set or add KV pairs from another context
+// 函数: gguf_set_kv
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_kv
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_kv(struct gguf_context * ctx, const struct gguf_context * src) {
     const int64_t n_kv = gguf_get_n_kv(src);
     for (int64_t i = 0; i < n_kv; ++i) {
@@ -1228,6 +2211,24 @@ void gguf_set_kv(struct gguf_context * ctx, const struct gguf_context * src) {
 }
 
 void gguf_add_tensor(
+             // 类: gguf_context
+             // 描述: gguf_context类提供相关功能
+             // 用途: 用于处理gguf_context相关的操作
+             // 类: gguf_context
+             // 描述: gguf_context类提供相关功能
+             // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
              struct gguf_context * ctx,
         const struct ggml_tensor * tensor) {
     GGML_ASSERT(tensor);
@@ -1235,6 +2236,24 @@ void gguf_add_tensor(
         GGML_ABORT("duplicate tensor name: %s", tensor->name);
     }
 
+    // 类: gguf_tensor_info
+    // 描述: gguf_tensor_info类提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 类: gguf_tensor_info
+    // 描述: gguf_tensor_info类提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
+    // 结构体: gguf_tensor_info
+    // 描述: gguf_tensor_info结构体提供相关功能
+    // 用途: 用于处理gguf_tensor_info相关的操作
     struct gguf_tensor_info ti;
     ti.t = *tensor;
     ti.offset = ctx->info.empty() ? 0 :
@@ -1242,11 +2261,37 @@ void gguf_add_tensor(
     ctx->info.push_back(ti);
 }
 
+// 函数: gguf_set_tensor_type
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_tensor_type
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_tensor_type(struct gguf_context * ctx, const char * name, enum ggml_type type) {
     const int64_t tensor_id = gguf_find_tensor(ctx, name);
     if (tensor_id < 0) {
         GGML_ABORT("tensor not found: %s", name);
     }
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tensor = &ctx->info[tensor_id].t;
     const size_t  type_size = ggml_type_size(type);
     const int64_t blck_size = ggml_blck_size(type);
@@ -1267,6 +2312,14 @@ void gguf_set_tensor_type(struct gguf_context * ctx, const char * name, enum ggm
     }
 }
 
+// 函数: gguf_set_tensor_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_set_tensor_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_set_tensor_data(struct gguf_context * ctx, const char * name, const void * data) {
     const int64_t tensor_id = gguf_find_tensor(ctx, name);
     if (tensor_id < 0) {
@@ -1276,28 +2329,94 @@ void gguf_set_tensor_data(struct gguf_context * ctx, const char * name, const vo
     ctx->info[tensor_id].t.data = (void *)(uintptr_t)data; // double cast suppresses warning about casting away const
 }
 
+// 类: gguf_writer_base
+// 描述: gguf_writer_base类提供相关功能
+// 用途: 用于处理gguf_writer_base相关的操作
+// 类: gguf_writer_base
+// 描述: gguf_writer_base类提供相关功能
+// 用途: 用于处理gguf_writer_base相关的操作
+    // 结构体: gguf_writer_base
+    // 描述: gguf_writer_base结构体提供相关功能
+    // 用途: 用于处理gguf_writer_base相关的操作
+    // 结构体: gguf_writer_base
+    // 描述: gguf_writer_base结构体提供相关功能
+    // 用途: 用于处理gguf_writer_base相关的操作
+    // 结构体: gguf_writer_base
+    // 描述: gguf_writer_base结构体提供相关功能
+    // 用途: 用于处理gguf_writer_base相关的操作
+    // 结构体: gguf_writer_base
+    // 描述: gguf_writer_base结构体提供相关功能
+    // 用途: 用于处理gguf_writer_base相关的操作
 struct gguf_writer_base {
     size_t written_bytes {0u};
 
     ~gguf_writer_base(void) = default;
 
     // we bet on devirtualization
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void write(int8_t val) = 0;
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void write(const std::vector<int8_t> & val) = 0;
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void write_tensor_data(const struct gguf_tensor_info & info, size_t offset_data, size_t alignment) = 0;
 
     template <typename T>
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const T & val) {
         for (size_t i = 0; i < sizeof(val); ++i) {
             write(reinterpret_cast<const int8_t *>(&val)[i]);
         }
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const bool & val) {
         const int8_t val8 = val ? 1 : 0;
         write(val8);
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const std::string & val) {
         {
             const uint64_t n = val.length();
@@ -1308,18 +2427,50 @@ struct gguf_writer_base {
         }
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const char * val) {
         write(std::string(val));
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const enum ggml_type & val) {
         write(int32_t(val));
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const enum gguf_type & val) {
         write(int32_t(val));
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const struct gguf_kv & kv) {
         const uint64_t ne = kv.get_ne();
 
@@ -1361,6 +2512,14 @@ struct gguf_writer_base {
         }
     }
 
+    // 函数: write_tensor_meta
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor_meta
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor_meta(const struct gguf_tensor_info & info) {
         write(info.t.name);
 
@@ -1374,6 +2533,14 @@ struct gguf_writer_base {
         write(info.offset);
     }
 
+    // 函数: pad
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pad
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void pad(const size_t alignment) {
         while (written_bytes % alignment != 0) {
             const int8_t zero = 0;
@@ -1383,6 +2550,24 @@ struct gguf_writer_base {
 };
 
 // vector buffer based writer
+// 类: gguf_writer_buf
+// 描述: gguf_writer_buf类提供相关功能
+// 用途: 用于处理gguf_writer_buf相关的操作
+// 类: gguf_writer_buf
+// 描述: gguf_writer_buf类提供相关功能
+// 用途: 用于处理gguf_writer_buf相关的操作
+    // 结构体: gguf_writer_buf
+    // 描述: gguf_writer_buf结构体提供相关功能
+    // 用途: 用于处理gguf_writer_buf相关的操作
+    // 结构体: gguf_writer_buf
+    // 描述: gguf_writer_buf结构体提供相关功能
+    // 用途: 用于处理gguf_writer_buf相关的操作
+    // 结构体: gguf_writer_buf
+    // 描述: gguf_writer_buf结构体提供相关功能
+    // 用途: 用于处理gguf_writer_buf相关的操作
+    // 结构体: gguf_writer_buf
+    // 描述: gguf_writer_buf结构体提供相关功能
+    // 用途: 用于处理gguf_writer_buf相关的操作
 struct gguf_writer_buf final : public gguf_writer_base {
     std::vector<int8_t> & buf;
 
@@ -1390,16 +2575,40 @@ struct gguf_writer_buf final : public gguf_writer_base {
 
     using gguf_writer_base::write;
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const int8_t val) override {
         buf.push_back(val);
         written_bytes++;
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const std::vector<int8_t> & val) override {
         buf.insert(buf.end(), val.begin(), val.end());
         written_bytes += val.size();
     }
 
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor_data(const struct gguf_tensor_info & info, const size_t offset_data, const size_t alignment) override {
         GGML_ASSERT(buf.size() - offset_data == info.offset);
 
@@ -1421,6 +2630,24 @@ struct gguf_writer_buf final : public gguf_writer_base {
 };
 
 // file based writer
+// 类: gguf_writer_file
+// 描述: gguf_writer_file类提供相关功能
+// 用途: 用于处理gguf_writer_file相关的操作
+// 类: gguf_writer_file
+// 描述: gguf_writer_file类提供相关功能
+// 用途: 用于处理gguf_writer_file相关的操作
+    // 结构体: gguf_writer_file
+    // 描述: gguf_writer_file结构体提供相关功能
+    // 用途: 用于处理gguf_writer_file相关的操作
+    // 结构体: gguf_writer_file
+    // 描述: gguf_writer_file结构体提供相关功能
+    // 用途: 用于处理gguf_writer_file相关的操作
+    // 结构体: gguf_writer_file
+    // 描述: gguf_writer_file结构体提供相关功能
+    // 用途: 用于处理gguf_writer_file相关的操作
+    // 结构体: gguf_writer_file
+    // 描述: gguf_writer_file结构体提供相关功能
+    // 用途: 用于处理gguf_writer_file相关的操作
 struct gguf_writer_file final : public gguf_writer_base {
     FILE * file;
 
@@ -1428,6 +2655,14 @@ struct gguf_writer_file final : public gguf_writer_base {
 
     using gguf_writer_base::write;
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const int8_t val) override {
         const auto real_val = static_cast<uint8_t>(val);
         const auto ret = fputc(real_val, file);
@@ -1437,6 +2672,14 @@ struct gguf_writer_file final : public gguf_writer_base {
         }
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const std::vector<int8_t> & val) override {
         const auto ret = fwrite(val.data(), 1, val.size(), file);
         written_bytes += val.size();
@@ -1445,6 +2688,14 @@ struct gguf_writer_file final : public gguf_writer_base {
         }
     }
 
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor_data(const struct gguf_tensor_info & info, const size_t offset_data, const size_t alignment) override {
         GGML_ASSERT(written_bytes - offset_data == info.offset);
 
@@ -1465,6 +2716,14 @@ struct gguf_writer_file final : public gguf_writer_base {
 };
 
 template <typename writer_t>
+// 函数: gguf_write_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_write_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gguf_write_out(const struct gguf_context * ctx, writer_t & gw, bool only_meta) {
     const int64_t n_kv      = gguf_get_n_kv(ctx);
     const int64_t n_tensors = gguf_get_n_tensors(ctx);
@@ -1503,11 +2762,27 @@ static void gguf_write_out(const struct gguf_context * ctx, writer_t & gw, bool 
     }
 }
 
+// 函数: gguf_write_to_buf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_write_to_buf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_write_to_buf(const struct gguf_context * ctx, std::vector<int8_t> & buf, bool only_meta) {
     gguf_writer_buf gw(buf);
     gguf_write_out(ctx, gw, only_meta);
 }
 
+// 函数: gguf_write_to_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_write_to_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool gguf_write_to_file(const struct gguf_context * ctx, const char * fname, bool only_meta) {
     FILE * file = ggml_fopen(fname, "wb");
 
@@ -1529,6 +2804,14 @@ bool gguf_write_to_file(const struct gguf_context * ctx, const char * fname, boo
     return true;
 }
 
+// 函数: gguf_get_meta_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_meta_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t gguf_get_meta_size(const struct gguf_context * ctx) {
     // only return size
     std::vector<int8_t> buf;
@@ -1536,6 +2819,14 @@ size_t gguf_get_meta_size(const struct gguf_context * ctx) {
     return buf.size();
 }
 
+// 函数: gguf_get_meta_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_get_meta_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void gguf_get_meta_data(const struct gguf_context * ctx, void * data) {
     std::vector<int8_t> buf;
     gguf_write_to_buf(ctx, buf, /*only_meta =*/ true);

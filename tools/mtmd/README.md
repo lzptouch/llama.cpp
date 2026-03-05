@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/README.md
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 # Multimodal Support in llama.cpp
 
 This directory provides multimodal capabilities for `llama.cpp`. Initially intended as a showcase for running LLaVA models, its scope has expanded significantly over time to include various other vision-capable models. As a result, LLaVA is no longer the only multimodal architecture supported.

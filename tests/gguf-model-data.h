@@ -7,6 +7,30 @@
 #include <string>
 #include <vector>
 
+// 类: gguf_remote_tensor
+// 描述: gguf_remote_tensor类提供相关功能
+// 用途: 用于处理gguf_remote_tensor相关的操作
+// 类: gguf_remote_tensor
+// 描述: gguf_remote_tensor类提供相关功能
+// 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
+    // 结构体: gguf_remote_tensor
+    // 描述: gguf_remote_tensor结构体提供相关功能
+    // 用途: 用于处理gguf_remote_tensor相关的操作
 struct gguf_remote_tensor {
     std::string  name;
     ggml_type    type    = GGML_TYPE_F32;
@@ -14,6 +38,30 @@ struct gguf_remote_tensor {
     uint32_t     n_dims  = 0;
 };
 
+// 类: gguf_remote_model
+// 描述: gguf_remote_model类提供相关功能
+// 用途: 用于处理gguf_remote_model相关的操作
+// 类: gguf_remote_model
+// 描述: gguf_remote_model类提供相关功能
+// 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
+    // 结构体: gguf_remote_model
+    // 描述: gguf_remote_model结构体提供相关功能
+    // 用途: 用于处理gguf_remote_model相关的操作
 struct gguf_remote_model {
     // Selected KV metadata
     std::string architecture;               // general.architecture

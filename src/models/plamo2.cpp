@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: plamo2.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/plamo2.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "llama-memory-recurrent.h"
@@ -192,6 +199,14 @@ ggml_tensor * llm_build_plamo2::build_plamo2_mamba_layer(llm_graph_input_rs * in
     // split into z and x
     // => {head_dim * n_heads, n_seq_tokens, n_seqs}
     ggml_tensor * x = ggml_view_4d(ctx0, zx, head_dim, n_heads, n_seq_tokens, n_seqs, zx->nb[1], zx->nb[2], zx->nb[3],
+                                   // 函数: ggml_element_size
+                                   // 描述: 执行主要功能
+                                   // 参数: 无参数
+                                   // 返回: 无返回值
+                                   // 函数: ggml_element_size
+                                   // 描述: 执行主要功能
+                                   // 参数: 无参数
+                                   // 返回: 无返回值
                                    head_dim * ggml_element_size(zx));
     x               = ggml_cont_3d(ctx0, x, head_dim * n_heads, n_seq_tokens, n_seqs);
     // x = ggml_permute(ctx0, x, 0, 2, 1, 3);
@@ -274,6 +289,14 @@ ggml_tensor * llm_build_plamo2::build_plamo2_mamba_layer(llm_graph_input_rs * in
             // Custom operator to optimize the parallel associative scan
             // as described in the Annex D of the Mamba paper.
             // => {d_inner, n_seq_tokens, n_seqs} and {d_state, d_inner, n_seqs}
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_ssm_scan(ctx, ssm, x, dt, A, B, C, ids);
         };
 
@@ -291,6 +314,14 @@ ggml_tensor * llm_build_plamo2::build_plamo2_mamba_layer(llm_graph_input_rs * in
         cb(ssm_states_all, "mamba_ssm_states", il);
 
         ggml_tensor * y = ggml_view_4d(ctx0, y_ssm, head_dim, n_heads, n_seq_tokens, n_seqs,
+                                       // 函数: ggml_element_size
+                                       // 描述: 执行主要功能
+                                       // 参数: 无参数
+                                       // 返回: 无返回值
+                                       // 函数: ggml_element_size
+                                       // 描述: 执行主要功能
+                                       // 参数: 无参数
+                                       // 返回: 无返回值
                                        head_dim * ggml_element_size(x), head_dim * n_heads * ggml_element_size(x),
                                        head_dim * n_heads * n_seq_tokens * ggml_element_size(x), 0);
         cb(y, "mamba_y_view", il);

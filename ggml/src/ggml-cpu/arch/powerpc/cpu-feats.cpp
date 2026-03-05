@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: cpu-feats.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/arch/powerpc/cpu-feats.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 # include "ggml-backend-impl.h"
 
 #if defined(__powerpc64__) || defined(__ppc64__) || defined(__PPC64__)
@@ -8,6 +15,24 @@
 
 #include <string>
 
+// 类: powerpc_features
+// 描述: powerpc_features类提供相关功能
+// 用途: 用于处理powerpc_features相关的操作
+// 类: powerpc_features
+// 描述: powerpc_features类提供相关功能
+// 用途: 用于处理powerpc_features相关的操作
+    // 结构体: powerpc_features
+    // 描述: powerpc_features结构体提供相关功能
+    // 用途: 用于处理powerpc_features相关的操作
+    // 结构体: powerpc_features
+    // 描述: powerpc_features结构体提供相关功能
+    // 用途: 用于处理powerpc_features相关的操作
+    // 结构体: powerpc_features
+    // 描述: powerpc_features结构体提供相关功能
+    // 用途: 用于处理powerpc_features相关的操作
+    // 结构体: powerpc_features
+    // 描述: powerpc_features结构体提供相关功能
+    // 用途: 用于处理powerpc_features相关的操作
 struct powerpc_features {
     std::string platform = "";
     int power_version    = -1;
@@ -42,6 +67,14 @@ struct powerpc_features {
     }
 };
 
+// 函数: ggml_backend_cpu_powerpc_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_powerpc_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_cpu_powerpc_score() {
     int score = 1;
     powerpc_features pf;

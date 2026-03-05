@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: convert-llama2c-to-ggml.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/convert-llama2c-to-ggml/convert-llama2c-to-ggml.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "ggml.h"
 #include "gguf.h"
 
@@ -80,6 +87,24 @@ typedef struct {
     int seq_len; // max sequence length
 } Config;
 
+// 类: TransformerWeights
+// 描述: TransformerWeights类提供相关功能
+// 用途: 用于处理transformerweights相关的操作
+// 类: TransformerWeights
+// 描述: TransformerWeights类提供相关功能
+// 用途: 用于处理transformerweights相关的操作
+    // 结构体: TransformerWeights
+    // 描述: TransformerWeights结构体提供相关功能
+    // 用途: 用于处理TransformerWeights相关的操作
+    // 结构体: TransformerWeights
+    // 描述: TransformerWeights结构体提供相关功能
+    // 用途: 用于处理TransformerWeights相关的操作
+    // 结构体: TransformerWeights
+    // 描述: TransformerWeights结构体提供相关功能
+    // 用途: 用于处理TransformerWeights相关的操作
+    // 结构体: TransformerWeights
+    // 描述: TransformerWeights结构体提供相关功能
+    // 用途: 用于处理TransformerWeights相关的操作
 struct TransformerWeights {
     // token embedding table
     std::vector<float> token_embedding_table;    // (vocab_size, dim)
@@ -104,6 +129,14 @@ struct TransformerWeights {
     std::vector<float> wcls;
 };
 
+// 函数: alloc_weights
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: alloc_weights
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void alloc_weights(TransformerWeights * w, const Config * p, bool shared_weights) {
     const int n_multiqueries = p->n_kv_heads <= 0 || p->n_kv_heads >= p->n_heads ? 1 : p->n_heads / p->n_kv_heads;
     try {
@@ -152,6 +185,14 @@ static void alloc_weights(TransformerWeights * w, const Config * p, bool shared_
     }
 }
 
+// 函数: checkpoint_init_weights
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: checkpoint_init_weights
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static int checkpoint_init_weights(TransformerWeights * w, const Config * p, FILE * f, bool shared_weights) {
     if (fread(w->token_embedding_table.data(), sizeof(float), w->token_embedding_table.size(), f) != w->token_embedding_table.size()) return 1;
     if (fread(w->rms_att_weight.data(), sizeof(float), w->rms_att_weight.size(), f) != w->rms_att_weight.size()) return 1;
@@ -183,6 +224,14 @@ static int checkpoint_init_weights(TransformerWeights * w, const Config * p, FIL
     return 0;
 }
 
+// 函数: print_sample_weights
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_sample_weights
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void print_sample_weights(TransformerWeights *w){
     LOG_INF("----- Quick print of first of the weight vales of all the variables\n");
     LOG_INF("%f\n", w->token_embedding_table[0]);
@@ -203,11 +252,47 @@ static void print_sample_weights(TransformerWeights *w){
 
 //////////////////////////////////////// ggml structs and functions required to load models, configs and save the model.
 
+// 类: my_llama_vocab
+// 描述: my_llama_vocab类提供相关功能
+// 用途: 用于处理my_llama_vocab相关的操作
+// 类: my_llama_vocab
+// 描述: my_llama_vocab类提供相关功能
+// 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
 struct my_llama_vocab {
     using id    = int32_t;
     using token = std::string;
     using ttype = llama_token_type;
 
+    // 类: token_data
+    // 描述: token_data类提供相关功能
+    // 用途: 用于处理token_data相关的操作
+    // 类: token_data
+    // 描述: token_data类提供相关功能
+    // 用途: 用于处理token_data相关的操作
+    // 结构体: token_data
+    // 描述: token_data结构体提供相关功能
+    // 用途: 用于处理token_data相关的操作
+    // 结构体: token_data
+    // 描述: token_data结构体提供相关功能
+    // 用途: 用于处理token_data相关的操作
+    // 结构体: token_data
+    // 描述: token_data结构体提供相关功能
+    // 用途: 用于处理token_data相关的操作
+    // 结构体: token_data
+    // 描述: token_data结构体提供相关功能
+    // 用途: 用于处理token_data相关的操作
     struct token_data {
         token text;
         float score;
@@ -218,6 +303,24 @@ struct my_llama_vocab {
     std::vector<token_data> id_to_token;
 };
 
+// 类: my_llama_hparams
+// 描述: my_llama_hparams类提供相关功能
+// 用途: 用于处理my_llama_hparams相关的操作
+// 类: my_llama_hparams
+// 描述: my_llama_hparams类提供相关功能
+// 用途: 用于处理my_llama_hparams相关的操作
+    // 结构体: my_llama_hparams
+    // 描述: my_llama_hparams结构体提供相关功能
+    // 用途: 用于处理my_llama_hparams相关的操作
+    // 结构体: my_llama_hparams
+    // 描述: my_llama_hparams结构体提供相关功能
+    // 用途: 用于处理my_llama_hparams相关的操作
+    // 结构体: my_llama_hparams
+    // 描述: my_llama_hparams结构体提供相关功能
+    // 用途: 用于处理my_llama_hparams相关的操作
+    // 结构体: my_llama_hparams
+    // 描述: my_llama_hparams结构体提供相关功能
+    // 用途: 用于处理my_llama_hparams相关的操作
 struct my_llama_hparams {
     uint32_t n_vocab   = 32000;
     uint32_t n_ctx     = 512;   // this is provided as user input?
@@ -230,39 +333,317 @@ struct my_llama_hparams {
     uint32_t n_rot     = 64;
 
     bool operator!=(const my_llama_hparams& other) const {
+        // 函数: memcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: memcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return memcmp(this, &other, sizeof(my_llama_hparams));
     }
 };
 
+// 类: my_llama_layer
+// 描述: my_llama_layer类提供相关功能
+// 用途: 用于处理my_llama_layer相关的操作
+// 类: my_llama_layer
+// 描述: my_llama_layer类提供相关功能
+// 用途: 用于处理my_llama_layer相关的操作
+    // 结构体: my_llama_layer
+    // 描述: my_llama_layer结构体提供相关功能
+    // 用途: 用于处理my_llama_layer相关的操作
+    // 结构体: my_llama_layer
+    // 描述: my_llama_layer结构体提供相关功能
+    // 用途: 用于处理my_llama_layer相关的操作
+    // 结构体: my_llama_layer
+    // 描述: my_llama_layer结构体提供相关功能
+    // 用途: 用于处理my_llama_layer相关的操作
+    // 结构体: my_llama_layer
+    // 描述: my_llama_layer结构体提供相关功能
+    // 用途: 用于处理my_llama_layer相关的操作
 struct my_llama_layer {
     // normalization
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * attention_norm;
 
     // attention
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * wq;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * wk;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * wv;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * wo;
 
     // normalization
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * ffn_norm;
 
     // ff
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * w1;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * w2;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * w3;
 };
 
+// 类: my_llama_model
+// 描述: my_llama_model类提供相关功能
+// 用途: 用于处理my_llama_model相关的操作
+// 类: my_llama_model
+// 描述: my_llama_model类提供相关功能
+// 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
 struct my_llama_model {
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = NULL;
 
     std::string name;
 
     my_llama_hparams hparams;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tok_embeddings;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * norm;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * output;
 
     std::vector<my_llama_layer> layers;
@@ -272,6 +653,24 @@ struct my_llama_model {
     uint32_t train_tokens = 0;
 };
 
+// 类: train_params
+// 描述: train_params类提供相关功能
+// 用途: 用于处理train_params相关的操作
+// 类: train_params
+// 描述: train_params类提供相关功能
+// 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
 struct train_params {
     const char * fn_vocab_model;
     const char * fn_llama2c_model;
@@ -320,6 +719,14 @@ struct train_params {
     int mem_compute1_gb;
 };
 
+// 函数: print_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_params(struct my_llama_hparams * params) {
     LOG_INF("%s: n_vocab:   %u\n", __func__, params->n_vocab);
     LOG_INF("%s: n_ctx:     %u\n", __func__, params->n_ctx);
@@ -332,6 +739,14 @@ static void print_params(struct my_llama_hparams * params) {
     LOG_INF("%s: n_rot:     %u\n", __func__, params->n_rot);
 }
 
+// 函数: print_tensor_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_tensor_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_tensor_info(const struct ggml_context * ctx) {
     for (auto * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
         LOG_INF("%s: Allocating ", __func__);
@@ -347,6 +762,14 @@ static void print_tensor_info(const struct ggml_context * ctx) {
     }
 }
 
+// 函数: init_model
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_model
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_model(struct my_llama_model * model) {
     const auto & hparams = model->hparams;
 
@@ -357,6 +780,24 @@ static void init_model(struct my_llama_model * model) {
     const uint32_t n_multiqueries = hparams.n_head_kv <= 0 || hparams.n_head_kv >= hparams.n_head ? 1 : hparams.n_head / hparams.n_head_kv;
 
     const uint32_t n_ff = hparams.n_ff;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = model->ctx;
 
     model->train_its = 0;
@@ -407,16 +848,40 @@ static void init_model(struct my_llama_model * model) {
     print_tensor_info(ctx);
 }
 
+// 函数: get_f32_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_f32_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static float get_f32_2d(struct ggml_tensor * tensor, int64_t i0, int64_t i1) {
     float * ptr = (float *) ((char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1]);
     return *ptr;
 }
 
+// 函数: get_i32_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_i32_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int32_t get_i32_2d(struct ggml_tensor * tensor, int64_t i0, int64_t i1) {
     int32_t * ptr = (int32_t *) ((char *) tensor->data + i0*tensor->nb[0] + i1*tensor->nb[1]);
     return *ptr;
 }
 
+// 函数: print_row
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_row
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_row(struct ggml_tensor * probs, int i) {
     for (int k = 0; k < probs->ne[0]; ++k) {
         float p = get_f32_2d(probs, k, i);
@@ -425,6 +890,14 @@ static void print_row(struct ggml_tensor * probs, int i) {
     LOG("\n");
 }
 
+// 函数: print_matrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_matrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_matrix(struct ggml_tensor * probs) {
     assert(ggml_is_matrix(probs));
     for (int i = 0; i < probs->ne[1]; ++i) {
@@ -436,6 +909,24 @@ static void print_matrix(struct ggml_tensor * probs) {
     }
 }
 
+// 类: my_llama_file
+// 描述: my_llama_file类提供相关功能
+// 用途: 用于处理my_llama_file相关的操作
+// 类: my_llama_file
+// 描述: my_llama_file类提供相关功能
+// 用途: 用于处理my_llama_file相关的操作
+    // 结构体: my_llama_file
+    // 描述: my_llama_file结构体提供相关功能
+    // 用途: 用于处理my_llama_file相关的操作
+    // 结构体: my_llama_file
+    // 描述: my_llama_file结构体提供相关功能
+    // 用途: 用于处理my_llama_file相关的操作
+    // 结构体: my_llama_file
+    // 描述: my_llama_file结构体提供相关功能
+    // 用途: 用于处理my_llama_file相关的操作
+    // 结构体: my_llama_file
+    // 描述: my_llama_file结构体提供相关功能
+    // 用途: 用于处理my_llama_file相关的操作
 struct my_llama_file {
     // use FILE * so we don't have to re-open the file to mmap
     FILE * fp;
@@ -452,6 +943,14 @@ struct my_llama_file {
         }
     }
 
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tell
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t tell() const {
 #ifdef _WIN32
         __int64 ret = _ftelli64(fp);
@@ -462,6 +961,14 @@ struct my_llama_file {
         return (size_t) ret;
     }
 
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seek
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seek(size_t offset, int whence) {
 #ifdef _WIN32
         int ret = _fseeki64(fp, (__int64) offset, whence);
@@ -471,6 +978,14 @@ struct my_llama_file {
         GGML_ASSERT(ret == 0); // same
     }
 
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_raw
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_raw(void * ptr, size_t size) {
         if (size == 0) {
             return;
@@ -485,17 +1000,41 @@ struct my_llama_file {
         }
     }
 
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::uint32_t read_u32() {
         std::uint32_t ret;
         read_raw(&ret, sizeof(ret));
         return ret;
     }
+    // 函数: read_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::float_t read_f32() {
         std::float_t ret;
         read_raw(&ret, sizeof(ret));
         return ret;
     }
 
+    // 函数: read_string
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_string
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string read_string(std::uint32_t len) {
         std::vector<char> chars(len);
         read_raw(chars.data(), len);
@@ -509,6 +1048,14 @@ struct my_llama_file {
     }
 };
 
+// 函数: is_ggml_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_ggml_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_ggml_file(const char * filename) {
     my_llama_file file(filename, "rb");
     if (file.size < 4) {
@@ -518,6 +1065,14 @@ static bool is_ggml_file(const char * filename) {
     return magic == GGUF_MAGIC;
 }
 
+// 函数: llama_escape_whitespaces
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_escape_whitespaces
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string llama_escape_whitespaces(const std::string & text) {
     std::ostringstream out;
     for (char c : text) {
@@ -527,16 +1082,78 @@ static std::string llama_escape_whitespaces(const std::string & text) {
     return out.str();
 }
 
+// 函数: load_vocab
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: load_vocab
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static void load_vocab(const char * filename, const Config * config, struct my_llama_vocab * vocab) {
     if (is_ggml_file(filename)) {
         LOG_INF("%s: Loading vocabulary from gguf file %s\n", __func__, filename);
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_data = NULL;
 
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
         struct gguf_init_params params = {
             /*.no_alloc = */ false,
             /*.ctx      = */ &ctx_data,
         };
 
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
         struct gguf_context * ctx = gguf_init_from_file(filename, params);
         GGML_ASSERT(ctx != NULL);
 
@@ -619,6 +1236,14 @@ static void load_vocab(const char * filename, const Config * config, struct my_l
     }
 }
 
+// 函数: convert_weights_ak_to_gg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_weights_ak_to_gg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void convert_weights_ak_to_gg(struct ggml_tensor * gg_weights, const float * karpathy_weights) {
     int size = 1;
     for (int dim = 0; dim < ggml_n_dims(gg_weights); ++dim) {
@@ -633,6 +1258,24 @@ static void convert_weights_ak_to_gg(struct ggml_tensor * gg_weights, const floa
 }
 
 static void save_as_llama_model(
+    // 类: my_llama_vocab
+    // 描述: my_llama_vocab类提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 类: my_llama_vocab
+    // 描述: my_llama_vocab类提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
     struct my_llama_vocab * vocab, struct my_llama_model * model, TransformerWeights* w, const char * filename
 ) {
     // convert AK weights into GG weights one by one.
@@ -668,6 +1311,24 @@ static void save_as_llama_model(
         convert_weights_ak_to_gg(layer.w3            , &w->w3[i*row_length*n_ff]);
     }
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx = gguf_init_empty();
 
     std::vector<const char*> tokens;
@@ -750,6 +1411,24 @@ static void save_as_llama_model(
 }
 
 static struct train_params get_default_train_params() {
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
     struct train_params params;
     params.fn_vocab_model          = "models/7B/ggml-model-f16.gguf";
     params.fn_llama2c_output_model = "ak_llama_model.bin";
@@ -799,6 +1478,14 @@ static struct train_params get_default_train_params() {
     return params;
 }
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int /*argc*/, char ** argv, const struct train_params * params) {
     fprintf(stderr, "usage: %s [options]\n", argv[0]);
     fprintf(stderr, "\n");
@@ -810,10 +1497,36 @@ static void print_usage(int /*argc*/, char ** argv, const struct train_params * 
     fprintf(stderr, "\n");
 }
 
+// 函数: params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool params_parse(int argc, char ** argv, struct train_params * params) {
     bool invalid_param = false;
     bool reqd_param_found = false;
     std::string arg;
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
     struct train_params default_params = get_default_train_params();
     const std::string arg_prefix = "--";
 
@@ -865,6 +1578,14 @@ static bool params_parse(int argc, char ** argv, struct train_params * params) {
     return true;
 }
 
+// 函数: basename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: basename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string basename(const std::string &path) {
     size_t pos = path.find_last_of("/\\");
     if (pos == std::string::npos) {
@@ -873,9 +1594,35 @@ static std::string basename(const std::string &path) {
     return path.substr(pos + 1);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_init();
 
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 类: train_params
+    // 描述: train_params类提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
+    // 结构体: train_params
+    // 描述: train_params结构体提供相关功能
+    // 用途: 用于处理train_params相关的操作
     struct train_params params = get_default_train_params();
     if (!params_parse(argc, argv, &params)) {
         return 1;
@@ -907,9 +1654,45 @@ int main(int argc, char ** argv) {
         fclose(file);
     }
 
+    // 类: my_llama_vocab
+    // 描述: my_llama_vocab类提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 类: my_llama_vocab
+    // 描述: my_llama_vocab类提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
+    // 结构体: my_llama_vocab
+    // 描述: my_llama_vocab结构体提供相关功能
+    // 用途: 用于处理my_llama_vocab相关的操作
     struct my_llama_vocab vocab;
     load_vocab(params.fn_vocab_model, &config, &vocab);
 
+    // 类: my_llama_model
+    // 描述: my_llama_model类提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 类: my_llama_model
+    // 描述: my_llama_model类提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
+    // 结构体: my_llama_model
+    // 描述: my_llama_model结构体提供相关功能
+    // 用途: 用于处理my_llama_model相关的操作
     struct my_llama_model model;
     model.hparams.n_vocab   = config.vocab_size; //llama_vocab_n_vocab(lctx);
     model.hparams.n_ctx     = params.n_ctx;
@@ -923,6 +1706,24 @@ int main(int argc, char ** argv) {
 
     print_params(&model.hparams);
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params lcparams;
     lcparams.mem_size   = 1024ll*1024ll*1024ll*((size_t) params.mem_model_gb);
     lcparams.mem_buffer = NULL;

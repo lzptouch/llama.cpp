@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_chat_completion.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_chat_completion.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from openai import OpenAI
 from utils import *
@@ -5,6 +12,14 @@ from utils import *
 server: ServerProcess
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -25,6 +40,14 @@ def create_server():
         (None, "Book", [{"type": "text", "text": "What is"}, {"type": "text", "text": "the best book"}], 8, "Whillicter", 79, 8, "length", True, None),
     ]
 )
+    # 函数: test_chat_completion
+    # 描述: test_chat_completion函数提供相关功能
+    # 参数: model, system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason, jinja, chat_template
+    # 返回: 无返回值
+    # 函数: test_chat_completion
+    # 描述: test_chat_completion函数提供相关功能
+    # 参数: model, system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason, jinja, chat_template
+    # 返回: 无返回值
 def test_chat_completion(model, system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason, jinja, chat_template):
     global server
     server.jinja = jinja
@@ -58,6 +81,14 @@ def test_chat_completion(model, system_prompt, user_prompt, max_tokens, re_conte
         ("You are a coding assistant.", "Write the fibonacci function in c++.", 128, "(Aside|she|felter|alonger)+", 104, 128, "length"),
     ]
 )
+    # 函数: test_chat_completion_stream
+    # 描述: test_chat_completion_stream函数提供相关功能
+    # 参数: system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason
+    # 返回: 无返回值
+    # 函数: test_chat_completion_stream
+    # 描述: test_chat_completion_stream函数提供相关功能
+    # 参数: system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason
+    # 返回: 无返回值
 def test_chat_completion_stream(system_prompt, user_prompt, max_tokens, re_content, n_prompt, n_predicted, finish_reason):
     global server
     server.model_alias = "llama-test-model"
@@ -98,6 +129,14 @@ def test_chat_completion_stream(system_prompt, user_prompt, max_tokens, re_conte
             assert data["usage"]["completion_tokens"] == n_predicted
 
 
+    # 函数: test_chat_completion_with_openai_library
+    # 描述: test_chat_completion_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_chat_completion_with_openai_library
+    # 描述: test_chat_completion_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_chat_completion_with_openai_library():
     global server
     server.start()
@@ -118,6 +157,14 @@ def test_chat_completion_with_openai_library():
     assert match_regex("(Suddenly)+", res.choices[0].message.content)
 
 
+    # 函数: test_chat_template
+    # 描述: test_chat_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_chat_template
+    # 描述: test_chat_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_chat_template():
     global server
     server.chat_template = "llama3"
@@ -139,6 +186,14 @@ def test_chat_template():
     ("Whill", "Whill"),
     ([{"type": "text", "text": "Wh"}, {"type": "text", "text": "ill"}], "Whill"),
 ])
+    # 函数: test_chat_template_assistant_prefill
+    # 描述: test_chat_template_assistant_prefill函数提供相关功能
+    # 参数: prefill, re_prefill
+    # 返回: 无返回值
+    # 函数: test_chat_template_assistant_prefill
+    # 描述: test_chat_template_assistant_prefill函数提供相关功能
+    # 参数: prefill, re_prefill
+    # 返回: 无返回值
 def test_chat_template_assistant_prefill(prefill, re_prefill):
     global server
     server.chat_template = "llama3"
@@ -157,6 +212,14 @@ def test_chat_template_assistant_prefill(prefill, re_prefill):
     assert res.body["__verbose"]["prompt"] == f"<s> <|start_header_id|>system<|end_header_id|>\n\nBook<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nWhat is the best book<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{re_prefill}"
 
 
+    # 函数: test_apply_chat_template
+    # 描述: test_apply_chat_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_apply_chat_template
+    # 描述: test_apply_chat_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_apply_chat_template():
     global server
     server.chat_template = "command-r"
@@ -183,6 +246,14 @@ def test_apply_chat_template():
     ({"type": "json_object", "schema": {"type": 123}}, 0, None),
     ({"type": "json_object", "schema": {"type": "hiccup"}}, 0, None),
 ])
+    # 函数: test_completion_with_response_format
+    # 描述: test_completion_with_response_format函数提供相关功能
+    # 参数: response_format: dict, n_predicted: int, re_content: str | None
+    # 返回: 无返回值
+    # 函数: test_completion_with_response_format
+    # 描述: test_completion_with_response_format函数提供相关功能
+    # 参数: response_format: dict, n_predicted: int, re_content: str | None
+    # 返回: 无返回值
 def test_completion_with_response_format(response_format: dict, n_predicted: int, re_content: str | None):
     global server
     server.start()
@@ -207,6 +278,14 @@ def test_completion_with_response_format(response_format: dict, n_predicted: int
     (False, {"const": "42"}, 6, "\"42\""),
     (True, {"const": "42"}, 6, "\"42\""),
 ])
+    # 函数: test_completion_with_json_schema
+    # 描述: test_completion_with_json_schema函数提供相关功能
+    # 参数: jinja: bool, json_schema: dict, n_predicted: int, re_content: str
+    # 返回: 无返回值
+    # 函数: test_completion_with_json_schema
+    # 描述: test_completion_with_json_schema函数提供相关功能
+    # 参数: jinja: bool, json_schema: dict, n_predicted: int, re_content: str
+    # 返回: 无返回值
 def test_completion_with_json_schema(jinja: bool, json_schema: dict, n_predicted: int, re_content: str):
     global server
     server.jinja = jinja
@@ -228,6 +307,14 @@ def test_completion_with_json_schema(jinja: bool, json_schema: dict, n_predicted
     (False, 'root ::= "a"{5,5}', 6, "a{5,5}"),
     (True, 'root ::= "a"{5,5}', 6, "a{5,5}"),
 ])
+    # 函数: test_completion_with_grammar
+    # 描述: test_completion_with_grammar函数提供相关功能
+    # 参数: jinja: bool, grammar: str, n_predicted: int, re_content: str
+    # 返回: 无返回值
+    # 函数: test_completion_with_grammar
+    # 描述: test_completion_with_grammar函数提供相关功能
+    # 参数: jinja: bool, grammar: str, n_predicted: int, re_content: str
+    # 返回: 无返回值
 def test_completion_with_grammar(jinja: bool, grammar: str, n_predicted: int, re_content: str):
     global server
     server.jinja = jinja
@@ -255,6 +342,14 @@ def test_completion_with_grammar(jinja: bool, grammar: str, n_predicted: int, re
     [{"role": "system", "content": "test"}, {}],
     [{"role": "user", "content": "test"}, {"role": "assistant", "content": "test"}, {"role": "assistant", "content": "test"}],
 ])
+    # 函数: test_invalid_chat_completion_req
+    # 描述: test_invalid_chat_completion_req函数提供相关功能
+    # 参数: messages
+    # 返回: 无返回值
+    # 函数: test_invalid_chat_completion_req
+    # 描述: test_invalid_chat_completion_req函数提供相关功能
+    # 参数: messages
+    # 返回: 无返回值
 def test_invalid_chat_completion_req(messages):
     global server
     server.start()
@@ -265,6 +360,14 @@ def test_invalid_chat_completion_req(messages):
     assert "error" in res.body
 
 
+    # 函数: test_chat_completion_with_timings_per_token
+    # 描述: test_chat_completion_with_timings_per_token函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_chat_completion_with_timings_per_token
+    # 描述: test_chat_completion_with_timings_per_token函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_chat_completion_with_timings_per_token():
     global server
     server.start()
@@ -295,6 +398,14 @@ def test_chat_completion_with_timings_per_token():
     assert stats_received
 
 
+    # 函数: test_logprobs
+    # 描述: test_logprobs函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_logprobs
+    # 描述: test_logprobs函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_logprobs():
     global server
     server.start()
@@ -322,6 +433,14 @@ def test_logprobs():
     assert aggregated_text == output_text
 
 
+    # 函数: test_logprobs_stream
+    # 描述: test_logprobs_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_logprobs_stream
+    # 描述: test_logprobs_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_logprobs_stream():
     global server
     server.start()
@@ -363,6 +482,14 @@ def test_logprobs_stream():
     assert aggregated_text == output_text
 
 
+    # 函数: test_logit_bias
+    # 描述: test_logit_bias函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_logit_bias
+    # 描述: test_logit_bias函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_logit_bias():
     global server
     server.start()
@@ -391,6 +518,14 @@ def test_logit_bias():
     assert output_text
     assert all(output_text.find(" " + tok + " ") == -1 for tok in exclude)
 
+    # 函数: test_context_size_exceeded
+    # 描述: test_context_size_exceeded函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_context_size_exceeded
+    # 描述: test_context_size_exceeded函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_context_size_exceeded():
     global server
     server.start()
@@ -409,6 +544,14 @@ def test_context_size_exceeded():
     assert res.body["error"]["n_ctx"] == server.n_ctx // server.n_slots
 
 
+    # 函数: test_context_size_exceeded_stream
+    # 描述: test_context_size_exceeded_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_context_size_exceeded_stream
+    # 描述: test_context_size_exceeded_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_context_size_exceeded_stream():
     global server
     server.start()
@@ -438,12 +581,28 @@ def test_context_size_exceeded_stream():
         (64, 2, True),
     ]
 )
+    # 函数: test_return_progress
+    # 描述: test_return_progress函数提供相关功能
+    # 参数: n_batch, batch_count, reuse_cache
+    # 返回: 无返回值
+    # 函数: test_return_progress
+    # 描述: test_return_progress函数提供相关功能
+    # 参数: n_batch, batch_count, reuse_cache
+    # 返回: 无返回值
 def test_return_progress(n_batch, batch_count, reuse_cache):
     global server
     server.n_batch = n_batch
     server.n_ctx = 256
     server.n_slots = 1
     server.start()
+    # 函数: make_cmpl_request
+    # 描述: make_cmpl_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: make_cmpl_request
+    # 描述: make_cmpl_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def make_cmpl_request():
         return server.make_stream_request("POST", "/chat/completions", data={
             "max_tokens": 10,
@@ -488,6 +647,14 @@ def test_return_progress(n_batch, batch_count, reuse_cache):
     assert total_batch_count == batch_count
 
 
+    # 函数: test_chat_completions_multiple_choices
+    # 描述: test_chat_completions_multiple_choices函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_chat_completions_multiple_choices
+    # 描述: test_chat_completions_multiple_choices函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_chat_completions_multiple_choices():
     global server
     server.start()

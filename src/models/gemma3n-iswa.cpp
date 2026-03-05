@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gemma3n-iswa.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/gemma3n-iswa.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 llm_build_gemma3n_iswa::llm_build_gemma3n_iswa(const llama_model & model, const llm_graph_params & params) :
@@ -232,12 +239,28 @@ llm_build_gemma3n_iswa::llm_build_gemma3n_iswa(const llama_model & model, const 
 }
 
 ggml_tensor * llm_build_gemma3n_iswa::calc_magnitude(ggml_tensor * x) {
+    // 函数: ggml_sqrt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_sqrt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_sqrt(ctx0, ggml_sum_rows(ctx0, ggml_sqr(ctx0, x)));
 }
 
 // get 2D slice view from a 3D tensor, the idx corresponds to the 3rd dim
 ggml_tensor * llm_build_gemma3n_iswa::view_2d_slice(ggml_tensor * x, int idx) {
     GGML_ASSERT(idx < (int) x->ne[2]);
+    // 函数: ggml_view_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_view_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_view_2d(ctx0, x, x->ne[0], x->ne[1], ggml_row_size(x->type, x->ne[0]),
                         idx * x->ne[0] * x->ne[1] * ggml_element_size(x));
 }
@@ -314,6 +337,14 @@ ggml_tensor * llm_build_gemma3n_iswa::gaussian_topk(ggml_tensor * x) {
     ggml_tensor * std  = ggml_sqrt(ctx0, ggml_scale(ctx0, ggml_sum_rows(ctx0, ggml_sqr(ctx0, ggml_sub(ctx0, x, mean))),
                                                     1.0f / (float) (x->ne[0] - 1)));
     ggml_tensor * cutoff_x = ggml_add(ctx0, mean, ggml_scale(ctx0, std, f_sparsity_std_mul));
+    // 函数: ggml_relu
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_relu
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_relu(ctx0, ggml_sub(ctx0, x, cutoff_x));
 }
 
@@ -331,6 +362,14 @@ ggml_tensor * llm_build_gemma3n_iswa::altup_compute_router_modalities(ggml_tenso
     router_inputs = ggml_scale(ctx0, router_inputs, 1.0f / (float) n_embd);
 
     ggml_tensor * output = ggml_mul_mat(ctx0, model.layers[il].altup_router, router_inputs);
+    // 函数: ggml_tanh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_tanh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_tanh(ctx0, output);  // [n_altup, n_tokens]
 }
 

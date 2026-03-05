@@ -39,6 +39,24 @@
 #define GGML_COMMON_DECL_CPP
 #include "ggml-common.h"
 
+// 类: ggml_kleidiai_context
+// 描述: ggml_kleidiai_context类提供相关功能
+// 用途: 用于处理ggml_kleidiai_context相关的操作
+// 类: ggml_kleidiai_context
+// 描述: ggml_kleidiai_context类提供相关功能
+// 用途: 用于处理ggml_kleidiai_context相关的操作
+    // 结构体: ggml_kleidiai_context
+    // 描述: ggml_kleidiai_context结构体提供相关功能
+    // 用途: 用于处理ggml_kleidiai_context相关的操作
+    // 结构体: ggml_kleidiai_context
+    // 描述: ggml_kleidiai_context结构体提供相关功能
+    // 用途: 用于处理ggml_kleidiai_context相关的操作
+    // 结构体: ggml_kleidiai_context
+    // 描述: ggml_kleidiai_context结构体提供相关功能
+    // 用途: 用于处理ggml_kleidiai_context相关的操作
+    // 结构体: ggml_kleidiai_context
+    // 描述: ggml_kleidiai_context结构体提供相关功能
+    // 用途: 用于处理ggml_kleidiai_context相关的操作
 struct ggml_kleidiai_context {
     cpu_feature features;
     ggml_kleidiai_kernels * kernels_q4;
@@ -53,6 +71,14 @@ static const char* cpu_feature_to_string(cpu_feature f) {
     } else if ((f & CPU_FEATURE_SVE) == CPU_FEATURE_SVE) {
         return "SVE";
     }
+    // 函数: if
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: if
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     else if ((f & CPU_FEATURE_I8MM) == CPU_FEATURE_I8MM) {
         return "I8MM";
     } else if ((f & CPU_FEATURE_DOTPROD) == CPU_FEATURE_DOTPROD) {
@@ -63,6 +89,14 @@ static const char* cpu_feature_to_string(cpu_feature f) {
     }
 }
 
+// 函数: init_kleidiai_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_kleidiai_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_kleidiai_context(void) {
 
     ggml_critical_section_start();
@@ -98,6 +132,14 @@ static void init_kleidiai_context(void) {
     ggml_critical_section_end();
 }
 
+// 函数: ggml_ne
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_ne
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int64_t ggml_ne(const ggml_tensor * tensor, int dim) {
     GGML_ASSERT(dim >= 0 && dim < GGML_MAX_DIMS);
     return tensor->ne[dim];
@@ -105,10 +147,26 @@ static inline int64_t ggml_ne(const ggml_tensor * tensor, int dim) {
 
 namespace ggml::cpu::kleidiai {
 
+// 函数: round_down
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: round_down
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t round_down(size_t x, size_t y) {
     return y == 0 ? x : x - (x % y);
 }
 
+// 函数: transpose_f32kxn_f16nxk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: transpose_f32kxn_f16nxk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void transpose_f32kxn_f16nxk(size_t n, size_t k, float * dst, const uint16_t * src, size_t rhs_stride) {
     size_t src_stride = rhs_stride / sizeof(uint16_t);
     size_t dst_stride = n;
@@ -121,7 +179,21 @@ static void transpose_f32kxn_f16nxk(size_t n, size_t k, float * dst, const uint1
     }
 }
 
+// 类: tensor_traits
+// 描述: tensor_traits类提供相关功能
+// 用途: 用于处理tensor_traits相关的操作
+// 类: tensor_traits
+// 描述: tensor_traits类提供相关功能
+// 用途: 用于处理tensor_traits相关的操作
 class tensor_traits : public ggml::cpu::tensor_traits {
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool work_size(int /* n_threads */, const struct ggml_tensor * op, size_t & size) override {
         if (op->op != GGML_OP_MUL_MAT) {
             return false;
@@ -163,6 +235,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
         return true;
     }
 
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward(struct ggml_compute_params * params, struct ggml_tensor * dst) override {
         if (dst->op == GGML_OP_MUL_MAT) {
             if (dst->src[0]->type == GGML_TYPE_Q4_0) {
@@ -180,6 +260,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
         return false;
     }
 
+    // 函数: compute_forward_fp16
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward_fp16
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward_fp16(ggml_compute_params * params, struct ggml_tensor * dst) {
         const ggml_tensor * src0 = dst->src[0];
         const ggml_tensor * src1 = dst->src[1];
@@ -331,6 +419,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
         return true;
     }
 
+    // 函数: compute_forward_q4_0
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward_q4_0
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward_q4_0(struct ggml_compute_params * params, struct ggml_tensor * dst) {
         GGML_ASSERT(dst->src[0]->type == GGML_TYPE_Q4_0);
 
@@ -420,6 +516,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
         return true;
     }
 
+    // 函数: compute_forward_q8_0
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward_q8_0
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward_q8_0(struct ggml_compute_params * params, struct ggml_tensor * dst) {
         GGML_ASSERT(dst->src[0]->type == GGML_TYPE_Q8_0);
 
@@ -504,6 +608,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
         return true;
     }
 
+    // 函数: compute_forward_get_rows
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward_get_rows
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward_get_rows(struct ggml_compute_params * params, struct ggml_tensor * dst) {
         const ggml_tensor * src0 = dst->src[0];
         const ggml_tensor * src1 = dst->src[1];
@@ -566,6 +678,14 @@ class tensor_traits : public ggml::cpu::tensor_traits {
     }
 
 public:
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int repack(struct ggml_tensor * tensor, const void * data, size_t data_size) {
         const size_t n = tensor->ne[1];
         const size_t k = tensor->ne[0];
@@ -578,6 +698,24 @@ public:
             size_t kr = ctx.kernels_q4->gemm.get_kr();
             size_t sr = ctx.kernels_q4->gemm.get_sr();
 
+            // 类: kai_rhs_pack_qs4cxs1s0_param
+            // 描述: kai_rhs_pack_qs4cxs1s0_param类提供相关功能
+            // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
+            // 类: kai_rhs_pack_qs4cxs1s0_param
+            // 描述: kai_rhs_pack_qs4cxs1s0_param类提供相关功能
+            // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
+    // 结构体: kai_rhs_pack_qs4cxs1s0_param
+    // 描述: kai_rhs_pack_qs4cxs1s0_param结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
+    // 结构体: kai_rhs_pack_qs4cxs1s0_param
+    // 描述: kai_rhs_pack_qs4cxs1s0_param结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
+    // 结构体: kai_rhs_pack_qs4cxs1s0_param
+    // 描述: kai_rhs_pack_qs4cxs1s0_param结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
+    // 结构体: kai_rhs_pack_qs4cxs1s0_param
+    // 描述: kai_rhs_pack_qs4cxs1s0_param结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qs4cxs1s0_param相关的操作
             struct kai_rhs_pack_qs4cxs1s0_param params;
             params.lhs_zero_point = 1;
             params.rhs_zero_point = 8;
@@ -639,6 +777,24 @@ public:
             size_t kr = ctx.kernels_q8->gemm.get_kr();
             size_t sr = ctx.kernels_q8->gemm.get_sr();
 
+            // 类: kai_rhs_pack_qsi8cx_params
+            // 描述: kai_rhs_pack_qsi8cx_params类提供相关功能
+            // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
+            // 类: kai_rhs_pack_qsi8cx_params
+            // 描述: kai_rhs_pack_qsi8cx_params类提供相关功能
+            // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
+    // 结构体: kai_rhs_pack_qsi8cx_params
+    // 描述: kai_rhs_pack_qsi8cx_params结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
+    // 结构体: kai_rhs_pack_qsi8cx_params
+    // 描述: kai_rhs_pack_qsi8cx_params结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
+    // 结构体: kai_rhs_pack_qsi8cx_params
+    // 描述: kai_rhs_pack_qsi8cx_params结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
+    // 结构体: kai_rhs_pack_qsi8cx_params
+    // 描述: kai_rhs_pack_qsi8cx_params结构体提供相关功能
+    // 用途: 用于处理kai_rhs_pack_qsi8cx_params相关的操作
             struct kai_rhs_pack_qsi8cx_params params;
             params.lhs_zero_point = 1;
             params.scale_multiplier = 1.0f;
@@ -655,6 +811,14 @@ public:
     }
 };
 
+// 函数: get_tensor_traits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_tensor_traits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml::cpu::tensor_traits * get_tensor_traits(ggml_backend_buffer_t, struct ggml_tensor *) {
     static tensor_traits traits;
     return &traits;
@@ -680,12 +844,28 @@ static void ggml_backend_cpu_kleidiai_buffer_set_tensor(ggml_backend_buffer_t bu
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_kleidiai_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU_KLEIDIAI";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_cpu_kleidiai_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     ggml_backend_buffer_t buffer = ggml_backend_buft_alloc_buffer(ggml_backend_cpu_buffer_type(), size);
 
@@ -701,12 +881,28 @@ static ggml_backend_buffer_t ggml_backend_cpu_kleidiai_buffer_type_alloc_buffer(
     return buffer;
 }
 
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_kleidiai_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return TENSOR_ALIGNMENT;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_kleidiai_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_kleidiai_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const struct ggml_tensor * tensor) {
     GGML_UNUSED(buft);
 
@@ -737,7 +933,21 @@ static size_t ggml_backend_cpu_kleidiai_buffer_type_get_alloc_size(ggml_backend_
 }
 
 namespace ggml::cpu::kleidiai {
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
 class extra_buffer_type : ggml::cpu::extra_buffer_type {
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool supports_op(ggml_backend_dev_t, const struct ggml_tensor * op) override {
         if ((op->op == GGML_OP_MUL_MAT || op->op == GGML_OP_GET_ROWS) &&
             (op->src[0]->type == GGML_TYPE_Q4_0 || op->src[0]->type == GGML_TYPE_Q8_0) &&
@@ -758,6 +968,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
         return false;
     }
 
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml::cpu::tensor_traits * get_tensor_traits(const struct ggml_tensor * op) override {
         if (op->op == GGML_OP_MUL_MAT || op->op == GGML_OP_GET_ROWS) {
             if (op->src[0]->buffer && op->src[0]->buffer->buft == ggml_backend_cpu_kleidiai_buffer_type()) {
@@ -777,6 +995,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
 };
 }  // namespace ggml::cpu::kleidiai
 
+// 函数: ggml_backend_cpu_kleidiai_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_kleidiai_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_kleidiai_buffer_type(void) {
     static ggml::cpu::kleidiai::extra_buffer_type ctx;
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type_kleidiai = {

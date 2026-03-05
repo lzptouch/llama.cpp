@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gen-unicode-data.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/gen-unicode-data.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 from __future__ import annotations
 
 import array
@@ -11,6 +18,10 @@ UNICODE_DATA_URL = "https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.tx
 
 
 # see https://www.unicode.org/L2/L1999/UnicodeData.html
+    # 函数: unicode_data_iter
+    # 描述: unicode_data_iter函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def unicode_data_iter():
     res = requests.get(UNICODE_DATA_URL)
     res.raise_for_status()
@@ -155,6 +166,10 @@ for codepoint, norm in table_nfd:
 # Generate 'unicode-data.cpp':
 #   python ./scripts//gen-unicode-data.py > unicode-data.cpp
 
+    # 函数: out
+    # 描述: out函数提供相关功能
+    # 参数: line=""
+    # 返回: 无返回值
 def out(line=""):
     print(line, end='\n')  # noqa
 

@@ -7,6 +7,14 @@
 #include "hex-utils.h"
 #include "hvx-types.h"
 
+// 函数: hvx_vec_store_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_store_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_vec_store_u(void * restrict dst, uint32_t n, HVX_Vector v) {
     // Rotate as needed.
     v = Q6_V_vlalign_VVR(v, v, (size_t) dst);
@@ -27,22 +35,54 @@ static inline void hvx_vec_store_u(void * restrict dst, uint32_t n, HVX_Vector v
     Q6_vmem_QnRIV(ql_not, (HVX_Vector *) dst, v);
 }
 
+// 函数: hvx_vec_store_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_store_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_vec_store_a(void * restrict dst, uint32_t n, HVX_Vector v) {
     assert((unsigned long) dst % 128 == 0);
     HVX_VectorPred m = Q6_Q_or_QQn(Q6_Q_vsetq_R((unsigned long) dst), Q6_Q_vsetq2_R(n));
     Q6_vmem_QnRIV(m, (HVX_Vector *) dst, v);
 }
 
+// 函数: hvx_vec_splat_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_splat_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_splat_f32(float v) {
     union { float  f; uint32_t i; } u = { .f = v };
     return Q6_V_vsplat_R(u.i);
 }
 
+// 函数: hvx_vec_splat_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_splat_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_splat_f16(float v) {
     union { __fp16 f; uint16_t i; } u = { .f = v };
     return Q6_Vh_vsplat_R(u.i);
 }
 
+// 函数: hvx_vec_repl4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_repl4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_repl4(HVX_Vector v) {
     // vdelta control to replicate first 4 bytes across all elements
     static const uint8_t __attribute__((aligned(128))) repl[128] = {
@@ -60,36 +100,84 @@ static inline HVX_Vector hvx_vec_repl4(HVX_Vector v) {
     return Q6_V_vdelta_VV(v, ctrl);
 }
 
+// 函数: hvx_vec_get_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_get_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_vec_get_f32(HVX_Vector v) {
     float __attribute__((aligned(128))) x;
     hvx_vec_store_a(&x, 4, v);
     return x;
 }
 
+// 函数: hvx_vec_get_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_get_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static inline int32_t hvx_vec_get_i32(HVX_Vector v) {
     int32_t __attribute__((aligned(128))) x;
     hvx_vec_store_a(&x, 4, v);
     return x;
 }
 
+// 函数: hvx_vec_abs_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_abs_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_abs_f16(HVX_Vector v) {
     // abs by clearing the fp16 sign bit
     HVX_Vector mask = Q6_Vh_vsplat_R(0x7fff);
     return Q6_V_vand_VV(v, mask);
 }
 
+// 函数: hvx_vec_neg_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_neg_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_neg_f16(HVX_Vector v) {
     // neg by setting the fp16 sign bit
     HVX_Vector mask = Q6_Vh_vsplat_R(0x8000);
     return Q6_V_vxor_VV(v, mask);
 }
 
+// 函数: hvx_vec_abs_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_abs_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_abs_f32(HVX_Vector v) {
     // abs by clearing the fp32 sign bit
     HVX_Vector mask = Q6_V_vsplat_R(0x7fffffff);
     return Q6_V_vand_VV(v, mask);
 }
 
+// 函数: hvx_vec_neg_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_neg_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_neg_f32(HVX_Vector v) {
 #if __HVX_ARCH__ > 75
     return Q6_Vsf_vfneg_Vsf(v);
@@ -100,6 +188,14 @@ static inline HVX_Vector hvx_vec_neg_f32(HVX_Vector v) {
 #endif  // __HVX_ARCH__ > 75
 }
 
+// 函数: hvx_vec_is_nan_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_is_nan_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_VectorPred hvx_vec_is_nan_f16(HVX_Vector v) {
     const HVX_Vector vnan_exp  = Q6_Vh_vsplat_R(0x7C00);
     const HVX_Vector vnan_frac = Q6_Vh_vsplat_R(0x7FFF);
@@ -110,6 +206,14 @@ static inline HVX_VectorPred hvx_vec_is_nan_f16(HVX_Vector v) {
     return Q6_Q_and_QQ(p_exp, p_frac);
 }
 
+// 函数: hvx_vec_f32_to_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_f32_to_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_f32_to_f16(HVX_Vector v0, HVX_Vector v1) {
     const HVX_Vector zero = Q6_V_vsplat_R(0);
     HVX_Vector q0 = Q6_Vqf32_vadd_VsfVsf(v0, zero);
@@ -128,6 +232,14 @@ static inline HVX_Vector hvx_vec_f32_to_f16(HVX_Vector v0, HVX_Vector v1) {
 
 /* Q6_Vsf_equals_Vw is only available on v73+.*/
 #if __HVX_ARCH__ < 73
+// 函数: hvx_vec_i32_to_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_i32_to_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_i32_to_qf32(HVX_Vector const in)
 {
     HVX_Vector const vzero = Q6_V_vzero();
@@ -140,12 +252,36 @@ static inline HVX_Vector hvx_vec_i32_to_qf32(HVX_Vector const in)
     return ret;
 }
 
+// 函数: Q6_Vsf_equals_Vw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: Q6_Vsf_equals_Vw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector Q6_Vsf_equals_Vw(HVX_Vector const in)
 {
+    // 函数: Q6_Vsf_equals_Vqf32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: Q6_Vsf_equals_Vqf32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return Q6_Vsf_equals_Vqf32(hvx_vec_i32_to_qf32(in));
 }
 #endif
 
+// 函数: hvx_vec_i16_from_hf_rnd_sat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_i16_from_hf_rnd_sat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_i16_from_hf_rnd_sat(HVX_Vector vin) {
     // This looks complicated.
     // Ideally should just be Q6_Vh_equals_Vhf(vin)

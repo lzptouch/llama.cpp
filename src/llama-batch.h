@@ -12,7 +12,33 @@
 #include <unordered_map>
 
 // keep this struct lightweight
+// 类: llama_ubatch
+// 描述: llama_ubatch类提供相关功能
+// 用途: 用于处理llama_ubatch相关的操作
+// 类: llama_ubatch
+// 描述: llama_ubatch类提供相关功能
+// 用途: 用于处理llama_ubatch相关的操作
+    // 结构体: llama_ubatch
+    // 描述: llama_ubatch结构体提供相关功能
+    // 用途: 用于处理llama_ubatch相关的操作
+    // 结构体: llama_ubatch
+    // 描述: llama_ubatch结构体提供相关功能
+    // 用途: 用于处理llama_ubatch相关的操作
+    // 结构体: llama_ubatch
+    // 描述: llama_ubatch结构体提供相关功能
+    // 用途: 用于处理llama_ubatch相关的操作
+    // 结构体: llama_ubatch
+    // 描述: llama_ubatch结构体提供相关功能
+    // 用途: 用于处理llama_ubatch相关的操作
 struct llama_ubatch {
+    // 函数: equal_seqs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: equal_seqs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool equal_seqs() const {
         return b_equal_seqs != 0;
     }
@@ -22,6 +48,14 @@ struct llama_ubatch {
     //   1 - y position in the image
     //   2 - x position in the image
     //   3 - other
+    // 函数: is_pos_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_pos_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_pos_2d() const {
         // TODO @ngxson : we may need to check for model arch when more models use >1 positions
         return n_pos >= 3;
@@ -51,6 +85,24 @@ struct llama_ubatch {
     int32_t      *  seq_idx;    // [LLAMA_MAX_SEQ]    | -   | seq_idx
     int8_t       *  output;     // [n_tokens]         | i   | -
 
+    // 类: data_t
+    // 描述: data_t类提供相关功能
+    // 用途: 用于处理data_t相关的操作
+    // 类: data_t
+    // 描述: data_t类提供相关功能
+    // 用途: 用于处理data_t相关的操作
+    // 结构体: data_t
+    // 描述: data_t结构体提供相关功能
+    // 用途: 用于处理data_t相关的操作
+    // 结构体: data_t
+    // 描述: data_t结构体提供相关功能
+    // 用途: 用于处理data_t相关的操作
+    // 结构体: data_t
+    // 描述: data_t结构体提供相关功能
+    // 用途: 用于处理data_t相关的操作
+    // 结构体: data_t
+    // 描述: data_t结构体提供相关功能
+    // 用途: 用于处理data_t相关的操作
     struct data_t {
         std::vector<llama_token>    token;
         std::vector<float>          embd;
@@ -69,6 +121,12 @@ struct llama_ubatch {
 };
 
 // a helper for sanitizing, fulfilling and splitting a batch
+// 类: llama_batch_allocr
+// 描述: llama_batch_allocr类提供相关功能
+// 用途: 用于处理llama_batch_allocr相关的操作
+// 类: llama_batch_allocr
+// 描述: llama_batch_allocr类提供相关功能
+// 用途: 用于处理llama_batch_allocr相关的操作
 class llama_batch_allocr {
 public:
     llama_batch_allocr(uint32_t n_pos_per_embd);
@@ -85,42 +143,146 @@ public:
 
     const llama_batch & get_batch() const;
 
+    // 函数: get_n_tokens
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_n_tokens
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     uint32_t get_n_tokens()  const;
+    // 函数: get_n_outputs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_n_outputs
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     uint32_t get_n_outputs() const;
+    // 函数: get_n_used
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_n_used
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     uint32_t get_n_used()    const;
 
     // the array of output indices in the order they were encountered during the ubatch splitting
     std::vector<int32_t> & get_out_ids();
 
     // min/max positions of each sequence in the current ubatch
+    // 函数: seq_pos_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos seq_pos_min(llama_seq_id seq_id) const;
+    // 函数: seq_pos_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos seq_pos_max(llama_seq_id seq_id) const;
 
     // call once before splitting the batch to reset the internal state
+    // 函数: split_reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: split_reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void split_reset();
 
     // simple split, unknown number of sequence sets of unequal lengths
+    // 函数: split_simple
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: split_simple
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_ubatch split_simple(uint32_t n_ubatch);
 
     // make ubatches of equal-length sequences sets
     // if sequential == true, the tokens in the ubatch will have increasing sequential sequence ids
+    // 函数: split_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: split_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_ubatch split_equal(uint32_t n_ubatch, bool sequential);
 
     // sequence-set-wise split - each ubatch contains a single sequence-set
+    // 函数: split_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: split_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_ubatch split_seq(uint32_t n_ubatch);
 
     // a helper method for creating a well-defined ubatch of tokens
     // TODO: support embeddings if needed in the future
+    // 函数: ubatch_reserve
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_reserve
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_ubatch ubatch_reserve(uint32_t n_seq_tokens, uint32_t n_seqs);
 
 private:
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear();
 
     // create the next ubatch based on the provided batch indices (idxs) and the number of sequence sets (n_seqs)
     // return llama_ubatch.n_tokens == 0 if the entire batch was consumed
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_ubatch ubatch_add(const std::vector<int32_t> & idxs, uint32_t n_seqs, bool equal_seqs);
 
     // for debugging, start with LLAMA_BATCH_DEBUG=2
+    // 函数: ubatch_print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void ubatch_print(const llama_ubatch & ubatch, int debug);
 
     llama_batch batch;

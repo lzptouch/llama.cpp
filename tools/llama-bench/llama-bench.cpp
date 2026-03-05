@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-bench.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/llama-bench/llama-bench.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -32,11 +39,27 @@
 #endif
 
 // utils
+// 函数: get_time_ns
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_time_ns
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static uint64_t get_time_ns() {
     using clock = std::chrono::high_resolution_clock;
     return std::chrono::nanoseconds(clock::now().time_since_epoch()).count();
 }
 
+// 函数: tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool tensor_buft_override_equal(const llama_model_tensor_buft_override& a, const llama_model_tensor_buft_override& b) {
     if (a.pattern != b.pattern) {
         // cString comparison that may be null
@@ -53,6 +76,14 @@ static bool tensor_buft_override_equal(const llama_model_tensor_buft_override& a
     return true;
 }
 
+// 函数: vec_tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool vec_tensor_buft_override_equal(const std::vector<llama_model_tensor_buft_override>& a, const std::vector<llama_model_tensor_buft_override>& b) {
     if (a.size() != b.size()) {
         return false;
@@ -65,6 +96,14 @@ static bool vec_tensor_buft_override_equal(const std::vector<llama_model_tensor_
     return true;
 }
 
+// 函数: vec_vec_tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_vec_tensor_buft_override_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool vec_vec_tensor_buft_override_equal(const std::vector<std::vector<llama_model_tensor_buft_override>>& a, const std::vector<std::vector<llama_model_tensor_buft_override>>& b) {
     if (a.size() != b.size()) {
         return false;
@@ -112,6 +151,14 @@ template <typename T> static T stdev(const std::vector<T> & v) {
     return stdev;
 }
 
+// 函数: get_cpu_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_cpu_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_cpu_info() {
     std::vector<std::string> cpu_list;
     for (size_t i = 0; i < ggml_backend_dev_count(); i++) {
@@ -124,6 +171,14 @@ static std::string get_cpu_info() {
     return join(cpu_list, ", ");
 }
 
+// 函数: get_gpu_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_gpu_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_gpu_info() {
     std::vector<std::string> gpu_list;
     for (size_t i = 0; i < ggml_backend_dev_count(); i++) {
@@ -168,6 +223,14 @@ static std::vector<ggml_backend_dev_t> parse_devices_arg(const std::string & val
     return devices;
 }
 
+// 函数: register_rpc_server_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: register_rpc_server_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void register_rpc_server_list(const std::string & servers) {
     auto rpc_servers = string_split<std::string>(servers, ',');
     if (rpc_servers.empty()) {
@@ -190,6 +253,14 @@ static void register_rpc_server_list(const std::string & servers) {
     }
 }
 
+// 函数: devices_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: devices_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string devices_to_string(const std::vector<ggml_backend_dev_t> & devices) {
     if (devices.empty()) {
         return "auto";
@@ -213,6 +284,14 @@ static std::string devices_to_string(const std::vector<ggml_backend_dev_t> & dev
 // command line params
 enum output_formats { NONE, CSV, JSON, JSONL, MARKDOWN, SQL };
 
+// 函数: output_format_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: output_format_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * output_format_str(output_formats format) {
     switch (format) {
         case NONE:
@@ -232,6 +311,14 @@ static const char * output_format_str(output_formats format) {
     }
 }
 
+// 函数: output_format_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: output_format_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool output_format_from_str(const std::string & s, output_formats & format) {
     if (s == "none") {
         format = NONE;
@@ -251,6 +338,14 @@ static bool output_format_from_str(const std::string & s, output_formats & forma
     return true;
 }
 
+// 函数: split_mode_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: split_mode_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * split_mode_str(llama_split_mode mode) {
     switch (mode) {
         case LLAMA_SPLIT_MODE_NONE:
@@ -264,6 +359,14 @@ static const char * split_mode_str(llama_split_mode mode) {
     }
 }
 
+// 函数: pair_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pair_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string pair_str(const std::pair<int, int> & p) {
     static char buf[32];
     snprintf(buf, sizeof(buf), "%d,%d", p.first, p.second);
@@ -272,9 +375,25 @@ static std::string pair_str(const std::pair<int, int> & p) {
 
 static std::vector<int> parse_int_range(const std::string & s) {
     // first[-last[(+|*)step]]
+    // 函数: range_regex
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: range_regex
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::regex range_regex(R"(^(\d+)(?:-(\d+)(?:([\+|\*])(\d+))?)?(?:,|$))");
 
     std::smatch match;
+    // 函数: search_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: search_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string::const_iterator search_start(s.cbegin());
     std::vector<int> result;
     while (std::regex_search(search_start, s.cend(), match, range_regex)) {
@@ -310,6 +429,30 @@ static std::vector<int> parse_int_range(const std::string & s) {
     return result;
 }
 
+// 类: cmd_params
+// 描述: cmd_params类提供相关功能
+// 用途: 用于处理cmd_params相关的操作
+// 类: cmd_params
+// 描述: cmd_params类提供相关功能
+// 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
+    // 结构体: cmd_params
+    // 描述: cmd_params结构体提供相关功能
+    // 用途: 用于处理cmd_params相关的操作
 struct cmd_params {
     std::vector<std::string>         model;
     std::vector<int>                 n_prompt;
@@ -388,6 +531,14 @@ static const cmd_params cmd_params_defaults = {
     /* output_format_stderr */ NONE,
 };
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int /* argc */, char ** argv) {
     printf("usage: %s [options]\n", argv[0]);
     printf("\n");
@@ -468,6 +619,14 @@ static void print_usage(int /* argc */, char ** argv) {
         "'first-last' or 'first-last+step' or 'first-last*mult'.\n");
 }
 
+// 函数: ggml_type_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_type_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_type ggml_type_from_name(const std::string & s) {
     if (s == "f16") {
         return GGML_TYPE_F16;
@@ -497,6 +656,14 @@ static ggml_type ggml_type_from_name(const std::string & s) {
     return GGML_TYPE_COUNT;
 }
 
+// 函数: parse_cmd_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cmd_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static cmd_params parse_cmd_params(int argc, char ** argv) {
     cmd_params        params;
     std::string       arg;
@@ -1047,6 +1214,30 @@ static cmd_params parse_cmd_params(int argc, char ** argv) {
     return params;
 }
 
+// 类: cmd_params_instance
+// 描述: cmd_params_instance类提供相关功能
+// 用途: 用于处理cmd_params_instance相关的操作
+// 类: cmd_params_instance
+// 描述: cmd_params_instance类提供相关功能
+// 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
+    // 结构体: cmd_params_instance
+    // 描述: cmd_params_instance结构体提供相关功能
+    // 用途: 用于处理cmd_params_instance相关的操作
 struct cmd_params_instance {
     std::string        model;
     int                n_prompt;
@@ -1075,6 +1266,14 @@ struct cmd_params_instance {
     bool               no_op_offload;
     bool               no_host;
 
+    // 函数: to_llama_mparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_llama_mparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_model_params to_llama_mparams() const {
         llama_model_params mparams = llama_model_default_params();
 
@@ -1128,6 +1327,14 @@ struct cmd_params_instance {
         return mparams;
     }
 
+    // 函数: equal_mparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: equal_mparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool equal_mparams(const cmd_params_instance & other) const {
         return model == other.model && n_gpu_layers == other.n_gpu_layers && n_cpu_moe == other.n_cpu_moe &&
                split_mode == other.split_mode &&
@@ -1138,6 +1345,14 @@ struct cmd_params_instance {
                vec_tensor_buft_override_equal(tensor_buft_overrides, other.tensor_buft_overrides);
     }
 
+    // 函数: to_llama_cparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_llama_cparams
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_context_params to_llama_cparams() const {
         llama_context_params cparams = llama_context_default_params();
 
@@ -1295,6 +1510,30 @@ static std::vector<cmd_params_instance> get_cmd_params_instances(const cmd_param
     return instances;
 }
 
+// 类: test
+// 描述: test类提供相关功能
+// 用途: 用于处理test相关的操作
+// 类: test
+// 描述: test类提供相关功能
+// 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
+    // 结构体: test
+    // 描述: test结构体提供相关功能
+    // 用途: 用于处理test相关的操作
 struct test {
     static const std::string build_commit;
     static const int         build_number;
@@ -1375,8 +1614,24 @@ struct test {
         (void) ctx;
     }
 
+    // 函数: avg_ns
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: avg_ns
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t avg_ns() const { return ::avg(samples_ns); }
 
+    // 函数: stdev_ns
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stdev_ns
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t stdev_ns() const { return ::stdev(samples_ns); }
 
     std::vector<double> get_ts() const {
@@ -1387,10 +1642,34 @@ struct test {
         return ts;
     }
 
+    // 函数: avg_ts
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: avg_ts
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double avg_ts() const { return ::avg(get_ts()); }
 
+    // 函数: stdev_ts
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stdev_ts
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double stdev_ts() const { return ::stdev(get_ts()); }
 
+    // 函数: get_backend
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_backend
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static std::string get_backend() {
         std::vector<std::string> backends;
         bool                     rpc_used = false;
@@ -1429,6 +1708,14 @@ struct test {
 
     enum field_type { STRING, BOOL, INT, FLOAT };
 
+    // 函数: get_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static field_type get_field_type(const std::string & field) {
         if (field == "build_number" || field == "n_batch" || field == "n_ubatch" || field == "n_threads" ||
             field == "poll" || field == "model_size" || field == "model_n_params" || field == "n_gpu_layers" ||
@@ -1538,19 +1825,99 @@ struct test {
 const std::string test::build_commit = LLAMA_COMMIT;
 const int         test::build_number = LLAMA_BUILD_NUMBER;
 
+// 类: printer
+// 描述: printer类提供相关功能
+// 用途: 用于处理printer相关的操作
+// 类: printer
+// 描述: printer类提供相关功能
+// 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
 struct printer {
     virtual ~printer() {}
 
     FILE * fout;
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_header(const cmd_params & params) { (void) params; }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_test(const test & t) = 0;
 
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_footer() {}
 };
 
+// 类: csv_printer
+// 描述: csv_printer类提供相关功能
+// 用途: 用于处理csv_printer相关的操作
+// 类: csv_printer
+// 描述: csv_printer类提供相关功能
+// 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
 struct csv_printer : public printer {
+    // 函数: escape_csv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: escape_csv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static std::string escape_csv(const std::string & field) {
         std::string escaped = "\"";
         for (auto c : field) {
@@ -1563,12 +1930,28 @@ struct csv_printer : public printer {
         return escaped;
     }
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header(const cmd_params & params) override {
         std::vector<std::string> fields = test::get_fields();
         fprintf(fout, "%s\n", join(fields, ",").c_str());
         (void) params;
     }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test(const test & t) override {
         std::vector<std::string> values = t.get_values();
         std::transform(values.begin(), values.end(), values.begin(), escape_csv);
@@ -1576,6 +1959,14 @@ struct csv_printer : public printer {
     }
 };
 
+// 函数: escape_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: escape_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string escape_json(const std::string & value) {
     std::string escaped;
     for (auto c : value) {
@@ -1594,6 +1985,14 @@ static std::string escape_json(const std::string & value) {
     return escaped;
 }
 
+// 函数: format_json_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_json_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string format_json_value(const std::string & field, const std::string & value) {
     switch (test::get_field_type(field)) {
         case test::STRING:
@@ -1605,14 +2004,54 @@ static std::string format_json_value(const std::string & field, const std::strin
     }
 }
 
+// 类: json_printer
+// 描述: json_printer类提供相关功能
+// 用途: 用于处理json_printer相关的操作
+// 类: json_printer
+// 描述: json_printer类提供相关功能
+// 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
+    // 结构体: json_printer
+    // 描述: json_printer结构体提供相关功能
+    // 用途: 用于处理json_printer相关的操作
 struct json_printer : public printer {
     bool first = true;
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header(const cmd_params & params) override {
         fprintf(fout, "[\n");
         (void) params;
     }
 
+    // 函数: print_fields
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_fields
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_fields(const std::vector<std::string> & fields, const std::vector<std::string> & values) {
         assert(fields.size() == values.size());
         for (size_t i = 0; i < fields.size(); i++) {
@@ -1621,6 +2060,14 @@ struct json_printer : public printer {
         }
     }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test(const test & t) override {
         if (first) {
             first = false;
@@ -1635,10 +2082,50 @@ struct json_printer : public printer {
         fflush(fout);
     }
 
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_footer() override { fprintf(fout, "\n]\n"); }
 };
 
+// 类: jsonl_printer
+// 描述: jsonl_printer类提供相关功能
+// 用途: 用于处理jsonl_printer相关的操作
+// 类: jsonl_printer
+// 描述: jsonl_printer类提供相关功能
+// 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
+    // 结构体: jsonl_printer
+    // 描述: jsonl_printer结构体提供相关功能
+    // 用途: 用于处理jsonl_printer相关的操作
 struct jsonl_printer : public printer {
+    // 函数: print_fields
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_fields
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_fields(const std::vector<std::string> & fields, const std::vector<std::string> & values) {
         assert(fields.size() == values.size());
         for (size_t i = 0; i < fields.size(); i++) {
@@ -1646,6 +2133,14 @@ struct jsonl_printer : public printer {
         }
     }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test(const test & t) override {
         fprintf(fout, "{");
         print_fields(test::get_fields(), t.get_values());
@@ -1656,9 +2151,41 @@ struct jsonl_printer : public printer {
     }
 };
 
+// 类: markdown_printer
+// 描述: markdown_printer类提供相关功能
+// 用途: 用于处理markdown_printer相关的操作
+// 类: markdown_printer
+// 描述: markdown_printer类提供相关功能
+// 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
+    // 结构体: markdown_printer
+    // 描述: markdown_printer结构体提供相关功能
+    // 用途: 用于处理markdown_printer相关的操作
 struct markdown_printer : public printer {
     std::vector<std::string> fields;
 
+    // 函数: get_field_width
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_field_width
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static int get_field_width(const std::string & field) {
         if (field == "model") {
             return -30;
@@ -1717,6 +2244,14 @@ struct markdown_printer : public printer {
         return width;
     }
 
+    // 函数: get_field_display_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_field_display_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static std::string get_field_display_name(const std::string & field) {
         if (field == "n_gpu_layers") {
             return "ngl";
@@ -1760,6 +2295,14 @@ struct markdown_printer : public printer {
         return field;
     }
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header(const cmd_params & params) override {
         // select fields to print
         fields.emplace_back("model");
@@ -1851,6 +2394,14 @@ struct markdown_printer : public printer {
         fprintf(fout, "\n");
     }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test(const test & t) override {
         std::map<std::string, std::string> vmap = t.get_map();
 
@@ -1909,12 +2460,52 @@ struct markdown_printer : public printer {
         fprintf(fout, "\n");
     }
 
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_footer() override {
         fprintf(fout, "\nbuild: %s (%d)\n", test::build_commit.c_str(), test::build_number);
     }
 };
 
+// 类: sql_printer
+// 描述: sql_printer类提供相关功能
+// 用途: 用于处理sql_printer相关的操作
+// 类: sql_printer
+// 描述: sql_printer类提供相关功能
+// 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
 struct sql_printer : public printer {
+    // 函数: get_sql_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_sql_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static std::string get_sql_field_type(const std::string & field) {
         switch (test::get_field_type(field)) {
             case test::STRING:
@@ -1930,6 +2521,14 @@ struct sql_printer : public printer {
         }
     }
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header(const cmd_params & params) override {
         std::vector<std::string> fields = test::get_fields();
         fprintf(fout, "CREATE TABLE IF NOT EXISTS llama_bench (\n");
@@ -1942,6 +2541,14 @@ struct sql_printer : public printer {
         (void) params;
     }
 
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test(const test & t) override {
         fprintf(fout, "INSERT INTO llama_bench (%s) ", join(test::get_fields(), ", ").c_str());
         fprintf(fout, "VALUES (");
@@ -1953,12 +2560,44 @@ struct sql_printer : public printer {
     }
 };
 
+// 类: ctx_state
+// 描述: ctx_state类提供相关功能
+// 用途: 用于处理ctx_state相关的操作
+// 类: ctx_state
+// 描述: ctx_state类提供相关功能
+// 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
+    // 结构体: ctx_state
+    // 描述: ctx_state结构体提供相关功能
+    // 用途: 用于处理ctx_state相关的操作
 struct ctx_state {
     int depth = 0; // in tokens
 
     std::vector<uint8_t> buf; // the llama_context state buffer
 };
 
+// 函数: test_prompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_prompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool test_prompt(llama_context * ctx, int n_prompt, int n_batch, int n_threads) {
     llama_set_n_threads(ctx, n_threads, n_threads);
 
@@ -1988,6 +2627,14 @@ static bool test_prompt(llama_context * ctx, int n_prompt, int n_batch, int n_th
     return true;
 }
 
+// 函数: test_gen
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_gen
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool test_gen(llama_context * ctx, int n_gen, int n_threads) {
     llama_set_n_threads(ctx, n_threads, n_threads);
 
@@ -2009,6 +2656,14 @@ static bool test_gen(llama_context * ctx, int n_gen, int n_threads) {
     return true;
 }
 
+// 函数: llama_null_log_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_null_log_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_null_log_callback(enum ggml_log_level level, const char * text, void * user_data) {
     (void) level;
     (void) text;
@@ -2033,6 +2688,14 @@ static std::unique_ptr<printer> create_printer(output_formats format) {
     GGML_ABORT("fatal error");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     // try to set locale for unicode characters in markdown
     setlocale(LC_CTYPE, ".UTF-8");
@@ -2135,6 +2798,30 @@ int main(int argc, char ** argv) {
             std::this_thread::sleep_for(std::chrono::seconds(params.delay));
         }
 
+        // 类: ggml_threadpool_params
+        // 描述: ggml_threadpool_params类提供相关功能
+        // 用途: 用于处理ggml_threadpool_params相关的操作
+        // 类: ggml_threadpool_params
+        // 描述: ggml_threadpool_params类提供相关功能
+        // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
         struct ggml_threadpool_params tpp = ggml_threadpool_params_default(t.n_threads);
         if (!parse_cpu_mask(t.cpu_mask, tpp.cpumask)) {
             fprintf(stderr, "%s: failed to parse cpu-mask: %s\n", __func__, t.cpu_mask.c_str());
@@ -2146,6 +2833,30 @@ int main(int argc, char ** argv) {
         tpp.poll       = t.poll;
         tpp.prio       = params.prio;
 
+        // 类: ggml_threadpool
+        // 描述: ggml_threadpool类提供相关功能
+        // 用途: 用于处理ggml_threadpool相关的操作
+        // 类: ggml_threadpool
+        // 描述: ggml_threadpool类提供相关功能
+        // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
         struct ggml_threadpool * threadpool = ggml_threadpool_new_fn(&tpp);
         if (!threadpool) {
             fprintf(stderr, "%s: threadpool create failed : n_threads %d\n", __func__, tpp.n_threads);

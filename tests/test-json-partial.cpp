@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-json-partial.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-json-partial.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "common.h"
 #include "json-partial.h"
 #include <exception>
@@ -13,6 +20,14 @@ template <class T> static void assert_equals(const T & expected, const T & actua
   }
 }
 
+// 函数: test_json_healing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_json_healing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_json_healing() {
   auto parse = [](const std::string & str) {
       std::cerr << "# Parsing: " << str << '\n';

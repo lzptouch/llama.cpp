@@ -3,6 +3,14 @@ SHA-1 in C
 By Steve Reid <steve@edmweb.com>
 100% Public Domain
 
+// 函数: Vectors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: Vectors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 Test Vectors (from FIPS PUB 180-1)
 "abc"
   A9993E36 4706816A BA3E2571 7850C26C 9CD0D89D

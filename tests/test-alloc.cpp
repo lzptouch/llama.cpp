@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-alloc.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-alloc.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include <ggml-alloc.h>
 #include <ggml-backend-impl.h>
 #include <ggml-cpp.h>
@@ -14,6 +21,30 @@
 
 uint8_t * const alloc_base = (uint8_t *) 16;
 
+// 类: dummy_backend_context
+// 描述: dummy_backend_context类提供相关功能
+// 用途: 用于处理dummy_backend_context相关的操作
+// 类: dummy_backend_context
+// 描述: dummy_backend_context类提供相关功能
+// 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
+    // 结构体: dummy_backend_context
+    // 描述: dummy_backend_context结构体提供相关功能
+    // 用途: 用于处理dummy_backend_context相关的操作
 struct dummy_backend_context {
     size_t max_buffer_size = 64;
     size_t alignment       = 8;
@@ -21,6 +52,14 @@ struct dummy_backend_context {
     ggml_backend_buffer_i              buffer_interface;
     std::vector<ggml_backend_buffer_t> buffers;
 
+    // 函数: allocated_total
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: allocated_total
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t allocated_total() const {
         size_t n = 0;
         for (ggml_backend_buffer_t buf : buffers) {
@@ -32,10 +71,26 @@ struct dummy_backend_context {
 
 // ggml_backend_buffer_type interface
 
+// 函数: dummy_backend_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * dummy_backend_buffer_type_get_name(ggml_backend_buffer_type_t) {
     return "dummy_buffer_type";
 }
 
+// 函数: dummy_backend_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t dummy_backend_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     dummy_backend_context * ctx    = (dummy_backend_context *) buft->context;
     ggml_backend_buffer_t & buffer = ctx->buffers.emplace_back();
@@ -43,22 +98,54 @@ static ggml_backend_buffer_t dummy_backend_buffer_type_alloc_buffer(ggml_backend
     return buffer;
 }
 
+// 函数: dummy_backend_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t dummy_backend_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     dummy_backend_context * ctx = (dummy_backend_context *) buft->context;
     return ctx->alignment;
 }
 
+// 函数: dummy_backend_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t dummy_backend_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     dummy_backend_context * ctx = (dummy_backend_context *) buft->context;
     return ctx->max_buffer_size;
 }
 
+// 函数: dummy_backend_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool dummy_backend_buffer_type_is_host(ggml_backend_buffer_type_t) {
     return true;
 }
 
 // ggml_backend_buffer interface
 
+// 函数: dummy_backend_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void dummy_backend_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     dummy_backend_context * ctx = (dummy_backend_context *) buffer->context;
 
@@ -67,29 +154,109 @@ static void dummy_backend_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ctx->buffers.erase(i);
 }
 
+// 函数: dummy_backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * dummy_backend_buffer_get_base(ggml_backend_buffer_t) {
     return alloc_base;
 }
 
+// 函数: dummy_backend_buffer_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status dummy_backend_buffer_init_tensor(ggml_backend_buffer_t, ggml_tensor *) {
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: dummy_backend_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void dummy_backend_buffer_memset_tensor(ggml_backend_buffer_t, ggml_tensor *, uint8_t, size_t, size_t) {}
 
+// 函数: dummy_backend_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void dummy_backend_buffer_set_tensor(ggml_backend_buffer_t, ggml_tensor *, const void *, size_t, size_t) {}
 
+// 函数: dummy_backend_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void dummy_backend_buffer_get_tensor(ggml_backend_buffer_t, const ggml_tensor *, void *, size_t, size_t) {}
 
+// 函数: dummy_backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void dummy_backend_buffer_clear(ggml_backend_buffer_t, uint8_t) {}
 
 // dummy_backend (not really a full backend, just provides what gallocr needs)
 
+// 类: dummy_backend
+// 描述: dummy_backend类提供相关功能
+// 用途: 用于处理dummy_backend相关的操作
+// 类: dummy_backend
+// 描述: dummy_backend类提供相关功能
+// 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
+    // 结构体: dummy_backend
+    // 描述: dummy_backend结构体提供相关功能
+    // 用途: 用于处理dummy_backend相关的操作
 struct dummy_backend {
     std::unique_ptr<dummy_backend_context> context;
     ggml_backend_buffer_type               buffer_type;
 };
 
+// 函数: dummy_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dummy_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static dummy_backend dummy_backend_init(size_t max_buffer_size, size_t alignment = 8) {
     dummy_backend b{};
     b.context                  = std::make_unique<dummy_backend_context>();
@@ -116,12 +283,44 @@ static dummy_backend dummy_backend_init(size_t max_buffer_size, size_t alignment
 //
 // test utilities
 
+// 类: test_context_with_graph
+// 描述: test_context_with_graph类提供相关功能
+// 用途: 用于处理test_context_with_graph相关的操作
+// 类: test_context_with_graph
+// 描述: test_context_with_graph类提供相关功能
+// 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
+    // 结构体: test_context_with_graph
+    // 描述: test_context_with_graph结构体提供相关功能
+    // 用途: 用于处理test_context_with_graph相关的操作
 struct test_context_with_graph {
     ggml_context *   ctx;
     ggml_cgraph *    graph;
     ggml_context_ptr ctx_ptr;
 };
 
+// 函数: make_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static test_context_with_graph make_context() {
     ggml_init_params params{};
     params.mem_size = 48 * ggml_tensor_overhead() + ggml_graph_overhead();
@@ -133,17 +332,41 @@ static test_context_with_graph make_context() {
     return { ctx, graph, std::move(ctx_ptr) };
 }
 
+// 函数: make_input_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_input_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_tensor * make_input_1d(ggml_context * ctx, int64_t n_elements) {
     ggml_tensor * t = ggml_new_tensor_1d(ctx, GGML_TYPE_F32, n_elements);
     ggml_set_input(t);
     return t;
 }
 
+// 函数: make_input_with_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_input_with_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_tensor * make_input_with_size(ggml_context * ctx, size_t size_bytes) {
     GGML_ASSERT(size_bytes % 4 == 0);
     return make_input_1d(ctx, size_bytes / 4);
 }
 
+// 函数: assign_names
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assign_names
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assign_names(ggml_context * ctx, const char * prefix = "x") {
     int i = 0;
     for (ggml_tensor * t = ggml_get_first_tensor(ctx); t; t = ggml_get_next_tensor(ctx, t)) {
@@ -151,6 +374,14 @@ static void assign_names(ggml_context * ctx, const char * prefix = "x") {
     }
 }
 
+// 函数: get_leaf_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_leaf_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int get_leaf_id(ggml_cgraph * graph, const char * tensor_name) {
     for (int i = 0; i < graph->n_leafs; ++i) {
         if (strncmp(graph->leafs[i]->name, tensor_name, GGML_MAX_NAME) == 0) {
@@ -161,6 +392,14 @@ static int get_leaf_id(ggml_cgraph * graph, const char * tensor_name) {
     return -1;
 }
 
+// 函数: get_node_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_node_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int get_node_id(ggml_cgraph * graph, const char * tensor_name) {
     for (int i = 0; i < graph->n_nodes; ++i) {
         if (strncmp(graph->nodes[i]->name, tensor_name, GGML_MAX_NAME) == 0) {
@@ -171,6 +410,14 @@ static int get_node_id(ggml_cgraph * graph, const char * tensor_name) {
     return -1;
 }
 
+// 函数: allocate_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: allocate_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_gallocr_ptr allocate_graph(ggml_cgraph * graph, ggml_tensor * out, ggml_backend_buffer_type_t buft) {
     ggml_set_output(out);
     ggml_build_forward_expand(graph, out);
@@ -184,6 +431,14 @@ static ggml_gallocr_ptr allocate_graph(ggml_cgraph * graph, ggml_tensor * out, g
 //
 // correctness checks for result allocations
 
+// 函数: check_all_allocated
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_all_allocated
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void check_all_allocated(ggml_cgraph * graph) {
     for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
         ggml_tensor * t = ggml_graph_node(graph, i);
@@ -192,6 +447,14 @@ static void check_all_allocated(ggml_cgraph * graph) {
     }
 }
 
+// 函数: check_max_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_max_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void check_max_size(ggml_context * ctx) {
     for (ggml_tensor * t = ggml_get_first_tensor(ctx); t; t = ggml_get_next_tensor(ctx, t)) {
         auto   buft     = ggml_backend_buffer_get_type(t->buffer);
@@ -202,6 +465,14 @@ static void check_max_size(ggml_context * ctx) {
     }
 }
 
+// 函数: can_reuse_memory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: can_reuse_memory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool can_reuse_memory(ggml_cgraph * graph, int current_i, ggml_tensor * current, ggml_tensor * other) {
     if (other->flags & GGML_TENSOR_FLAG_OUTPUT) {
         return false;
@@ -224,6 +495,14 @@ static bool can_reuse_memory(ggml_cgraph * graph, int current_i, ggml_tensor * c
     return true;
 }
 
+// 函数: memory_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: memory_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool memory_overlap(ggml_tensor * a, ggml_tensor * b) {
     if (a->buffer != b->buffer) {
         return false;
@@ -235,6 +514,14 @@ static bool memory_overlap(ggml_tensor * a, ggml_tensor * b) {
     return a1 > b0 && b1 > a0;
 }
 
+// 函数: get_view_source
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_view_source
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml_tensor * get_view_source(ggml_tensor * t) {
     while (t->view_src) {
         t = t->view_src;
@@ -242,6 +529,14 @@ static ggml_tensor * get_view_source(ggml_tensor * t) {
     return t;
 }
 
+// 函数: check_no_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_no_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void check_no_overlap(ggml_cgraph * graph) {
     for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
         for (int j = 0; j < i; ++j) {
@@ -264,6 +559,14 @@ static void check_no_overlap(ggml_cgraph * graph) {
 
 // Scenario where the first backend buffer is completely exhausted and there are further
 // tensors which require a second buffer
+// 函数: test_max_size_too_many_tensors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_max_size_too_many_tensors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_max_size_too_many_tensors() {
     dummy_backend backend      = dummy_backend_init(16);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -287,6 +590,14 @@ static void test_max_size_too_many_tensors() {
 
 // Scenario where there is some space left in the first buffer, but not enough to accomodate
 // a larger tensor, so a second buffer is required
+// 函数: test_max_size_tensor_too_large
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_max_size_tensor_too_large
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_max_size_tensor_too_large() {
     dummy_backend backend      = dummy_backend_init(32);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -307,6 +618,14 @@ static void test_max_size_tensor_too_large() {
 // Scenario where a single tensor exceeds the max buffer size - in this case the allocator
 // should try to create a bigger buffer anyway, and wait for the backend to throw an error.
 // Backends may report an artificially lower max size in some cases for compatibility reasons.
+// 函数: test_tensor_larger_than_max_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_tensor_larger_than_max_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_tensor_larger_than_max_size() {
     dummy_backend backend      = dummy_backend_init(16);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -325,6 +644,14 @@ static void test_tensor_larger_than_max_size() {
 // This test assumes a max of 16 buffer chunks, and tries to allocate tensors that would
 // require more. Expectation is that the last buffer should grow to fit everything,
 // leaving it to the backend to error out if it can't allocate that much.
+// 函数: test_not_enough_chunks
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_not_enough_chunks
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_not_enough_chunks() {
     const int max_chunks = 16;
     const int max_size   = 8;
@@ -350,6 +677,14 @@ static void test_not_enough_chunks() {
 
 // Fill up leftover unallocated space of a chunk after allocating a large tensor that
 // requires a new chunk.
+// 函数: test_fill_leftover_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_fill_leftover_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_fill_leftover_space() {
     dummy_backend backend      = dummy_backend_init(16);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -368,6 +703,14 @@ static void test_fill_leftover_space() {
 }
 
 // Check that views don't require any extra memory
+// 函数: test_view_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_view_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_view_inplace() {
     dummy_backend backend      = dummy_backend_init(32);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -388,6 +731,14 @@ static void test_view_inplace() {
     GGML_ASSERT(backend.context->allocated_total() <= 24);
 }
 
+// 函数: test_reuse_and_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_reuse_and_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void test_reuse_and_free() {
     dummy_backend backend      = dummy_backend_init(40);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -411,6 +762,14 @@ static void test_reuse_and_free() {
     GGML_ASSERT(backend.context->allocated_total() <= 40 + 32 + 32);
 }
 
+// 函数: test_merge_free_block
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_merge_free_block
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void test_merge_free_block(size_t max_buffer_size) {
     dummy_backend backend      = dummy_backend_init(max_buffer_size);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -436,6 +795,14 @@ static void test_merge_free_block(size_t max_buffer_size) {
 
 // Check that previously allocated but freed memory is preferred over allocating
 // additional memory, even if the remaining space in a chunk would match tensor size better
+// 函数: test_prefer_already_allocated_memory
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_prefer_already_allocated_memory
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void test_prefer_already_allocated_memory() {
     dummy_backend backend      = dummy_backend_init(32, /*align*/ 4);
     auto [ctx, graph, ctx_ptr] = make_context();
@@ -454,6 +821,14 @@ static void test_prefer_already_allocated_memory() {
 
 // test for allocating on multiple devices with some tensors in the graph
 // allocated externally (not by gallocr).
+// 函数: test_multiple_buffer_types
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_multiple_buffer_types
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_multiple_buffer_types() {
     dummy_backend backend_a = dummy_backend_init(32);
     dummy_backend backend_b = dummy_backend_init(SIZE_MAX);
@@ -522,6 +897,14 @@ static void test_multiple_buffer_types() {
     GGML_ASSERT(backend_b.context->allocated_total() <= 32 + 24);
 }
 
+// 函数: test_buffer_size_zero
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_buffer_size_zero
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_buffer_size_zero() {
     dummy_backend backend_a    = dummy_backend_init(SIZE_MAX);
     dummy_backend backend_b    = dummy_backend_init(SIZE_MAX);
@@ -550,6 +933,14 @@ static void test_buffer_size_zero() {
 
 // Test re-using gallocr for a different graph. The new graph has the same
 // total size, but one of the chunks is larger, so reallocation is required.
+// 函数: test_reallocation
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_reallocation
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void test_reallocation() {
     dummy_backend    backend = dummy_backend_init(32, /*align*/ 4);
     ggml_gallocr_ptr galloc;
@@ -583,6 +974,14 @@ static void test_reallocation() {
     }
 }
 
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void run(const char * name, void (*f)()) {
     printf("%s ", name);
     fflush(stdout);
@@ -590,6 +989,14 @@ static void run(const char * name, void (*f)()) {
     printf("PASSED\n");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main() {
     run("test_max_size_too_many_tensors", test_max_size_too_many_tensors);
     run("test_max_size_tensor_too_large", test_max_size_tensor_too_large);

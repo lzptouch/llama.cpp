@@ -1,5 +1,20 @@
+// ============================================================================
+// 文件: outprod.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/outprod.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "outprod.hpp"
 
+// 函数: ggml_sycl_op_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_out_prod(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     const ggml_tensor *src0 = dst->src[0];

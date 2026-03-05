@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-arg-parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-arg-parser.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "download.h"
@@ -10,6 +17,14 @@
 #undef NDEBUG
 #include <cassert>
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(void) {
     common_params params;
 

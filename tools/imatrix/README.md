@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/imatrix/README.md
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 # llama.cpp/tools/imatrix
 
 Compute an importance matrix for a model and given text dataset. Can be used during quantization to enhance the quality of the quantized models.

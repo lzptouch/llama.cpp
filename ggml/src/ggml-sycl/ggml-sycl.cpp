@@ -63,6 +63,14 @@ int g_ggml_sycl_disable_dnn = 0;
 int g_ggml_sycl_prioritize_dmmv = 0;
 int g_ggml_sycl_use_async_mem_op = 0;
 
+// 函数: ggml_sycl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_sycl_device_info ggml_sycl_init() {
     ggml_sycl_device_info info = {};
 
@@ -112,6 +120,14 @@ const ggml_sycl_device_info & ggml_sycl_info() {
     return info;
 }
 
+// 函数: print_device_detail
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_device_detail
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_device_detail(int id, sycl::device &device, std::string device_type) {
 
     dpct::device_info prop;
@@ -135,6 +151,14 @@ static void print_device_detail(int id, sycl::device &device, std::string device
             global_mem_size, device.get_info<sycl::info::device::driver_version>().c_str());
 }
 
+// 函数: print_device_opt_feature
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_device_opt_feature
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_device_opt_feature(int device_count) {
     GGML_LOG_INFO("SYCL Optimization Feature:\n");
     GGML_LOG_INFO(
@@ -156,6 +180,14 @@ static void print_device_opt_feature(int device_count) {
     }
 
 }
+// 函数: ggml_backend_sycl_print_sycl_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_print_sycl_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sycl_print_sycl_devices() {
     GGML_SYCL_DEBUG("[SYCL] call ggml_backend_sycl_print_sycl_devices\n");
     int device_count = dpct::dev_mgr::instance().device_count();
@@ -188,6 +220,14 @@ void ggml_backend_sycl_print_sycl_devices() {
     print_device_opt_feature(device_count);
 }
 
+// 函数: get_sycl_env
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_sycl_env
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static inline int get_sycl_env(const char *env_name, int default_val) {
     char *user_device_string = getenv(env_name);
     int user_number = default_val;
@@ -202,6 +242,14 @@ static inline int get_sycl_env(const char *env_name, int default_val) {
     return user_number;
 }
 
+// 函数: ggml_check_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_check_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_check_sycl() try {
     static bool initialized = false;
 
@@ -282,6 +330,14 @@ catch (sycl::exception const &exc) {
 device_index: device index from 0 to n (continue numbers).
     It is used for device select/set in SYCL backend internal data structure.
 */
+// 函数: check_allow_gpu_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_allow_gpu_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void check_allow_gpu_index(const int device_index) {
   if (device_index >= ggml_sycl_info().device_count) {
     char error_buf[256];
@@ -315,6 +371,24 @@ catch (sycl::exception const &exc) {
 
 // sycl buffer
 
+// 类: ggml_backend_sycl_buffer_context
+// 描述: ggml_backend_sycl_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
+// 类: ggml_backend_sycl_buffer_context
+// 描述: ggml_backend_sycl_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_context
+    // 描述: ggml_backend_sycl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_context
+    // 描述: ggml_backend_sycl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_context
+    // 描述: ggml_backend_sycl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_context
+    // 描述: ggml_backend_sycl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_context相关的操作
 struct ggml_backend_sycl_buffer_context {
     int device;
     void * dev_ptr = nullptr;
@@ -344,8 +418,24 @@ struct ggml_backend_sycl_buffer_context {
     }
 };
 
+// 函数: ggml_backend_sycl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_buffer_type_get_name(ggml_backend_buffer_type_t buft);
 
+// 函数: ggml_backend_buffer_is_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_sycl(ggml_backend_buffer_t buffer) {
     return buffer->buft->iface.get_name == ggml_backend_sycl_buffer_type_get_name;
 }
@@ -363,6 +453,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_sycl_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_sycl_buffer_context * ctx = ( ggml_backend_sycl_buffer_context *)buffer->context;
     return ctx->dev_ptr;
@@ -566,6 +664,14 @@ static void ggml_backend_sycl_buffer_memset_tensor(ggml_backend_buffer_t buffer,
     SYCL_CHECK(CHECK_TRY_ERROR((*stream).wait()));
 }
 
+// 函数: ggml_backend_sycl_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_buffer_reset(ggml_backend_buffer_t buffer) {
     GGML_SYCL_DEBUG("[SYCL] call %s\n", __func__);
     if (buffer == nullptr) {
@@ -595,6 +701,24 @@ static const ggml_backend_buffer_i ggml_backend_sycl_buffer_interface = {
 };
 
 // sycl buffer type
+// 类: ggml_backend_sycl_buffer_type_context
+// 描述: ggml_backend_sycl_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
+// 类: ggml_backend_sycl_buffer_type_context
+// 描述: ggml_backend_sycl_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_type_context
+    // 描述: ggml_backend_sycl_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_type_context
+    // 描述: ggml_backend_sycl_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_type_context
+    // 描述: ggml_backend_sycl_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_buffer_type_context
+    // 描述: ggml_backend_sycl_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_buffer_type_context相关的操作
 struct ggml_backend_sycl_buffer_type_context {
     int device;
     std::string name;
@@ -603,6 +727,14 @@ struct ggml_backend_sycl_buffer_type_context {
     queue_ptr stream = nullptr;
 };
 
+// 函数: ggml_backend_sycl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_sycl_buffer_type_context * ctx = (ggml_backend_sycl_buffer_type_context *)buft->context;
 
@@ -625,6 +757,14 @@ ggml_backend_sycl_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft,
       return nullptr;
     }
     ggml_backend_sycl_buffer_context * ctx = new  ggml_backend_sycl_buffer_context(buft_ctx->device, dev_ptr, buft_ctx->stream);
+    // 函数: ggml_backend_buffer_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_buffer_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_buffer_init(buft, ggml_backend_sycl_buffer_interface, ctx, size);
 }
 catch (sycl::exception const &exc) {
@@ -633,17 +773,41 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return 128;
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_sycl_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     return dpct::get_current_device().get_max_mem_alloc_size();
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_sycl_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     size_t size = ggml_nbytes(tensor);
     int64_t ne0 = tensor->ne[0];
@@ -668,6 +832,14 @@ static const ggml_backend_buffer_type_i ggml_backend_sycl_buffer_type_interface 
     /* .is_host          = */ NULL,
 };
 
+// 函数: ggml_backend_sycl_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_sycl_buffer_type(int device) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -699,6 +871,14 @@ ggml_backend_buffer_type_t ggml_backend_sycl_buffer_type(int device) {
     return &ggml_backend_sycl_buffer_types[device];
 }
 
+// 函数: ggml_backend_sycl_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_sycl_buffer_type(ggml_backend_sycl_context * ctx) {
     GGML_SYCL_DEBUG("[SYCL] call ggml_backend_sycl_buffer_type\n");
 
@@ -727,6 +907,14 @@ static ggml_backend_buffer_type_t ggml_backend_sycl_buffer_type(ggml_backend_syc
 
 // sycl split buffer
 
+// 函数: get_row_rounding
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_row_rounding
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int64_t get_row_rounding(ggml_type type, const std::array<float, GGML_SYCL_MAX_DEVICES> & tensor_split) {
     int64_t min_compute_capability = INT_MAX;
     int64_t max_compute_capability = INT_MIN;
@@ -774,6 +962,14 @@ static int64_t get_row_rounding(ggml_type type, const std::array<float, GGML_SYC
     }
 }
 
+// 函数: get_row_split
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_row_split
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static void get_row_split(int64_t * row_low, int64_t * row_high, const ggml_tensor * tensor, const std::array<float, GGML_SYCL_MAX_DEVICES> & tensor_split, int id) {
     const int64_t nrows = ggml_nrows(tensor);
     const int64_t rounding = get_row_rounding(tensor->type, tensor_split);
@@ -788,16 +984,60 @@ static void get_row_split(int64_t * row_low, int64_t * row_high, const ggml_tens
     }
 }
 
+// 函数: ggml_nbytes_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_nbytes_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_nbytes_split(const struct ggml_tensor * tensor, int nrows_split) {
     static_assert(GGML_MAX_DIMS == 4, "GGML_MAX_DIMS is not 4 - update this function");
 
     return nrows_split*ggml_row_size(tensor->type, tensor->ne[0]);
 }
 
+// 类: ggml_backend_sycl_split_buffer_type_context
+// 描述: ggml_backend_sycl_split_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
+// 类: ggml_backend_sycl_split_buffer_type_context
+// 描述: ggml_backend_sycl_split_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_type_context
+    // 描述: ggml_backend_sycl_split_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_type_context
+    // 描述: ggml_backend_sycl_split_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_type_context
+    // 描述: ggml_backend_sycl_split_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_type_context
+    // 描述: ggml_backend_sycl_split_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_type_context相关的操作
 struct ggml_backend_sycl_split_buffer_type_context {
     std::array<float, GGML_SYCL_MAX_DEVICES> tensor_split;
 };
 
+// 类: ggml_backend_sycl_split_buffer_context
+// 描述: ggml_backend_sycl_split_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
+// 类: ggml_backend_sycl_split_buffer_context
+// 描述: ggml_backend_sycl_split_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_context
+    // 描述: ggml_backend_sycl_split_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_context
+    // 描述: ggml_backend_sycl_split_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_context
+    // 描述: ggml_backend_sycl_split_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
+    // 结构体: ggml_backend_sycl_split_buffer_context
+    // 描述: ggml_backend_sycl_split_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_split_buffer_context相关的操作
 struct ggml_backend_sycl_split_buffer_context {
     ~ggml_backend_sycl_split_buffer_context() try {
         for (ggml_tensor_extra_gpu * extra : tensor_extras) {
@@ -814,11 +1054,27 @@ struct ggml_backend_sycl_split_buffer_context {
     std::vector<queue_ptr> streams;
 };
 
+// 函数: ggml_backend_sycl_split_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_split_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_sycl_split_buffer_context * ctx = (ggml_backend_sycl_split_buffer_context *)buffer->context;
     delete ctx;
 }
 
+// 函数: ggml_backend_sycl_split_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_sycl_split_buffer_get_base(ggml_backend_buffer_t buffer) {
     // the pointers are stored in the tensor extras, this is just a dummy address and never dereferenced
     return (void *)0x1000;
@@ -1023,6 +1279,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_split_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_split_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     GGML_UNUSED(buffer);
     GGML_UNUSED(value);
@@ -1042,16 +1306,40 @@ static struct ggml_backend_buffer_i ggml_backend_sycl_split_buffer_interface = {
 
 // sycl split buffer type
 
+// 函数: ggml_backend_sycl_split_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_split_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return GGML_SYCL_NAME "_Split";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_buffer_is_sycl_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_sycl_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_sycl_split(ggml_backend_buffer_t buffer) {
    return buffer->buft->iface.get_name == ggml_backend_sycl_split_buffer_type_get_name;
 }
 
+// 函数: ggml_backend_sycl_split_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_sycl_split_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     // since we don't know the exact split after rounding, we cannot allocate the device buffers at this point
     // instead, we allocate them for each tensor separately in init_tensor
@@ -1062,11 +1350,27 @@ static ggml_backend_buffer_t ggml_backend_sycl_split_buffer_type_alloc_buffer(gg
     return ggml_backend_buffer_init(buft, ggml_backend_sycl_split_buffer_interface, ctx, size);
 }
 
+// 函数: ggml_backend_sycl_split_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_split_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return 128;
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_sycl_split_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_split_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     ggml_backend_sycl_split_buffer_type_context * ctx = (ggml_backend_sycl_split_buffer_type_context *)buft->context;
 
@@ -1094,6 +1398,14 @@ static size_t ggml_backend_sycl_split_buffer_type_get_alloc_size(ggml_backend_bu
     return total_size;
 }
 
+// 函数: ggml_backend_sycl_split_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sycl_split_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 
@@ -1109,6 +1421,14 @@ static ggml_backend_buffer_type_i ggml_backend_sycl_split_buffer_type_interface 
     /* .is_host          = */ ggml_backend_sycl_split_buffer_type_is_host,
 };
 
+// 函数: ggml_backend_sycl_split_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_split_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_sycl_split_buffer_type(const float * tensor_split) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -1139,6 +1459,24 @@ ggml_backend_buffer_type_t ggml_backend_sycl_split_buffer_type(const float * ten
         return &it->second;
     }
 
+    // 类: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 类: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
     struct ggml_backend_buffer_type buft {
         /* .iface   = */ ggml_backend_sycl_split_buffer_type_interface,
         /* .device  = */ ggml_backend_reg_dev_get(ggml_backend_sycl_reg(), 0),
@@ -1151,12 +1489,28 @@ ggml_backend_buffer_type_t ggml_backend_sycl_split_buffer_type(const float * ten
 
 // host buffer type
 
+// 函数: ggml_backend_sycl_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_host_buffer_type_name(ggml_backend_buffer_type_t buft) {
     return GGML_SYCL_NAME "_Host";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: aligned_malloc_host
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: aligned_malloc_host
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 inline void * aligned_malloc_host(size_t alignment, size_t size) {
 #ifdef _WIN32
     return _aligned_malloc(size, alignment);
@@ -1165,6 +1519,14 @@ inline void * aligned_malloc_host(size_t alignment, size_t size) {
 #endif
 }
 
+// 函数: free_aligned_mem_host
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 要释放的对象或资源
+// 返回: 无返回值
+// 函数: free_aligned_mem_host
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 要释放的对象或资源
+// 返回: 无返回值
 inline void free_aligned_mem_host(void * memblock) {
 #ifdef _WIN32
     _aligned_free(memblock);
@@ -1173,10 +1535,26 @@ inline void free_aligned_mem_host(void * memblock) {
 #endif
 }
 
+// 函数: ggml_backend_sycl_host_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_host_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_host_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     free_aligned_mem_host((void *)buffer->context);
 }
 
+// 函数: ggml_backend_sycl_host_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_host_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_sycl_host_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     void * ptr = aligned_malloc_host(TENSOR_ALIGNMENT, size);
     if (ptr == nullptr) {
@@ -1192,6 +1570,14 @@ static ggml_backend_buffer_t ggml_backend_sycl_host_buffer_type_alloc_buffer(ggm
     return buffer;
 }
 
+// 函数: ggml_backend_sycl_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_sycl_host_buffer_type() {
     GGML_SYCL_DEBUG("[SYCL] call ggml_backend_sycl_host_buffer_type\n");
     static struct ggml_backend_buffer_type ggml_backend_sycl_buffer_type_host = {
@@ -1211,11 +1597,47 @@ ggml_backend_buffer_type_t ggml_backend_sycl_host_buffer_type() {
 }
 
 // buffer pool for sycl (legacy)
+// 类: ggml_sycl_pool_leg
+// 描述: ggml_sycl_pool_leg类提供相关功能
+// 用途: 用于处理ggml_sycl_pool_leg相关的操作
+// 类: ggml_sycl_pool_leg
+// 描述: ggml_sycl_pool_leg类提供相关功能
+// 用途: 用于处理ggml_sycl_pool_leg相关的操作
+    // 结构体: ggml_sycl_pool_leg
+    // 描述: ggml_sycl_pool_leg结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_leg相关的操作
+    // 结构体: ggml_sycl_pool_leg
+    // 描述: ggml_sycl_pool_leg结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_leg相关的操作
+    // 结构体: ggml_sycl_pool_leg
+    // 描述: ggml_sycl_pool_leg结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_leg相关的操作
+    // 结构体: ggml_sycl_pool_leg
+    // 描述: ggml_sycl_pool_leg结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_leg相关的操作
 struct ggml_sycl_pool_leg : public ggml_sycl_pool {
     static const int MAX_SYCL_BUFFERS = 256;
 
     int device;
     queue_ptr qptr;
+    // 类: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer类提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 类: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer类提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
     struct ggml_sycl_buffer {
         void * ptr = nullptr;
         size_t size = 0;
@@ -1224,6 +1646,14 @@ struct ggml_sycl_pool_leg : public ggml_sycl_pool {
     ggml_sycl_buffer buffer_pool[MAX_SYCL_BUFFERS] = {};
     size_t pool_size = 0;
 
+    // 函数: ggml_sycl_pool_leg
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_sycl_pool_leg
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_sycl_pool_leg(queue_ptr qptr_, int device_) : device(device_), qptr(qptr_) {}
 
     ~ggml_sycl_pool_leg() {
@@ -1237,6 +1667,14 @@ struct ggml_sycl_pool_leg : public ggml_sycl_pool {
         GGML_ASSERT(pool_size == 0);
     }
 
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size, size_t * actual_size) override {
 #ifdef DEBUG_sycl_MALLOC
         int nnz = 0;
@@ -1298,6 +1736,14 @@ struct ggml_sycl_pool_leg : public ggml_sycl_pool {
         return ptr;
     }
 
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free(void * ptr, size_t size) override {
         for (int i = 0; i < MAX_SYCL_BUFFERS; ++i) {
             ggml_sycl_buffer& b = buffer_pool[i];
@@ -1313,12 +1759,48 @@ struct ggml_sycl_pool_leg : public ggml_sycl_pool {
     }
 };
 
+// 类: ggml_sycl_pool_host
+// 描述: ggml_sycl_pool_host类提供相关功能
+// 用途: 用于处理ggml_sycl_pool_host相关的操作
+// 类: ggml_sycl_pool_host
+// 描述: ggml_sycl_pool_host类提供相关功能
+// 用途: 用于处理ggml_sycl_pool_host相关的操作
+    // 结构体: ggml_sycl_pool_host
+    // 描述: ggml_sycl_pool_host结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_host相关的操作
+    // 结构体: ggml_sycl_pool_host
+    // 描述: ggml_sycl_pool_host结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_host相关的操作
+    // 结构体: ggml_sycl_pool_host
+    // 描述: ggml_sycl_pool_host结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_host相关的操作
+    // 结构体: ggml_sycl_pool_host
+    // 描述: ggml_sycl_pool_host结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_pool_host相关的操作
 struct ggml_sycl_pool_host : public ggml_sycl_pool {
     queue_ptr qptr;
     int       device;
 
     inline static int counter{ 0 };
 
+    // 类: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer类提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 类: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer类提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
+    // 结构体: ggml_sycl_buffer
+    // 描述: ggml_sycl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_sycl_buffer相关的操作
     struct ggml_sycl_buffer {
         void * ptr  = nullptr;
         size_t size = 0;
@@ -1329,6 +1811,14 @@ struct ggml_sycl_pool_host : public ggml_sycl_pool {
     std::vector<ggml_sycl_buffer> buffer_pool = std::vector<ggml_sycl_buffer>(MAX_POOL_SIZE);
     size_t                        pool_size   = 0;
 
+    // 函数: ggml_sycl_pool_host
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_sycl_pool_host
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_sycl_pool_host(queue_ptr qptr_, int device_) : qptr(qptr_), device(device_) {}
 
     ~ggml_sycl_pool_host() {
@@ -1344,6 +1834,14 @@ struct ggml_sycl_pool_host : public ggml_sycl_pool {
         counter = 0;
     }
 
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size, size_t * actual_size) override {
         if (counter == MAX_POOL_SIZE) {
             ggml_sycl_buffer b               = buffer_pool[0];
@@ -1373,6 +1871,14 @@ struct ggml_sycl_pool_host : public ggml_sycl_pool {
         }
     }
 
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free(void * ptr, size_t size) override {
         // if the pool is not completed add the pointer to it in place of the first nullptr found.
         // Otherwise do nothing, pointers will be freed once the pool is deallocated.
@@ -1404,6 +1910,14 @@ std::unique_ptr<ggml_sycl_pool> ggml_backend_sycl_context::new_pool_for_device(q
 // struct ggml_sycl_pool_vmm : public ggml_sycl_pool
 
 /// kernels
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*ggml_sycl_op_mul_mat_t)(
     ggml_backend_sycl_context & ctx,
     const ggml_tensor *src0, const ggml_tensor *src1, ggml_tensor *dst,
@@ -1542,6 +2056,14 @@ static void k_sum_rows_f32(const float * x, float * dst, const int ncols,
 
 
 template<typename T>
+// 函数: ggml_sycl_swap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_swap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_swap(T & a, T & b) {
     T tmp = a;
     a = b;
@@ -1777,6 +2299,14 @@ static void sum_rows_f32_sycl(const float *x, float *dst, const int ncols,
                              });
 }
 
+// 函数: next_power_of_2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: next_power_of_2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int next_power_of_2(int x) {
     int n = 1;
     while (n < x) {
@@ -2227,6 +2757,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_sycl_op_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_op_pool2d(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_F32);
@@ -2266,6 +2804,14 @@ static void ggml_sycl_op_pool2d(ggml_backend_sycl_context & ctx, ggml_tensor * d
         });
 }
 
+// 函数: ggml_sycl_op_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_sum(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_F32);
@@ -2279,6 +2825,14 @@ inline void ggml_sycl_op_sum(ggml_backend_sycl_context & ctx, ggml_tensor *dst) 
     sum_rows_f32_sycl(src0_dd, dst_dd, ne, 1, main_stream);
 }
 
+// 函数: ggml_sycl_op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_sum_rows(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_F32);
@@ -2293,6 +2847,14 @@ inline void ggml_sycl_op_sum_rows(ggml_backend_sycl_context & ctx, ggml_tensor *
     sum_rows_f32_sycl(src0_dd, dst_dd, ncols, nrows, main_stream);
 }
 
+// 函数: ggml_sycl_op_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_mean(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(dst->type == GGML_TYPE_F32);
@@ -2317,6 +2879,14 @@ inline void ggml_sycl_op_mean(ggml_backend_sycl_context & ctx, ggml_tensor * dst
 }
 
 
+// 函数: ggml_sycl_op_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_argsort(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(dst->type == GGML_TYPE_I32);
@@ -2335,6 +2905,14 @@ inline void ggml_sycl_op_argsort(ggml_backend_sycl_context & ctx, ggml_tensor * 
                          main_stream, ctx.device);
 }
 
+// 函数: ggml_sycl_op_top_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_top_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_op_top_k(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -2359,6 +2937,14 @@ static void ggml_sycl_op_top_k(ggml_backend_sycl_context & ctx, ggml_tensor * ds
     top_k_f32_sycl(src0_dd, dst_dd, ncols, nrows, k, main_stream);
 }
 
+// 函数: ggml_sycl_op_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_argmax(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_I32);
@@ -2374,6 +2960,14 @@ inline void ggml_sycl_op_argmax(ggml_backend_sycl_context & ctx, ggml_tensor * d
     argmax_f32_i32_sycl(src0_dd, dst_dd, ncols, nrows, main_stream);
 }
 
+// 函数: ggml_sycl_op_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_diag_mask_inf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_F32);
@@ -2423,6 +3017,14 @@ static void tri_f32_sycl(
     });
 }
 
+// 函数: ggml_sycl_op_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_op_tri(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     GGML_ASSERT(src0);
@@ -2450,6 +3052,14 @@ static void ggml_sycl_op_tri(ggml_backend_sycl_context & ctx, ggml_tensor * dst)
 }
 
 
+// 函数: ggml_sycl_op_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_scale(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT( dst->type == GGML_TYPE_F32);
@@ -2471,6 +3081,14 @@ inline void ggml_sycl_op_scale(ggml_backend_sycl_context & ctx, ggml_tensor * ds
     SYCL_CHECK(0);
 }
 
+// 函数: ggml_sycl_set_peer_access
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_set_peer_access
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_set_peer_access(const int n_tokens, int main_device) {
     static bool peer_access_enabled = false;
 
@@ -2564,6 +3182,24 @@ static void ggml_sycl_op_mul_mat(ggml_backend_sycl_context & ctx, const ggml_ten
         tensor_split = buft_ctx->tensor_split;
     }
 
+    // 类: dev_data
+    // 描述: dev_data类提供相关功能
+    // 用途: 用于处理dev_data相关的操作
+    // 类: dev_data
+    // 描述: dev_data类提供相关功能
+    // 用途: 用于处理dev_data相关的操作
+    // 结构体: dev_data
+    // 描述: dev_data结构体提供相关功能
+    // 用途: 用于处理dev_data相关的操作
+    // 结构体: dev_data
+    // 描述: dev_data结构体提供相关功能
+    // 用途: 用于处理dev_data相关的操作
+    // 结构体: dev_data
+    // 描述: dev_data结构体提供相关功能
+    // 用途: 用于处理dev_data相关的操作
+    // 结构体: dev_data
+    // 描述: dev_data结构体提供相关功能
+    // 用途: 用于处理dev_data相关的操作
     struct dev_data {
         ggml_sycl_pool_alloc<char> src0_dd_alloc;
         ggml_sycl_pool_alloc<float> src1_ddf_alloc;
@@ -2637,6 +3273,14 @@ static void ggml_sycl_op_mul_mat(ggml_backend_sycl_context & ctx, const ggml_ten
             dev[i].src1_ddf = dev[i].src1_ddf_alloc.alloc(ctx.pool(i), ggml_nelements(src1));
         }
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr(quantize_enabled) {
             dev[i].src1_ddq = dev[i].src1_ddq_alloc.alloc(ctx.pool(i), nrows1*src1_padded_col_size*q8_1_ts/q8_1_bs);
 
@@ -2713,6 +3357,14 @@ static void ggml_sycl_op_mul_mat(ggml_backend_sycl_context & ctx, const ggml_ten
                 // copy src0, src1 to device if necessary
                 if (src1_is_contiguous) {
                     if (i != ctx.device) {
+                        // 函数: constexpr
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: constexpr
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         if constexpr (quantize_enabled) {
                             char * src1_ddq_i_source = dev[ctx.device].src1_ddq + src1_ddq_i_offset;
                             SYCL_CHECK(
@@ -2737,6 +3389,14 @@ static void ggml_sycl_op_mul_mat(ggml_backend_sycl_context & ctx, const ggml_ten
                         GGML_ABORT("src1 is non-contiguous and not on device");
                     }
 
+                    // 函数: constexpr
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: constexpr
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     if constexpr (quantize_enabled) {
                         scope_op_debug_print scope_dbg_print(__func__, "/quantize_row_q8_1_sycl", dst,
                                                              /*num_src=*/2, " : converting src1 to Q8_1");
@@ -2776,6 +3436,14 @@ static void ggml_sycl_op_mul_mat(ggml_backend_sycl_context & ctx, const ggml_ten
 
                         SYCL_CHECK(CHECK_TRY_ERROR(dpct::async_dpct_memcpy(
                             dhf_dst_i, ne0 * sizeof(float), dst_dd_i,
+                            // 函数: sizeof
+                            // 描述: 执行主要功能
+                            // 参数: 无参数
+                            // 返回: 无返回值
+                            // 函数: sizeof
+                            // 描述: 执行主要功能
+                            // 参数: 无参数
+                            // 返回: 无返回值
                             row_diff * sizeof(float), row_diff * sizeof(float),
                             src1_ncols, dpct::device_to_device, *stream)));
                     } else {
@@ -2822,36 +3490,92 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_sycl_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_repeat_back(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_repeat_back(ctx, dst);
 }
 
+// 函数: ggml_sycl_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_get_rows(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_get_rows(ctx, dst);
 }
 
+// 函数: ggml_sycl_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_norm(ctx, dst);
 }
 
+// 函数: ggml_sycl_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_rms_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_rms_norm(ctx, dst);
 }
 
+// 函数: ggml_sycl_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_rms_norm_back(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_rms_norm_back(ctx, dst);
 }
 
+// 函数: ggml_sycl_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_l2_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_l2_norm(ctx, dst);
 }
 
+// 函数: ggml_sycl_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_group_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_group_norm(ctx, dst);
@@ -3207,12 +3931,28 @@ enum class mul_mat_algo {
     MUL_MAT_SYCL = 2,
 };
 
+// 函数: ggml_sycl_supports_mmq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_supports_mmq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool ggml_sycl_supports_mmq(enum ggml_type type) {
     // TODO: accuracy issues in MMQ
     GGML_UNUSED(type);
     return false;
 }
 
+// 函数: ggml_sycl_supports_reorder_mul_mat_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_supports_reorder_mul_mat_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool ggml_sycl_supports_reorder_mul_mat_sycl(enum ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -3225,6 +3965,14 @@ inline bool ggml_sycl_supports_reorder_mul_mat_sycl(enum ggml_type type) {
     }
 }
 
+// 函数: ggml_sycl_supports_reorder_dmmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_supports_reorder_dmmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool ggml_sycl_supports_reorder_dmmv(enum ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -3234,6 +3982,14 @@ inline bool ggml_sycl_supports_reorder_dmmv(enum ggml_type type) {
     }
 }
 
+// 函数: ggml_sycl_supports_reorder_mmvq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_supports_reorder_mmvq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool ggml_sycl_supports_reorder_mmvq(enum ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -3245,6 +4001,14 @@ inline bool ggml_sycl_supports_reorder_mmvq(enum ggml_type type) {
     }
 }
 
+// 函数: ggml_sycl_supports_dmmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_supports_dmmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_sycl_supports_dmmv(enum ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -3265,6 +4029,14 @@ static bool ggml_sycl_supports_dmmv(enum ggml_type type) {
 }
 
 // Helper functions to unify device memory allocation for both async and sync paths
+// 函数: sycl_ext_malloc_device
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sycl_ext_malloc_device
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static inline void * sycl_ext_malloc_device(dpct::queue_ptr stream, size_t size) {
     bool use_async = g_ggml_sycl_use_async_mem_op;
 #if defined(GGML_SYCL_GRAPH) && SYCL_EXT_ONEAPI_ASYNC_MEMORY_ALLOC
@@ -3278,6 +4050,14 @@ static inline void * sycl_ext_malloc_device(dpct::queue_ptr stream, size_t size)
     return sycl::malloc(size, *stream, sycl::usm::alloc::device);
 }
 
+// 函数: sycl_ext_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sycl_ext_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static inline void sycl_ext_free(dpct::queue_ptr stream, void * ptr) {
     bool use_async = g_ggml_sycl_use_async_mem_op;
 #if defined(GGML_SYCL_GRAPH) && SYCL_EXT_ONEAPI_ASYNC_MEMORY_ALLOC
@@ -3326,6 +4106,14 @@ static void reorder_qw_q4_0(uint8_t * data_device, const int ncols, const int nr
     sycl_ext_free(stream, tmp_buf);
 }
 
+// 函数: reorder_qw_q4_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reorder_qw_q4_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void reorder_qw_q4_k(uint8_t * data_device, size_t size, size_t offset, dpct::queue_ptr stream) {
     GGML_ASSERT(size % sizeof(block_q4_K) == 0);
     GGML_ASSERT(offset % sizeof(block_q4_K) == 0);
@@ -3364,6 +4152,14 @@ static void reorder_qw_q4_k(uint8_t * data_device, size_t size, size_t offset, d
     sycl_ext_free(stream, tmp_buf);
 }
 
+// 函数: reorder_qw_q6_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reorder_qw_q6_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void reorder_qw_q6_k(uint8_t * data_device, size_t size, size_t offset, dpct::queue_ptr stream) {
     GGML_ASSERT(size % sizeof(block_q6_K) == 0);
     GGML_ASSERT(offset % sizeof(block_q6_K) == 0);
@@ -3412,6 +4208,14 @@ static void reorder_qw_q6_k(uint8_t * data_device, size_t size, size_t offset, d
     sycl_ext_free(stream, tmp_buf);
 }
 
+// 函数: reorder_qw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reorder_qw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void reorder_qw(const ggml_tensor * src0, dpct::queue_ptr stream) {
     uint8_t * data_device = (uint8_t *) src0->data;
     size_t ncols = src0->ne[0];
@@ -3434,6 +4238,14 @@ static void reorder_qw(const ggml_tensor * src0, dpct::queue_ptr stream) {
     }
 }
 
+// 函数: should_reorder_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: should_reorder_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool should_reorder_tensor(ggml_backend_sycl_context& ctx, const ggml_tensor * dst) {
     return !g_ggml_sycl_disable_optimize && //allow optimize, controlled by $GGML_SYCL_DISABLE_OPT
             ctx.opt_feature.reorder &&      //allow this device due to good perf, skip the devices with bad perf.
@@ -3475,16 +4287,40 @@ static void opt_for_reorder(ggml_backend_sycl_context * ctx, const ggml_tensor *
 }
 
 
+// 函数: can_use_dequantize_mul_mat_vec
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: can_use_dequantize_mul_mat_vec
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static bool can_use_dequantize_mul_mat_vec(const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     return ggml_sycl_supports_dmmv(src0->type) && src1->type == GGML_TYPE_F32 && dst->type == GGML_TYPE_F32 &&
            src0->ne[0] % GGML_SYCL_DMMV_X == 0 && src1->ne[1] == 1;
 }
 
+// 函数: can_use_mul_mat_vec_q
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: can_use_mul_mat_vec_q
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool can_use_mul_mat_vec_q(const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     return ggml_is_quantized(src0->type) && src1->type == GGML_TYPE_F32 && dst->type == GGML_TYPE_F32 &&
            src1->ne[1] <= MMVQ_MAX_BATCH_SIZE;
 }
 
+// 函数: ggml_sycl_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_mul_mat(ggml_backend_sycl_context & ctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     const bool split = ggml_backend_buffer_is_sycl_split(src0->buffer);
@@ -3567,6 +4403,24 @@ static void ggml_sycl_mul_mat(ggml_backend_sycl_context & ctx, const ggml_tensor
 }
 
 
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
 struct mmid_row_mapping {
     int32_t i1;
     int32_t i2;
@@ -3634,6 +4488,14 @@ __dpct_inline__ static void k_copy_dst_from_contiguous(
 
 static void ggml_sycl_mul_mat_id(ggml_backend_sycl_context & ctx,
                                  ggml_tensor *dst) try {
+    // 函数: scope_dbg_print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: scope_dbg_print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/3);
     const ggml_tensor *src0 = dst->src[0];
     const ggml_tensor *src1 = dst->src[1];
@@ -3805,50 +4667,122 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_sycl_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_scale(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_scale(ctx, dst);
 }
 
+// 函数: ggml_sycl_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_diag_mask_inf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_diag_mask_inf(ctx, dst);
 }
 
+// 函数: ggml_sycl_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_pool2d(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_pool2d(ctx, dst);
 }
 
+// 函数: ggml_sycl_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_im2col(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_im2col(ctx, dst);
 }
 
+// 函数: ggml_sycl_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_sum(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     GGML_ASSERT(ggml_is_contiguous(dst->src[0]));
     ggml_sycl_op_sum(ctx, dst);
 }
 
+// 函数: ggml_sycl_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_sum_rows(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     GGML_ASSERT(ggml_is_contiguous(dst->src[0]));
     ggml_sycl_op_sum_rows(ctx, dst);
 }
 
+// 函数: ggml_sycl_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_mean(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     GGML_ASSERT(ggml_is_contiguous(dst->src[0]));
     ggml_sycl_op_mean(ctx, dst);
 }
 
+// 函数: ggml_sycl_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_argsort(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     GGML_ASSERT(ggml_is_contiguous(dst->src[0]));
     ggml_sycl_op_argsort(ctx, dst);
 }
 
+// 函数: ggml_sycl_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_argmax(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     GGML_ASSERT(ggml_is_contiguous(dst->src[0]));
@@ -3856,6 +4790,14 @@ static void ggml_sycl_argmax(ggml_backend_sycl_context & ctx, ggml_tensor * dst)
 }
 
 
+// 函数: ggml_sycl_set_main_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_set_main_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_sycl_set_main_device(const int main_device) try {
     if (dpct::get_current_device_id() == static_cast<unsigned int> (main_device)) {
         return;
@@ -3877,6 +4819,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_sycl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_sycl_compute_forward(ggml_backend_sycl_context & ctx, struct ggml_tensor * dst) try {
     if (!g_sycl_loaded) return false;
 
@@ -4201,6 +5151,14 @@ catch (sycl::exception const &exc) {
 
 // backend
 
+// 函数: ggml_backend_sycl_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_get_name(ggml_backend_t backend) {
 
     ggml_backend_sycl_context * sycl_ctx = (ggml_backend_sycl_context *)backend->context;
@@ -4208,6 +5166,14 @@ static const char * ggml_backend_sycl_get_name(ggml_backend_t backend) {
     return sycl_ctx->name.c_str();
 }
 
+// 函数: ggml_backend_sycl_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_free(ggml_backend_t backend) {
     ggml_backend_sycl_context * sycl_ctx = (ggml_backend_sycl_context *)backend->context;
 
@@ -4287,6 +5253,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_synchronize(ggml_backend_t backend) try {
     GGML_SYCL_DEBUG("[SYCL] call %s\n", __func__);
     ggml_backend_sycl_context * sycl_ctx = (ggml_backend_sycl_context *)backend->context;
@@ -4301,6 +5275,14 @@ catch (sycl::exception const &exc) {
   std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_graph_compute_impl
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_graph_compute_impl
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_graph_compute_impl(ggml_backend_sycl_context * sycl_ctx, ggml_cgraph * cgraph) {
     ggml_sycl_set_main_device(sycl_ctx->device);
 
@@ -4329,6 +5311,14 @@ static void ggml_backend_sycl_graph_compute_impl(ggml_backend_sycl_context * syc
 }
 
 #ifdef GGML_SYCL_GRAPH
+// 函数: check_graph_compatibility
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_graph_compatibility
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool check_graph_compatibility(ggml_cgraph * cgraph) {
     if (ggml_sycl_info().device_count > 1) {
         // A sycl_ex::command_graph object can only be created for a single device
@@ -4371,6 +5361,14 @@ static bool check_graph_compatibility(ggml_cgraph * cgraph) {
 }
 #endif
 
+// 函数: ggml_backend_sycl_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status ggml_backend_sycl_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     auto * sycl_ctx = static_cast<ggml_backend_sycl_context *>(backend->context);
 
@@ -4417,6 +5415,14 @@ static ggml_status ggml_backend_sycl_graph_compute(ggml_backend_t backend, ggml_
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_backend_sycl_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_event_record(ggml_backend_t backend, ggml_backend_event_t event)
 try
 {
@@ -4436,6 +5442,14 @@ catch (sycl::exception const &exc)
     std::exit(1);
 }
 
+// 函数: ggml_backend_sycl_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_event_wait(ggml_backend_t backend, ggml_backend_event_t event) try {
     GGML_SYCL_DEBUG("[SYCL] call %s\n", __func__);
     sycl::event* sycl_event = static_cast<sycl::event*>(event->context);
@@ -4469,15 +5483,39 @@ static ggml_backend_i ggml_backend_sycl_interface = {
     /* .graph_optimize          = */ NULL,
 };
 
+// 函数: ggml_backend_sycl_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_sycl_guid() {
     static ggml_guid guid = { 0x58, 0x05, 0x13, 0x8f, 0xcd, 0x3a, 0x61, 0x9d, 0xe7, 0xcd, 0x98, 0xa9, 0x03, 0xfd, 0x7c, 0x53 };
     return &guid;
 }
 
+// 函数: ggml_backend_is_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_sycl(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_sycl_guid());
 }
 
+// 函数: ggml_backend_sycl_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_backend_sycl_get_device_count() {
     return ggml_sycl_info().device_count;
 }
@@ -4485,6 +5523,24 @@ int ggml_backend_sycl_get_device_count() {
 
 // backend device
 
+// 类: ggml_backend_sycl_device_context
+// 描述: ggml_backend_sycl_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_device_context相关的操作
+// 类: ggml_backend_sycl_device_context
+// 描述: ggml_backend_sycl_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_device_context相关的操作
+    // 结构体: ggml_backend_sycl_device_context
+    // 描述: ggml_backend_sycl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_device_context相关的操作
+    // 结构体: ggml_backend_sycl_device_context
+    // 描述: ggml_backend_sycl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_device_context相关的操作
+    // 结构体: ggml_backend_sycl_device_context
+    // 描述: ggml_backend_sycl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_device_context相关的操作
+    // 结构体: ggml_backend_sycl_device_context
+    // 描述: ggml_backend_sycl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_device_context相关的操作
 struct ggml_backend_sycl_device_context {
     int device;
     std::string name;
@@ -4492,16 +5548,40 @@ struct ggml_backend_sycl_device_context {
     int op_offload_min_batch_size;
 };
 
+// 函数: ggml_backend_sycl_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_device_get_name(ggml_backend_dev_t dev) {
     ggml_backend_sycl_device_context * ctx = (ggml_backend_sycl_device_context *)dev->context;
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_sycl_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_sycl_device_context * ctx = (ggml_backend_sycl_device_context *)dev->context;
     return ctx->description.c_str();
 }
 
+// 函数: ggml_backend_sycl_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     ggml_backend_sycl_device_context * ctx = (ggml_backend_sycl_device_context *)dev->context;
     ggml_sycl_set_device(ctx->device);
@@ -4514,6 +5594,14 @@ static enum ggml_backend_dev_type ggml_backend_sycl_device_get_type(ggml_backend
     return GGML_BACKEND_DEVICE_TYPE_GPU;
 }
 
+// 函数: ggml_backend_sycl_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_device_get_props(ggml_backend_dev_t dev, ggml_backend_dev_props * props) {
     props->name        = ggml_backend_sycl_device_get_name(dev);
     props->description = ggml_backend_sycl_device_get_description(dev);
@@ -4535,22 +5623,54 @@ static void ggml_backend_sycl_device_get_props(ggml_backend_dev_t dev, ggml_back
     };
 }
 
+// 函数: ggml_backend_sycl_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_sycl_device_init(ggml_backend_dev_t dev, const char * params) {
     GGML_UNUSED(params);
     ggml_backend_sycl_device_context * ctx = (ggml_backend_sycl_device_context *)dev->context;
     return ggml_backend_sycl_init(ctx->device);
 }
 
+// 函数: ggml_backend_sycl_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_sycl_device_get_buffer_type(ggml_backend_dev_t dev) {
     ggml_backend_sycl_device_context * ctx = (ggml_backend_sycl_device_context *)dev->context;
     return ggml_backend_sycl_buffer_type(ctx->device);
 }
 
+// 函数: ggml_backend_sycl_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_sycl_device_get_host_buffer_type(ggml_backend_dev_t dev) {
     GGML_UNUSED(dev);
     return ggml_backend_sycl_host_buffer_type();
 }
 
+// 函数: ggml_backend_sycl_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_sycl_device_buffer_from_host_ptr(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     GGML_UNUSED(dev);
     GGML_UNUSED(ptr);
@@ -4559,6 +5679,14 @@ static ggml_backend_buffer_t ggml_backend_sycl_device_buffer_from_host_ptr(ggml_
     return nullptr;
 }
 
+// 函数: ggml_backend_sycl_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sycl_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_sycl_device_context *sycl_ctx =
         (ggml_backend_sycl_device_context *)dev->context;
@@ -4620,7 +5748,43 @@ static bool ggml_backend_sycl_device_supports_op(ggml_backend_dev_t dev, const g
         case GGML_OP_MUL_MAT:
         case GGML_OP_MUL_MAT_ID:
             {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * a = op->src[0];
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * b = op->src[1];
 
                 if (a->ne[3] != b->ne[3]) {
@@ -4869,6 +6033,14 @@ static bool ggml_backend_sycl_device_supports_op(ggml_backend_dev_t dev, const g
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_sycl_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sycl_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     if (buft->iface.get_name != ggml_backend_sycl_buffer_type_get_name) {
         return false;
@@ -4878,6 +6050,14 @@ static bool ggml_backend_sycl_device_supports_buft(ggml_backend_dev_t dev, ggml_
     return buft_ctx->device == sycl_ctx->device;
 }
 
+// 函数: get_op_batch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_op_batch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int64_t get_op_batch_size(const ggml_tensor * op) {
     switch (op->op) {
         case GGML_OP_GET_ROWS:
@@ -4892,6 +6072,14 @@ static int64_t get_op_batch_size(const ggml_tensor * op) {
     }
 }
 
+// 函数: ggml_backend_sycl_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sycl_device_offload_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_sycl_device_context * sycl_ctx = (ggml_backend_sycl_device_context *)dev->context;
     return get_op_batch_size(op) >= sycl_ctx->op_offload_min_batch_size;
@@ -4912,6 +6100,14 @@ ggml_backend_sycl_device_event_new(ggml_backend_dev_t dev) {
 #endif
 }
 
+// 函数: ggml_backend_sycl_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_device_event_free(ggml_backend_dev_t dev, ggml_backend_event_t event) try {
   GGML_UNUSED(dev);
   if (event == nullptr) {
@@ -4932,6 +6128,14 @@ static void ggml_backend_sycl_device_event_free(ggml_backend_dev_t dev, ggml_bac
 }
 
 
+// 函数: ggml_backend_sycl_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sycl_device_event_synchronize(ggml_backend_dev_t dev, ggml_backend_event_t event) try {
   GGML_UNUSED(dev);
   GGML_SYCL_DEBUG("[SYCL] call %s\n", __func__);
@@ -4964,26 +6168,76 @@ static const ggml_backend_device_i ggml_backend_sycl_device_interface = {
 
 // backend reg
 
+// 类: ggml_backend_sycl_reg_context
+// 描述: ggml_backend_sycl_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
+// 类: ggml_backend_sycl_reg_context
+// 描述: ggml_backend_sycl_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
+    // 结构体: ggml_backend_sycl_reg_context
+    // 描述: ggml_backend_sycl_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
+    // 结构体: ggml_backend_sycl_reg_context
+    // 描述: ggml_backend_sycl_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
+    // 结构体: ggml_backend_sycl_reg_context
+    // 描述: ggml_backend_sycl_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
+    // 结构体: ggml_backend_sycl_reg_context
+    // 描述: ggml_backend_sycl_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sycl_reg_context相关的操作
 struct ggml_backend_sycl_reg_context {
     std::vector<ggml_backend_dev_t> devices;
 };
 
+// 函数: ggml_backend_sycl_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_sycl_reg_get_name(ggml_backend_reg_t reg) {
     GGML_UNUSED(reg);
     return GGML_SYCL_NAME;
 }
 
+// 函数: ggml_backend_sycl_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_sycl_reg_get_device_count(ggml_backend_reg_t reg) {
     ggml_backend_sycl_reg_context * ctx = (ggml_backend_sycl_reg_context *)reg->context;
     return ctx->devices.size();
 }
 
+// 函数: ggml_backend_sycl_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_sycl_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     ggml_backend_sycl_reg_context * ctx = (ggml_backend_sycl_reg_context *)reg->context;
     GGML_ASSERT(index < ctx->devices.size());
     return ctx->devices[index];
 }
 
+// 函数: ggml_backend_sycl_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void *ggml_backend_sycl_reg_get_proc_address(ggml_backend_reg_t reg, const char *name) {
     GGML_UNUSED(reg);
 
@@ -5008,6 +6262,14 @@ static const ggml_backend_reg_i ggml_backend_sycl_reg_interface = {
 
 // backend registry
 
+// 函数: ggml_backend_sycl_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_sycl_reg() {
     static ggml_backend_reg reg;
     static bool initialized = false;
@@ -5054,6 +6316,14 @@ ggml_backend_reg_t ggml_backend_sycl_reg() {
     return &reg;
 }
 
+// 函数: ggml_backend_sycl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sycl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_sycl_init(int device) {
     GGML_SYCL_DEBUG("[SYCL] call ggml_backend_sycl_init\n");
     ggml_check_sycl();

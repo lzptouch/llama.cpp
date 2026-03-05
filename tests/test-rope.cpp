@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-rope.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-rope.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "ggml.h"
 #include "ggml-cpu.h"
 
@@ -48,15 +55,39 @@
 
 #define GGML_PRINT(...) printf(__VA_ARGS__)
 
+// 函数: frand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: frand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float frand(void) {
     return (float)rand()/(float)RAND_MAX;
 }
 
+// 函数: irand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: irand
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int irand(int n) {
     if (n == 0) return 0;
     return rand()%n;
 }
 
+// 函数: get_random_dims
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_random_dims
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static void get_random_dims(int64_t * dims, int ndims) {
     dims[0] = dims[1] = dims[2] = dims[3] = 1;
 
@@ -66,11 +97,59 @@ static void get_random_dims(int64_t * dims, int ndims) {
 }
 
 static struct ggml_tensor * get_random_tensor_f32(
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx0,
         int ndims,
         const int64_t ne[],
         float fmin,
         float fmax) {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * result = ggml_new_tensor(ctx0, GGML_TYPE_F32, ndims, ne);
 
     switch (ndims) {
@@ -113,7 +192,39 @@ static struct ggml_tensor * get_random_tensor_f32(
     return result;
 }
 
+// 函数: ggml_graph_compute_helper
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_compute_helper
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_graph_compute_helper(std::vector<uint8_t> & buf, ggml_cgraph * graph, int n_threads) {
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan plan = ggml_graph_plan(graph, n_threads, nullptr);
 
     if (plan.work_size > 0) {
@@ -124,7 +235,39 @@ static void ggml_graph_compute_helper(std::vector<uint8_t> & buf, ggml_cgraph * 
     ggml_graph_compute(graph, &plan);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int /*argc*/, const char ** /*argv*/) {
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /* .mem_size   = */ 128*1024*1024,
         /* .mem_buffer = */ NULL,
@@ -133,8 +276,56 @@ int main(int /*argc*/, const char ** /*argv*/) {
 
     std::vector<uint8_t> work_buffer;
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx0 = ggml_init(params);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * x;
 
     // rope f32
@@ -147,15 +338,159 @@ int main(int /*argc*/, const char ** /*argv*/) {
         const int n_past_0 = 100;
         const int n_past_2 = 33;
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * r0;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * r1;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * r2;
         x = get_random_tensor_f32(ctx0, ndims, ne, -1.0f, 1.0f);
         int mode = -1;
 
         if (m < 2) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p0 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2]);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p1 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2]);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p2 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2]);
 
             for (int i = 0; i < ne[2]; ++i) {
@@ -175,8 +510,80 @@ int main(int /*argc*/, const char ** /*argv*/) {
             r2 = ggml_rope(ctx0, x,  p2, n_rot, mode);
         } else {
             // testing multi-dimension rope position embedding mode
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p0 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2] * 4);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p1 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2] * 4);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * p2 = ggml_new_tensor_1d(ctx0, GGML_TYPE_I32, ne[2] * 4);
 
             int sections[4] = {16, 24, 24, 0};

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ime.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/spacemit/ime.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define GGML_COMMON_IMPL_CPP
 #define GGML_COMMON_DECL_CPP
 
@@ -54,6 +61,24 @@
 
 // clang-format on
 
+// 类: qnbitgemm_spacemit_ime_args
+// 描述: qnbitgemm_spacemit_ime_args类提供相关功能
+// 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
+// 类: qnbitgemm_spacemit_ime_args
+// 描述: qnbitgemm_spacemit_ime_args类提供相关功能
+// 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
+    // 结构体: qnbitgemm_spacemit_ime_args
+    // 描述: qnbitgemm_spacemit_ime_args结构体提供相关功能
+    // 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
+    // 结构体: qnbitgemm_spacemit_ime_args
+    // 描述: qnbitgemm_spacemit_ime_args结构体提供相关功能
+    // 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
+    // 结构体: qnbitgemm_spacemit_ime_args
+    // 描述: qnbitgemm_spacemit_ime_args结构体提供相关功能
+    // 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
+    // 结构体: qnbitgemm_spacemit_ime_args
+    // 描述: qnbitgemm_spacemit_ime_args结构体提供相关功能
+    // 用途: 用于处理qnbitgemm_spacemit_ime_args相关的操作
 struct qnbitgemm_spacemit_ime_args {
     const float *     a_ptr               = nullptr;
     size_t            lda                 = 0;
@@ -134,9 +159,25 @@ static void sqnbitgemm_spacemit_ime_i8i4(const size_t                        blk
 }
 
 template <int K> constexpr int QK_0() {
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (K == 4) {
         return QK4_0;
     }
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (K == 8) {
         return QK8_0;
     }
@@ -164,6 +205,14 @@ using block_q4_0x16 = block<4, 16>;
 using block_q4_1x16 = block_with_zp<4, 16>;
 using block_q8_0x16 = block<8, 16>;
 
+// 函数: make_block_q4_0x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q4_0x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q4_0x16 make_block_q4_0x16(block_q4_0 * in, unsigned int blck_size_interleave) {
     block_q4_0x16 out;
     GGML_ASSERT(QK4_0 / blck_size_interleave == 2);
@@ -193,6 +242,14 @@ static block_q4_0x16 make_block_q4_0x16(block_q4_0 * in, unsigned int blck_size_
     return out;
 }
 
+// 函数: make_block_q4_1x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q4_1x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q4_1x16 make_block_q4_1x16(block_q4_1 * in, unsigned int blck_size_interleave) {
     block_q4_1x16 out;
     GGML_ASSERT(QK4_1 / blck_size_interleave == 2);
@@ -370,26 +427,80 @@ static int repack_q4_k_to_q4_1_16_bl(struct ggml_tensor *       t,
 namespace ggml::cpu::riscv64_spacemit {
 
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS>
+// 函数: repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int repack(struct ggml_tensor *, const void *, size_t);
 
 template <> int repack<block_q4_0, 8, 16>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_0_to_q4_0_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_0_to_q4_0_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_0_to_q4_0_16_bl(t, 16, data, data_size);
 }
 
 template <> int repack<block_q4_1, 8, 16>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_1_to_q4_1_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_1_to_q4_1_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_1_to_q4_1_16_bl(t, 16, data, data_size);
 }
 
 template <> int repack<block_q4_K, 8, 16>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_k_to_q4_1_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_k_to_q4_1_16_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_k_to_q4_1_16_bl(t, 16, data, data_size);
 }
 
+// 类: tensor_traits_base
+// 描述: tensor_traits_base类提供相关功能
+// 用途: 用于处理tensor_traits_base相关的操作
+// 类: tensor_traits_base
+// 描述: tensor_traits_base类提供相关功能
+// 用途: 用于处理tensor_traits_base相关的操作
 class tensor_traits_base : public ggml::cpu::tensor_traits {
   public:
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual int repack(struct ggml_tensor * t, const void * data, size_t data_size) = 0;
 };
 
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS> class tensor_traits : public tensor_traits_base {
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool work_size(int /* n_threads */, const struct ggml_tensor * op, size_t & size) override {
         switch (op->op) {
             case GGML_OP_MUL_MAT:
@@ -403,6 +514,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS> class tensor_
         return false;
     }
 
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward(struct ggml_compute_params * params, struct ggml_tensor * op) override {
         switch (op->op) {
             case GGML_OP_MUL_MAT:
@@ -419,6 +538,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS> class tensor_
         return false;
     }
 
+    // 函数: forward_mul_mat_q4
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: forward_mul_mat_q4
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     void forward_mul_mat_q4(ggml_compute_params * params, ggml_tensor * op) {
         const ggml_tensor * src0 = op->src[0];
         const ggml_tensor * src1 = op->src[1];
@@ -555,6 +682,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS> class tensor_
         }
     }
 
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int repack(struct ggml_tensor * t, const void * data, size_t data_size) override {
         GGML_LOG_DEBUG("%s: repack tensor %s with %s_%dx%d\n", __func__, t->name, ggml_type_name(t->type),
                        (int) NB_COLS, (int) INTER_SIZE);
@@ -562,7 +697,21 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS> class tensor_
     }
 };
 
+// 类: tensor_traits_common
+// 描述: tensor_traits_common类提供相关功能
+// 用途: 用于处理tensor_traits_common相关的操作
+// 类: tensor_traits_common
+// 描述: tensor_traits_common类提供相关功能
+// 用途: 用于处理tensor_traits_common相关的操作
 class tensor_traits_common : public tensor_traits_base {
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool work_size(int /* n_threads */, const struct ggml_tensor * op, size_t & size) override {
         switch (op->op) {
             case GGML_OP_NORM:
@@ -576,6 +725,14 @@ class tensor_traits_common : public tensor_traits_base {
         return false;
     }
 
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward(struct ggml_compute_params * params, struct ggml_tensor * op) override {
         switch (op->op) {
             case GGML_OP_NORM:
@@ -591,6 +748,14 @@ class tensor_traits_common : public tensor_traits_base {
         return false;
     }
 
+    // 函数: forward_norm_f32
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: forward_norm_f32
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     void forward_norm_f32(ggml_compute_params * params, ggml_tensor * op) {
         const ggml_tensor * src0 = op->src[0];
         ggml_tensor *       dst  = op;
@@ -716,6 +881,14 @@ class tensor_traits_common : public tensor_traits_base {
         }
     }
 
+    // 函数: forward_rms_norm_f32
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: forward_rms_norm_f32
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     void forward_rms_norm_f32(ggml_compute_params * params, ggml_tensor * op) {
         const ggml_tensor * src0 = op->src[0];
         ggml_tensor *       dst  = op;
@@ -831,6 +1004,14 @@ class tensor_traits_common : public tensor_traits_base {
         }
     }
 
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int repack(struct ggml_tensor * t, const void * data, size_t data_size) override {
         memcpy(t->data, data, data_size);
         return 0;
@@ -844,6 +1025,14 @@ static const tensor_traits_common             rvv_impl;
 
 }  // namespace ggml::cpu::riscv64_spacemit
 
+// 函数: ggml_riscv64_spacemit_get_optimal_repack_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_riscv64_spacemit_get_optimal_repack_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const ggml::cpu::tensor_traits * ggml_riscv64_spacemit_get_optimal_repack_type(const struct ggml_tensor * cur) {
     if (cur->type == GGML_TYPE_Q4_0) {
         if (cur->ne[1] % 16 == 0) {
@@ -865,6 +1054,24 @@ static const ggml::cpu::tensor_traits * ggml_riscv64_spacemit_get_optimal_repack
 }
 
 static enum ggml_status ggml_backend_riscv64_spacemit_buffer_init_tensor(ggml_backend_buffer_t buffer,
+                                                                         // 类: ggml_tensor
+                                                                         // 描述: ggml_tensor类提供相关功能
+                                                                         // 用途: 用于处理ggml_tensor相关的操作
+                                                                         // 类: ggml_tensor
+                                                                         // 描述: ggml_tensor类提供相关功能
+                                                                         // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                                                                          struct ggml_tensor *  tensor) {
     tensor->extra =
         (void *) const_cast<ggml::cpu::tensor_traits *>(ggml_riscv64_spacemit_get_optimal_repack_type(tensor));
@@ -875,6 +1082,24 @@ static enum ggml_status ggml_backend_riscv64_spacemit_buffer_init_tensor(ggml_ba
 }
 
 static void ggml_backend_riscv64_spacemit_buffer_set_tensor(ggml_backend_buffer_t buffer,
+                                                            // 类: ggml_tensor
+                                                            // 描述: ggml_tensor类提供相关功能
+                                                            // 用途: 用于处理ggml_tensor相关的操作
+                                                            // 类: ggml_tensor
+                                                            // 描述: ggml_tensor类提供相关功能
+                                                            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                                                             struct ggml_tensor *  tensor,
                                                             const void *          data,
                                                             size_t                offset,
@@ -891,6 +1116,14 @@ static void ggml_backend_riscv64_spacemit_buffer_set_tensor(ggml_backend_buffer_
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_riscv64_spacemit_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU_RISCV64_SPACEMIT";
 
@@ -913,6 +1146,14 @@ static ggml_backend_buffer_t ggml_backend_cpu_riscv64_spacemit_buffer_type_alloc
     return buffer;
 }
 
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_riscv64_spacemit_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return 64;
 
@@ -955,7 +1196,21 @@ static size_t ggml_backend_cpu_riscv64_spacemit_nbytes(ggml_backend_buffer_type_
 
 namespace ggml::cpu::riscv64_spacemit {
 
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
 class extra_buffer_type : ggml::cpu::extra_buffer_type {
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool supports_op(ggml_backend_dev_t, const struct ggml_tensor * op) override {
         switch (op->op) {
             case GGML_OP_MUL_MAT:
@@ -983,6 +1238,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
         return false;
     }
 
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml::cpu::tensor_traits * get_tensor_traits(const struct ggml_tensor * op) override {
         switch (op->op) {
             case GGML_OP_MUL_MAT:
@@ -1004,6 +1267,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
 
 }  // namespace ggml::cpu::riscv64_spacemit
 
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_riscv64_spacemit_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_riscv64_spacemit_buffer_type(void) {
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type_riscv64_spacemit = {
   /* .iface    = */

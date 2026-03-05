@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-memory-recurrent.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-memory-recurrent.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-memory-recurrent.h"
 
 #include "llama-impl.h"
@@ -34,7 +41,33 @@ llama_memory_recurrent::llama_memory_recurrent(
     cells.resize(mem_size);
 
     // define a comparator for the buft -> ctx map to ensure that the order is well-defined:
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
     struct ggml_backend_buft_comparator {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(const ggml_backend_buffer_type_t & lhs, const ggml_backend_buffer_type_t & rhs) const {
             return strcmp(ggml_backend_buft_name(lhs), ggml_backend_buft_name(rhs)) < 0;
         }
@@ -870,6 +903,14 @@ bool llama_memory_recurrent::state_read_meta(llama_io_read_i & io, uint32_t cell
             return true;
         }
 
+        // 函数: balloc
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: balloc
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_batch_allocr balloc(hparams.n_pos_per_embd());
 
         llama_ubatch ubatch = balloc.ubatch_reserve(cell_count, 1);

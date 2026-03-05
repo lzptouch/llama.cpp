@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: json-schema-to-grammar.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/json-schema-to-grammar.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "json-schema-to-grammar.h"
 #include "common.h"
 
@@ -14,6 +21,14 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: build_repetition
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_repetition
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static std::string build_repetition(const std::string & item_rule, int min_items, int max_items, const std::string & separator_rule = "") {
     auto has_max = max_items != std::numeric_limits<int>::max();
 
@@ -41,6 +56,14 @@ static std::string build_repetition(const std::string & item_rule, int min_items
     return result;
 }
 
+// 函数: _build_min_max_int
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _build_min_max_int
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static void _build_min_max_int(int64_t min_value, int64_t max_value, std::stringstream & out, int decimals_left = 16, bool top_level = true) {
     auto has_min = min_value != std::numeric_limits<int64_t>::min();
     auto has_max = max_value != std::numeric_limits<int64_t>::max();
@@ -227,6 +250,24 @@ static void _build_min_max_int(int64_t min_value, int64_t max_value, std::string
 
 const std::string SPACE_RULE = "| \" \" | \"\\n\"{1,2} [ \\t]{0,20}";
 
+// 类: BuiltinRule
+// 描述: BuiltinRule类提供相关功能
+// 用途: 用于处理builtinrule相关的操作
+// 类: BuiltinRule
+// 描述: BuiltinRule类提供相关功能
+// 用途: 用于处理builtinrule相关的操作
+    // 结构体: BuiltinRule
+    // 描述: BuiltinRule结构体提供相关功能
+    // 用途: 用于处理BuiltinRule相关的操作
+    // 结构体: BuiltinRule
+    // 描述: BuiltinRule结构体提供相关功能
+    // 用途: 用于处理BuiltinRule相关的操作
+    // 结构体: BuiltinRule
+    // 描述: BuiltinRule结构体提供相关功能
+    // 用途: 用于处理BuiltinRule相关的操作
+    // 结构体: BuiltinRule
+    // 描述: BuiltinRule结构体提供相关功能
+    // 用途: 用于处理BuiltinRule相关的操作
 struct BuiltinRule {
     std::string content;
     std::vector<std::string> deps;
@@ -256,6 +297,14 @@ std::unordered_map<std::string, BuiltinRule> STRING_FORMAT_RULES = {
     {"date-time-string", {"\"\\\"\" date-time \"\\\"\" space", {"date-time"}}}
 };
 
+// 函数: is_reserved_name
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_reserved_name
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_reserved_name(const std::string & name) {
     static const std::unordered_set<std::string> RESERVED_NAMES = [] {
         std::unordered_set<std::string> s;
@@ -267,8 +316,32 @@ static bool is_reserved_name(const std::string & name) {
     return RESERVED_NAMES.find(name) != RESERVED_NAMES.end();
 }
 
+// 函数: INVALID_RULE_CHARS_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: INVALID_RULE_CHARS_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::regex INVALID_RULE_CHARS_RE("[^a-zA-Z0-9-]+");
+// 函数: GRAMMAR_LITERAL_ESCAPE_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: GRAMMAR_LITERAL_ESCAPE_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::regex GRAMMAR_LITERAL_ESCAPE_RE("[\r\n\"\\\\]");
+// 函数: GRAMMAR_RANGE_LITERAL_ESCAPE_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: GRAMMAR_RANGE_LITERAL_ESCAPE_RE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::regex GRAMMAR_RANGE_LITERAL_ESCAPE_RE("[\r\n\"\\]\\-\\\\]");
 std::unordered_map<char, std::string> GRAMMAR_LITERAL_ESCAPES = {
     {'\r', "\\r"}, {'\n', "\\n"}, {'"', "\\\""}, {'-', "\\-"}, {']', "\\]"}, {'\\', "\\\\"}
@@ -277,6 +350,14 @@ std::unordered_map<char, std::string> GRAMMAR_LITERAL_ESCAPES = {
 std::unordered_set<char> NON_LITERAL_SET = {'|', '.', '(', ')', '[', ']', '{', '}', '*', '+', '?'};
 std::unordered_set<char> ESCAPED_IN_REGEXPS_BUT_NOT_IN_LITERALS = {'^', '$', '.', '[', ']', '(', ')', '|', '{', '}', '*', '+', '?'};
 
+// 函数: replacePattern
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: replacePattern
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string replacePattern(const std::string & input, const std::regex & regex, const std::function<std::string(const std::smatch  &)> & replacement) {
     std::smatch match;
     std::string result;
@@ -295,6 +376,14 @@ static std::string replacePattern(const std::string & input, const std::regex & 
     return result;
 }
 
+// 函数: format_literal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_literal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string format_literal(const std::string & literal) {
     std::string escaped = replacePattern(literal, GRAMMAR_LITERAL_ESCAPE_RE, [&](const std::smatch & match) {
         char c = match.str()[0];
@@ -303,8 +392,22 @@ static std::string format_literal(const std::string & literal) {
     return "\"" + escaped + "\"";
 }
 
+// 函数: gbnf_format_literal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gbnf_format_literal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gbnf_format_literal(const std::string & literal) { return format_literal(literal); }
 
+// 类: common_schema_converter
+// 描述: common_schema_converter类提供相关功能
+// 用途: 用于处理common_schema_converter相关的操作
+// 类: common_schema_converter
+// 描述: common_schema_converter类提供相关功能
+// 用途: 用于处理common_schema_converter相关的操作
 class common_schema_converter {
 private:
     friend class common_schema_info;
@@ -317,6 +420,14 @@ private:
     std::vector<std::string> _errors;
     std::vector<std::string> _warnings;
 
+    // 函数: _add_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _add_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _add_rule(const std::string & name, const std::string & rule) {
         std::string esc_name = regex_replace(name, INVALID_RULE_CHARS_RE, "-");
         if (_rules.find(esc_name) == _rules.end() || _rules[esc_name] == rule) {
@@ -333,6 +444,14 @@ private:
         }
     }
 
+    // 函数: _generate_union_rule
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _generate_union_rule
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _generate_union_rule(const std::string & name, const std::vector<json> & alt_schemas) {
         std::vector<std::string> rules;
         for (size_t i = 0; i < alt_schemas.size(); i++) {
@@ -341,6 +460,14 @@ private:
         return string_join(rules, " | ");
     }
 
+    // 函数: _visit_pattern
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _visit_pattern
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _visit_pattern(const std::string & pattern, const std::string & name) {
         if (!(pattern.front() == '^' && pattern.back() == '$')) {
             _errors.push_back("Pattern must start with '^' and end with '$'");
@@ -531,6 +658,14 @@ private:
             }
             return join_seq();
         };
+        // 函数: _add_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: _add_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return _add_rule(name, "\"\\\"\" (" + to_rule(transform()) + ") \"\\\"\" space");
     }
 
@@ -542,8 +677,34 @@ private:
         not_strings({"and", "also"})
             -> ["] ( [a] ([l] ([s] ([o] char+ | [^"o] char*) | [^"s] char*) | [n] ([d] char+ | [^"d] char*) | [^"ln] char*) | [^"a] char* )? ["] space
     */
+    // 函数: _not_strings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _not_strings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _not_strings(const std::vector<std::string> & strings) {
 
+        // 类: TrieNode
+        // 描述: TrieNode类提供相关功能
+        // 用途: 用于处理trienode相关的操作
+        // 类: TrieNode
+        // 描述: TrieNode类提供相关功能
+        // 用途: 用于处理trienode相关的操作
+    // 结构体: TrieNode
+    // 描述: TrieNode结构体提供相关功能
+    // 用途: 用于处理TrieNode相关的操作
+    // 结构体: TrieNode
+    // 描述: TrieNode结构体提供相关功能
+    // 用途: 用于处理TrieNode相关的操作
+    // 结构体: TrieNode
+    // 描述: TrieNode结构体提供相关功能
+    // 用途: 用于处理TrieNode相关的操作
+    // 结构体: TrieNode
+    // 描述: TrieNode结构体提供相关功能
+    // 用途: 用于处理TrieNode相关的操作
         struct TrieNode {
             std::map<char, TrieNode> children;
             bool is_end_of_string;
@@ -603,6 +764,14 @@ private:
         return out.str();
     }
 
+    // 函数: _resolve_ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _resolve_ref
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _resolve_ref(const std::string & ref) {
         auto it = ref.find('#');
         std::string ref_fragment = it != std::string::npos ? ref.substr(it + 1) : ref;
@@ -710,6 +879,14 @@ private:
         return rule;
     }
 
+    // 函数: _add_primitive
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _add_primitive
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _add_primitive(const std::string & name, const BuiltinRule & rule) {
         auto n = _add_rule(name, rule.content);
         for (const auto & dep : rule.deps) {
@@ -738,6 +915,14 @@ public:
         _rules["space"] = SPACE_RULE;
     }
 
+    // 函数: resolve_refs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resolve_refs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void resolve_refs(json & schema, const std::string & url) {
         /*
         * Resolves all $ref fields in the given schema, fetching any remote schemas,
@@ -812,10 +997,26 @@ public:
         visit_refs(schema);
     }
 
+    // 函数: _generate_constant_rule
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _generate_constant_rule
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string _generate_constant_rule(const json & value) {
         return format_literal(value.dump());
     }
 
+    // 函数: visit
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: visit
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string visit(const json & schema, const std::string & name) {
         json schema_type = schema.contains("type") ? schema["type"] : json();
         std::string schema_format = schema.contains("format") ? schema["format"].get<std::string>() : "";
@@ -973,6 +1174,14 @@ public:
         }
     }
 
+    // 函数: check_errors
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_errors
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void check_errors() {
         if (!_errors.empty()) {
             throw std::invalid_argument("JSON schema conversion failed:\n" + string_join(_errors, "\n"));
@@ -982,6 +1191,14 @@ public:
         }
     }
 
+    // 函数: format_grammar
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_grammar
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string format_grammar() {
         std::stringstream ss;
         for (const auto & kv : _rules) {
@@ -1029,6 +1246,14 @@ bool common_schema_info::resolves_to_string(const nlohmann::ordered_json & schem
             visited_refs.insert(ref);
             auto it = impl_->_refs.find(ref);
             if (it != impl_->_refs.end()) {
+                // 函数: check
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: check
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return check(it->second);
             }
             return false;
@@ -1116,9 +1341,25 @@ bool common_schema_info::resolves_to_string(const nlohmann::ordered_json & schem
         return false;
     };
 
+    // 函数: check
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return check(schema);
 }
 
+// 函数: json_schema_to_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_schema_to_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string json_schema_to_grammar(const json & schema, bool force_gbnf) {
 #ifdef LLAMA_USE_LLGUIDANCE
     if (!force_gbnf) {
@@ -1134,6 +1375,14 @@ std::string json_schema_to_grammar(const json & schema, bool force_gbnf) {
     });
 }
 
+// 函数: build_grammar
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_grammar
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 std::string build_grammar(const std::function<void(const common_grammar_builder &)> & cb, const common_grammar_options & options) {
     common_schema_converter converter([&](const std::string &) { return json(); }, options.dotall);
     common_grammar_builder builder {

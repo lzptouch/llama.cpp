@@ -25,27 +25,75 @@
         }                                                        \
     } while(0)
 
+// 函数: hvx_splat_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_a(uint8_t * restrict dst, HVX_Vector src, uint32_t n, uint32_t elem_size) {
     assert((unsigned long) dst % 128 == 0);
     hvx_splat_loop_body(HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_splat_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_u(uint8_t * restrict dst, HVX_Vector src, uint32_t n, uint32_t elem_size) {
     hvx_splat_loop_body(HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_splat_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_f32_a(uint8_t * restrict dst, float v, uint32_t n) {
     hvx_splat_a(dst,  hvx_vec_splat_f32(v), n, sizeof(float));
 }
 
+// 函数: hvx_splat_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_f32_u(uint8_t * restrict dst, float v, uint32_t n) {
     hvx_splat_u(dst,  hvx_vec_splat_f32(v), n, sizeof(float));
 }
 
+// 函数: hvx_splat_f16_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_f16_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_f16_a(uint8_t * restrict dst, float v, uint32_t n) {
     hvx_splat_u(dst,  hvx_vec_splat_f16(v), n, sizeof(__fp16));
 }
 
+// 函数: hvx_splat_f16_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_splat_f16_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_splat_f16_u(uint8_t * restrict dst, float v, uint32_t n) {
     hvx_splat_u(dst,  hvx_vec_splat_f16(v), n, sizeof(__fp16));
 }
@@ -69,62 +117,158 @@ static inline void hvx_splat_f16_u(uint8_t * restrict dst, float v, uint32_t n) 
     } while(0)
 
 // Generic copy routines
+// 函数: hvx_copy_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n, uint32_t elem_size) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
     hvx_copy_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_copy_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n, uint32_t elem_size) {
     assert((unsigned long) dst % 128 == 0);
     hvx_copy_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_copy_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n, uint32_t elem_size) {
     assert((unsigned long) src % 128 == 0);
     hvx_copy_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_copy_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n, uint32_t elem_size) {
     hvx_copy_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
 // copy n fp16 elements : source and destination are aligned to HVX Vector (128)
+// 函数: hvx_copy_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_aa(dst, src, n, sizeof(__fp16));
 }
 
 // copy n fp16 elements : source is aligned, destination is potentially unaligned
+// 函数: hvx_copy_f16_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_au(dst, src, n, sizeof(__fp16));
 }
 
 // copy n fp16 elements : source is aligned, destination is potentially unaligned
+// 函数: hvx_copy_f16_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_ua(dst, src, n, sizeof(__fp16));
 }
 
 // copy n fp16 elements : source is aligned, destination is potentially unaligned
+// 函数: hvx_copy_f16_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_uu(dst, src, n, sizeof(__fp16));
 }
 
 // copy n fp32 elements : source and destination are aligned to HVX Vector (128)
+// 函数: hvx_copy_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_aa(dst, src, n, sizeof(float));
 }
 
 // copy n fp32 elements : source is aligned, destination is unaligned
+// 函数: hvx_copy_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_ua(dst, src, n, sizeof(float));
 }
 
 // copy n fp32 elements : source is unaligned, destination is aligned
+// 函数: hvx_copy_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_au(dst, src, n, sizeof(float));
 }
 
 // copy n fp32 elements : source is unaligned, destination unaligned
+// 函数: hvx_copy_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_uu(dst, src, n, sizeof(float));
 }
@@ -154,6 +298,14 @@ static inline void hvx_copy_f32_uu(uint8_t * restrict dst, const uint8_t * restr
     } while(0)
 
 // copy/convert n fp32 elements into n fp16 elements : source is aligned, destination is aligned
+// 函数: hvx_copy_f16_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
@@ -161,18 +313,42 @@ static inline void hvx_copy_f16_f32_aa(uint8_t * restrict dst, const uint8_t * r
 }
 
 // copy/convert n fp32 elements into n fp16 elements : source is unaligned, destination is aligned
+// 函数: hvx_copy_f16_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_copy_f16_f32_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
 // copy/convert n fp32 elements into n fp16 elements : source is aligned, destination is unaligned
+// 函数: hvx_copy_f16_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_copy_f16_f32_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
 // copy/convert n fp32 elements into n fp16 elements : source is unaligned, destination is unaligned
+// 函数: hvx_copy_f16_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f16_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f16_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_f16_f32_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
@@ -219,6 +395,14 @@ static inline void hvx_copy_f16_f32_uu(uint8_t * restrict dst, const uint8_t * r
     } while(0)
 
 // copy/convert n fp16 elements into n fp32 elements : source is aligned, destination is aligned
+// 函数: hvx_copy_f32_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_f16_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
@@ -226,18 +410,42 @@ static inline void hvx_copy_f32_f16_aa(uint8_t * restrict dst, const uint8_t * r
 }
 
 // copy/convert n fp16 elements into n fp32 elements : source is unaligned, destination is aligned
+// 函数: hvx_copy_f32_f16_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_f16_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_f16_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_copy_f32_f16_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
 // copy/convert n fp16 elements into n fp32 elements : source is aligned, destination is unaligned
+// 函数: hvx_copy_f32_f16_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_f16_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_f16_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_copy_f32_f16_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
 // copy/convert n fp16 elements into n fp32 elements : source is unaligned, destination is unaligned
+// 函数: hvx_copy_f32_f16_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_copy_f32_f16_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_copy_f32_f16_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_copy_f32_f16_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: lookup-merge.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/lookup/lookup-merge.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "ggml.h"
 #include "llama.h"
 #include "common.h"
@@ -11,11 +18,27 @@
 #include <unordered_map>
 #include <vector>
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(char* argv0) {
     fprintf(stderr, "Merges multiple lookup cache files into a single one.\n");
     fprintf(stderr, "Usage: %s [--help] lookup_part_1.bin lookup_part_2.bin ... lookup_merged.bin\n", argv0);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv){
     if (argc < 3) {
         print_usage(argv[0]);

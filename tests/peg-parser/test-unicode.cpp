@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-unicode.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/peg-parser/test-unicode.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "tests.h"
 
 #include "peg-parser.h"
@@ -7,10 +14,26 @@
 #include <iomanip>
 #include <cctype>
 
+// 函数: assert_result_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_result_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_result_equal(testing & t, common_peg_parse_result_type expected, common_peg_parse_result_type actual) {
     t.assert_equal(common_peg_parse_result_type_name(expected), common_peg_parse_result_type_name(actual));
 }
 
+// 函数: hex_dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string hex_dump(const std::string& str) {
     std::ostringstream oss;
     for (unsigned char c : str) {
@@ -23,7 +46,33 @@ static std::string hex_dump(const std::string& str) {
     return oss.str();
 }
 
+// 函数: test_unicode
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_unicode
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void test_unicode(testing &t) {
+    // 类: test_case
+    // 描述: test_case类提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 类: test_case
+    // 描述: test_case类提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
     struct test_case {
         std::string input;
         std::string expected_text;

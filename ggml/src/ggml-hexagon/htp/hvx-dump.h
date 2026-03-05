@@ -9,6 +9,14 @@
 #include "hex-utils.h"
 #include "hvx-types.h"
 
+// 函数: hvx_vec_dump_f16_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_f16_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_f16_n(char * pref, HVX_Vector v, uint32_t n) {
     HVX_VectorAlias u = { .v = v };
 
@@ -23,10 +31,26 @@ static void hvx_vec_dump_f16_n(char * pref, HVX_Vector v, uint32_t n) {
     }
 }
 
+// 函数: hvx_vec_dump_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_f16(char * pref, HVX_Vector v) {
     hvx_vec_dump_f16_n(pref, v, 64);
 }
 
+// 函数: hvx_vec_dump_f32_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_f32_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_f32_n(char * pref, HVX_Vector v, uint32_t n) {
     HVX_VectorAlias u = { .v = v };
 
@@ -41,6 +65,14 @@ static void hvx_vec_dump_f32_n(char * pref, HVX_Vector v, uint32_t n) {
     }
 }
 
+// 函数: hvx_vec_dump_f32_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_f32_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_f32_hmt(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -51,10 +83,26 @@ static void hvx_vec_dump_f32_hmt(char * pref, HVX_Vector v) {
          u.d[2], u.d[3], u.d[12], u.d[13], u.d[14], u.d[15], u.d[28], u.d[29], u.d[30], u.d[31]);
 }
 
+// 函数: hvx_vec_dump_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_f32(char * pref, HVX_Vector v) {
     hvx_vec_dump_f32_n(pref, v, 32);
 }
 
+// 函数: hvx_vec_dump_int32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_int32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_int32(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -66,6 +114,14 @@ static void hvx_vec_dump_int32(char * pref, HVX_Vector v) {
     }
 }
 
+// 函数: hvx_vec_dump_int32_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_int32_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_int32_hmt(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -76,6 +132,14 @@ static void hvx_vec_dump_int32_hmt(char * pref, HVX_Vector v) {
          u.d[13], u.d[14], u.d[15], u.d[28], u.d[29], u.d[30], u.d[31]);
 }
 
+// 函数: hvx_vec_dump_int8_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_int8_hmt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_int8_hmt(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -86,6 +150,14 @@ static void hvx_vec_dump_int8_hmt(char * pref, HVX_Vector v) {
          u.d[61], u.d[62], u.d[63], u.d[124], u.d[125], u.d[126], u.d[127]);
 }
 
+// 函数: hvx_vec_dump_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_int8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_int8(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -97,6 +169,14 @@ static void hvx_vec_dump_int8(char * pref, HVX_Vector v) {
     }
 }
 
+// 函数: hvx_vec_dump_uint8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_dump_uint8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hvx_vec_dump_uint8(char * pref, HVX_Vector v) {
     union {
         HVX_Vector v;
@@ -108,6 +188,14 @@ static void hvx_vec_dump_uint8(char * pref, HVX_Vector v) {
     }
 }
 
+// 函数: hvx_vec_eq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_eq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool hvx_vec_eq(HVX_Vector v0, HVX_Vector v1, size_t n) {
     typedef union {
         HVX_Vector v;

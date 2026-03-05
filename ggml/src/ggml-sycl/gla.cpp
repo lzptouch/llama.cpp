@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gla.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/gla.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <sycl/sycl.hpp>
 
 #include "common.hpp"
@@ -75,6 +82,14 @@ static void gated_linear_attn_f32_kernel(const dpct::queue_ptr stream, u_int B, 
     });
 }
 
+// 函数: ggml_sycl_op_gated_linear_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_gated_linear_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_gated_linear_attn(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/5);
     const float * k_d  = static_cast<const float *>(dst->src[0]->data);

@@ -21,10 +21,54 @@ enum llama_fver {
     GGUF_FILE_VERSION_V3 = 3,
 };
 
+// 函数: llama_file_version_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_file_version_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_file_version_name(llama_fver version);
 
+// 类: llama_model_loader
+// 描述: llama_model_loader类提供相关功能
+// 用途: 用于处理llama_model_loader相关的操作
+// 类: llama_model_loader
+// 描述: llama_model_loader类提供相关功能
+// 用途: 用于处理llama_model_loader相关的操作
+    // 结构体: llama_model_loader
+    // 描述: llama_model_loader结构体提供相关功能
+    // 用途: 用于处理llama_model_loader相关的操作
+    // 结构体: llama_model_loader
+    // 描述: llama_model_loader结构体提供相关功能
+    // 用途: 用于处理llama_model_loader相关的操作
+    // 结构体: llama_model_loader
+    // 描述: llama_model_loader结构体提供相关功能
+    // 用途: 用于处理llama_model_loader相关的操作
+    // 结构体: llama_model_loader
+    // 描述: llama_model_loader结构体提供相关功能
+    // 用途: 用于处理llama_model_loader相关的操作
 struct llama_model_loader {
     // Holds information on a model weight
+    // 类: llama_tensor_weight
+    // 描述: llama_tensor_weight类提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
+    // 类: llama_tensor_weight
+    // 描述: llama_tensor_weight类提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
+    // 结构体: llama_tensor_weight
+    // 描述: llama_tensor_weight结构体提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
+    // 结构体: llama_tensor_weight
+    // 描述: llama_tensor_weight结构体提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
+    // 结构体: llama_tensor_weight
+    // 描述: llama_tensor_weight结构体提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
+    // 结构体: llama_tensor_weight
+    // 描述: llama_tensor_weight结构体提供相关功能
+    // 用途: 用于处理llama_tensor_weight相关的操作
     struct llama_tensor_weight {
         uint16_t  idx; // source file index
         size_t   offs; // tensor data offset in the original file
@@ -45,7 +89,33 @@ struct llama_model_loader {
     };
 
     // custom comparator to sort weights more nicely by layer
+    // 类: weight_name_comparer
+    // 描述: weight_name_comparer类提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
+    // 类: weight_name_comparer
+    // 描述: weight_name_comparer类提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
+    // 结构体: weight_name_comparer
+    // 描述: weight_name_comparer结构体提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
+    // 结构体: weight_name_comparer
+    // 描述: weight_name_comparer结构体提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
+    // 结构体: weight_name_comparer
+    // 描述: weight_name_comparer结构体提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
+    // 结构体: weight_name_comparer
+    // 描述: weight_name_comparer结构体提供相关功能
+    // 用途: 用于处理weight_name_comparer相关的操作
     struct weight_name_comparer {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(const std::string & a, const std::string & b) const {
             int a_layer = -1;
             int b_layer = -1;
@@ -113,64 +183,282 @@ struct llama_model_loader {
     get_arr_n(enum llm_kv kid, T & result, bool required = true);
 
     template<typename T>
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_arr(const std::string & key, std::vector<T> & result, bool required = true);
 
     template<typename T, size_t N_MAX>
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_arr(const std::string & key, std::array<T, N_MAX> & result, bool required = true);
 
     template<typename T>
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_arr(enum llm_kv kid, T & result, bool required = true);
 
     template<typename T>
+    // 函数: get_key
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_key
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_key(const std::string & key, T & result, bool required = true);
 
     template<typename T>
+    // 函数: get_key
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_key
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_key(enum llm_kv kid, T & result, bool required = true);
 
     template<typename T, size_t N_MAX>
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_key_or_arr(const std::string & key, std::array<T, N_MAX> & result, uint32_t n, bool required = true);
 
     template<typename T>
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_key_or_arr(enum llm_kv kid, T & result, uint32_t n, bool required = true);
 
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_key_or_arr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_key_or_arr(enum llm_kv kid, uint32_t & result, bool required = true);
 
+    // 函数: get_arch_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_arch_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     std::string get_arch_name() const;
 
     enum llm_arch get_arch() const;
 
+    // 函数: get_weight
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_weight
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     const llama_tensor_weight * get_weight(const char * name) const;
 
     const llama_tensor_weight & require_weight(const char * name) const;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * get_tensor_meta(const char * name) const;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * require_tensor_meta(const std::string & name) const;
 
     const struct ggml_tensor * check_tensor_dims(const std::string & name, const std::vector<int64_t> & ne, bool required) const;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * create_tensor(struct ggml_context * ctx, const std::string & name, const std::initializer_list<int64_t> & ne, int flags = 0);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * create_tensor_as_view(struct ggml_context * ctx, struct ggml_tensor * base, const std::string & name, const std::initializer_list<int64_t> & ne, size_t offset, bool required = true);
 
+    // 函数: done_getting_tensors
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: done_getting_tensors
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void done_getting_tensors() const;
 
+    // 函数: init_mappings
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_mappings
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_mappings(bool prefetch = true, llama_mlocks * mlock_mmaps = nullptr);
 
+    // 函数: get_mapping_range
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_mapping_range
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_mapping_range(size_t * first, size_t * last, void ** addr, int idx, ggml_context * ctx) const;
 
     // for backwards compatibility, does not support ggml-backend
+    // 函数: load_data_for
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_data_for
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     void load_data_for(struct ggml_tensor * cur) const;
 
     // Returns false if cancelled by progress_callback
     bool load_all_data(
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx,
             llama_buf_map & bufs,
             llama_mlocks * lmlocks,
             llama_progress_callback progress_callback,
             void * progress_callback_user_data);
 
+    // 函数: ftype_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ftype_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string ftype_name() const;
 
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_info() const;
 };

@@ -29,9 +29,25 @@
 
 // parallel routines
 template <typename T, typename std::enable_if<std::is_integral<T>::value, int>::type = 0>
+// 函数: div_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: div_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline T div_up(T x, T y) { return (x + y - 1) / y; }
 
 template <typename T>
+// 函数: balance211
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: balance211
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void balance211(T n, T nth, T ith, T& n_start, T& n_end) {
 #if 0
     // onednn partition pattern
@@ -56,6 +72,14 @@ inline void balance211(T n, T nth, T ith, T& n_start, T& n_end) {
 }
 
 template <typename func_t>
+// 函数: parallel_for
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parallel_for
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void parallel_for(int n, const func_t& f) {
 #if defined(GGML_USE_OPENMP)
 #pragma omp parallel
@@ -72,6 +96,14 @@ inline void parallel_for(int n, const func_t& f) {
 }
 
 template <typename func_t>
+// 函数: parallel_for_ggml
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parallel_for_ggml
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void parallel_for_ggml(const ggml_compute_params * params, int n, const func_t & f) {
     int tbegin, tend;
     balance211(n, params->nth, params->ith, tbegin, tend);
@@ -79,6 +111,14 @@ inline void parallel_for_ggml(const ggml_compute_params * params, int n, const f
 }
 
 // quantized types that have AMX support
+// 函数: qtype_has_amx_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: qtype_has_amx_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool qtype_has_amx_kernels(const enum ggml_type type) {
     // TODO: fix padding for vnni format
     return (type == GGML_TYPE_Q4_0) ||

@@ -7,6 +7,24 @@
 #include <string>
 #include <vector>
 
+// 类: llama_vocab
+// 描述: llama_vocab类提供相关功能
+// 用途: 用于处理llama_vocab相关的操作
+// 类: llama_vocab
+// 描述: llama_vocab类提供相关功能
+// 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
 struct llama_vocab;
 
 // grammar element type
@@ -49,11 +67,47 @@ typedef struct llama_grammar_element {
     uint32_t           value; // Unicode code point, rule ID, or token ID
 } llama_grammar_element;
 
+// 类: llama_partial_utf8
+// 描述: llama_partial_utf8类提供相关功能
+// 用途: 用于处理llama_partial_utf8相关的操作
+// 类: llama_partial_utf8
+// 描述: llama_partial_utf8类提供相关功能
+// 用途: 用于处理llama_partial_utf8相关的操作
+    // 结构体: llama_partial_utf8
+    // 描述: llama_partial_utf8结构体提供相关功能
+    // 用途: 用于处理llama_partial_utf8相关的操作
+    // 结构体: llama_partial_utf8
+    // 描述: llama_partial_utf8结构体提供相关功能
+    // 用途: 用于处理llama_partial_utf8相关的操作
+    // 结构体: llama_partial_utf8
+    // 描述: llama_partial_utf8结构体提供相关功能
+    // 用途: 用于处理llama_partial_utf8相关的操作
+    // 结构体: llama_partial_utf8
+    // 描述: llama_partial_utf8结构体提供相关功能
+    // 用途: 用于处理llama_partial_utf8相关的操作
 struct llama_partial_utf8 {
     uint32_t value;    // bit value so far (unshifted)
     int      n_remain; // num bytes remaining; -1 indicates invalid sequence
 };
 
+// 类: llama_grammar_candidate
+// 描述: llama_grammar_candidate类提供相关功能
+// 用途: 用于处理llama_grammar_candidate相关的操作
+// 类: llama_grammar_candidate
+// 描述: llama_grammar_candidate类提供相关功能
+// 用途: 用于处理llama_grammar_candidate相关的操作
+    // 结构体: llama_grammar_candidate
+    // 描述: llama_grammar_candidate结构体提供相关功能
+    // 用途: 用于处理llama_grammar_candidate相关的操作
+    // 结构体: llama_grammar_candidate
+    // 描述: llama_grammar_candidate结构体提供相关功能
+    // 用途: 用于处理llama_grammar_candidate相关的操作
+    // 结构体: llama_grammar_candidate
+    // 描述: llama_grammar_candidate结构体提供相关功能
+    // 用途: 用于处理llama_grammar_candidate相关的操作
+    // 结构体: llama_grammar_candidate
+    // 描述: llama_grammar_candidate结构体提供相关功能
+    // 用途: 用于处理llama_grammar_candidate相关的操作
 struct llama_grammar_candidate {
     size_t               index;
     const uint32_t     * code_points;
@@ -76,6 +130,14 @@ const llama_grammar_rules  & llama_grammar_get_rules (const struct llama_grammar
 // be positioned at a character range (see `llama_grammar_advance_stack`), and
 // produces the N possible stacks if the given char is accepted at those
 // positions
+// 函数: llama_grammar_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_accept(struct llama_grammar * grammar, uint32_t chr);
 
 std::vector<llama_grammar_candidate> llama_grammar_reject_candidates_for_stack(
@@ -83,6 +145,24 @@ std::vector<llama_grammar_candidate> llama_grammar_reject_candidates_for_stack(
         const llama_grammar_stack      & stack,
         const llama_grammar_candidates & candidates);
 
+// 类: llama_grammar_parser
+// 描述: llama_grammar_parser类提供相关功能
+// 用途: 用于处理llama_grammar_parser相关的操作
+// 类: llama_grammar_parser
+// 描述: llama_grammar_parser类提供相关功能
+// 用途: 用于处理llama_grammar_parser相关的操作
+    // 结构体: llama_grammar_parser
+    // 描述: llama_grammar_parser结构体提供相关功能
+    // 用途: 用于处理llama_grammar_parser相关的操作
+    // 结构体: llama_grammar_parser
+    // 描述: llama_grammar_parser结构体提供相关功能
+    // 用途: 用于处理llama_grammar_parser相关的操作
+    // 结构体: llama_grammar_parser
+    // 描述: llama_grammar_parser结构体提供相关功能
+    // 用途: 用于处理llama_grammar_parser相关的操作
+    // 结构体: llama_grammar_parser
+    // 描述: llama_grammar_parser结构体提供相关功能
+    // 用途: 用于处理llama_grammar_parser相关的操作
 struct llama_grammar_parser {
     const llama_vocab * vocab;
     std::map<std::string, uint32_t> symbol_ids;
@@ -91,11 +171,43 @@ struct llama_grammar_parser {
 
     llama_grammar_parser(const struct llama_vocab * vocab = nullptr) : vocab(vocab) {}
 
+    // 函数: c_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: c_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_grammar_stack c_rules() const;
 
+    // 函数: get_symbol_id
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_symbol_id
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     uint32_t get_symbol_id(const char * src, size_t len);
+    // 函数: generate_symbol_id
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: generate_symbol_id
+    // 描述: 生成: 生成输出数据
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t generate_symbol_id(const std::string & base_name);
 
+    // 函数: add_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_rule(uint32_t rule_id, const llama_grammar_rule & rule);
 
     const char * parse_alternates(
@@ -110,19 +222,87 @@ struct llama_grammar_parser {
             llama_grammar_rule & rule,
             bool               is_nested);
 
+    // 函数: parse_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_rule
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const char * parse_rule(const char * src);
 
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool parse(const char * src);
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print(FILE * file);
 };
 
+// 类: llama_grammar_trigger_pattern
+// 描述: llama_grammar_trigger_pattern类提供相关功能
+// 用途: 用于处理llama_grammar_trigger_pattern相关的操作
+// 类: llama_grammar_trigger_pattern
+// 描述: llama_grammar_trigger_pattern类提供相关功能
+// 用途: 用于处理llama_grammar_trigger_pattern相关的操作
+    // 结构体: llama_grammar_trigger_pattern
+    // 描述: llama_grammar_trigger_pattern结构体提供相关功能
+    // 用途: 用于处理llama_grammar_trigger_pattern相关的操作
+    // 结构体: llama_grammar_trigger_pattern
+    // 描述: llama_grammar_trigger_pattern结构体提供相关功能
+    // 用途: 用于处理llama_grammar_trigger_pattern相关的操作
+    // 结构体: llama_grammar_trigger_pattern
+    // 描述: llama_grammar_trigger_pattern结构体提供相关功能
+    // 用途: 用于处理llama_grammar_trigger_pattern相关的操作
+    // 结构体: llama_grammar_trigger_pattern
+    // 描述: llama_grammar_trigger_pattern结构体提供相关功能
+    // 用途: 用于处理llama_grammar_trigger_pattern相关的操作
 struct llama_grammar_trigger_pattern {
     std::string pattern;
     std::regex  regex;
 
+    // 函数: find
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: find
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t find(const std::string & input) const;
 };
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar {
     // maintain a list of llama_tokens and their positions in the trigger_buffer
     using token_pos = std::pair<llama_token, std::pair<size_t, size_t>>;
@@ -155,12 +335,48 @@ struct llama_grammar {
 //
 
 // note: needed for tests (not great)
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_init_impl(
         const struct llama_vocab * vocab,
         const llama_grammar_element ** rules,
         size_t n_rules,
         size_t start_rule_index);
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_init_impl(
         const struct llama_vocab * vocab,
                       const char * grammar_str,
@@ -171,8 +387,34 @@ struct llama_grammar * llama_grammar_init_impl(
                const llama_token * trigger_tokens,
                             size_t num_trigger_tokens);
 
+// 函数: llama_grammar_free_impl
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_free_impl
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_free_impl(struct llama_grammar * grammar);
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_clone_impl(const struct llama_grammar & grammar);
 
 // TODO: move the API below as member functions of llama_grammar
@@ -181,14 +423,68 @@ void llama_grammar_apply_impl(
             llama_token_data_array * cur_p);
 
 void llama_grammar_accept_impl(
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
               struct llama_grammar & grammar,
                        llama_token   token);
 
 void llama_grammar_accept_str(
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
               struct llama_grammar & grammar,
                  const std::string & piece);
 
 void llama_grammar_accept_token(
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+              // 类: llama_grammar
+              // 描述: llama_grammar类提供相关功能
+              // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
               struct llama_grammar & grammar,
                        llama_token   token,
                  const std::string & piece);

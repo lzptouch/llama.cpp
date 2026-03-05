@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-common.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-common.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "common.h"
 #include "download.h"
 #include "log.h"
@@ -13,6 +20,14 @@
 #include <sstream>
 #include <fstream>
 
+// 函数: format_error_response
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_error_response
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json format_error_response(const std::string & message, const enum error_type type) {
     std::string type_str;
     int code = 500;
@@ -61,6 +76,14 @@ json format_error_response(const std::string & message, const enum error_type ty
 // random string / id
 //
 
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string random_string() {
     static const std::string str("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
@@ -76,10 +99,26 @@ std::string random_string() {
     return result;
 }
 
+// 函数: gen_chatcmplid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gen_chatcmplid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gen_chatcmplid() {
     return "chatcmpl-" + random_string();
 }
 
+// 函数: gen_tool_call_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gen_tool_call_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gen_tool_call_id() {
     return random_string();
 }
@@ -88,6 +127,14 @@ std::string gen_tool_call_id() {
 // lora utils
 //
 
+// 函数: lora_all_alora
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lora_all_alora
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool lora_all_alora(const std::vector<common_adapter_lora_info> & loras) {
     bool found_alora = false;
     for (const auto & lora : loras) {
@@ -162,10 +209,26 @@ static const std::string base64_chars =
              "abcdefghijklmnopqrstuvwxyz"
              "0123456789+/";
 
+// 函数: is_base64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_base64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool is_base64(uint8_t c) {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
+// 函数: base64_decode
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: base64_decode
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline raw_buffer base64_decode(const std::string & encoded_string) {
     int i = 0;
     int j = 0;
@@ -348,6 +411,14 @@ void server_tokens::push_back(const mtmd_input_chunk * chunk) {
         for (size_t i = 0; i < n_tokens; ++i) {
             tokens.emplace_back(LLAMA_TOKEN_NULL);
         }
+        // 函数: new_chunk
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: new_chunk
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         mtmd::input_chunk_ptr new_chunk(mtmd_input_chunk_copy(chunk));
         map_idx_to_media[start_idx] = std::move(new_chunk);
     } else if (type == MTMD_INPUT_CHUNK_TYPE_TEXT) {
@@ -372,6 +443,14 @@ void server_tokens::push_back(server_tokens & tokens) {
         GGML_ASSERT(has_mtmd);
         for (auto it = tokens.map_idx_to_media.begin(); it != tokens.map_idx_to_media.end(); ) {
             auto * chunk = tokens.map_idx_to_media[it->first].get();
+            // 函数: new_chunk
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: new_chunk
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             mtmd::input_chunk_ptr new_chunk(mtmd_input_chunk_copy(chunk));
             map_idx_to_media[start_idx + it->first] = std::move(new_chunk);
         }
@@ -434,6 +513,14 @@ std::string server_tokens::detokenize(const llama_context * ctx, bool special) c
             text_tokens.push_back(t);
         }
     }
+    // 函数: common_detokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_detokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return common_detokenize(ctx, text_tokens, special);
 }
 
@@ -556,6 +643,14 @@ server_tokens server_tokens::clone() const {
 // tokenizer and input processing utils
 //
 
+// 函数: json_is_array_of_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_of_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_of_numbers(const json & data) {
     if (data.is_array()) {
         for (const auto & e : data) {
@@ -568,6 +663,14 @@ bool json_is_array_of_numbers(const json & data) {
     return false;
 }
 
+// 函数: json_is_array_of_mixed_numbers_strings
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_of_mixed_numbers_strings
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_of_mixed_numbers_strings(const json & data) {
     bool seen_string = false;
     bool seen_number = false;
@@ -583,6 +686,14 @@ bool json_is_array_of_mixed_numbers_strings(const json & data) {
     return false;
 }
 
+// 函数: json_is_array_and_contains_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_and_contains_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_and_contains_numbers(const json & data) {
     if (data.is_array()) {
         for (const auto & e : data) {
@@ -595,6 +706,14 @@ bool json_is_array_and_contains_numbers(const json & data) {
     return false;
 }
 
+// 函数: json_get_nested_values
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_get_nested_values
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 json json_get_nested_values(const std::vector<std::string> & paths, const json & js) {
     json result = json::object();
 
@@ -616,6 +735,14 @@ json json_get_nested_values(const std::vector<std::string> & paths, const json &
     return result;
 }
 
+// 函数: tokenize_mixed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokenize_mixed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_tokens tokenize_mixed(const llama_vocab * vocab, const json & json_prompt, bool add_special, bool parse_special) {
     // If `add_bos` is true, we only add BOS, when json_prompt is a string,
     // or the first element of the json_prompt array is a string.
@@ -652,6 +779,14 @@ llama_tokens tokenize_mixed(const llama_vocab * vocab, const json & json_prompt,
     return prompt_tokens;
 }
 
+// 函数: validate_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: validate_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t validate_utf8(const std::string& text) {
     size_t len = text.size();
     if (len == 0) return 0;
@@ -680,6 +815,14 @@ size_t validate_utf8(const std::string& text) {
 }
 
 // Computes FNV-1a hash of the data
+// 函数: fnv_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fnv_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string fnv_hash(const uint8_t * data, size_t len) {
     const uint64_t fnv_prime = 0x100000001b3ULL;
     uint64_t hash = 0xcbf29ce484222325ULL;
@@ -691,6 +834,14 @@ static std::string fnv_hash(const uint8_t * data, size_t len) {
     return std::to_string(hash);
 }
 
+// 函数: process_mtmd_prompt
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_mtmd_prompt
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 server_tokens process_mtmd_prompt(mtmd_context * mctx, std::string prompt, std::vector<raw_buffer> files) {
     mtmd::bitmaps bitmaps;
     for (auto & file : files) {
@@ -734,6 +885,14 @@ server_tokens process_mtmd_prompt(mtmd_context * mctx, std::string prompt, std::
  * - "prompt": [12, 34, "string", 56, 78]
  * - "prompt": { "prompt_string": "string", "multimodal_data": [ "base64" ] }
  */
+// 函数: tokenize_input_subprompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokenize_input_subprompt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static server_tokens tokenize_input_subprompt(const llama_vocab * vocab, mtmd_context * mctx, const json & json_prompt, bool add_special, bool parse_special) {
     constexpr char JSON_STRING_PROMPT_KEY[] = "prompt_string";
     constexpr char JSON_MTMD_DATA_KEY[] = "multimodal_data";
@@ -789,6 +948,14 @@ std::vector<server_tokens> tokenize_input_prompts(const llama_vocab * vocab, mtm
 //
 
 // used by /completions endpoint
+// 函数: oaicompat_completion_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: oaicompat_completion_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json oaicompat_completion_params_parse(const json & body) {
     json llama_params;
 
@@ -861,6 +1028,14 @@ static void handle_media(
             throw std::invalid_argument("file path is not allowed: " + file_path);
         }
         SRV_INF("loading image from local file '%s'\n", (media_path + file_path).c_str());
+        // 函数: file
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: file
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::ifstream file(media_path + file_path, std::ios::binary);
         if (!file) {
             throw std::invalid_argument("file does not exist or cannot be opened: " + file_path);
@@ -1088,6 +1263,14 @@ json oaicompat_chat_params_parse(
     llama_params["grammar_lazy"]     = chat_params.grammar_lazy;
     auto grammar_triggers = json::array();
     for (const auto & trigger : chat_params.grammar_triggers) {
+        // 函数: ct
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ct
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         server_grammar_trigger ct(trigger);
         grammar_triggers.push_back(ct.to_json());
     }
@@ -1125,6 +1308,14 @@ json oaicompat_chat_params_parse(
     return llama_params;
 }
 
+// 函数: convert_responses_to_chatcmpl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_responses_to_chatcmpl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json convert_responses_to_chatcmpl(const json & response_body) {
     if (!response_body.contains("input")) {
         throw std::invalid_argument("'input' is required");
@@ -1406,6 +1597,14 @@ json convert_responses_to_chatcmpl(const json & response_body) {
     return chatcmpl_body;
 }
 
+// 函数: convert_anthropic_to_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_anthropic_to_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json convert_anthropic_to_oai(const json & body) {
     json oai_body;
 
@@ -1693,6 +1892,14 @@ json format_response_rerank(
     }
 
     std::sort(elements.begin(), elements.end(), [score_label](const json& a, const json& b) {
+        // 函数: json_value
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: json_value
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return json_value(a, score_label, 0.0) > json_value(b, score_label, 0.0);
     });
 
@@ -1758,12 +1965,28 @@ std::vector<llama_token_data> get_token_probabilities(llama_context * ctx, int i
     return cur;
 }
 
+// 函数: safe_json_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: safe_json_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string safe_json_to_str(const json & data) {
     return data.dump(-1, ' ', false, json::error_handler_t::replace);
 }
 
 // TODO: reuse llama_detokenize
 template <class Iter>
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string tokens_to_str(const llama_vocab * ctx, Iter begin, Iter end) {
     std::string ret;
     for (; begin != end; ++begin) {
@@ -1773,16 +1996,40 @@ static std::string tokens_to_str(const llama_vocab * ctx, Iter begin, Iter end) 
     return ret;
 }
 
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_str(llama_context * ctx, const llama_tokens & tokens) {
     auto model = llama_get_model(ctx);
     return tokens_to_str(llama_model_get_vocab(model), tokens.begin(), tokens.end());
 }
 
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_str(const llama_vocab * vocab, const llama_tokens & tokens) {
     return tokens_to_str(vocab, tokens.begin(), tokens.end());
 }
 
 // format incomplete utf-8 multibyte character for output
+// 函数: tokens_to_output_formatted_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_output_formatted_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_output_formatted_string(const llama_context * ctx, const llama_token token) {
     std::string out = token == LLAMA_TOKEN_NULL ? "" : common_token_to_piece(ctx, token);
 
@@ -1800,6 +2047,14 @@ std::string tokens_to_output_formatted_string(const llama_context * ctx, const l
 
 // format server-sent event (SSE), return the formatted string to send
 // note: if data is a json array, it will be sent as multiple events, one per item
+// 函数: format_oai_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_oai_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_oai_sse(const json & data) {
     std::ostringstream ss;
     auto send_single = [&ss](const json & data) {
@@ -1819,6 +2074,14 @@ std::string format_oai_sse(const json & data) {
     return ss.str();
 }
 
+// 函数: format_oai_resp_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_oai_resp_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_oai_resp_sse(const json & data) {
     std::ostringstream ss;
     auto send_single = [&ss](const json & event_obj) {
@@ -1837,6 +2100,14 @@ std::string format_oai_resp_sse(const json & data) {
     return ss.str();
 }
 
+// 函数: format_anthropic_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_anthropic_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_anthropic_sse(const json & data) {
     std::ostringstream ss;
 
@@ -1860,6 +2131,14 @@ std::string format_anthropic_sse(const json & data) {
     return ss.str();
 }
 
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool is_valid_utf8(const std::string & str) {
     const unsigned char* bytes = reinterpret_cast<const unsigned char*>(str.data());
     const unsigned char* end = bytes + str.length();

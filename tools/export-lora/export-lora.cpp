@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: export-lora.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/export-lora/export-lora.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "ggml.h"
 #include "ggml-alloc.h"
 #include "gguf.h"
@@ -12,22 +19,118 @@
 
 static bool g_verbose = false;
 
+// 类: tensor_transformation
+// 描述: tensor_transformation类提供相关功能
+// 用途: 用于处理tensor_transformation相关的操作
+// 类: tensor_transformation
+// 描述: tensor_transformation类提供相关功能
+// 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
+    // 结构体: tensor_transformation
+    // 描述: tensor_transformation结构体提供相关功能
+    // 用途: 用于处理tensor_transformation相关的操作
 struct tensor_transformation {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * in;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * out;
     bool is_copy;
 };
 
+// 函数: get_kv_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_kv_str
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_kv_str(struct gguf_context * ctx_gguf, const std::string & key){
     int id = gguf_find_key(ctx_gguf, key.c_str());
     return id < 0 ? "" : std::string(gguf_get_val_str(ctx_gguf, id));
 }
 
+// 函数: get_kv_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_kv_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static float get_kv_f32(struct gguf_context * ctx_gguf, const std::string & key) {
     int id = gguf_find_key(ctx_gguf, key.c_str());
     return id < 0 ? 0.0f : gguf_get_val_f32(ctx_gguf, id);
 }
 
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void zeros(std::ofstream & file, size_t n) {
     char zero = 0;
     for (size_t i = 0; i < n; ++i) {
@@ -35,6 +138,14 @@ static void zeros(std::ofstream & file, size_t n) {
     }
 }
 
+// 函数: ggml_ne_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_ne_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string ggml_ne_string(const ggml_tensor * t) {
     std::string str;
     for (int i = 0; i < GGML_MAX_DIMS; ++i) {
@@ -47,10 +158,58 @@ static std::string ggml_ne_string(const ggml_tensor * t) {
 }
 
 static struct gguf_context * load_gguf(std::string & fname, struct ggml_context ** ctx_ggml) {
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params params = {
         /*.no_alloc = */ true,
         /*.ctx      = */ ctx_ggml,
     };
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = gguf_init_from_file(fname.c_str(), params);
     if (!ctx_gguf) {
         throw std::runtime_error("failed to load input GGUF from " + fname);
@@ -58,8 +217,80 @@ static struct gguf_context * load_gguf(std::string & fname, struct ggml_context 
     return ctx_gguf;
 }
 
+// 类: file_input
+// 描述: file_input类提供相关功能
+// 用途: 用于处理file_input相关的操作
+// 类: file_input
+// 描述: file_input类提供相关功能
+// 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
+    // 结构体: file_input
+    // 描述: file_input结构体提供相关功能
+    // 用途: 用于处理file_input相关的操作
 struct file_input {
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_meta = nullptr;
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = nullptr;
     std::ifstream f_in;
     std::map<std::string, ggml_tensor *> tensors;
@@ -76,6 +307,14 @@ struct file_input {
         printf("%s: loaded gguf from %s\n", __func__, fname.c_str());
 
         for (ggml_tensor * cur = ggml_get_first_tensor(ctx_meta); cur; cur = ggml_get_next_tensor(ctx_meta, cur)) {
+            // 函数: name
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: name
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::string name(cur->name);
             tensors[name] = cur;
             if (g_verbose) {
@@ -84,6 +323,14 @@ struct file_input {
         }
     }
 
+    // 函数: get_tensor
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_tensor * get_tensor(std::string name) {
         if (tensors.find(name) == tensors.end()) {
             return nullptr;
@@ -91,6 +338,14 @@ struct file_input {
         return tensors[name];
     }
 
+    // 函数: read_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_tensor_data
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_tensor_data(std::string name, std::vector<uint8_t> & buf) {
         if (tensors.find(name) == tensors.end()) {
             throw std::runtime_error("cannot find tensor with name: " + name);
@@ -111,6 +366,30 @@ struct file_input {
     }
 };
 
+// 类: lora_merge_ctx
+// 描述: lora_merge_ctx类提供相关功能
+// 用途: 用于处理lora_merge_ctx相关的操作
+// 类: lora_merge_ctx
+// 描述: lora_merge_ctx类提供相关功能
+// 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
+    // 结构体: lora_merge_ctx
+    // 描述: lora_merge_ctx结构体提供相关功能
+    // 用途: 用于处理lora_merge_ctx相关的操作
 struct lora_merge_ctx {
     // input base model + adapters
     file_input base_model;
@@ -123,7 +402,55 @@ struct lora_merge_ctx {
     std::vector<uint8_t> read_buf;
 
     // output file
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_out;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_out_ggml;
     std::ofstream fout;
 
@@ -147,6 +474,30 @@ struct lora_merge_ctx {
         }
 
         ctx_out = gguf_init_empty();
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size   =*/ static_cast<size_t>(gguf_get_n_tensors(base_model.ctx_gguf)*ggml_tensor_overhead()),
             /*.mem_buffer =*/ NULL,
@@ -157,6 +508,14 @@ struct lora_merge_ctx {
         allocr = ggml_gallocr_new(ggml_backend_get_default_buffer_type(backend));
     }
 
+    // 函数: check_metadata_lora
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_metadata_lora
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void check_metadata_lora(file_input * adapter) {
         auto general_type = get_kv_str(adapter->ctx_gguf, "general.type");
         if (general_type != "adapter") {
@@ -175,6 +534,14 @@ struct lora_merge_ctx {
         }
     }
 
+    // 函数: get_out_tensor_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_out_tensor_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml_type get_out_tensor_type(struct ggml_tensor * t) {
         if (t->type == GGML_TYPE_F32) {
             return GGML_TYPE_F32;
@@ -183,6 +550,14 @@ struct lora_merge_ctx {
         }
     }
 
+    // 函数: run_merge
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_merge
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void run_merge() {
         // prepare metadata
         gguf_set_kv(ctx_out, base_model.ctx_gguf);
@@ -217,6 +592,30 @@ struct lora_merge_ctx {
             auto base_tensor = it.second;
             if (!t_a && !t_b) {
                 // only copy
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * cpy_tensor = ggml_dup_tensor(ctx_out_ggml, base_tensor);
                 ggml_set_name(cpy_tensor, base_tensor->name);
                 trans.push_back({
@@ -227,6 +626,30 @@ struct lora_merge_ctx {
                 gguf_add_tensor(ctx_out, cpy_tensor);
             } else if (t_a && t_b) {
                 // need merging
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * out_tensor = ggml_new_tensor(
                     ctx_out_ggml, get_out_tensor_type(base_tensor), GGML_MAX_DIMS, base_tensor->ne);
                 ggml_set_name(out_tensor, base_tensor->name);
@@ -270,6 +693,14 @@ struct lora_merge_ctx {
         printf("%s : wrote %zu tensors to output file\n", __func__, trans.size());
     }
 
+    // 函数: copy_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: copy_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void copy_tensor(struct ggml_tensor * base) {
         printf("%s :  %s [%s]\n", __func__, base->name, ggml_ne_string(base).c_str());
         size_t len = ggml_nbytes(base);
@@ -278,6 +709,14 @@ struct lora_merge_ctx {
         zeros(fout, GGML_PAD(len, GGUF_DEFAULT_ALIGNMENT) - len);
     }
 
+    // 函数: merge_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: merge_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void merge_tensor(struct ggml_tensor * base, struct ggml_tensor * out) {
         std::string name_base(base->name);
         std::string name_lora_a = name_base + ".lora_a";
@@ -288,14 +727,86 @@ struct lora_merge_ctx {
         // context for input tensor
         std::vector<struct ggml_tensor *> inp_a(adapters.size());
         std::vector<struct ggml_tensor *> inp_b(adapters.size());
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params {
             /*.mem_size   =*/ ggml_tensor_overhead()*(2+adapters.size()*2),
             /*.mem_buffer =*/ NULL,
             /*.no_alloc   =*/ true,
         };
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx = ggml_init(params);
 
         // alloc tensors
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * inp_base = ggml_new_tensor(ctx, GGML_TYPE_F32, GGML_MAX_DIMS, base->ne);
         for (size_t i = 0; i < adapters.size(); ++i) {
             auto t_a = adapters[i]->get_tensor(name_lora_a);
@@ -332,19 +843,139 @@ struct lora_merge_ctx {
         }
 
         // build graph
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph * gf;
         {
             static size_t buf_size = ggml_tensor_overhead()*GGML_DEFAULT_GRAPH_SIZE + ggml_graph_overhead();
             static std::vector<uint8_t> buf(buf_size);
+            // 类: ggml_init_params
+            // 描述: ggml_init_params类提供相关功能
+            // 用途: 用于处理ggml_init_params相关的操作
+            // 类: ggml_init_params
+            // 描述: ggml_init_params类提供相关功能
+            // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
             struct ggml_init_params params0 = {
                 /*.mem_size   =*/ buf_size,
                 /*.mem_buffer =*/ buf.data(),
                 /*.no_alloc   =*/ true,
             };
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx0 = ggml_init(params0);
             gf = ggml_new_graph(ctx0);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * cur = inp_base;
             for (size_t i = 0; i < adapters.size(); ++i) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * delta;
                 bool is_tok_embd = string_starts_with(name_base, "token_embd");
                 if (is_tok_embd) {
@@ -403,6 +1034,14 @@ struct lora_merge_ctx {
     }
 };
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int, char ** argv) {
     printf("\nexample usage:\n");
     printf("\n  %s -m base-model.gguf --lora lora-file.gguf -o merged-model-f16.gguf\n", argv[0]);
@@ -410,6 +1049,14 @@ static void print_usage(int, char ** argv) {
     printf("\n");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 

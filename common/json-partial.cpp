@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: json-partial.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/json-partial.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "json-partial.h"
 
 #include "log.h"
@@ -15,6 +22,24 @@ enum common_json_stack_element_type {
     COMMON_JSON_STACK_ELEMENT_ARRAY,
 };
 
+// 类: common_json_stack_element
+// 描述: common_json_stack_element类提供相关功能
+// 用途: 用于处理common_json_stack_element相关的操作
+// 类: common_json_stack_element
+// 描述: common_json_stack_element类提供相关功能
+// 用途: 用于处理common_json_stack_element相关的操作
+    // 结构体: common_json_stack_element
+    // 描述: common_json_stack_element结构体提供相关功能
+    // 用途: 用于处理common_json_stack_element相关的操作
+    // 结构体: common_json_stack_element
+    // 描述: common_json_stack_element结构体提供相关功能
+    // 用途: 用于处理common_json_stack_element相关的操作
+    // 结构体: common_json_stack_element
+    // 描述: common_json_stack_element结构体提供相关功能
+    // 用途: 用于处理common_json_stack_element相关的操作
+    // 结构体: common_json_stack_element
+    // 描述: common_json_stack_element结构体提供相关功能
+    // 用途: 用于处理common_json_stack_element相关的操作
 struct common_json_stack_element {
     common_json_stack_element_type type;
     std::string key;
@@ -27,6 +52,14 @@ bool common_json_parse(
 {
     std::string::const_iterator it = input.begin();
     const auto end = input.end();
+    // 函数: common_json_parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_json_parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return common_json_parse(it, end, healing_marker, out);
 }
 
@@ -37,6 +70,24 @@ bool common_json_parse(
     common_json & out)
 {
     // // https://json.nlohmann.me/features/parsing/sax_interface/
+    // 类: json_error_locator
+    // 描述: json_error_locator类提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
+    // 类: json_error_locator
+    // 描述: json_error_locator类提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
+    // 结构体: json_error_locator
+    // 描述: json_error_locator结构体提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
+    // 结构体: json_error_locator
+    // 描述: json_error_locator结构体提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
+    // 结构体: json_error_locator
+    // 描述: json_error_locator结构体提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
+    // 结构体: json_error_locator
+    // 描述: json_error_locator结构体提供相关功能
+    // 用途: 用于处理json_error_locator相关的操作
     struct json_error_locator : public nlohmann::json_sax<json> {
         std::size_t position;
         bool found_error;
@@ -46,6 +97,14 @@ bool common_json_parse(
 
         json_error_locator() : position(0), found_error(false) {}
 
+        // 函数: parse_error
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: parse_error
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool parse_error(std::size_t position, const std::string & last_token, const json::exception & ex) override { // NOLINT
             this->position = position - 1;
             this->found_error = true;
@@ -53,57 +112,161 @@ bool common_json_parse(
             this->exception_message = ex.what();
             return false;
         }
+        // 函数: close_value
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: close_value
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void close_value() {
             if (!stack.empty() && (stack.back().type == COMMON_JSON_STACK_ELEMENT_KEY)) {
                 stack.pop_back();
             }
         }
+        // 函数: null
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: null
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool null() override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: boolean
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: boolean
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool boolean(bool) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: number_integer
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: number_integer
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool number_integer(number_integer_t) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: number_unsigned
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: number_unsigned
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool number_unsigned(number_unsigned_t) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: number_float
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: number_float
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool number_float(number_float_t, const string_t &) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: string
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: string
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool string(string_t &) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: binary
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: binary
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool binary(binary_t &) override { // NOLINT
             close_value();
             return true;
         }
+        // 函数: start_object
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: start_object
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool start_object(std::size_t) override { // NOLINT
             stack.push_back({COMMON_JSON_STACK_ELEMENT_OBJECT, ""});
             return true;
         }
+        // 函数: end_object
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: end_object
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool end_object() override {
             GGML_ASSERT(!stack.empty() && stack.back().type == COMMON_JSON_STACK_ELEMENT_OBJECT);
             stack.pop_back();
             close_value();
             return true;
         }
+        // 函数: key
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: key
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool key(string_t & key) override { // NOLINT
             stack.push_back({COMMON_JSON_STACK_ELEMENT_KEY, key});
             return true;
         }
+        // 函数: start_array
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: start_array
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool start_array(std::size_t) override { // NOLINT
             stack.push_back({COMMON_JSON_STACK_ELEMENT_ARRAY, ""});
             return true;
         }
+        // 函数: end_array
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: end_array
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool end_array() override {
             GGML_ASSERT(!stack.empty() && stack.back().type == COMMON_JSON_STACK_ELEMENT_ARRAY);
             stack.pop_back();
@@ -139,6 +302,14 @@ bool common_json_parse(
             }
         };
         if (!healing_marker.empty() && !err_loc.stack.empty()) {
+            // 函数: str
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: str
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::string str(it, temptative_end);
             auto last_non_sp_pos = str.find_last_not_of(" \n\r\t");
             if (last_non_sp_pos == std::string::npos) {
@@ -170,6 +341,14 @@ bool common_json_parse(
             }
 
             // Matches a potentially partial unicode escape sequence, e.g. \u, \uX, \uXX, \uXXX, \uXXXX
+            // 函数: partial_unicode_regex
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: partial_unicode_regex
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             static const std::regex partial_unicode_regex(R"(\\u(?:[0-9a-fA-F](?:[0-9a-fA-F](?:[0-9a-fA-F](?:[0-9a-fA-F])?)?)?)?$)");
 
             auto is_high_surrogate = [&](const std::string & s) {
@@ -299,6 +478,14 @@ bool common_json_parse(
         }
         // handle unclosed top-level primitive
         if (err_loc.position != 0 && !healing_marker.empty() && err_loc.stack.empty()) {
+            // 函数: str
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: str
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::string str(it, temptative_end);
             const auto & magic_seed = out.healing_marker.marker = healing_marker;
             if (can_parse(str + "\"")) {

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-adapter.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-adapter.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-adapter.h"
 
 #include "llama-impl.h"
@@ -136,6 +143,14 @@ bool llama_adapter_cvec::apply(
 // lora
 
 llama_adapter_lora_weight * llama_adapter_lora::get_weight(ggml_tensor * w) {
+    // 函数: name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const std::string name(w->name);
 
     const auto pos = ab_map.find(name);
@@ -146,6 +161,14 @@ llama_adapter_lora_weight * llama_adapter_lora::get_weight(ggml_tensor * w) {
     return nullptr;
 }
 
+// 函数: llama_adapter_lora_init_impl
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_lora_init_impl
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_adapter_lora_init_impl(llama_model & model, const char * path_lora, llama_adapter_lora & adapter) {
     LLAMA_LOG_INFO("%s: loading lora adapter from '%s' ...\n", __func__, path_lora);
 
@@ -417,6 +440,14 @@ static void llama_adapter_lora_init_impl(llama_model & model, const char * path_
     LLAMA_LOG_INFO("%s: loaded %zu tensors from lora file\n", __func__, adapter.ab_map.size()*2);
 }
 
+// 函数: llama_adapter_lora_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_lora_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 llama_adapter_lora * llama_adapter_lora_init(llama_model * model, const char * path_lora) {
     llama_adapter_lora * adapter = new llama_adapter_lora();
 
@@ -432,6 +463,14 @@ llama_adapter_lora * llama_adapter_lora_init(llama_model * model, const char * p
     return nullptr;
 }
 
+// 函数: llama_adapter_meta_val_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_meta_val_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_adapter_meta_val_str(const llama_adapter_lora * adapter, const char * key, char * buf, size_t buf_size) {
     const auto & it = adapter->gguf_kv.find(key);
     if (it == adapter->gguf_kv.end()) {
@@ -443,10 +482,26 @@ int32_t llama_adapter_meta_val_str(const llama_adapter_lora * adapter, const cha
     return snprintf(buf, buf_size, "%s", it->second.c_str());
 }
 
+// 函数: llama_adapter_meta_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_meta_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_adapter_meta_count(const llama_adapter_lora * adapter) {
     return (int)adapter->gguf_kv.size();
 }
 
+// 函数: llama_adapter_meta_key_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_meta_key_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_adapter_meta_key_by_index(const llama_adapter_lora * adapter, int i, char * buf, size_t buf_size) {
     if (i < 0 || i >= (int)adapter->gguf_kv.size()) {
         if (buf_size > 0) {
@@ -459,6 +514,14 @@ int32_t llama_adapter_meta_key_by_index(const llama_adapter_lora * adapter, int 
     return snprintf(buf, buf_size, "%s", it->first.c_str());
 }
 
+// 函数: llama_adapter_meta_val_str_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_meta_val_str_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_adapter_meta_val_str_by_index(const llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size) {
     if (i < 0 || i >= (int)adapter->gguf_kv.size()) {
         if (buf_size > 0) {
@@ -471,10 +534,26 @@ int32_t llama_adapter_meta_val_str_by_index(const llama_adapter_lora * adapter, 
     return snprintf(buf, buf_size, "%s", it->second.c_str());
 }
 
+// 函数: llama_adapter_lora_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_lora_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_adapter_lora_free(llama_adapter_lora *) {
     // deprecated: adapters are freed by llama_model's destructor
 }
 
+// 函数: llama_adapter_get_alora_n_invocation_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_get_alora_n_invocation_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint64_t llama_adapter_get_alora_n_invocation_tokens(const struct llama_adapter_lora * adapter) {
     if (!adapter) {
         return 0;
@@ -482,6 +561,14 @@ uint64_t llama_adapter_get_alora_n_invocation_tokens(const struct llama_adapter_
     return adapter->alora_invocation_tokens.size();
 }
 
+// 函数: llama_adapter_get_alora_invocation_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_adapter_get_alora_invocation_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const llama_token * llama_adapter_get_alora_invocation_tokens(const llama_adapter_lora * adapter) {
     GGML_ASSERT(adapter);
     return adapter->alora_invocation_tokens.data();

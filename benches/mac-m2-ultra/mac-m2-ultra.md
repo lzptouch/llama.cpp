@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mac-m2-ultra.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/benches/mac-m2-ultra/mac-m2-ultra.md
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 ## System info
 
 ```bash

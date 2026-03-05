@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ops.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/ops.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ops.h"
 
 #include "ggml-cpu.h"
@@ -88,6 +95,14 @@ static void ggml_compute_forward_dup_flt(
     // case: dst tensor is contiguous
     if (ggml_is_contiguous(dst)) {
         if (nb00 == sizeof(src_t)) {
+            // 函数: constexpr
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: constexpr
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             if constexpr (std::is_same_v<dst_t, src_t>) {
                 // same type
                 size_t id = 0;
@@ -156,6 +171,14 @@ static void ggml_compute_forward_dup_flt(
     int64_t i12 = 0;
     int64_t i13 = 0;
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (std::is_same_v<dst_t, src_t>) {
         for (int64_t i03 = 0; i03 < ne03; i03++) {
             for (int64_t i02 = 0; i02 < ne02; i02++) {
@@ -538,28 +561,92 @@ void ggml_compute_forward_dup(
         case GGML_TYPE_F16:
             {
                 /**/ if (dst->type == GGML_TYPE_F16)  ggml_compute_forward_dup_flt<ggml_fp16_t, ggml_fp16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_BF16) ggml_compute_forward_dup_flt<ggml_fp16_t, ggml_bf16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_F32)  ggml_compute_forward_dup_flt<ggml_fp16_t, float      >(params, dst);
                 else ggml_compute_forward_dup_to_q<ggml_fp16_t>(params, dst);
             } break;
         case GGML_TYPE_BF16:
             {
                 /**/ if (dst->type == GGML_TYPE_F16)  ggml_compute_forward_dup_flt<ggml_bf16_t, ggml_fp16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_BF16) ggml_compute_forward_dup_flt<ggml_bf16_t, ggml_bf16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_F32)  ggml_compute_forward_dup_flt<ggml_bf16_t, float      >(params, dst);
                 else ggml_compute_forward_dup_to_q<ggml_bf16_t>(params, dst);
             } break;
         case GGML_TYPE_F32:
             {
                 /**/ if (dst->type == GGML_TYPE_F16)  ggml_compute_forward_dup_flt<float, ggml_fp16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_BF16) ggml_compute_forward_dup_flt<float, ggml_bf16_t>(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_F32)  ggml_compute_forward_dup_flt<float, float      >(params, dst);
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (dst->type == GGML_TYPE_I32)  ggml_compute_forward_dup_flt<float, int32_t    >(params, dst);
                 else ggml_compute_forward_dup_to_q<float>(params, dst);
             } break;
         case GGML_TYPE_I32:
             {
                 if (dst->type == GGML_TYPE_F32) ggml_compute_forward_dup_flt<int32_t, float>(params, dst);
+                // 函数: GGML_ABORT
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: GGML_ABORT
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else GGML_ABORT("not implemented");
             } break;
         default:
@@ -1093,6 +1180,14 @@ void ggml_compute_forward_add1(
                 if (src1->type == GGML_TYPE_F16) {
                     ggml_compute_forward_add1_f16_f16(params, dst);
                 }
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (src1->type == GGML_TYPE_F32) {
                     ggml_compute_forward_add1_f16_f32(params, dst);
                 }
@@ -1105,6 +1200,14 @@ void ggml_compute_forward_add1(
                 if (src1->type == GGML_TYPE_BF16) {
                     ggml_compute_forward_add1_bf16_bf16(params, dst);
                 }
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (src1->type == GGML_TYPE_F32) {
                     ggml_compute_forward_add1_bf16_f32(params, dst);
                 }
@@ -2210,6 +2313,14 @@ static void ggml_compute_forward_gelu(
 
 // ggml_compute_fill
 
+// 函数: ggml_compute_forward_fill_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_fill_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_compute_forward_fill_f32(const ggml_compute_params * params, ggml_tensor * dst) {
     const float c = ggml_get_op_params_f32(dst, 0);
 
@@ -2229,12 +2340,28 @@ static void ggml_compute_forward_fill_f32(const ggml_compute_params * params, gg
     }
 }
 
+// 函数: ggml_compute_forward_fill
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_fill
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_fill(const ggml_compute_params * params, ggml_tensor * dst) {
     ggml_compute_forward_fill_f32(params, dst);
 }
 
 // ggml_compute_tri
 
+// 函数: ggml_compute_forward_tri_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_tri_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_compute_forward_tri_f32(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -2270,6 +2397,14 @@ static void ggml_compute_forward_tri_f32(const ggml_compute_params * params, ggm
     }
 }
 
+// 函数: ggml_compute_forward_tri
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_tri
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_tri(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -5586,6 +5721,14 @@ void ggml_compute_forward_clamp(
 
 // ggml_compute_forward_rope
 
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float rope_yarn_ramp(const float low, const float high, const int i0) {
     const float y = (i0 / 2 - low) / MAX(0.001f, high - low);
     return 1 - MIN(1, MAX(0, y));
@@ -5650,12 +5793,36 @@ static void ggml_mrope_cache_init(
             if (sector == 0) {
                 theta_t = theta_base_t;
             }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (sector == sections[0]) {
                 theta_h = theta_base_h;;
             }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (sector == sec_w) {
                 theta_w = theta_base_w;
             }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (sector == sec_e) {
                 theta_e = theta_base_e;
             }
@@ -5676,9 +5843,25 @@ static void ggml_mrope_cache_init(
             if (sector >= sections[0] && sector < sec_w) {
                 theta = theta_h;
             }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (sector >= sec_w && sector < sec_w + sections[2]) {
                 theta = theta_w;
             }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (sector >= sec_w + sections[2]) {
                 theta = theta_e;
             }
@@ -5698,6 +5881,14 @@ static void ggml_mrope_cache_init(
 
 
 template<typename T>
+// 函数: rotate_pairs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rotate_pairs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void rotate_pairs(const int64_t n, const int64_t n_offset, const float * cache, const T * src_data, T * dst_data, const int scale = 2) {
   for (int64_t i0 = 0; i0 < n; i0 += 2) {
     const int64_t ic = i0/scale; // hack for GGML_ROPE_TYPE_NORMAL, where we need ic = i0; for all other cases, ic = i0/2
@@ -6578,6 +6769,24 @@ void ggml_compute_forward_im2col_3d(
 static void ggml_call_mul_mat(ggml_type type, const ggml_compute_params * params, int64_t m, int64_t n, int64_t k,
                               void * a, void * b, float * c) {
     const ggml_type_traits * traits = ggml_get_type_traits(type);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor src1 = {};
     src1.type  = type;
     src1.ne[0] = k;
@@ -6590,6 +6799,24 @@ static void ggml_call_mul_mat(ggml_type type, const ggml_compute_params * params
     src1.nb[3] = src1.nb[2];
     src1.data  = a;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor src0 = {};
     src0.type  = type;
     src0.ne[0] = k;
@@ -6602,6 +6829,24 @@ static void ggml_call_mul_mat(ggml_type type, const ggml_compute_params * params
     src0.nb[3] = src0.nb[2];
     src0.data  = b;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor dst = {};
     dst.ne[0] = n;
     dst.ne[1] = m;
@@ -6618,6 +6863,14 @@ static void ggml_call_mul_mat(ggml_type type, const ggml_compute_params * params
     ggml_compute_forward_mul_mat(params, &dst);
 }
 
+// 函数: ggml_wrap_around
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_wrap_around
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int64_t ggml_wrap_around(int64_t coord, int64_t size) {
     return (coord  + size) % size; // adding size avoids negative number weirdness
 }
@@ -7000,6 +7253,24 @@ void ggml_compute_forward_conv_transpose_2d(
 
 // ggml_compute_forward_conv_2d_dw
 
+// 类: ggml_conv_2d_dw_params
+// 描述: ggml_conv_2d_dw_params类提供相关功能
+// 用途: 用于处理ggml_conv_2d_dw_params相关的操作
+// 类: ggml_conv_2d_dw_params
+// 描述: ggml_conv_2d_dw_params类提供相关功能
+// 用途: 用于处理ggml_conv_2d_dw_params相关的操作
+    // 结构体: ggml_conv_2d_dw_params
+    // 描述: ggml_conv_2d_dw_params结构体提供相关功能
+    // 用途: 用于处理ggml_conv_2d_dw_params相关的操作
+    // 结构体: ggml_conv_2d_dw_params
+    // 描述: ggml_conv_2d_dw_params结构体提供相关功能
+    // 用途: 用于处理ggml_conv_2d_dw_params相关的操作
+    // 结构体: ggml_conv_2d_dw_params
+    // 描述: ggml_conv_2d_dw_params结构体提供相关功能
+    // 用途: 用于处理ggml_conv_2d_dw_params相关的操作
+    // 结构体: ggml_conv_2d_dw_params
+    // 描述: ggml_conv_2d_dw_params结构体提供相关功能
+    // 用途: 用于处理ggml_conv_2d_dw_params相关的操作
 struct ggml_conv_2d_dw_params {
     int64_t channels;
     int64_t batch;
@@ -7718,6 +7989,14 @@ static void ggml_compute_forward_pad_f32(
             for (int64_t i0 = 0; i0 < ne0; ++i0) {
                 for (int64_t i3 = 0; i3 < ne3; ++i3) {
                     // circular means wrap around on a torus, so x and y loop around
+                    // 函数: constexpr
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: constexpr
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     if constexpr (circular_t) {
                         const int64_t dst_idx = i3*(ne0*ne1*ne2) + i2*(ne0*ne1) + i1*ne0 + i0;
                         const int64_t src_i0 = ggml_wrap_around(i0 - lp0, ne00);
@@ -7811,6 +8090,14 @@ void ggml_compute_forward_pad_reflect_1d(
 
 // ggml_compute_forward_roll
 
+// 函数: ggml_wrap_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_wrap_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int64_t ggml_wrap_index(int64_t i, int64_t ne) {
     if (i < 0) {
         return i + ne;
@@ -7970,8 +8257,34 @@ void ggml_compute_forward_timestep_embedding(
 // ggml_compute_forward_argsort
 
 template<enum ggml_sort_order order>
+// 类: cmp_argsort
+// 描述: cmp_argsort类提供相关功能
+// 用途: 用于处理cmp_argsort相关的操作
+// 类: cmp_argsort
+// 描述: cmp_argsort类提供相关功能
+// 用途: 用于处理cmp_argsort相关的操作
+    // 结构体: cmp_argsort
+    // 描述: cmp_argsort结构体提供相关功能
+    // 用途: 用于处理cmp_argsort相关的操作
+    // 结构体: cmp_argsort
+    // 描述: cmp_argsort结构体提供相关功能
+    // 用途: 用于处理cmp_argsort相关的操作
+    // 结构体: cmp_argsort
+    // 描述: cmp_argsort结构体提供相关功能
+    // 用途: 用于处理cmp_argsort相关的操作
+    // 结构体: cmp_argsort
+    // 描述: cmp_argsort结构体提供相关功能
+    // 用途: 用于处理cmp_argsort相关的操作
 struct cmp_argsort {
     const float * data;
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool operator()(int32_t a, int32_t b) const {
         if constexpr (order == GGML_SORT_ORDER_ASC) {
             return data[a] < data[b];
@@ -8042,8 +8355,34 @@ void ggml_compute_forward_argsort(
 
 // ggml_compute_forward_top_k
 
+// 类: cmp_top_k
+// 描述: cmp_top_k类提供相关功能
+// 用途: 用于处理cmp_top_k相关的操作
+// 类: cmp_top_k
+// 描述: cmp_top_k类提供相关功能
+// 用途: 用于处理cmp_top_k相关的操作
+    // 结构体: cmp_top_k
+    // 描述: cmp_top_k结构体提供相关功能
+    // 用途: 用于处理cmp_top_k相关的操作
+    // 结构体: cmp_top_k
+    // 描述: cmp_top_k结构体提供相关功能
+    // 用途: 用于处理cmp_top_k相关的操作
+    // 结构体: cmp_top_k
+    // 描述: cmp_top_k结构体提供相关功能
+    // 用途: 用于处理cmp_top_k相关的操作
+    // 结构体: cmp_top_k
+    // 描述: cmp_top_k结构体提供相关功能
+    // 用途: 用于处理cmp_top_k相关的操作
 struct cmp_top_k {
     const float * data;
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool operator()(int32_t a, int32_t b) const {
         return data[a] > data[b];
     }
@@ -10305,6 +10644,14 @@ void ggml_compute_forward_gla(
     }
 }
 
+// 函数: ggml_compute_forward_solve_tri_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_solve_tri_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_compute_forward_solve_tri_f32(const struct ggml_compute_params * params, struct ggml_tensor * dst) {
     const struct ggml_tensor * src0 = dst->src[0];  // A (lower triangular)
     const struct ggml_tensor * src1 = dst->src[1];  // B (RHS)
@@ -10364,6 +10711,14 @@ static void ggml_compute_forward_solve_tri_f32(const struct ggml_compute_params 
     }
 }
 
+// 函数: ggml_compute_forward_solve_tri
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_solve_tri
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_solve_tri(const struct ggml_compute_params * params, struct ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -10604,6 +10959,24 @@ void ggml_compute_forward_map_custom1(
 
     const ggml_tensor * a = dst->src[0];
 
+    // 类: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 类: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
     struct ggml_map_custom1_op_params p;
     memcpy(&p, dst->op_params, sizeof(p));
 
@@ -10619,6 +10992,24 @@ void ggml_compute_forward_map_custom2(
     const ggml_tensor * a = dst->src[0];
     const ggml_tensor * b = dst->src[1];
 
+    // 类: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 类: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
     struct ggml_map_custom2_op_params p;
     memcpy(&p, dst->op_params, sizeof(p));
 
@@ -10635,6 +11026,24 @@ void ggml_compute_forward_map_custom3(
     const ggml_tensor * b = dst->src[1];
     const ggml_tensor * c = dst->src[2];
 
+    // 类: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 类: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params类提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
     struct ggml_map_custom3_op_params p;
     memcpy(&p, dst->op_params, sizeof(p));
 
@@ -10645,8 +11054,44 @@ void ggml_compute_forward_map_custom3(
 
 void ggml_compute_forward_custom(
     const struct ggml_compute_params * params,
+          // 类: ggml_tensor
+          // 描述: ggml_tensor类提供相关功能
+          // 用途: 用于处理ggml_tensor相关的操作
+          // 类: ggml_tensor
+          // 描述: ggml_tensor类提供相关功能
+          // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
           struct ggml_tensor * dst) {
 
+    // 类: ggml_custom_op_params
+    // 描述: ggml_custom_op_params类提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 类: ggml_custom_op_params
+    // 描述: ggml_custom_op_params类提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
     struct ggml_custom_op_params p;
     memcpy(&p, dst->op_params, sizeof(p));
 
@@ -10917,6 +11362,14 @@ void ggml_compute_forward_opt_step_adamw(
     }
 }
 
+// 函数: ggml_compute_forward_opt_step_sgd_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_opt_step_sgd_f32
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_compute_forward_opt_step_sgd_f32(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0       = dst->src[0];
     const ggml_tensor * src0_grad  = dst->src[1];
@@ -10961,6 +11414,14 @@ static void ggml_compute_forward_opt_step_sgd_f32(const ggml_compute_params * pa
     }
 }
 
+// 函数: ggml_compute_forward_opt_step_sgd
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_opt_step_sgd
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_opt_step_sgd(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 

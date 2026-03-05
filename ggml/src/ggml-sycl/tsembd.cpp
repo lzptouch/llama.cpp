@@ -56,6 +56,14 @@ static void timestep_embedding_f32_sycl(
         });
 }
 
+// 函数: ggml_sycl_op_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_timestep_embedding(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     const ggml_tensor *  src0   = dst->src[0];

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mtmd-audio.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/mtmd-audio.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "mtmd-audio.h"
 
 #define _USE_MATH_DEFINES // for M_PI
@@ -120,6 +127,14 @@ void mtmd_audio_cache::fill_mel_filterbank_matrix(int   n_mel,
 //   RealInput: true = input is real-valued (stride 1), avoids imaginary computations
 //              false = input is complex-valued (interleaved real/imag, stride 2)
 template <bool Inverse, bool RealInput>
+// 函数: dft_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dft_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dft_impl(const mtmd_audio_cache & cache, const float * in, int N, float * out) {
     const int n_sin_cos_vals = cache.sin_vals.size();
     const int sin_cos_step   = n_sin_cos_vals / N;
@@ -164,6 +179,14 @@ static void dft_impl(const mtmd_audio_cache & cache, const float * in, int N, fl
 //   RealInput: true = input is real-valued (stride 1)
 //              false = input is complex-valued (interleaved real/imag, stride 2)
 template <bool Inverse, bool RealInput>
+// 函数: fft_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fft_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fft_impl(const mtmd_audio_cache & cache, float * in, int N, float * out) {
     const int n_sin_cos_vals = cache.sin_vals.size();
 
@@ -244,15 +267,55 @@ static void fft_impl(const mtmd_audio_cache & cache, float * in, int N, float * 
 }
 
 // Forward FFT for real input (used by mel spectrogram)
+// 函数: fft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void fft(const mtmd_audio_cache & cache, float * in, int N, float * out) {
     fft_impl<false, true>(cache, in, N, out);
 }
 
 // Inverse FFT for complex input
+// 函数: ifft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ifft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ifft(const mtmd_audio_cache & cache, float * in, int N, float * out) {
     fft_impl<true, false>(cache, in, N, out);
 }
 
+// 类: filter_params
+// 描述: filter_params类提供相关功能
+// 用途: 用于处理filter_params相关的操作
+// 类: filter_params
+// 描述: filter_params类提供相关功能
+// 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
+    // 结构体: filter_params
+    // 描述: filter_params结构体提供相关功能
+    // 用途: 用于处理filter_params相关的操作
 struct filter_params {
     int32_t n_mel;
     int32_t n_fft_bins;
@@ -484,6 +547,14 @@ static bool log_mel_spectrogram(
 
     // Dump log_mel_spectrogram
     if (DEBUG) {
+        // 函数: outFile
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: outFile
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::ofstream outFile("log_mel_spectrogram.json");
         outFile << "[";
         for (uint64_t i = 0; i < out.data.size() - 1; i++) {

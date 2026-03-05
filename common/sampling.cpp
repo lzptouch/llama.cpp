@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: sampling.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/sampling.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "sampling.h"
 
 #include "common.h"
@@ -11,6 +18,24 @@
 // the ring buffer works similarly to std::deque, but with a fixed capacity
 // TODO: deduplicate with llama-impl.h
 template<typename T>
+// 类: ring_buffer
+// 描述: ring_buffer类提供相关功能
+// 用途: 用于处理ring_buffer相关的操作
+// 类: ring_buffer
+// 描述: ring_buffer类提供相关功能
+// 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
 struct ring_buffer {
     ring_buffer(size_t cap) : capacity(cap), data(cap) {}
 
@@ -42,6 +67,14 @@ struct ring_buffer {
         return data[pos];
     }
 
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push_back(const T & value) {
         if (sz == capacity) {
             // advance the start when buffer is full
@@ -53,6 +86,14 @@ struct ring_buffer {
         pos = (pos + 1) % capacity;
     }
 
+    // 函数: pop_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pop_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     T pop_front() {
         if (sz == 0) {
             throw std::runtime_error("ring buffer is empty");
@@ -79,6 +120,14 @@ struct ring_buffer {
         return result;
     }
 
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear() {
         // here only reset the status of the buffer
         sz = 0;
@@ -86,10 +135,26 @@ struct ring_buffer {
         pos = 0;
     }
 
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool empty() const {
         return sz == 0;
     }
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const {
         return sz;
     }
@@ -101,10 +166,64 @@ struct ring_buffer {
     std::vector<T> data;
 };
 
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
 struct common_sampler {
     common_params_sampling params;
 
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
     struct llama_sampler * grmr;
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
     struct llama_sampler * chain;
 
     ring_buffer<llama_token> prev;
@@ -113,12 +232,28 @@ struct common_sampler {
 
     llama_token_data_array cur_p;
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         prev.clear();
 
         llama_sampler_reset(chain);
     }
 
+    // 函数: set_logits
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_logits
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_logits(struct llama_context * ctx, int idx) {
         const float *       sampled_probs  = llama_get_sampled_probs_ith     (ctx, idx);
         const float *       sampled_logits = llama_get_sampled_logits_ith    (ctx, idx);
@@ -153,6 +288,14 @@ struct common_sampler {
         cur_p = { cur.data(), cur.size(), -1, false };
     }
 
+    // 函数: tm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_time_meas tm() {
         return common_time_meas(t_total_us, params.no_perf);
     }
@@ -176,6 +319,24 @@ std::string common_params_sampling::print() const {
     return std::string(result);
 }
 
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
 struct common_sampler * common_sampler_init(const struct llama_model * model, struct common_params_sampling & params) {
     const llama_vocab * vocab = llama_model_get_vocab(model);
 
@@ -347,6 +508,14 @@ struct common_sampler * common_sampler_init(const struct llama_model * model, st
     return result;
 }
 
+// 函数: common_sampler_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void common_sampler_free(struct common_sampler * gsmpl) {
     if (!gsmpl) {
         return;
@@ -358,6 +527,14 @@ void common_sampler_free(struct common_sampler * gsmpl) {
     delete gsmpl;
 }
 
+// 函数: common_sampler_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void common_sampler_accept(struct common_sampler * gsmpl, llama_token token, bool accept_grammar) {
     if (!gsmpl) {
         return;
@@ -374,6 +551,14 @@ void common_sampler_accept(struct common_sampler * gsmpl, llama_token token, boo
     gsmpl->prev.push_back(token);
 }
 
+// 函数: common_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void common_sampler_reset(struct common_sampler * gsmpl) {
     if (!gsmpl) {
         return;
@@ -382,6 +567,24 @@ void common_sampler_reset(struct common_sampler * gsmpl) {
     gsmpl->reset();
 }
 
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
 struct common_sampler * common_sampler_clone(common_sampler * gsmpl) {
     return new common_sampler {
         /* .params  = */ gsmpl->params,
@@ -393,6 +596,14 @@ struct common_sampler * common_sampler_clone(common_sampler * gsmpl) {
     };
 }
 
+// 函数: common_perf_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_perf_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_perf_print(const struct llama_context * ctx, const struct common_sampler * gsmpl) {
     // TODO: measure grammar performance
 
@@ -438,6 +649,24 @@ void common_perf_print(const struct llama_context * ctx, const struct common_sam
     }
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * common_sampler_get(const struct common_sampler * gsmpl) {
     if (!gsmpl) {
         return nullptr;
@@ -446,6 +675,14 @@ struct llama_sampler * common_sampler_get(const struct common_sampler * gsmpl) {
     return gsmpl->chain;
 }
 
+// 函数: common_sampler_sample
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_sample
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 llama_token common_sampler_sample(struct common_sampler * gsmpl, struct llama_context * ctx, int idx, bool grammar_first) {
     llama_synchronize(ctx);
 
@@ -554,15 +791,39 @@ std::vector<llama_token> common_sampler_sample_and_accept_n(struct common_sample
         idxs[i] = i;
     }
 
+    // 函数: common_sampler_sample_and_accept_n
+    // 描述: 采样: 从概率分布中采样
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_sampler_sample_and_accept_n
+    // 描述: 采样: 从概率分布中采样
+    // 参数: 无参数
+    // 返回: 无返回值
     return common_sampler_sample_and_accept_n(gsmpl, ctx, idxs, draft, grammar_first);
 }
 
+// 函数: common_sampler_get_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_get_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t common_sampler_get_seed(const struct common_sampler * gsmpl) {
     return llama_sampler_get_seed(gsmpl->chain);
 }
 
 // helpers
 
+// 函数: common_sampler_get_candidates
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_get_candidates
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_token_data_array * common_sampler_get_candidates(struct common_sampler * gsmpl, bool do_sort) {
     const auto tm = gsmpl->tm();
 
@@ -590,10 +851,26 @@ llama_token_data_array * common_sampler_get_candidates(struct common_sampler * g
     return res;
 }
 
+// 函数: common_sampler_last
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_last
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 llama_token common_sampler_last(const struct common_sampler * gsmpl) {
     return gsmpl->prev.rat(0);
 }
 
+// 函数: common_sampler_print
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_print
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_sampler_print(const struct common_sampler * gsmpl) {
     std::string result = "logits ";
 
@@ -606,6 +883,14 @@ std::string common_sampler_print(const struct common_sampler * gsmpl) {
     return result;
 }
 
+// 函数: common_sampler_prev_str
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_prev_str
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_sampler_prev_str(common_sampler * gsmpl, llama_context * ctx_main, int n) {
     n = std::min(n, (int) gsmpl->prev.size());
 
@@ -627,6 +912,14 @@ std::string common_sampler_prev_str(common_sampler * gsmpl, llama_context * ctx_
     return result;
 }
 
+// 函数: common_sampler_type_to_chr
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_type_to_chr
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 char common_sampler_type_to_chr(enum common_sampler_type cnstr) {
     switch (cnstr) {
         case COMMON_SAMPLER_TYPE_DRY:         return 'd';
@@ -644,6 +937,14 @@ char common_sampler_type_to_chr(enum common_sampler_type cnstr) {
     }
 }
 
+// 函数: common_sampler_type_to_str
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_sampler_type_to_str
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_sampler_type_to_str(enum common_sampler_type cnstr) {
     switch (cnstr) {
         case COMMON_SAMPLER_TYPE_DRY:         return "dry";

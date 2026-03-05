@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: norm.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/norm.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "norm.hpp"
 #include "ggml-sycl/common.hpp"
 #include "ggml-sycl/presets.hpp"
@@ -410,6 +417,14 @@ static void l2_norm_f32_sycl(const float* x, float* dst, const int ncols,
     }
 }
 
+// 函数: ggml_sycl_op_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_norm(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -434,6 +449,14 @@ void ggml_sycl_op_norm(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     norm_f32_sycl(src0_dd, dst_dd, ne00, ne01, ne02, ne03, s01, s02, s03, eps, main_stream, ctx.device);
 }
 
+// 函数: ggml_sycl_op_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_group_norm(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
 
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
@@ -453,6 +476,14 @@ void ggml_sycl_op_group_norm(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     group_norm_f32_sycl(src0_dd, dst_dd, num_groups, eps, group_size, dst->src[0]->ne[0] * dst->src[0]->ne[1] * dst->src[0]->ne[2], main_stream, ctx.device);
 }
 
+// 函数: ggml_sycl_op_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_rms_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
 
     const ggml_tensor * src0 = dst->src[0];
@@ -477,6 +508,14 @@ void ggml_sycl_op_rms_norm(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     rms_norm_f32_sycl(src0_dd, dst_dd, ne00, ne01, ne02, ne03, s01, s02, s03, eps, main_stream, ctx.device);
 }
 
+// 函数: ggml_sycl_op_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_rms_norm_back(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
 
@@ -633,6 +672,14 @@ void ggml_sycl_op_rms_norm_back(ggml_backend_sycl_context & ctx, ggml_tensor * d
 
 }
 
+// 函数: ggml_sycl_op_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_l2_norm(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
 
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);

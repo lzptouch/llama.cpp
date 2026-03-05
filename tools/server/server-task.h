@@ -45,6 +45,30 @@ enum stop_type {
     STOP_TYPE_LIMIT,
 };
 
+// 类: task_params
+// 描述: task_params类提供相关功能
+// 用途: 用于处理task_params相关的操作
+// 类: task_params
+// 描述: task_params类提供相关功能
+// 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
+    // 结构体: task_params
+    // 描述: task_params结构体提供相关功能
+    // 用途: 用于处理task_params相关的操作
 struct task_params {
     bool stream          = true;
     bool include_usage   = false;
@@ -71,7 +95,55 @@ struct task_params {
     bool timings_per_token   = false;
     bool post_sampling_probs = false;
 
+    // 类: common_params_sampling
+    // 描述: common_params_sampling类提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 类: common_params_sampling
+    // 描述: common_params_sampling类提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
     struct common_params_sampling sampling;
+    // 类: common_params_speculative
+    // 描述: common_params_speculative类提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 类: common_params_speculative
+    // 描述: common_params_speculative类提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
     struct common_params_speculative speculative;
 
     // response formatting
@@ -86,11 +158,51 @@ struct task_params {
     // Embeddings
     int32_t embd_normalize = 2; // (-1=none, 0=max absolute int16, 1=taxicab, 2=Euclidean/L2, >2=p-norm)
 
+    // 函数: format_logit_bias
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_logit_bias
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json format_logit_bias(const std::vector<llama_logit_bias> & logit_bias) const;
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json(bool only_metrics = false) const;
 };
 
 // struct for tracking the state of a task (e.g., for streaming)
+// 类: task_result_state
+// 描述: task_result_state类提供相关功能
+// 用途: 用于处理task_result_state相关的操作
+// 类: task_result_state
+// 描述: task_result_state类提供相关功能
+// 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
+    // 结构体: task_result_state
+    // 描述: task_result_state结构体提供相关功能
+    // 用途: 用于处理task_result_state相关的操作
 struct task_result_state {
     // tracking diffs for partial tool calls
     std::vector<common_chat_msg_diff> diffs;
@@ -123,6 +235,30 @@ struct task_result_state {
         std::vector<common_chat_msg_diff> & diffs);
 };
 
+// 类: server_task
+// 描述: server_task类提供相关功能
+// 用途: 用于处理server_task相关的操作
+// 类: server_task
+// 描述: server_task类提供相关功能
+// 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
+    // 结构体: server_task
+    // 描述: server_task结构体提供相关功能
+    // 用途: 用于处理server_task相关的操作
 struct server_task {
     int id = -1; // to be filled by server_queue
 
@@ -152,6 +288,30 @@ struct server_task {
     server_task_type type;
 
     // used by SERVER_TASK_TYPE_SLOT_SAVE, SERVER_TASK_TYPE_SLOT_RESTORE, SERVER_TASK_TYPE_SLOT_ERASE
+    // 类: slot_action
+    // 描述: slot_action类提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 类: slot_action
+    // 描述: slot_action类提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
+    // 结构体: slot_action
+    // 描述: slot_action结构体提供相关功能
+    // 用途: 用于处理slot_action相关的操作
     struct slot_action {
         int id_slot;
         std::string filename;
@@ -169,10 +329,26 @@ struct server_task {
 
     server_task(server_task_type type) : type(type) {}
 
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int32_t n_tokens() const {
         return tokens.size();
     }
 
+    // 函数: need_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: need_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool need_embd() const {
         switch (type) {
             case SERVER_TASK_TYPE_EMBEDDING:
@@ -183,6 +359,14 @@ struct server_task {
         }
     }
 
+    // 函数: need_logits
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: need_logits
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool need_logits() const {
         switch (type) {
             case SERVER_TASK_TYPE_COMPLETION:
@@ -193,6 +377,14 @@ struct server_task {
         }
     }
 
+    // 函数: need_sampling
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: need_sampling
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool need_sampling() const {
         switch (type) {
             case SERVER_TASK_TYPE_COMPLETION:
@@ -221,6 +413,14 @@ struct server_task {
         return ids;
     }
 
+    // 函数: add_child
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_child
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_child(int id_parent, int id_child) {
         server_task copy;
 
@@ -242,19 +442,67 @@ struct server_task {
 
     // the task will be moved into queue, then onto slots
     // however, the state must be kept by caller (e.g., HTTP thread)
+    // 函数: create_state
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: create_state
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     task_result_state create_state() const {
         return task_result_state(params.chat_parser_params);
     }
 
+    // 函数: is_parent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_parent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_parent() const {
         return child_tasks.size() > 0;
     }
 
+    // 函数: is_child
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_child
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_child() const {
         return id_parent != -1;
     }
 };
 
+// 类: result_timings
+// 描述: result_timings类提供相关功能
+// 用途: 用于处理result_timings相关的操作
+// 类: result_timings
+// 描述: result_timings类提供相关功能
+// 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
+    // 结构体: result_timings
+    // 描述: result_timings结构体提供相关功能
+    // 用途: 用于处理result_timings相关的操作
 struct result_timings {
     int32_t cache_n = -1;
 
@@ -272,18 +520,82 @@ struct result_timings {
     int32_t draft_n = 0;
     int32_t draft_n_accepted = 0;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json() const;
 };
 
+// 类: result_prompt_progress
+// 描述: result_prompt_progress类提供相关功能
+// 用途: 用于处理result_prompt_progress相关的操作
+// 类: result_prompt_progress
+// 描述: result_prompt_progress类提供相关功能
+// 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
+    // 结构体: result_prompt_progress
+    // 描述: result_prompt_progress结构体提供相关功能
+    // 用途: 用于处理result_prompt_progress相关的操作
 struct result_prompt_progress {
     int32_t total = 0;
     int32_t cache = 0;
     int32_t processed = 0;
     int64_t time_ms = 0;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json() const;
 };
 
+// 类: server_task_result
+// 描述: server_task_result类提供相关功能
+// 用途: 用于处理server_task_result相关的操作
+// 类: server_task_result
+// 描述: server_task_result类提供相关功能
+// 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
+    // 结构体: server_task_result
+    // 描述: server_task_result结构体提供相关功能
+    // 用途: 用于处理server_task_result相关的操作
 struct server_task_result {
     int id           = -1;
     int id_slot      = -1;
@@ -291,17 +603,49 @@ struct server_task_result {
     // TODO @ngxson : remove this field and implement a mapping task_id -> idx in the response_reader
     size_t index = 0; // to be used for batched tasks
 
+    // 函数: is_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool is_error() {
         // only used by server_task_result_error
         return false;
     }
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool is_stop() {
         // only used by server_task_result_cmpl_*
         return true;
     }
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void update(task_result_state &) {
         // only used by server_task_result_cmpl_*
     }
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() = 0;
     virtual ~server_task_result() = default;
 };
@@ -309,10 +653,58 @@ struct server_task_result {
 // using shared_ptr for polymorphism of server_task_result
 using server_task_result_ptr = std::unique_ptr<server_task_result>;
 
+// 类: completion_token_output
+// 描述: completion_token_output类提供相关功能
+// 用途: 用于处理completion_token_output相关的操作
+// 类: completion_token_output
+// 描述: completion_token_output类提供相关功能
+// 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
+    // 结构体: completion_token_output
+    // 描述: completion_token_output结构体提供相关功能
+    // 用途: 用于处理completion_token_output相关的操作
 struct completion_token_output {
     llama_token tok;
     float prob;
     std::string text_to_send;
+    // 类: prob_info
+    // 描述: prob_info类提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 类: prob_info
+    // 描述: prob_info类提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
+    // 结构体: prob_info
+    // 描述: prob_info结构体提供相关功能
+    // 用途: 用于处理prob_info相关的操作
     struct prob_info {
         llama_token tok;
         std::string txt;
@@ -320,16 +712,64 @@ struct completion_token_output {
     };
     std::vector<prob_info> probs;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json(bool post_sampling_probs) const;
 
+    // 函数: probs_vector_to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: probs_vector_to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static json probs_vector_to_json(const std::vector<completion_token_output> & probs, bool post_sampling_probs);
 
+    // 函数: logarithm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: logarithm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static float logarithm(float x);
 
     static std::vector<unsigned char> str_to_bytes(const std::string & str);
 
 };
 
+// 类: server_task_result_cmpl_final
+// 描述: server_task_result_cmpl_final类提供相关功能
+// 用途: 用于处理server_task_result_cmpl_final相关的操作
+// 类: server_task_result_cmpl_final
+// 描述: server_task_result_cmpl_final类提供相关功能
+// 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
+    // 结构体: server_task_result_cmpl_final
+    // 描述: server_task_result_cmpl_final结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_final相关的操作
 struct server_task_result_cmpl_final : server_task_result {
     std::string content;
     llama_tokens tokens;
@@ -368,12 +808,36 @@ struct server_task_result_cmpl_final : server_task_result {
     std::string oai_resp_reasoning_id;
     std::string oai_resp_message_id;
 
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool is_stop() override {
         return true; // in stream mode, final responses are considered stop
     }
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void update(task_result_state & state) override {
         is_updated = true;
         oaicompat_msg = state.update_chat_msg(content, false, oaicompat_msg_diffs);
@@ -383,23 +847,111 @@ struct server_task_result_cmpl_final : server_task_result {
         oai_resp_message_id = state.oai_resp_message_id;
     }
 
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_non_oaicompat();
 
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat();
 
+    // 函数: to_json_oaicompat_chat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_chat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_chat();
 
+    // 函数: to_json_oaicompat_chat_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_chat_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_chat_stream();
 
+    // 函数: to_json_oaicompat_resp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_resp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_resp();
 
+    // 函数: to_json_oaicompat_resp_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_resp_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_resp_stream();
 
+    // 函数: to_json_anthropic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_anthropic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_anthropic();
 
+    // 函数: to_json_anthropic_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_anthropic_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_anthropic_stream();
 };
 
+// 类: server_task_result_cmpl_partial
+// 描述: server_task_result_cmpl_partial类提供相关功能
+// 用途: 用于处理server_task_result_cmpl_partial相关的操作
+// 类: server_task_result_cmpl_partial
+// 描述: server_task_result_cmpl_partial类提供相关功能
+// 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
+    // 结构体: server_task_result_cmpl_partial
+    // 描述: server_task_result_cmpl_partial结构体提供相关功能
+    // 用途: 用于处理server_task_result_cmpl_partial相关的操作
 struct server_task_result_cmpl_partial : server_task_result {
     std::string  content;
     llama_tokens tokens;
@@ -434,25 +986,113 @@ struct server_task_result_cmpl_partial : server_task_result {
     // for Anthropic API: track if any reasoning content has been generated
     bool anthropic_has_reasoning = false;
 
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_stop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool is_stop() override {
         return false; // in stream mode, partial responses are not considered stop
     }
 
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void update(task_result_state & state) override;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_non_oaicompat();
 
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat();
 
+    // 函数: to_json_oaicompat_chat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_chat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_chat();
 
+    // 函数: to_json_oaicompat_resp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat_resp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat_resp();
 
+    // 函数: to_json_anthropic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_anthropic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_anthropic();
 };
 
+// 类: server_task_result_embd
+// 描述: server_task_result_embd类提供相关功能
+// 用途: 用于处理server_task_result_embd相关的操作
+// 类: server_task_result_embd
+// 描述: server_task_result_embd类提供相关功能
+// 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
+    // 结构体: server_task_result_embd
+    // 描述: server_task_result_embd结构体提供相关功能
+    // 用途: 用于处理server_task_result_embd相关的操作
 struct server_task_result_embd : server_task_result {
     std::vector<std::vector<float>> embedding;
 
@@ -461,21 +1101,101 @@ struct server_task_result_embd : server_task_result {
     // response formatting
     task_response_type res_type = TASK_RESPONSE_TYPE_NONE;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_non_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_non_oaicompat();
 
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json_oaicompat();
 };
 
+// 类: server_task_result_rerank
+// 描述: server_task_result_rerank类提供相关功能
+// 用途: 用于处理server_task_result_rerank相关的操作
+// 类: server_task_result_rerank
+// 描述: server_task_result_rerank类提供相关功能
+// 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
+    // 结构体: server_task_result_rerank
+    // 描述: server_task_result_rerank结构体提供相关功能
+    // 用途: 用于处理server_task_result_rerank相关的操作
 struct server_task_result_rerank : server_task_result {
     float score = -1e6;
 
     int32_t n_tokens;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_error
+// 描述: server_task_result_error类提供相关功能
+// 用途: 用于处理server_task_result_error相关的操作
+// 类: server_task_result_error
+// 描述: server_task_result_error类提供相关功能
+// 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
+    // 结构体: server_task_result_error
+    // 描述: server_task_result_error结构体提供相关功能
+    // 用途: 用于处理server_task_result_error相关的操作
 struct server_task_result_error : server_task_result {
     error_type err_type = ERROR_TYPE_SERVER;
     std::string err_msg;
@@ -484,13 +1204,53 @@ struct server_task_result_error : server_task_result {
     int32_t n_prompt_tokens = 0;
     int32_t n_ctx           = 0;
 
+    // 函数: is_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool is_error() override {
         return true;
     }
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_metrics
+// 描述: server_task_result_metrics类提供相关功能
+// 用途: 用于处理server_task_result_metrics相关的操作
+// 类: server_task_result_metrics
+// 描述: server_task_result_metrics类提供相关功能
+// 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
+    // 结构体: server_task_result_metrics
+    // 描述: server_task_result_metrics结构体提供相关功能
+    // 用途: 用于处理server_task_result_metrics相关的操作
 struct server_task_result_metrics : server_task_result {
     int n_idle_slots;
     int n_processing_slots;
@@ -518,9 +1278,41 @@ struct server_task_result_metrics : server_task_result {
     // therefore, we use json to temporarily store the slot.to_json() result
     json slots_data = json::array();
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_slot_save_load
+// 描述: server_task_result_slot_save_load类提供相关功能
+// 用途: 用于处理server_task_result_slot_save_load相关的操作
+// 类: server_task_result_slot_save_load
+// 描述: server_task_result_slot_save_load类提供相关功能
+// 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
+    // 结构体: server_task_result_slot_save_load
+    // 描述: server_task_result_slot_save_load结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_save_load相关的操作
 struct server_task_result_slot_save_load : server_task_result {
     std::string filename;
     bool is_save; // true = save, false = load
@@ -529,16 +1321,104 @@ struct server_task_result_slot_save_load : server_task_result {
     size_t n_bytes;
     double t_ms;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_slot_erase
+// 描述: server_task_result_slot_erase类提供相关功能
+// 用途: 用于处理server_task_result_slot_erase相关的操作
+// 类: server_task_result_slot_erase
+// 描述: server_task_result_slot_erase类提供相关功能
+// 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
+    // 结构体: server_task_result_slot_erase
+    // 描述: server_task_result_slot_erase结构体提供相关功能
+    // 用途: 用于处理server_task_result_slot_erase相关的操作
 struct server_task_result_slot_erase : server_task_result {
     size_t n_erased;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_get_lora
+// 描述: server_task_result_get_lora类提供相关功能
+// 用途: 用于处理server_task_result_get_lora相关的操作
+// 类: server_task_result_get_lora
+// 描述: server_task_result_get_lora类提供相关功能
+// 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
+    // 结构体: server_task_result_get_lora
+    // 描述: server_task_result_get_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_get_lora相关的操作
 struct server_task_result_get_lora : server_task_result {
+    // 类: lora
+    // 描述: lora类提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 类: lora
+    // 描述: lora类提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
+    // 结构体: lora
+    // 描述: lora结构体提供相关功能
+    // 用途: 用于处理lora相关的操作
     struct lora {
         common_adapter_lora_info info;
         std::string  alora_invocation_string;
@@ -546,13 +1426,77 @@ struct server_task_result_get_lora : server_task_result {
     };
     std::vector<lora> loras;
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_task_result_apply_lora
+// 描述: server_task_result_apply_lora类提供相关功能
+// 用途: 用于处理server_task_result_apply_lora相关的操作
+// 类: server_task_result_apply_lora
+// 描述: server_task_result_apply_lora类提供相关功能
+// 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
+    // 结构体: server_task_result_apply_lora
+    // 描述: server_task_result_apply_lora结构体提供相关功能
+    // 用途: 用于处理server_task_result_apply_lora相关的操作
 struct server_task_result_apply_lora : server_task_result {
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual json to_json() override;
 };
 
+// 类: server_prompt_checkpoint
+// 描述: server_prompt_checkpoint类提供相关功能
+// 用途: 用于处理server_prompt_checkpoint相关的操作
+// 类: server_prompt_checkpoint
+// 描述: server_prompt_checkpoint类提供相关功能
+// 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
+    // 结构体: server_prompt_checkpoint
+    // 描述: server_prompt_checkpoint结构体提供相关功能
+    // 用途: 用于处理server_prompt_checkpoint相关的操作
 struct server_prompt_checkpoint {
     llama_pos pos_min;
     llama_pos pos_max;
@@ -561,11 +1505,43 @@ struct server_prompt_checkpoint {
 
     std::vector<uint8_t> data;
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const {
         return data.size();
     }
 };
 
+// 类: server_prompt
+// 描述: server_prompt类提供相关功能
+// 用途: 用于处理server_prompt相关的操作
+// 类: server_prompt
+// 描述: server_prompt类提供相关功能
+// 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
+    // 结构体: server_prompt
+    // 描述: server_prompt结构体提供相关功能
+    // 用途: 用于处理server_prompt相关的操作
 struct server_prompt {
     server_tokens tokens;
 
@@ -573,6 +1549,14 @@ struct server_prompt {
 
     std::list<server_prompt_checkpoint> checkpoints;
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const {
         size_t res = data.size();
 
@@ -583,10 +1567,26 @@ struct server_prompt {
         return res;
     }
 
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int n_tokens() const {
         return tokens.size();
     }
 
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     server_prompt clone() const {
         return server_prompt {
             tokens.clone(),
@@ -596,6 +1596,30 @@ struct server_prompt {
     }
 };
 
+// 类: server_prompt_cache
+// 描述: server_prompt_cache类提供相关功能
+// 用途: 用于处理server_prompt_cache相关的操作
+// 类: server_prompt_cache
+// 描述: server_prompt_cache类提供相关功能
+// 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
+    // 结构体: server_prompt_cache
+    // 描述: server_prompt_cache结构体提供相关功能
+    // 用途: 用于处理server_prompt_cache相关的操作
 struct server_prompt_cache {
     server_prompt_cache(int32_t limit_size_mib, size_t limit_tokens) {
         this->limit_size   = 1024ull*1024ull*(limit_size_mib < 0 ? 0 : limit_size_mib);
@@ -610,13 +1634,53 @@ struct server_prompt_cache {
     // in tokens, 0 = no limit
     size_t limit_tokens = 0;
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const;
 
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_tokens() const;
 
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     server_prompt * alloc(const server_prompt & prompt, size_t state_size);
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load(server_prompt & prompt, const server_tokens & tokens_new, llama_context * ctx, int32_t id_slot);
 
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update();
 };

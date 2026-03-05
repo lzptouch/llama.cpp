@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend-dispatched-backend.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend-dispatched-backend.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 #include "backend-virgl-apir.h"
 #include "ggml-backend-impl.h"
@@ -7,6 +14,14 @@
 
 #include <cstdint>
 
+// 函数: validate_graph_operation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: validate_graph_operation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t validate_graph_operation(size_t cgraph_size, uint32_t shmem_res_id, const char * operation) {
     if (cgraph_size == 0) {
         GGML_LOG_ERROR(GGML_VIRTGPU_BCK "%s: Zero-size computation graph\n", operation);
@@ -20,6 +35,14 @@ static uint32_t validate_graph_operation(size_t cgraph_size, uint32_t shmem_res_
     return 0;  // Valid
 }
 
+// 函数: backend_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_backend_graph_compute(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
 

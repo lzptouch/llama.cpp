@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: embed_kernel.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-opencl/kernels/embed_kernel.py
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #
 
 import sys
@@ -5,6 +12,10 @@ import logging
 logger = logging.getLogger("opencl-embed-kernel")
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     logging.basicConfig(level=logging.INFO)
 

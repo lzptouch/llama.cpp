@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: repeat_back.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/repeat_back.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "repeat_back.hpp"
 
 #include "common.hpp"
@@ -5,6 +12,14 @@
 #define GGML_ASSERT_TENSOR_FITS_INT(t) \
     GGML_ASSERT((t)->ne[0] < INT_MAX && (t)->ne[1] < INT_MAX && (t)->ne[2] < INT_MAX && (t)->ne[3] < INT_MAX)
 
+// 函数: ggml_sycl_op_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_repeat_back(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(dst->type == GGML_TYPE_F32);

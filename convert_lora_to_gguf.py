@@ -32,17 +32,37 @@ logger = logging.getLogger("lora-to-gguf")
 
 
 @dataclass
+    # 类: PartialLoraTensor
+    # 描述: PartialLoraTensor类提供相关功能
+    # 用途: 用于处理PartialLoraTensor相关的操作
+    # 类: PartialLoraTensor
+    # 描述: PartialLoraTensor类提供相关功能
+    # 用途: 用于处理PartialLoraTensor相关的操作
 class PartialLoraTensor:
     A: Tensor | None = None
     B: Tensor | None = None
 
 
 # magic to support tensor shape modifications and splitting
+    # 类: LoraTorchTensor
+    # 描述: LoraTorchTensor类提供相关功能
+    # 用途: 用于处理LoraTorchTensor相关的操作
+    # 类: LoraTorchTensor
+    # 描述: LoraTorchTensor类提供相关功能
+    # 用途: 用于处理LoraTorchTensor相关的操作
 class LoraTorchTensor:
     _lora_A: Tensor  # (n_rank, row_size)
     _lora_B: Tensor  # (col_size, n_rank)
     _rank: int
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, A: Tensor, B: Tensor
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, A: Tensor, B: Tensor
+    # 返回: 无返回值
     def __init__(self, A: Tensor, B: Tensor):
         assert len(A.shape) == len(B.shape)
         assert A.shape[-2] == B.shape[-1]
@@ -53,9 +73,25 @@ class LoraTorchTensor:
         self._lora_B = B
         self._rank = B.shape[-1]
 
+    # 函数: get_lora_A_B
+    # 描述: get_lora_A_B函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: get_lora_A_B
+    # 描述: get_lora_A_B函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def get_lora_A_B(self) -> tuple[Tensor, Tensor]:
         return (self._lora_A, self._lora_B)
 
+    # 函数: __getitem__
+    # 描述: __getitem__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __getitem__
+    # 描述: __getitem__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __getitem__(
         self,
         indices: (
@@ -115,19 +151,51 @@ class LoraTorchTensor:
             raise NotImplementedError  # unknown indice type
 
     @property
+    # 函数: dtype
+    # 描述: dtype函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: dtype
+    # 描述: dtype函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def dtype(self) -> torch.dtype:
         assert self._lora_A.dtype == self._lora_B.dtype
         return self._lora_A.dtype
 
     @property
+    # 函数: shape
+    # 描述: shape函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: shape
+    # 描述: shape函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def shape(self) -> tuple[int, ...]:
         assert len(self._lora_A.shape) == len(self._lora_B.shape)
         return (*self._lora_B.shape[:-1], self._lora_A.shape[-1])
 
+    # 函数: size
+    # 描述: size函数提供相关功能
+    # 参数: self, dim=None
+    # 返回: 有返回值
+    # 函数: size
+    # 描述: size函数提供相关功能
+    # 参数: self, dim=None
+    # 返回: 有返回值
     def size(self, dim=None):
         assert dim is None
         return self.shape
 
+    # 函数: reshape
+    # 描述: reshape函数提供相关功能
+    # 参数: self, *shape: int | tuple[int, ...]
+    # 返回: 无返回值
+    # 函数: reshape
+    # 描述: reshape函数提供相关功能
+    # 参数: self, *shape: int | tuple[int, ...]
+    # 返回: 无返回值
     def reshape(self, *shape: int | tuple[int, ...]) -> LoraTorchTensor:
         if isinstance(shape[0], tuple):
             new_shape: tuple[int, ...] = shape[0]
@@ -154,12 +222,36 @@ class LoraTorchTensor:
             self._lora_B.reshape(shape_B),
         )
 
+    # 函数: reshape_as
+    # 描述: reshape_as函数提供相关功能
+    # 参数: self, other: Tensor
+    # 返回: 有返回值
+    # 函数: reshape_as
+    # 描述: reshape_as函数提供相关功能
+    # 参数: self, other: Tensor
+    # 返回: 有返回值
     def reshape_as(self, other: Tensor) -> LoraTorchTensor:
         return self.reshape(*other.shape)
 
+    # 函数: view
+    # 描述: view函数提供相关功能
+    # 参数: self, *size: int
+    # 返回: 有返回值
+    # 函数: view
+    # 描述: view函数提供相关功能
+    # 参数: self, *size: int
+    # 返回: 有返回值
     def view(self, *size: int) -> LoraTorchTensor:
         return self.reshape(*size)
 
+    # 函数: permute
+    # 描述: permute函数提供相关功能
+    # 参数: self, *dims: int
+    # 返回: 无返回值
+    # 函数: permute
+    # 描述: permute函数提供相关功能
+    # 参数: self, *dims: int
+    # 返回: 无返回值
     def permute(self, *dims: int) -> LoraTorchTensor:
         shape = self.shape
         dims = tuple(dim - len(shape) if dim >= 0 else dim for dim in dims)
@@ -173,19 +265,51 @@ class LoraTorchTensor:
             # TODO: compose the above two
             raise NotImplementedError
 
+    # 函数: transpose
+    # 描述: transpose函数提供相关功能
+    # 参数: self, dim0: int, dim1: int
+    # 返回: 有返回值
+    # 函数: transpose
+    # 描述: transpose函数提供相关功能
+    # 参数: self, dim0: int, dim1: int
+    # 返回: 有返回值
     def transpose(self, dim0: int, dim1: int) -> LoraTorchTensor:
         shape = self.shape
         dims = [i for i in range(len(shape))]
         dims[dim0], dims[dim1] = dims[dim1], dims[dim0]
         return self.permute(*dims)
 
+    # 函数: swapaxes
+    # 描述: swapaxes函数提供相关功能
+    # 参数: self, axis0: int, axis1: int
+    # 返回: 有返回值
+    # 函数: swapaxes
+    # 描述: swapaxes函数提供相关功能
+    # 参数: self, axis0: int, axis1: int
+    # 返回: 有返回值
     def swapaxes(self, axis0: int, axis1: int) -> LoraTorchTensor:
         return self.transpose(axis0, axis1)
 
+    # 函数: to
+    # 描述: to函数提供相关功能
+    # 参数: self, *args, **kwargs
+    # 返回: 有返回值
+    # 函数: to
+    # 描述: to函数提供相关功能
+    # 参数: self, *args, **kwargs
+    # 返回: 有返回值
     def to(self, *args, **kwargs):
         return LoraTorchTensor(self._lora_A.to(*args, **kwargs), self._lora_B.to(*args, **kwargs))
 
     @classmethod
+    # 函数: __torch_function__
+    # 描述: __torch_function__函数提供相关功能
+    # 参数: cls, func: Callable, types, args=(), kwargs=None
+    # 返回: 无返回值
+    # 函数: __torch_function__
+    # 描述: __torch_function__函数提供相关功能
+    # 参数: cls, func: Callable, types, args=(), kwargs=None
+    # 返回: 无返回值
     def __torch_function__(cls, func: Callable, types, args=(), kwargs=None):
         del types  # unused
 
@@ -224,6 +348,14 @@ class LoraTorchTensor:
             raise NotImplementedError
 
 
+    # 函数: get_base_tensor_name
+    # 描述: get_base_tensor_name函数提供相关功能
+    # 参数: lora_tensor_name: str
+    # 返回: 无返回值
+    # 函数: get_base_tensor_name
+    # 描述: get_base_tensor_name函数提供相关功能
+    # 参数: lora_tensor_name: str
+    # 返回: 无返回值
 def get_base_tensor_name(lora_tensor_name: str) -> str:
     base_name = lora_tensor_name.replace("base_model.model.", "")
     base_name = base_name.replace(".lora_A.weight", ".weight")
@@ -234,6 +366,14 @@ def get_base_tensor_name(lora_tensor_name: str) -> str:
     return base_name
 
 
+    # 函数: parse_args
+    # 描述: parse_args函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: parse_args
+    # 描述: parse_args函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Convert a Hugging Face PEFT LoRA adapter to a GGUF file")
@@ -277,6 +417,14 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+    # 函数: load_hparams_from_hf
+    # 描述: load_hparams_from_hf函数提供相关功能
+    # 参数: hf_model_id: str
+    # 返回: 无返回值
+    # 函数: load_hparams_from_hf
+    # 描述: load_hparams_from_hf函数提供相关功能
+    # 参数: hf_model_id: str
+    # 返回: 无返回值
 def load_hparams_from_hf(hf_model_id: str) -> tuple[dict[str, Any], Path | None]:
     from huggingface_hub import try_to_load_from_cache
 
@@ -356,11 +504,25 @@ if __name__ == '__main__':
             logger.error(f"Model {hparams['architectures'][0]} is not supported")
             sys.exit(1)
 
+    # 类: LoraModel
+    # 描述: LoraModel类提供相关功能
+    # 用途: 用于处理LoraModel相关的操作
+    # 类: LoraModel
+    # 描述: LoraModel类提供相关功能
+    # 用途: 用于处理LoraModel相关的操作
         class LoraModel(model_class):
             model_arch = model_class.model_arch
 
             lora_alpha: float
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, *args, dir_lora_model: Path, lora_alpha: float, **kwargs
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, *args, dir_lora_model: Path, lora_alpha: float, **kwargs
+    # 返回: 无返回值
             def __init__(self, *args, dir_lora_model: Path, lora_alpha: float, **kwargs):
 
                 super().__init__(*args, **kwargs)
@@ -368,13 +530,37 @@ if __name__ == '__main__':
                 self.dir_model_card = dir_lora_model
                 self.lora_alpha = float(lora_alpha)
 
+    # 函数: set_vocab
+    # 描述: set_vocab函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: set_vocab
+    # 描述: set_vocab函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def set_vocab(self):
                 pass
 
+    # 函数: set_type
+    # 描述: set_type函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: set_type
+    # 描述: set_type函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def set_type(self):
                 self.gguf_writer.add_type(gguf.GGUFType.ADAPTER)
                 self.gguf_writer.add_string(gguf.Keys.Adapter.TYPE, "lora")
 
+    # 函数: set_gguf_parameters
+    # 描述: set_gguf_parameters函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: set_gguf_parameters
+    # 描述: set_gguf_parameters函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def set_gguf_parameters(self):
                 logger.debug("GGUF KV: %s = %d", gguf.Keys.Adapter.LORA_ALPHA, self.lora_alpha)
                 self.gguf_writer.add_float32(gguf.Keys.Adapter.LORA_ALPHA, self.lora_alpha)
@@ -402,10 +588,26 @@ if __name__ == '__main__':
                         GGUFValueType.UINT32,
                     )
 
+    # 函数: generate_extra_tensors
+    # 描述: generate_extra_tensors函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: generate_extra_tensors
+    # 描述: generate_extra_tensors函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
             def generate_extra_tensors(self) -> Iterable[tuple[str, Tensor]]:
                 # Never add extra tensors (e.g. rope_freqs) for LoRA adapters
                 return ()
 
+    # 函数: get_tensors
+    # 描述: get_tensors函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: get_tensors
+    # 描述: get_tensors函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def get_tensors(self) -> Iterator[tuple[str, Tensor]]:
                 tensor_map: dict[str, PartialLoraTensor] = {}
 
@@ -445,6 +647,14 @@ if __name__ == '__main__':
                     assert tensor.B is not None
                     yield (name, cast(torch.Tensor, LoraTorchTensor(tensor.A, tensor.B)))
 
+    # 函数: modify_tensors
+    # 描述: modify_tensors函数提供相关功能
+    # 参数: self, data_torch: Tensor, name: str, bid: int | None
+    # 返回: 无返回值
+    # 函数: modify_tensors
+    # 描述: modify_tensors函数提供相关功能
+    # 参数: self, data_torch: Tensor, name: str, bid: int | None
+    # 返回: 无返回值
             def modify_tensors(self, data_torch: Tensor, name: str, bid: int | None) -> Iterable[tuple[str, Tensor]]:
                 dest = list(super().modify_tensors(data_torch, name, bid))
                 # some archs may have the same tensor for lm_head and output (tie word embeddings)

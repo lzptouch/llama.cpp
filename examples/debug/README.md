@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/debug/README.md
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 # llama.cpp/examples/debug
 
 This is a utility intended to help debug a model by registering a callback that

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ime1_kernels.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/spacemit/ime1_kernels.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml.h"
 #include "ime_kernels.h"
 
@@ -76,6 +83,14 @@ namespace sqnbitgemm_spacemit_ime {
     "vse8.v             v31, (s1)                \n\t"
 
 namespace ime1 {
+// 函数: quantize_a_4row_i8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_a_4row_i8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void quantize_a_4row_i8(size_t BlkLen, const float * A, size_t CountK, std::byte * QuantA) {
     constexpr float range_max_reciprocal = 1.0f / ((1 << 7) - 1);
     const float     fone                 = 1.0f;
@@ -341,6 +356,14 @@ void quantize_a_4row_i8(size_t BlkLen, const float * A, size_t CountK, std::byte
     }
 }
 
+// 函数: quantize_a_row_i8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_a_row_i8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void quantize_a_row_i8(size_t BlkLen, const float * A, size_t CountK, std::byte * QuantA) {
     const float *   SRC                  = A;
     std::byte *     DST                  = QuantA;
@@ -1467,6 +1490,14 @@ void SQ4BitGemmM4Kernel_CompInt8_ScaleFp16_Impl(size_t            BlkLen,
     const size_t INNER = BlkLen / 16;
     float        tmp[4 * 16];
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (HasZeroPoint) {
         for (size_t n = 0; n < CountN; n += 16) {
             size_t      NBLKS         = (CountN - n) > 16 ? 16 : CountN - n;
@@ -1840,6 +1871,14 @@ void SQ4BitGemmM4Kernel_CompInt8_Impl(size_t            BlkLen,
     const size_t INNER = BlkLen / 16;
     float        tmp[4 * 16];
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (HasZeroPoint) {
         for (size_t n = 0; n < CountN; n += 16) {
             size_t      NBLKS         = (CountN - n) > 16 ? 16 : CountN - n;
@@ -2208,6 +2247,14 @@ void SQ4BitGemmM1Kernel_CompInt8_ScaleFp16_Impl(size_t            BlkLen,
     GGML_UNUSED(QuantBZeroPoint);
     size_t INNER = BlkLen / 16;
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (HasZeroPoint) {
         for (size_t n = 0; n < CountN; n += 16) {
             size_t      nblks         = (CountN - n) > 16 ? 16 : CountN - n;
@@ -2670,6 +2717,14 @@ void SQ4BitGemmM1Kernel_CompInt8_Impl(size_t            BlkLen,
     GGML_UNUSED(QuantBScale);
     GGML_UNUSED(QuantBZeroPoint);
     const size_t INNER = BlkLen / 16;
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (HasZeroPoint) {
         for (size_t n = 0; n < CountN; n += 16) {
             size_t      nblks         = (CountN - n) > 16 ? 16 : CountN - n;

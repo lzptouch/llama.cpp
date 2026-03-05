@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 #include "backend-virgl-apir.h"
 #include "shared/api_remoting.h"
@@ -18,6 +25,14 @@
 static void * backend_library_handle = NULL;
 static FILE * apir_logfile           = NULL;
 
+// 函数: log_to_file_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_to_file_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void log_to_file_callback(enum ggml_log_level level, const char * text, void * user_data) {
     FILE * logfile = (FILE *) user_data;
     fprintf(logfile, "[%d] %s", level, text);
@@ -25,6 +40,14 @@ static void log_to_file_callback(enum ggml_log_level level, const char * text, v
 }
 
 extern "C" {
+// 函数: apir_backend_deinit
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_backend_deinit
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void apir_backend_deinit(uint32_t virgl_ctx_id) {
     GGML_UNUSED(virgl_ctx_id);
 
@@ -49,6 +72,14 @@ void apir_backend_deinit(uint32_t virgl_ctx_id) {
 #define APIR_GGML_LIBRARY_PATH_KEY "ggml.library.path"
 #define APIR_GGML_LIBRARY_REG_KEY  "ggml.library.reg"
 
+// 函数: apir_backend_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_backend_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ApirLoadLibraryReturnCode apir_backend_initialize(uint32_t virgl_ctx_id, struct virgl_apir_callbacks * virgl_cbs) {
     const char * dlsym_error;
 

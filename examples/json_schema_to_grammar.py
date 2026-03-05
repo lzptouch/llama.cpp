@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: json_schema_to_grammar.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/json_schema_to_grammar.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -8,6 +15,14 @@ import re
 import sys
 from typing import Any, List, Optional, Set, Tuple, Union
 
+    # 函数: _build_repetition
+    # 描述: _build_repetition函数提供相关功能
+    # 参数: item_rule, min_items, max_items, separator_rule=None
+    # 返回: 有返回值
+    # 函数: _build_repetition
+    # 描述: _build_repetition函数提供相关功能
+    # 参数: item_rule, min_items, max_items, separator_rule=None
+    # 返回: 有返回值
 def _build_repetition(item_rule, min_items, max_items, separator_rule=None):
 
     if max_items == 0:
@@ -27,10 +42,26 @@ def _build_repetition(item_rule, min_items, max_items, separator_rule=None):
     result = item_rule + ' ' + _build_repetition(f'({separator_rule} {item_rule})', min_items - 1 if min_items > 0 else 0, max_items - 1 if max_items is not None else None)
     return f'({result})?' if min_items == 0 else result
 
+    # 函数: _generate_min_max_int
+    # 描述: _generate_min_max_int函数提供相关功能
+    # 参数: min_value: Optional[int], max_value: Optional[int], out: list, decimals_left: int = 16, top_level: bool = True
+    # 返回: 无返回值
+    # 函数: _generate_min_max_int
+    # 描述: _generate_min_max_int函数提供相关功能
+    # 参数: min_value: Optional[int], max_value: Optional[int], out: list, decimals_left: int = 16, top_level: bool = True
+    # 返回: 无返回值
 def _generate_min_max_int(min_value: Optional[int], max_value: Optional[int], out: list, decimals_left: int = 16, top_level: bool = True):
     has_min = min_value != None
     has_max = max_value != None
 
+    # 函数: digit_range
+    # 描述: digit_range函数提供相关功能
+    # 参数: from_char: str, to_char: str
+    # 返回: 无返回值
+    # 函数: digit_range
+    # 描述: digit_range函数提供相关功能
+    # 参数: from_char: str, to_char: str
+    # 返回: 无返回值
     def digit_range(from_char: str, to_char: str):
         out.append("[")
         if from_char == to_char:
@@ -41,6 +72,14 @@ def _generate_min_max_int(min_value: Optional[int], max_value: Optional[int], ou
             out.append(to_char)
         out.append("]")
 
+    # 函数: more_digits
+    # 描述: more_digits函数提供相关功能
+    # 参数: min_digits: int, max_digits: int
+    # 返回: 有返回值
+    # 函数: more_digits
+    # 描述: more_digits函数提供相关功能
+    # 参数: min_digits: int, max_digits: int
+    # 返回: 有返回值
     def more_digits(min_digits: int, max_digits: int):
         out.append("[0-9]")
         if min_digits == max_digits and min_digits == 1:
@@ -53,6 +92,14 @@ def _generate_min_max_int(min_value: Optional[int], max_value: Optional[int], ou
                 out.append(str(max_digits))
         out.append("}")
 
+    # 函数: uniform_range
+    # 描述: uniform_range函数提供相关功能
+    # 参数: from_str: str, to_str: str
+    # 返回: 无返回值
+    # 函数: uniform_range
+    # 描述: uniform_range函数提供相关功能
+    # 参数: from_str: str, to_str: str
+    # 返回: 无返回值
     def uniform_range(from_str: str, to_str: str):
         i = 0
         while i < len(from_str) and from_str[i] == to_str[i]:
@@ -192,7 +239,21 @@ def _generate_min_max_int(min_value: Optional[int], max_value: Optional[int], ou
 
     raise RuntimeError("At least one of min_value or max_value must be set")
 
+    # 类: BuiltinRule
+    # 描述: BuiltinRule类提供相关功能
+    # 用途: 用于处理BuiltinRule相关的操作
+    # 类: BuiltinRule
+    # 描述: BuiltinRule类提供相关功能
+    # 用途: 用于处理BuiltinRule相关的操作
 class BuiltinRule:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, content: str, deps: list | None = None
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, content: str, deps: list | None = None
+    # 返回: 无返回值
     def __init__(self, content: str, deps: list | None = None):
         self.content = content
         self.deps = deps or []
@@ -239,7 +300,21 @@ NON_LITERAL_SET = set('|.()[]{}*+?')
 ESCAPED_IN_REGEXPS_BUT_NOT_IN_LITERALS = set('^$.[]()|{}*+?')
 
 
+    # 类: SchemaConverter
+    # 描述: SchemaConverter类提供相关功能
+    # 用途: 用于处理SchemaConverter相关的操作
+    # 类: SchemaConverter
+    # 描述: SchemaConverter类提供相关功能
+    # 用途: 用于处理SchemaConverter相关的操作
 class SchemaConverter:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, *, prop_order, allow_fetch, dotall, raw_pattern
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, *, prop_order, allow_fetch, dotall, raw_pattern
+    # 返回: 无返回值
     def __init__(self, *, prop_order, allow_fetch, dotall, raw_pattern):
         self._prop_order = prop_order
         self._allow_fetch = allow_fetch
@@ -251,18 +326,42 @@ class SchemaConverter:
         self._refs = {}
         self._refs_being_resolved = set()
 
+    # 函数: _format_literal
+    # 描述: _format_literal函数提供相关功能
+    # 参数: self, literal
+    # 返回: 有返回值
+    # 函数: _format_literal
+    # 描述: _format_literal函数提供相关功能
+    # 参数: self, literal
+    # 返回: 有返回值
     def _format_literal(self, literal):
         escaped = GRAMMAR_LITERAL_ESCAPE_RE.sub(
             lambda m: GRAMMAR_LITERAL_ESCAPES.get(m.group(0)) or m.group(0), literal
         )
         return f'"{escaped}"'
 
+    # 函数: not_literal
+    # 描述: not_literal函数提供相关功能
+    # 参数: self, literal: str, dotall: bool = True, maybe_escaped_underscores = False
+    # 返回: 无返回值
+    # 函数: not_literal
+    # 描述: not_literal函数提供相关功能
+    # 参数: self, literal: str, dotall: bool = True, maybe_escaped_underscores = False
+    # 返回: 无返回值
     def not_literal(self, literal: str, dotall: bool = True, maybe_escaped_underscores = False) -> str:
         '''
             not_literal('a') -> '[^a]'
             not_literal('abc') -> '([^a] | "a" ([^b] | "b" ([^c])?)?)?'
         '''
         assert len(literal) > 0, 'Empty literal not supported'
+    # 函数: recurse
+    # 描述: recurse函数提供相关功能
+    # 参数: i: int
+    # 返回: 无返回值
+    # 函数: recurse
+    # 描述: recurse函数提供相关功能
+    # 参数: i: int
+    # 返回: 无返回值
         def recurse(i: int):
             c = literal[i]
             if maybe_escaped_underscores and c == '_':
@@ -280,12 +379,42 @@ class SchemaConverter:
 
         return ''.join(('(', *recurse(0), ')'))
 
+    # 函数: _not_strings
+    # 描述: _not_strings函数提供相关功能
+    # 参数: self, strings
+    # 返回: 无返回值
+    # 函数: _not_strings
+    # 描述: _not_strings函数提供相关功能
+    # 参数: self, strings
+    # 返回: 无返回值
     def _not_strings(self, strings):
+    # 类: TrieNode
+    # 描述: TrieNode类提供相关功能
+    # 用途: 用于处理TrieNode相关的操作
+    # 类: TrieNode
+    # 描述: TrieNode类提供相关功能
+    # 用途: 用于处理TrieNode相关的操作
         class TrieNode:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def __init__(self):
                 self.children = {}
                 self.is_end_of_string = False
 
+    # 函数: insert
+    # 描述: insert函数提供相关功能
+    # 参数: self, string
+    # 返回: 无返回值
+    # 函数: insert
+    # 描述: insert函数提供相关功能
+    # 参数: self, string
+    # 返回: 无返回值
             def insert(self, string):
                 node = self
                 for c in string:
@@ -299,6 +428,14 @@ class SchemaConverter:
         char_rule = self._add_primitive('char', PRIMITIVE_RULES['char'])
         out = ['["] ( ']
 
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: node
+    # 返回: 无返回值
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: node
+    # 返回: 无返回值
         def visit(node):
             rejects = []
             first = True
@@ -325,6 +462,14 @@ class SchemaConverter:
         out.append(f' ){"" if trie.is_end_of_string else "?"} ["] space')
         return ''.join(out)
 
+    # 函数: _add_rule
+    # 描述: _add_rule函数提供相关功能
+    # 参数: self, name, rule
+    # 返回: 无返回值
+    # 函数: _add_rule
+    # 描述: _add_rule函数提供相关功能
+    # 参数: self, name, rule
+    # 返回: 无返回值
     def _add_rule(self, name, rule):
         esc_name = INVALID_RULE_CHARS_RE.sub('-', name)
         if esc_name not in self._rules or self._rules[esc_name] == rule:
@@ -337,12 +482,28 @@ class SchemaConverter:
         self._rules[key] = rule
         return key
 
+    # 函数: resolve_refs
+    # 描述: resolve_refs函数提供相关功能
+    # 参数: self, schema: dict, url: str
+    # 返回: 无返回值
+    # 函数: resolve_refs
+    # 描述: resolve_refs函数提供相关功能
+    # 参数: self, schema: dict, url: str
+    # 返回: 无返回值
     def resolve_refs(self, schema: dict, url: str):
         '''
             Resolves all $ref fields in the given schema, fetching any remote schemas,
             replacing $ref with absolute reference URL and populating self._refs with the
             respective referenced (sub)schema dictionaries.
         '''
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: n: dict
+    # 返回: 有返回值
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: n: dict
+    # 返回: 有返回值
         def visit(n: dict):
             if isinstance(n, list):
                 return [visit(x) for x in n]
@@ -391,12 +552,28 @@ class SchemaConverter:
             return n
         return visit(schema)
 
+    # 函数: _generate_union_rule
+    # 描述: _generate_union_rule函数提供相关功能
+    # 参数: self, name, alt_schemas
+    # 返回: 有返回值
+    # 函数: _generate_union_rule
+    # 描述: _generate_union_rule函数提供相关功能
+    # 参数: self, name, alt_schemas
+    # 返回: 有返回值
     def _generate_union_rule(self, name, alt_schemas):
         return ' | '.join((
             self.visit(alt_schema, f'{name}{"-" if name else "alternative-"}{i}')
             for i, alt_schema in enumerate(alt_schemas)
         ))
 
+    # 函数: _visit_pattern
+    # 描述: _visit_pattern函数提供相关功能
+    # 参数: self, pattern, name
+    # 返回: 无返回值
+    # 函数: _visit_pattern
+    # 描述: _visit_pattern函数提供相关功能
+    # 参数: self, pattern, name
+    # 返回: 无返回值
     def _visit_pattern(self, pattern, name):
         '''
             Transforms a regular expression pattern into a GBNF rule.
@@ -417,10 +594,26 @@ class SchemaConverter:
         i = 0
         length = len(pattern)
 
+    # 函数: to_rule
+    # 描述: to_rule函数提供相关功能
+    # 参数: s: tuple[str, bool]
+    # 返回: 有返回值
+    # 函数: to_rule
+    # 描述: to_rule函数提供相关功能
+    # 参数: s: tuple[str, bool]
+    # 返回: 有返回值
         def to_rule(s: tuple[str, bool]) -> str:
             (txt, is_literal) = s
             return "\"" + txt + "\"" if is_literal else txt
 
+    # 函数: transform
+    # 描述: transform函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: transform
+    # 描述: transform函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
         def transform() -> tuple[str, bool]:
             '''
                 Parse a unit at index i (advancing it), and return its string representation + whether it's a literal.
@@ -436,6 +629,14 @@ class SchemaConverter:
             # (GBNF's syntax is luckily very close to regular expressions!)
             seq: list[tuple[str, bool]] = []
 
+    # 函数: get_dot
+    # 描述: get_dot函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: get_dot
+    # 描述: get_dot函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def get_dot():
                 if self._dotall:
                     rule = DOTALL
@@ -444,6 +645,14 @@ class SchemaConverter:
                     rule = DOT
                 return self._add_rule(f'dot', rule)
 
+    # 函数: join_seq
+    # 描述: join_seq函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: join_seq
+    # 描述: join_seq函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
             def join_seq():
                 nonlocal seq
                 ret = []
@@ -555,6 +764,14 @@ class SchemaConverter:
                 else "\"\\\"\" (" + to_rule(transform()) + ") \"\\\"\" space")
 
 
+    # 函数: _resolve_ref
+    # 描述: _resolve_ref函数提供相关功能
+    # 参数: self, ref
+    # 返回: 无返回值
+    # 函数: _resolve_ref
+    # 描述: _resolve_ref函数提供相关功能
+    # 参数: self, ref
+    # 返回: 无返回值
     def _resolve_ref(self, ref):
         ref_fragment = ref.split('#')[-1]
         ref_name = 'ref' + re.sub(r'[^a-zA-Z0-9-]+', '-', ref_fragment)
@@ -565,9 +782,25 @@ class SchemaConverter:
             self._refs_being_resolved.remove(ref)
         return ref_name
 
+    # 函数: _generate_constant_rule
+    # 描述: _generate_constant_rule函数提供相关功能
+    # 参数: self, value
+    # 返回: 有返回值
+    # 函数: _generate_constant_rule
+    # 描述: _generate_constant_rule函数提供相关功能
+    # 参数: self, value
+    # 返回: 有返回值
     def _generate_constant_rule(self, value):
         return self._format_literal(json.dumps(value))
 
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: self, schema, name
+    # 返回: 无返回值
+    # 函数: visit
+    # 描述: visit函数提供相关功能
+    # 参数: self, schema, name
+    # 返回: 无返回值
     def visit(self, schema, name):
         schema_type = schema.get('type')
         schema_format = schema.get('format')
@@ -601,6 +834,14 @@ class SchemaConverter:
             properties = []
             enum_sets = []
             hybrid_name = name
+    # 函数: add_component
+    # 描述: add_component函数提供相关功能
+    # 参数: comp_schema, is_required
+    # 返回: 无返回值
+    # 函数: add_component
+    # 描述: add_component函数提供相关功能
+    # 参数: comp_schema, is_required
+    # 返回: 无返回值
             def add_component(comp_schema, is_required):
                 if (ref := comp_schema.get('$ref')) is not None:
                     comp_schema = self._refs[ref]
@@ -694,6 +935,14 @@ class SchemaConverter:
             # TODO: support minimum, maximum, exclusiveMinimum, exclusiveMaximum at least for zero
             return self._add_primitive('root' if rule_name == 'root' else schema_type, PRIMITIVE_RULES[schema_type])
 
+    # 函数: _add_primitive
+    # 描述: _add_primitive函数提供相关功能
+    # 参数: self, name: str, rule: BuiltinRule
+    # 返回: 无返回值
+    # 函数: _add_primitive
+    # 描述: _add_primitive函数提供相关功能
+    # 参数: self, name: str, rule: BuiltinRule
+    # 返回: 无返回值
     def _add_primitive(self, name: str, rule: BuiltinRule):
         n = self._add_rule(name, rule.content)
 
@@ -704,6 +953,14 @@ class SchemaConverter:
                 self._add_primitive(dep, dep_rule)
         return n
 
+    # 函数: _build_object_rule
+    # 描述: _build_object_rule函数提供相关功能
+    # 参数: self, properties: List[Tuple[str, Any]], required: Set[str], name: str, additional_properties: Optional[Union[bool, Any]]
+    # 返回: 无返回值
+    # 函数: _build_object_rule
+    # 描述: _build_object_rule函数提供相关功能
+    # 参数: self, properties: List[Tuple[str, Any]], required: Set[str], name: str, additional_properties: Optional[Union[bool, Any]]
+    # 返回: 无返回值
     def _build_object_rule(self, properties: List[Tuple[str, Any]], required: Set[str], name: str, additional_properties: Optional[Union[bool, Any]]):
         prop_order = self._prop_order
         # sort by position in prop_order (if specified) then by original order
@@ -740,6 +997,14 @@ class SchemaConverter:
             if required_props:
                 rule += ' "," space ( '
 
+    # 函数: get_recursive_refs
+    # 描述: get_recursive_refs函数提供相关功能
+    # 参数: ks, first_is_optional
+    # 返回: 无返回值
+    # 函数: get_recursive_refs
+    # 描述: get_recursive_refs函数提供相关功能
+    # 参数: ks, first_is_optional
+    # 返回: 无返回值
             def get_recursive_refs(ks, first_is_optional):
                 [k, *rest] = ks
                 kv_rule_name = prop_kv_rule_names[k]
@@ -767,6 +1032,14 @@ class SchemaConverter:
 
         return rule
 
+    # 函数: format_grammar
+    # 描述: format_grammar函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: format_grammar
+    # 描述: format_grammar函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def format_grammar(self):
         return '\n'.join(
             f'{name} ::= {rule}'
@@ -774,6 +1047,14 @@ class SchemaConverter:
         )
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: args_in = None
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: args_in = None
+    # 返回: 无返回值
 def main(args_in = None):
     parser = argparse.ArgumentParser(
         description='''

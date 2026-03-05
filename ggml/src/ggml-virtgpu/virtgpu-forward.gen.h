@@ -1,24 +1,120 @@
 #pragma once
 
 /* device */
+// 函数: apir_device_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void                           apir_device_get_device_count(struct virtgpu * gpu);
+// 函数: apir_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int                            apir_device_get_count(struct virtgpu * gpu);
+// 函数: apir_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char *                         apir_device_get_name(struct virtgpu * gpu);
+// 函数: apir_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char *                         apir_device_get_description(struct virtgpu * gpu);
+// 函数: apir_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t                       apir_device_get_type(struct virtgpu * gpu);
+// 函数: apir_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void                           apir_device_get_memory(struct virtgpu * gpu, size_t * free, size_t * total);
+// 函数: apir_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool                           apir_device_supports_op(struct virtgpu * gpu, const ggml_tensor * op);
+// 函数: apir_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 apir_buffer_type_host_handle_t apir_device_get_buffer_type(struct virtgpu * gpu);
 void                           apir_device_get_props(struct virtgpu * gpu,
                                                      bool *           async,
                                                      bool *           host_buffer,
                                                      bool *           buffer_from_host_ptr,
                                                      bool *           events);
+// 函数: apir_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 apir_buffer_context_t          apir_device_buffer_from_ptr(struct virtgpu * gpu, size_t size, size_t max_tensor_size);
 
 /* buffer-type */
+// 函数: apir_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char *                apir_buffer_type_get_name(struct virtgpu * gpu, apir_buffer_type_host_handle_t host_handle);
+// 函数: apir_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t                apir_buffer_type_get_alignment(struct virtgpu * gpu, apir_buffer_type_host_handle_t host_handle);
+// 函数: apir_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t                apir_buffer_type_get_max_size(struct virtgpu * gpu, apir_buffer_type_host_handle_t host_handle);
 /* apir_buffer_type_is_host is deprecated. */
 apir_buffer_context_t apir_buffer_type_alloc_buffer(struct virtgpu *               gpu,
@@ -29,6 +125,14 @@ size_t                apir_buffer_type_get_alloc_size(struct virtgpu *          
                                                       const ggml_tensor *            op);
 
 /* buffer */
+// 函数: apir_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * apir_buffer_get_base(struct virtgpu * gpu, apir_buffer_context_t * buffer_context);
 void   apir_buffer_set_tensor(struct virtgpu *        gpu,
                               apir_buffer_context_t * buffer_context,
@@ -46,8 +150,32 @@ bool   apir_buffer_cpy_tensor(struct virtgpu *        gpu,
                               apir_buffer_context_t * buffer_context,
                               const ggml_tensor *     src,
                               const ggml_tensor *     dst);
+// 函数: apir_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void   apir_buffer_clear(struct virtgpu * gpu, apir_buffer_context_t * buffer_context, uint8_t value);
+// 函数: apir_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void   apir_buffer_free_buffer(struct virtgpu * gpu, apir_buffer_context_t * buffer_context);
 
 /* backend */
+// 函数: apir_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 ggml_status apir_backend_graph_compute(struct virtgpu * gpu, ggml_cgraph * cgraph);

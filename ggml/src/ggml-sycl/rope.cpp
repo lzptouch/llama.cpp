@@ -1,15 +1,66 @@
+// ============================================================================
+// 文件: rope.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/rope.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "rope.hpp"
 #include "ggml-sycl/common.hpp"
 #include "ggml.h"
 
+// 类: rope_corr_dims
+// 描述: rope_corr_dims类提供相关功能
+// 用途: 用于处理rope_corr_dims相关的操作
+// 类: rope_corr_dims
+// 描述: rope_corr_dims类提供相关功能
+// 用途: 用于处理rope_corr_dims相关的操作
+    // 结构体: rope_corr_dims
+    // 描述: rope_corr_dims结构体提供相关功能
+    // 用途: 用于处理rope_corr_dims相关的操作
+    // 结构体: rope_corr_dims
+    // 描述: rope_corr_dims结构体提供相关功能
+    // 用途: 用于处理rope_corr_dims相关的操作
+    // 结构体: rope_corr_dims
+    // 描述: rope_corr_dims结构体提供相关功能
+    // 用途: 用于处理rope_corr_dims相关的操作
+    // 结构体: rope_corr_dims
+    // 描述: rope_corr_dims结构体提供相关功能
+    // 用途: 用于处理rope_corr_dims相关的操作
 struct rope_corr_dims {
     float v[2];
 };
 
+// 类: mrope_sections
+// 描述: mrope_sections类提供相关功能
+// 用途: 用于处理mrope_sections相关的操作
+// 类: mrope_sections
+// 描述: mrope_sections类提供相关功能
+// 用途: 用于处理mrope_sections相关的操作
+    // 结构体: mrope_sections
+    // 描述: mrope_sections结构体提供相关功能
+    // 用途: 用于处理mrope_sections相关的操作
+    // 结构体: mrope_sections
+    // 描述: mrope_sections结构体提供相关功能
+    // 用途: 用于处理mrope_sections相关的操作
+    // 结构体: mrope_sections
+    // 描述: mrope_sections结构体提供相关功能
+    // 用途: 用于处理mrope_sections相关的操作
+    // 结构体: mrope_sections
+    // 描述: mrope_sections结构体提供相关功能
+    // 用途: 用于处理mrope_sections相关的操作
 struct mrope_sections {
     int v[4];
 };
 
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float rope_yarn_ramp(const float low, const float high, const int i0) {
     const float y = (i0 / 2 - low) / sycl::max(0.001f, high - low);
     return 1.0f - sycl::min(1.0f, sycl::max(0.0f, y));
@@ -157,12 +208,36 @@ static void rope_multi(const T * x, T * dst, const int ne0, const int ne1, const
         if (sector < sections.v[0]) {
             theta_base = pos[channel_x]*sycl::pow(theta_scale, i0/2.0f);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (sector >= sections.v[0] && sector < sec_w) {
             theta_base = pos[channel_x + ne2 * 1]*sycl::pow(theta_scale, i0/2.0f);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (sector >= sec_w && sector < sec_w + sections.v[2]) {
             theta_base = pos[channel_x + ne2 * 2]*sycl::pow(theta_scale, i0/2.0f);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (sector >= sec_w + sections.v[2]) {
             theta_base = pos[channel_x + ne2 * 3]*sycl::pow(theta_scale, i0/2.0f);
         }
@@ -301,6 +376,14 @@ static void rope_multi_sycl(const T * x, T * dst, const int ne0, const int ne1, 
 
     const float theta_scale = std::pow(freq_base, -2.0f / n_dims);
     // Add FP16 capability check if T could be sycl::half
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (std::is_same_v<T, sycl::half>) {
         dpct::has_capability_or_fail(stream->get_device(), { sycl::aspect::fp16 });
     }
@@ -336,6 +419,14 @@ static void rope_vision_sycl(const T * x, T * dst, const int ne0, const int ne1,
 
     const float theta_scale = std::pow(freq_base, -2.0f / n_dims);
     // Add FP16 capability check if T could be sycl::half
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (std::is_same_v<T, sycl::half>) {
         dpct::has_capability_or_fail(stream->get_device(), { sycl::aspect::fp16 });
     }
@@ -353,6 +444,14 @@ static void rope_vision_sycl(const T * x, T * dst, const int ne0, const int ne1,
     }
 }
 
+// 函数: ggml_sycl_op_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_rope(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32 || dst->src[0]->type == GGML_TYPE_F16);
@@ -470,6 +569,14 @@ inline void ggml_sycl_op_rope(ggml_backend_sycl_context & ctx, ggml_tensor *dst)
     }
 }
 
+// 函数: ggml_sycl_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_rope(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/3);
     ggml_sycl_op_rope(ctx, dst);

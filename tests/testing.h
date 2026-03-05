@@ -9,6 +9,30 @@
 #include <regex>
 #include <vector>
 
+// 类: testing
+// 描述: testing类提供相关功能
+// 用途: 用于处理testing相关的操作
+// 类: testing
+// 描述: testing类提供相关功能
+// 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
+    // 结构体: testing
+    // 描述: testing结构体提供相关功能
+    // 用途: 用于处理testing相关的操作
 struct testing {
     std::ostream &out;
     std::vector<std::string> stack;
@@ -24,8 +48,24 @@ struct testing {
 
     static constexpr std::size_t status_column = 80;
 
+    // 函数: testing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: testing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit testing(std::ostream &os = std::cout) : out(os) {}
 
+    // 函数: indent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: indent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string indent() const {
         if (stack.empty()) {
             return "";
@@ -33,21 +73,53 @@ struct testing {
         return std::string((stack.size() - 1) * 2, ' ');
     }
 
+    // 函数: full_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: full_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string full_name() const {
         return string_join(stack, ".");
     }
 
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log(const std::string & msg) {
         if (verbose) {
             out << indent() << "  " << msg << "\n";
         }
     }
 
+    // 函数: set_filter
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_filter
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_filter(const std::string & re) {
         filter = std::regex(re);
         filter_tests = true;
     }
 
+    // 函数: should_run
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: should_run
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool should_run() const {
         if (filter_tests) {
             if (!std::regex_match(full_name(), filter)) {
@@ -58,6 +130,14 @@ struct testing {
     }
 
     template <typename F>
+    // 函数: run_with_exceptions
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_with_exceptions
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void run_with_exceptions(F &&f, const char *ctx) {
         try {
             f();
@@ -78,6 +158,14 @@ struct testing {
         }
     }
 
+    // 函数: print_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_result(const std::string &label, int new_failures, int new_assertions, const std::string &extra = "") const {
         std::string line = indent() + label;
 
@@ -113,6 +201,14 @@ struct testing {
     }
 
     template <typename F>
+    // 函数: test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void test(const std::string &name, F f) {
         stack.push_back(name);
         if (!should_run()) {
@@ -137,11 +233,27 @@ struct testing {
     }
 
     template <typename F>
+    // 函数: test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: test
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void test(F f) {
         test("test #" + std::to_string(++unnamed), f);
     }
 
     template <typename F>
+    // 函数: bench
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bench
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void bench(const std::string &name, F f, int iterations = 100) {
         stack.push_back(name);
         if (!should_run()) {
@@ -185,15 +297,39 @@ struct testing {
     }
 
     template <typename F>
+    // 函数: bench
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bench
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void bench(F f, int iterations = 100) {
         bench("bench #" + std::to_string(++unnamed), f, iterations);
     }
 
     // Assertions
+    // 函数: assert_true
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: assert_true
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool assert_true(bool cond) {
         return assert_true("", cond);
     }
 
+    // 函数: assert_true
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: assert_true
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool assert_true(const std::string &msg, bool cond) {
         ++assertions;
         if (!cond) {
@@ -209,11 +345,27 @@ struct testing {
     }
 
     template <typename A, typename B>
+    // 函数: assert_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: assert_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool assert_equal(const A &expected, const B &actual) {
         return assert_equal("", expected, actual);
     }
 
     template <typename A, typename B>
+    // 函数: assert_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: assert_equal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool assert_equal(const std::string &msg, const A &expected, const B &actual) {
         ++assertions;
         if (!(actual == expected)) {
@@ -232,6 +384,14 @@ struct testing {
     }
 
     // Print summary and return an exit code
+    // 函数: summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int summary() const {
         out << "\n";
         out << "tests      : " << tests << "\n";

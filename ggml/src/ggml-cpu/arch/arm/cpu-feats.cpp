@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: cpu-feats.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/arch/arm/cpu-feats.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-backend-impl.h"
 
 #if defined(__aarch64__)
@@ -20,6 +27,24 @@
 #define HWCAP2_SME (1 << 23)
 #endif
 
+// 类: aarch64_features
+// 描述: aarch64_features类提供相关功能
+// 用途: 用于处理aarch64_features相关的操作
+// 类: aarch64_features
+// 描述: aarch64_features类提供相关功能
+// 用途: 用于处理aarch64_features相关的操作
+    // 结构体: aarch64_features
+    // 描述: aarch64_features结构体提供相关功能
+    // 用途: 用于处理aarch64_features相关的操作
+    // 结构体: aarch64_features
+    // 描述: aarch64_features结构体提供相关功能
+    // 用途: 用于处理aarch64_features相关的操作
+    // 结构体: aarch64_features
+    // 描述: aarch64_features结构体提供相关功能
+    // 用途: 用于处理aarch64_features相关的操作
+    // 结构体: aarch64_features
+    // 描述: aarch64_features结构体提供相关功能
+    // 用途: 用于处理aarch64_features相关的操作
 struct aarch64_features {
     // has_neon not needed, aarch64 has NEON guaranteed
     bool has_dotprod     = false;
@@ -61,6 +86,14 @@ struct aarch64_features {
     }
 };
 
+// 函数: ggml_backend_cpu_aarch64_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_aarch64_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_cpu_aarch64_score() {
     int score = 1;
     aarch64_features af;

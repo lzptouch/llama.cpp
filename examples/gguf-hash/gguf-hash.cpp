@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gguf-hash.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/gguf-hash/gguf-hash.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "ggml.h"
 #include "gguf.h"
 
@@ -53,6 +60,24 @@ typedef enum {
 } hash_manifest_result_t;
 
 
+// 类: hash_params
+// 描述: hash_params类提供相关功能
+// 用途: 用于处理hash_params相关的操作
+// 类: hash_params
+// 描述: hash_params类提供相关功能
+// 用途: 用于处理hash_params相关的操作
+    // 结构体: hash_params
+    // 描述: hash_params结构体提供相关功能
+    // 用途: 用于处理hash_params相关的操作
+    // 结构体: hash_params
+    // 描述: hash_params结构体提供相关功能
+    // 用途: 用于处理hash_params相关的操作
+    // 结构体: hash_params
+    // 描述: hash_params结构体提供相关功能
+    // 用途: 用于处理hash_params相关的操作
+    // 结构体: hash_params
+    // 描述: hash_params结构体提供相关功能
+    // 用途: 用于处理hash_params相关的操作
 struct hash_params {
     std::string input;
     bool xxh64 = false;
@@ -66,6 +91,24 @@ struct hash_params {
     std::string manifest_file;
 };
 
+// 类: manifest_check_params
+// 描述: manifest_check_params类提供相关功能
+// 用途: 用于处理manifest_check_params相关的操作
+// 类: manifest_check_params
+// 描述: manifest_check_params类提供相关功能
+// 用途: 用于处理manifest_check_params相关的操作
+    // 结构体: manifest_check_params
+    // 描述: manifest_check_params结构体提供相关功能
+    // 用途: 用于处理manifest_check_params相关的操作
+    // 结构体: manifest_check_params
+    // 描述: manifest_check_params结构体提供相关功能
+    // 用途: 用于处理manifest_check_params相关的操作
+    // 结构体: manifest_check_params
+    // 描述: manifest_check_params结构体提供相关功能
+    // 用途: 用于处理manifest_check_params相关的操作
+    // 结构体: manifest_check_params
+    // 描述: manifest_check_params结构体提供相关功能
+    // 用途: 用于处理manifest_check_params相关的操作
 struct manifest_check_params {
     bool xxh64 = false;
     bool sha1 = false;
@@ -94,6 +137,14 @@ static char const * hash_exit_code_to_str(hash_exit_code_t value) {
     return "?";
 }
 
+// 函数: hash_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hash_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hash_print_usage(const char * executable) {
     const hash_params default_params;
     printf("\n");
@@ -113,6 +164,14 @@ static void hash_print_usage(const char * executable) {
     printf("\n");
 }
 
+// 函数: hash_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hash_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hash_params_parse_ex(int argc, const char ** argv, hash_params & params) {
     std::string arg;
     bool invalid_param = false;
@@ -188,6 +247,14 @@ static void hash_params_parse_ex(int argc, const char ** argv, hash_params & par
     params.input = argv[arg_idx++];
 }
 
+// 函数: hash_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hash_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool hash_params_parse(int argc, const char ** argv, hash_params & params) {
     bool result = true;
     try {
@@ -201,6 +268,14 @@ static bool hash_params_parse(int argc, const char ** argv, hash_params & params
     return result;
 }
 
+// 函数: manifest_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: manifest_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool manifest_type(const std::string & manifest_file, manifest_check_params & manifest_check) {
     if (manifest_file.empty()) {
         return false;
@@ -233,6 +308,14 @@ static bool manifest_type(const std::string & manifest_file, manifest_check_para
     return true;
 }
 
+// 函数: manifest_verify
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: manifest_verify
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static hash_manifest_result_t manifest_verify(const std::string& manifest_file, const std::string& hash_type_str, const std::string& hash_str, const std::string& tensor_name) {
     if (manifest_file.empty()) {
         return HASH_MANIFEST_NOT_FOUND;
@@ -267,6 +350,14 @@ static hash_manifest_result_t manifest_verify(const std::string& manifest_file, 
     return HASH_MANIFEST_NOT_FOUND;
 }
 
+// 函数: generate_uuidv5
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: generate_uuidv5
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
 static void generate_uuidv5(const unsigned char sha1_digest[20], unsigned char uuid[16]) {
     // Ref: https://www.rfc-editor.org/rfc/rfc9562.html#section-5.5
     // Assumes that digest was processed correctly with the expected namespace
@@ -283,10 +374,54 @@ static void generate_uuidv5(const unsigned char sha1_digest[20], unsigned char u
     uuid[ 8] |= (0x8 << 4);
 }
 
+// 函数: gguf_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static hash_exit_code_t gguf_hash(const hash_params & hash_params) {
     const std::string & fname = hash_params.input;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_data = NULL;
 
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params params = {
         /*.no_alloc = */ false,
         /*.ctx      = */ &ctx_data,
@@ -326,6 +461,24 @@ static hash_exit_code_t gguf_hash(const hash_params & hash_params) {
         SHA1Update( &sha1_for_uuid_ctx, (unsigned char const *)uuidv5_namespace, sizeof(uuidv5_namespace));
     }
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx = gguf_init_from_file(fname.c_str(), params);
     const int n_tensors = gguf_get_n_tensors(ctx);
     bool tensor_layer_in_manifest = false;
@@ -334,6 +487,24 @@ static hash_exit_code_t gguf_hash(const hash_params & hash_params) {
     bool model_has_mismatch = false;
     for (int i = 0; i < n_tensors; ++i) {
         const char * name = gguf_get_tensor_name(ctx, i);
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * cur = ggml_get_tensor(ctx_data, name);
         auto n_bytes = ggml_nbytes(cur);
         auto *raw_data = cur->data;
@@ -625,6 +796,14 @@ static hash_exit_code_t gguf_hash(const hash_params & hash_params) {
     return HASH_EXIT_SUCCESS;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, const char ** argv) {
     hash_params params;
     manifest_check_params manifest_check;

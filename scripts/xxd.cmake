@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: xxd.cmake
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/xxd.cmake
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 # CMake equivalent of `xxd -i ${INPUT} ${OUTPUT}`
 # Usage: cmake -DINPUT=tools/server/public/index.html -DOUTPUT=tools/server/index.html.hpp -P scripts/xxd.cmake
 

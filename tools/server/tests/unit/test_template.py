@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_template.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_template.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #!/usr/bin/env python
 import pytest
 
@@ -15,6 +22,14 @@ from utils import *
 server: ServerProcess
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -37,6 +52,14 @@ def create_server():
     ("CohereForAI-c4ai-command-r7b-12-2024-tool_use", -1, "<|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|>"),
     ("CohereForAI-c4ai-command-r7b-12-2024-tool_use",  0, "<|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|><|START_THINKING|><|END_THINKING|>"),
 ])
+    # 函数: test_reasoning_budget
+    # 描述: test_reasoning_budget函数提供相关功能
+    # 参数: template_name: str, reasoning_budget: int | None, expected_end: str, tools: list[dict]
+    # 返回: 无返回值
+    # 函数: test_reasoning_budget
+    # 描述: test_reasoning_budget函数提供相关功能
+    # 参数: template_name: str, reasoning_budget: int | None, expected_end: str, tools: list[dict]
+    # 返回: 无返回值
 def test_reasoning_budget(template_name: str, reasoning_budget: int | None, expected_end: str, tools: list[dict]):
     global server
     server.jinja = True
@@ -61,6 +84,14 @@ def test_reasoning_budget(template_name: str, reasoning_budget: int | None, expe
     ("meta-llama-Llama-3.3-70B-Instruct",    "%d %b %Y"),
     ("fireworks-ai-llama-3-firefunction-v2", "%b %d %Y"),
 ])
+    # 函数: test_date_inside_prompt
+    # 描述: test_date_inside_prompt函数提供相关功能
+    # 参数: template_name: str, format: str, tools: list[dict]
+    # 返回: 无返回值
+    # 函数: test_date_inside_prompt
+    # 描述: test_date_inside_prompt函数提供相关功能
+    # 参数: template_name: str, format: str, tools: list[dict]
+    # 返回: 无返回值
 def test_date_inside_prompt(template_name: str, format: str, tools: list[dict]):
     global server
     server.jinja = True
@@ -84,6 +115,14 @@ def test_date_inside_prompt(template_name: str, format: str, tools: list[dict]):
 @pytest.mark.parametrize("template_name,expected_generation_prompt", [
     ("meta-llama-Llama-3.3-70B-Instruct",    "<|start_header_id|>assistant<|end_header_id|>"),
 ])
+    # 函数: test_add_generation_prompt
+    # 描述: test_add_generation_prompt函数提供相关功能
+    # 参数: template_name: str, expected_generation_prompt: str, add_generation_prompt: bool
+    # 返回: 无返回值
+    # 函数: test_add_generation_prompt
+    # 描述: test_add_generation_prompt函数提供相关功能
+    # 参数: template_name: str, expected_generation_prompt: str, add_generation_prompt: bool
+    # 返回: 无返回值
 def test_add_generation_prompt(template_name: str, expected_generation_prompt: str, add_generation_prompt: bool):
     global server
     server.jinja = True

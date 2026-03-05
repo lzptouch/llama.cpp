@@ -47,6 +47,14 @@
     } while(0)
 
 // 3-letter suffix variants
+// 函数: hvx_div_f32_aaa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_aaa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_aaa(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) dst % 128 == 0);
     assert((uintptr_t) src0 % 128 == 0);
@@ -54,43 +62,107 @@ static inline void hvx_div_f32_aaa(uint8_t * restrict dst, const uint8_t * restr
     hvx_div_f32_loop_body(HVX_Vector, HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_div_f32_aau
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_aau
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_aau(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) dst % 128 == 0);
     assert((uintptr_t) src0 % 128 == 0);
     hvx_div_f32_loop_body(HVX_Vector, HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_div_f32_aua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_aua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_aua(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) dst % 128 == 0);
     assert((uintptr_t) src1 % 128 == 0);
     hvx_div_f32_loop_body(HVX_Vector, HVX_UVector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_div_f32_auu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_auu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_auu(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) dst % 128 == 0);
     hvx_div_f32_loop_body(HVX_Vector, HVX_UVector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_div_f32_uaa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_uaa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_uaa(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) src0 % 128 == 0);
     assert((uintptr_t) src1 % 128 == 0);
     hvx_div_f32_loop_body(HVX_UVector, HVX_Vector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_div_f32_uau
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_uau
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_uau(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) src0 % 128 == 0);
     hvx_div_f32_loop_body(HVX_UVector, HVX_Vector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_div_f32_uua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_uua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_uua(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     assert((uintptr_t) src1 % 128 == 0);
     hvx_div_f32_loop_body(HVX_UVector, HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_div_f32_uuu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32_uuu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32_uuu(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, uint32_t n) {
     hvx_div_f32_loop_body(HVX_UVector, HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_div_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_div_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_div_f32(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, const uint32_t num_elems) {
     if (hex_is_aligned((void *) dst, 128)) {
         if (hex_is_aligned((void *) src0, 128)) {

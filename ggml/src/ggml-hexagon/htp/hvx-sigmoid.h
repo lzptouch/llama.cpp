@@ -8,6 +8,14 @@
 #define FAST_SIGMOID_C2    (0x3e8d74bd)  // 0.276281267
 #define FAST_SIGMOID_C3    (0x3f000000)  // 0.5
 
+// 函数: hvx_vec_fast_sigmoid_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_fast_sigmoid_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_fast_sigmoid_f32(HVX_Vector v) {
     v = Q6_Vqf32_vmpy_VsfVsf(v, Q6_V_vsplat_R(FAST_SIGMOID_LOG2F));
     v = Q6_Vqf32_vmpy_VsfVsf(Q6_Vsf_equals_Vqf32(v), Q6_V_vsplat_R(FAST_SIGMOID_C3));
@@ -47,9 +55,25 @@ static inline HVX_Vector hvx_vec_fast_sigmoid_f32_guard(HVX_Vector v,
 
     HVX_Vector out = hvx_vec_fast_sigmoid_f32(v);
     out            = Q6_V_vmux_QVV(pred_max, out, one);
+    // 函数: Q6_V_vmux_QVV
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: Q6_V_vmux_QVV
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return Q6_V_vmux_QVV(pred_min, out, Q6_V_vzero());
 }
 
+// 函数: hvx_vec_tanh_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_tanh_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_tanh_f32(HVX_Vector x) {
     // tanh(x) = 2 * sigmoid(2x) - 1
     HVX_Vector two = hvx_vec_splat_f32(2.0f);
@@ -112,26 +136,66 @@ static inline HVX_Vector hvx_vec_tanh_f32(HVX_Vector x) {
         }                                                       \
     } while(0)
 
+// 函数: hvx_sigmoid_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sigmoid_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sigmoid_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
     hvx_sigmoid_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sigmoid_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sigmoid_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sigmoid_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_sigmoid_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sigmoid_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sigmoid_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sigmoid_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_sigmoid_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_sigmoid_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sigmoid_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sigmoid_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_sigmoid_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_tanh_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_tanh_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_tanh_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);

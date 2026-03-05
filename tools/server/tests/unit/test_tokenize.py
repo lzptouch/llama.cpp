@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_tokenize.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_tokenize.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
@@ -5,11 +12,27 @@ server = ServerPreset.tinyllama2()
 
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
 
 
+    # 函数: test_tokenize_detokenize
+    # 描述: test_tokenize_detokenize函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_tokenize_detokenize
+    # 描述: test_tokenize_detokenize函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_tokenize_detokenize():
     global server
     server.start()
@@ -28,6 +51,14 @@ def test_tokenize_detokenize():
     assert res_detok.body["content"].strip() == content
 
 
+    # 函数: test_tokenize_with_bos
+    # 描述: test_tokenize_with_bos函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_tokenize_with_bos
+    # 描述: test_tokenize_with_bos函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_tokenize_with_bos():
     global server
     server.start()
@@ -42,6 +73,14 @@ def test_tokenize_with_bos():
     assert res_tok.body["tokens"][0] == bosId
 
 
+    # 函数: test_tokenize_with_pieces
+    # 描述: test_tokenize_with_pieces函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_tokenize_with_pieces
+    # 描述: test_tokenize_with_pieces函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_tokenize_with_pieces():
     global server
     server.start()

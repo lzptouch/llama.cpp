@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mmq.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/amx/mmq.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #if defined(__GNUC__)
 #pragma GCC diagnostic ignored "-Wpedantic"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -38,6 +45,24 @@ namespace {
 
 // Forced unrolling
 template <int n>
+// 类: Unroll
+// 描述: Unroll类提供相关功能
+// 用途: 用于处理unroll相关的操作
+// 类: Unroll
+// 描述: Unroll类提供相关功能
+// 用途: 用于处理unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
 struct Unroll {
     template <typename Func, typename... Args>
     ALWAYS_INLINE void operator()(const Func& f, Args... args) const {
@@ -47,6 +72,24 @@ struct Unroll {
 };
 
 template <>
+// 类: Unroll
+// 描述: Unroll类提供相关功能
+// 用途: 用于处理unroll相关的操作
+// 类: Unroll
+// 描述: Unroll类提供相关功能
+// 用途: 用于处理unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
+    // 结构体: Unroll
+    // 描述: Unroll结构体提供相关功能
+    // 用途: 用于处理Unroll相关的操作
 struct Unroll<1> {
     template <typename Func, typename... Args>
     ALWAYS_INLINE void operator()(const Func& f, Args... args) const {
@@ -62,15 +105,69 @@ template <> struct PackedTypes<block_q8_0> { using type = int8_t; };
 template <typename T> using packed_B_type = typename PackedTypes<T>::type;
 
 template <typename T>
+// 类: do_compensate
+// 描述: do_compensate类提供相关功能
+// 用途: 用于处理do_compensate相关的操作
+// 类: do_compensate
+// 描述: do_compensate类提供相关功能
+// 用途: 用于处理do_compensate相关的操作
+    // 结构体: do_compensate
+    // 描述: do_compensate结构体提供相关功能
+    // 用途: 用于处理do_compensate相关的操作
+    // 结构体: do_compensate
+    // 描述: do_compensate结构体提供相关功能
+    // 用途: 用于处理do_compensate相关的操作
+    // 结构体: do_compensate
+    // 描述: do_compensate结构体提供相关功能
+    // 用途: 用于处理do_compensate相关的操作
+    // 结构体: do_compensate
+    // 描述: do_compensate结构体提供相关功能
+    // 用途: 用于处理do_compensate相关的操作
 struct do_compensate : std::integral_constant<bool,
     std::is_same<T, block_q8_0>::value> {};
 
 template <typename T>
+// 类: do_unpack
+// 描述: do_unpack类提供相关功能
+// 用途: 用于处理do_unpack相关的操作
+// 类: do_unpack
+// 描述: do_unpack类提供相关功能
+// 用途: 用于处理do_unpack相关的操作
+    // 结构体: do_unpack
+    // 描述: do_unpack结构体提供相关功能
+    // 用途: 用于处理do_unpack相关的操作
+    // 结构体: do_unpack
+    // 描述: do_unpack结构体提供相关功能
+    // 用途: 用于处理do_unpack相关的操作
+    // 结构体: do_unpack
+    // 描述: do_unpack结构体提供相关功能
+    // 用途: 用于处理do_unpack相关的操作
+    // 结构体: do_unpack
+    // 描述: do_unpack结构体提供相关功能
+    // 用途: 用于处理do_unpack相关的操作
 struct do_unpack : std::integral_constant<bool,
     std::is_same<T, block_q4_0>::value ||
     std::is_same<T, block_q4_1>::value> {};
 
 template <typename T>
+// 类: is_type_qkk
+// 描述: is_type_qkk类提供相关功能
+// 用途: 用于处理is_type_qkk相关的操作
+// 类: is_type_qkk
+// 描述: is_type_qkk类提供相关功能
+// 用途: 用于处理is_type_qkk相关的操作
+    // 结构体: is_type_qkk
+    // 描述: is_type_qkk结构体提供相关功能
+    // 用途: 用于处理is_type_qkk相关的操作
+    // 结构体: is_type_qkk
+    // 描述: is_type_qkk结构体提供相关功能
+    // 用途: 用于处理is_type_qkk相关的操作
+    // 结构体: is_type_qkk
+    // 描述: is_type_qkk结构体提供相关功能
+    // 用途: 用于处理is_type_qkk相关的操作
+    // 结构体: is_type_qkk
+    // 描述: is_type_qkk结构体提供相关功能
+    // 用途: 用于处理is_type_qkk相关的操作
 struct is_type_qkk : std::integral_constant<bool,
     std::is_same<T, block_q4_K>::value ||
     std::is_same<T, block_q5_K>::value ||
@@ -83,11 +180,27 @@ struct is_type_qkk : std::integral_constant<bool,
             case GGML_TYPE_F16: {                                                      \
                 using type = ggml_fp16_t;                                              \
                 constexpr int blck_size = 16;                                          \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_BF16: {                                                     \
                 using type = ggml_bf16_t;                                              \
                 constexpr int blck_size = 32;                                          \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             default:                                                                   \
@@ -102,42 +215,98 @@ struct is_type_qkk : std::integral_constant<bool,
                 using type = block_q4_0;                                               \
                 using vec_dot_type = block_q8_0;                                       \
                 constexpr int blck_size = QK4_0;                                       \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_Q4_1: {                                                     \
                 using type = block_q4_1;                                               \
                 using vec_dot_type = block_q8_1;                                       \
                 constexpr int blck_size = QK4_1;                                       \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_Q8_0: {                                                     \
                 using type = block_q8_0;                                               \
                 using vec_dot_type = block_q8_0;                                       \
                 constexpr int blck_size = QK8_0;                                       \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_Q4_K: {                                                     \
                 using type = block_q4_K;                                               \
                 using vec_dot_type = block_q8_K;                                       \
                 constexpr int blck_size = QK_K;                                        \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_Q5_K: {                                                     \
                 using type = block_q5_K;                                               \
                 using vec_dot_type = block_q8_K;                                       \
                 constexpr int blck_size = QK_K;                                        \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_Q6_K: {                                                     \
                 using type = block_q6_K;                                               \
                 using vec_dot_type = block_q8_K;                                       \
                 constexpr int blck_size = QK_K;                                        \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             case GGML_TYPE_IQ4_XS: {                                                   \
                 using type = block_iq4_xs;                                             \
                 using vec_dot_type = block_q8_K;                                       \
                 constexpr int blck_size = QK_K;                                        \
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: __VA_ARGS__
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return __VA_ARGS__();                                                  \
             }                                                                          \
             default:                                                                   \
@@ -149,14 +318,48 @@ struct is_type_qkk : std::integral_constant<bool,
     [&] {                                                                              \
         if (BOOL_V) {                                                                  \
             constexpr bool BOOL_NAME = true;                                           \
+            // 函数: __VA_ARGS__
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: __VA_ARGS__
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return __VA_ARGS__();                                                      \
         } else {                                                                       \
             constexpr bool BOOL_NAME = false;                                          \
+            // 函数: __VA_ARGS__
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: __VA_ARGS__
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return __VA_ARGS__();                                                      \
         }                                                                              \
     }()
 
 // define amx tile config data structure
+// 类: tile_config_t
+// 描述: tile_config_t类提供相关功能
+// 用途: 用于处理tile_config_t相关的操作
+// 类: tile_config_t
+// 描述: tile_config_t类提供相关功能
+// 用途: 用于处理tile_config_t相关的操作
+    // 结构体: tile_config_t
+    // 描述: tile_config_t结构体提供相关功能
+    // 用途: 用于处理tile_config_t相关的操作
+    // 结构体: tile_config_t
+    // 描述: tile_config_t结构体提供相关功能
+    // 用途: 用于处理tile_config_t相关的操作
+    // 结构体: tile_config_t
+    // 描述: tile_config_t结构体提供相关功能
+    // 用途: 用于处理tile_config_t相关的操作
+    // 结构体: tile_config_t
+    // 描述: tile_config_t结构体提供相关功能
+    // 用途: 用于处理tile_config_t相关的操作
 struct tile_config_t{
     uint8_t palette_id = 0;
     uint8_t start_row = 0;
@@ -201,6 +404,14 @@ struct tile_config_t{
 //    advanced-matrix-extensions-intrinsics-functions.html
 //
 
+// 函数: ggml_tile_config_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_tile_config_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_tile_config_init(void) {
     static thread_local bool done = false;
 
@@ -227,6 +438,14 @@ inline void ggml_tile_config_init(void) {
 // we need an extra 16 * 4B (TILE_N * int32_t) for each NB/KB block for compensation.
 // See the notes `s8s8 igemm compensation in avx512-vnni` for detail.
 template <typename TB>
+// 函数: get_tile_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_tile_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 int get_tile_size() {
     int tile_size = TILE_N * sizeof(TB);
     if (do_compensate<TB>::value) {
@@ -243,6 +462,14 @@ int get_tile_size() {
 }
 
 template <typename TB, int BLOCK_K>
+// 函数: get_row_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_row_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 int get_row_size(int K) {
     int KB = K / BLOCK_K;
     int row_size = KB * sizeof(TB);
@@ -262,6 +489,14 @@ int get_row_size(int K) {
 // transpose utils
 #define SHUFFLE_EPI32(a, b, mask) \
     _mm256_castps_si256(_mm256_shuffle_ps(_mm256_castsi256_ps(a), _mm256_castsi256_ps(b), mask))
+// 函数: transpose_8x8_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: transpose_8x8_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void transpose_8x8_32bit(__m256i * v, __m256i * v1) {
     // unpacking and 32-bit elements
     v1[0] = _mm256_unpacklo_epi32(v[0], v[1]);
@@ -294,6 +529,14 @@ inline void transpose_8x8_32bit(__m256i * v, __m256i * v1) {
     v1[7] = _mm256_permute2f128_si256(v[7], v[5], 0x13);
 }
 
+// 函数: transpose_16x4_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: transpose_16x4_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void transpose_16x4_32bit(__m512i * r, __m512i * d) {
 
     static const __m512i index1 = _mm512_set_epi32(
@@ -318,6 +561,14 @@ inline void transpose_16x4_32bit(__m512i * r, __m512i * d) {
     d[3] = _mm512_shuffle_i32x4(r[1], r[3], 0xdd);
 }
 
+// 函数: transpose_16x16_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: transpose_16x16_32bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void transpose_16x16_32bit(__m512i * v) {
     __m512i v1[16];
     v1[0] = _mm512_unpacklo_epi32(v[0], v[1]);
@@ -389,6 +640,14 @@ inline void transpose_16x16_32bit(__m512i * v) {
     v[15] = _mm512_shuffle_i32x4(v1[7], v1[15], 0xdd);
 }
 
+// 函数: quantize_row_q8_K_vnni
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_row_q8_K_vnni
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void quantize_row_q8_K_vnni(const float * RESTRICT x, void * RESTRICT vy, int64_t k) {
     assert(k % QK_K == 0);
     const int KB = k / QK_K;
@@ -456,6 +715,14 @@ void quantize_row_q8_K_vnni(const float * RESTRICT x, void * RESTRICT vy, int64_
 
 // quantize A from float to `vec_dot_type`
 template <typename T>
+// 函数: from_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: from_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void from_float(const float * x, char * vy, int64_t k);
 
 template <>
@@ -479,6 +746,14 @@ inline void from_float<block_q8_K>(const float * x, char * vy, int64_t k) {
 }
 
 // load A from memory to array when nrows can not fill in whole tile
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void unpack_A(int8_t * RESTRICT tile, const block_q8_0 * RESTRICT A, int lda, int nr) {
     assert(nr != TILE_M);
     for (int m = 0; m < nr; ++m) {
@@ -487,6 +762,14 @@ void unpack_A(int8_t * RESTRICT tile, const block_q8_0 * RESTRICT A, int lda, in
     }
 }
 
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void unpack_A(int8_t * RESTRICT tile, const block_q8_1 * RESTRICT A, int lda, int nr) {
     assert(nr != TILE_M);
     for (int m = 0; m < nr; ++m) {
@@ -496,6 +779,14 @@ void unpack_A(int8_t * RESTRICT tile, const block_q8_1 * RESTRICT A, int lda, in
 }
 
 template <typename TB>
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_A
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void unpack_A(int8_t * RESTRICT tile, const block_q8_K * RESTRICT A, int lda, int k, int nr) {
     assert(nr <= TILE_M);
     for (int m = 0; m < nr; ++m) {
@@ -517,6 +808,14 @@ void unpack_A<block_q6_K>(int8_t * RESTRICT tile, const block_q8_K * RESTRICT A,
 }
 
 #define MM256_SET_M128I(a, b) _mm256_insertf128_si256(_mm256_castsi128_si256(b), (a), 1)
+// 函数: bytes_from_nibbles_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_nibbles_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256i bytes_from_nibbles_32(const uint8_t * rsi) {
     const __m128i tmp = _mm_loadu_si128((const __m128i *)rsi);
     const __m256i bytes = MM256_SET_M128I(_mm_srli_epi16(tmp, 4), tmp);
@@ -525,6 +824,14 @@ inline __m256i bytes_from_nibbles_32(const uint8_t * rsi) {
 }
 
 // used for block_q4_K
+// 函数: bytes_from_nibbles_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_nibbles_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512i bytes_from_nibbles_64(const uint8_t * rsi) {
     const __m256i tmp = _mm256_loadu_si256((const __m256i *)rsi);
     const __m256i lowMask = _mm256_set1_epi8(0xF);
@@ -534,6 +841,14 @@ inline __m512i bytes_from_nibbles_64(const uint8_t * rsi) {
 }
 
 // used for block_q5_K
+// 函数: bytes_from_nibbles_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_nibbles_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512i bytes_from_nibbles_64(const uint8_t * qs, const uint8_t * qh, int k) {
     const __m256i lowMask = _mm256_set1_epi8(0xF);
     __m256i hmask = _mm256_set1_epi8(1);
@@ -555,6 +870,14 @@ inline __m512i bytes_from_nibbles_64(const uint8_t * qs, const uint8_t * qh, int
 }
 
 // used for block_q6_K
+// 函数: bytes_from_nibbles_128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_nibbles_128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void bytes_from_nibbles_128(__m512i& r0, __m512i& r1, const uint8_t * qs, const uint8_t * qh) {
     const __m256i m4 = _mm256_set1_epi8(0xF);
     const __m256i m2 = _mm256_set1_epi8(0x3);
@@ -577,11 +900,27 @@ inline void bytes_from_nibbles_128(__m512i& r0, __m512i& r1, const uint8_t * qs,
     r1 = _mm512_inserti32x8(_mm512_castsi256_si512(q6_2), q6_3, 1);
 }
 
+// 函数: packNibbles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: packNibbles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512i packNibbles(__m512i r0, __m512i r1) {
     return _mm512_or_si512(r0, _mm512_slli_epi16(r1, 4));
 }
 
 template <typename TB>
+// 函数: pack_qs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_qs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void pack_qs(void * RESTRICT packed_B, const TB * RESTRICT B, int KB) {
     int8_t tmp[8 * 64];
     __m256i v[8], v2[8];
@@ -749,6 +1088,14 @@ inline void pack_qs<block_iq4_xs>(void * RESTRICT packed_B, const block_iq4_xs *
 }
 
 // pack B to vnni formats in 4bits or 8 bits
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q4_0 * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
     ggml_half * d0 = reinterpret_cast<ggml_half *>((char *)packed_B + TILE_N * TILE_K / 2);
@@ -757,6 +1104,14 @@ void pack_B(void * RESTRICT packed_B, const block_q4_0 * RESTRICT B, int KB) {
     }
 }
 
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q4_1 * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
     ggml_half * d0 = reinterpret_cast<ggml_half *>((char *)packed_B + TILE_N * TILE_K / 2);
@@ -767,6 +1122,14 @@ void pack_B(void * RESTRICT packed_B, const block_q4_1 * RESTRICT B, int KB) {
     }
 }
 
+// 函数: s8s8_compensation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: s8s8_compensation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void s8s8_compensation(void * RESTRICT packed_B) {
     // packed_B layout:
     //   quants {TILE_N, TILEK}  int8_t
@@ -782,6 +1145,14 @@ inline void s8s8_compensation(void * RESTRICT packed_B) {
     _mm512_storeu_si512((__m512i *)((char *)(packed_B) + offset), vcomp);
 }
 
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q8_0 * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
     ggml_half * d0 = reinterpret_cast<ggml_half *>((char *)packed_B + TILE_N * TILE_K);
@@ -792,6 +1163,14 @@ void pack_B(void * RESTRICT packed_B, const block_q8_0 * RESTRICT B, int KB) {
 }
 
 // convert 8 * {min, scale} from int6 to int8
+// 函数: unpack_mins_and_scales
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_mins_and_scales
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void unpack_mins_and_scales(const uint8_t * scales, uint32_t * utmp) {
     const uint32_t kmask1 = 0x3f3f3f3f;
     const uint32_t kmask2 = 0x0f0f0f0f;
@@ -811,6 +1190,14 @@ inline void unpack_mins_and_scales(const uint8_t * scales, uint32_t * utmp) {
 //   mins   {8, TILE_N}      uint8
 //   d      {TILE_N}     ggml_half
 //   dmin   {TILE_N}     ggml_half
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q4_K * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
 
@@ -842,6 +1229,14 @@ void pack_B(void * RESTRICT packed_B, const block_q4_K * RESTRICT B, int KB) {
 //   mins   {8, TILE_N}      uint8
 //   d      {TILE_N}     ggml_half
 //   dmin   {TILE_N}     ggml_half
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q5_K * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
 
@@ -871,6 +1266,14 @@ void pack_B(void * RESTRICT packed_B, const block_q5_K * RESTRICT B, int KB) {
 //   qh     {16, TILE_N, 4}  uint8
 //   scales {16, TILE_N}      uint8
 //   d      {TILE_N}     ggml_half
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_q6_K * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
 
@@ -889,6 +1292,14 @@ void pack_B(void * RESTRICT packed_B, const block_q6_K * RESTRICT B, int KB) {
 //   quants {8, TILE_N, 16}  uint8
 //   scales {8, TILE_N}       int8
 //   d      {TILE_N}     ggml_half
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void pack_B(void * RESTRICT packed_B, const block_iq4_xs * RESTRICT B, int KB) {
     pack_qs(packed_B, B, KB);
 
@@ -910,6 +1321,14 @@ void pack_B(void * RESTRICT packed_B, const block_iq4_xs * RESTRICT B, int KB) {
 }
 
 template<typename TB, typename packed_B_t = packed_B_type<TB>>
+// 函数: unpack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void unpack_B(packed_B_t * RESTRICT tile, const void * RESTRICT packed_B) {
     GGML_UNUSED(tile);
     GGML_UNUSED(packed_B);
@@ -942,6 +1361,14 @@ void unpack_B<block_q4_1>(uint8_t * RESTRICT tile, const void * RESTRICT packed_
 
 // packed_B_t for QKK is int8_t
 template <typename TB>
+// 函数: unpack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_B
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void unpack_B(int8_t * RESTRICT tile, const void * RESTRICT packed_B, int k) {
     const int packed_B_group_size = QK_K / 2 * TILE_N / 8;
     const char * packed_B_group = (const char *)packed_B + k * packed_B_group_size;
@@ -1046,10 +1473,54 @@ void unpack_B<block_iq4_xs>(int8_t * RESTRICT tile, const void * RESTRICT packed
 }
 
 template <typename TA, typename TB, bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C {};
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_0, block_q4_0, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_0 * A, int lda, const void * packed_B, int nr) {
         const int offset = TILE_N * TILE_K / 2;
         const __m512 vd0 = _mm512_cvtph_ps(_mm256_loadu_si256((const __m256i *)((const char *)packed_B + offset)));
@@ -1071,7 +1542,33 @@ struct acc_C<block_q8_0, block_q4_0, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_1, block_q4_1, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_1 * A, int lda, const void * packed_B, int nr) {
         const int offset = TILE_N * TILE_K / 2;
         const __m512 vd0 = _mm512_cvtph_ps(_mm256_loadu_si256((const __m256i *)((const char *)packed_B + offset)));
@@ -1096,7 +1593,33 @@ struct acc_C<block_q8_1, block_q4_1, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_0, block_q8_0, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_0 * A, int lda, const void * packed_B, int nr) {
         const int offset = TILE_N * TILE_K;
         const __m512 vd0 = _mm512_cvtph_ps(_mm256_loadu_si256((const __m256i *)((const char *)packed_B + offset)));
@@ -1118,7 +1641,33 @@ struct acc_C<block_q8_0, block_q8_0, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_K, block_q4_K, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_K * A, int lda, const void * packed_B, int nr) {
         const uint8_t * scales = reinterpret_cast<const uint8_t *>((const char *)packed_B + (QK_K / 2) * TILE_N);
         const uint8_t * mins = scales + 8 * TILE_N;
@@ -1160,7 +1709,33 @@ struct acc_C<block_q8_K, block_q4_K, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_K, block_q5_K, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_K * A, int lda, const void * packed_B, int nr) {
         const uint8_t * scales = reinterpret_cast<const uint8_t *>((const char *)packed_B + (QK_K / 2) * TILE_N + (QK_K / 8) * TILE_N);
         const uint8_t * mins = scales + 8 * TILE_N;
@@ -1202,7 +1777,33 @@ struct acc_C<block_q8_K, block_q5_K, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_K, block_q6_K, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_K * A, int lda, const void * packed_B, int nr) {
         const uint8_t * scales = reinterpret_cast<const uint8_t *>((const char *)packed_B + (QK_K / 2) * TILE_N + (QK_K / 4) * TILE_N);
         const ggml_half * d0 = reinterpret_cast<const ggml_half *>(scales + 16 * TILE_N);
@@ -1228,7 +1829,33 @@ struct acc_C<block_q8_K, block_q6_K, is_acc> {
 };
 
 template <bool is_acc>
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+// 类: acc_C
+// 描述: acc_C类提供相关功能
+// 用途: 用于处理acc_c相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
+    // 结构体: acc_C
+    // 描述: acc_C结构体提供相关功能
+    // 用途: 用于处理acc_C相关的操作
 struct acc_C<block_q8_K, block_iq4_xs, is_acc> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(float * RESTRICT C, int ldc, const int32_t * RESTRICT tile, const block_q8_K * A, int lda, const void * packed_B, int nr) {
         const int8_t * scales = reinterpret_cast<const int8_t *>((const char *)packed_B + (QK_K / 2) * TILE_N);
         const ggml_half * d0 = reinterpret_cast<const ggml_half *>(scales + 8 * TILE_N);
@@ -1262,6 +1889,14 @@ template <> constexpr int get_quants_size<block_iq4_xs>() { return (QK_K / 2) * 
 // used for QKK format
 template <typename TB, bool is_acc,
           typename std::enable_if<is_type_qkk<TB>::value, int>::type = 0>
+// 函数: scale_C
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: scale_C
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void scale_C(const int32_t * RESTRICT tile, int32_t * RESTRICT sumi, const void * packed_B, int k, int nr) {
     const uint8_t * scales = reinterpret_cast<const uint8_t *>((const char *)packed_B + get_quants_size<TB>());
     const __m512i vscale = _mm512_cvtepi8_epi32(_mm_loadu_si128((const __m128i *)(scales + k * TILE_N)));
@@ -1280,7 +1915,33 @@ inline void scale_C(const int32_t * RESTRICT tile, int32_t * RESTRICT sumi, cons
 }
 
 template <typename TA, typename TB, typename TC, int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_avx
+// 描述: tinygemm_kernel_avx类提供相关功能
+// 用途: 用于处理tinygemm_kernel_avx相关的操作
+// 类: tinygemm_kernel_avx
+// 描述: tinygemm_kernel_avx类提供相关功能
+// 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
 struct tinygemm_kernel_avx {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int K, const TA * RESTRICT A, const TB * RESTRICT B, TC * RESTRICT C, int ldc) {
         GGML_UNUSED(K);
         GGML_UNUSED(A);
@@ -1291,7 +1952,33 @@ struct tinygemm_kernel_avx {
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_avx
+// 描述: tinygemm_kernel_avx类提供相关功能
+// 用途: 用于处理tinygemm_kernel_avx相关的操作
+// 类: tinygemm_kernel_avx
+// 描述: tinygemm_kernel_avx类提供相关功能
+// 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
+    // 结构体: tinygemm_kernel_avx
+    // 描述: tinygemm_kernel_avx结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_avx相关的操作
 struct tinygemm_kernel_avx<float, ggml_fp16_t, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int K, const float * RESTRICT A, const ggml_fp16_t * RESTRICT B, float * RESTRICT C, int ldc) {
         constexpr int ROWS = BLOCK_M;
         constexpr int COLS = BLOCK_N;
@@ -1343,6 +2030,14 @@ struct tinygemm_kernel_avx<float, ggml_fp16_t, float, BLOCK_M, BLOCK_N, BLOCK_K>
 #define PACKED_INDEX(n, k, KB, tile_size) (n * KB + k) * tile_size
 
 template<typename TB, int BLOCK_K>
+// 函数: convert_B_packed_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_B_packed_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void convert_B_packed_format(void * RESTRICT packed_B, const TB * RESTRICT B, int N, int K) {
     const int NB = N / TILE_N;
     const int KB = K / BLOCK_K;
@@ -1360,10 +2055,54 @@ void convert_B_packed_format(void * RESTRICT packed_B, const TB * RESTRICT B, in
 }
 
 template <typename TA, typename TB, typename TC, int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni {};
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_0, block_q4_0, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1435,7 +2174,33 @@ struct tinygemm_kernel_vnni<block_q8_0, block_q4_0, float, BLOCK_M, BLOCK_N, BLO
 };
 
 template <int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_1, block_q4_1, float, 1, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1500,7 +2265,33 @@ struct tinygemm_kernel_vnni<block_q8_1, block_q4_1, float, 1, BLOCK_N, BLOCK_K> 
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_0, block_q8_0, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1571,7 +2362,33 @@ struct tinygemm_kernel_vnni<block_q8_0, block_q8_0, float, BLOCK_M, BLOCK_N, BLO
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_K, block_q4_K, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1671,7 +2488,33 @@ struct tinygemm_kernel_vnni<block_q8_K, block_q4_K, float, BLOCK_M, BLOCK_N, BLO
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_K, block_q5_K, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1777,7 +2620,33 @@ struct tinygemm_kernel_vnni<block_q8_K, block_q5_K, float, BLOCK_M, BLOCK_N, BLO
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_K, block_q6_K, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1887,7 +2756,33 @@ struct tinygemm_kernel_vnni<block_q8_K, block_q6_K, float, BLOCK_M, BLOCK_N, BLO
 };
 
 template <int BLOCK_M, int BLOCK_N, int BLOCK_K>
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+// 类: tinygemm_kernel_vnni
+// 描述: tinygemm_kernel_vnni类提供相关功能
+// 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
+    // 结构体: tinygemm_kernel_vnni
+    // 描述: tinygemm_kernel_vnni结构体提供相关功能
+    // 用途: 用于处理tinygemm_kernel_vnni相关的操作
 struct tinygemm_kernel_vnni<block_q8_K, block_iq4_xs, float, BLOCK_M, BLOCK_N, BLOCK_K> {
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void apply(int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
 
         constexpr int COLS = BLOCK_N / 16;
@@ -1991,6 +2886,14 @@ struct tinygemm_kernel_vnni<block_q8_K, block_iq4_xs, float, BLOCK_M, BLOCK_N, B
 
 template <typename TA, typename TB, typename TC, int BLOCK_K,
           typename std::enable_if<!is_type_qkk<TB>::value, int>::type = 0>
+// 函数: tinygemm_kernel_amx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tinygemm_kernel_amx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void tinygemm_kernel_amx(int M, int N, int KB, const void * RESTRICT _A, const void * RESTRICT _B, TC * RESTRICT C, int ldc) {
     using packed_B_t = packed_B_type<TB>;
     const int TILE_SIZE = get_tile_size<TB>();
@@ -2175,6 +3078,14 @@ void tinygemm_kernel_amx(int M, int N, int KB, const void * RESTRICT _A, const v
 
 template <typename TA, typename TB, typename TC, int BLOCK_K,
           typename std::enable_if<is_type_qkk<TB>::value, int>::type = 0>
+// 函数: tinygemm_kernel_amx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tinygemm_kernel_amx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void tinygemm_kernel_amx(int M, int N, int KB, const void * RESTRICT _A, const void * RESTRICT _B, float * RESTRICT C, int ldc) {
     static_assert(std::is_same<TA, block_q8_K>::value);
     const int TILE_SIZE = get_tile_size<TB>();
@@ -2264,6 +3175,14 @@ void tinygemm_kernel_amx(int M, int N, int KB, const void * RESTRICT _A, const v
 } // anonymous namespace
 
 // get the packed tensor size for quantized weights
+// 函数: ggml_backend_amx_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_amx_get_alloc_size(const struct ggml_tensor * tensor) {
     const enum ggml_type TYPE = tensor->type;
 
@@ -2287,6 +3206,14 @@ size_t ggml_backend_amx_get_alloc_size(const struct ggml_tensor * tensor) {
 }
 
 // pack weight to vnni format
+// 函数: ggml_backend_amx_convert_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_convert_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_amx_convert_weight(struct ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     GGML_ASSERT(offset == 0 && size == ggml_nbytes(tensor)); // only full tensor conversion is supported for now
 
@@ -2301,13 +3228,47 @@ void ggml_backend_amx_convert_weight(struct ggml_tensor * tensor, const void * d
 }
 
 // ne2 is passed explicitly to help compiler optimize repeated calls
+// 函数: ggml_batch_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_batch_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline int64_t ggml_batch_offset(const ggml_tensor * t, int64_t batch_idx, int64_t ne2) {
     const int64_t i2 = batch_idx % ne2;
     const int64_t i3 = batch_idx / ne2;
     return i3 * t->nb[3] + i2 * t->nb[2];
 }
 
+// 函数: ggml_backend_amx_desired_wsize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_desired_wsize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_amx_desired_wsize(const struct ggml_tensor * dst) {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * src0 = dst->src[0];
 
     const enum ggml_type TYPE = src0->type;
@@ -2339,8 +3300,52 @@ size_t ggml_backend_amx_desired_wsize(const struct ggml_tensor * dst) {
 //
 // the function performs: dst = src1 @ src0.T for each batch
 //
+// 函数: ggml_backend_amx_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_amx_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_amx_mul_mat(const ggml_compute_params * params, struct ggml_tensor * dst) {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * src0 = dst->src[0];
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * src1 = dst->src[1];
 
     const enum ggml_type TYPE = src0->type;

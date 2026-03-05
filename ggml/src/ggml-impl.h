@@ -28,6 +28,14 @@
 extern "C" {
 #endif
 
+// 函数: ggml_print_backtrace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_print_backtrace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_print_backtrace(void);
 
 #ifndef MIN
@@ -55,6 +63,14 @@ void ggml_print_backtrace(void);
     #endif
 #endif
 
+// 函数: ggml_up32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_up32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int ggml_up32(int n) {
     return (n + 31) & ~31;
 }
@@ -63,6 +79,14 @@ static inline int ggml_up32(int n) {
 //    return (n + 63) & ~63;
 //}
 
+// 函数: ggml_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int ggml_up(int n, int m) {
     // assert m is a power of 2
     GGML_ASSERT((m & (m - 1)) == 0);
@@ -70,6 +94,14 @@ static inline int ggml_up(int n, int m) {
 }
 
 // TODO: move to ggml.h? (won't be able to inline)
+// 函数: ggml_are_same_layout
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_are_same_layout
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_are_same_layout(const struct ggml_tensor * a, const struct ggml_tensor * b) {
     if (a->type != b->type) {
         return false;
@@ -85,6 +117,14 @@ static bool ggml_are_same_layout(const struct ggml_tensor * a, const struct ggml
     return true;
 }
 
+// 函数: ggml_op_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_op_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_op_is_empty(enum ggml_op op) {
     switch (op) {
         case GGML_OP_NONE:
@@ -98,10 +138,26 @@ static bool ggml_op_is_empty(enum ggml_op op) {
     }
 }
 
+// 函数: ggml_impl_is_view
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_impl_is_view
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_impl_is_view(const struct ggml_tensor * t) {
     return t->view_src != NULL;
 }
 
+// 函数: ggml_compute_softplus_f32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_softplus_f32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline float ggml_compute_softplus_f32(float input) {
     return (input > 20.0f) ? input : logf(1 + expf(input));
 }
@@ -142,50 +198,162 @@ GGML_API void ggml_log_callback_default(enum ggml_log_level level, const char * 
 
 // tensor params
 
+// 函数: ggml_set_op_params
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_op_params
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_set_op_params(struct ggml_tensor * tensor, const void * params, size_t params_size) {
     GGML_ASSERT(tensor != NULL); // silence -Warray-bounds warnings
     assert(params_size <= GGML_MAX_OP_PARAMS);
     memcpy(tensor->op_params, params, params_size);
 }
 
+// 函数: ggml_get_op_params_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_op_params_i32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int32_t ggml_get_op_params_i32(const struct ggml_tensor * tensor, uint32_t i) {
     assert(i < GGML_MAX_OP_PARAMS / sizeof(int32_t));
     return ((const int32_t *)(tensor->op_params))[i];
 }
 
+// 函数: ggml_get_op_params_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_get_op_params_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static float ggml_get_op_params_f32(const struct ggml_tensor * tensor, uint32_t i) {
     assert(i < GGML_MAX_OP_PARAMS / sizeof(float));
     return ((const float *)(tensor->op_params))[i];
 }
 
+// 函数: ggml_set_op_params_i32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_op_params_i32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_set_op_params_i32(struct ggml_tensor * tensor, uint32_t i, int32_t value) {
     assert(i < GGML_MAX_OP_PARAMS / sizeof(int32_t));
     ((int32_t *)(tensor->op_params))[i] = value;
 }
 
+// 函数: ggml_set_op_params_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_set_op_params_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_set_op_params_f32(struct ggml_tensor * tensor, uint32_t i, float value) {
     assert(i < GGML_MAX_OP_PARAMS / sizeof(float));
     ((float *)(tensor->op_params))[i] = value;
 }
 
+// 类: ggml_map_custom1_op_params
+// 描述: ggml_map_custom1_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom1_op_params相关的操作
+// 类: ggml_map_custom1_op_params
+// 描述: ggml_map_custom1_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
+    // 结构体: ggml_map_custom1_op_params
+    // 描述: ggml_map_custom1_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom1_op_params相关的操作
 struct ggml_map_custom1_op_params {
     ggml_custom1_op_t  fun;
     int                n_tasks;
     void             * userdata;
 };
 
+// 类: ggml_map_custom2_op_params
+// 描述: ggml_map_custom2_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom2_op_params相关的操作
+// 类: ggml_map_custom2_op_params
+// 描述: ggml_map_custom2_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
+    // 结构体: ggml_map_custom2_op_params
+    // 描述: ggml_map_custom2_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom2_op_params相关的操作
 struct ggml_map_custom2_op_params {
     ggml_custom2_op_t   fun;
     int                 n_tasks;
     void              * userdata;
 };
 
+// 类: ggml_map_custom3_op_params
+// 描述: ggml_map_custom3_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom3_op_params相关的操作
+// 类: ggml_map_custom3_op_params
+// 描述: ggml_map_custom3_op_params类提供相关功能
+// 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
+    // 结构体: ggml_map_custom3_op_params
+    // 描述: ggml_map_custom3_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_map_custom3_op_params相关的操作
 struct ggml_map_custom3_op_params {
     ggml_custom3_op_t fun;
     int               n_tasks;
     void            * userdata;
 };
 
+// 类: ggml_custom_op_params
+// 描述: ggml_custom_op_params类提供相关功能
+// 用途: 用于处理ggml_custom_op_params相关的操作
+// 类: ggml_custom_op_params
+// 描述: ggml_custom_op_params类提供相关功能
+// 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
+    // 结构体: ggml_custom_op_params
+    // 描述: ggml_custom_op_params结构体提供相关功能
+    // 用途: 用于处理ggml_custom_op_params相关的操作
 struct ggml_custom_op_params {
     ggml_custom_op_t fun;
     int              n_tasks;
@@ -200,18 +368,50 @@ static_assert(sizeof(ggml_bitset_t) == 4, "bitset_t constants must be updated");
 #define BITSET_SHR 5 // log2(sizeof(ggml_bitset_t)*8)
 #define BITSET_MASK (sizeof(ggml_bitset_t)*8 - 1)
 
+// 函数: ggml_bitset_size
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_bitset_size
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_bitset_size(size_t n) {
     return (n + BITSET_MASK) >> BITSET_SHR;
 }
 
+// 函数: ggml_bitset_get
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_bitset_get
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_bitset_get(const ggml_bitset_t * bitset, size_t i) {
     return !!(bitset[i >> BITSET_SHR] & (1u << (i & BITSET_MASK)));
 }
 
+// 函数: ggml_bitset_set
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_bitset_set
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_bitset_set(ggml_bitset_t * bitset, size_t i) {
     bitset[i >> BITSET_SHR] |= (1u << (i & BITSET_MASK));
 }
 
+// 函数: ggml_bitset_clear
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_bitset_clear
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_bitset_clear(ggml_bitset_t * bitset, size_t i) {
     bitset[i >> BITSET_SHR] &= ~(1u << (i & BITSET_MASK));
 }
@@ -221,39 +421,165 @@ static inline void ggml_bitset_clear(ggml_bitset_t * bitset, size_t i) {
 #define GGML_HASHSET_FULL ((size_t)-1)
 #define GGML_HASHSET_ALREADY_EXISTS ((size_t)-2)
 
+// 类: ggml_hash_set
+// 描述: ggml_hash_set类提供相关功能
+// 用途: 用于处理ggml_hash_set相关的操作
+// 类: ggml_hash_set
+// 描述: ggml_hash_set类提供相关功能
+// 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
 struct ggml_hash_set {
     size_t size;
     ggml_bitset_t * used;       // whether or not the keys are in use i.e. set
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** keys; // actual tensors in the set, keys[i] is only defined if ggml_bitset_get(used, i)
 };
 
+// 类: ggml_hash_set
+// 描述: ggml_hash_set类提供相关功能
+// 用途: 用于处理ggml_hash_set相关的操作
+// 类: ggml_hash_set
+// 描述: ggml_hash_set类提供相关功能
+// 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
 struct ggml_hash_set ggml_hash_set_new(size_t size);
+// 函数: ggml_hash_set_free
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_set_free
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void                 ggml_hash_set_free(struct ggml_hash_set * hash_set);
 
 // returns the minimum size for a hash set that can hold min_sz elements
+// 函数: ggml_hash_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_hash_size(size_t min_sz);
 
 // remove all elements from the hash set
+// 函数: ggml_hash_set_reset
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_set_reset
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_hash_set_reset(struct ggml_hash_set * hash_set);
 
 // returns true if key is in the hash set
+// 函数: ggml_hash_contains
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_contains
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hash_contains(const struct ggml_hash_set * hash_set, struct ggml_tensor * key);
 
 // returns GGML_HASHSET_FULL if table is full, otherwise the current index of the key or where it should be inserted
+// 函数: ggml_hash_find
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_find
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_find(const struct ggml_hash_set * hash_set, const struct ggml_tensor * key);
 
 // returns GGML_HASHSET_ALREADY_EXISTS if key already exists, index otherwise, asserts if table is full
+// 函数: ggml_hash_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_insert(struct ggml_hash_set * hash_set, struct ggml_tensor * key);
 
 // return index, asserts if table is full
+// 函数: ggml_hash_find_or_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_find_or_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_find_or_insert(struct ggml_hash_set * hash_set, struct ggml_tensor * key);
 
 // hash function for ggml_tensor
+// 函数: ggml_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t ggml_hash(const struct ggml_tensor * p) {
     // the last 4 bits are always zero due to alignment
     return (size_t)(uintptr_t)p >> 4;
 }
 
+// 函数: ggml_hash_find
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_find
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_find(const struct ggml_hash_set * hash_set, const struct ggml_tensor * key) {
     size_t h = ggml_hash(key) % hash_set->size;
 
@@ -269,11 +595,27 @@ static size_t ggml_hash_find(const struct ggml_hash_set * hash_set, const struct
     return i;
 }
 
+// 函数: ggml_hash_contains
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_contains
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hash_contains(const struct ggml_hash_set * hash_set, struct ggml_tensor * key) {
     size_t i = ggml_hash_find(hash_set, key);
     return i != GGML_HASHSET_FULL && ggml_bitset_get(hash_set->used, i);
 }
 
+// 函数: ggml_hash_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_insert(struct ggml_hash_set * hash_set, struct ggml_tensor * key) {
     size_t h = ggml_hash(key) % hash_set->size;
 
@@ -295,6 +637,14 @@ static size_t ggml_hash_insert(struct ggml_hash_set * hash_set, struct ggml_tens
     GGML_ABORT("fatal error");
 }
 
+// 函数: ggml_hash_find_or_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hash_find_or_insert
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_hash_find_or_insert(struct ggml_hash_set * hash_set, struct ggml_tensor * key) {
     size_t h = ggml_hash(key) % hash_set->size;
 
@@ -324,17 +674,125 @@ enum ggml_cgraph_eval_order {
     GGML_CGRAPH_EVAL_ORDER_COUNT
 };
 
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
 struct ggml_cgraph {
     int size;    // maximum number of nodes/leafs/grads/grad_accs
     int n_nodes; // number of nodes currently in use
     int n_leafs; // number of leafs currently in use
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** nodes;     // tensors with data that can change if the graph is evaluated
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** grads;     // the outputs of these tensors are the gradients of the nodes
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** grad_accs; // accumulators for node gradients
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** leafs;     // tensors with constant data
     int32_t             * use_counts;// number of uses of each tensor, indexed by hash table slot
 
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
     struct ggml_hash_set visited_hash_set;
 
     enum ggml_cgraph_eval_order order;
@@ -343,6 +801,24 @@ struct ggml_cgraph {
 // returns a slice of cgraph with nodes [i0, i1)
 // the slice does not have leafs or gradients
 // if you need the gradients, get them from the original graph
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
 struct ggml_cgraph ggml_graph_view(struct ggml_cgraph * cgraph, int i0, int i1);
 
 // ggml-alloc.c: true if the operation can reuse memory from its sources
@@ -357,6 +833,14 @@ GGML_API void ggml_aligned_free(void * ptr, size_t size);
 // FP16 <-> FP32
 // ref: https://github.com/Maratyszcza/FP16
 
+// 函数: fp32_from_bits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fp32_from_bits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float fp32_from_bits(uint32_t w) {
     union {
         uint32_t as_bits;
@@ -366,6 +850,14 @@ static inline float fp32_from_bits(uint32_t w) {
     return fp32.as_value;
 }
 
+// 函数: fp32_to_bits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fp32_to_bits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uint32_t fp32_to_bits(float f) {
     union {
         float as_value;
@@ -375,6 +867,14 @@ static inline uint32_t fp32_to_bits(float f) {
     return fp32.as_bits;
 }
 
+// 函数: ggml_compute_fp16_to_fp32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_fp16_to_fp32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline float ggml_compute_fp16_to_fp32(ggml_fp16_t h) {
     const uint32_t w = (uint32_t) h << 16;
     const uint32_t sign = w & UINT32_C(0x80000000);
@@ -398,6 +898,14 @@ static inline float ggml_compute_fp16_to_fp32(ggml_fp16_t h) {
     return fp32_from_bits(result);
 }
 
+// 函数: ggml_compute_fp32_to_fp16
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_fp32_to_fp16
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_fp16_t ggml_compute_fp32_to_fp16(float f) {
 #if (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L) || defined(__GNUC__) && !defined(__STRICT_ANSI__)) && (!defined(__cplusplus) || __cplusplus >= 201703L)
     const float scale_to_inf = 0x1.0p+112f;
@@ -430,6 +938,14 @@ static inline ggml_fp16_t ggml_compute_fp32_to_fp16(float f) {
 #define GGML_FP16_TO_FP32(x) GGML_COMPUTE_FP16_TO_FP32(x)
 #define GGML_FP32_TO_FP16(x) GGML_COMPUTE_FP32_TO_FP16(x)
 
+// 函数: ggml_e8m0_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_e8m0_to_fp32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float ggml_e8m0_to_fp32(uint8_t x) {
     uint32_t bits;  // Stores the raw bit representation of the float
 
@@ -468,6 +984,14 @@ static inline float ggml_e8m0_to_fp32(uint8_t x) {
 
 // Equal to ggml_e8m0_to_fp32/2
 // Useful with MXFP4 quantization since the E0M2 values are doubled
+// 函数: ggml_e8m0_to_fp32_half
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_e8m0_to_fp32_half
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float ggml_e8m0_to_fp32_half(uint8_t x) {
     uint32_t bits;
 
@@ -530,6 +1054,14 @@ static inline float ggml_e8m0_to_fp32_half(uint8_t x) {
  *
  * @see IEEE 754-2008
  */
+// 函数: ggml_compute_bf16_to_fp32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_bf16_to_fp32
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline float ggml_compute_bf16_to_fp32(ggml_bf16_t h) {
     union {
         float f;
@@ -547,6 +1079,14 @@ static inline float ggml_compute_bf16_to_fp32(ggml_bf16_t h) {
  * Subnormals aren't flushed to zero, except perhaps when used.
  * This code should vectorize nicely if using modern compilers.
  */
+// 函数: ggml_compute_fp32_to_bf16
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_fp32_to_bf16
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_bf16_t ggml_compute_fp32_to_bf16(float s) {
     ggml_bf16_t h;
     union {
@@ -565,6 +1105,14 @@ static inline ggml_bf16_t ggml_compute_fp32_to_bf16(float s) {
 #define GGML_FP32_TO_BF16(x) ggml_compute_fp32_to_bf16(x)
 #define GGML_BF16_TO_FP32(x) ggml_compute_bf16_to_fp32(x)
 
+// 函数: ggml_node_get_use_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_node_get_use_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static inline int32_t ggml_node_get_use_count(const struct ggml_cgraph * cgraph, int node_idx) {
     const struct ggml_tensor * node = cgraph->nodes[node_idx];
 
@@ -577,6 +1125,14 @@ static inline int32_t ggml_node_get_use_count(const struct ggml_cgraph * cgraph,
 
 // return true if the node's results are only used by N other nodes
 // and can be fused into their calculations.
+// 函数: ggml_node_has_n_uses
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_node_has_n_uses
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_node_has_n_uses(const struct ggml_cgraph * cgraph, int node_idx, int32_t n_uses) {
     const struct ggml_tensor * node = cgraph->nodes[node_idx];
 
@@ -605,12 +1161,38 @@ static inline bool ggml_node_has_n_uses(const struct ggml_cgraph * cgraph, int n
 // - all nodes except the last are a src of the following node.
 // - all nodes are the same shape.
 // TODO: Consider allowing GGML_OP_NONE nodes in between
+// 函数: ggml_can_fuse_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_can_fuse_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_can_fuse_ext(const struct ggml_cgraph * cgraph, const int * node_idxs, const enum ggml_op * ops, int num_ops) {
     for (int i = 0; i < num_ops; ++i) {
         if (node_idxs[i] >= cgraph->n_nodes) {
             return false;
         }
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = cgraph->nodes[node_idxs[i]];
         if (node->op != ops[i]) {
             return false;
@@ -622,6 +1204,24 @@ static inline bool ggml_can_fuse_ext(const struct ggml_cgraph * cgraph, const in
             return false;
         }
         if (i > 0) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * prev = cgraph->nodes[node_idxs[i - 1]];
             if (node->src[0] != prev && node->src[1] != prev) {
                 return false;
@@ -635,6 +1235,14 @@ static inline bool ggml_can_fuse_ext(const struct ggml_cgraph * cgraph, const in
 }
 
 // same as above, for sequential indices starting at node_idx
+// 函数: ggml_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_can_fuse(const struct ggml_cgraph * cgraph, int node_idx, const enum ggml_op * ops, int num_ops) {
     assert(num_ops < 32);
 
@@ -677,6 +1285,14 @@ static inline bool ggml_can_fuse_subgraph(const struct ggml_cgraph * cgraph,
         idxs[i] = node_idx + i;
     }
 
+    // 函数: ggml_can_fuse_subgraph_ext
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_can_fuse_subgraph_ext
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_can_fuse_subgraph_ext(cgraph, idxs, count, ops, outputs, num_outputs);
 }
 
@@ -690,6 +1306,14 @@ static inline bool ggml_can_fuse_subgraph(const struct ggml_cgraph * cgraph,
 #include <vector>
 
 // nicer C++ syntax for ggml_can_fuse
+// 函数: ggml_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool ggml_can_fuse(const struct ggml_cgraph * cgraph, int node_idx, std::initializer_list<enum ggml_op> ops) {
     return ggml_can_fuse(cgraph, node_idx, ops.begin(), (int)ops.size());
 }
@@ -698,6 +1322,14 @@ inline bool ggml_can_fuse_subgraph(const struct ggml_cgraph *          cgraph,
                                    int                                 start_idx,
                                    std::initializer_list<enum ggml_op> ops,
                                    std::initializer_list<int>          outputs = {}) {
+    // 函数: ggml_can_fuse_subgraph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_can_fuse_subgraph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_can_fuse_subgraph(cgraph, start_idx, ops.size(), ops.begin(), outputs.begin(), outputs.size());
 }
 

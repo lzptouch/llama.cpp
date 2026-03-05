@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_lora.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_lora.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
@@ -6,6 +13,14 @@ server = ServerPreset.stories15m_moe()
 LORA_FILE_URL = "https://huggingface.co/ggml-org/stories15M_MOE/resolve/main/moe_shakespeare15M.gguf"
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.stories15m_moe()
@@ -18,6 +33,14 @@ def create_server():
     # with lora, the model should behave like a Shakespearean text generator
     (1.0, "(eye|love|glass|sun)+"),
 ])
+    # 函数: test_lora
+    # 描述: test_lora函数提供相关功能
+    # 参数: scale: float, re_content: str
+    # 返回: 无返回值
+    # 函数: test_lora
+    # 描述: test_lora函数提供相关功能
+    # 参数: scale: float, re_content: str
+    # 返回: 无返回值
 def test_lora(scale: float, re_content: str):
     global server
     server.start()
@@ -32,6 +55,14 @@ def test_lora(scale: float, re_content: str):
     assert match_regex(re_content, res.body["content"])
 
 
+    # 函数: test_lora_per_request
+    # 描述: test_lora_per_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_lora_per_request
+    # 描述: test_lora_per_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_lora_per_request():
     global server
     server.n_slots = 4
@@ -67,6 +98,14 @@ def test_lora_per_request():
 
 
 @pytest.mark.skipif(not is_slow_test_allowed(), reason="skipping slow test")
+    # 函数: test_with_big_model
+    # 描述: test_with_big_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_with_big_model
+    # 描述: test_with_big_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_with_big_model():
     server = ServerProcess()
     server.model_hf_repo = "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF"

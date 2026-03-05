@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-sampler.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-sampler.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-sampler.h"
 
 #include "llama-impl.h"
@@ -22,6 +29,24 @@
 
 // the ring buffer works similarly to std::deque, but with a fixed capacity
 template<typename T>
+// 类: ring_buffer
+// 描述: ring_buffer类提供相关功能
+// 用途: 用于处理ring_buffer相关的操作
+// 类: ring_buffer
+// 描述: ring_buffer类提供相关功能
+// 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
+    // 结构体: ring_buffer
+    // 描述: ring_buffer结构体提供相关功能
+    // 用途: 用于处理ring_buffer相关的操作
 struct ring_buffer {
     ring_buffer(size_t cap) : capacity(cap), data(cap) {}
 
@@ -53,6 +78,14 @@ struct ring_buffer {
         return data[pos];
     }
 
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push_back(const T & value) {
         if (capacity == 0) {
             throw std::runtime_error("ring buffer: capacity is zero");
@@ -68,6 +101,14 @@ struct ring_buffer {
         pos = (pos + 1) % capacity;
     }
 
+    // 函数: pop_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pop_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     T pop_front() {
         if (sz == 0) {
             throw std::runtime_error("ring buffer is empty");
@@ -108,6 +149,14 @@ struct ring_buffer {
         return result;
     }
 
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear() {
         // here only reset the status of the buffer
         sz = 0;
@@ -115,10 +164,26 @@ struct ring_buffer {
         pos = 0;
     }
 
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool empty() const {
         return sz == 0;
     }
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const {
         return sz;
     }
@@ -132,6 +197,14 @@ struct ring_buffer {
 };
 
 // writes result in res, does not mutate cur
+// 函数: llama_token_data_array_partial_sort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_data_array_partial_sort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_token_data_array_partial_sort(const llama_token_data_array & cur, int npartial, std::vector<llama_token_data> & res) {
     static const auto comp = [](const llama_token_data & a, const llama_token_data & b) {
         return a.logit > b.logit;
@@ -190,6 +263,14 @@ static void llama_token_data_array_partial_sort(const llama_token_data_array & c
 }
 
 // reduces the size of cur_p to npartial, keeping only the top npartial elements
+// 函数: llama_token_data_array_partial_sort_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_data_array_partial_sort_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_token_data_array_partial_sort_inplace(llama_token_data_array * cur_p, int npartial) {
     static const auto comp = [](const llama_token_data & a, const llama_token_data & b) {
         return a.logit > b.logit;
@@ -214,6 +295,14 @@ static void llama_token_data_array_partial_sort_inplace(llama_token_data_array *
     cur_p->sorted = true;
 }
 
+// 函数: llama_sample_dist
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sample_dist
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static int llama_sample_dist(llama_token_data_array * cur_p, std::mt19937 & rng) {
     // iterator for the probabilities
 #ifdef __GNUC__
@@ -221,6 +310,24 @@ static int llama_sample_dist(llama_token_data_array * cur_p, std::mt19937 & rng)
     #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #endif
 
+    // 类: probs_iterator
+    // 描述: probs_iterator类提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
+    // 类: probs_iterator
+    // 描述: probs_iterator类提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
+    // 结构体: probs_iterator
+    // 描述: probs_iterator结构体提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
+    // 结构体: probs_iterator
+    // 描述: probs_iterator结构体提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
+    // 结构体: probs_iterator
+    // 描述: probs_iterator结构体提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
+    // 结构体: probs_iterator
+    // 描述: probs_iterator结构体提供相关功能
+    // 用途: 用于处理probs_iterator相关的操作
     struct probs_iterator {
         typedef std::input_iterator_tag iterator_category;
         typedef float value_type;
@@ -247,6 +354,14 @@ static int llama_sample_dist(llama_token_data_array * cur_p, std::mt19937 & rng)
 }
 
 /*
+// 函数: llama_log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_log_softmax(float * array, size_t size) {
     float max_l = *std::max_element(array, array + size);
     float sum = 0.f;
@@ -262,6 +377,14 @@ static void llama_log_softmax(float * array, size_t size) {
 }
 */
 
+// 函数: llama_sampler_temp_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_temp_impl(llama_token_data_array * cur_p, float temp) {
     if (temp <= 0.0f) {
         // find the token with the highest logit and set the rest to -inf
@@ -286,6 +409,14 @@ static void llama_sampler_temp_impl(llama_token_data_array * cur_p, float temp) 
     }
 }
 
+// 函数: llama_sampler_softmax_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_softmax_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_softmax_impl(llama_token_data_array * cur_p, bool do_sort) {
     GGML_ASSERT(cur_p->size > 0);
 
@@ -314,6 +445,14 @@ static void llama_sampler_softmax_impl(llama_token_data_array * cur_p, bool do_s
     }
 }
 
+// 函数: llama_sampler_top_k_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_k_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_k_impl(llama_token_data_array * cur_p, int32_t k) {
     // if (k >= (int32_t)cur_p->size) {
     //     return;
@@ -333,6 +472,14 @@ static void llama_sampler_top_k_impl(llama_token_data_array * cur_p, int32_t k) 
     cur_p->size = k;
 }
 
+// 函数: get_rng_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_rng_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static uint32_t get_rng_seed(uint32_t seed) {
     if (seed == LLAMA_DEFAULT_SEED) {
         // use system clock if std::random_device is not a true RNG
@@ -348,7 +495,43 @@ static uint32_t get_rng_seed(uint32_t seed) {
 
 // llama_sampler API
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init(
+        // 类: llama_sampler_i
+        // 描述: llama_sampler_i类提供相关功能
+        // 用途: 用于处理llama_sampler_i相关的操作
+        // 类: llama_sampler_i
+        // 描述: llama_sampler_i类提供相关功能
+        // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
         struct llama_sampler_i * iface,
         llama_sampler_context_t ctx) {
     return new llama_sampler {
@@ -357,6 +540,14 @@ struct llama_sampler * llama_sampler_init(
     };
 }
 
+// 函数: llama_sampler_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_sampler_name(const struct llama_sampler * smpl) {
     if (!smpl->iface) {
         return "(null)";
@@ -365,6 +556,14 @@ const char * llama_sampler_name(const struct llama_sampler * smpl) {
     return smpl->iface->name(smpl);
 }
 
+// 函数: llama_sampler_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void llama_sampler_accept(struct llama_sampler * smpl, llama_token token) {
     if (!smpl) {
         return;
@@ -375,6 +574,14 @@ void llama_sampler_accept(struct llama_sampler * smpl, llama_token token) {
     }
 }
 
+// 函数: llama_sampler_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void llama_sampler_apply(struct llama_sampler * smpl, struct llama_token_data_array * cur_p) {
     if (!smpl) {
         return;
@@ -384,6 +591,14 @@ void llama_sampler_apply(struct llama_sampler * smpl, struct llama_token_data_ar
     smpl->iface->apply(smpl, cur_p);
 }
 
+// 函数: llama_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void llama_sampler_reset(struct llama_sampler * smpl) {
     if (!smpl) {
         return;
@@ -394,6 +609,24 @@ void llama_sampler_reset(struct llama_sampler * smpl) {
     }
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_clone(const struct llama_sampler * smpl) {
     if (!smpl) {
         return nullptr;
@@ -413,6 +646,14 @@ struct llama_sampler * llama_sampler_clone(const struct llama_sampler * smpl) {
     GGML_ABORT("the sampler does not support cloning");
 }
 
+// 函数: llama_sampler_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_sampler_free(struct llama_sampler * smpl) {
     if (smpl == nullptr) {
         return;
@@ -427,41 +668,125 @@ void llama_sampler_free(struct llama_sampler * smpl) {
 
 // empty sampler
 
+// 类: llama_sampler_empty
+// 描述: llama_sampler_empty类提供相关功能
+// 用途: 用于处理llama_sampler_empty相关的操作
+// 类: llama_sampler_empty
+// 描述: llama_sampler_empty类提供相关功能
+// 用途: 用于处理llama_sampler_empty相关的操作
+    // 结构体: llama_sampler_empty
+    // 描述: llama_sampler_empty结构体提供相关功能
+    // 用途: 用于处理llama_sampler_empty相关的操作
+    // 结构体: llama_sampler_empty
+    // 描述: llama_sampler_empty结构体提供相关功能
+    // 用途: 用于处理llama_sampler_empty相关的操作
+    // 结构体: llama_sampler_empty
+    // 描述: llama_sampler_empty结构体提供相关功能
+    // 用途: 用于处理llama_sampler_empty相关的操作
+    // 结构体: llama_sampler_empty
+    // 描述: llama_sampler_empty结构体提供相关功能
+    // 用途: 用于处理llama_sampler_empty相关的操作
 struct llama_sampler_empty {
     const char * name;
 };
 
 static struct llama_sampler * llama_sampler_init_empty(const char * name);
 
+// 函数: llama_sampler_empty_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_empty_name(const struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_empty *) smpl->ctx;
     return ctx->name;
 }
 
+// 函数: llama_sampler_empty_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_empty_accept(struct llama_sampler * smpl, llama_token token) {
     GGML_UNUSED(smpl);
     GGML_UNUSED(token);
 }
 
+// 函数: llama_sampler_empty_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_empty_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     GGML_UNUSED(smpl);
     GGML_UNUSED(cur_p);
 }
 
+// 函数: llama_sampler_empty_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_empty_reset(struct llama_sampler * smpl) {
     GGML_UNUSED(smpl);
 }
 
 static struct llama_sampler * llama_sampler_empty_clone(const struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_empty *) smpl->ctx;
+    // 函数: llama_sampler_init_empty
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_empty
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_empty(ctx->name);
 }
 
+// 函数: llama_sampler_empty_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_empty_free(struct llama_sampler * smpl) {
     delete (llama_sampler_empty *) smpl->ctx;
 }
 
 static bool llama_sampler_empty_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     GGML_UNUSED(smpl);
@@ -471,9 +796,45 @@ static bool llama_sampler_empty_backend_init(
 }
 
 static void llama_sampler_empty_backend_accept(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler * smpl,
         ggml_context * ctx,
         ggml_cgraph * gf,
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * selected_token) {
     GGML_UNUSED(smpl);
     GGML_UNUSED(ctx);
@@ -482,9 +843,81 @@ static void llama_sampler_empty_backend_accept(
 }
 
 static void llama_sampler_empty_backend_apply(
+          // 类: llama_sampler
+          // 描述: llama_sampler类提供相关功能
+          // 用途: 用于处理llama_sampler相关的操作
+          // 类: llama_sampler
+          // 描述: llama_sampler类提供相关功能
+          // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
           struct llama_sampler      * smpl,
+          // 类: ggml_context
+          // 描述: ggml_context类提供相关功能
+          // 用途: 用于处理ggml_context相关的操作
+          // 类: ggml_context
+          // 描述: ggml_context类提供相关功能
+          // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
           struct ggml_context       * ctx,
+          // 类: ggml_cgraph
+          // 描述: ggml_cgraph类提供相关功能
+          // 用途: 用于处理ggml_cgraph相关的操作
+          // 类: ggml_cgraph
+          // 描述: ggml_cgraph类提供相关功能
+          // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
           struct ggml_cgraph        * gf,
+          // 类: llama_sampler_data
+          // 描述: llama_sampler_data类提供相关功能
+          // 用途: 用于处理llama_sampler_data相关的操作
+          // 类: llama_sampler_data
+          // 描述: llama_sampler_data类提供相关功能
+          // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
           struct llama_sampler_data * data) {
     GGML_UNUSED(smpl);
     GGML_UNUSED(ctx);
@@ -492,6 +925,14 @@ static void llama_sampler_empty_backend_apply(
     GGML_UNUSED(data);
 }
 
+// 函数: llama_sampler_empty_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_empty_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_empty_backend_set_input(struct llama_sampler * smpl) {
     GGML_UNUSED(smpl);
 }
@@ -509,6 +950,24 @@ static struct llama_sampler_i llama_sampler_empty_i = {
     /* .backend_set_input = */ llama_sampler_empty_backend_set_input,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_empty(const char * name) {
     return llama_sampler_init(
         /* .iface = */ &llama_sampler_empty_i,
@@ -523,9 +982,35 @@ struct llama_sampler * llama_sampler_init_empty(const char * name) {
 // +name : means that the sampler is support and will run on the backend
 // -name : means that a ggml operator is not supported by the backend
 //
+// 类: llama_sampler_backend
+// 描述: llama_sampler_backend类提供相关功能
+// 用途: 用于处理llama_sampler_backend相关的操作
+// 类: llama_sampler_backend
+// 描述: llama_sampler_backend类提供相关功能
+// 用途: 用于处理llama_sampler_backend相关的操作
+    // 结构体: llama_sampler_backend
+    // 描述: llama_sampler_backend结构体提供相关功能
+    // 用途: 用于处理llama_sampler_backend相关的操作
+    // 结构体: llama_sampler_backend
+    // 描述: llama_sampler_backend结构体提供相关功能
+    // 用途: 用于处理llama_sampler_backend相关的操作
+    // 结构体: llama_sampler_backend
+    // 描述: llama_sampler_backend结构体提供相关功能
+    // 用途: 用于处理llama_sampler_backend相关的操作
+    // 结构体: llama_sampler_backend
+    // 描述: llama_sampler_backend结构体提供相关功能
+    // 用途: 用于处理llama_sampler_backend相关的操作
 struct llama_sampler_backend {
     llama_sampler_backend(const char * name) : name(name), name_ext(name), is_init(false), support(false) {}
 
+    // 函数: get_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     const char * get_name() {
         if (!is_init) {
             return name.c_str();
@@ -540,6 +1025,14 @@ struct llama_sampler_backend {
         return name_ext.c_str();
     }
 
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init(bool support) {
         GGML_ASSERT(this->is_init == false);
 
@@ -608,6 +1101,24 @@ static bool llama_sampler_backend_support(
     }
 
     for (int i = 0; i < ggml_graph_n_nodes(gf); i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * op = ggml_graph_node(gf, i);
 
         if (!ggml_backend_dev_supports_op(device, op)) {
@@ -623,10 +1134,26 @@ static bool llama_sampler_backend_support(
 
 // sampler chain
 
+// 函数: llama_sampler_chain_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_chain_name(const struct llama_sampler * /*smpl*/) {
     return "chain";
 }
 
+// 函数: llama_sampler_chain_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_chain_accept(struct llama_sampler * smpl, llama_token token) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -639,6 +1166,14 @@ static void llama_sampler_chain_accept(struct llama_sampler * smpl, llama_token 
     chain->n_sample++;
 }
 
+// 函数: llama_sampler_chain_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_chain_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -661,6 +1196,14 @@ static void llama_sampler_chain_apply(struct llama_sampler * smpl, llama_token_d
     }
 }
 
+// 函数: llama_sampler_chain_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_chain_reset(struct llama_sampler * smpl) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -681,6 +1224,14 @@ static struct llama_sampler * llama_sampler_chain_clone(const struct llama_sampl
     return result;
 }
 
+// 函数: llama_sampler_chain_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_chain_free(struct llama_sampler * smpl) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -692,6 +1243,24 @@ static void llama_sampler_chain_free(struct llama_sampler * smpl) {
 }
 
 static bool llama_sampler_chain_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
@@ -725,9 +1294,45 @@ static bool llama_sampler_chain_backend_init(
 }
 
 static void llama_sampler_chain_backend_accept(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler * smpl,
         ggml_context * ctx,
         ggml_cgraph * gf,
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * selected_token) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -743,9 +1348,81 @@ static void llama_sampler_chain_backend_accept(
 }
 
 static void llama_sampler_chain_backend_apply(
+          // 类: llama_sampler
+          // 描述: llama_sampler类提供相关功能
+          // 用途: 用于处理llama_sampler相关的操作
+          // 类: llama_sampler
+          // 描述: llama_sampler类提供相关功能
+          // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
           struct llama_sampler      * smpl,
+          // 类: ggml_context
+          // 描述: ggml_context类提供相关功能
+          // 用途: 用于处理ggml_context相关的操作
+          // 类: ggml_context
+          // 描述: ggml_context类提供相关功能
+          // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
           struct ggml_context       * ctx,
+          // 类: ggml_cgraph
+          // 描述: ggml_cgraph类提供相关功能
+          // 用途: 用于处理ggml_cgraph相关的操作
+          // 类: ggml_cgraph
+          // 描述: ggml_cgraph类提供相关功能
+          // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
           struct ggml_cgraph        * gf,
+          // 类: llama_sampler_data
+          // 描述: llama_sampler_data类提供相关功能
+          // 用途: 用于处理llama_sampler_data相关的操作
+          // 类: llama_sampler_data
+          // 描述: llama_sampler_data类提供相关功能
+          // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
           struct llama_sampler_data * data) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -762,6 +1439,14 @@ static void llama_sampler_chain_backend_apply(
     }
 }
 
+// 函数: llama_sampler_chain_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_chain_backend_set_input(struct llama_sampler * smpl) {
     auto * chain = (llama_sampler_chain *) smpl->ctx;
 
@@ -789,6 +1474,24 @@ static struct llama_sampler_i llama_sampler_chain_i = {
     /* .backend_set_input = */ llama_sampler_chain_backend_set_input,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_chain_init(struct llama_sampler_chain_params params) {
     return llama_sampler_init(
         /* .iface = */ &llama_sampler_chain_i,
@@ -803,6 +1506,14 @@ struct llama_sampler * llama_sampler_chain_init(struct llama_sampler_chain_param
     );
 }
 
+// 函数: llama_sampler_sample
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_sample
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_sampler_sample(struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx) {
     const llama_token   sampled_token  = llama_get_sampled_token_ith     (ctx, idx);
     const float *       sampled_probs  = llama_get_sampled_probs_ith     (ctx, idx);
@@ -873,6 +1584,14 @@ llama_token llama_sampler_sample(struct llama_sampler * smpl, struct llama_conte
 }
 
 
+// 函数: llama_sampler_chain_add
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_add
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void llama_sampler_chain_add(struct llama_sampler * chain, struct llama_sampler * smpl) {
     auto * p = (llama_sampler_chain *) chain->ctx;
     p->samplers.push_back({
@@ -881,6 +1600,24 @@ void llama_sampler_chain_add(struct llama_sampler * chain, struct llama_sampler 
     });
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_chain_get(struct llama_sampler * chain, int32_t i) {
     if (chain == nullptr) {
         return nullptr;
@@ -903,6 +1640,24 @@ struct llama_sampler * llama_sampler_chain_get(struct llama_sampler * chain, int
     return p->samplers[i].ptr;
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_chain_remove(struct llama_sampler * chain, int32_t i) {
     auto * p = (llama_sampler_chain *) chain->ctx;
 
@@ -916,6 +1671,14 @@ struct llama_sampler * llama_sampler_chain_remove(struct llama_sampler * chain, 
     return result;
 }
 
+// 函数: llama_sampler_chain_n
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_chain_n
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 int llama_sampler_chain_n(const struct llama_sampler * chain) {
     const auto * p = (const llama_sampler_chain *) chain->ctx;
 
@@ -928,14 +1691,48 @@ int llama_sampler_chain_n(const struct llama_sampler * chain) {
 
 // greedy
 
+// 类: llama_sampler_greedy
+// 描述: llama_sampler_greedy类提供相关功能
+// 用途: 用于处理llama_sampler_greedy相关的操作
+// 类: llama_sampler_greedy
+// 描述: llama_sampler_greedy类提供相关功能
+// 用途: 用于处理llama_sampler_greedy相关的操作
+    // 结构体: llama_sampler_greedy
+    // 描述: llama_sampler_greedy结构体提供相关功能
+    // 用途: 用于处理llama_sampler_greedy相关的操作
+    // 结构体: llama_sampler_greedy
+    // 描述: llama_sampler_greedy结构体提供相关功能
+    // 用途: 用于处理llama_sampler_greedy相关的操作
+    // 结构体: llama_sampler_greedy
+    // 描述: llama_sampler_greedy结构体提供相关功能
+    // 用途: 用于处理llama_sampler_greedy相关的操作
+    // 结构体: llama_sampler_greedy
+    // 描述: llama_sampler_greedy结构体提供相关功能
+    // 用途: 用于处理llama_sampler_greedy相关的操作
 struct llama_sampler_greedy : public llama_sampler_backend {
 };
 
+// 函数: llama_sampler_greedy_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_greedy_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_greedy_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_greedy *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_greedy_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_greedy_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_greedy_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_greedy *) smpl->ctx;
     GGML_UNUSED(ctx);
@@ -956,10 +1753,26 @@ static struct llama_sampler * llama_sampler_greedy_clone(const struct llama_samp
     return result;
 }
 
+// 函数: llama_sampler_greedy_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_greedy_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_greedy_free(struct llama_sampler * smpl) {
     delete (llama_sampler_greedy *) smpl->ctx;
 }
 
+// 函数: llama_sampler_greedy_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_greedy_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_greedy_apply(struct llama_sampler * /*smpl*/, llama_token_data_array * cur_p) {
     cur_p->selected = 0;
     for (size_t i = 1; i < cur_p->size; ++i) {
@@ -970,6 +1783,24 @@ static void llama_sampler_greedy_apply(struct llama_sampler * /*smpl*/, llama_to
 }
 
 static bool llama_sampler_greedy_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_greedy *) smpl->ctx;
@@ -982,13 +1813,103 @@ static bool llama_sampler_greedy_backend_init(
 }
 
 static void llama_sampler_greedy_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     GGML_UNUSED(gf);
     GGML_UNUSED(smpl);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * curl = ggml_argmax(ctx, data->logits);
     ggml_set_name(curl, "greedy_argmax");
 
@@ -1008,6 +1929,24 @@ static struct llama_sampler_i llama_sampler_greedy_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_greedy() {
     return llama_sampler_init(
         /* .iface = */ &llama_sampler_greedy_i,
@@ -1019,6 +1958,24 @@ struct llama_sampler * llama_sampler_init_greedy() {
 
 // dist
 
+// 类: llama_sampler_dist
+// 描述: llama_sampler_dist类提供相关功能
+// 用途: 用于处理llama_sampler_dist相关的操作
+// 类: llama_sampler_dist
+// 描述: llama_sampler_dist类提供相关功能
+// 用途: 用于处理llama_sampler_dist相关的操作
+    // 结构体: llama_sampler_dist
+    // 描述: llama_sampler_dist结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dist相关的操作
+    // 结构体: llama_sampler_dist
+    // 描述: llama_sampler_dist结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dist相关的操作
+    // 结构体: llama_sampler_dist
+    // 描述: llama_sampler_dist结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dist相关的操作
+    // 结构体: llama_sampler_dist
+    // 描述: llama_sampler_dist结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dist相关的操作
 struct llama_sampler_dist : public llama_sampler_backend {
     const uint32_t seed;
           uint32_t seed_cur;
@@ -1028,11 +1985,27 @@ struct llama_sampler_dist : public llama_sampler_backend {
     ggml_tensor * inp_uniform;
 };
 
+// 函数: llama_sampler_dist_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dist_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_dist_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_dist *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_dist_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dist_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dist_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_dist *) smpl->ctx;
 
@@ -1105,6 +2078,14 @@ static void llama_sampler_dist_apply(struct llama_sampler * smpl, llama_token_da
 #endif
 }
 
+// 函数: llama_sampler_dist_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dist_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dist_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_dist *) smpl->ctx;
     ctx->seed_cur = get_rng_seed(ctx->seed);
@@ -1125,11 +2106,37 @@ static struct llama_sampler * llama_sampler_dist_clone(const struct llama_sample
     return result;
 }
 
+// 函数: llama_sampler_dist_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dist_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dist_free(struct llama_sampler * smpl) {
     delete (llama_sampler_dist *) smpl->ctx;
 }
 
 static bool llama_sampler_dist_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_dist *) smpl->ctx;
@@ -1142,9 +2149,81 @@ static bool llama_sampler_dist_backend_init(
 }
 
 static void llama_sampler_dist_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     GGML_UNUSED(gf);
 
@@ -1154,9 +2233,45 @@ static void llama_sampler_dist_backend_apply(
     ggml_set_name (sctx->inp_uniform, "uniform");
     ggml_set_input(sctx->inp_uniform);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * probs = ggml_soft_max(ctx, data->logits);
     ggml_set_name(probs, "dist_probs");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * cumsum = ggml_cumsum(ctx, probs);
     ggml_set_name(cumsum, "dist_cumsum");
 
@@ -1165,6 +2280,24 @@ static void llama_sampler_dist_backend_apply(
     // Recall that each entry in cumsum is the cumulative probability up to that
     // index so values stay negative while the cumulative total is below the
     // random value, and become zero/positive once the threshold is crossed.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * diff = ggml_sub(ctx, cumsum, sctx->inp_uniform);
     ggml_set_name(diff, "dist_cumsum");
 
@@ -1172,22 +2305,112 @@ static void llama_sampler_dist_backend_apply(
     // corresponding entry in diff is > 0, and 0 otherwise. So all values up to
     // the index where the cumulative probability exceeds the random value are 0,
     // and all entries after that are 1.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * mask = ggml_step(ctx, diff);
     ggml_set_name(mask, "dist_mask");
 
     // Taking the sum of the mask gives us the sum of elements after the threshold
     // we are interested in.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * idxf = ggml_sum(ctx, mask);
     ggml_set_name(idxf, "dist_index_f32");
 
     // Use ggml_scale_bias to scale the index value by -1 and then add the size
     // of the mask to that value so we get the correct index ((-1 * idxf) + n).
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * idx = ggml_cast(ctx, ggml_scale_bias(ctx, idxf, -1.0f, mask->ne[0]), GGML_TYPE_I32);
     ggml_set_name(idx, "dist_index_i32");
 
     // Map back to original vocab ids if a candidates tensor is available.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * sampled_token = idx;
     if (data->candidates != nullptr) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * candidates = ggml_reshape_2d(ctx, data->candidates, 1, ggml_nelements(data->candidates));
 
         sampled_token = ggml_get_rows(ctx, candidates, idx);
@@ -1198,6 +2421,14 @@ static void llama_sampler_dist_backend_apply(
     data->probs = probs;
 }
 
+// 函数: llama_sampler_dist_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dist_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dist_backend_set_input(struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_dist *) smpl->ctx;
 
@@ -1227,6 +2458,24 @@ static struct llama_sampler_i llama_sampler_dist_i = {
     /* .backend_set_input = */ llama_sampler_dist_backend_set_input,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_dist(uint32_t seed) {
     auto seed_cur = get_rng_seed(seed);
     return llama_sampler_init(
@@ -1243,15 +2492,49 @@ struct llama_sampler * llama_sampler_init_dist(uint32_t seed) {
 
 // top-k
 
+// 类: llama_sampler_top_k
+// 描述: llama_sampler_top_k类提供相关功能
+// 用途: 用于处理llama_sampler_top_k相关的操作
+// 类: llama_sampler_top_k
+// 描述: llama_sampler_top_k类提供相关功能
+// 用途: 用于处理llama_sampler_top_k相关的操作
+    // 结构体: llama_sampler_top_k
+    // 描述: llama_sampler_top_k结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_k相关的操作
+    // 结构体: llama_sampler_top_k
+    // 描述: llama_sampler_top_k结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_k相关的操作
+    // 结构体: llama_sampler_top_k
+    // 描述: llama_sampler_top_k结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_k相关的操作
+    // 结构体: llama_sampler_top_k
+    // 描述: llama_sampler_top_k结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_k相关的操作
 struct llama_sampler_top_k : public llama_sampler_backend {
     const int32_t k;
 };
 
+// 函数: llama_sampler_top_k_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_k_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_top_k_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_top_k *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_top_k_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_k_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_k_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_top_k *) smpl->ctx;
     llama_sampler_top_k_impl(cur_p, ctx->k);
@@ -1259,14 +2542,48 @@ static void llama_sampler_top_k_apply(struct llama_sampler * smpl, llama_token_d
 
 static struct llama_sampler * llama_sampler_top_k_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_top_k *) smpl->ctx;
+    // 函数: llama_sampler_init_top_k
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_top_k
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_top_k(ctx->k);
 }
 
+// 函数: llama_sampler_top_k_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_k_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_k_free(struct llama_sampler * smpl) {
     delete (llama_sampler_top_k *) smpl->ctx;
 }
 
 static bool llama_sampler_top_k_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_top_k *) smpl->ctx;
@@ -1279,16 +2596,124 @@ static bool llama_sampler_top_k_backend_init(
 }
 
 static void llama_sampler_top_k_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     auto * sctx = (llama_sampler_top_k *) smpl->ctx;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * top_k = ggml_top_k(ctx, data->logits, sctx->k);
     ggml_set_name(top_k, "top_k");
 
     if (data->candidates) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * candidates_rows = ggml_reshape_2d(ctx, data->candidates, 1, data->candidates->ne[0]);
         data->candidates = ggml_get_rows(ctx, candidates_rows, top_k);
         data->candidates = ggml_reshape_1d(ctx, data->candidates, sctx->k);
@@ -1297,7 +2722,43 @@ static void llama_sampler_top_k_backend_apply(
         data->candidates = top_k;
     }
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * logits_rows = ggml_reshape_2d(ctx, data->logits, 1, data->logits->ne[0]);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * top_k_rows = ggml_get_rows(ctx, logits_rows, top_k);
     data->logits = ggml_reshape_1d(ctx, top_k_rows, sctx->k);
     ggml_set_name(top_k_rows, "top_k_rows");
@@ -1318,10 +2779,36 @@ static struct llama_sampler_i llama_sampler_top_k_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_top_k(int32_t k) {
     const bool is_empty = (k <= 0);
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?top-k");
     }
 
@@ -1336,6 +2823,24 @@ struct llama_sampler * llama_sampler_init_top_k(int32_t k) {
 
 // top-p
 
+// 类: llama_sampler_top_p
+// 描述: llama_sampler_top_p类提供相关功能
+// 用途: 用于处理llama_sampler_top_p相关的操作
+// 类: llama_sampler_top_p
+// 描述: llama_sampler_top_p类提供相关功能
+// 用途: 用于处理llama_sampler_top_p相关的操作
+    // 结构体: llama_sampler_top_p
+    // 描述: llama_sampler_top_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_p相关的操作
+    // 结构体: llama_sampler_top_p
+    // 描述: llama_sampler_top_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_p相关的操作
+    // 结构体: llama_sampler_top_p
+    // 描述: llama_sampler_top_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_p相关的操作
+    // 结构体: llama_sampler_top_p
+    // 描述: llama_sampler_top_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_p相关的操作
 struct llama_sampler_top_p : public llama_sampler_backend {
     const float  p;
     const size_t min_keep;
@@ -1343,11 +2848,27 @@ struct llama_sampler_top_p : public llama_sampler_backend {
     std::vector<llama_token_data> buf_sort;
 };
 
+// 函数: llama_sampler_top_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_top_p_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_top_p *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_top_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_p_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_top_p *) smpl->ctx;
 
@@ -1405,14 +2926,48 @@ static void llama_sampler_top_p_apply(struct llama_sampler * smpl, llama_token_d
 
 static struct llama_sampler * llama_sampler_top_p_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_top_p *) smpl->ctx;
+    // 函数: llama_sampler_init_top_p
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_top_p
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_top_p(ctx->p, ctx->min_keep);
 }
 
+// 函数: llama_sampler_top_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_p_free(struct llama_sampler * smpl) {
     delete (llama_sampler_top_p *) smpl->ctx;
 }
 
 static bool llama_sampler_top_p_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_top_p *) smpl->ctx;
@@ -1425,27 +2980,197 @@ static bool llama_sampler_top_p_backend_init(
 }
 
 static void llama_sampler_top_p_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     auto * sctx = (llama_sampler_top_p *) smpl->ctx;
 
     auto ggml_sort = [ctx](struct ggml_tensor * a, struct ggml_tensor * b) {
         GGML_ASSERT(ggml_nrows(a) == 1);
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * a_reshaped = ggml_reshape_2d(ctx, a, 1, a->ne[0]);
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * a_sorted   = ggml_get_rows(ctx, a_reshaped, b);
+        // 函数: ggml_reshape_1d
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_reshape_1d
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_reshape_1d(ctx, a_sorted, a->ne[0]);
     };
 
     // Get the sorted logits in descending order.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * sorted_idx = ggml_argsort(ctx, data->logits, GGML_SORT_ORDER_DESC);
     ggml_set_name(sorted_idx, "top_p_sorted_idx");
 
     // Do the sorting via reshape + get_rows
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * sorted_logits = ggml_sort(data->logits, sorted_idx);
     ggml_set_name(sorted_logits, "top_p_sorted_logits");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * softmax = ggml_soft_max(ctx, sorted_logits);
     ggml_set_name(softmax, "top_p_softmax");
 
@@ -1458,18 +3183,90 @@ static void llama_sampler_top_p_backend_apply(
     ggml_set_name(data->candidates, "top_p_candidates");
 
     // Compute Cumulative Distribution Function (CDF) by means of GGML_OP_CUMSUM.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * cdf = ggml_cumsum(ctx, softmax);
     ggml_set_name(cdf, "top_p_cdf");
 
     // Invert CDF and add top-p value so that ggml_step yields 1 for values we want to keep
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * cdf_scaled = ggml_scale_bias(ctx, cdf, -1.0f, sctx->p);
     ggml_set_name(cdf_scaled, "top_p_cdf_scaled");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * mask = ggml_step(ctx, cdf_scaled);
     ggml_set_name(mask, "top_p_mask");
 
     // Taking the sum of the mask gives us the sum of elements after the threshold
     // we are interested in.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * idxf = ggml_sum(ctx, mask);
     ggml_set_name(idxf, "top_p_index_f32");
 
@@ -1477,10 +3274,46 @@ static void llama_sampler_top_p_backend_apply(
     idxf = ggml_clamp(ctx, idxf, 0.0f, mask->ne[0] - 1);
 
     // construct ones tensor to set the value in the mask
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * ones = ggml_scale_bias(ctx, idxf, 0.0f, 1.0f);
     ggml_set_name(ones, "top_p_ones");
 
     // Make top-p inclusive (i.e. return all values such that cum_sum/cdf >= p)
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * mask_reshaped = ggml_reshape_2d(ctx, mask, 1, mask->ne[0]);
 
     mask_reshaped = ggml_set_rows(ctx, mask_reshaped, ones, ggml_cast(ctx, idxf, GGML_TYPE_I32));
@@ -1488,6 +3321,24 @@ static void llama_sampler_top_p_backend_apply(
 
     // Apply -INFINITY bias for masked-out tokens
     // log(1) = 0 (keep), log(0) = -INF (discard)
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * top_p_bias = ggml_log(ctx, mask);
     ggml_set_name(top_p_bias, "top_p_bias");
 
@@ -1510,10 +3361,36 @@ static struct llama_sampler_i llama_sampler_top_p_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_top_p(float p, size_t min_keep) {
     const bool is_empty = p >= 1.0f;
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?top-p");
     }
 
@@ -1530,16 +3407,50 @@ struct llama_sampler * llama_sampler_init_top_p(float p, size_t min_keep) {
 
 // min-p
 
+// 类: llama_sampler_min_p
+// 描述: llama_sampler_min_p类提供相关功能
+// 用途: 用于处理llama_sampler_min_p相关的操作
+// 类: llama_sampler_min_p
+// 描述: llama_sampler_min_p类提供相关功能
+// 用途: 用于处理llama_sampler_min_p相关的操作
+    // 结构体: llama_sampler_min_p
+    // 描述: llama_sampler_min_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_min_p相关的操作
+    // 结构体: llama_sampler_min_p
+    // 描述: llama_sampler_min_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_min_p相关的操作
+    // 结构体: llama_sampler_min_p
+    // 描述: llama_sampler_min_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_min_p相关的操作
+    // 结构体: llama_sampler_min_p
+    // 描述: llama_sampler_min_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_min_p相关的操作
 struct llama_sampler_min_p : public llama_sampler_backend {
     const float  p;
     const size_t min_keep;
 };
 
+// 函数: llama_sampler_min_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_min_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_min_p_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_min_p *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_min_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_min_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_min_p_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_min_p *) smpl->ctx;
 
@@ -1596,14 +3507,48 @@ static void llama_sampler_min_p_apply(struct llama_sampler * smpl, llama_token_d
 
 static struct llama_sampler * llama_sampler_min_p_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_min_p *) smpl->ctx;
+    // 函数: llama_sampler_init_min_p
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_min_p
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_min_p(ctx->p, ctx->min_keep);
 }
 
+// 函数: llama_sampler_min_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_min_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_min_p_free(struct llama_sampler * smpl) {
     delete (llama_sampler_min_p *) smpl->ctx;
 }
 
 static bool llama_sampler_min_p_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_min_p *) smpl->ctx;
@@ -1616,35 +3561,233 @@ static bool llama_sampler_min_p_backend_init(
 }
 
 static void llama_sampler_min_p_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     auto * sctx = (llama_sampler_min_p *) smpl->ctx;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * max_idx = ggml_argmax(ctx, data->logits);
     ggml_set_name(max_idx, "max_idx");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * logits_rows = ggml_reshape_2d(ctx, data->logits, 1, data->logits->ne[0]);
     ggml_set_name(logits_rows, "logits_rows");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * max_logit = ggml_get_rows(ctx, logits_rows, max_idx);
     ggml_set_name(max_logit, "max_logit");
 
     // Calculate the threshold value.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * threshold = ggml_scale_bias(ctx, max_logit, 1.0f, logf(sctx->p));
     ggml_set_name(threshold, "min_p_threshold");
 
     // Subtract the threshold from logits.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * sub = ggml_sub(ctx, data->logits, threshold);
 
     // Create a mask where logits below the threshold are 0 (discard),
     // and others are 1 (keep).
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * mask = ggml_step(ctx, sub);
     ggml_set_name(mask, "min_p_mask");
 
     // Apply -INFINITY bias for masked-out tokens
     // log(1) = 0 (keep), log(0) = -INF (discard)
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * min_p_bias = ggml_log(ctx, mask);
     ggml_set_name(min_p_bias, "min_p_bias");
 
@@ -1667,10 +3810,36 @@ static struct llama_sampler_i llama_sampler_min_p_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_min_p(float p, size_t min_keep) {
     const bool is_empty = (p <= 0.0f);
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?min-p");
     }
 
@@ -1686,15 +3855,49 @@ struct llama_sampler * llama_sampler_init_min_p(float p, size_t min_keep) {
 
 // typical
 
+// 类: llama_sampler_typical
+// 描述: llama_sampler_typical类提供相关功能
+// 用途: 用于处理llama_sampler_typical相关的操作
+// 类: llama_sampler_typical
+// 描述: llama_sampler_typical类提供相关功能
+// 用途: 用于处理llama_sampler_typical相关的操作
+    // 结构体: llama_sampler_typical
+    // 描述: llama_sampler_typical结构体提供相关功能
+    // 用途: 用于处理llama_sampler_typical相关的操作
+    // 结构体: llama_sampler_typical
+    // 描述: llama_sampler_typical结构体提供相关功能
+    // 用途: 用于处理llama_sampler_typical相关的操作
+    // 结构体: llama_sampler_typical
+    // 描述: llama_sampler_typical结构体提供相关功能
+    // 用途: 用于处理llama_sampler_typical相关的操作
+    // 结构体: llama_sampler_typical
+    // 描述: llama_sampler_typical结构体提供相关功能
+    // 用途: 用于处理llama_sampler_typical相关的操作
 struct llama_sampler_typical {
     const float  p;
     const size_t min_keep;
 };
 
+// 函数: llama_sampler_typical_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_typical_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_typical_name(const struct llama_sampler * /*smpl*/) {
     return "typical";
 }
 
+// 函数: llama_sampler_typical_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_typical_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_typical_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_typical *) smpl->ctx;
 
@@ -1757,9 +3960,25 @@ static void llama_sampler_typical_apply(struct llama_sampler * smpl, llama_token
 
 static struct llama_sampler * llama_sampler_typical_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_typical *) smpl->ctx;
+    // 函数: llama_sampler_init_typical
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_typical
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_typical(ctx->p, ctx->min_keep);
 }
 
+// 函数: llama_sampler_typical_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_typical_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_typical_free(struct llama_sampler * smpl) {
     delete (llama_sampler_typical *) smpl->ctx;
 }
@@ -1777,10 +3996,36 @@ static struct llama_sampler_i llama_sampler_typical_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_typical(float p, size_t min_keep) {
     const bool is_empty = (p >= 1.0f);
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?typical");
     }
 
@@ -1795,15 +4040,49 @@ struct llama_sampler * llama_sampler_init_typical(float p, size_t min_keep) {
 
 // temp
 
+// 类: llama_sampler_temp
+// 描述: llama_sampler_temp类提供相关功能
+// 用途: 用于处理llama_sampler_temp相关的操作
+// 类: llama_sampler_temp
+// 描述: llama_sampler_temp类提供相关功能
+// 用途: 用于处理llama_sampler_temp相关的操作
+    // 结构体: llama_sampler_temp
+    // 描述: llama_sampler_temp结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp相关的操作
+    // 结构体: llama_sampler_temp
+    // 描述: llama_sampler_temp结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp相关的操作
+    // 结构体: llama_sampler_temp
+    // 描述: llama_sampler_temp结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp相关的操作
+    // 结构体: llama_sampler_temp
+    // 描述: llama_sampler_temp结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp相关的操作
 struct llama_sampler_temp : public llama_sampler_backend {
     const float temp;
 };
 
+// 函数: llama_sampler_temp_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_temp_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_temp *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_temp_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_temp_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     const auto * ctx = (llama_sampler_temp *) smpl->ctx;
 
@@ -1812,30 +4091,154 @@ static void llama_sampler_temp_apply(struct llama_sampler * smpl, llama_token_da
 
 static struct llama_sampler * llama_sampler_temp_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_temp *) smpl->ctx;
+    // 函数: llama_sampler_init_temp
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_temp
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_temp(ctx->temp);
 }
 
+// 函数: llama_sampler_temp_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_temp_free(struct llama_sampler * smpl) {
     delete (llama_sampler_temp *) smpl->ctx;
 }
 
 static void llama_sampler_backend_temp_sampling(
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data,
         float                       temp) {
     if (temp <= 0.0f) {
         // Find the most probable token index.
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * max_idx = ggml_argmax(ctx, data->logits);
         ggml_set_name(max_idx, "temp_max_idx");
 
         if (data->candidates) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * candidates_rows = ggml_reshape_2d(ctx, data->candidates, 1, data->candidates->ne[0]);
             data->candidates = ggml_get_rows(ctx, candidates_rows, max_idx);
         } else {
             data->candidates = max_idx;
         }
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * logits_rows = ggml_reshape_2d(ctx, data->logits, 1, data->logits->ne[0]);
         data->logits = ggml_get_rows(ctx, logits_rows, max_idx);
 
@@ -1848,6 +4251,24 @@ static void llama_sampler_backend_temp_sampling(
 }
 
 static bool llama_sampler_temp_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_temp *) smpl->ctx;
@@ -1860,9 +4281,81 @@ static bool llama_sampler_temp_backend_init(
 }
 
 static void llama_sampler_temp_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     auto * sctx = (llama_sampler_temp *) smpl->ctx;
     llama_sampler_backend_temp_sampling(ctx, gf, data, sctx->temp);
@@ -1881,10 +4374,36 @@ static struct llama_sampler_i llama_sampler_temp_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_temp(float temp) {
     const bool is_empty = temp == 1.0f;
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?temp");
     }
 
@@ -1899,17 +4418,51 @@ struct llama_sampler * llama_sampler_init_temp(float temp) {
 
 // temp-ext
 
+// 类: llama_sampler_temp_ext
+// 描述: llama_sampler_temp_ext类提供相关功能
+// 用途: 用于处理llama_sampler_temp_ext相关的操作
+// 类: llama_sampler_temp_ext
+// 描述: llama_sampler_temp_ext类提供相关功能
+// 用途: 用于处理llama_sampler_temp_ext相关的操作
+    // 结构体: llama_sampler_temp_ext
+    // 描述: llama_sampler_temp_ext结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp_ext相关的操作
+    // 结构体: llama_sampler_temp_ext
+    // 描述: llama_sampler_temp_ext结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp_ext相关的操作
+    // 结构体: llama_sampler_temp_ext
+    // 描述: llama_sampler_temp_ext结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp_ext相关的操作
+    // 结构体: llama_sampler_temp_ext
+    // 描述: llama_sampler_temp_ext结构体提供相关功能
+    // 用途: 用于处理llama_sampler_temp_ext相关的操作
 struct llama_sampler_temp_ext : public llama_sampler_backend {
     const float temp;
     const float delta;
     const float exponent;
 };
 
+// 函数: llama_sampler_temp_ext_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_ext_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_temp_ext_name(const struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_temp_ext *) smpl->ctx;
     return sctx->get_name();
 }
 
+// 函数: llama_sampler_temp_ext_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_ext_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_temp_ext_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_temp_ext *) smpl->ctx;
     if (ctx->delta > 0) {
@@ -1983,14 +4536,48 @@ static void llama_sampler_temp_ext_apply(struct llama_sampler * smpl, llama_toke
 
 static struct llama_sampler * llama_sampler_temp_ext_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_temp_ext *) smpl->ctx;
+    // 函数: llama_sampler_init_temp_ext
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_temp_ext
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_temp_ext(ctx->temp, ctx->delta, ctx->exponent);
 }
 
+// 函数: llama_sampler_temp_ext_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_temp_ext_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_temp_ext_free(struct llama_sampler * smpl) {
     delete (llama_sampler_temp_ext *) smpl->ctx;
 }
 
 static bool llama_sampler_temp_ext_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     auto * sctx = (llama_sampler_temp_ext *) smpl->ctx;
@@ -2003,9 +4590,81 @@ static bool llama_sampler_temp_ext_backend_init(
 }
 
 static void llama_sampler_temp_ext_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     auto * sctx = (llama_sampler_temp_ext *) smpl->ctx;
 
@@ -2021,17 +4680,125 @@ static void llama_sampler_temp_ext_backend_apply(
     const float max_entropy = logf(data->logits->ne[0]);
 
     // Calculate the probabilities.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * probs = ggml_soft_max(ctx, data->logits);
     ggml_set_name(probs, "temp_ext_softmax_probs");
 
     // Clamp probabilities to avoid log(0) which would give -inf
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * probs_clamped = ggml_clamp(ctx, probs, 1e-10f, 1.0f);
     ggml_set_name(probs_clamped, "temp_ext_probs_clamped");
 
     // Calculate the entropy, entropy = -Σ(p * log(p)).
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * log_probs   = ggml_log(ctx, probs_clamped);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * p_log_p     = ggml_mul(ctx, probs_clamped, log_probs);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * sum_p_log_p = ggml_sum(ctx, p_log_p);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * entropy     = ggml_scale(ctx, sum_p_log_p, -1.0f);
     ggml_set_name(log_probs,   "temp_ext_log_probs");
     ggml_set_name(p_log_p,     "temp_ext_p_log_p");
@@ -2039,6 +4806,24 @@ static void llama_sampler_temp_ext_backend_apply(
     ggml_set_name(entropy,     "temp_ext_entropy");
 
     // Normalize the entropy, norm_entropy = entropy / max_entropy
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * norm_entropy = ggml_scale(ctx, entropy, 1.0f / max_entropy);
     ggml_set_name(norm_entropy, "temp_ext_norm_entropy");
 
@@ -2047,11 +4832,83 @@ static void llama_sampler_temp_ext_backend_apply(
     //
     // Calculate powf(normalized_entropy, exponent) as
     // norm_entropy^exponent = exp(exponent * log(norm_entropy))
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * log_norm_entropy = ggml_log(ctx, norm_entropy);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * scaled_log       = ggml_scale(ctx, log_norm_entropy, sctx->exponent);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * pow_entropy      = ggml_exp(ctx, scaled_log);
     // With pow_entropy computed we can now compute dyn_temp, scaling by
     // (max_temp - min_temp) and then adding min_temp.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dyn_temp         = ggml_scale_bias(ctx, pow_entropy, max_temp - min_temp, min_temp);
     ggml_set_name(log_norm_entropy, "temp_ext_log_norm_entropy");
     ggml_set_name(scaled_log,       "temp_ext_scaled_log");
@@ -2059,6 +4916,24 @@ static void llama_sampler_temp_ext_backend_apply(
     ggml_set_name(dyn_temp,         "temp_ext_dyn_temp");
 
     // Scale the logits by the dynamic temperature
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * scaled_logits = ggml_div(ctx, data->logits, dyn_temp);
     ggml_set_name(scaled_logits, "temp_ext_scaled_logits");
 
@@ -2078,10 +4953,36 @@ static struct llama_sampler_i llama_sampler_temp_ext_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_temp_ext(float temp, float delta, float exponent) {
     const bool is_empty = temp == 1.0f && delta <= 0.0f;
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?temp-ext");
     }
 
@@ -2100,6 +5001,24 @@ struct llama_sampler * llama_sampler_init_temp_ext(float temp, float delta, floa
 
 // xtc
 
+// 类: llama_sampler_xtc
+// 描述: llama_sampler_xtc类提供相关功能
+// 用途: 用于处理llama_sampler_xtc相关的操作
+// 类: llama_sampler_xtc
+// 描述: llama_sampler_xtc类提供相关功能
+// 用途: 用于处理llama_sampler_xtc相关的操作
+    // 结构体: llama_sampler_xtc
+    // 描述: llama_sampler_xtc结构体提供相关功能
+    // 用途: 用于处理llama_sampler_xtc相关的操作
+    // 结构体: llama_sampler_xtc
+    // 描述: llama_sampler_xtc结构体提供相关功能
+    // 用途: 用于处理llama_sampler_xtc相关的操作
+    // 结构体: llama_sampler_xtc
+    // 描述: llama_sampler_xtc结构体提供相关功能
+    // 用途: 用于处理llama_sampler_xtc相关的操作
+    // 结构体: llama_sampler_xtc
+    // 描述: llama_sampler_xtc结构体提供相关功能
+    // 用途: 用于处理llama_sampler_xtc相关的操作
 struct llama_sampler_xtc {
     const float    probability;
     const float    threshold;
@@ -2111,10 +5030,26 @@ struct llama_sampler_xtc {
     std::mt19937   rng;
 };
 
+// 函数: llama_sampler_xtc_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_xtc_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_xtc_name(const struct llama_sampler * /*smpl*/) {
     return "xtc";
 }
 
+// 函数: llama_sample_xtc_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sample_xtc_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sample_xtc_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_xtc *) smpl->ctx;
 
@@ -2162,10 +5097,26 @@ static struct llama_sampler * llama_sampler_xtc_clone(const struct llama_sampler
     return result;
 }
 
+// 函数: llama_sampler_xtc_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_xtc_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_xtc_free(struct llama_sampler * smpl) {
     delete (llama_sampler_xtc *) smpl->ctx;
 }
 
+// 函数: llama_sampler_xtc_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_xtc_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_xtc_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_xtc *) smpl->ctx;
     ctx->seed_cur = get_rng_seed(ctx->seed);
@@ -2185,10 +5136,36 @@ static struct llama_sampler_i llama_sampler_xtc_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_xtc(float p, float t, size_t min_keep, uint32_t seed) {
     const bool is_empty = (p <= 0.0f || t > 0.5f);
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?xtc");
     }
 
@@ -2209,6 +5186,24 @@ struct llama_sampler * llama_sampler_init_xtc(float p, float t, size_t min_keep,
 
 // mirostat
 
+// 类: llama_sampler_mirostat
+// 描述: llama_sampler_mirostat类提供相关功能
+// 用途: 用于处理llama_sampler_mirostat相关的操作
+// 类: llama_sampler_mirostat
+// 描述: llama_sampler_mirostat类提供相关功能
+// 用途: 用于处理llama_sampler_mirostat相关的操作
+    // 结构体: llama_sampler_mirostat
+    // 描述: llama_sampler_mirostat结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat相关的操作
+    // 结构体: llama_sampler_mirostat
+    // 描述: llama_sampler_mirostat结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat相关的操作
+    // 结构体: llama_sampler_mirostat
+    // 描述: llama_sampler_mirostat结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat相关的操作
+    // 结构体: llama_sampler_mirostat
+    // 描述: llama_sampler_mirostat结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat相关的操作
 struct llama_sampler_mirostat {
     const int32_t n_vocab;
 
@@ -2225,10 +5220,26 @@ struct llama_sampler_mirostat {
     std::mt19937    rng;
 };
 
+// 函数: llama_sampler_mirostat_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_mirostat_name(const struct llama_sampler * /*smpl*/) {
     return "mirostat";
 }
 
+// 函数: llama_sampler_mirostat_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_mirostat *) smpl->ctx;
 
@@ -2280,6 +5291,14 @@ static struct llama_sampler * llama_sampler_mirostat_clone(const struct llama_sa
     return result;
 }
 
+// 函数: llama_sampler_mirostat_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_mirostat *) smpl->ctx;
     ctx->mu = 2.0f*ctx->tau;
@@ -2287,6 +5306,14 @@ static void llama_sampler_mirostat_reset(struct llama_sampler * smpl) {
     ctx->rng.seed(ctx->seed_cur);
 }
 
+// 函数: llama_sampler_mirostat_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_free(struct llama_sampler * smpl) {
     delete (llama_sampler_mirostat *) smpl->ctx;
 }
@@ -2304,6 +5331,24 @@ static struct llama_sampler_i llama_sampler_mirostat_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_mirostat(int32_t n_vocab, uint32_t seed, float tau, float eta, int32_t m) {
     const auto seed_cur = get_rng_seed(seed);
 
@@ -2324,6 +5369,24 @@ struct llama_sampler * llama_sampler_init_mirostat(int32_t n_vocab, uint32_t see
 
 // mirostat v2
 
+// 类: llama_sampler_mirostat_v2
+// 描述: llama_sampler_mirostat_v2类提供相关功能
+// 用途: 用于处理llama_sampler_mirostat_v2相关的操作
+// 类: llama_sampler_mirostat_v2
+// 描述: llama_sampler_mirostat_v2类提供相关功能
+// 用途: 用于处理llama_sampler_mirostat_v2相关的操作
+    // 结构体: llama_sampler_mirostat_v2
+    // 描述: llama_sampler_mirostat_v2结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat_v2相关的操作
+    // 结构体: llama_sampler_mirostat_v2
+    // 描述: llama_sampler_mirostat_v2结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat_v2相关的操作
+    // 结构体: llama_sampler_mirostat_v2
+    // 描述: llama_sampler_mirostat_v2结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat_v2相关的操作
+    // 结构体: llama_sampler_mirostat_v2
+    // 描述: llama_sampler_mirostat_v2结构体提供相关功能
+    // 用途: 用于处理llama_sampler_mirostat_v2相关的操作
 struct llama_sampler_mirostat_v2 {
     const uint32_t seed;
           uint32_t seed_cur;
@@ -2336,10 +5399,26 @@ struct llama_sampler_mirostat_v2 {
     std::mt19937 rng;
 };
 
+// 函数: llama_sampler_mirostat_v2_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_v2_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_mirostat_v2_name(const struct llama_sampler * /*smpl*/) {
     return "mirostat-v2";
 }
 
+// 函数: llama_sampler_mirostat_v2_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_v2_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_v2_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_mirostat_v2 *) smpl->ctx;
 
@@ -2368,6 +5447,14 @@ static void llama_sampler_mirostat_v2_apply(struct llama_sampler * smpl, llama_t
     ctx->mu = ctx->mu - ctx->eta * e;
 }
 
+// 函数: llama_sampler_mirostat_v2_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_v2_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_v2_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_mirostat_v2 *) smpl->ctx;
     ctx->mu = 2.0f*ctx->tau;
@@ -2391,6 +5478,14 @@ static struct llama_sampler * llama_sampler_mirostat_v2_clone(const struct llama
     return result;
 }
 
+// 函数: llama_sampler_mirostat_v2_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_mirostat_v2_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_mirostat_v2_free(struct llama_sampler * smpl) {
     delete (llama_sampler_mirostat_v2 *) smpl->ctx;
 }
@@ -2408,6 +5503,24 @@ static struct llama_sampler_i llama_sampler_mirostat_v2_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_mirostat_v2(uint32_t seed, float tau, float eta) {
     auto seed_cur = get_rng_seed(seed);
     return llama_sampler_init(
@@ -2425,19 +5538,71 @@ struct llama_sampler * llama_sampler_init_mirostat_v2(uint32_t seed, float tau, 
 
 // grammar
 
+// 类: llama_sampler_grammar
+// 描述: llama_sampler_grammar类提供相关功能
+// 用途: 用于处理llama_sampler_grammar相关的操作
+// 类: llama_sampler_grammar
+// 描述: llama_sampler_grammar类提供相关功能
+// 用途: 用于处理llama_sampler_grammar相关的操作
+    // 结构体: llama_sampler_grammar
+    // 描述: llama_sampler_grammar结构体提供相关功能
+    // 用途: 用于处理llama_sampler_grammar相关的操作
+    // 结构体: llama_sampler_grammar
+    // 描述: llama_sampler_grammar结构体提供相关功能
+    // 用途: 用于处理llama_sampler_grammar相关的操作
+    // 结构体: llama_sampler_grammar
+    // 描述: llama_sampler_grammar结构体提供相关功能
+    // 用途: 用于处理llama_sampler_grammar相关的操作
+    // 结构体: llama_sampler_grammar
+    // 描述: llama_sampler_grammar结构体提供相关功能
+    // 用途: 用于处理llama_sampler_grammar相关的操作
 struct llama_sampler_grammar {
     const struct llama_vocab * vocab;
 
     std::string grammar_str;
     std::string grammar_root;
 
+    // 类: llama_grammar
+    // 描述: llama_grammar类提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 类: llama_grammar
+    // 描述: llama_grammar类提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
     struct llama_grammar * grammar;
 };
 
+// 函数: llama_sampler_grammar_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_grammar_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_grammar_name(const struct llama_sampler * /*smpl*/) {
     return "grammar";
 }
 
+// 函数: llama_sampler_grammar_accept_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_grammar_accept_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_grammar_accept_impl(struct llama_sampler * smpl, llama_token token) {
     auto * ctx = (llama_sampler_grammar *) smpl->ctx;
     if (ctx->grammar) {
@@ -2445,6 +5610,14 @@ static void llama_sampler_grammar_accept_impl(struct llama_sampler * smpl, llama
     }
 }
 
+// 函数: llama_sampler_grammar_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_grammar_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_grammar_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_grammar *) smpl->ctx;
     if (ctx->grammar) {
@@ -2465,6 +5638,14 @@ static struct llama_sampler * llama_sampler_init_grammar_impl(
                      const char ** trigger_patterns,
                             size_t num_trigger_patterns);
 
+// 函数: llama_sampler_grammar_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_grammar_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_grammar_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_grammar *) smpl->ctx;
     if (!ctx->grammar) {
@@ -2506,6 +5687,14 @@ static struct llama_sampler * llama_sampler_grammar_clone(const struct llama_sam
     return result;
 }
 
+// 函数: llama_sampler_grammar_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_grammar_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_grammar_free(struct llama_sampler * smpl) {
     const auto * ctx = (llama_sampler_grammar *) smpl->ctx;
 
@@ -2550,6 +5739,14 @@ static struct llama_sampler * llama_sampler_init_grammar_impl(
             GGML_ASSERT(trigger_patterns == nullptr && num_trigger_patterns == 0);
             trigger_pattern = "[\\s\\S]*?(";
             for (size_t i = 0; i < num_trigger_words; ++i) {
+                // 函数: special_chars
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: special_chars
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 static const std::regex special_chars("[.^$|()*+?\\[\\]{}\\\\]");
                 if (i > 0) {
                     trigger_pattern += "|";
@@ -2588,13 +5785,57 @@ static struct llama_sampler * llama_sampler_init_grammar_impl(
     );
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_grammar(
         const struct llama_vocab * vocab,
                       const char * grammar_str,
                       const char * grammar_root) {
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_grammar_impl(vocab, grammar_str, grammar_root, /* lazy= */ false, nullptr, 0, nullptr, 0, nullptr, 0);
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_grammar_lazy(
         const struct llama_vocab * vocab,
                       const char * grammar_str,
@@ -2603,9 +5844,35 @@ struct llama_sampler * llama_sampler_init_grammar_lazy(
                             size_t num_trigger_words,
                const llama_token * trigger_tokens,
                             size_t num_trigger_tokens) {
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_grammar_impl(vocab, grammar_str, grammar_root, /* lazy= */ true, trigger_words, num_trigger_words, trigger_tokens, num_trigger_tokens, nullptr, 0);
 }
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_grammar_lazy_patterns(
         const struct llama_vocab * vocab,
                       const char * grammar_str,
@@ -2614,11 +5881,37 @@ struct llama_sampler * llama_sampler_init_grammar_lazy_patterns(
                             size_t num_trigger_patterns,
                const llama_token * trigger_tokens,
                             size_t num_trigger_tokens) {
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_grammar_impl
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_grammar_impl(vocab, grammar_str, grammar_root, /* lazy= */ true, nullptr, 0, trigger_tokens, num_trigger_tokens, trigger_patterns, num_trigger_patterns);
 }
 
 // penalties
 
+// 类: llama_sampler_penalties
+// 描述: llama_sampler_penalties类提供相关功能
+// 用途: 用于处理llama_sampler_penalties相关的操作
+// 类: llama_sampler_penalties
+// 描述: llama_sampler_penalties类提供相关功能
+// 用途: 用于处理llama_sampler_penalties相关的操作
+    // 结构体: llama_sampler_penalties
+    // 描述: llama_sampler_penalties结构体提供相关功能
+    // 用途: 用于处理llama_sampler_penalties相关的操作
+    // 结构体: llama_sampler_penalties
+    // 描述: llama_sampler_penalties结构体提供相关功能
+    // 用途: 用于处理llama_sampler_penalties相关的操作
+    // 结构体: llama_sampler_penalties
+    // 描述: llama_sampler_penalties结构体提供相关功能
+    // 用途: 用于处理llama_sampler_penalties相关的操作
+    // 结构体: llama_sampler_penalties
+    // 描述: llama_sampler_penalties结构体提供相关功能
+    // 用途: 用于处理llama_sampler_penalties相关的操作
 struct llama_sampler_penalties {
     const int32_t penalty_last_n;
     const float   penalty_repeat;
@@ -2631,10 +5924,26 @@ struct llama_sampler_penalties {
     std::unordered_map<llama_token, int> token_count;
 };
 
+// 函数: llama_sampler_penalties_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_penalties_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_penalties_name(const struct llama_sampler * /*smpl*/) {
     return "penalties";
 }
 
+// 函数: llama_sampler_penalties_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_penalties_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_penalties_accept(struct llama_sampler * smpl, llama_token token) {
     auto * ctx = (llama_sampler_penalties *) smpl->ctx;
     if (ctx->penalty_last_n == 0) {
@@ -2666,6 +5975,14 @@ static void llama_sampler_penalties_accept(struct llama_sampler * smpl, llama_to
 #endif
 }
 
+// 函数: llama_sampler_penalties_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_penalties_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_penalties_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_penalties *) smpl->ctx;
 
@@ -2699,6 +6016,14 @@ static void llama_sampler_penalties_apply(struct llama_sampler * smpl, llama_tok
     cur_p->sorted = false;
 }
 
+// 函数: llama_sampler_penalties_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_penalties_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_penalties_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_penalties *) smpl->ctx;
     ctx->prev.clear();
@@ -2723,6 +6048,14 @@ static struct llama_sampler * llama_sampler_penalties_clone(const struct llama_s
     return result;
 }
 
+// 函数: llama_sampler_penalties_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_penalties_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_penalties_free(struct llama_sampler * smpl) {
     delete (llama_sampler_penalties *) smpl->ctx;
 }
@@ -2740,6 +6073,24 @@ static struct llama_sampler_i llama_sampler_penalties_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_penalties(
         int32_t penalty_last_n,
         float penalty_repeat,
@@ -2750,6 +6101,14 @@ struct llama_sampler * llama_sampler_init_penalties(
     const bool is_empty = (penalty_last_n == 0 || (penalty_repeat == 1.0f && penalty_freq == 0.0f && penalty_present == 0.0f));
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?penalties");
     }
 
@@ -2768,14 +6127,48 @@ struct llama_sampler * llama_sampler_init_penalties(
 
 // top-n-sigma
 
+// 类: llama_sampler_top_n_sigma
+// 描述: llama_sampler_top_n_sigma类提供相关功能
+// 用途: 用于处理llama_sampler_top_n_sigma相关的操作
+// 类: llama_sampler_top_n_sigma
+// 描述: llama_sampler_top_n_sigma类提供相关功能
+// 用途: 用于处理llama_sampler_top_n_sigma相关的操作
+    // 结构体: llama_sampler_top_n_sigma
+    // 描述: llama_sampler_top_n_sigma结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_n_sigma相关的操作
+    // 结构体: llama_sampler_top_n_sigma
+    // 描述: llama_sampler_top_n_sigma结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_n_sigma相关的操作
+    // 结构体: llama_sampler_top_n_sigma
+    // 描述: llama_sampler_top_n_sigma结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_n_sigma相关的操作
+    // 结构体: llama_sampler_top_n_sigma
+    // 描述: llama_sampler_top_n_sigma结构体提供相关功能
+    // 用途: 用于处理llama_sampler_top_n_sigma相关的操作
 struct llama_sampler_top_n_sigma {
     const float n;
 };
 
+// 函数: llama_sampler_top_n_sigma_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_n_sigma_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_top_n_sigma_name(const struct llama_sampler * /*smpl*/) {
     return "top-n-sigma";
 }
 
+// 函数: llama_sampler_top_n_sigma_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_n_sigma_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_n_sigma_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_top_n_sigma *) smpl->ctx;
 
@@ -2819,9 +6212,25 @@ static void llama_sampler_top_n_sigma_apply(struct llama_sampler * smpl, llama_t
 
 static struct llama_sampler * llama_sampler_top_n_sigma_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_top_n_sigma *) smpl->ctx;
+    // 函数: llama_sampler_init_top_n_sigma
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_top_n_sigma
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_top_n_sigma(ctx->n);
 }
 
+// 函数: llama_sampler_top_n_sigma_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_top_n_sigma_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_top_n_sigma_free(struct llama_sampler * smpl) {
     delete (llama_sampler_top_n_sigma *) smpl->ctx;
 }
@@ -2839,10 +6248,36 @@ static struct llama_sampler_i llama_sampler_top_n_sigma_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_top_n_sigma(float n) {
     const bool is_empty = (n <= 0.0f);
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?top-n-sigma");
     }
 
@@ -2856,6 +6291,24 @@ struct llama_sampler * llama_sampler_init_top_n_sigma(float n) {
 
 // DRY
 
+// 类: llama_sampler_dry
+// 描述: llama_sampler_dry类提供相关功能
+// 用途: 用于处理llama_sampler_dry相关的操作
+// 类: llama_sampler_dry
+// 描述: llama_sampler_dry类提供相关功能
+// 用途: 用于处理llama_sampler_dry相关的操作
+    // 结构体: llama_sampler_dry
+    // 描述: llama_sampler_dry结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dry相关的操作
+    // 结构体: llama_sampler_dry
+    // 描述: llama_sampler_dry结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dry相关的操作
+    // 结构体: llama_sampler_dry
+    // 描述: llama_sampler_dry结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dry相关的操作
+    // 结构体: llama_sampler_dry
+    // 描述: llama_sampler_dry结构体提供相关功能
+    // 用途: 用于处理llama_sampler_dry相关的操作
 struct llama_sampler_dry {
     int32_t total_context_size;
 
@@ -2871,6 +6324,14 @@ struct llama_sampler_dry {
 };
 
 // Ported from Koboldcpp, original PR: https://github.com/LostRuins/koboldcpp/pull/982 (Original author: pi6am)
+// 函数: get_overlapping_token_sequences
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_overlapping_token_sequences
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static void get_overlapping_token_sequences(const llama_vocab & vocab, const std::string& str, std::unordered_multimap<llama_token, std::vector<llama_token>>& token_sequences, int max_tail_len = -1) {
     for (llama_token token_id = 0; token_id < (llama_token) vocab.n_tokens(); token_id++) {
         std::string word = vocab.detokenize({token_id}, true);
@@ -2913,10 +6374,26 @@ static void get_overlapping_token_sequences(const llama_vocab & vocab, const std
     }
 }
 
+// 函数: llama_sampler_dry_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dry_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_dry_name(const struct llama_sampler * /*smpl*/) {
     return "dry";
 }
 
+// 函数: llama_sampler_dry_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dry_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dry_accept(struct llama_sampler * smpl, llama_token token) {
     auto * ctx = (llama_sampler_dry *) smpl->ctx;
     if (ctx->dry_multiplier == 0.0f || ctx->dry_base < 1.0f || ctx->dry_penalty_last_n == 0) {
@@ -2927,6 +6404,14 @@ static void llama_sampler_dry_accept(struct llama_sampler * smpl, llama_token to
 }
 
 // Ported from Koboldcpp, original PR: https://github.com/LostRuins/koboldcpp/pull/982 (Original author: pi6am)
+// 函数: llama_sampler_dry_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dry_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dry_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_dry *) smpl->ctx;
 
@@ -3135,6 +6620,14 @@ static void llama_sampler_dry_apply(struct llama_sampler * smpl, llama_token_dat
     cur_p->sorted = false;
 }
 
+// 函数: llama_sampler_dry_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dry_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dry_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_dry *) smpl->ctx;
     ctx->last_tokens.clear();
@@ -3162,6 +6655,14 @@ static struct llama_sampler * llama_sampler_dry_clone(const struct llama_sampler
     return result;
 }
 
+// 函数: llama_sampler_dry_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_dry_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_dry_free(struct llama_sampler * smpl) {
     delete (llama_sampler_dry *) smpl->ctx;
 }
@@ -3179,6 +6680,24 @@ static struct llama_sampler_i llama_sampler_dry_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_dry(const struct llama_vocab * vocab, int32_t n_ctx_train, float dry_multiplier, float dry_base, int32_t dry_allowed_length, int32_t dry_penalty_last_n, const char** seq_breakers, size_t num_breakers) {
     int32_t effective_dry_penalty_last_n = (dry_penalty_last_n == -1) ? n_ctx_train : std::max(dry_penalty_last_n, 0);
     std::unordered_multimap<llama_token, std::vector<llama_token>> processed_breakers;
@@ -3188,6 +6707,14 @@ struct llama_sampler * llama_sampler_init_dry(const struct llama_vocab * vocab, 
     const bool dry_enabled = (dry_multiplier != 0.0f && dry_base >= 1.0f && dry_penalty_last_n != 0);
 
     if (!dry_enabled) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?dry");
     }
 
@@ -3199,6 +6726,14 @@ struct llama_sampler * llama_sampler_init_dry(const struct llama_vocab * vocab, 
                 continue;
             }
 
+            // 函数: sequence_break
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: sequence_break
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::string sequence_break(seq_breakers[i]);
             if (sequence_break.empty()) {
                 LLAMA_LOG_WARN("skipping empty DRY sequence breaker\n");
@@ -3231,6 +6766,24 @@ struct llama_sampler * llama_sampler_init_dry(const struct llama_vocab * vocab, 
 }
 
 // wrapper for test-sampling.cpp
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_dry_testing(int32_t context_size, float dry_multiplier, float dry_base, int32_t dry_allowed_length, int32_t dry_penalty_last_n, const std::vector<std::vector<llama_token>>& seq_breakers) {
     llama_vocab dummy_vocab;
     auto * result = llama_sampler_init_dry(&dummy_vocab, context_size, dry_multiplier, dry_base, dry_allowed_length, dry_penalty_last_n, NULL, 0);
@@ -3268,6 +6821,24 @@ struct llama_sampler * llama_sampler_init_dry_testing(int32_t context_size, floa
 //
 // ref: https://github.com/ggml-org/llama.cpp/pull/17927
 //
+// 类: llama_sampler_adaptive_p
+// 描述: llama_sampler_adaptive_p类提供相关功能
+// 用途: 用于处理llama_sampler_adaptive_p相关的操作
+// 类: llama_sampler_adaptive_p
+// 描述: llama_sampler_adaptive_p类提供相关功能
+// 用途: 用于处理llama_sampler_adaptive_p相关的操作
+    // 结构体: llama_sampler_adaptive_p
+    // 描述: llama_sampler_adaptive_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_adaptive_p相关的操作
+    // 结构体: llama_sampler_adaptive_p
+    // 描述: llama_sampler_adaptive_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_adaptive_p相关的操作
+    // 结构体: llama_sampler_adaptive_p
+    // 描述: llama_sampler_adaptive_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_adaptive_p相关的操作
+    // 结构体: llama_sampler_adaptive_p
+    // 描述: llama_sampler_adaptive_p结构体提供相关功能
+    // 用途: 用于处理llama_sampler_adaptive_p相关的操作
 struct llama_sampler_adaptive_p {
     const float        target;            // target probability (0.0 - 1.0; negative = disabled)
     const float        decay;             // EMA decay; history ~= 1/(1-decay) tokens (0.0 - 0.99)
@@ -3287,10 +6858,26 @@ static constexpr float PEAK_LOGIT_VALUE   =  5.0f;
 static constexpr float SHARPNESS          = 10.0f;
 static constexpr float INV_WIDTH          =  1.0f / DISTRIBUTION_WIDTH;
 
+// 函数: llama_sampler_adaptive_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_adaptive_p_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_adaptive_p_name(const struct llama_sampler * /*smpl*/) {
     return "adaptive-p";
 }
 
+// 函数: llama_sampler_adaptive_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_adaptive_p_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_adaptive_p_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_adaptive_p *) smpl->ctx;
 
@@ -3342,6 +6929,14 @@ static void llama_sampler_adaptive_p_apply(struct llama_sampler * smpl, llama_to
     ctx->pending_token_idx = idx;
 }
 
+// 函数: llama_sampler_adaptive_p_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_adaptive_p_accept
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_adaptive_p_accept(struct llama_sampler * smpl, llama_token token) {
     auto * ctx = (llama_sampler_adaptive_p *) smpl->ctx;
     if (ctx->pending_token_id == token) {
@@ -3355,6 +6950,14 @@ static void llama_sampler_adaptive_p_accept(struct llama_sampler * smpl, llama_t
     ctx->pending_token_idx = -1;
 }
 
+// 函数: llama_sampler_adaptive_p_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_adaptive_p_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_adaptive_p_reset(struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_adaptive_p *) smpl->ctx;
     // ctx->target and ctx->decay never change after init, so it's safe to keep them as is.
@@ -3382,6 +6985,14 @@ static struct llama_sampler * llama_sampler_adaptive_p_clone(const struct llama_
     return result;
 }
 
+// 函数: llama_sampler_adaptive_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_adaptive_p_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_adaptive_p_free(struct llama_sampler * smpl) {
     delete (llama_sampler_adaptive_p *) smpl->ctx;
 }
@@ -3399,6 +7010,24 @@ static struct llama_sampler_i llama_sampler_adaptive_p_i = {
     /* .backend_set_input = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_adaptive_p(
     float    target,
     float    decay,
@@ -3425,6 +7054,24 @@ struct llama_sampler * llama_sampler_init_adaptive_p(
 
 // logit-bias
 
+// 类: llama_sampler_logit_bias
+// 描述: llama_sampler_logit_bias类提供相关功能
+// 用途: 用于处理llama_sampler_logit_bias相关的操作
+// 类: llama_sampler_logit_bias
+// 描述: llama_sampler_logit_bias类提供相关功能
+// 用途: 用于处理llama_sampler_logit_bias相关的操作
+    // 结构体: llama_sampler_logit_bias
+    // 描述: llama_sampler_logit_bias结构体提供相关功能
+    // 用途: 用于处理llama_sampler_logit_bias相关的操作
+    // 结构体: llama_sampler_logit_bias
+    // 描述: llama_sampler_logit_bias结构体提供相关功能
+    // 用途: 用于处理llama_sampler_logit_bias相关的操作
+    // 结构体: llama_sampler_logit_bias
+    // 描述: llama_sampler_logit_bias结构体提供相关功能
+    // 用途: 用于处理llama_sampler_logit_bias相关的操作
+    // 结构体: llama_sampler_logit_bias
+    // 描述: llama_sampler_logit_bias结构体提供相关功能
+    // 用途: 用于处理llama_sampler_logit_bias相关的操作
 struct llama_sampler_logit_bias : public llama_sampler_backend {
     const int32_t n_vocab;
 
@@ -3432,15 +7079,67 @@ struct llama_sampler_logit_bias : public llama_sampler_backend {
 
     std::vector<llama_logit_bias> to_search;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * inp_logit_bias;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * inp_logit_idxs;
 };
 
+// 函数: llama_sampler_logit_bias_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_logit_bias_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_logit_bias_name(const struct llama_sampler * smpl) {
     auto * ctx = (llama_sampler_logit_bias *) smpl->ctx;
     return ctx->get_name();
 }
 
+// 函数: llama_sampler_logit_bias_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_logit_bias_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_logit_bias_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_logit_bias *) smpl->ctx;
 
@@ -3476,17 +7175,105 @@ static void llama_sampler_logit_bias_apply(struct llama_sampler * smpl, llama_to
 
 static struct llama_sampler * llama_sampler_logit_bias_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_logit_bias *) smpl->ctx;
+    // 函数: llama_sampler_init_logit_bias
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_logit_bias
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_logit_bias(ctx->n_vocab, ctx->logit_bias.size(), ctx->logit_bias.data());
 }
 
+// 函数: llama_sampler_logit_bias_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_logit_bias_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_logit_bias_free(struct llama_sampler * smpl) {
     delete (llama_sampler_logit_bias *) smpl->ctx;
 }
 
 static void llama_sampler_logit_bias_backend_apply(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler      * smpl,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context       * ctx,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph        * gf,
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+        // 类: llama_sampler_data
+        // 描述: llama_sampler_data类提供相关功能
+        // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
         struct llama_sampler_data * data) {
     GGML_UNUSED(gf);
     GGML_UNUSED(ctx);
@@ -3515,6 +7302,14 @@ static void llama_sampler_logit_bias_backend_apply(
     data->logits = ggml_add(ctx, data->logits, cur);
 }
 
+// 函数: llama_sampler_logit_bias_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_logit_bias_backend_set_input
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_logit_bias_backend_set_input(struct llama_sampler * smpl) {
     auto * sctx = (llama_sampler_logit_bias *) smpl->ctx;
     if (sctx->logit_bias.empty()) {
@@ -3540,6 +7335,24 @@ static void llama_sampler_logit_bias_backend_set_input(struct llama_sampler * sm
 }
 
 static bool llama_sampler_logit_bias_backend_init(
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler       * smpl,
         ggml_backend_buffer_type_t   buft) {
     GGML_UNUSED(buft);
@@ -3568,6 +7381,24 @@ static struct llama_sampler_i llama_sampler_logit_bias_i = {
     /* .backend_set_input = */ llama_sampler_logit_bias_backend_set_input,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_logit_bias(
                          int32_t   n_vocab,
                          int32_t   n_logit_bias,
@@ -3575,6 +7406,14 @@ struct llama_sampler * llama_sampler_init_logit_bias(
     const bool is_empty = n_logit_bias <= 0;
 
     if (is_empty) {
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_sampler_init_empty
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return llama_sampler_init_empty("?logit-bias");
     }
 
@@ -3595,6 +7434,24 @@ struct llama_sampler * llama_sampler_init_logit_bias(
 
 //#define GGML_DEBUG_SAMPLER_INFILL
 
+// 类: llama_sampler_infill
+// 描述: llama_sampler_infill类提供相关功能
+// 用途: 用于处理llama_sampler_infill相关的操作
+// 类: llama_sampler_infill
+// 描述: llama_sampler_infill类提供相关功能
+// 用途: 用于处理llama_sampler_infill相关的操作
+    // 结构体: llama_sampler_infill
+    // 描述: llama_sampler_infill结构体提供相关功能
+    // 用途: 用于处理llama_sampler_infill相关的操作
+    // 结构体: llama_sampler_infill
+    // 描述: llama_sampler_infill结构体提供相关功能
+    // 用途: 用于处理llama_sampler_infill相关的操作
+    // 结构体: llama_sampler_infill
+    // 描述: llama_sampler_infill结构体提供相关功能
+    // 用途: 用于处理llama_sampler_infill相关的操作
+    // 结构体: llama_sampler_infill
+    // 描述: llama_sampler_infill结构体提供相关功能
+    // 用途: 用于处理llama_sampler_infill相关的操作
 struct llama_sampler_infill {
     const struct llama_vocab * vocab;
 
@@ -3602,10 +7459,26 @@ struct llama_sampler_infill {
     std::vector<char> buf1;
 };
 
+// 函数: llama_sampler_infill_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_infill_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_infill_name(const struct llama_sampler * /*smpl*/) {
     return "infill";
 }
 
+// 函数: llama_sampler_infill_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_infill_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_infill_apply(struct llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_infill *) smpl->ctx;
 
@@ -3791,9 +7664,25 @@ static void llama_sampler_infill_apply(struct llama_sampler * smpl, llama_token_
 
 static struct llama_sampler * llama_sampler_infill_clone(const struct llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_infill *) smpl->ctx;
+    // 函数: llama_sampler_init_infill
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_sampler_init_infill
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_sampler_init_infill(ctx->vocab);
 }
 
+// 函数: llama_sampler_infill_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_infill_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_infill_free(struct llama_sampler * smpl) {
     delete (llama_sampler_infill *) smpl->ctx;
 }
@@ -3811,6 +7700,24 @@ static struct llama_sampler_i llama_sampler_infill_i = {
     /* .backend_init      = */ nullptr,
 };
 
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+// 类: llama_sampler
+// 描述: llama_sampler类提供相关功能
+// 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
 struct llama_sampler * llama_sampler_init_infill(const struct llama_vocab * vocab) {
     return llama_sampler_init(
         /* .iface = */ &llama_sampler_infill_i,
@@ -3824,6 +7731,14 @@ struct llama_sampler * llama_sampler_init_infill(const struct llama_vocab * voca
 
 // utils
 
+// 函数: llama_sampler_get_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_get_seed
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_sampler_get_seed(const struct llama_sampler * smpl) {
     if (smpl->iface == &llama_sampler_dist_i) {
         return ((const llama_sampler_dist *) smpl->ctx)->seed_cur;
@@ -3852,7 +7767,43 @@ uint32_t llama_sampler_get_seed(const struct llama_sampler * smpl) {
 
 // perf
 
+// 类: llama_perf_sampler_data
+// 描述: llama_perf_sampler_data类提供相关功能
+// 用途: 用于处理llama_perf_sampler_data相关的操作
+// 类: llama_perf_sampler_data
+// 描述: llama_perf_sampler_data类提供相关功能
+// 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
 struct llama_perf_sampler_data llama_perf_sampler(const struct llama_sampler * chain) {
+    // 类: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data类提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 类: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data类提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
     struct llama_perf_sampler_data data = {};
 
     if (chain == nullptr || chain->iface != &llama_sampler_chain_i) {
@@ -3867,12 +7818,28 @@ struct llama_perf_sampler_data llama_perf_sampler(const struct llama_sampler * c
     return data;
 }
 
+// 函数: llama_perf_sampler_print
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_perf_sampler_print
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void llama_perf_sampler_print(const struct llama_sampler * chain) {
     const auto data = llama_perf_sampler(chain);
 
     LLAMA_LOG_INFO("%s:    samplers time = %10.2f ms / %5d runs\n", __func__, data.t_sample_ms, data.n_sample);
 }
 
+// 函数: llama_perf_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_perf_sampler_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void llama_perf_sampler_reset(struct llama_sampler * chain) {
     if (chain == nullptr || chain->iface != &llama_sampler_chain_i) {
         GGML_ABORT("%s: invalid sampler passed - requires a sampler created with llama_sampler_chain_init()\n", __func__);

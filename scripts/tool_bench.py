@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: tool_bench.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/tool_bench.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env uv run
 '''
     Simplistic tool call benchmarks for llama-server and ollama.
@@ -57,7 +64,15 @@ if True:
 
 
 @contextmanager
+    # 函数: scoped_server
+    # 描述: scoped_server函数提供相关功能
+    # 参数: sp: ServerProcess
+    # 返回: 无返回值
 def scoped_server(sp: ServerProcess):
+    # 函数: stop
+    # 描述: stop函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def stop():
         nonlocal sp
         if sp is not None:
@@ -78,6 +93,10 @@ app = typer.Typer()
 
 
 @app.command()
+    # 函数: plot
+    # 描述: plot函数提供相关功能
+    # 参数: files: List[Path], output: Optional[Path] = None, test_regex: Optional[str] = None, server_regex: Optional[str] = None
+    # 返回: 无返回值
 def plot(files: List[Path], output: Optional[Path] = None, test_regex: Optional[str] = None, server_regex: Optional[str] = None):
 
     lines: List[Dict] = []
@@ -201,6 +220,10 @@ def plot(files: List[Path], output: Optional[Path] = None, test_regex: Optional[
 
 
 @app.command()
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def run(
     output: Annotated[Path, typer.Option(help="Output JSON file")],
     model: Annotated[Optional[str], typer.Option(help="Name of the model to test (server agnostic)")] = None,
@@ -241,6 +264,10 @@ def run(
 
     with output.open('a' if append else 'w') as output_file:
 
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: server: ServerProcess, *, server_name: str, model_id: str, temp: Optional[float] = None, output_kwargs={}, request_kwargs={}
+    # 返回: 无返回值
         def run(server: ServerProcess, *, server_name: str, model_id: str, temp: Optional[float] = None, output_kwargs={}, request_kwargs={}):
             request_kwargs = {**request_kwargs}
             if temp is not None:
@@ -272,6 +299,10 @@ def run(
                 for i in range(n):
                     start_time = time.time()
 
+    # 函数: elapsed
+    # 描述: elapsed函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
                     def elapsed():
                         return time.time() - start_time
 

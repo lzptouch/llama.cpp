@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: qwen3next.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/qwen3next.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "llama-memory-recurrent.h"
@@ -79,6 +86,14 @@ llm_build_qwen3next::llm_build_qwen3next(const llama_model & model, const llm_gr
 // utility to get one slice from the third dimension
 // input dim:  [x, y, c, b]
 // output dim: [x, y, 1, b]
+// 函数: get_slice_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_slice_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml_tensor * get_slice_2d(ggml_context * ctx0, ggml_tensor * t, int64_t c) {
     return ggml_view_4d(ctx0, t, t->ne[0], t->ne[1], 1, t->ne[3],
         t->nb[1], t->nb[2], t->nb[3], t->nb[2] * c);
@@ -92,6 +107,14 @@ ggml_tensor * llm_build_qwen3next::build_norm_gated(
     ggml_tensor * normalized = build_norm(input, weights, nullptr, LLM_NORM_RMS, layer);
     ggml_tensor * gated_silu = ggml_silu(ctx0, gate);
 
+    // 函数: ggml_mul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_mul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_mul(ctx0, normalized, gated_silu);
 }
 

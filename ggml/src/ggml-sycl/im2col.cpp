@@ -47,6 +47,14 @@ static void im2col_kernel(const float * x, T * dst, int64_t batch_offset, int64_
         const bool  out_of_bounds = (iih < 0 || iih >= IH || iiw < 0 || iiw >= IW);
         const float src_val       = out_of_bounds ? 0.0f : x[offset_src];
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (std::is_same_v<T, sycl::half>) {
             dst[offset_dst] = sycl::half(src_val);
         } else if constexpr (std::is_same_v<T, float>) {
@@ -94,6 +102,14 @@ static void im2col_sycl_f32(const float * x, float * dst, int64_t IW, int64_t IH
                                 d0, d1, stream);
 }
 
+// 函数: ggml_sycl_op_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_im2col(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];

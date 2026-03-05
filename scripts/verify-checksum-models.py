@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: verify-checksum-models.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/verify-checksum-models.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import logging
@@ -7,6 +14,10 @@ import hashlib
 logger = logging.getLogger("verify-checksum-models")
 
 
+    # 函数: sha256sum
+    # 描述: sha256sum函数提供相关功能
+    # 参数: file
+    # 返回: 无返回值
 def sha256sum(file):
     block_size = 16 * 1024 * 1024  # 16 MB block size
     b = bytearray(block_size)

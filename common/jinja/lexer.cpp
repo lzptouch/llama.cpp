@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: lexer.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/lexer.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "lexer.h"
 #include "runtime.h"
 
@@ -11,6 +18,14 @@
 
 namespace jinja {
 
+// 函数: string_lstrip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_lstrip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void string_lstrip(std::string & s, const char * chars) {
     size_t start = s.find_first_not_of(chars);
     if (start == std::string::npos) {
@@ -20,6 +35,14 @@ static void string_lstrip(std::string & s, const char * chars) {
     }
 }
 
+// 函数: string_rstrip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_rstrip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void string_rstrip(std::string & s, const char * chars) {
     size_t end = s.find_last_not_of(chars);
     if (end == std::string::npos) {
@@ -71,11 +94,27 @@ lexer_result lexer::tokenize(const std::string & source) {
                 ++pos;
                 // check for end of input
                 if (pos >= src.size()) {
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw lexer_exception("unexpected end of input after escape character", source, pos);
                 }
                 // add escaped char
                 char escaped_char = src[pos++];
                 if (escape_chars.find(escaped_char) == escape_chars.end()) {
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw lexer_exception(std::string("unknown escape character \\") + escaped_char, source, pos);
                 }
                 char unescaped_char = escape_chars.at(escaped_char);
@@ -85,6 +124,14 @@ lexer_result lexer::tokenize(const std::string & source) {
 
             str += src[pos++];
             if (pos > src.size()) {
+                // 函数: lexer_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: lexer_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw lexer_exception("unexpected end of input during consume_while", source, pos);
             }
         }
@@ -217,6 +264,14 @@ lexer_result lexer::tokenize(const std::string & source) {
             std::string comment;
             while (!(src[pos] == '#' && next_pos_is( {'}'} ))) {
                 if (pos + 2 >= src.size()) {
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: lexer_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw lexer_exception("missing end of comment tag", source, pos);
                 }
                 comment += src[pos++];
@@ -250,6 +305,14 @@ lexer_result lexer::tokenize(const std::string & source) {
             start_pos = pos;
             token::type last_token_type = tokens.empty() ? token::eof : tokens.back().t;
             if (last_token_type == token::text || last_token_type == token::eof) {
+                // 函数: lexer_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: lexer_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw lexer_exception(std::string("unexpected character: ") + ch, source, pos);
             }
             switch (last_token_type) {
@@ -332,6 +395,14 @@ lexer_result lexer::tokenize(const std::string & source) {
             continue;
         }
 
+        // 函数: lexer_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: lexer_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw lexer_exception(std::string("unexpected character: ") + ch, source, pos);
     }
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-gbnf-validator.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-gbnf-validator.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "../src/unicode.h"
 #include "../src/llama-grammar.h"
 
@@ -8,6 +15,14 @@
 #include <string>
 #include <vector>
 
+// 函数: llama_grammar_validate
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_validate
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool llama_grammar_validate(struct llama_grammar * grammar, const std::string & input_str, size_t & error_pos, std::string & error_msg) {
     const auto cpts = unicode_cpts_from_utf8(input_str);
 
@@ -36,6 +51,14 @@ static bool llama_grammar_validate(struct llama_grammar * grammar, const std::st
     return false;
 }
 
+// 函数: print_error_message
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_error_message
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_error_message(const std::string & input_str, size_t error_pos, const std::string & error_msg) {
     fprintf(stdout, "Input string is invalid according to the grammar.\n");
     fprintf(stdout, "Error: %s at position %zu\n", error_msg.c_str(), error_pos);
@@ -51,6 +74,14 @@ static void print_error_message(const std::string & input_str, size_t error_pos,
     }
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char** argv) {
     if (argc != 3) {
         fprintf(stdout, "Usage: %s <grammar_filename> <input_filename>\n", argv[0]);

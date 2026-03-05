@@ -40,6 +40,30 @@
 // internal logging functions
 //
 
+// 类: mtmd_helper_logger
+// 描述: mtmd_helper_logger类提供相关功能
+// 用途: 用于处理mtmd_helper_logger相关的操作
+// 类: mtmd_helper_logger
+// 描述: mtmd_helper_logger类提供相关功能
+// 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
+    // 结构体: mtmd_helper_logger
+    // 描述: mtmd_helper_logger结构体提供相关功能
+    // 用途: 用于处理mtmd_helper_logger相关的操作
 struct mtmd_helper_logger {
     ggml_log_callback default_callback = [](ggml_log_level level, const char * text, void * user_data) {
         (void) level;
@@ -51,6 +75,14 @@ struct mtmd_helper_logger {
     ggml_log_callback log_callback = default_callback;
     void * log_callback_user_data;
 
+    // 函数: log_v
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log_v
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log_v(enum ggml_log_level level, const char * format, va_list args) {
         if (format == NULL) {
             return;
@@ -71,6 +103,14 @@ struct mtmd_helper_logger {
         va_end(args_copy);
     }
 
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log(enum ggml_log_level level, const char * format, ...) {
         va_list args;
         va_start(args, format);
@@ -83,6 +123,14 @@ struct mtmd_helper_logger {
 #define LOG_WRN(...) g_logger.log(GGML_LOG_LEVEL_WARN,  __VA_ARGS__)
 #define LOG_ERR(...) g_logger.log(GGML_LOG_LEVEL_ERROR, __VA_ARGS__)
 
+// 函数: mtmd_helper_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_helper_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_helper_log_set(ggml_log_callback log_callback, void * user_data) {
     if (log_callback == nullptr) {
         log_callback = g_logger.default_callback;
@@ -96,6 +144,14 @@ void mtmd_helper_log_set(ggml_log_callback log_callback, void * user_data) {
 // helper functions
 //
 
+// 函数: mtmd_helper_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_helper_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_helper_get_n_tokens(const mtmd_input_chunks * chunks) {
     size_t n_tokens = 0;
     for (size_t i = 0; i < mtmd_input_chunks_size(chunks); i++) {
@@ -105,6 +161,14 @@ size_t mtmd_helper_get_n_tokens(const mtmd_input_chunks * chunks) {
     return n_tokens;
 }
 
+// 函数: mtmd_helper_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_helper_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_pos mtmd_helper_get_n_pos(const mtmd_input_chunks * chunks) {
     llama_pos n_pos = 0;
     for (size_t i = 0; i < mtmd_input_chunks_size(chunks); i++) {
@@ -116,6 +180,30 @@ llama_pos mtmd_helper_get_n_pos(const mtmd_input_chunks * chunks) {
 
 // helper struct to make working with embd batch easier
 // note: this will be removed after llama_batch_ext refactoring
+// 类: decode_embd_batch
+// 描述: decode_embd_batch类提供相关功能
+// 用途: 用于处理decode_embd_batch相关的操作
+// 类: decode_embd_batch
+// 描述: decode_embd_batch类提供相关功能
+// 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
+    // 结构体: decode_embd_batch
+    // 描述: decode_embd_batch结构体提供相关功能
+    // 用途: 用于处理decode_embd_batch相关的操作
 struct decode_embd_batch {
     int n_pos_per_embd;
     int n_mmproj_embd;
@@ -144,6 +232,14 @@ struct decode_embd_batch {
         };
     }
 
+    // 函数: set_position_normal
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_position_normal
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_position_normal(llama_pos pos_0, llama_seq_id seq_id) {
         seq_id_0[0] = seq_id;
         for (int i = 0; i < batch.n_tokens; i++) {
@@ -155,6 +251,14 @@ struct decode_embd_batch {
     }
 
     // M-RoPE for image
+    // 函数: set_position_mrope_2d
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_position_mrope_2d
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_position_mrope_2d(llama_pos pos_0, int nx, int ny, llama_seq_id seq_id) {
         GGML_ASSERT(n_pos_per_embd == 4);
         seq_id_0[0] = seq_id;
@@ -175,6 +279,14 @@ struct decode_embd_batch {
     }
 
     // M-RoPE for audio
+    // 函数: set_position_mrope_1d
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_position_mrope_1d
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_position_mrope_1d(llama_pos pos_0, llama_seq_id seq_id) {
         GGML_ASSERT(n_pos_per_embd == 4);
         seq_id_0[0] = seq_id;
@@ -191,6 +303,14 @@ struct decode_embd_batch {
         }
     }
 
+    // 函数: get_view
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_view
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llama_batch get_view(int offset, int n_tokens) {
         llama_pos * pos_ptr;
         pos_view.clear();
@@ -228,6 +348,30 @@ struct decode_embd_batch {
 // Helper function for decoding an image whose embeddings have already been calculated
 int32_t mtmd_helper_decode_image_chunk(
         mtmd_context * ctx,
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
         struct llama_context * lctx,
         const mtmd_input_chunk * chunk,
         float * encoded_embd,
@@ -249,6 +393,14 @@ int32_t mtmd_helper_decode_image_chunk(
     int32_t n_tokens = mtmd_input_chunk_get_n_tokens(chunk);
     int32_t i_batch = 0;
     int32_t n_img_batches = (n_tokens + n_batch - 1) / n_batch;
+    // 函数: batch_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: batch_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     decode_embd_batch batch_embd(encoded_embd, n_tokens, n_pos_per_embd, n_mmproj_embd);
 
     if (mtmd_decode_use_mrope(ctx)) {
@@ -305,6 +457,30 @@ int32_t mtmd_helper_decode_image_chunk(
 }
 
 int32_t mtmd_helper_eval_chunk_single(mtmd_context * ctx,
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
         struct llama_context * lctx,
         const mtmd_input_chunk * chunk,
         llama_pos n_past,
@@ -377,6 +553,30 @@ int32_t mtmd_helper_eval_chunk_single(mtmd_context * ctx,
 }
 
 int32_t mtmd_helper_eval_chunks(mtmd_context * ctx,
+                                // 类: llama_context
+                                // 描述: llama_context类提供相关功能
+                                // 用途: 用于处理llama_context相关的操作
+                                // 类: llama_context
+                                // 描述: llama_context类提供相关功能
+                                // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
                                 struct llama_context * lctx,
                                 const mtmd_input_chunks * chunks,
                                 llama_pos n_past,
@@ -407,6 +607,14 @@ int32_t mtmd_helper_eval_chunks(mtmd_context * ctx,
 
 namespace audio_helpers {
 
+// 函数: is_audio_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_audio_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_audio_file(const char * buf, size_t len) {
     if (len < 12) {
         return false;
@@ -426,6 +634,14 @@ static bool is_audio_file(const char * buf, size_t len) {
 }
 
 // returns true if the buffer is a valid audio file
+// 函数: decode_audio_from_buf
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: decode_audio_from_buf
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static bool decode_audio_from_buf(const unsigned char * buf_in, size_t len, int target_sampler_rate, std::vector<float> & pcmf32_mono) {
     ma_result result;
     const int channels = 1;
@@ -467,6 +683,14 @@ static bool decode_audio_from_buf(const unsigned char * buf_in, size_t len, int 
 
 } // namespace audio_helpers
 
+// 函数: mtmd_helper_bitmap_init_from_buf
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_helper_bitmap_init_from_buf
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_bitmap * mtmd_helper_bitmap_init_from_buf(mtmd_context * ctx, const unsigned char * buf, size_t len) {
     if (audio_helpers::is_audio_file((const char *)buf, len)) {
         std::vector<float> pcmf32;
@@ -497,6 +721,14 @@ mtmd_bitmap * mtmd_helper_bitmap_init_from_buf(mtmd_context * ctx, const unsigne
     return result;
 }
 
+// 函数: mtmd_helper_bitmap_init_from_file
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_helper_bitmap_init_from_file
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_bitmap * mtmd_helper_bitmap_init_from_file(mtmd_context * ctx, const char * fname) {
     std::vector<unsigned char> buf;
     FILE * f = fopen(fname, "rb");

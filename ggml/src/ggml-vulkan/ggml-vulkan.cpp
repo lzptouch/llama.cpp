@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-vulkan.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-vulkan/ggml-vulkan.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-vulkan.h"
 #include <vulkan/vulkan_core.h>
 #if defined(GGML_VULKAN_RUN_TESTS) || defined(GGML_VULKAN_CHECK_RESULTS)
@@ -86,6 +93,14 @@ typedef struct VkPhysicalDeviceShaderBfloat16FeaturesKHR {
 
 #define ROUNDUP_POW2(M, N) (((M) + (N) - 1) & ~((N) - 1))
 #define CEIL_DIV(M, N) (((M) + (N)-1) / (N))
+// 函数: is_pow2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_pow2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_pow2(uint32_t x) { return x > 1 && (x & (x-1)) == 0; }
 
 #define VK_VENDOR_ID_AMD 0x1002
@@ -114,6 +129,24 @@ static bool is_pow2(uint32_t x) { return x > 1 && (x & (x-1)) == 0; }
 #define VK_LOG_DEBUG(msg) ((void) 0)
 #endif // GGML_VULKAN_DEBUG
 
+// 类: ggml_backend_vk_context
+// 描述: ggml_backend_vk_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_context相关的操作
+// 类: ggml_backend_vk_context
+// 描述: ggml_backend_vk_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
 struct ggml_backend_vk_context;
 
 #define MAX_PARAMETER_COUNT 12
@@ -122,6 +155,24 @@ struct ggml_backend_vk_context;
 
 typedef std::shared_ptr<struct vk_pipeline_struct> vk_pipeline;
 
+// 类: vk_pipeline_struct
+// 描述: vk_pipeline_struct类提供相关功能
+// 用途: 用于处理vk_pipeline_struct相关的操作
+// 类: vk_pipeline_struct
+// 描述: vk_pipeline_struct类提供相关功能
+// 用途: 用于处理vk_pipeline_struct相关的操作
+    // 结构体: vk_pipeline_struct
+    // 描述: vk_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_pipeline_struct相关的操作
+    // 结构体: vk_pipeline_struct
+    // 描述: vk_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_pipeline_struct相关的操作
+    // 结构体: vk_pipeline_struct
+    // 描述: vk_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_pipeline_struct相关的操作
+    // 结构体: vk_pipeline_struct
+    // 描述: vk_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_pipeline_struct相关的操作
 struct vk_pipeline_struct {
     std::string name;
     vk::ShaderModule shader_module;
@@ -150,20 +201,72 @@ struct vk_pipeline_struct {
 
 typedef std::weak_ptr<vk_pipeline_struct> vk_pipeline_ref;
 
+// 函数: ggml_vk_destroy_pipeline
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_destroy_pipeline
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_destroy_pipeline(vk::Device& device, vk_pipeline& pipeline);
 
+// 类: vk_matmul_pipeline_struct
+// 描述: vk_matmul_pipeline_struct类提供相关功能
+// 用途: 用于处理vk_matmul_pipeline_struct相关的操作
+// 类: vk_matmul_pipeline_struct
+// 描述: vk_matmul_pipeline_struct类提供相关功能
+// 用途: 用于处理vk_matmul_pipeline_struct相关的操作
+    // 结构体: vk_matmul_pipeline_struct
+    // 描述: vk_matmul_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline_struct相关的操作
+    // 结构体: vk_matmul_pipeline_struct
+    // 描述: vk_matmul_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline_struct相关的操作
+    // 结构体: vk_matmul_pipeline_struct
+    // 描述: vk_matmul_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline_struct相关的操作
+    // 结构体: vk_matmul_pipeline_struct
+    // 描述: vk_matmul_pipeline_struct结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline_struct相关的操作
 struct vk_matmul_pipeline_struct {
     vk_pipeline l, m, s;
     vk_pipeline a_l, a_m, a_s;
     // Returns true when all unaligned pipelines are null.
     // We only check for unaligned variants since one of the unaligned pipelines must exist
     // while aligned pipelines are optional
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_empty() const {
         return l == nullptr && m == nullptr && s == nullptr;
     }
 };
 typedef std::shared_ptr<vk_matmul_pipeline_struct> vk_matmul_pipeline;
 
+// 类: vk_matmul_pipeline2
+// 描述: vk_matmul_pipeline2类提供相关功能
+// 用途: 用于处理vk_matmul_pipeline2相关的操作
+// 类: vk_matmul_pipeline2
+// 描述: vk_matmul_pipeline2类提供相关功能
+// 用途: 用于处理vk_matmul_pipeline2相关的操作
+    // 结构体: vk_matmul_pipeline2
+    // 描述: vk_matmul_pipeline2结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline2相关的操作
+    // 结构体: vk_matmul_pipeline2
+    // 描述: vk_matmul_pipeline2结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline2相关的操作
+    // 结构体: vk_matmul_pipeline2
+    // 描述: vk_matmul_pipeline2结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline2相关的操作
+    // 结构体: vk_matmul_pipeline2
+    // 描述: vk_matmul_pipeline2结构体提供相关功能
+    // 用途: 用于处理vk_matmul_pipeline2相关的操作
 struct vk_matmul_pipeline2 {
     vk_matmul_pipeline2() {
         f16acc = std::make_shared<vk_matmul_pipeline_struct>();
@@ -173,25 +276,131 @@ struct vk_matmul_pipeline2 {
     vk_matmul_pipeline f16acc;
 };
 
+// 类: vk_device_struct
+// 描述: vk_device_struct类提供相关功能
+// 用途: 用于处理vk_device_struct相关的操作
+// 类: vk_device_struct
+// 描述: vk_device_struct类提供相关功能
+// 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
 struct vk_device_struct;
 typedef std::shared_ptr<vk_device_struct> vk_device;
 typedef std::weak_ptr<vk_device_struct> vk_device_ref;
 
+// 类: vk_buffer_struct
+// 描述: vk_buffer_struct类提供相关功能
+// 用途: 用于处理vk_buffer_struct相关的操作
+// 类: vk_buffer_struct
+// 描述: vk_buffer_struct类提供相关功能
+// 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
 struct vk_buffer_struct;
 typedef std::shared_ptr<vk_buffer_struct> vk_buffer;
 typedef std::weak_ptr<vk_buffer_struct> vk_buffer_ref;
 
+// 类: ggml_backend_vk_buffer_type_context
+// 描述: ggml_backend_vk_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
+// 类: ggml_backend_vk_buffer_type_context
+// 描述: ggml_backend_vk_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_type_context
+    // 描述: ggml_backend_vk_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_type_context
+    // 描述: ggml_backend_vk_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_type_context
+    // 描述: ggml_backend_vk_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_type_context
+    // 描述: ggml_backend_vk_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_type_context相关的操作
 struct ggml_backend_vk_buffer_type_context {
     std::string name;
     vk_device device;
 };
 
+// 类: vk_queue
+// 描述: vk_queue类提供相关功能
+// 用途: 用于处理vk_queue相关的操作
+// 类: vk_queue
+// 描述: vk_queue类提供相关功能
+// 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
 struct vk_queue;
 
 // Stores command pool/buffers. There's an instance of this
 // for each (context,queue) pair and for each (device,queue) pair.
+// 类: vk_command_pool
+// 描述: vk_command_pool类提供相关功能
+// 用途: 用于处理vk_command_pool相关的操作
+// 类: vk_command_pool
+// 描述: vk_command_pool类提供相关功能
+// 用途: 用于处理vk_command_pool相关的操作
+    // 结构体: vk_command_pool
+    // 描述: vk_command_pool结构体提供相关功能
+    // 用途: 用于处理vk_command_pool相关的操作
+    // 结构体: vk_command_pool
+    // 描述: vk_command_pool结构体提供相关功能
+    // 用途: 用于处理vk_command_pool相关的操作
+    // 结构体: vk_command_pool
+    // 描述: vk_command_pool结构体提供相关功能
+    // 用途: 用于处理vk_command_pool相关的操作
+    // 结构体: vk_command_pool
+    // 描述: vk_command_pool结构体提供相关功能
+    // 用途: 用于处理vk_command_pool相关的操作
 struct vk_command_pool {
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init(vk_device& device, vk_queue *q_);
+    // 函数: destroy
+    // 描述: 销毁: 完全销毁对象或资源
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: destroy
+    // 描述: 销毁: 完全销毁对象或资源
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void destroy(vk::Device& device);
 
     vk::CommandPool pool;
@@ -206,6 +415,24 @@ struct vk_command_pool {
 // sharing the same vk::Queue.
 static std::mutex queue_mutex;
 
+// 类: vk_queue
+// 描述: vk_queue类提供相关功能
+// 用途: 用于处理vk_queue相关的操作
+// 类: vk_queue
+// 描述: vk_queue类提供相关功能
+// 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
+    // 结构体: vk_queue
+    // 描述: vk_queue结构体提供相关功能
+    // 用途: 用于处理vk_queue相关的操作
 struct vk_queue {
     uint32_t queue_family_index;
     vk::Queue queue;
@@ -217,6 +444,14 @@ struct vk_queue {
     bool transfer_only;
 
     // copy everything except the cmd_pool
+    // 函数: copyFrom
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: copyFrom
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void copyFrom(vk_queue &other) {
         queue_family_index = other.queue_family_index;
         queue = other.queue;
@@ -225,10 +460,50 @@ struct vk_queue {
     }
 };
 
+// 函数: ggml_backend_vk_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_buffer_type_name(ggml_backend_buffer_type_t buft);
+// 函数: ggml_backend_vk_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_vk_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size);
+// 函数: ggml_backend_vk_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_alignment(ggml_backend_buffer_type_t buft);
+// 函数: ggml_backend_vk_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_max_size(ggml_backend_buffer_type_t buft);
+// 函数: ggml_backend_vk_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor);
 static ggml_backend_buffer_type_i ggml_backend_vk_buffer_type_interface = {
     /* .get_name         = */ ggml_backend_vk_buffer_type_name,
@@ -239,9 +514,37 @@ static ggml_backend_buffer_type_i ggml_backend_vk_buffer_type_interface = {
     /* .is_host          = */ NULL,
 };
 
+// 类: vk_memory_logger
+// 描述: vk_memory_logger类提供相关功能
+// 用途: 用于处理vk_memory_logger相关的操作
+// 类: vk_memory_logger
+// 描述: vk_memory_logger类提供相关功能
+// 用途: 用于处理vk_memory_logger相关的操作
 class vk_memory_logger;
+// 类: vk_perf_logger
+// 描述: vk_perf_logger类提供相关功能
+// 用途: 用于处理vk_perf_logger相关的操作
+// 类: vk_perf_logger
+// 描述: vk_perf_logger类提供相关功能
+// 用途: 用于处理vk_perf_logger相关的操作
 class vk_perf_logger;
+// 函数: ggml_vk_destroy_buffer
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_destroy_buffer
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_destroy_buffer(vk_buffer& buf);
+// 函数: ggml_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_synchronize(ggml_backend_vk_context * ctx);
 
 static constexpr uint32_t mul_mat_vec_max_cols = 8;
@@ -258,6 +561,14 @@ enum vk_device_architecture {
     NVIDIA_TURING,
 };
 
+// 函数: get_device_architecture
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_device_architecture
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static vk_device_architecture get_device_architecture(const vk::PhysicalDevice& device) {
     vk::PhysicalDeviceProperties props = device.getProperties();
 
@@ -377,6 +688,24 @@ enum vk_conv_shapes {
     CONV_SHAPE_COUNT,
 };
 
+// 类: vk_conv_block_size
+// 描述: vk_conv_block_size类提供相关功能
+// 用途: 用于处理vk_conv_block_size相关的操作
+// 类: vk_conv_block_size
+// 描述: vk_conv_block_size类提供相关功能
+// 用途: 用于处理vk_conv_block_size相关的操作
+    // 结构体: vk_conv_block_size
+    // 描述: vk_conv_block_size结构体提供相关功能
+    // 用途: 用于处理vk_conv_block_size相关的操作
+    // 结构体: vk_conv_block_size
+    // 描述: vk_conv_block_size结构体提供相关功能
+    // 用途: 用于处理vk_conv_block_size相关的操作
+    // 结构体: vk_conv_block_size
+    // 描述: vk_conv_block_size结构体提供相关功能
+    // 用途: 用于处理vk_conv_block_size相关的操作
+    // 结构体: vk_conv_block_size
+    // 描述: vk_conv_block_size结构体提供相关功能
+    // 用途: 用于处理vk_conv_block_size相关的操作
 struct vk_conv_block_size {
     uint32_t K;
     uint32_t NPQ;
@@ -402,6 +731,24 @@ enum FaCodePath {
     FA_COOPMAT2,
 };
 
+// 类: vk_fa_pipeline_state
+// 描述: vk_fa_pipeline_state类提供相关功能
+// 用途: 用于处理vk_fa_pipeline_state相关的操作
+// 类: vk_fa_pipeline_state
+// 描述: vk_fa_pipeline_state类提供相关功能
+// 用途: 用于处理vk_fa_pipeline_state相关的操作
+    // 结构体: vk_fa_pipeline_state
+    // 描述: vk_fa_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_fa_pipeline_state相关的操作
+    // 结构体: vk_fa_pipeline_state
+    // 描述: vk_fa_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_fa_pipeline_state相关的操作
+    // 结构体: vk_fa_pipeline_state
+    // 描述: vk_fa_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_fa_pipeline_state相关的操作
+    // 结构体: vk_fa_pipeline_state
+    // 描述: vk_fa_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_fa_pipeline_state相关的操作
 struct vk_fa_pipeline_state {
     uint32_t HSK, HSV;
     uint32_t Br, Bc;
@@ -420,6 +767,24 @@ struct vk_fa_pipeline_state {
     }
 };
 
+// 类: vk_conv2d_pipeline_state
+// 描述: vk_conv2d_pipeline_state类提供相关功能
+// 用途: 用于处理vk_conv2d_pipeline_state相关的操作
+// 类: vk_conv2d_pipeline_state
+// 描述: vk_conv2d_pipeline_state类提供相关功能
+// 用途: 用于处理vk_conv2d_pipeline_state相关的操作
+    // 结构体: vk_conv2d_pipeline_state
+    // 描述: vk_conv2d_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_conv2d_pipeline_state相关的操作
+    // 结构体: vk_conv2d_pipeline_state
+    // 描述: vk_conv2d_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_conv2d_pipeline_state相关的操作
+    // 结构体: vk_conv2d_pipeline_state
+    // 描述: vk_conv2d_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_conv2d_pipeline_state相关的操作
+    // 结构体: vk_conv2d_pipeline_state
+    // 描述: vk_conv2d_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_conv2d_pipeline_state相关的操作
 struct vk_conv2d_pipeline_state {
     vk_conv2d_pipeline_state(uint32_t s0, uint32_t s1, uint32_t p0, uint32_t p1, uint32_t d0, uint32_t d1, uint32_t KW, uint32_t KH)
         : s0(s0), s1(s1), p0(p0), p1(p1), d0(d0), d1(d1), KW(KW), KH(KH) {}
@@ -432,6 +797,24 @@ struct vk_conv2d_pipeline_state {
     }
 };
 
+// 类: vk_solve_tri_pipeline_state
+// 描述: vk_solve_tri_pipeline_state类提供相关功能
+// 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
+// 类: vk_solve_tri_pipeline_state
+// 描述: vk_solve_tri_pipeline_state类提供相关功能
+// 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
+    // 结构体: vk_solve_tri_pipeline_state
+    // 描述: vk_solve_tri_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
+    // 结构体: vk_solve_tri_pipeline_state
+    // 描述: vk_solve_tri_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
+    // 结构体: vk_solve_tri_pipeline_state
+    // 描述: vk_solve_tri_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
+    // 结构体: vk_solve_tri_pipeline_state
+    // 描述: vk_solve_tri_pipeline_state结构体提供相关功能
+    // 用途: 用于处理vk_solve_tri_pipeline_state相关的操作
 struct vk_solve_tri_pipeline_state {
     vk_solve_tri_pipeline_state(uint32_t N, uint32_t K)
         : N(N), K(K) {}
@@ -567,6 +950,24 @@ static constexpr std::initializer_list<std::array<int, 3>> rms_norm_mul_rope_vie
 };
 
 
+// 类: vk_device_struct
+// 描述: vk_device_struct类提供相关功能
+// 用途: 用于处理vk_device_struct相关的操作
+// 类: vk_device_struct
+// 描述: vk_device_struct类提供相关功能
+// 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
+    // 结构体: vk_device_struct
+    // 描述: vk_device_struct结构体提供相关功能
+    // 用途: 用于处理vk_device_struct相关的操作
 struct vk_device_struct {
     std::recursive_mutex mutex;
 
@@ -878,6 +1279,14 @@ void vk_command_pool::init(vk_device& device, vk_queue *q_) {
     cmd_buffer_idx = 0;
     q = q_;
 
+    // 函数: command_pool_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: command_pool_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     vk::CommandPoolCreateInfo command_pool_create_info(vk::CommandPoolCreateFlags(VK_COMMAND_POOL_CREATE_TRANSIENT_BIT), q->queue_family_index);
     pool = device->device.createCommandPool(command_pool_create_info);
 }
@@ -888,6 +1297,24 @@ void vk_command_pool::destroy(vk::Device& device) {
     cmd_buffers.clear();
 }
 
+// 类: vk_buffer_struct
+// 描述: vk_buffer_struct类提供相关功能
+// 用途: 用于处理vk_buffer_struct相关的操作
+// 类: vk_buffer_struct
+// 描述: vk_buffer_struct类提供相关功能
+// 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
+    // 结构体: vk_buffer_struct
+    // 描述: vk_buffer_struct结构体提供相关功能
+    // 用途: 用于处理vk_buffer_struct相关的操作
 struct vk_buffer_struct {
     vk::Buffer buffer = VK_NULL_HANDLE;
     vk::DeviceMemory device_memory = VK_NULL_HANDLE;
@@ -909,6 +1336,24 @@ struct vk_buffer_struct {
     }
 };
 
+// 类: vk_subbuffer
+// 描述: vk_subbuffer类提供相关功能
+// 用途: 用于处理vk_subbuffer相关的操作
+// 类: vk_subbuffer
+// 描述: vk_subbuffer类提供相关功能
+// 用途: 用于处理vk_subbuffer相关的操作
+    // 结构体: vk_subbuffer
+    // 描述: vk_subbuffer结构体提供相关功能
+    // 用途: 用于处理vk_subbuffer相关的操作
+    // 结构体: vk_subbuffer
+    // 描述: vk_subbuffer结构体提供相关功能
+    // 用途: 用于处理vk_subbuffer相关的操作
+    // 结构体: vk_subbuffer
+    // 描述: vk_subbuffer结构体提供相关功能
+    // 用途: 用于处理vk_subbuffer相关的操作
+    // 结构体: vk_subbuffer
+    // 描述: vk_subbuffer结构体提供相关功能
+    // 用途: 用于处理vk_subbuffer相关的操作
 struct vk_subbuffer {
     vk_buffer buffer;
     uint64_t offset;
@@ -923,16 +1368,70 @@ struct vk_subbuffer {
 // event_wait and 'fence' for event_synchronize. Polling on an event for
 // event_synchronize wouldn't be sufficient to wait for command buffers to complete,
 // and would lead to validation errors.
+// 类: vk_event
+// 描述: vk_event类提供相关功能
+// 用途: 用于处理vk_event相关的操作
+// 类: vk_event
+// 描述: vk_event类提供相关功能
+// 用途: 用于处理vk_event相关的操作
+    // 结构体: vk_event
+    // 描述: vk_event结构体提供相关功能
+    // 用途: 用于处理vk_event相关的操作
+    // 结构体: vk_event
+    // 描述: vk_event结构体提供相关功能
+    // 用途: 用于处理vk_event相关的操作
+    // 结构体: vk_event
+    // 描述: vk_event结构体提供相关功能
+    // 用途: 用于处理vk_event相关的操作
+    // 结构体: vk_event
+    // 描述: vk_event结构体提供相关功能
+    // 用途: 用于处理vk_event相关的操作
 struct vk_event {
     vk::Event event;
     vk::Fence fence;
 };
 
+// 类: vk_semaphore
+// 描述: vk_semaphore类提供相关功能
+// 用途: 用于处理vk_semaphore相关的操作
+// 类: vk_semaphore
+// 描述: vk_semaphore类提供相关功能
+// 用途: 用于处理vk_semaphore相关的操作
+    // 结构体: vk_semaphore
+    // 描述: vk_semaphore结构体提供相关功能
+    // 用途: 用于处理vk_semaphore相关的操作
+    // 结构体: vk_semaphore
+    // 描述: vk_semaphore结构体提供相关功能
+    // 用途: 用于处理vk_semaphore相关的操作
+    // 结构体: vk_semaphore
+    // 描述: vk_semaphore结构体提供相关功能
+    // 用途: 用于处理vk_semaphore相关的操作
+    // 结构体: vk_semaphore
+    // 描述: vk_semaphore结构体提供相关功能
+    // 用途: 用于处理vk_semaphore相关的操作
 struct vk_semaphore {
     vk::Semaphore s;
     uint64_t value;
 };
 
+// 类: vk_submission
+// 描述: vk_submission类提供相关功能
+// 用途: 用于处理vk_submission相关的操作
+// 类: vk_submission
+// 描述: vk_submission类提供相关功能
+// 用途: 用于处理vk_submission相关的操作
+    // 结构体: vk_submission
+    // 描述: vk_submission结构体提供相关功能
+    // 用途: 用于处理vk_submission相关的操作
+    // 结构体: vk_submission
+    // 描述: vk_submission结构体提供相关功能
+    // 用途: 用于处理vk_submission相关的操作
+    // 结构体: vk_submission
+    // 描述: vk_submission结构体提供相关功能
+    // 用途: 用于处理vk_submission相关的操作
+    // 结构体: vk_submission
+    // 描述: vk_submission结构体提供相关功能
+    // 用途: 用于处理vk_submission相关的操作
 struct vk_submission {
     vk::CommandBuffer buffer;
     std::vector<vk_semaphore> wait_semaphores;
@@ -941,6 +1440,24 @@ struct vk_submission {
 
 typedef std::vector<vk_submission> vk_sequence;
 
+// 类: vk_mat_mat_push_constants
+// 描述: vk_mat_mat_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_mat_push_constants相关的操作
+// 类: vk_mat_mat_push_constants
+// 描述: vk_mat_mat_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_mat_push_constants相关的操作
+    // 结构体: vk_mat_mat_push_constants
+    // 描述: vk_mat_mat_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_push_constants相关的操作
+    // 结构体: vk_mat_mat_push_constants
+    // 描述: vk_mat_mat_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_push_constants相关的操作
+    // 结构体: vk_mat_mat_push_constants
+    // 描述: vk_mat_mat_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_push_constants相关的操作
+    // 结构体: vk_mat_mat_push_constants
+    // 描述: vk_mat_mat_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_push_constants相关的操作
 struct vk_mat_mat_push_constants {
     uint32_t M; uint32_t N; uint32_t K;
     uint32_t stride_a; uint32_t stride_b; uint32_t stride_d;
@@ -956,6 +1473,24 @@ struct vk_mat_mat_push_constants {
 #define MAT_VEC_FUSION_FLAGS_SCALE0 0x4
 #define MAT_VEC_FUSION_FLAGS_SCALE1 0x8
 
+// 类: vk_mat_vec_push_constants
+// 描述: vk_mat_vec_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_push_constants相关的操作
+// 类: vk_mat_vec_push_constants
+// 描述: vk_mat_vec_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_push_constants相关的操作
+    // 结构体: vk_mat_vec_push_constants
+    // 描述: vk_mat_vec_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_push_constants相关的操作
+    // 结构体: vk_mat_vec_push_constants
+    // 描述: vk_mat_vec_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_push_constants相关的操作
+    // 结构体: vk_mat_vec_push_constants
+    // 描述: vk_mat_vec_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_push_constants相关的操作
+    // 结构体: vk_mat_vec_push_constants
+    // 描述: vk_mat_vec_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_push_constants相关的操作
 struct vk_mat_vec_push_constants {
     uint32_t ncols;
     uint32_t stride_a;
@@ -972,6 +1507,24 @@ struct vk_mat_vec_push_constants {
     uint32_t broadcast3;
 };
 
+// 类: vk_mat_vec_p021_push_constants
+// 描述: vk_mat_vec_p021_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
+// 类: vk_mat_vec_p021_push_constants
+// 描述: vk_mat_vec_p021_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
+    // 结构体: vk_mat_vec_p021_push_constants
+    // 描述: vk_mat_vec_p021_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
+    // 结构体: vk_mat_vec_p021_push_constants
+    // 描述: vk_mat_vec_p021_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
+    // 结构体: vk_mat_vec_p021_push_constants
+    // 描述: vk_mat_vec_p021_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
+    // 结构体: vk_mat_vec_p021_push_constants
+    // 描述: vk_mat_vec_p021_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_p021_push_constants相关的操作
 struct vk_mat_vec_p021_push_constants {
     uint32_t ncols_x;
     uint32_t nrows_x;
@@ -982,6 +1535,24 @@ struct vk_mat_vec_p021_push_constants {
     uint32_t fusion_flags;
 };
 
+// 类: vk_mat_vec_nc_push_constants
+// 描述: vk_mat_vec_nc_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
+// 类: vk_mat_vec_nc_push_constants
+// 描述: vk_mat_vec_nc_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
+    // 结构体: vk_mat_vec_nc_push_constants
+    // 描述: vk_mat_vec_nc_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
+    // 结构体: vk_mat_vec_nc_push_constants
+    // 描述: vk_mat_vec_nc_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
+    // 结构体: vk_mat_vec_nc_push_constants
+    // 描述: vk_mat_vec_nc_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
+    // 结构体: vk_mat_vec_nc_push_constants
+    // 描述: vk_mat_vec_nc_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_nc_push_constants相关的操作
 struct vk_mat_vec_nc_push_constants {
     uint32_t ncols_x;
     uint32_t nrows_x;
@@ -998,6 +1569,24 @@ struct vk_mat_vec_nc_push_constants {
     uint32_t fusion_flags;
 };
 
+// 类: vk_mat_mat_id_push_constants
+// 描述: vk_mat_mat_id_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
+// 类: vk_mat_mat_id_push_constants
+// 描述: vk_mat_mat_id_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
+    // 结构体: vk_mat_mat_id_push_constants
+    // 描述: vk_mat_mat_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
+    // 结构体: vk_mat_mat_id_push_constants
+    // 描述: vk_mat_mat_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
+    // 结构体: vk_mat_mat_id_push_constants
+    // 描述: vk_mat_mat_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
+    // 结构体: vk_mat_mat_id_push_constants
+    // 描述: vk_mat_mat_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_mat_id_push_constants相关的操作
 struct vk_mat_mat_id_push_constants {
     uint32_t M; uint32_t N; uint32_t K;
     uint32_t stride_a; uint32_t stride_b; uint32_t stride_d;
@@ -1005,6 +1594,24 @@ struct vk_mat_mat_id_push_constants {
     uint32_t nei0; uint32_t nei1; uint32_t nbi1; uint32_t ne11;
     uint32_t padded_N;
 };
+// 类: vk_mat_vec_id_push_constants
+// 描述: vk_mat_vec_id_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
+// 类: vk_mat_vec_id_push_constants
+// 描述: vk_mat_vec_id_push_constants类提供相关功能
+// 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
+    // 结构体: vk_mat_vec_id_push_constants
+    // 描述: vk_mat_vec_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
+    // 结构体: vk_mat_vec_id_push_constants
+    // 描述: vk_mat_vec_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
+    // 结构体: vk_mat_vec_id_push_constants
+    // 描述: vk_mat_vec_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
+    // 结构体: vk_mat_vec_id_push_constants
+    // 描述: vk_mat_vec_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_mat_vec_id_push_constants相关的操作
 struct vk_mat_vec_id_push_constants {
     uint32_t ncols;
     uint32_t stride_a;
@@ -1020,6 +1627,24 @@ struct vk_mat_vec_id_push_constants {
     uint32_t nbi1;
 };
 
+// 类: vk_flash_attn_push_constants
+// 描述: vk_flash_attn_push_constants类提供相关功能
+// 用途: 用于处理vk_flash_attn_push_constants相关的操作
+// 类: vk_flash_attn_push_constants
+// 描述: vk_flash_attn_push_constants类提供相关功能
+// 用途: 用于处理vk_flash_attn_push_constants相关的操作
+    // 结构体: vk_flash_attn_push_constants
+    // 描述: vk_flash_attn_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_flash_attn_push_constants相关的操作
+    // 结构体: vk_flash_attn_push_constants
+    // 描述: vk_flash_attn_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_flash_attn_push_constants相关的操作
+    // 结构体: vk_flash_attn_push_constants
+    // 描述: vk_flash_attn_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_flash_attn_push_constants相关的操作
+    // 结构体: vk_flash_attn_push_constants
+    // 描述: vk_flash_attn_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_flash_attn_push_constants相关的操作
 struct vk_flash_attn_push_constants {
     uint32_t N;
     uint32_t KV;
@@ -1062,6 +1687,24 @@ struct vk_flash_attn_push_constants {
 };
 static_assert(sizeof(vk_flash_attn_push_constants) <= 128, "sizeof(vk_flash_attn_push_constants) must be <= 128");
 
+// 类: vk_op_push_constants
+// 描述: vk_op_push_constants类提供相关功能
+// 用途: 用于处理vk_op_push_constants相关的操作
+// 类: vk_op_push_constants
+// 描述: vk_op_push_constants类提供相关功能
+// 用途: 用于处理vk_op_push_constants相关的操作
+    // 结构体: vk_op_push_constants
+    // 描述: vk_op_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_push_constants相关的操作
+    // 结构体: vk_op_push_constants
+    // 描述: vk_op_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_push_constants相关的操作
+    // 结构体: vk_op_push_constants
+    // 描述: vk_op_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_push_constants相关的操作
+    // 结构体: vk_op_push_constants
+    // 描述: vk_op_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_push_constants相关的操作
 struct vk_op_push_constants {
     uint32_t KX;
     uint32_t KY;
@@ -1071,6 +1714,24 @@ struct vk_op_push_constants {
     float param4;
 };
 
+// 类: vk_op_count_experts_push_constants
+// 描述: vk_op_count_experts_push_constants类提供相关功能
+// 用途: 用于处理vk_op_count_experts_push_constants相关的操作
+// 类: vk_op_count_experts_push_constants
+// 描述: vk_op_count_experts_push_constants类提供相关功能
+// 用途: 用于处理vk_op_count_experts_push_constants相关的操作
+    // 结构体: vk_op_count_experts_push_constants
+    // 描述: vk_op_count_experts_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_count_experts_push_constants相关的操作
+    // 结构体: vk_op_count_experts_push_constants
+    // 描述: vk_op_count_experts_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_count_experts_push_constants相关的操作
+    // 结构体: vk_op_count_experts_push_constants
+    // 描述: vk_op_count_experts_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_count_experts_push_constants相关的操作
+    // 结构体: vk_op_count_experts_push_constants
+    // 描述: vk_op_count_experts_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_count_experts_push_constants相关的操作
 struct vk_op_count_experts_push_constants {
     uint32_t ne00;
     uint32_t ne01;
@@ -1079,6 +1740,24 @@ struct vk_op_count_experts_push_constants {
     uint32_t a_offset;
 };
 
+// 类: vk_op_glu_push_constants
+// 描述: vk_op_glu_push_constants类提供相关功能
+// 用途: 用于处理vk_op_glu_push_constants相关的操作
+// 类: vk_op_glu_push_constants
+// 描述: vk_op_glu_push_constants类提供相关功能
+// 用途: 用于处理vk_op_glu_push_constants相关的操作
+    // 结构体: vk_op_glu_push_constants
+    // 描述: vk_op_glu_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_glu_push_constants相关的操作
+    // 结构体: vk_op_glu_push_constants
+    // 描述: vk_op_glu_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_glu_push_constants相关的操作
+    // 结构体: vk_op_glu_push_constants
+    // 描述: vk_op_glu_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_glu_push_constants相关的操作
+    // 结构体: vk_op_glu_push_constants
+    // 描述: vk_op_glu_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_glu_push_constants相关的操作
 struct vk_op_glu_push_constants {
     uint32_t N;
     uint32_t ne00;
@@ -1088,6 +1767,24 @@ struct vk_op_glu_push_constants {
     float limit;
 };
 
+// 类: vk_op_unary_push_constants
+// 描述: vk_op_unary_push_constants类提供相关功能
+// 用途: 用于处理vk_op_unary_push_constants相关的操作
+// 类: vk_op_unary_push_constants
+// 描述: vk_op_unary_push_constants类提供相关功能
+// 用途: 用于处理vk_op_unary_push_constants相关的操作
+    // 结构体: vk_op_unary_push_constants
+    // 描述: vk_op_unary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_unary_push_constants相关的操作
+    // 结构体: vk_op_unary_push_constants
+    // 描述: vk_op_unary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_unary_push_constants相关的操作
+    // 结构体: vk_op_unary_push_constants
+    // 描述: vk_op_unary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_unary_push_constants相关的操作
+    // 结构体: vk_op_unary_push_constants
+    // 描述: vk_op_unary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_unary_push_constants相关的操作
 struct vk_op_unary_push_constants {
     uint32_t ne;
     uint32_t ne00; uint32_t ne01; uint32_t ne02; uint32_t ne03; uint32_t nb00; uint32_t nb01; uint32_t nb02; uint32_t nb03;
@@ -1103,6 +1800,14 @@ struct vk_op_unary_push_constants {
 };
 static_assert(sizeof(vk_op_unary_push_constants) <= 128, "sizeof(vk_op_unary_push_constants) must be <= 128");
 
+// 函数: vk_op_unary_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vk_op_unary_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static vk_op_unary_push_constants vk_op_unary_push_constants_init(const ggml_tensor * src0, const ggml_tensor * dst, int64_t ne = 0) {
     GGML_ASSERT(ne != 0 || (ggml_nelements(src0) == ggml_nelements(dst)));
     ne = ne != 0 ? ne : ggml_nelements(dst);
@@ -1134,6 +1839,24 @@ static vk_op_unary_push_constants vk_op_unary_push_constants_init(const ggml_ten
     return p; // offsets are initialized later in ggml_vk_op
 }
 
+// 类: vk_op_pad_push_constants
+// 描述: vk_op_pad_push_constants类提供相关功能
+// 用途: 用于处理vk_op_pad_push_constants相关的操作
+// 类: vk_op_pad_push_constants
+// 描述: vk_op_pad_push_constants类提供相关功能
+// 用途: 用于处理vk_op_pad_push_constants相关的操作
+    // 结构体: vk_op_pad_push_constants
+    // 描述: vk_op_pad_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pad_push_constants相关的操作
+    // 结构体: vk_op_pad_push_constants
+    // 描述: vk_op_pad_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pad_push_constants相关的操作
+    // 结构体: vk_op_pad_push_constants
+    // 描述: vk_op_pad_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pad_push_constants相关的操作
+    // 结构体: vk_op_pad_push_constants
+    // 描述: vk_op_pad_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pad_push_constants相关的操作
 struct vk_op_pad_push_constants {
     uint32_t ne;
     uint32_t ne00; uint32_t ne01; uint32_t ne02; uint32_t ne03; uint32_t nb00; uint32_t nb01; uint32_t nb02; uint32_t nb03;
@@ -1147,6 +1870,14 @@ struct vk_op_pad_push_constants {
     uint32_t lp3; uint32_t rp3;
 };
 
+// 函数: vk_op_pad_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vk_op_pad_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static vk_op_pad_push_constants vk_op_pad_push_constants_init(const ggml_tensor * src0, const ggml_tensor * dst) {
     int64_t ne = ggml_nelements(dst);
     GGML_ASSERT(ne <= (int64_t)std::numeric_limits<uint32_t>::max());
@@ -1193,6 +1924,14 @@ static vk_op_pad_push_constants vk_op_pad_push_constants_init(const ggml_tensor 
 // and a shift:
 //
 // n/d = (mulhi(n, mp) + n) >> L;
+// 函数: init_fastdiv_values
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_fastdiv_values
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_fastdiv_values(uint32_t d, uint32_t &mp, uint32_t &L)
 {
     // compute L = ceil(log2(d));
@@ -1219,6 +1958,24 @@ template <> void init_pushconst_fastdiv(vk_op_unary_push_constants &p) {
     init_fastdiv_values(p.ne10,                p.ne1_0mp,      p.ne1_0L);
 }
 
+// 类: vk_op_binary_push_constants
+// 描述: vk_op_binary_push_constants类提供相关功能
+// 用途: 用于处理vk_op_binary_push_constants相关的操作
+// 类: vk_op_binary_push_constants
+// 描述: vk_op_binary_push_constants类提供相关功能
+// 用途: 用于处理vk_op_binary_push_constants相关的操作
+    // 结构体: vk_op_binary_push_constants
+    // 描述: vk_op_binary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_binary_push_constants相关的操作
+    // 结构体: vk_op_binary_push_constants
+    // 描述: vk_op_binary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_binary_push_constants相关的操作
+    // 结构体: vk_op_binary_push_constants
+    // 描述: vk_op_binary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_binary_push_constants相关的操作
+    // 结构体: vk_op_binary_push_constants
+    // 描述: vk_op_binary_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_binary_push_constants相关的操作
 struct vk_op_binary_push_constants {
     uint32_t ne;
     uint32_t ne00; uint32_t ne01; uint32_t ne02; uint32_t ne03; uint32_t nb00; uint32_t nb01; uint32_t nb02; uint32_t nb03;
@@ -1228,6 +1985,24 @@ struct vk_op_binary_push_constants {
     float param1; float param2; int32_t param3;
 };
 
+// 类: vk_op_multi_add_push_constants
+// 描述: vk_op_multi_add_push_constants类提供相关功能
+// 用途: 用于处理vk_op_multi_add_push_constants相关的操作
+// 类: vk_op_multi_add_push_constants
+// 描述: vk_op_multi_add_push_constants类提供相关功能
+// 用途: 用于处理vk_op_multi_add_push_constants相关的操作
+    // 结构体: vk_op_multi_add_push_constants
+    // 描述: vk_op_multi_add_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_multi_add_push_constants相关的操作
+    // 结构体: vk_op_multi_add_push_constants
+    // 描述: vk_op_multi_add_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_multi_add_push_constants相关的操作
+    // 结构体: vk_op_multi_add_push_constants
+    // 描述: vk_op_multi_add_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_multi_add_push_constants相关的操作
+    // 结构体: vk_op_multi_add_push_constants
+    // 描述: vk_op_multi_add_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_multi_add_push_constants相关的操作
 struct vk_op_multi_add_push_constants {
     // shape for dst
     uint32_t ne20; uint32_t ne21; uint32_t ne22; uint32_t ne23;
@@ -1241,6 +2016,24 @@ struct vk_op_multi_add_push_constants {
 static_assert(MAX_PARAMETER_COUNT == 12);
 static_assert(sizeof(vk_op_multi_add_push_constants) <= 256);
 
+// 类: vk_op_topk_moe_push_constants
+// 描述: vk_op_topk_moe_push_constants类提供相关功能
+// 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
+// 类: vk_op_topk_moe_push_constants
+// 描述: vk_op_topk_moe_push_constants类提供相关功能
+// 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
+    // 结构体: vk_op_topk_moe_push_constants
+    // 描述: vk_op_topk_moe_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
+    // 结构体: vk_op_topk_moe_push_constants
+    // 描述: vk_op_topk_moe_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
+    // 结构体: vk_op_topk_moe_push_constants
+    // 描述: vk_op_topk_moe_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
+    // 结构体: vk_op_topk_moe_push_constants
+    // 描述: vk_op_topk_moe_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_moe_push_constants相关的操作
 struct vk_op_topk_moe_push_constants {
     uint32_t n_rows;
     uint32_t n_experts_push;
@@ -1254,6 +2047,24 @@ struct vk_op_topk_moe_push_constants {
     float output_bias;
 };
 
+// 类: vk_op_add_id_push_constants
+// 描述: vk_op_add_id_push_constants类提供相关功能
+// 用途: 用于处理vk_op_add_id_push_constants相关的操作
+// 类: vk_op_add_id_push_constants
+// 描述: vk_op_add_id_push_constants类提供相关功能
+// 用途: 用于处理vk_op_add_id_push_constants相关的操作
+    // 结构体: vk_op_add_id_push_constants
+    // 描述: vk_op_add_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_add_id_push_constants相关的操作
+    // 结构体: vk_op_add_id_push_constants
+    // 描述: vk_op_add_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_add_id_push_constants相关的操作
+    // 结构体: vk_op_add_id_push_constants
+    // 描述: vk_op_add_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_add_id_push_constants相关的操作
+    // 结构体: vk_op_add_id_push_constants
+    // 描述: vk_op_add_id_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_add_id_push_constants相关的操作
 struct vk_op_add_id_push_constants {
     uint32_t ne0;
     uint32_t ne1;
@@ -1263,12 +2074,48 @@ struct vk_op_add_id_push_constants {
     uint32_t s21;
 };
 
+// 类: vk_op_diag_mask_push_constants
+// 描述: vk_op_diag_mask_push_constants类提供相关功能
+// 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
+// 类: vk_op_diag_mask_push_constants
+// 描述: vk_op_diag_mask_push_constants类提供相关功能
+// 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
+    // 结构体: vk_op_diag_mask_push_constants
+    // 描述: vk_op_diag_mask_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
+    // 结构体: vk_op_diag_mask_push_constants
+    // 描述: vk_op_diag_mask_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
+    // 结构体: vk_op_diag_mask_push_constants
+    // 描述: vk_op_diag_mask_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
+    // 结构体: vk_op_diag_mask_push_constants
+    // 描述: vk_op_diag_mask_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_diag_mask_push_constants相关的操作
 struct vk_op_diag_mask_push_constants {
     uint32_t ncols;
     uint32_t rows_per_channel;
     int32_t n_past;
 };
 
+// 类: vk_op_rope_push_constants
+// 描述: vk_op_rope_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rope_push_constants相关的操作
+// 类: vk_op_rope_push_constants
+// 描述: vk_op_rope_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rope_push_constants相关的操作
+    // 结构体: vk_op_rope_push_constants
+    // 描述: vk_op_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rope_push_constants相关的操作
+    // 结构体: vk_op_rope_push_constants
+    // 描述: vk_op_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rope_push_constants相关的操作
+    // 结构体: vk_op_rope_push_constants
+    // 描述: vk_op_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rope_push_constants相关的操作
+    // 结构体: vk_op_rope_push_constants
+    // 描述: vk_op_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rope_push_constants相关的操作
 struct vk_op_rope_push_constants {
     uint32_t rope_mode;
     uint32_t nrows;
@@ -1297,11 +2144,47 @@ struct vk_op_rope_push_constants {
 static_assert(sizeof(vk_op_rope_push_constants) <= 128, "sizeof(vk_op_rope_push_constants) must be <= 128");
 
 // For fused rms_norm+mul+rope(+view+set_rows)
+// 类: vk_op_rms_norm_mul_rope_push_constants
+// 描述: vk_op_rms_norm_mul_rope_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
+// 类: vk_op_rms_norm_mul_rope_push_constants
+// 描述: vk_op_rms_norm_mul_rope_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
+    // 结构体: vk_op_rms_norm_mul_rope_push_constants
+    // 描述: vk_op_rms_norm_mul_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
+    // 结构体: vk_op_rms_norm_mul_rope_push_constants
+    // 描述: vk_op_rms_norm_mul_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
+    // 结构体: vk_op_rms_norm_mul_rope_push_constants
+    // 描述: vk_op_rms_norm_mul_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
+    // 结构体: vk_op_rms_norm_mul_rope_push_constants
+    // 描述: vk_op_rms_norm_mul_rope_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rms_norm_mul_rope_push_constants相关的操作
 struct vk_op_rms_norm_mul_rope_push_constants {
     vk_op_binary_push_constants bin;
     vk_op_rope_push_constants rope;
 };
 
+// 类: vk_op_soft_max_push_constants
+// 描述: vk_op_soft_max_push_constants类提供相关功能
+// 用途: 用于处理vk_op_soft_max_push_constants相关的操作
+// 类: vk_op_soft_max_push_constants
+// 描述: vk_op_soft_max_push_constants类提供相关功能
+// 用途: 用于处理vk_op_soft_max_push_constants相关的操作
+    // 结构体: vk_op_soft_max_push_constants
+    // 描述: vk_op_soft_max_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_soft_max_push_constants相关的操作
+    // 结构体: vk_op_soft_max_push_constants
+    // 描述: vk_op_soft_max_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_soft_max_push_constants相关的操作
+    // 结构体: vk_op_soft_max_push_constants
+    // 描述: vk_op_soft_max_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_soft_max_push_constants相关的操作
+    // 结构体: vk_op_soft_max_push_constants
+    // 描述: vk_op_soft_max_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_soft_max_push_constants相关的操作
 struct vk_op_soft_max_push_constants {
     uint32_t KX;
     uint32_t KY;
@@ -1322,6 +2205,24 @@ struct vk_op_soft_max_push_constants {
     uint32_t has_sinks;
 };
 
+// 类: vk_op_argsort_push_constants
+// 描述: vk_op_argsort_push_constants类提供相关功能
+// 用途: 用于处理vk_op_argsort_push_constants相关的操作
+// 类: vk_op_argsort_push_constants
+// 描述: vk_op_argsort_push_constants类提供相关功能
+// 用途: 用于处理vk_op_argsort_push_constants相关的操作
+    // 结构体: vk_op_argsort_push_constants
+    // 描述: vk_op_argsort_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_argsort_push_constants相关的操作
+    // 结构体: vk_op_argsort_push_constants
+    // 描述: vk_op_argsort_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_argsort_push_constants相关的操作
+    // 结构体: vk_op_argsort_push_constants
+    // 描述: vk_op_argsort_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_argsort_push_constants相关的操作
+    // 结构体: vk_op_argsort_push_constants
+    // 描述: vk_op_argsort_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_argsort_push_constants相关的操作
 struct vk_op_argsort_push_constants {
     uint32_t ncols;
     uint32_t ncols_padded;
@@ -1334,6 +2235,24 @@ struct vk_op_argsort_push_constants {
     uint32_t inner_end;
 };
 
+// 类: vk_op_topk_push_constants
+// 描述: vk_op_topk_push_constants类提供相关功能
+// 用途: 用于处理vk_op_topk_push_constants相关的操作
+// 类: vk_op_topk_push_constants
+// 描述: vk_op_topk_push_constants类提供相关功能
+// 用途: 用于处理vk_op_topk_push_constants相关的操作
+    // 结构体: vk_op_topk_push_constants
+    // 描述: vk_op_topk_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_push_constants相关的操作
+    // 结构体: vk_op_topk_push_constants
+    // 描述: vk_op_topk_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_push_constants相关的操作
+    // 结构体: vk_op_topk_push_constants
+    // 描述: vk_op_topk_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_push_constants相关的操作
+    // 结构体: vk_op_topk_push_constants
+    // 描述: vk_op_topk_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_topk_push_constants相关的操作
 struct vk_op_topk_push_constants {
     uint32_t orig_ncols;
     uint32_t ncols_input;
@@ -1344,6 +2263,24 @@ struct vk_op_topk_push_constants {
     uint32_t last_pass;
 };
 
+// 类: vk_op_im2col_push_constants
+// 描述: vk_op_im2col_push_constants类提供相关功能
+// 用途: 用于处理vk_op_im2col_push_constants相关的操作
+// 类: vk_op_im2col_push_constants
+// 描述: vk_op_im2col_push_constants类提供相关功能
+// 用途: 用于处理vk_op_im2col_push_constants相关的操作
+    // 结构体: vk_op_im2col_push_constants
+    // 描述: vk_op_im2col_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_push_constants相关的操作
+    // 结构体: vk_op_im2col_push_constants
+    // 描述: vk_op_im2col_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_push_constants相关的操作
+    // 结构体: vk_op_im2col_push_constants
+    // 描述: vk_op_im2col_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_push_constants相关的操作
+    // 结构体: vk_op_im2col_push_constants
+    // 描述: vk_op_im2col_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_push_constants相关的操作
 struct vk_op_im2col_push_constants {
     uint64_t dst_addr;
     uint32_t batch_offset; uint32_t offset_delta;
@@ -1359,6 +2296,24 @@ struct vk_op_im2col_push_constants {
     uint32_t batch_IC;
 };
 
+// 类: vk_op_im2col_3d_push_constants
+// 描述: vk_op_im2col_3d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
+// 类: vk_op_im2col_3d_push_constants
+// 描述: vk_op_im2col_3d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
+    // 结构体: vk_op_im2col_3d_push_constants
+    // 描述: vk_op_im2col_3d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
+    // 结构体: vk_op_im2col_3d_push_constants
+    // 描述: vk_op_im2col_3d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
+    // 结构体: vk_op_im2col_3d_push_constants
+    // 描述: vk_op_im2col_3d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
+    // 结构体: vk_op_im2col_3d_push_constants
+    // 描述: vk_op_im2col_3d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_im2col_3d_push_constants相关的操作
 struct vk_op_im2col_3d_push_constants {
     uint64_t dst_addr;
     uint32_t nb10;
@@ -1391,12 +2346,48 @@ struct vk_op_im2col_3d_push_constants {
     uint32_t misalign_offsets;
 };
 
+// 类: vk_op_timestep_embedding_push_constants
+// 描述: vk_op_timestep_embedding_push_constants类提供相关功能
+// 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
+// 类: vk_op_timestep_embedding_push_constants
+// 描述: vk_op_timestep_embedding_push_constants类提供相关功能
+// 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
+    // 结构体: vk_op_timestep_embedding_push_constants
+    // 描述: vk_op_timestep_embedding_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
+    // 结构体: vk_op_timestep_embedding_push_constants
+    // 描述: vk_op_timestep_embedding_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
+    // 结构体: vk_op_timestep_embedding_push_constants
+    // 描述: vk_op_timestep_embedding_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
+    // 结构体: vk_op_timestep_embedding_push_constants
+    // 描述: vk_op_timestep_embedding_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_timestep_embedding_push_constants相关的操作
 struct vk_op_timestep_embedding_push_constants {
     uint32_t nb1;
     uint32_t dim;
     uint32_t max_period;
 };
 
+// 类: vk_op_conv_transpose_1d_push_constants
+// 描述: vk_op_conv_transpose_1d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
+// 类: vk_op_conv_transpose_1d_push_constants
+// 描述: vk_op_conv_transpose_1d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
+    // 结构体: vk_op_conv_transpose_1d_push_constants
+    // 描述: vk_op_conv_transpose_1d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
+    // 结构体: vk_op_conv_transpose_1d_push_constants
+    // 描述: vk_op_conv_transpose_1d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
+    // 结构体: vk_op_conv_transpose_1d_push_constants
+    // 描述: vk_op_conv_transpose_1d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
+    // 结构体: vk_op_conv_transpose_1d_push_constants
+    // 描述: vk_op_conv_transpose_1d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv_transpose_1d_push_constants相关的操作
 struct vk_op_conv_transpose_1d_push_constants {
     uint32_t Cout;
     uint32_t Cin;
@@ -1412,6 +2403,24 @@ struct vk_op_conv_transpose_1d_push_constants {
     int32_t s0;
 };
 
+// 类: vk_op_pool2d_push_constants
+// 描述: vk_op_pool2d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_pool2d_push_constants相关的操作
+// 类: vk_op_pool2d_push_constants
+// 描述: vk_op_pool2d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_pool2d_push_constants相关的操作
+    // 结构体: vk_op_pool2d_push_constants
+    // 描述: vk_op_pool2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pool2d_push_constants相关的操作
+    // 结构体: vk_op_pool2d_push_constants
+    // 描述: vk_op_pool2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pool2d_push_constants相关的操作
+    // 结构体: vk_op_pool2d_push_constants
+    // 描述: vk_op_pool2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pool2d_push_constants相关的操作
+    // 结构体: vk_op_pool2d_push_constants
+    // 描述: vk_op_pool2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_pool2d_push_constants相关的操作
 struct vk_op_pool2d_push_constants {
     uint32_t IW; uint32_t IH;
     uint32_t OW; uint32_t OH;
@@ -1423,6 +2432,24 @@ struct vk_op_pool2d_push_constants {
     int32_t p0; int32_t p1;
 };
 
+// 类: vk_op_rwkv_wkv6_push_constants
+// 描述: vk_op_rwkv_wkv6_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
+// 类: vk_op_rwkv_wkv6_push_constants
+// 描述: vk_op_rwkv_wkv6_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv6_push_constants
+    // 描述: vk_op_rwkv_wkv6_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv6_push_constants
+    // 描述: vk_op_rwkv_wkv6_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv6_push_constants
+    // 描述: vk_op_rwkv_wkv6_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv6_push_constants
+    // 描述: vk_op_rwkv_wkv6_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv6_push_constants相关的操作
 struct vk_op_rwkv_wkv6_push_constants {
     uint32_t B;
     uint32_t T;
@@ -1430,12 +2457,48 @@ struct vk_op_rwkv_wkv6_push_constants {
     uint32_t H;
 };
 
+// 类: vk_op_rwkv_wkv7_push_constants
+// 描述: vk_op_rwkv_wkv7_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
+// 类: vk_op_rwkv_wkv7_push_constants
+// 描述: vk_op_rwkv_wkv7_push_constants类提供相关功能
+// 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv7_push_constants
+    // 描述: vk_op_rwkv_wkv7_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv7_push_constants
+    // 描述: vk_op_rwkv_wkv7_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv7_push_constants
+    // 描述: vk_op_rwkv_wkv7_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
+    // 结构体: vk_op_rwkv_wkv7_push_constants
+    // 描述: vk_op_rwkv_wkv7_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_rwkv_wkv7_push_constants相关的操作
 struct vk_op_rwkv_wkv7_push_constants {
     uint32_t B;
     uint32_t T;
     uint32_t C;
     uint32_t H;
 };
+// 类: vk_op_ssm_scan_push_constants
+// 描述: vk_op_ssm_scan_push_constants类提供相关功能
+// 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
+// 类: vk_op_ssm_scan_push_constants
+// 描述: vk_op_ssm_scan_push_constants类提供相关功能
+// 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
+    // 结构体: vk_op_ssm_scan_push_constants
+    // 描述: vk_op_ssm_scan_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
+    // 结构体: vk_op_ssm_scan_push_constants
+    // 描述: vk_op_ssm_scan_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
+    // 结构体: vk_op_ssm_scan_push_constants
+    // 描述: vk_op_ssm_scan_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
+    // 结构体: vk_op_ssm_scan_push_constants
+    // 描述: vk_op_ssm_scan_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_scan_push_constants相关的操作
 struct vk_op_ssm_scan_push_constants {
     uint32_t nb02, nb03, nb12, nb13;
     uint32_t nb21, nb22, nb31;
@@ -1443,6 +2506,24 @@ struct vk_op_ssm_scan_push_constants {
     uint32_t s_off;
     uint32_t n_head, d_head, n_group, n_tok;
 };
+// 类: vk_op_ssm_conv_push_constants
+// 描述: vk_op_ssm_conv_push_constants类提供相关功能
+// 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
+// 类: vk_op_ssm_conv_push_constants
+// 描述: vk_op_ssm_conv_push_constants类提供相关功能
+// 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
+    // 结构体: vk_op_ssm_conv_push_constants
+    // 描述: vk_op_ssm_conv_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
+    // 结构体: vk_op_ssm_conv_push_constants
+    // 描述: vk_op_ssm_conv_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
+    // 结构体: vk_op_ssm_conv_push_constants
+    // 描述: vk_op_ssm_conv_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
+    // 结构体: vk_op_ssm_conv_push_constants
+    // 描述: vk_op_ssm_conv_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_ssm_conv_push_constants相关的操作
 struct vk_op_ssm_conv_push_constants {
     uint32_t nb01, nb02;
     uint32_t nb11;
@@ -1450,6 +2531,24 @@ struct vk_op_ssm_conv_push_constants {
     uint32_t nc, ncs, nr, n_t, n_s;
 };
 
+// 类: vk_op_conv2d_push_constants
+// 描述: vk_op_conv2d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv2d_push_constants相关的操作
+// 类: vk_op_conv2d_push_constants
+// 描述: vk_op_conv2d_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv2d_push_constants相关的操作
+    // 结构体: vk_op_conv2d_push_constants
+    // 描述: vk_op_conv2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_push_constants相关的操作
+    // 结构体: vk_op_conv2d_push_constants
+    // 描述: vk_op_conv2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_push_constants相关的操作
+    // 结构体: vk_op_conv2d_push_constants
+    // 描述: vk_op_conv2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_push_constants相关的操作
+    // 结构体: vk_op_conv2d_push_constants
+    // 描述: vk_op_conv2d_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_push_constants相关的操作
 struct vk_op_conv2d_push_constants {
     uint32_t Cout;
     uint32_t Cin;
@@ -1483,6 +2582,24 @@ template <> void init_pushconst_fastdiv(vk_op_conv2d_push_constants &p) {
     init_fastdiv_values(p.OW*p.OH,  p.OWOHmp,  p.OWOHL);
 }
 
+// 类: vk_op_conv2d_dw_push_constants
+// 描述: vk_op_conv2d_dw_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
+// 类: vk_op_conv2d_dw_push_constants
+// 描述: vk_op_conv2d_dw_push_constants类提供相关功能
+// 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
+    // 结构体: vk_op_conv2d_dw_push_constants
+    // 描述: vk_op_conv2d_dw_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
+    // 结构体: vk_op_conv2d_dw_push_constants
+    // 描述: vk_op_conv2d_dw_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
+    // 结构体: vk_op_conv2d_dw_push_constants
+    // 描述: vk_op_conv2d_dw_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
+    // 结构体: vk_op_conv2d_dw_push_constants
+    // 描述: vk_op_conv2d_dw_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_conv2d_dw_push_constants相关的操作
 struct vk_op_conv2d_dw_push_constants {
     uint32_t ne;
     uint32_t batches;
@@ -1501,6 +2618,24 @@ struct vk_op_conv2d_dw_push_constants {
     int32_t dilation_y;
 };
 
+// 类: vk_op_upscale_push_constants
+// 描述: vk_op_upscale_push_constants类提供相关功能
+// 用途: 用于处理vk_op_upscale_push_constants相关的操作
+// 类: vk_op_upscale_push_constants
+// 描述: vk_op_upscale_push_constants类提供相关功能
+// 用途: 用于处理vk_op_upscale_push_constants相关的操作
+    // 结构体: vk_op_upscale_push_constants
+    // 描述: vk_op_upscale_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_upscale_push_constants相关的操作
+    // 结构体: vk_op_upscale_push_constants
+    // 描述: vk_op_upscale_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_upscale_push_constants相关的操作
+    // 结构体: vk_op_upscale_push_constants
+    // 描述: vk_op_upscale_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_upscale_push_constants相关的操作
+    // 结构体: vk_op_upscale_push_constants
+    // 描述: vk_op_upscale_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_upscale_push_constants相关的操作
 struct vk_op_upscale_push_constants {
     uint32_t ne; uint32_t a_offset; uint32_t d_offset;
     uint32_t ne00; uint32_t ne01;
@@ -1510,6 +2645,24 @@ struct vk_op_upscale_push_constants {
     float pixel_offset;
 };
 
+// 类: vk_op_sum_rows_push_constants
+// 描述: vk_op_sum_rows_push_constants类提供相关功能
+// 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
+// 类: vk_op_sum_rows_push_constants
+// 描述: vk_op_sum_rows_push_constants类提供相关功能
+// 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
+    // 结构体: vk_op_sum_rows_push_constants
+    // 描述: vk_op_sum_rows_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
+    // 结构体: vk_op_sum_rows_push_constants
+    // 描述: vk_op_sum_rows_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
+    // 结构体: vk_op_sum_rows_push_constants
+    // 描述: vk_op_sum_rows_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
+    // 结构体: vk_op_sum_rows_push_constants
+    // 描述: vk_op_sum_rows_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_sum_rows_push_constants相关的操作
 struct vk_op_sum_rows_push_constants
 {
     uint32_t n_cols;
@@ -1522,6 +2675,14 @@ struct vk_op_sum_rows_push_constants
     uint32_t ne0_1mp, ne0_1L;
 };
 
+// 函数: vk_op_sum_rows_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vk_op_sum_rows_push_constants_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static vk_op_sum_rows_push_constants vk_op_sum_rows_push_constants_init(const ggml_tensor * src, const ggml_tensor * dst, int64_t n_cols) {
     uint32_t type_size = (uint32_t)ggml_type_size(src->type);
     vk_op_sum_rows_push_constants p = {};
@@ -1543,11 +2704,47 @@ template <> void init_pushconst_fastdiv(vk_op_sum_rows_push_constants &p) {
     init_fastdiv_values(p.ne01,        p.ne0_1mp,  p.ne0_1L);
 }
 
+// 类: vk_quantize_q8_1_push_constants
+// 描述: vk_quantize_q8_1_push_constants类提供相关功能
+// 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
+// 类: vk_quantize_q8_1_push_constants
+// 描述: vk_quantize_q8_1_push_constants类提供相关功能
+// 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
+    // 结构体: vk_quantize_q8_1_push_constants
+    // 描述: vk_quantize_q8_1_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
+    // 结构体: vk_quantize_q8_1_push_constants
+    // 描述: vk_quantize_q8_1_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
+    // 结构体: vk_quantize_q8_1_push_constants
+    // 描述: vk_quantize_q8_1_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
+    // 结构体: vk_quantize_q8_1_push_constants
+    // 描述: vk_quantize_q8_1_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_quantize_q8_1_push_constants相关的操作
 struct vk_quantize_q8_1_push_constants {
     uint32_t ne;
     uint32_t num_blocks;
 };
 
+// 类: vk_op_flash_attn_split_k_reduce_push_constants
+// 描述: vk_op_flash_attn_split_k_reduce_push_constants类提供相关功能
+// 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
+// 类: vk_op_flash_attn_split_k_reduce_push_constants
+// 描述: vk_op_flash_attn_split_k_reduce_push_constants类提供相关功能
+// 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_split_k_reduce_push_constants
+    // 描述: vk_op_flash_attn_split_k_reduce_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_split_k_reduce_push_constants
+    // 描述: vk_op_flash_attn_split_k_reduce_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_split_k_reduce_push_constants
+    // 描述: vk_op_flash_attn_split_k_reduce_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_split_k_reduce_push_constants
+    // 描述: vk_op_flash_attn_split_k_reduce_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_split_k_reduce_push_constants相关的操作
 struct vk_op_flash_attn_split_k_reduce_push_constants {
     uint32_t D;
     uint32_t ne1;
@@ -1557,6 +2754,24 @@ struct vk_op_flash_attn_split_k_reduce_push_constants {
     uint32_t sinks;
 };
 
+// 类: vk_op_flash_attn_mask_opt_push_constants
+// 描述: vk_op_flash_attn_mask_opt_push_constants类提供相关功能
+// 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
+// 类: vk_op_flash_attn_mask_opt_push_constants
+// 描述: vk_op_flash_attn_mask_opt_push_constants类提供相关功能
+// 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_mask_opt_push_constants
+    // 描述: vk_op_flash_attn_mask_opt_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_mask_opt_push_constants
+    // 描述: vk_op_flash_attn_mask_opt_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_mask_opt_push_constants
+    // 描述: vk_op_flash_attn_mask_opt_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
+    // 结构体: vk_op_flash_attn_mask_opt_push_constants
+    // 描述: vk_op_flash_attn_mask_opt_push_constants结构体提供相关功能
+    // 用途: 用于处理vk_op_flash_attn_mask_opt_push_constants相关的操作
 struct vk_op_flash_attn_mask_opt_push_constants {
     uint32_t nem0;
     uint32_t nem1;
@@ -1570,6 +2785,24 @@ struct vk_op_flash_attn_mask_opt_push_constants {
 };
 
 // Allow pre-recording command buffers
+// 类: vk_staging_memcpy
+// 描述: vk_staging_memcpy类提供相关功能
+// 用途: 用于处理vk_staging_memcpy相关的操作
+// 类: vk_staging_memcpy
+// 描述: vk_staging_memcpy类提供相关功能
+// 用途: 用于处理vk_staging_memcpy相关的操作
+    // 结构体: vk_staging_memcpy
+    // 描述: vk_staging_memcpy结构体提供相关功能
+    // 用途: 用于处理vk_staging_memcpy相关的操作
+    // 结构体: vk_staging_memcpy
+    // 描述: vk_staging_memcpy结构体提供相关功能
+    // 用途: 用于处理vk_staging_memcpy相关的操作
+    // 结构体: vk_staging_memcpy
+    // 描述: vk_staging_memcpy结构体提供相关功能
+    // 用途: 用于处理vk_staging_memcpy相关的操作
+    // 结构体: vk_staging_memcpy
+    // 描述: vk_staging_memcpy结构体提供相关功能
+    // 用途: 用于处理vk_staging_memcpy相关的操作
 struct vk_staging_memcpy {
     vk_staging_memcpy(void * _dst, const void * _src, size_t _n) : dst(_dst), src(_src), n(_n) {}
 
@@ -1578,6 +2811,24 @@ struct vk_staging_memcpy {
     size_t n;
 };
 
+// 类: vk_staging_memset
+// 描述: vk_staging_memset类提供相关功能
+// 用途: 用于处理vk_staging_memset相关的操作
+// 类: vk_staging_memset
+// 描述: vk_staging_memset类提供相关功能
+// 用途: 用于处理vk_staging_memset相关的操作
+    // 结构体: vk_staging_memset
+    // 描述: vk_staging_memset结构体提供相关功能
+    // 用途: 用于处理vk_staging_memset相关的操作
+    // 结构体: vk_staging_memset
+    // 描述: vk_staging_memset结构体提供相关功能
+    // 用途: 用于处理vk_staging_memset相关的操作
+    // 结构体: vk_staging_memset
+    // 描述: vk_staging_memset结构体提供相关功能
+    // 用途: 用于处理vk_staging_memset相关的操作
+    // 结构体: vk_staging_memset
+    // 描述: vk_staging_memset结构体提供相关功能
+    // 用途: 用于处理vk_staging_memset相关的操作
 struct vk_staging_memset {
     vk_staging_memset(void * _dst, uint32_t _val, size_t _n) : dst(_dst), val(_val), n(_n) {}
 
@@ -1586,6 +2837,24 @@ struct vk_staging_memset {
     size_t n;
 };
 
+// 类: vk_context_struct
+// 描述: vk_context_struct类提供相关功能
+// 用途: 用于处理vk_context_struct相关的操作
+// 类: vk_context_struct
+// 描述: vk_context_struct类提供相关功能
+// 用途: 用于处理vk_context_struct相关的操作
+    // 结构体: vk_context_struct
+    // 描述: vk_context_struct结构体提供相关功能
+    // 用途: 用于处理vk_context_struct相关的操作
+    // 结构体: vk_context_struct
+    // 描述: vk_context_struct结构体提供相关功能
+    // 用途: 用于处理vk_context_struct相关的操作
+    // 结构体: vk_context_struct
+    // 描述: vk_context_struct结构体提供相关功能
+    // 用途: 用于处理vk_context_struct相关的操作
+    // 结构体: vk_context_struct
+    // 描述: vk_context_struct结构体提供相关功能
+    // 用途: 用于处理vk_context_struct相关的操作
 struct vk_context_struct {
     vk_submission * s;
     std::vector<vk_sequence> seqs;
@@ -1601,6 +2870,24 @@ struct vk_context_struct {
 typedef std::shared_ptr<vk_context_struct> vk_context;
 typedef std::weak_ptr<vk_context_struct> vk_context_ref;
 
+// 类: ggml_vk_garbage_collector
+// 描述: ggml_vk_garbage_collector类提供相关功能
+// 用途: 用于处理ggml_vk_garbage_collector相关的操作
+// 类: ggml_vk_garbage_collector
+// 描述: ggml_vk_garbage_collector类提供相关功能
+// 用途: 用于处理ggml_vk_garbage_collector相关的操作
+    // 结构体: ggml_vk_garbage_collector
+    // 描述: ggml_vk_garbage_collector结构体提供相关功能
+    // 用途: 用于处理ggml_vk_garbage_collector相关的操作
+    // 结构体: ggml_vk_garbage_collector
+    // 描述: ggml_vk_garbage_collector结构体提供相关功能
+    // 用途: 用于处理ggml_vk_garbage_collector相关的操作
+    // 结构体: ggml_vk_garbage_collector
+    // 描述: ggml_vk_garbage_collector结构体提供相关功能
+    // 用途: 用于处理ggml_vk_garbage_collector相关的操作
+    // 结构体: ggml_vk_garbage_collector
+    // 描述: ggml_vk_garbage_collector结构体提供相关功能
+    // 用途: 用于处理ggml_vk_garbage_collector相关的操作
 struct ggml_vk_garbage_collector {
     std::vector<vk_semaphore> tl_semaphores;
     std::vector<vk_semaphore> semaphores;
@@ -1608,14 +2895,46 @@ struct ggml_vk_garbage_collector {
     std::vector<vk_context> contexts;
 };
 
+// 函数: ggml_vk_preallocate_buffers
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_preallocate_buffers
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_preallocate_buffers(ggml_backend_vk_context * ctx, vk_context subctx);
+// 函数: ggml_vk_load_shaders
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_load_shaders
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_load_shaders(vk_device& device);
+// 函数: ggml_pipeline_allocate_descriptor_sets
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_pipeline_allocate_descriptor_sets
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_pipeline_allocate_descriptor_sets(ggml_backend_vk_context * ctx);
 
 static bool vk_memory_logger_enabled = false;
 
 #define VK_LOG_MEMORY(msg) if (vk_memory_logger_enabled) { std::cerr << "ggml_vulkan memory: " << msg << std::endl; }
 
+// 函数: format_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string format_size(size_t size) {
     const size_t kib = 1024;
     const size_t mib = kib * 1024;
@@ -1637,10 +2956,32 @@ static std::string format_size(size_t size) {
     return oss.str();
 }
 
+// 类: vk_memory_logger
+// 描述: vk_memory_logger类提供相关功能
+// 用途: 用于处理vk_memory_logger相关的操作
+// 类: vk_memory_logger
+// 描述: vk_memory_logger类提供相关功能
+// 用途: 用于处理vk_memory_logger相关的操作
 class vk_memory_logger {
 public:
     vk_memory_logger(): total_device(0), total_host(0) {}
+    // 函数: log_allocation
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log_allocation
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void log_allocation(vk_buffer_ref buf_ref, size_t size);
+    // 函数: log_deallocation
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log_deallocation
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void log_deallocation(vk_buffer_ref buf_ref);
 
 private:
@@ -1659,8 +3000,22 @@ static bool vk_enable_sync_logger = false;
 static uint32_t vk_perf_logger_frequency = 1;
 static std::string vk_pipeline_stats_filter;
 
+// 类: vk_perf_logger
+// 描述: vk_perf_logger类提供相关功能
+// 用途: 用于处理vk_perf_logger相关的操作
+// 类: vk_perf_logger
+// 描述: vk_perf_logger类提供相关功能
+// 用途: 用于处理vk_perf_logger相关的操作
 class vk_perf_logger {
   public:
+    // 函数: print_timings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_timings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_timings(bool force = false) {
         if (timings.empty()) {
             return;
@@ -1706,6 +3061,14 @@ class vk_perf_logger {
         flops.clear();
     }
 
+    // 函数: get_node_fusion_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_node_fusion_name
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     std::string get_node_fusion_name(const ggml_tensor * node, const char *fusion_name, uint64_t *n_flops) {
         *n_flops = 0;
         std::string fusion_str;
@@ -1792,6 +3155,14 @@ class vk_perf_logger {
         return fusion_str + ggml_op_name(node->op);
     }
 
+    // 函数: log_timing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log_timing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log_timing(const ggml_tensor * node, const char *fusion_name, uint64_t time) {
         uint64_t n_flops;
         std::string name = get_node_fusion_name(node, fusion_name, &n_flops);
@@ -1801,6 +3172,14 @@ class vk_perf_logger {
         timings[name].push_back(time);
     }
 
+    // 函数: log_timing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log_timing
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log_timing(const std::vector<ggml_tensor *> &nodes, const std::vector<const char *> &names, uint64_t time) {
         uint64_t total_flops = 0;
         std::string name;
@@ -1825,6 +3204,24 @@ class vk_perf_logger {
     uint32_t print_count {};
 };
 
+// 类: ggml_backend_vk_context
+// 描述: ggml_backend_vk_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_context相关的操作
+// 类: ggml_backend_vk_context
+// 描述: ggml_backend_vk_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
+    // 结构体: ggml_backend_vk_context
+    // 描述: ggml_backend_vk_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_context相关的操作
 struct ggml_backend_vk_context {
     std::string name;
 
@@ -1890,6 +3287,14 @@ struct ggml_backend_vk_context {
 
 static void * const vk_ptr_base = (void *)(uintptr_t) 0x1000;  // NOLINT
 
+// 函数: vk_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vk_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint64_t vk_tensor_offset(const ggml_tensor * tensor) {
     if (tensor->view_src) {
         return (uint8_t *) tensor->view_src->data - (uint8_t *) vk_ptr_base;
@@ -1897,6 +3302,14 @@ static uint64_t vk_tensor_offset(const ggml_tensor * tensor) {
     return (uint8_t *) tensor->data - (uint8_t *) vk_ptr_base;
 }
 
+// 函数: get_misalign_bytes
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_misalign_bytes
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static uint32_t get_misalign_bytes(const ggml_backend_vk_context * ctx, const ggml_tensor * t)
 {
     return ((vk_tensor_offset(t) + t->view_offs) & (ctx->device->properties.limits.minStorageBufferOffsetAlignment - 1));;
@@ -1941,6 +3354,24 @@ template <> void init_pushconst_tensor_offsets(ggml_backend_vk_context * ctx, vk
     GGML_UNUSED(src3);
 }
 
+// 类: ggml_backend_vk_buffer_context
+// 描述: ggml_backend_vk_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
+// 类: ggml_backend_vk_buffer_context
+// 描述: ggml_backend_vk_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_context
+    // 描述: ggml_backend_vk_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_context
+    // 描述: ggml_backend_vk_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_context
+    // 描述: ggml_backend_vk_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
+    // 结构体: ggml_backend_vk_buffer_context
+    // 描述: ggml_backend_vk_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_buffer_context相关的操作
 struct ggml_backend_vk_buffer_context {
     vk_device_ref device;
     vk_buffer dev_buffer;
@@ -1991,6 +3422,24 @@ void vk_memory_logger::log_deallocation(vk_buffer_ref buf_ref) {
     }
 }
 
+// 类: vk_instance_t
+// 描述: vk_instance_t类提供相关功能
+// 用途: 用于处理vk_instance_t相关的操作
+// 类: vk_instance_t
+// 描述: vk_instance_t类提供相关功能
+// 用途: 用于处理vk_instance_t相关的操作
+    // 结构体: vk_instance_t
+    // 描述: vk_instance_t结构体提供相关功能
+    // 用途: 用于处理vk_instance_t相关的操作
+    // 结构体: vk_instance_t
+    // 描述: vk_instance_t结构体提供相关功能
+    // 用途: 用于处理vk_instance_t相关的操作
+    // 结构体: vk_instance_t
+    // 描述: vk_instance_t结构体提供相关功能
+    // 用途: 用于处理vk_instance_t相关的操作
+    // 结构体: vk_instance_t
+    // 描述: vk_instance_t结构体提供相关功能
+    // 用途: 用于处理vk_instance_t相关的操作
 struct vk_instance_t {
     vk::Instance instance;
 
@@ -2014,15 +3463,63 @@ static vk_instance_t vk_instance;
 static size_t vk_skip_checks;
 static size_t vk_output_tensor;
 
+// 函数: ggml_vk_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_tensor(const ggml_tensor * tensor, const char * name);
+// 函数: ggml_vk_check_results_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_check_results_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_check_results_0(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, int tensor_idx);
+// 函数: ggml_vk_check_results_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_check_results_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_check_results_1(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, int tensor_idx);
 #endif
 
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*ggml_vk_func_t)(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst);
 
+// 函数: ggml_backend_vk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_free(ggml_backend_t backend);
 
+// 函数: ggml_vk_get_max_buffer_range
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_max_buffer_range
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static VkDeviceSize ggml_vk_get_max_buffer_range(const ggml_backend_vk_context * ctx, const vk_buffer &buf, const VkDeviceSize offset) {
     const VkDeviceSize range = std::min(VkDeviceSize{buf->size - offset},
                                         VkDeviceSize{ctx->device->properties.limits.maxStorageBufferRange});
@@ -2030,6 +3527,14 @@ static VkDeviceSize ggml_vk_get_max_buffer_range(const ggml_backend_vk_context *
 }
 
 // Wait for ctx->fence to be signaled.
+// 函数: ggml_vk_wait_for_fence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_wait_for_fence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_wait_for_fence(ggml_backend_vk_context * ctx) {
     // Use waitForFences while most of the graph executes. Hopefully the CPU can sleep
     // during this wait.
@@ -2077,6 +3582,14 @@ static void ggml_vk_create_pipeline_func(vk_device& device, vk_pipeline& pipelin
     GGML_ASSERT(parameter_count <= MAX_PARAMETER_COUNT);
     GGML_ASSERT(wg_denoms[0] > 0 && wg_denoms[1] > 0 && wg_denoms[2] > 0); // NOLINT
 
+    // 函数: shader_module_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: shader_module_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     vk::ShaderModuleCreateInfo shader_module_create_info({}, spv_size, reinterpret_cast<const uint32_t *>(spv_data));
     pipeline->shader_module = device->device.createShaderModule(shader_module_create_info);
 
@@ -2086,6 +3599,14 @@ static void ggml_vk_create_pipeline_func(vk_device& device, vk_pipeline& pipelin
         pipeline->push_constant_size
     );
 
+    // 函数: pipeline_layout_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pipeline_layout_create_info
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     vk::PipelineLayoutCreateInfo pipeline_layout_create_info(vk::PipelineLayoutCreateFlags(), device->dsl, pcr);
     pipeline->layout = device->device.createPipelineLayout(pipeline_layout_create_info);
 
@@ -2218,6 +3739,14 @@ static void ggml_vk_create_pipeline_func(vk_device& device, vk_pipeline& pipelin
     compile_count_cond.notify_all();
 }
 
+// 函数: ggml_vk_destroy_pipeline
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_destroy_pipeline
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_destroy_pipeline(vk::Device& device, vk_pipeline& pipeline) {
     VK_LOG_DEBUG("ggml_pipeline_destroy_pipeline(" << pipeline->name << ")");
     device.destroyPipelineLayout(pipeline->layout);
@@ -2227,6 +3756,14 @@ static void ggml_vk_destroy_pipeline(vk::Device& device, vk_pipeline& pipeline) 
     device.destroyPipeline(pipeline->pipeline);
 }
 
+// 函数: ggml_pipeline_request_descriptor_sets
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_pipeline_request_descriptor_sets
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_pipeline_request_descriptor_sets(ggml_backend_vk_context *ctx, vk_pipeline& pipeline, uint32_t n) {
     VK_LOG_DEBUG("ggml_pipeline_request_descriptor_sets(" << pipeline->name << ", " << n << ")");
     ctx->pipeline_descriptor_set_requirements += n;
@@ -2237,6 +3774,14 @@ static void ggml_pipeline_request_descriptor_sets(ggml_backend_vk_context *ctx, 
     ggml_pipeline_allocate_descriptor_sets(ctx);
 }
 
+// 函数: ggml_pipeline_allocate_descriptor_sets
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_pipeline_allocate_descriptor_sets
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_pipeline_allocate_descriptor_sets(ggml_backend_vk_context * ctx) {
 
     if (ctx->descriptor_sets.size() >= ctx->pipeline_descriptor_set_requirements) {
@@ -2275,6 +3820,14 @@ static void ggml_pipeline_allocate_descriptor_sets(ggml_backend_vk_context * ctx
     }
 }
 
+// 函数: ggml_vk_create_cmd_buffer
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_cmd_buffer
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk::CommandBuffer ggml_vk_create_cmd_buffer(vk_device& device, vk_command_pool& p) {
     VK_LOG_DEBUG("ggml_vk_create_cmd_buffer()");
 
@@ -2296,6 +3849,14 @@ static vk::CommandBuffer ggml_vk_create_cmd_buffer(vk_device& device, vk_command
     return buf;
 }
 
+// 函数: ggml_vk_submit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_submit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_submit(vk_context& ctx, vk::Fence fence) {
     if (ctx->seqs.empty()) {
         if (fence) {
@@ -2375,6 +3936,14 @@ static void ggml_vk_submit(vk_context& ctx, vk::Fence fence) {
     ctx->seqs.clear();
 }
 
+// 函数: ggml_vk_find_queue_family_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_find_queue_family_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_find_queue_family_index(std::vector<vk::QueueFamilyProperties>& queue_family_props, const vk::QueueFlags& required, const vk::QueueFlags& avoid, int32_t compute_index, uint32_t min_num_queues) {
     VK_LOG_DEBUG("ggml_vk_find_queue_family_index()");
     const uint32_t qfsize = queue_family_props.size();
@@ -2421,6 +3990,14 @@ static uint32_t ggml_vk_find_queue_family_index(std::vector<vk::QueueFamilyPrope
     abort();
 }
 
+// 函数: ggml_vk_create_queue
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_queue
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_create_queue(vk_device& device, vk_queue& q, uint32_t queue_family_index, uint32_t queue_index, vk::PipelineStageFlags&& stage_flags, bool transfer_only) {
     VK_LOG_DEBUG("ggml_vk_create_queue()");
     std::lock_guard<std::recursive_mutex> guard(device->mutex);
@@ -2435,6 +4012,14 @@ static void ggml_vk_create_queue(vk_device& device, vk_queue& q, uint32_t queue_
     q.stage_flags = stage_flags;
 }
 
+// 函数: ggml_vk_create_context
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_context
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_context ggml_vk_create_context(ggml_backend_vk_context * ctx, vk_command_pool& p) {
     vk_context result = std::make_shared<vk_context_struct>();
     VK_LOG_DEBUG("ggml_vk_create_context(" << result << ")");
@@ -2443,6 +4028,14 @@ static vk_context ggml_vk_create_context(ggml_backend_vk_context * ctx, vk_comma
     return result;
 }
 
+// 函数: ggml_vk_create_temporary_context
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_temporary_context
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_context ggml_vk_create_temporary_context(vk_command_pool& p) {
     vk_context result = std::make_shared<vk_context_struct>();
     VK_LOG_DEBUG("ggml_vk_create_temporary_context(" << result << ")");
@@ -2450,6 +4043,14 @@ static vk_context ggml_vk_create_temporary_context(vk_command_pool& p) {
     return result;
 }
 
+// 函数: ggml_vk_create_binary_semaphore
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_binary_semaphore
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_semaphore * ggml_vk_create_binary_semaphore(ggml_backend_vk_context * ctx) {
     VK_LOG_DEBUG("ggml_vk_create_timeline_semaphore()");
     vk::SemaphoreTypeCreateInfo tci{ vk::SemaphoreType::eBinary, 0 };
@@ -2460,6 +4061,14 @@ static vk_semaphore * ggml_vk_create_binary_semaphore(ggml_backend_vk_context * 
     return &ctx->gc.semaphores[ctx->gc.semaphores.size() - 1];
 }
 
+// 函数: ggml_vk_create_timeline_semaphore
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_timeline_semaphore
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_semaphore * ggml_vk_create_timeline_semaphore(ggml_backend_vk_context * ctx) {
     VK_LOG_DEBUG("ggml_vk_create_timeline_semaphore()");
     if (ctx->semaphore_idx >= ctx->gc.tl_semaphores.size()) {
@@ -2472,6 +4081,14 @@ static vk_semaphore * ggml_vk_create_timeline_semaphore(ggml_backend_vk_context 
     return &ctx->gc.tl_semaphores[ctx->semaphore_idx++];
 }
 
+// 函数: ggml_vk_create_event
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_event
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk::Event ggml_vk_create_event(ggml_backend_vk_context * ctx) {
     if (ctx->event_idx >= ctx->gc.events.size()) {
         ctx->gc.events.push_back(ctx->device->device.createEvent({}));
@@ -2479,6 +4096,14 @@ static vk::Event ggml_vk_create_event(ggml_backend_vk_context * ctx) {
     return ctx->gc.events[ctx->event_idx++];
 }
 
+// 函数: ggml_vk_command_pool_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_command_pool_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_command_pool_cleanup(vk_device& device, vk_command_pool& p) {
     VK_LOG_DEBUG("ggml_vk_command_pool_cleanup()");
 
@@ -2487,6 +4112,14 @@ static void ggml_vk_command_pool_cleanup(vk_device& device, vk_command_pool& p) 
     p.cmd_buffer_idx = 0;
 }
 
+// 函数: ggml_vk_queue_command_pools_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_queue_command_pools_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_queue_command_pools_cleanup(vk_device& device) {
     VK_LOG_DEBUG("ggml_vk_queue_command_pools_cleanup()");
 
@@ -2663,6 +4296,14 @@ static vk_buffer ggml_vk_create_buffer(vk_device& device, size_t size, const std
     buf->size = size;
 
     if (device->buffer_device_address) {
+        // 函数: addressInfo
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: addressInfo
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         const vk::BufferDeviceAddressInfo addressInfo(buf->buffer);
         buf->bda_addr = device->device.getBufferAddress(addressInfo);
     }
@@ -2672,6 +4313,14 @@ static vk_buffer ggml_vk_create_buffer(vk_device& device, size_t size, const std
     return buf;
 }
 
+// 函数: ggml_vk_create_buffer_check
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_buffer_check
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_buffer ggml_vk_create_buffer_check(vk_device& device, size_t size, vk::MemoryPropertyFlags req_flags, vk::MemoryPropertyFlags fallback_flags = vk::MemoryPropertyFlags(0)) {
     try {
         return ggml_vk_create_buffer(device, size, {req_flags, fallback_flags});
@@ -2682,6 +4331,14 @@ static vk_buffer ggml_vk_create_buffer_check(vk_device& device, size_t size, vk:
     }
 }
 
+// 函数: ggml_vk_create_buffer_device
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_create_buffer_device
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_buffer ggml_vk_create_buffer_device(vk_device& device, size_t size) {
     vk_buffer buf;
     try {
@@ -2719,6 +4376,14 @@ static vk_buffer ggml_vk_create_buffer_device(vk_device& device, size_t size) {
     return buf;
 }
 
+// 函数: ggml_vk_destroy_buffer
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_destroy_buffer
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_destroy_buffer(vk_buffer& buf) {
     if (buf == nullptr) {
         return;
@@ -2731,10 +4396,26 @@ static void ggml_vk_destroy_buffer(vk_buffer& buf) {
     buf.reset();
 }
 
+// 函数: ggml_vk_subbuffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_subbuffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_subbuffer ggml_vk_subbuffer(const ggml_backend_vk_context* ctx, const vk_buffer& buf, size_t offset = 0) {
     return { buf, offset, ggml_vk_get_max_buffer_range(ctx, buf, offset) };
 }
 
+// 函数: ggml_vk_sync_buffers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sync_buffers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sync_buffers(ggml_backend_vk_context* ctx, vk_context& subctx) {
     VK_LOG_DEBUG("ggml_vk_sync_buffers()");
 
@@ -2757,6 +4438,14 @@ static void ggml_vk_sync_buffers(ggml_backend_vk_context* ctx, vk_context& subct
     );
 }
 
+// 函数: ggml_vk_set_event
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_set_event
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_set_event(vk_context& ctx, vk::Event& event) {
     VK_LOG_DEBUG("ggml_vk_set_event()");
 
@@ -2766,6 +4455,14 @@ static void ggml_vk_set_event(vk_context& ctx, vk::Event& event) {
     );
 }
 
+// 函数: ggml_vk_wait_events
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_wait_events
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_wait_events(vk_context& ctx, std::vector<vk::Event>&& events) {
     VK_LOG_DEBUG("ggml_vk_wait_events()");
     if (events.empty()) {
@@ -2782,6 +4479,24 @@ static void ggml_vk_wait_events(vk_context& ctx, std::vector<vk::Event>&& events
     );
 }
 
+// 类: vk_fa_tuning_params
+// 描述: vk_fa_tuning_params类提供相关功能
+// 用途: 用于处理vk_fa_tuning_params相关的操作
+// 类: vk_fa_tuning_params
+// 描述: vk_fa_tuning_params类提供相关功能
+// 用途: 用于处理vk_fa_tuning_params相关的操作
+    // 结构体: vk_fa_tuning_params
+    // 描述: vk_fa_tuning_params结构体提供相关功能
+    // 用途: 用于处理vk_fa_tuning_params相关的操作
+    // 结构体: vk_fa_tuning_params
+    // 描述: vk_fa_tuning_params结构体提供相关功能
+    // 用途: 用于处理vk_fa_tuning_params相关的操作
+    // 结构体: vk_fa_tuning_params
+    // 描述: vk_fa_tuning_params结构体提供相关功能
+    // 用途: 用于处理vk_fa_tuning_params相关的操作
+    // 结构体: vk_fa_tuning_params
+    // 描述: vk_fa_tuning_params结构体提供相关功能
+    // 用途: 用于处理vk_fa_tuning_params相关的操作
 struct vk_fa_tuning_params {
     FaCodePath path;
     uint32_t workgroup_size;
@@ -2794,6 +4509,14 @@ struct vk_fa_tuning_params {
     bool disable_subgroups;
     uint32_t limit_occupancy_shmem;
 
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print() const {
         std::cerr << "path=" << path << " workgroup_size=" << workgroup_size << " subgroup_size=" << subgroup_size <<
                      " block_rows=" << block_rows << " block_cols=" << block_cols << " d_split=" << d_split <<
@@ -2802,9 +4525,33 @@ struct vk_fa_tuning_params {
     }
 };
 
+// 函数: ggml_vk_flash_attn_scalar_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_flash_attn_scalar_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_flash_attn_scalar_shmem_support(const vk_device& device, const vk_fa_tuning_params& params, uint32_t hsk, uint32_t hsv, bool f32acc);
+// 函数: ggml_vk_flash_attn_coopmat_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_flash_attn_coopmat_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_flash_attn_coopmat_shmem_support(const vk_device& device, const vk_fa_tuning_params& params, uint32_t hsk, uint32_t hsv, bool f32acc);
 
+// 函数: get_fa_tuning_params_scalar
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_fa_tuning_params_scalar
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static vk_fa_tuning_params get_fa_tuning_params_scalar(const vk_device& device, uint32_t hsk, uint32_t hsv, uint32_t n_rows, uint32_t n_kv, ggml_type kv_type, bool f32acc) {
     GGML_UNUSED(kv_type);
 
@@ -2881,6 +4628,14 @@ static vk_fa_tuning_params get_fa_tuning_params_scalar(const vk_device& device, 
     return result;
 }
 
+// 函数: get_fa_tuning_params_coopmat1
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_fa_tuning_params_coopmat1
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static vk_fa_tuning_params get_fa_tuning_params_coopmat1(const vk_device& device, uint32_t hsk, uint32_t hsv, uint32_t n_rows, uint32_t n_kv, ggml_type kv_type, bool f32acc) {
     GGML_UNUSED(n_rows);
     GGML_UNUSED(n_kv);
@@ -2911,6 +4666,14 @@ static vk_fa_tuning_params get_fa_tuning_params_coopmat1(const vk_device& device
     return result;
 }
 
+// 函数: get_fa_tuning_params_coopmat2
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_fa_tuning_params_coopmat2
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static vk_fa_tuning_params get_fa_tuning_params_coopmat2(const vk_device& device, uint32_t hsk, uint32_t hsv, uint32_t n_rows, uint32_t n_kv, ggml_type kv_type, bool f32acc) {
     GGML_UNUSED(n_kv);
     GGML_UNUSED(f32acc);
@@ -2939,6 +4702,14 @@ static vk_fa_tuning_params get_fa_tuning_params_coopmat2(const vk_device& device
     return result;
 }
 
+// 函数: get_fa_tuning_params
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_fa_tuning_params
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static vk_fa_tuning_params get_fa_tuning_params(const vk_device& device, uint32_t hsk, uint32_t hsv, uint32_t n_rows, uint32_t n_kv, ggml_type kv_type, bool f32acc) {
     FaCodePath path = device->coopmat2 ? FA_COOPMAT2 :
                       device->coopmat1_fa_support ? FA_COOPMAT1 : FA_SCALAR;
@@ -2996,6 +4767,14 @@ static std::vector<uint32_t> get_fa_spec_constants(const vk_fa_pipeline_state& s
             state.row_split, state.subgroup_size, state.shmem_staging ? 1u : 0u, state.flags, state.limit_occupancy_shmem};
 }
 
+// 函数: ggml_vk_matmul_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_matmul_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_matmul_shmem_support(const vk_device& device, const std::vector<uint32_t>& warptile, bool mul_mat_id, ggml_type src0_type) {
 
     uint32_t lut_size = 0;
@@ -3047,6 +4826,24 @@ static bool ggml_vk_matmul_shmem_support(const vk_device& device, const std::vec
     return supported;
 }
 
+// 类: GpuPipelineConfig
+// 描述: GpuPipelineConfig类提供相关功能
+// 用途: 用于处理gpupipelineconfig相关的操作
+// 类: GpuPipelineConfig
+// 描述: GpuPipelineConfig类提供相关功能
+// 用途: 用于处理gpupipelineconfig相关的操作
+    // 结构体: GpuPipelineConfig
+    // 描述: GpuPipelineConfig结构体提供相关功能
+    // 用途: 用于处理GpuPipelineConfig相关的操作
+    // 结构体: GpuPipelineConfig
+    // 描述: GpuPipelineConfig结构体提供相关功能
+    // 用途: 用于处理GpuPipelineConfig相关的操作
+    // 结构体: GpuPipelineConfig
+    // 描述: GpuPipelineConfig结构体提供相关功能
+    // 用途: 用于处理GpuPipelineConfig相关的操作
+    // 结构体: GpuPipelineConfig
+    // 描述: GpuPipelineConfig结构体提供相关功能
+    // 用途: 用于处理GpuPipelineConfig相关的操作
 struct GpuPipelineConfig {
     // GPU architecture identifier.
     // Example: vk_device_architecture::AMD_GCN
@@ -3093,6 +4890,14 @@ static std::vector<GpuPipelineConfig> gpu_pipeline_configs = {
     },
 };
 
+// 函数: get_subgroup_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_subgroup_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static uint32_t get_subgroup_size(const std::string &pipeline_name, const vk_device_architecture &arch) {
     for (const auto &config : gpu_pipeline_configs) {
         if (config.arch == arch) {
@@ -3114,6 +4919,14 @@ static uint32_t get_subgroup_size(const std::string &pipeline_name, const vk_dev
     return 0; // If no matching configuration is found
 }
 
+// 函数: ggml_vk_load_shaders
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_load_shaders
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_load_shaders(vk_device& device) {
     VK_LOG_DEBUG("ggml_vk_load_shaders(" << device->name << ")");
 
@@ -4668,9 +6481,33 @@ static void ggml_vk_load_shaders(vk_device& device) {
     }
 }
 
+// 函数: ggml_vk_khr_cooperative_matrix_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_khr_cooperative_matrix_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_khr_cooperative_matrix_support(const vk::PhysicalDeviceProperties& props, const vk::PhysicalDeviceDriverProperties& driver_props, vk_device_architecture arch);
+// 函数: ggml_vk_intel_shader_core_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_intel_shader_core_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_intel_shader_core_count(const vk::PhysicalDevice& vkdev);
 
+// 函数: ggml_vk_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_device ggml_vk_get_device(size_t idx) {
     VK_LOG_DEBUG("ggml_vk_get_device(" << idx << ")");
 
@@ -5431,6 +7268,14 @@ static vk_device ggml_vk_get_device(size_t idx) {
     return vk_instance.devices[idx];
 }
 
+// 函数: ggml_vk_print_gpu_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_gpu_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_gpu_info(size_t idx) {
     GGML_ASSERT(idx < vk_instance.device_indices.size());
     size_t dev_num = vk_instance.device_indices[idx];
@@ -5589,9 +7434,41 @@ static void ggml_vk_print_gpu_info(size_t idx) {
     }
 }
 
+// 函数: ggml_vk_instance_layer_settings_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_layer_settings_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_instance_layer_settings_available();
+// 函数: ggml_vk_instance_portability_enumeration_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_portability_enumeration_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_instance_portability_enumeration_ext_available(const std::vector<vk::ExtensionProperties>& instance_extensions);
+// 函数: ggml_vk_instance_debug_utils_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_debug_utils_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_instance_debug_utils_ext_available(const std::vector<vk::ExtensionProperties> & instance_extensions);
+// 函数: ggml_vk_device_is_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_device_is_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_device_is_supported(const vk::PhysicalDevice & vkdev);
 
 static DispatchLoaderDynamic ggml_vk_default_dispatcher_instance;
@@ -5599,6 +7476,14 @@ DispatchLoaderDynamic & ggml_vk_default_dispatcher() {
     return ggml_vk_default_dispatcher_instance;
 }
 
+// 函数: ggml_vk_instance_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_instance_init() {
     if (vk_instance_initialized) {
         return;
@@ -5849,6 +7734,14 @@ static void ggml_vk_instance_init() {
     }
 }
 
+// 函数: ggml_vk_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_init(ggml_backend_vk_context * ctx, size_t idx) {
     VK_LOG_DEBUG("ggml_vk_init(" << ctx->name << ", " << idx << ")");
     ggml_vk_instance_init();
@@ -5884,6 +7777,14 @@ static void ggml_vk_init(ggml_backend_vk_context * ctx, size_t idx) {
 #endif
 }
 
+// 函数: ggml_vk_get_to_fp16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_to_fp16
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_to_fp16(ggml_backend_vk_context * ctx, ggml_type type) {
     VK_LOG_DEBUG("ggml_vk_get_to_fp16()");
     switch (type) {
@@ -5916,6 +7817,14 @@ static vk_pipeline ggml_vk_get_to_fp16(ggml_backend_vk_context * ctx, ggml_type 
     return ctx->device->pipeline_dequant[type];
 }
 
+// 函数: ggml_vk_get_mul_mat_mat_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_mul_mat_mat_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_matmul_pipeline ggml_vk_get_mul_mat_mat_pipeline(ggml_backend_vk_context * ctx, ggml_type src0_type, ggml_type src1_type, ggml_prec prec) {
     VK_LOG_DEBUG("ggml_vk_get_mul_mat_mat_pipeline(" << ggml_type_name(src0_type) << ", " << ggml_type_name(src1_type) << ", " << prec << ")");
     if (src0_type == GGML_TYPE_F32 && src1_type == GGML_TYPE_F32) {
@@ -5994,6 +7903,14 @@ static vk_matmul_pipeline ggml_vk_get_mul_mat_mat_pipeline(ggml_backend_vk_conte
     return (ctx->device->fp16 && prec == GGML_PREC_DEFAULT) ? ctx->device->pipeline_dequant_mul_mat_mat[src0_type].f16acc : ctx->device->pipeline_dequant_mul_mat_mat[src0_type].f32acc;
 }
 
+// 函数: ggml_vk_get_dequantize_mul_mat_vec
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_dequantize_mul_mat_vec
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_dequantize_mul_mat_vec(ggml_backend_vk_context * ctx, ggml_type a_type, ggml_type b_type, uint32_t num_cols, uint32_t m, uint32_t k) {
     VK_LOG_DEBUG("ggml_vk_get_dequantize_mul_mat_vec()");
     GGML_ASSERT(b_type == GGML_TYPE_F32 || b_type == GGML_TYPE_F16 || b_type == GGML_TYPE_Q8_1);
@@ -6076,6 +7993,14 @@ static vk_pipeline ggml_vk_get_dequantize_mul_mat_vec(ggml_backend_vk_context * 
     return b_type == GGML_TYPE_F32 ? ctx->device->pipeline_dequant_mul_mat_vec_f32_f32[dmmv_wg][a_type][num_cols-1] : ctx->device->pipeline_dequant_mul_mat_vec_f16_f32[dmmv_wg][a_type][num_cols-1];
 }
 
+// 函数: ggml_vk_get_mul_mat_mat_id_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_mul_mat_mat_id_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_matmul_pipeline ggml_vk_get_mul_mat_mat_id_pipeline(ggml_backend_vk_context * ctx, ggml_type src0_type, ggml_type src1_type, ggml_prec prec) {
     VK_LOG_DEBUG("ggml_vk_get_mul_mat_mat_id_pipeline()");
     if (src0_type == GGML_TYPE_F32 && src1_type == GGML_TYPE_F32) {
@@ -6153,6 +8078,14 @@ static vk_matmul_pipeline ggml_vk_get_mul_mat_mat_id_pipeline(ggml_backend_vk_co
     }
 }
 
+// 函数: ggml_vk_get_dequantize_mul_mat_vec_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_dequantize_mul_mat_vec_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_dequantize_mul_mat_vec_id(ggml_backend_vk_context * ctx, ggml_type a_type, ggml_type b_type, uint32_t m, uint32_t k) {
     VK_LOG_DEBUG("ggml_vk_get_dequantize_mul_mat_vec_id()");
     GGML_ASSERT(b_type == GGML_TYPE_F32 || b_type == GGML_TYPE_Q8_1);
@@ -6234,6 +8167,14 @@ static vk_pipeline ggml_vk_get_dequantize_mul_mat_vec_id(ggml_backend_vk_context
     return ctx->device->pipeline_dequant_mul_mat_vec_id_f32[dmmv_wg][a_type];
 }
 
+// 函数: ggml_vk_host_malloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_host_malloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_vk_host_malloc(vk_device& device, size_t size) {
     VK_LOG_MEMORY("ggml_vk_host_malloc(" << size << ")");
     vk_buffer buf = ggml_vk_create_buffer(device, size,
@@ -6254,6 +8195,14 @@ static void * ggml_vk_host_malloc(vk_device& device, size_t size) {
     return buf->ptr;
 }
 
+// 函数: ggml_vk_host_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_host_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_host_free(vk_device& device, void* ptr) {
     if (ptr == nullptr) {
         return;
@@ -6282,6 +8231,14 @@ static void ggml_vk_host_free(vk_device& device, void* ptr) {
     device->pinned_memory.erase(device->pinned_memory.begin() + index);
 }
 
+// 函数: ggml_vk_host_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_host_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_host_get(const vk_device& device, const void * ptr, vk_buffer& buf, size_t& buf_offset) {
     std::lock_guard<std::recursive_mutex> guard(device->mutex);
     buf = nullptr;
@@ -6323,6 +8280,14 @@ static vk_subbuffer ggml_vk_tensor_subbuffer(
     return vk_subbuffer{buffer, offset, size};
 }
 
+// 函数: ggml_vk_begin_submission
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_begin_submission
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_submission ggml_vk_begin_submission(vk_device& device, vk_command_pool& p, bool one_time = true) {
     vk_submission s;
     s.buffer = ggml_vk_create_cmd_buffer(device, p);
@@ -6338,14 +8303,38 @@ static vk_submission ggml_vk_begin_submission(vk_device& device, vk_command_pool
 template <typename T> size_t push_constant_size(const T &t) {
     static_assert(std::is_class<T>::value, "T must be a struct/class");
     GGML_UNUSED(t);
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return sizeof(T);
 }
 template <typename T> size_t push_constant_size(const std::vector<T> &t) {
     GGML_UNUSED(t);
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return sizeof(T) * t.size();
 }
 template <typename T, uint32_t N> size_t push_constant_size(const std::array<T, N> &t) {
     GGML_UNUSED(t);
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sizeof
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return sizeof(T) * N;
 }
 
@@ -6361,6 +8350,14 @@ template <typename T, uint32_t N> const T *push_constant_data(const std::array<T
 }
 
 template <typename T>
+// 函数: ggml_vk_dispatch_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_dispatch_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_dispatch_pipeline(ggml_backend_vk_context* ctx, vk_context& subctx, vk_pipeline& pipeline, std::initializer_list<vk::DescriptorBufferInfo> const& descriptor_buffer_infos, const T &push_constants, std::array<uint32_t, 3> elements) {
     const uint32_t wg0 = CEIL_DIV(elements[0], pipeline->wg_denoms[0]);
     const uint32_t wg1 = CEIL_DIV(elements[1], pipeline->wg_denoms[1]);
@@ -6392,6 +8389,14 @@ static void ggml_vk_dispatch_pipeline(ggml_backend_vk_context* ctx, vk_context& 
     subctx->s->buffer.dispatch(wg0, wg1, wg2);
 }
 
+// 函数: ggml_vk_end_submission
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_end_submission
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_end_submission(vk_submission& s, std::vector<vk_semaphore> wait_semaphores, std::vector<vk_semaphore> signal_semaphores) {
     s.buffer.end();
 
@@ -6399,6 +8404,14 @@ static void ggml_vk_end_submission(vk_submission& s, std::vector<vk_semaphore> w
     s.signal_semaphores = std::move(signal_semaphores);
 }
 
+// 函数: ggml_vk_ctx_end
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ctx_end
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ctx_end(vk_context& ctx) {
     VK_LOG_DEBUG("ggml_vk_ctx_end(" << ctx << ", " << ctx->seqs.size() << ")");
     if (ctx->s == nullptr) {
@@ -6409,6 +8422,14 @@ static void ggml_vk_ctx_end(vk_context& ctx) {
     ctx->s = nullptr;
 }
 
+// 函数: ggml_vk_ctx_begin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ctx_begin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ctx_begin(vk_device& device, vk_context& subctx) {
     VK_LOG_DEBUG("ggml_vk_ctx_begin(" << device->name << ")");
     if (subctx->s != nullptr) {
@@ -6419,11 +8440,27 @@ static void ggml_vk_ctx_begin(vk_device& device, vk_context& subctx) {
     subctx->s = subctx->seqs[subctx->seqs.size() - 1].data();
 }
 
+// 函数: ggml_vk_align_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_align_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_vk_align_size(size_t width, size_t align) {
     VK_LOG_DEBUG("ggml_vk_align_size(" << width << ", " << align << ")");
     return CEIL_DIV(width, align) * align;
 }
 
+// 函数: deferred_memcpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: deferred_memcpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void deferred_memcpy(void * dst, const void * src, size_t size, std::vector<vk_staging_memcpy>* memcpys = nullptr) {
     if (memcpys == nullptr) {
         memcpy(dst, src, size);
@@ -6432,6 +8469,14 @@ static void deferred_memcpy(void * dst, const void * src, size_t size, std::vect
     }
 }
 
+// 函数: deferred_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: deferred_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void deferred_memset(void * dst, uint32_t val, size_t size, std::vector<vk_staging_memset>* memsets = nullptr) {
     if (memsets == nullptr) {
         memset(dst, val, size);
@@ -6440,6 +8485,14 @@ static void deferred_memset(void * dst, uint32_t val, size_t size, std::vector<v
     }
 }
 
+// 函数: ggml_vk_ensure_sync_staging_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ensure_sync_staging_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ensure_sync_staging_buffer(vk_device& device, size_t size) {
     if (device->sync_staging == nullptr || device->sync_staging->size < size) {
         VK_LOG_MEMORY("ggml_vk_ensure_sync_staging_buffer(" << size << ")");
@@ -6450,6 +8503,14 @@ static void ggml_vk_ensure_sync_staging_buffer(vk_device& device, size_t size) {
     }
 }
 
+// 函数: ggml_vk_ensure_sync_staging_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ensure_sync_staging_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ensure_sync_staging_buffer(ggml_backend_vk_context * ctx, size_t size) {
     if (ctx->sync_staging == nullptr || ctx->sync_staging->size < size) {
         VK_LOG_MEMORY("ggml_vk_ensure_sync_staging_buffer(" << size << ")");
@@ -6460,6 +8521,14 @@ static void ggml_vk_ensure_sync_staging_buffer(ggml_backend_vk_context * ctx, si
     }
 }
 
+// 函数: ggml_vk_buffer_write_nc_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_write_nc_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_write_nc_async(ggml_backend_vk_context * ctx, vk_context& subctx, vk_buffer& dst, size_t offset, const ggml_tensor * tensor, bool sync_staging = false) {
     VK_LOG_DEBUG("ggml_vk_buffer_write_nc_async(" << tensor << ")");
     GGML_ASSERT(!ggml_is_contiguous(tensor));
@@ -6557,6 +8626,14 @@ static void ggml_vk_buffer_write_nc_async(ggml_backend_vk_context * ctx, vk_cont
     }
 }
 
+// 函数: ggml_vk_buffer_write_2d_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_write_2d_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_buffer_write_2d_async(vk_context subctx, vk_buffer& dst, size_t offset, const void * src, size_t spitch, size_t width, size_t height, bool sync_staging = false) {
     VK_LOG_DEBUG("ggml_vk_buffer_write_2d_async(" << width << ", " << height << ")");
     // Check if src is pinned memory
@@ -6616,11 +8693,27 @@ static bool ggml_vk_buffer_write_2d_async(vk_context subctx, vk_buffer& dst, siz
     return true;
 }
 
+// 函数: ggml_vk_buffer_write_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_write_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_buffer_write_async(vk_context subctx, vk_buffer& dst, size_t offset, const void * src, size_t size, bool sync_staging = false) {
     VK_LOG_DEBUG("ggml_vk_buffer_write_async(" << size << ")");
     return ggml_vk_buffer_write_2d_async(subctx, dst, offset, src, size, size, 1, sync_staging);
 }
 
+// 函数: ggml_vk_buffer_write_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_write_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_write_2d(vk_buffer& dst, size_t offset, const void * src, size_t spitch, size_t width, size_t height) {
     VK_LOG_DEBUG("ggml_vk_buffer_write_2d(" << width << ", " << height << ")");
     // Buffer is already mapped
@@ -6654,11 +8747,27 @@ static void ggml_vk_buffer_write_2d(vk_buffer& dst, size_t offset, const void * 
     }
 }
 
+// 函数: ggml_vk_buffer_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_write(vk_buffer& dst, size_t offset, const void * src, size_t size) {
     VK_LOG_DEBUG("ggml_vk_buffer_write(" << size << ")");
     ggml_vk_buffer_write_2d(dst, offset, src, 0, size, 1);
 }
 
+// 函数: ggml_vk_buffer_read_2d_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_read_2d_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_buffer_read_2d_async(vk_context subctx, vk_buffer& src, size_t offset, void * dst, size_t spitch, size_t dpitch, size_t width, size_t height, bool sync_staging = false) {
     VK_LOG_DEBUG("ggml_vk_buffer_read_2d_async(offset=" << offset << ", width=" << width << ", height=" << height << ")");
     GGML_ASSERT(width > 0);
@@ -6714,10 +8823,26 @@ static bool ggml_vk_buffer_read_2d_async(vk_context subctx, vk_buffer& src, size
     return true;
 }
 
+// 函数: ggml_vk_buffer_read_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_read_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_buffer_read_async(vk_context subctx, vk_buffer& src, size_t offset, void * dst, size_t size, bool sync_staging = false) {
     return ggml_vk_buffer_read_2d_async(subctx, src, offset, dst, size, size, size, 1, sync_staging);
 }
 
+// 函数: ggml_vk_buffer_read
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_read
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_read(vk_buffer& src, size_t offset, void * dst, size_t size) {
     VK_LOG_DEBUG("ggml_vk_buffer_read(" << src->buffer << ", " << offset << ", " << size << ")");
 
@@ -6748,6 +8873,14 @@ static void ggml_vk_buffer_read(vk_buffer& src, size_t offset, void * dst, size_
     }
 }
 
+// 函数: ggml_vk_buffer_copy_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_copy_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_copy_async(vk_context& ctx, vk_buffer& dst, size_t dst_offset, vk_buffer& src, size_t src_offset, size_t size) {
     VK_LOG_DEBUG("ggml_vk_buffer_copy_async(" << size << ")");
     // Make sure both buffers are on same device
@@ -6758,6 +8891,14 @@ static void ggml_vk_buffer_copy_async(vk_context& ctx, vk_buffer& dst, size_t ds
     vkCmdCopyBuffer(ctx->s->buffer, (VkBuffer)src->buffer, (VkBuffer)dst->buffer, 1, &bc);
 }
 
+// 函数: ggml_vk_buffer_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_copy(vk_buffer& dst, size_t dst_offset, vk_buffer& src, size_t src_offset, size_t size) {
     if (src->device == dst->device) {
         std::lock_guard<std::recursive_mutex> guard(src->device->mutex);
@@ -6783,6 +8924,14 @@ static void ggml_vk_buffer_copy(vk_buffer& dst, size_t dst_offset, vk_buffer& sr
     }
 }
 
+// 函数: ggml_vk_buffer_memset_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_memset_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_memset_async(vk_context& ctx, vk_buffer& dst, size_t offset, uint32_t c, size_t size) {
     VK_LOG_DEBUG("ggml_vk_buffer_memset_async(" << offset << ", " << c << ", " << size << ")");
 
@@ -6796,6 +8945,14 @@ static void ggml_vk_buffer_memset_async(vk_context& ctx, vk_buffer& dst, size_t 
     ctx->s->buffer.fillBuffer(dst->buffer, offset, size, c);
 }
 
+// 函数: ggml_vk_buffer_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_buffer_memset(vk_buffer& dst, size_t offset, uint32_t c, size_t size) {
     VK_LOG_DEBUG("ggml_vk_buffer_memset(" << offset << ", " << c << ", " << size << ")");
 
@@ -6817,6 +8974,14 @@ static void ggml_vk_buffer_memset(vk_buffer& dst, size_t offset, uint32_t c, siz
     ggml_vk_queue_command_pools_cleanup(dst->device);
 }
 
+// 函数: ggml_vk_guess_split_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_guess_split_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_guess_split_k(ggml_backend_vk_context * ctx, uint32_t m, uint32_t n, uint32_t k, bool disable_split_k, const vk_pipeline& pipeline) {
     VK_LOG_DEBUG("ggml_vk_guess_split_k(" << m << ", " << n << ", " << k << ", " << disable_split_k << ")");
 
@@ -6859,6 +9024,14 @@ static uint32_t ggml_vk_guess_split_k(ggml_backend_vk_context * ctx, uint32_t m,
     return split_k;
 }
 
+// 函数: ggml_vk_guess_matmul_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_guess_matmul_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_guess_matmul_pipeline(ggml_backend_vk_context * ctx, vk_matmul_pipeline& mmp, uint32_t m, uint32_t n, bool aligned, ggml_type src0_type, ggml_type src1_type) {
     VK_LOG_DEBUG("ggml_vk_guess_matmul_pipeline(" << m << ", " << n << ", " << aligned << ", " << ggml_type_name(src0_type) << ", " << ggml_type_name(src1_type) << ")");
 
@@ -6900,6 +9073,14 @@ static vk_pipeline ggml_vk_guess_matmul_pipeline(ggml_backend_vk_context * ctx, 
     GGML_UNUSED(src1_type);
 }
 
+// 函数: ggml_vk_guess_matmul_pipeline_align
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_guess_matmul_pipeline_align
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_guess_matmul_pipeline_align(ggml_backend_vk_context * ctx, vk_matmul_pipeline& mmp, int m, int n, ggml_type src0_type, ggml_type src1_type) {
     VK_LOG_DEBUG("ggml_vk_guess_matmul_pipeline_align(" << m << ", " << n << ", " << ggml_type_name(src0_type) << ", " << ggml_type_name(src1_type) << ")");
     return ggml_vk_guess_matmul_pipeline(ctx, mmp, m, n, true, src0_type, src1_type)->align;
@@ -6954,6 +9135,14 @@ static void ggml_vk_matmul(
     ctx->prealloc_split_k_need_sync = true;
 }
 
+// 函数: ggml_vk_guess_matmul_id_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_guess_matmul_id_pipeline
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_guess_matmul_id_pipeline(ggml_backend_vk_context * ctx, vk_matmul_pipeline& mmp, uint32_t m, uint32_t n, bool aligned, ggml_type src0_type) {
     VK_LOG_DEBUG("ggml_vk_guess_matmul_id_pipeline(" << m << ", " << n << ", " << aligned << ", " << ggml_type_name(src0_type) << ")");
 
@@ -6980,6 +9169,14 @@ static vk_pipeline ggml_vk_guess_matmul_id_pipeline(ggml_backend_vk_context * ct
     return aligned ? mmp->a_l : mmp->l;
 }
 
+// 函数: ggml_vk_guess_matmul_id_pipeline_align
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_guess_matmul_id_pipeline_align
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_guess_matmul_id_pipeline_align(ggml_backend_vk_context * ctx, vk_matmul_pipeline& mmp, int m, int n, ggml_type src0_type) {
     VK_LOG_DEBUG("ggml_vk_guess_matmul_pipeline_align(" << m << ", " << n << ", " << ggml_type_name(src0_type) << ")");
     return ggml_vk_guess_matmul_id_pipeline(ctx, mmp, m, n, true, src0_type)->align;
@@ -7001,6 +9198,14 @@ static void ggml_vk_matmul_id(
     ggml_vk_dispatch_pipeline(ctx, subctx, pipeline, { a, b, d, ids, expert_count_buf }, pc, { m, nei1, n_as });
 }
 
+// 函数: ggml_vk_dim01_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_dim01_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_dim01_contiguous(const ggml_tensor * tensor) {
     return
         tensor->nb[0] == ggml_type_size(tensor->type) &&
@@ -7008,6 +9213,14 @@ static bool ggml_vk_dim01_contiguous(const ggml_tensor * tensor) {
         (tensor->ne[3] == 1 || tensor->nb[3] == tensor->nb[2]*tensor->ne[2]);
 }
 
+// 函数: ggml_vk_get_cpy_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_cpy_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_cpy_pipeline(ggml_backend_vk_context * ctx, const ggml_tensor * src, const ggml_tensor * dst, ggml_type to) {
 
     // Choose "contiguous copy" shader if src/dst are contiguous
@@ -7126,6 +9339,14 @@ static vk_pipeline ggml_vk_get_cpy_pipeline(ggml_backend_vk_context * ctx, const
     GGML_ABORT("fatal error");
 }
 
+// 函数: ggml_vk_cpy_to_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_cpy_to_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_cpy_to_contiguous(ggml_backend_vk_context * ctx, vk_context& subctx, vk_pipeline pipeline, const ggml_tensor * tensor, const vk_subbuffer & in, const vk_subbuffer & out) {
     VK_LOG_DEBUG("ggml_vk_cpy_to_contiguous((" << tensor << ", type=" << tensor->type << ", ne0=" << tensor->ne[0] << ", ne1=" << tensor->ne[1] << ", ne2=" << tensor->ne[2] << ", ne3=" << tensor->ne[3] << ", nb0=" << tensor->nb[0] << ", nb1=" << tensor->nb[1] << ", nb2=" << tensor->nb[2] << ", nb3=" << tensor->nb[3] << "), ";
     std::cerr << "buffer in size=" << in.buffer->size << ", buffer out size=" << out.buffer->size << ")");
@@ -7155,6 +9376,14 @@ static void ggml_vk_cpy_to_contiguous(ggml_backend_vk_context * ctx, vk_context&
     ggml_vk_sync_buffers(ctx, subctx);
 }
 
+// 函数: ggml_vk_get_quantize_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_quantize_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_quantize_pipeline(ggml_backend_vk_context * ctx, ggml_type type) {
     switch(type) {
         case GGML_TYPE_Q8_1:
@@ -7165,6 +9394,14 @@ static vk_pipeline ggml_vk_get_quantize_pipeline(ggml_backend_vk_context * ctx, 
     }
 }
 
+// 函数: ggml_vk_quantize_q8_1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_quantize_q8_1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_quantize_q8_1(ggml_backend_vk_context * ctx, vk_context& subctx, const vk_subbuffer & in, const vk_subbuffer & out, uint32_t ne) {
     VK_LOG_DEBUG("ggml_vk_quantize_q8_1(" << "buffer in size=" << in.buffer->size << ", buffer out size=" << out.buffer->size << ", " << ne << ")");
 
@@ -7184,6 +9421,14 @@ static void ggml_vk_quantize_q8_1(ggml_backend_vk_context * ctx, vk_context& sub
     ggml_vk_sync_buffers(ctx, subctx);
 }
 
+// 函数: ggml_vk_get_64b_indexing_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_64b_indexing_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_get_64b_indexing_pipeline(ggml_backend_vk_context * ctx, vk_pipeline &pipeline) {
     GGML_UNUSED(ctx);
 #if defined(VK_EXT_shader_64bit_indexing)
@@ -7198,6 +9443,14 @@ static vk_pipeline ggml_vk_get_64b_indexing_pipeline(ggml_backend_vk_context * c
     return pipeline;
 }
 
+// 函数: ggml_vk_mul_mat_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_q_f16(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst, bool disable_split_k) {
     VK_LOG_DEBUG("ggml_vk_mul_mat_q_f16((" << src0 << ", name=" << src0->name << ", type=" << ggml_type_name(src0->type) << ", ne0=" << src0->ne[0] << ", ne1=" << src0->ne[1] << ", ne2=" << src0->ne[2] << ", ne3=" << src0->ne[3] << ", nb0=" << src0->nb[0] << ", nb1=" << src0->nb[1] << ", nb2=" << src0->nb[2] << ", nb3=" << src0->nb[3];
     std::cerr << "), (" << src1 << ", name=" << src1->name << ", type=" << ggml_type_name(src1->type) << ", ne0=" << src1->ne[0] << ", ne1=" << src1->ne[1] << ", ne2=" << src1->ne[2] << ", ne3=" << src1->ne[3] << ", nb0=" << src1->nb[0] << ", nb1=" << src1->nb[1] << ", nb2=" << src1->nb[2] << ", nb3=" << src1->nb[3];
@@ -7461,6 +9714,14 @@ static void ggml_vk_mul_mat_q_f16(ggml_backend_vk_context * ctx, vk_context& sub
 }
 
 // Device tuning
+// 函数: ggml_vk_should_use_mmvq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_should_use_mmvq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_should_use_mmvq(const vk_device& device, uint32_t m, uint32_t n, uint32_t k, ggml_type src0_type) {
     if (device->mmvq_mode == 1) {
         return true;
@@ -7527,6 +9788,14 @@ static bool ggml_vk_should_use_mmvq(const vk_device& device, uint32_t m, uint32_
     GGML_UNUSED(m);
 }
 
+// 函数: ggml_vk_mul_mat_vec_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_vec_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_vec_q_f16(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     const ggml_tensor * src0 = dst->src[0];
@@ -7766,6 +10035,14 @@ static void ggml_vk_mul_mat_vec_q_f16(ggml_backend_vk_context * ctx, vk_context&
     }
 }
 
+// 函数: ggml_vk_mul_mat_vec_p021_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_vec_p021_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_vec_p021_f16_f32(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     const ggml_tensor * src0 = dst->src[0];
@@ -7858,6 +10135,14 @@ static void ggml_vk_mul_mat_vec_p021_f16_f32(ggml_backend_vk_context * ctx, vk_c
         }, pc, { 1, (uint32_t)ne01, workgroups_z });
 }
 
+// 函数: ggml_vk_mul_mat_vec_nc_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_vec_nc_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_vec_nc_f16_f32(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     const ggml_tensor * src0 = dst->src[0];
@@ -7952,6 +10237,14 @@ static void ggml_vk_mul_mat_vec_nc_f16_f32(ggml_backend_vk_context * ctx, vk_con
         }, pc, { (uint32_t)ne03, (uint32_t)ne01, (uint32_t)ne12 });
 }
 
+// 函数: ggml_vk_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     ggml_tensor * src0 = dst->src[0];
@@ -8014,6 +10307,14 @@ static void ggml_vk_mul_mat(ggml_backend_vk_context * ctx, vk_context& subctx, c
     }
 }
 
+// 函数: ggml_vk_mul_mat_id_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_id_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_id_q_f16(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * ids, ggml_tensor * dst) {
     VK_LOG_DEBUG("ggml_vk_mul_mat_id_q_f16((" << src0 << ", name=" << src0->name << ", type=" << src0->type << ", ne0=" << src0->ne[0] << ", ne1=" << src0->ne[1] << ", ne2=" << src0->ne[2] << ", ne3=" << src0->ne[3] << ", nb0=" << src0->nb[0] << ", nb1=" << src0->nb[1] << ", nb2=" << src0->nb[2] << ", nb3=" << src0->nb[3];
     std::cerr << "), (" << src1 << ", name=" << src1->name << ", type=" << src1->type << ", ne0=" << src1->ne[0] << ", ne1=" << src1->ne[1] << ", ne2=" << src1->ne[2] << ", ne3=" << src1->ne[3] << ", nb0=" << src1->nb[0] << ", nb1=" << src1->nb[1] << ", nb2=" << src1->nb[2] << ", nb3=" << src1->nb[3];
@@ -8306,6 +10607,14 @@ static void ggml_vk_mul_mat_id_q_f16(ggml_backend_vk_context * ctx, vk_context& 
     ctx->prealloc_split_k_need_sync = true;
 }
 
+// 函数: ggml_vk_mul_mat_vec_id_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_vec_id_q_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_vec_id_q_f16(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     ggml_tensor * src0 = dst->src[0];
@@ -8538,6 +10847,14 @@ static void ggml_vk_mul_mat_vec_id_q_f16(ggml_backend_vk_context * ctx, vk_conte
     }
 }
 
+// 函数: ggml_vk_use_mul_mat_vec_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_use_mul_mat_vec_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_use_mul_mat_vec_id(const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     ggml_tensor * src0 = dst->src[0];
@@ -8545,6 +10862,14 @@ static bool ggml_vk_use_mul_mat_vec_id(const struct ggml_cgraph * cgraph, int no
     return (src2->ne[1] <= 8) && (src0->type == GGML_TYPE_F32 || src0->type == GGML_TYPE_F16 || ggml_is_quantized(src0->type));
 }
 
+// 函数: ggml_vk_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul_mat_id(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     ggml_tensor * src0 = dst->src[0];
@@ -8558,6 +10883,14 @@ static void ggml_vk_mul_mat_id(ggml_backend_vk_context * ctx, vk_context& subctx
     }
 }
 
+// 函数: ggml_vk_flash_attn_scalar_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_flash_attn_scalar_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_flash_attn_scalar_shmem_support(const vk_device& device, const vk_fa_tuning_params& params, uint32_t hsk, uint32_t hsv, bool f32acc) {
     GGML_UNUSED(f32acc);
     // Needs to be kept up to date on shader changes
@@ -8586,6 +10919,14 @@ static bool ggml_vk_flash_attn_scalar_shmem_support(const vk_device& device, con
     return supported;
 }
 
+// 函数: ggml_vk_flash_attn_coopmat_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_flash_attn_coopmat_shmem_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_flash_attn_coopmat_shmem_support(const vk_device& device, const vk_fa_tuning_params& params, uint32_t hsk, uint32_t hsv, bool f32acc) {
     // Needs to be kept up to date on shader changes
     const uint32_t Br = params.block_rows;
@@ -8629,6 +10970,14 @@ static bool ggml_vk_flash_attn_coopmat_shmem_support(const vk_device& device, co
     return supported;
 }
 
+// 函数: ggml_vk_flash_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_flash_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_flash_attn(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * q, const ggml_tensor * k, const ggml_tensor * v, const ggml_tensor * mask, const ggml_tensor * sinks, ggml_tensor * dst) {
     VK_LOG_DEBUG("ggml_vk_flash_attn((" << q << ", name=" << q->name << ", type=" << q->type << ", ne0=" << q->ne[0] << ", ne1=" << q->ne[1] << ", ne2=" << q->ne[2] << ", ne3=" << q->ne[3] << ", nb0=" << q->nb[0] << ", nb1=" << q->nb[1] << ", nb2=" << q->nb[2] << ", nb3=" << q->nb[3];
     std::cerr << "), (" << k << ", name=" << k->name << ", type=" << k->type << ", ne0=" << k->ne[0] << ", ne1=" << k->ne[1] << ", ne2=" << k->ne[2] << ", ne3=" << k->ne[3] << ", nb0=" << k->nb[0] << ", nb1=" << k->nb[1] << ", nb2=" << k->nb[2] << ", nb3=" << k->nb[3];
@@ -8920,6 +11269,14 @@ static void ggml_vk_flash_attn(ggml_backend_vk_context * ctx, vk_context& subctx
     }
 }
 
+// 函数: ggml_vk_conv_select_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_conv_select_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_conv_shapes ggml_vk_conv_select_shape(ggml_backend_vk_context * ctx, uint32_t K, uint32_t NPQ) {
     auto n_tiles = [&](vk_conv_shapes s) {
         return CEIL_DIV(K, vk_conv_block_sizes[s].K)
@@ -8939,6 +11296,14 @@ static vk_conv_shapes ggml_vk_conv_select_shape(ggml_backend_vk_context * ctx, u
     }
 }
 
+// 函数: ggml_vk_op_get_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_op_get_pipeline
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk_pipeline ggml_vk_op_get_pipeline(ggml_backend_vk_context * ctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * src2, const ggml_tensor * dst, ggml_op op) {
     switch (op) {
     case GGML_OP_GET_ROWS:
@@ -9587,6 +11952,14 @@ template <> void init_pushconst_tensor_offsets(ggml_backend_vk_context * ctx, vk
 }
 
 template<typename PC>
+// 函数: ggml_vk_op_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_op_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_op_f32(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * src2, const ggml_tensor * src3, ggml_tensor * dst, ggml_op op, PC&& pc) {
     VK_LOG_DEBUG("ggml_vk_op_f32((" << src0 << ", name=" << src0->name << ", type=" << src0->type << ", ne0=" << src0->ne[0] << ", ne1=" << src0->ne[1] << ", ne2=" << src0->ne[2] << ", ne3=" << src0->ne[3] << ", nb0=" << src0->nb[0] << ", nb1=" << src0->nb[1] << ", nb2=" << src0->nb[2] << ", nb3=" << src0->nb[3];
     if (src1 != nullptr) {
@@ -9932,6 +12305,14 @@ static void ggml_vk_op_f32(ggml_backend_vk_context * ctx, vk_context& subctx, co
     }
 }
 
+// 函数: ggml_vk_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_get_rows(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -9947,6 +12328,14 @@ static void ggml_vk_get_rows(ggml_backend_vk_context * ctx, vk_context& subctx, 
     });
 }
 
+// 函数: ggml_vk_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_acc(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -9967,6 +12356,14 @@ static void ggml_vk_acc(ggml_backend_vk_context * ctx, vk_context& subctx, const
     });
 }
 
+// 函数: ggml_vk_multi_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_multi_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_multi_add(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_cgraph * cgraph, int node_idx) {
     const ggml_tensor *first_node = cgraph->nodes[node_idx];
     const ggml_tensor *dst = cgraph->nodes[node_idx + ctx->num_additional_fused_ops];
@@ -10074,6 +12471,14 @@ static void ggml_vk_multi_add(ggml_backend_vk_context * ctx, vk_context& subctx,
         }, pc, elements);
 }
 
+// 函数: ggml_vk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_add(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10089,6 +12494,14 @@ static void ggml_vk_add(ggml_backend_vk_context * ctx, vk_context& subctx, const
     });
 }
 
+// 函数: ggml_vk_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sub(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10104,6 +12517,14 @@ static void ggml_vk_sub(ggml_backend_vk_context * ctx, vk_context& subctx, const
     });
 }
 
+// 函数: ggml_vk_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mul(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10119,6 +12540,14 @@ static void ggml_vk_mul(ggml_backend_vk_context * ctx, vk_context& subctx, const
     });
 }
 
+// 函数: ggml_vk_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_div(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10134,6 +12563,14 @@ static void ggml_vk_div(ggml_backend_vk_context * ctx, vk_context& subctx, const
     });
 }
 
+// 函数: ggml_vk_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_add_id(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * src2, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10149,6 +12586,14 @@ static void ggml_vk_add_id(ggml_backend_vk_context * ctx, vk_context& subctx, co
     });
 }
 
+// 函数: ggml_vk_op_f32_wkv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_op_f32_wkv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_op_f32_wkv(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst, const vk_op_rwkv_wkv6_push_constants&& pc, int version) {
     GGML_ASSERT(version == 6 || version == 7);
     int num_srcs = version == 6 ? 6 : 7;
@@ -10190,6 +12635,14 @@ static void ggml_vk_op_f32_wkv(ggml_backend_vk_context * ctx, vk_context& subctx
     }
 }
 
+// 函数: ggml_vk_rwkv_wkv6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rwkv_wkv6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_rwkv_wkv6(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     const size_t seq_length = dst->src[0]->ne[2];
     const size_t n_embed = dst->ne[0];
@@ -10208,6 +12661,14 @@ static void ggml_vk_rwkv_wkv6(ggml_backend_vk_context * ctx, vk_context& subctx,
     );
 }
 
+// 函数: ggml_vk_rwkv_wkv7
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rwkv_wkv7
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_rwkv_wkv7(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     const size_t seq_length = dst->src[0]->ne[2];
     const size_t n_embed = dst->ne[0];
@@ -10226,6 +12687,14 @@ static void ggml_vk_rwkv_wkv7(ggml_backend_vk_context * ctx, vk_context& subctx,
     );
 }
 
+// 函数: ggml_vk_ssm_scan
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ssm_scan
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ssm_scan(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -10282,6 +12751,14 @@ static void ggml_vk_ssm_scan(ggml_backend_vk_context * ctx, vk_context& subctx, 
         pc, elements);
 }
 
+// 函数: ggml_vk_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_ssm_conv(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -10298,6 +12775,14 @@ static void ggml_vk_ssm_conv(ggml_backend_vk_context * ctx, vk_context& subctx, 
     });
 }
 
+// 函数: ggml_vk_op_f32_opt_step_adamw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_op_f32_opt_step_adamw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_op_f32_opt_step_adamw(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst, const vk_op_push_constants&& pc) {
     const ggml_tensor * x = dst->src[0];
     const ggml_tensor * g = dst->src[1];
@@ -10339,6 +12824,14 @@ static void ggml_vk_op_f32_opt_step_adamw(ggml_backend_vk_context * ctx, vk_cont
         pc, elements);
 }
 
+// 函数: ggml_vk_opt_step_adamw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_opt_step_adamw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_opt_step_adamw(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     const size_t n = ggml_nelements(dst->src[0]);
 
@@ -10348,12 +12841,28 @@ static void ggml_vk_opt_step_adamw(ggml_backend_vk_context * ctx, vk_context& su
     );
 }
 
+// 函数: ggml_vk_opt_step_sgd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_opt_step_sgd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_opt_step_sgd(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * src2, ggml_tensor * dst) {
     const size_t n = ggml_nelements(dst->src[0]);
 
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, src1, src2, nullptr, dst, GGML_OP_OPT_STEP_SGD, { (uint32_t)n, 0, 0.0f, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_concat(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     int * op_params = (int *)dst->op_params;
 
@@ -10371,6 +12880,14 @@ static void ggml_vk_concat(ggml_backend_vk_context * ctx, vk_context& subctx, co
     });
 }
 
+// 函数: ggml_vk_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_upscale(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t mode = (uint32_t)ggml_get_op_params_i32(dst, 0);
@@ -10398,6 +12915,14 @@ static void ggml_vk_upscale(ggml_backend_vk_context * ctx, vk_context& subctx, c
     });
 }
 
+// 函数: ggml_vk_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_scale(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst);
     p.param1 = ggml_get_op_params_f32(dst, 0);
@@ -10406,14 +12931,38 @@ static void ggml_vk_scale(ggml_backend_vk_context * ctx, vk_context& subctx, con
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SCALE, std::move(p));
 }
 
+// 函数: ggml_vk_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sqr(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SQR, vk_op_unary_push_constants_init(src0, dst));
 }
 
+// 函数: ggml_vk_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sqrt(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SQRT, vk_op_unary_push_constants_init(src0, dst));
 }
 
+// 函数: ggml_vk_add1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_add1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_add1(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10429,6 +12978,14 @@ static void ggml_vk_add1(ggml_backend_vk_context * ctx, vk_context& subctx, cons
     });
 }
 
+// 函数: ggml_vk_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_arange(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     VK_LOG_DEBUG("ggml_vk_arange(dst=" << dst << ", ne=" << ggml_nelements(dst) << ")");
 
@@ -10451,6 +13008,14 @@ static void ggml_vk_arange(ggml_backend_vk_context * ctx, vk_context& subctx, gg
     ggml_vk_dispatch_pipeline(ctx, subctx, pipeline, { dst_buf }, pc, elements);
 }
 
+// 函数: ggml_vk_fill
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_fill
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_fill(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_tensor * dst) {
     VK_LOG_DEBUG("ggml_vk_fill(dst=" << dst << ", ne=" << ggml_nelements(dst) << ")");
 
@@ -10473,18 +13038,50 @@ static void ggml_vk_fill(ggml_backend_vk_context * ctx, vk_context& subctx, ggml
     ggml_vk_dispatch_pipeline(ctx, subctx, pipeline, { dst_buf }, pc, elements);
 }
 
+// 函数: ggml_vk_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sin(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SIN, vk_op_unary_push_constants_init(src0, dst));
 }
 
+// 函数: ggml_vk_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_cos(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_COS, vk_op_unary_push_constants_init(src0, dst));
 }
 
+// 函数: ggml_vk_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_log(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_LOG, vk_op_unary_push_constants_init(src0, dst));
 }
 
+// 函数: ggml_vk_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_tri(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst);
     p.param1 = ggml_get_op_params_f32(dst, 0);
@@ -10492,12 +13089,28 @@ static void ggml_vk_tri(ggml_backend_vk_context * ctx, vk_context& subctx, const
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_TRI, std::move(p));
 }
 
+// 函数: ggml_vk_diag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_diag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_diag(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst, ggml_nelements(dst));
 
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_DIAG, std::move(p));
 }
 
+// 函数: ggml_vk_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_clamp(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst);
     p.param1 = ggml_get_op_params_f32(dst, 0);
@@ -10506,11 +13119,27 @@ static void ggml_vk_clamp(ggml_backend_vk_context * ctx, vk_context& subctx, con
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_CLAMP, std::move(p));
 }
 
+// 函数: ggml_vk_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_pad(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_pad_push_constants p = vk_op_pad_push_constants_init(src0, dst);
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_PAD, std::move(p));
 }
 
+// 函数: ggml_vk_roll
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_roll
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_roll(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const int32_t s0 = ggml_get_op_params_i32(dst, 0);
     const int32_t s1 = ggml_get_op_params_i32(dst, 1);
@@ -10526,16 +13155,40 @@ static void ggml_vk_roll(ggml_backend_vk_context * ctx, vk_context& subctx, cons
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_ROLL, std::move(p));
 }
 
+// 函数: ggml_vk_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_repeat(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst, ggml_nelements(dst));
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_REPEAT, std::move(p));
 }
 
+// 函数: ggml_vk_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_repeat_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_repeat_back(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst, ggml_nelements(dst));
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_REPEAT_BACK, std::move(p));
 }
 
+// 函数: ggml_vk_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_cpy(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     uint32_t ne = (uint32_t)ggml_nelements(src0);
     if (ggml_is_quantized(src0->type) && ggml_is_quantized(dst->type)) {
@@ -10552,6 +13205,14 @@ static void ggml_vk_cpy(ggml_backend_vk_context * ctx, vk_context& subctx, const
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_CPY, std::move(p));
 }
 
+// 函数: ggml_vk_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_set_rows(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -10574,16 +13235,40 @@ static void ggml_vk_set_rows(ggml_backend_vk_context * ctx, vk_context& subctx, 
     });
 }
 
+// 函数: ggml_vk_silu_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_silu_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_silu_back(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_SILU_BACK, { (uint32_t)ggml_nelements(src0), 0, 0.0f, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_norm(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     float * op_params = (float *)dst->op_params;
 
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_NORM, { (uint32_t)src0->ne[0], (uint32_t)src0->ne[1], op_params[0], 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_group_norm(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const int * int_op_params = (const int *)dst->op_params;
     const float * float_op_params = (const float *)dst->op_params;
@@ -10595,6 +13280,14 @@ static void ggml_vk_group_norm(ggml_backend_vk_context * ctx, vk_context& subctx
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_GROUP_NORM, { group_size, 0, eps, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_rms_num_partials
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rms_num_partials
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_rms_num_partials(ggml_backend_vk_context * ctx, const ggml_tensor *node) {
     const uint32_t ne = (uint32_t)node->ne[0];
     const uint32_t denom = ctx->device->pipeline_add_rms[0][0][0]->wg_denoms[0];
@@ -10602,12 +13295,28 @@ static uint32_t ggml_vk_rms_num_partials(ggml_backend_vk_context * ctx, const gg
     return num_partials;
 }
 
+// 函数: ggml_vk_rms_partials_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rms_partials_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_rms_partials_size(ggml_backend_vk_context * ctx, const ggml_tensor *node) {
     const uint32_t num_partials = ggml_vk_rms_num_partials(ctx, node);
     const uint32_t num_bytes = ROUNDUP_POW2(num_partials * sizeof(uint32_t), ctx->device->partials_binding_alignment);
     return num_bytes;
 }
 
+// 函数: ggml_vk_make_rope_constants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_make_rope_constants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_op_rope_push_constants ggml_vk_make_rope_constants(const ggml_tensor *dst, const ggml_tensor *src0, const bool has_ff, bool backprop, const uint32_t set_rows_stride) {
     const int n_dims        = ((const int32_t *) dst->op_params)[1];
     const int mode          = ((const int32_t *) dst->op_params)[2];
@@ -10654,6 +13363,14 @@ static vk_op_rope_push_constants ggml_vk_make_rope_constants(const ggml_tensor *
     return rope;
 }
 
+// 函数: ggml_vk_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_rms_norm(ggml_backend_vk_context * ctx, vk_context& subctx, const struct ggml_cgraph * cgraph, int node_idx, float * op_params) {
     ggml_tensor * dst;
     const ggml_tensor * src0;
@@ -10769,11 +13486,27 @@ static void ggml_vk_rms_norm(ggml_backend_vk_context * ctx, vk_context& subctx, 
     }
 }
 
+// 函数: ggml_vk_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rms_norm_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_rms_norm_back(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     float * op_params = (float *)dst->op_params;
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_RMS_NORM_BACK, { (uint32_t)src0->ne[0], (uint32_t)src0->ne[1], op_params[0], 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_l2_norm(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const float * op_params = (const float *)dst->op_params;
     vk_op_unary_push_constants p = vk_op_unary_push_constants_init(src0, dst);
@@ -10781,10 +13514,26 @@ static void ggml_vk_l2_norm(ggml_backend_vk_context * ctx, vk_context& subctx, c
     ggml_vk_op_f32<vk_op_unary_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_L2_NORM, std::move(p));
 }
 
+// 函数: ggml_vk_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_unary(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_UNARY, { (uint32_t)ggml_nelements(src0), 0, 0.0f, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_xielu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_xielu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_xielu(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     float * op_params = (float *)dst->op_params;
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_UNARY,
@@ -10795,6 +13544,14 @@ static void ggml_vk_xielu(ggml_backend_vk_context * ctx, vk_context& subctx, con
     );
 }
 
+// 函数: ggml_vk_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_glu(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const float * op_params_f = (const float *)dst->op_params;
 
@@ -10826,11 +13583,27 @@ static void ggml_vk_glu(ggml_backend_vk_context * ctx, vk_context& subctx, const
         });
 }
 
+// 函数: ggml_vk_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_diag_mask_inf(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     int32_t * op_params = (int32_t *)dst->op_params;
     ggml_vk_op_f32<vk_op_diag_mask_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_DIAG_MASK_INF, { (uint32_t)src0->ne[0], (uint32_t)src0->ne[1], op_params[0] });
 }
 
+// 函数: ggml_vk_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_soft_max(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, const ggml_tensor * src2, ggml_tensor * dst) {
     float * op_params = (float *)dst->op_params;
 
@@ -10915,11 +13688,27 @@ static void ggml_vk_soft_max(ggml_backend_vk_context * ctx, vk_context& subctx, 
     }
 }
 
+// 函数: ggml_vk_soft_max_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_soft_max_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_soft_max_back(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     float * op_params = (float *)dst->op_params;
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_SOFT_MAX_BACK, { (uint32_t)src0->ne[0], (uint32_t)ggml_nrows(src0), op_params[0], op_params[1], 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_topk_moe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_topk_moe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_topk_moe(ggml_backend_vk_context * ctx, vk_context& subctx, ggml_cgraph * cgraph, int node_idx) {
     topk_moe_mode mode = ctx->fused_topk_moe_mode;
     ggml_tensor * logits = cgraph->nodes[node_idx + 0]->src[0];
@@ -10994,6 +13783,14 @@ static void ggml_vk_topk_moe(ggml_backend_vk_context * ctx, vk_context& subctx, 
     ggml_vk_dispatch_pipeline(ctx, subctx, pipeline, {logits_buf, bias_buf, weights_buf, ids_buf}, pc, elements);
 }
 
+// 函数: ggml_vk_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_rope(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_cgraph * cgraph, int node_idx, bool backprop) {
     ggml_tensor * dst = cgraph->nodes[node_idx];
     const ggml_tensor * src0 = dst->src[0];
@@ -11028,6 +13825,14 @@ static void ggml_vk_rope(ggml_backend_vk_context * ctx, vk_context& subctx, cons
         ggml_vk_make_rope_constants(cgraph->nodes[node_idx], src0, src2 != nullptr, backprop, set_rows_stride));
 }
 
+// 函数: ggml_vk_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_argsort(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const uint32_t * op_params = (const uint32_t *)dst->op_params;
 
@@ -11114,6 +13919,14 @@ static void ggml_vk_argsort(ggml_backend_vk_context * ctx, vk_context& subctx, c
     }
 }
 
+// 函数: ggml_vk_topk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_topk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_topk(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     uint32_t ncols = src0->ne[0];
     uint32_t nrows = ggml_nrows(src0);
@@ -11222,22 +14035,54 @@ static void ggml_vk_topk(ggml_backend_vk_context * ctx, vk_context& subctx, cons
     ctx->prealloc_x_need_sync = true;
 }
 
+// 函数: ggml_vk_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sum(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_sum_rows_push_constants p = vk_op_sum_rows_push_constants_init(src0, dst, ggml_nelements(src0));
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SUM, p);
 }
 
+// 函数: ggml_vk_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_sum_rows(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_sum_rows_push_constants p = vk_op_sum_rows_push_constants_init(src0, dst, src0->ne[0]);
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_SUM_ROWS, p);
 }
 
+// 函数: ggml_vk_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_mean(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_sum_rows_push_constants p = vk_op_sum_rows_push_constants_init(src0, dst, src0->ne[0]);
     p.weight = 1.0f / (float)src0->ne[0];
     ggml_vk_op_f32(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_MEAN, p);
 }
 
+// 函数: ggml_vk_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_cumsum(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     vk_op_sum_rows_push_constants pc = vk_op_sum_rows_push_constants_init(src0, dst, src0->ne[0]);
     // Use the single pass shader when the rows are small or there are enough rows to fill the GPU.
@@ -11285,14 +14130,38 @@ static void ggml_vk_cumsum(ggml_backend_vk_context * ctx, vk_context& subctx, co
     ctx->prealloc_split_k_need_sync = true;
 }
 
+// 函数: ggml_vk_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_argmax(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_ARGMAX, { (uint32_t)src0->ne[0], (uint32_t)src0->ne[1], 0.0f, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_count_equal(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_COUNT_EQUAL, { (uint32_t)ggml_nelements(src0), 0, 0.0f, 0.0f, 0.0f, 0.0f });
 }
 
+// 函数: ggml_vk_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_solve_tri(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const uint32_t src0_type_size = ggml_type_size(src0->type);
     const uint32_t src1_type_size = ggml_type_size(src1->type);
@@ -11308,6 +14177,14 @@ static void ggml_vk_solve_tri(ggml_backend_vk_context * ctx, vk_context& subctx,
     });
 }
 
+// 函数: ggml_vk_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_im2col(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const int32_t s0 = dst->op_params[0];
     const int32_t s1 = dst->op_params[1];
@@ -11349,6 +14226,14 @@ static void ggml_vk_im2col(ggml_backend_vk_context * ctx, vk_context& subctx, co
     });
 }
 
+// 函数: ggml_vk_im2col_3d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_im2col_3d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_im2col_3d(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_TENSOR_BINARY_OP_LOCALS
 
@@ -11415,6 +14300,14 @@ static void ggml_vk_im2col_3d(ggml_backend_vk_context * ctx, vk_context& subctx,
     ggml_vk_op_f32<vk_op_im2col_3d_push_constants>(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_IM2COL_3D, std::move(pc));
 }
 
+// 函数: ggml_vk_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_timestep_embedding(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const uint32_t dim = dst->op_params[0];
     const uint32_t max_period = dst->op_params[1];
@@ -11425,6 +14318,14 @@ static void ggml_vk_timestep_embedding(ggml_backend_vk_context * ctx, vk_context
     });
 }
 
+// 函数: ggml_vk_conv_transpose_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_conv_transpose_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_conv_transpose_1d(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     // src0: (K, Cout, Cin, 1) -- kernel
     // src1: (L, Cin, 1, 1) -- input
@@ -11456,6 +14357,14 @@ static void ggml_vk_conv_transpose_1d(ggml_backend_vk_context * ctx, vk_context&
     ggml_vk_op_f32(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_CONV_TRANSPOSE_1D, std::move(p));
 }
 
+// 函数: ggml_vk_pool_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_pool_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_pool_2d(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     uint32_t op = static_cast<uint32_t>(dst->op_params[0]);
     const int32_t k1 = dst->op_params[1];
@@ -11524,6 +14433,14 @@ static void ggml_vk_conv_2d(ggml_backend_vk_context * ctx, vk_context & subctx, 
     ggml_vk_op_f32(ctx, subctx, src0, src1, nullptr, nullptr, dst, dst->op, std::move(p));
 }
 
+// 函数: ggml_vk_conv_2d_dw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_conv_2d_dw
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_conv_2d_dw(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     vk_op_conv2d_dw_push_constants p{};
     p.ne = ggml_nelements(dst);
@@ -11548,12 +14465,28 @@ static void ggml_vk_conv_2d_dw(ggml_backend_vk_context * ctx, vk_context& subctx
     ggml_vk_op_f32(ctx, subctx, src0, src1, nullptr, nullptr, dst, GGML_OP_CONV_2D_DW, std::move(p));
 }
 
+// 函数: ggml_vk_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_leaky_relu(ggml_backend_vk_context * ctx, vk_context& subctx, const ggml_tensor * src0, ggml_tensor * dst) {
     const float * op_params = (const float *)dst->op_params;
     ggml_vk_op_f32<vk_op_push_constants>(ctx, subctx, src0, nullptr, nullptr, nullptr, dst, GGML_OP_LEAKY_RELU, { (uint32_t)ggml_nelements(src0), 0, op_params[0], 0.0f, 0.0f, 0.0f });
 }
 
 #ifdef GGML_VULKAN_RUN_TESTS
+// 函数: ggml_vk_print_matrix_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_matrix_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_matrix_area(const void * data, ggml_type type, int ne0, int ne1, int i0, int i1, int i2) {
     if (type != GGML_TYPE_F32 && type != GGML_TYPE_F16) {
         return;
@@ -11588,6 +14521,14 @@ static void ggml_vk_print_matrix_area(const void * data, ggml_type type, int ne0
 }
 
 template <typename X_TYPE, typename Y_TYPE>
+// 函数: ggml_vk_test_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_test_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_test_matmul(ggml_backend_vk_context * ctx, size_t m, size_t n, size_t k, size_t batch, size_t num_it, int split_k, int shader_size) {
     VK_LOG_DEBUG("ggml_vk_test_matmul(" << m << ", " << n << ", " << k << ", " << batch << ", " << num_it << ", " << split_k << ", " << shader_size << ")");
     const size_t x_ne = m * k * batch;
@@ -11879,6 +14820,14 @@ static void ggml_vk_test_matmul(ggml_backend_vk_context * ctx, size_t m, size_t 
     free(d);
 }
 
+// 函数: ggml_vk_print_tensor_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_tensor_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_tensor_area(const ggml_tensor * tensor, int i0, int i1, int i2, int i3) {
     if (tensor->type != GGML_TYPE_F32 && tensor->type != GGML_TYPE_F16) {
         return;
@@ -11913,10 +14862,26 @@ static void ggml_vk_print_tensor_area(const ggml_tensor * tensor, int i0, int i1
     }
 }
 
+// 函数: ggml_vk_quantize_data
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_quantize_data
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_quantize_data(const float * from, void * to, size_t ne, ggml_type quant) {
     ggml_quantize_chunk(quant, from, to, 0, 1, ne, nullptr);
 }
 
+// 函数: ggml_vk_dequantize_data
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_dequantize_data
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_dequantize_data(const void * from, float * to, size_t ne, ggml_type quant) {
     if (quant == GGML_TYPE_F32) {
         memcpy(to, from, sizeof(float) * ne);
@@ -11930,6 +14895,14 @@ static void ggml_vk_dequantize_data(const void * from, float * to, size_t ne, gg
     dequant_fn(from, to, ne);
 }
 
+// 函数: ggml_vk_test_dequant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_test_dequant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_test_dequant(ggml_backend_vk_context * ctx, size_t ne, ggml_type quant) {
     VK_LOG_DEBUG("ggml_vk_test_dequant(" << ne << ")");
     const size_t x_sz = sizeof(float) * ne;
@@ -12122,6 +15095,14 @@ static void ggml_vk_test_dequant(ggml_backend_vk_context * ctx, size_t ne, ggml_
 //     free(qx_res);
 // }
 
+// 函数: ggml_vk_test_dequant_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_test_dequant_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_test_dequant_matmul(ggml_backend_vk_context * ctx, size_t m, size_t n, size_t k, size_t batch, size_t num_it, size_t split_k, size_t shader_size, ggml_type quant, bool mmq = false) {
     VK_LOG_DEBUG("ggml_vk_test_dequant_matmul(" << m << ", " << n << ", " << k << ", " << batch << ", " << num_it << ", " << split_k << ", " << ggml_type_name(quant) << ")");
     const size_t x_ne = m * k * batch;
@@ -12357,6 +15338,14 @@ static void ggml_vk_test_dequant_matmul(ggml_backend_vk_context * ctx, size_t m,
 }
 #endif
 
+// 函数: ggml_vk_preallocate_buffers
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_preallocate_buffers
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_preallocate_buffers(ggml_backend_vk_context * ctx, vk_context subctx) {
 #if defined(GGML_VULKAN_RUN_TESTS)
     const std::vector<size_t> vals {
@@ -12493,10 +15482,26 @@ static void ggml_vk_preallocate_buffers(ggml_backend_vk_context * ctx, vk_contex
     }
 }
 
+// 函数: ggml_vk_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_compute_forward(ggml_backend_vk_context* ctx, ggml_cgraph * cgraph, ggml_tensor* tensor, int tensor_idx, bool almost_ready);
 
 // Returns true if node has enqueued work into the queue, false otherwise
 // If submit is true the current all operations queued so far are being submitted to Vulkan to overlap cmdlist creation and GPU execution.
+// 函数: ggml_vk_build_graph
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_build_graph
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_build_graph(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, int node_idx, ggml_tensor *node_begin, int node_idx_begin, bool last_node, bool almost_ready, bool submit){
     ggml_tensor * node = cgraph->nodes[node_idx];
     if (ggml_is_empty(node) || ggml_op_is_empty(node->op) || !node->buffer) {
@@ -12997,6 +16002,14 @@ static bool ggml_vk_build_graph(ggml_backend_vk_context * ctx, ggml_cgraph * cgr
     return true;
 }
 
+// 函数: ggml_vk_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_compute_forward(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, ggml_tensor * tensor, int tensor_idx, bool almost_ready = false) {
     GGML_UNUSED(cgraph);
     GGML_UNUSED(tensor);
@@ -13046,6 +16059,14 @@ static void ggml_vk_compute_forward(ggml_backend_vk_context * ctx, ggml_cgraph *
 }
 
 // Clean up after graph processing is done
+// 函数: ggml_vk_graph_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_graph_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_graph_cleanup(ggml_backend_vk_context * ctx) {
     VK_LOG_DEBUG("ggml_vk_graph_cleanup()");
     ctx->prealloc_y_last_pipeline_used = {};
@@ -13080,6 +16101,14 @@ static void ggml_vk_graph_cleanup(ggml_backend_vk_context * ctx) {
 }
 
 // Clean up on backend free
+// 函数: ggml_vk_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_cleanup(ggml_backend_vk_context * ctx) {
     VK_LOG_DEBUG("ggml_vk_cleanup(" << ctx->name << ")");
     // discard any unsubmitted command buffers
@@ -13121,12 +16150,28 @@ static void ggml_vk_cleanup(ggml_backend_vk_context * ctx) {
     }
 }
 
+// 函数: ggml_vk_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_vk_get_device_count() {
     ggml_vk_instance_init();
 
     return vk_instance.device_indices.size();
 }
 
+// 函数: ggml_vk_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_get_device_description(int device, char * description, size_t description_size) {
     ggml_vk_instance_init();
 
@@ -13144,10 +16189,26 @@ static void ggml_vk_get_device_description(int device, char * description, size_
 
 // device backend
 
+// 函数: ggml_backend_buffer_is_vk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_vk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_vk(ggml_backend_buffer_t buffer) {
     return buffer->buft->iface.get_name == ggml_backend_vk_buffer_type_name;
 }
 
+// 函数: ggml_backend_vk_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     VK_LOG_MEMORY("ggml_backend_vk_buffer_free_buffer()");
     ggml_backend_vk_buffer_context * ctx = (ggml_backend_vk_buffer_context *)buffer->context;
@@ -13155,6 +16216,14 @@ static void ggml_backend_vk_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     delete ctx;
 }
 
+// 函数: ggml_backend_vk_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_vk_buffer_get_base(ggml_backend_buffer_t buffer) {
     return vk_ptr_base;
 
@@ -13169,6 +16238,14 @@ static enum ggml_status ggml_backend_vk_buffer_init_tensor(ggml_backend_buffer_t
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_backend_vk_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_buffer_memset_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     VK_LOG_DEBUG("ggml_backend_vk_buffer_memset_tensor(" << buffer << ", " << tensor << ", " << value << ", " << offset << ", " << size << ")");
     ggml_backend_vk_buffer_context * buf_ctx = (ggml_backend_vk_buffer_context *)buffer->context;
@@ -13178,6 +16255,14 @@ static void ggml_backend_vk_buffer_memset_tensor(ggml_backend_buffer_t buffer, g
     ggml_vk_buffer_memset(buf, vk_tensor_offset(tensor) + tensor->view_offs + offset, val32, size);
 }
 
+// 函数: ggml_backend_vk_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_buffer_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     VK_LOG_DEBUG("ggml_backend_vk_buffer_set_tensor(" << buffer << ", " << tensor << ", " << data << ", " << offset << ", " << size << ")");
     ggml_backend_vk_buffer_context * buf_ctx = (ggml_backend_vk_buffer_context *)buffer->context;
@@ -13186,6 +16271,14 @@ static void ggml_backend_vk_buffer_set_tensor(ggml_backend_buffer_t buffer, ggml
     ggml_vk_buffer_write(buf, vk_tensor_offset(tensor) + tensor->view_offs + offset, data, size);
 }
 
+// 函数: ggml_backend_vk_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_buffer_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     VK_LOG_DEBUG("ggml_backend_vk_buffer_get_tensor(" << buffer << ", " << tensor << ", " << data << ", " << offset << ", " << size << ")");
     ggml_backend_vk_buffer_context * buf_ctx = (ggml_backend_vk_buffer_context *)buffer->context;
@@ -13195,6 +16288,14 @@ static void ggml_backend_vk_buffer_get_tensor(ggml_backend_buffer_t buffer, cons
     ggml_vk_buffer_read(buf, vk_tensor_offset(tensor) + tensor->view_offs + offset, data, size);
 }
 
+// 函数: ggml_backend_vk_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_vk_buffer_cpy_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * src, ggml_tensor * dst) {
     if (ggml_backend_buffer_is_vk(src->buffer)) {
         ggml_backend_vk_buffer_context * src_buf_ctx = (ggml_backend_vk_buffer_context *)src->buffer->context;
@@ -13212,6 +16313,14 @@ static bool ggml_backend_vk_buffer_cpy_tensor(ggml_backend_buffer_t buffer, cons
     UNUSED(buffer);
 }
 
+// 函数: ggml_backend_vk_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_backend_vk_buffer_context * ctx = (ggml_backend_vk_buffer_context *)buffer->context;
 
@@ -13231,12 +16340,28 @@ static ggml_backend_buffer_i ggml_backend_vk_buffer_interface = {
 };
 
 // vk buffer type
+// 函数: ggml_backend_vk_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_buffer_type_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_vk_buffer_type_context * ctx = (ggml_backend_vk_buffer_type_context *)buft->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_vk_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_vk_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     VK_LOG_MEMORY("ggml_backend_vk_buffer_type_alloc_buffer(" << size << ")");
     ggml_backend_vk_buffer_type_context * ctx = (ggml_backend_vk_buffer_type_context *) buft->context;
@@ -13253,22 +16378,54 @@ static ggml_backend_buffer_t ggml_backend_vk_buffer_type_alloc_buffer(ggml_backe
     return ggml_backend_buffer_init(buft, ggml_backend_vk_buffer_interface, bufctx, size);
 }
 
+// 函数: ggml_backend_vk_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     ggml_backend_vk_buffer_type_context * ctx = (ggml_backend_vk_buffer_type_context *) buft->context;
     return ctx->device->properties.limits.minStorageBufferOffsetAlignment;
 }
 
+// 函数: ggml_backend_vk_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_backend_vk_buffer_type_context * ctx = (ggml_backend_vk_buffer_type_context *) buft->context;
     return ctx->device->suballocation_block_size;
 }
 
+// 函数: ggml_backend_vk_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     return ggml_nbytes(tensor);
 
     UNUSED(buft);
 }
 
+// 函数: ggml_backend_vk_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_vk_buffer_type(size_t dev_num) {
     ggml_vk_instance_init();
 
@@ -13281,23 +16438,55 @@ ggml_backend_buffer_type_t ggml_backend_vk_buffer_type(size_t dev_num) {
 
 // host buffer type
 
+// 函数: ggml_backend_vk_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_host_buffer_type_name(ggml_backend_buffer_type_t buft) {
     return GGML_VK_NAME "_Host";
 
     UNUSED(buft);
 }
 
+// 函数: ggml_backend_vk_host_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_host_buffer_name(ggml_backend_buffer_t buffer) {
     return GGML_VK_NAME "_Host";
 
     UNUSED(buffer);
 }
 
+// 函数: ggml_backend_vk_host_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_host_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     VK_LOG_MEMORY("ggml_backend_vk_host_buffer_free_buffer()");
     ggml_vk_host_free(vk_instance.devices[0], buffer->context);
 }
 
+// 函数: ggml_backend_vk_host_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_vk_host_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     VK_LOG_MEMORY("ggml_backend_vk_host_buffer_type_alloc_buffer(" << size << ")");
 
@@ -13320,12 +16509,28 @@ static ggml_backend_buffer_t ggml_backend_vk_host_buffer_type_alloc_buffer(ggml_
     UNUSED(buft);
 }
 
+// 函数: ggml_backend_vk_host_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_host_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return vk_instance.devices[0]->properties.limits.minMemoryMapAlignment;
 
     UNUSED(buft);
 }
 
+// 函数: ggml_backend_vk_host_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_host_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     return vk_instance.devices[0]->suballocation_block_size;
 
@@ -13334,6 +16539,14 @@ static size_t ggml_backend_vk_host_buffer_type_get_max_size(ggml_backend_buffer_
 
 // Should be changed to return device-specific host buffer type
 // but that probably requires changes in llama.cpp
+// 函数: ggml_backend_vk_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_vk_host_buffer_type() {
     static struct ggml_backend_buffer_type ggml_backend_vk_buffer_type_host = {
         /* .iface    = */ {
@@ -13358,12 +16571,28 @@ ggml_backend_buffer_type_t ggml_backend_vk_host_buffer_type() {
 
 // backend
 
+// 函数: ggml_backend_vk_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_name(ggml_backend_t backend) {
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_vk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_free(ggml_backend_t backend) {
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
     VK_LOG_DEBUG("ggml_backend_vk_free(" << ctx->name << ")");
@@ -13374,12 +16603,28 @@ static void ggml_backend_vk_free(ggml_backend_t backend) {
     delete backend;
 }
 
+// 函数: ggml_backend_vk_get_default_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_default_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_vk_get_default_buffer_type(ggml_backend_t backend) {
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
 
     return &ctx->device->buffer_type;
 }
 
+// 函数: ggml_backend_vk_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_set_tensor_async(ggml_backend_t backend, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     VK_LOG_DEBUG("ggml_backend_vk_set_tensor_async(" << size << ")");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -13419,6 +16664,14 @@ static void ggml_backend_vk_set_tensor_async(ggml_backend_t backend, ggml_tensor
     }
 }
 
+// 函数: ggml_backend_vk_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_get_tensor_async(ggml_backend_t backend, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     VK_LOG_DEBUG("ggml_backend_vk_get_tensor_async(" << size << ")");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -13458,6 +16711,14 @@ static void ggml_backend_vk_get_tensor_async(ggml_backend_t backend, const ggml_
     }
 }
 
+// 函数: ggml_backend_vk_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_vk_cpy_tensor_async(ggml_backend_t backend, const ggml_tensor * src, ggml_tensor * dst) {
     VK_LOG_DEBUG("ggml_backend_vk_cpy_tensor_async()");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -13486,6 +16747,14 @@ static bool ggml_backend_vk_cpy_tensor_async(ggml_backend_t backend, const ggml_
     return false;
 }
 
+// 函数: ggml_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_synchronize(ggml_backend_vk_context * ctx) {
     VK_LOG_DEBUG("ggml_vk_synchronize()");
 
@@ -13522,6 +16791,14 @@ static void ggml_vk_synchronize(ggml_backend_vk_context * ctx) {
     }
 }
 
+// 函数: ggml_backend_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_synchronize(ggml_backend_t backend) {
     VK_LOG_DEBUG("ggml_backend_vk_synchronize()");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -13531,10 +16808,26 @@ static void ggml_backend_vk_synchronize(ggml_backend_t backend) {
     ggml_vk_graph_cleanup(ctx);
 }
 
+// 函数: ggml_vk_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_is_empty(ggml_tensor * node) {
     return ggml_is_empty(node) || node->op == GGML_OP_NONE || node->op == GGML_OP_RESHAPE || node->op == GGML_OP_TRANSPOSE || node->op == GGML_OP_VIEW || node->op == GGML_OP_PERMUTE;
 }
 
+// 函数: ggml_vk_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_can_fuse(const ggml_backend_vk_context * ctx, const struct ggml_cgraph * cgraph, int node_idx, std::initializer_list<enum ggml_op> ops) {
     if (!ggml_can_fuse(cgraph, node_idx, ops)) {
         return false;
@@ -13822,6 +17115,14 @@ static bool ggml_vk_can_fuse_rope_set_rows(ggml_backend_vk_context * ctx, const 
 // Fusions can potentially overwrite src tensors in ways that are not prevented
 // by ggml-alloc. If the fusion src is being applied in a way that's elementwise
 // with the destination, then it's OK for them to overlap if they are exactly equal.
+// 函数: ggml_vk_tensors_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_tensors_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_tensors_overlap(const ggml_tensor * a, const ggml_tensor * b, bool elementwise) {
     ggml_backend_vk_buffer_context * a_buf_ctx = (ggml_backend_vk_buffer_context *)a->buffer->context;
     vk_buffer a_buf = a_buf_ctx->dev_buffer;
@@ -13880,6 +17181,14 @@ static bool ggml_vk_can_fuse_rms_norm_mul_rope(ggml_backend_vk_context * ctx, co
     return true;
 }
 
+// 函数: ggml_vk_fuse_multi_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_fuse_multi_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_fuse_multi_add(ggml_backend_vk_context * ctx, const struct ggml_cgraph * cgraph, int node_idx) {
 
     const ggml_tensor *first_node = cgraph->nodes[node_idx];
@@ -13932,6 +17241,14 @@ static uint32_t ggml_vk_fuse_multi_add(ggml_backend_vk_context * ctx, const stru
     return num_adds;
 }
 
+// 函数: find_first_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: find_first_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int32_t find_first_set(uint32_t x) {
     int32_t ret = 0;
     if (!x) {
@@ -13944,6 +17261,14 @@ static int32_t find_first_set(uint32_t x) {
     return ret;
 }
 
+// 函数: ggml_backend_vk_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status ggml_backend_vk_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     VK_LOG_DEBUG("ggml_backend_vk_graph_compute(" << cgraph->n_nodes << " nodes)");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -14336,6 +17661,14 @@ static ggml_status ggml_backend_vk_graph_compute(ggml_backend_t backend, ggml_cg
 }
 
 // Sort the graph for improved parallelism.
+// 函数: ggml_vk_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_graph_optimize(ggml_backend_t backend, struct ggml_cgraph * graph)
 {
     VK_LOG_DEBUG("ggml_vk_graph_optimize(" << graph->n_nodes << " nodes)");
@@ -14574,6 +17907,14 @@ static void ggml_vk_graph_optimize(ggml_backend_t backend, struct ggml_cgraph * 
     }
 }
 
+// 函数: ggml_backend_vk_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_event_record(ggml_backend_t backend, ggml_backend_event_t event) {
     VK_LOG_DEBUG("ggml_backend_vk_event_record(backend=" << backend << ", event=" << event << ")");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -14604,6 +17945,14 @@ static void ggml_backend_vk_event_record(ggml_backend_t backend, ggml_backend_ev
     ctx->compute_ctx.reset();
 }
 
+// 函数: ggml_backend_vk_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_event_wait(ggml_backend_t backend, ggml_backend_event_t event) {
     VK_LOG_DEBUG("ggml_backend_vk_event_wait(backend=" << backend << ", event=" << event << ")");
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
@@ -14643,11 +17992,27 @@ static ggml_backend_i ggml_backend_vk_interface = {
     /* .graph_optimize          = */ ggml_vk_graph_optimize,
 };
 
+// 函数: ggml_backend_vk_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_vk_guid() {
     static ggml_guid guid = { 0xb8, 0xf7, 0x4f, 0x86, 0x40, 0x3c, 0xe1, 0x02, 0x91, 0xc8, 0xdd, 0xe9, 0x02, 0x3f, 0xc0, 0x2b };
     return &guid;
 }
 
+// 函数: ggml_backend_vk_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_vk_init(size_t dev_num) {
     VK_LOG_DEBUG("ggml_backend_vk_init(" << dev_num << ")");
 
@@ -14668,20 +18033,52 @@ ggml_backend_t ggml_backend_vk_init(size_t dev_num) {
     return vk_backend;
 }
 
+// 函数: ggml_backend_is_vk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_vk
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_vk(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_vk_guid());
 }
 
+// 函数: ggml_backend_vk_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_backend_vk_get_device_count() {
     return ggml_vk_get_device_count();
 }
 
+// 函数: ggml_backend_vk_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_vk_get_device_description(int device, char * description, size_t description_size) {
     GGML_ASSERT(device < (int) vk_instance.device_indices.size());
     int dev_idx = vk_instance.device_indices[device];
     ggml_vk_get_device_description(dev_idx, description, description_size);
 }
 
+// 函数: ggml_backend_vk_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_vk_get_device_memory(int device, size_t * free, size_t * total) {
     GGML_ASSERT(device < (int) vk_instance.device_indices.size());
     GGML_ASSERT(device < (int) vk_instance.device_supports_membudget.size());
@@ -14715,6 +18112,14 @@ void ggml_backend_vk_get_device_memory(int device, size_t * free, size_t * total
     }
 }
 
+// 函数: ggml_backend_vk_get_device_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_device_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static vk::PhysicalDeviceType ggml_backend_vk_get_device_type(int device_idx) {
     GGML_ASSERT(device_idx >= 0 && device_idx < (int) vk_instance.device_indices.size());
 
@@ -14726,6 +18131,14 @@ static vk::PhysicalDeviceType ggml_backend_vk_get_device_type(int device_idx) {
     return props.properties.deviceType;
 }
 
+// 函数: ggml_backend_vk_get_device_pci_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_get_device_pci_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static std::string ggml_backend_vk_get_device_pci_id(int device_idx) {
     GGML_ASSERT(device_idx >= 0 && device_idx < (int) vk_instance.device_indices.size());
 
@@ -14766,6 +18179,24 @@ static std::string ggml_backend_vk_get_device_pci_id(int device_idx) {
 
 //////////////////////////
 
+// 类: ggml_backend_vk_device_context
+// 描述: ggml_backend_vk_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_device_context相关的操作
+// 类: ggml_backend_vk_device_context
+// 描述: ggml_backend_vk_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_vk_device_context相关的操作
+    // 结构体: ggml_backend_vk_device_context
+    // 描述: ggml_backend_vk_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_device_context相关的操作
+    // 结构体: ggml_backend_vk_device_context
+    // 描述: ggml_backend_vk_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_device_context相关的操作
+    // 结构体: ggml_backend_vk_device_context
+    // 描述: ggml_backend_vk_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_device_context相关的操作
+    // 结构体: ggml_backend_vk_device_context
+    // 描述: ggml_backend_vk_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_vk_device_context相关的操作
 struct ggml_backend_vk_device_context {
     size_t device;
     std::string name;
@@ -14775,26 +18206,66 @@ struct ggml_backend_vk_device_context {
     int op_offload_min_batch_size;
 };
 
+// 函数: ggml_backend_vk_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_device_get_name(ggml_backend_dev_t dev) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_vk_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     return ctx->description.c_str();
 }
 
+// 函数: ggml_backend_vk_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_device_get_memory(ggml_backend_dev_t device, size_t * free, size_t * total) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)device->context;
     ggml_backend_vk_get_device_memory(ctx->device, free, total);
 }
 
+// 函数: ggml_backend_vk_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_vk_device_get_buffer_type(ggml_backend_dev_t dev) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     return ggml_backend_vk_buffer_type(ctx->device);
 }
 
+// 函数: ggml_backend_vk_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_vk_device_get_host_buffer_type(ggml_backend_dev_t dev) {
     UNUSED(dev);
     return ggml_backend_vk_host_buffer_type();
@@ -14806,6 +18277,14 @@ static enum ggml_backend_dev_type ggml_backend_vk_device_get_type(ggml_backend_d
     return ctx->is_integrated_gpu ? GGML_BACKEND_DEVICE_TYPE_IGPU : GGML_BACKEND_DEVICE_TYPE_GPU;
 }
 
+// 函数: ggml_backend_vk_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
 
@@ -14822,12 +18301,28 @@ static void ggml_backend_vk_device_get_props(ggml_backend_dev_t dev, struct ggml
     };
 }
 
+// 函数: ggml_backend_vk_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_vk_device_init(ggml_backend_dev_t dev, const char * params) {
     UNUSED(params);
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     return ggml_backend_vk_init(ctx->device);
 }
 
+// 函数: ggml_backend_vk_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_vk_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     const vk_device& device = ggml_vk_get_device(ctx->device);
@@ -14940,7 +18435,43 @@ static bool ggml_backend_vk_device_supports_op(ggml_backend_dev_t dev, const ggm
                     default:
                         return false;
                 }
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * a;
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * b;
                 if (op->op == GGML_OP_MUL_MAT) {
                     a = op->src[0];
@@ -15356,6 +18887,14 @@ static bool ggml_backend_vk_device_supports_op(ggml_backend_dev_t dev, const ggm
     UNUSED(dev);
 }
 
+// 函数: ggml_backend_vk_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_vk_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     if (buft->iface.get_name != ggml_backend_vk_buffer_type_name) {
         return false;
@@ -15367,6 +18906,14 @@ static bool ggml_backend_vk_device_supports_buft(ggml_backend_dev_t dev, ggml_ba
     return buft_ctx->device->idx == ctx->device;
 }
 
+// 函数: ggml_backend_vk_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_vk_device_offload_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_vk_device_context * dev_ctx = (ggml_backend_vk_device_context *)dev->context;
 
@@ -15374,6 +18921,14 @@ static bool ggml_backend_vk_device_offload_op(ggml_backend_dev_t dev, const ggml
            (op->ne[2] >= dev_ctx->op_offload_min_batch_size && op->op == GGML_OP_MUL_MAT_ID);
 }
 
+// 函数: ggml_backend_vk_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_event_t ggml_backend_vk_device_event_new(ggml_backend_dev_t dev) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     auto device = ggml_vk_get_device(ctx->device);
@@ -15394,6 +18949,14 @@ static ggml_backend_event_t ggml_backend_vk_device_event_new(ggml_backend_dev_t 
     };
 }
 
+// 函数: ggml_backend_vk_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_device_event_free(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
     auto device = ggml_vk_get_device(ctx->device);
@@ -15406,6 +18969,14 @@ static void ggml_backend_vk_device_event_free(ggml_backend_dev_t dev, ggml_backe
     delete event;
 }
 
+// 函数: ggml_backend_vk_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_vk_device_event_synchronize(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     VK_LOG_DEBUG("ggml_backend_vk_device_event_synchronize(backend=" << dev << ", event=" << event << ")");
     ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)dev->context;
@@ -15415,6 +18986,14 @@ static void ggml_backend_vk_device_event_synchronize(ggml_backend_dev_t dev, ggm
     VK_CHECK(device->device.waitForFences({ vkev->fence }, true, UINT64_MAX), "event_synchronize");
 }
 
+// 函数: ggml_vk_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static vk_buffer ggml_vk_buffer_from_host_ptr(vk_device & device, void * ptr, size_t size) {
     if (!device->external_memory_host) {
         return {};
@@ -15440,6 +19019,14 @@ static vk_buffer ggml_vk_buffer_from_host_ptr(vk_device & device, void * ptr, si
     return buf;
 }
 
+// 函数: ggml_backend_vk_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_vk_device_buffer_from_host_ptr(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     VK_LOG_DEBUG("ggml_backend_vk_device_buffer_from_host_ptr(backend=" << dev << ", ptr=" << ptr << ", size=" << size << ")");
     GGML_UNUSED(max_tensor_size);
@@ -15478,16 +19065,40 @@ static const struct ggml_backend_device_i ggml_backend_vk_device_i = {
     /* .event_synchronize    = */ ggml_backend_vk_device_event_synchronize,
 };
 
+// 函数: ggml_backend_vk_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_vk_reg_get_name(ggml_backend_reg_t reg) {
     UNUSED(reg);
     return GGML_VK_NAME;
 }
 
+// 函数: ggml_backend_vk_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_vk_reg_get_device_count(ggml_backend_reg_t reg) {
     UNUSED(reg);
     return ggml_backend_vk_get_device_count();
 }
 
+// 函数: ggml_backend_vk_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_vk_reg_get_device(ggml_backend_reg_t reg, size_t device) {
     static std::vector<ggml_backend_dev_t> devices;
 
@@ -15529,6 +19140,14 @@ static const struct ggml_backend_reg_i ggml_backend_vk_reg_i = {
     /* .get_proc_address = */ NULL,
 };
 
+// 函数: ggml_backend_vk_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_vk_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_vk_reg() {
     static ggml_backend_reg reg = {
         /* .api_version = */ GGML_BACKEND_API_VERSION,
@@ -15551,6 +19170,14 @@ ggml_backend_reg_t ggml_backend_vk_reg() {
 }
 
 // Extension availability
+// 函数: ggml_vk_instance_layer_settings_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_layer_settings_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_instance_layer_settings_available() {
 #ifdef GGML_VULKAN_VALIDATE
     // Check if validation layer provides the extension
@@ -15569,6 +19196,14 @@ static bool ggml_vk_instance_layer_settings_available() {
 #endif
     return false;
 }
+// 函数: ggml_vk_instance_portability_enumeration_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_instance_portability_enumeration_ext_available
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_instance_portability_enumeration_ext_available(const std::vector<vk::ExtensionProperties>& instance_extensions) {
 #ifdef __APPLE__
     // Check for portability enumeration extension for MoltenVK support
@@ -15600,6 +19235,14 @@ static bool ggml_vk_instance_debug_utils_ext_available(
     UNUSED(instance_extensions);
 }
 
+// 函数: ggml_vk_device_is_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_device_is_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_device_is_supported(const vk::PhysicalDevice & vkdev) {
     VkPhysicalDeviceFeatures2 device_features2;
     device_features2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
@@ -15614,6 +19257,14 @@ static bool ggml_vk_device_is_supported(const vk::PhysicalDevice & vkdev) {
     return vk11_features.storageBuffer16BitAccess;
 }
 
+// 函数: ggml_vk_khr_cooperative_matrix_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_khr_cooperative_matrix_support
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_vk_khr_cooperative_matrix_support(const vk::PhysicalDeviceProperties& props, const vk::PhysicalDeviceDriverProperties& driver_props, vk_device_architecture arch) {
     switch (props.vendorID) {
     case VK_VENDOR_ID_INTEL:
@@ -15631,6 +19282,14 @@ static bool ggml_vk_khr_cooperative_matrix_support(const vk::PhysicalDevicePrope
     }
 }
 
+// 函数: ggml_vk_intel_shader_core_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_intel_shader_core_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_vk_intel_shader_core_count(const vk::PhysicalDevice& vkdev) {
     VkPhysicalDeviceProperties2 props = vkdev.getProperties2();
 
@@ -15674,6 +19333,14 @@ static uint32_t ggml_vk_intel_shader_core_count(const vk::PhysicalDevice& vkdev)
 // checks
 
 #ifdef GGML_VULKAN_CHECK_RESULTS
+// 函数: ggml_vk_print_graph_origin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_graph_origin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_graph_origin(const ggml_tensor * tensor, std::vector<const ggml_tensor *>& done, int level = 0) {
     if (std::find(done.begin(), done.end(), tensor) != done.end() || level > 10) {
         return;
@@ -15692,6 +19359,14 @@ static void ggml_vk_print_graph_origin(const ggml_tensor * tensor, std::vector<c
     }
 }
 
+// 函数: ggml_vk_print_tensor_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_tensor_area
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_tensor_area(const ggml_tensor * tensor, const void * data, int i0, int i1, int i2, int i3) {
     if (tensor->type != GGML_TYPE_F32 && tensor->type != GGML_TYPE_F16 && tensor->type != GGML_TYPE_I32) {
         return;
@@ -15728,6 +19403,14 @@ static void ggml_vk_print_tensor_area(const ggml_tensor * tensor, const void * d
     }
 }
 
+// 函数: ggml_vk_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_print_tensor(const ggml_tensor * tensor, const char * name) {
     void * tensor_data = tensor->data;
 
@@ -15766,6 +19449,14 @@ void * comp_result;
 size_t comp_size;
 size_t comp_nb[GGML_MAX_DIMS];
 size_t check_counter = 0;
+// 函数: ggml_vk_check_results_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_check_results_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_check_results_0(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, int tensor_idx) {
     ggml_tensor * tensor = cgraph->nodes[tensor_idx + ctx->num_additional_fused_ops];
     if (tensor->op == GGML_OP_TRANSPOSE || tensor->op == GGML_OP_SET_ROWS) {
@@ -15779,12 +19470,48 @@ static void ggml_vk_check_results_0(ggml_backend_vk_context * ctx, ggml_cgraph *
 
     VK_LOG_DEBUG("ggml_vk_check_results_0(" << tensor->name << ")");
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params iparams = {
         /*.mem_size   =*/ 2ul*1024ul*1024ul*1024ul,
         /*.mem_buffer =*/ NULL,
         /*.no_alloc   =*/ false,
     };
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ggml_ctx = ggml_init(iparams);
 
     std::array<struct ggml_tensor *, GGML_MAX_SRC> src_clone = {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
@@ -15793,6 +19520,24 @@ static void ggml_vk_check_results_0(ggml_backend_vk_context * ctx, ggml_cgraph *
     std::map<ggml_tensor *, ggml_tensor *> cloned_tensors;
     std::vector<void *> cloned_mallocs;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tensor_clone = nullptr;
 
     for (int f = 0; f < ctx->num_additional_fused_ops + 1; ++f) {
@@ -16202,6 +19947,14 @@ static void ggml_vk_check_results_0(ggml_backend_vk_context * ctx, ggml_cgraph *
     VK_LOG_DEBUG("END ggml_vk_check_results_0(" << tensor->name << ")");
 }
 
+// 函数: ggml_vk_check_results_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vk_check_results_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vk_check_results_1(ggml_backend_vk_context * ctx, ggml_cgraph * cgraph, int tensor_idx) {
     ggml_tensor * tensor = cgraph->nodes[tensor_idx + ctx->num_additional_fused_ops];
     if (tensor->op == GGML_OP_TRANSPOSE || tensor->op == GGML_OP_SET_ROWS) {

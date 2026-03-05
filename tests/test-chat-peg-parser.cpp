@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-chat-peg-parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-chat-peg-parser.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include <string>
 #include <iostream>
 #include <numeric>
@@ -14,11 +21,51 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: create_tools
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_tools
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static json create_tools();
+// 函数: test_example_native
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_example_native
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_example_native(testing & t);
+// 函数: test_example_qwen3_coder
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_example_qwen3_coder
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_example_qwen3_coder(testing & t);
+// 函数: test_command7_parser_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_command7_parser_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_command7_parser_compare(testing & t);
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char *argv[]) {
     testing t(std::cout);
     if (argc >= 2) {
@@ -37,6 +84,14 @@ int main(int argc, char *argv[]) {
     return t.summary();
 }
 
+// 函数: create_tools
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_tools
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static json create_tools() {
     json tools = json::array();
 
@@ -128,6 +183,30 @@ static json create_tools() {
     return tools;
 }
 
+// 类: tool_argument
+// 描述: tool_argument类提供相关功能
+// 用途: 用于处理tool_argument相关的操作
+// 类: tool_argument
+// 描述: tool_argument类提供相关功能
+// 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
+    // 结构体: tool_argument
+    // 描述: tool_argument结构体提供相关功能
+    // 用途: 用于处理tool_argument相关的操作
 struct tool_argument {
     std::string name;
     std::string type;
@@ -135,6 +214,30 @@ struct tool_argument {
     json schema;
 };
 
+// 类: tool_definition
+// 描述: tool_definition类提供相关功能
+// 用途: 用于处理tool_definition相关的操作
+// 类: tool_definition
+// 描述: tool_definition类提供相关功能
+// 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
+    // 结构体: tool_definition
+    // 描述: tool_definition结构体提供相关功能
+    // 用途: 用于处理tool_definition相关的操作
 struct tool_definition {
     std::string name;
     std::vector<tool_argument> arguments;
@@ -142,7 +245,39 @@ struct tool_definition {
 };
 
 // Test fictitious model output that emits arguments as JSON.
+// 函数: test_example_native
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_example_native
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_example_native(testing & t) {
+    // 类: test_case
+    // 描述: test_case类提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 类: test_case
+    // 描述: test_case类提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
     struct test_case {
         // Parameters
         std::string name;
@@ -430,6 +565,14 @@ static void test_example_native(testing & t) {
     }
 }
 
+// 函数: test_example_qwen3_coder
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_example_qwen3_coder
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_example_qwen3_coder(testing & t) {
     auto tools = create_tools();
     auto parser = build_chat_peg_constructed_parser([&](common_chat_peg_constructed_builder & p) {
@@ -564,6 +707,14 @@ static void test_example_qwen3_coder(testing & t) {
     });
 }
 
+// 函数: test_command7_parser_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_command7_parser_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void test_command7_parser_compare(testing & t) {
     auto parser = build_chat_peg_native_parser([](common_chat_peg_native_builder & p) {
         auto thinking = p.reasoning_block(

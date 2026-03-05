@@ -1,6 +1,21 @@
+// ============================================================================
+// 文件: virtgpu-forward-device.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-forward-device.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-forward-impl.h"
 #include "virtgpu-shm.h"
 
+// 函数: apir_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int apir_device_get_count(virtgpu * gpu) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -17,6 +32,14 @@ int apir_device_get_count(virtgpu * gpu) {
     return dev_count;
 }
 
+// 函数: apir_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char * apir_device_get_name(virtgpu * gpu) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -38,6 +61,14 @@ char * apir_device_get_name(virtgpu * gpu) {
     return string;
 }
 
+// 函数: apir_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char * apir_device_get_description(virtgpu * gpu) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -61,6 +92,14 @@ char * apir_device_get_description(virtgpu * gpu) {
     return string;
 }
 
+// 函数: apir_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t apir_device_get_type(virtgpu * gpu) {
     static uint32_t dev_type = 255;
     if (dev_type != 255) {
@@ -82,6 +121,14 @@ uint32_t apir_device_get_type(virtgpu * gpu) {
     return dev_type;
 }
 
+// 函数: apir_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void apir_device_get_memory(virtgpu * gpu, size_t * free, size_t * total) {
     static size_t         dev_free  = 0;
     static size_t         dev_total = 0;
@@ -104,6 +151,14 @@ void apir_device_get_memory(virtgpu * gpu, size_t * free, size_t * total) {
     return;
 }
 
+// 函数: apir_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool apir_device_supports_op(virtgpu * gpu, const ggml_tensor * op) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -123,6 +178,14 @@ bool apir_device_supports_op(virtgpu * gpu, const ggml_tensor * op) {
     return supports_op;
 }
 
+// 函数: apir_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 apir_buffer_type_host_handle_t apir_device_get_buffer_type(virtgpu * gpu) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -163,6 +226,14 @@ void apir_device_get_props(virtgpu * gpu,
     return;
 }
 
+// 函数: apir_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 apir_buffer_context_t apir_device_buffer_from_ptr(virtgpu * gpu, size_t size, size_t max_tensor_size) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;

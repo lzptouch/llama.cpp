@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: pydantic_models_to_grammar_examples.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/pydantic_models_to_grammar_examples.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 """Function calling example using pydantic models."""
@@ -19,6 +26,14 @@ from pydantic_models_to_grammar import (add_run_method_to_dynamic_model, convert
                                         create_dynamic_model_from_function, generate_gbnf_grammar_and_documentation)
 
 
+    # 函数: create_completion
+    # 描述: create_completion函数提供相关功能
+    # 参数: host, prompt, gbnf_grammar
+    # 返回: 无返回值
+    # 函数: create_completion
+    # 描述: create_completion函数提供相关功能
+    # 参数: host, prompt, gbnf_grammar
+    # 返回: 无返回值
 def create_completion(host, prompt, gbnf_grammar):
     """Calls the /completion API on llama-server.
 
@@ -38,15 +53,37 @@ def create_completion(host, prompt, gbnf_grammar):
 
 
 # A function for the agent to send a message to the user.
+    # 类: SendMessageToUser
+    # 描述: SendMessageToUser类提供相关功能
+    # 用途: 用于处理SendMessageToUser相关的操作
+    # 类: SendMessageToUser
+    # 描述: SendMessageToUser类提供相关功能
+    # 用途: 用于处理SendMessageToUser相关的操作
 class SendMessageToUser(BaseModel):
     """Send a message to the User."""
     chain_of_thought: str = Field(..., description="Your chain of thought while sending the message.")
     message: str = Field(..., description="Message you want to send to the user.")
 
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def run(self):
         print(f"SendMessageToUser: {self.message}")
 
 
+    # 函数: example_rce
+    # 描述: example_rce函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
+    # 函数: example_rce
+    # 描述: example_rce函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
 def example_rce(host):
     """Minimal test case where the LLM call an arbitrary python function."""
     print("- example_rce")
@@ -70,6 +107,12 @@ def example_rce(host):
 
 
 # Enum for the calculator tool.
+    # 类: MathOperation
+    # 描述: MathOperation类提供相关功能
+    # 用途: 用于处理MathOperation相关的操作
+    # 类: MathOperation
+    # 描述: MathOperation类提供相关功能
+    # 用途: 用于处理MathOperation相关的操作
 class MathOperation(Enum):
     ADD = "add"
     SUBTRACT = "subtract"
@@ -80,12 +123,26 @@ class MathOperation(Enum):
 # Simple pydantic calculator tool for the agent that can add, subtract,
 # multiply, and divide. Docstring and description of fields will be used in
 # system prompt.
+    # 类: Calculator
+    # 描述: Calculator类提供相关功能
+    # 用途: 用于处理Calculator相关的操作
+    # 类: Calculator
+    # 描述: Calculator类提供相关功能
+    # 用途: 用于处理Calculator相关的操作
 class Calculator(BaseModel):
     """Perform a math operation on two numbers."""
     number_one: Union[int, float] = Field(..., description="First number.")
     operation: MathOperation = Field(..., description="Math operation to perform.")
     number_two: Union[int, float] = Field(..., description="Second number.")
 
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def run(self):
         if self.operation == MathOperation.ADD:
             return self.number_one + self.number_two
@@ -99,6 +156,14 @@ class Calculator(BaseModel):
             raise ValueError("Unknown operation.")
 
 
+    # 函数: example_calculator
+    # 描述: example_calculator函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
+    # 函数: example_calculator
+    # 描述: example_calculator函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
 def example_calculator(host):
     """Have the LLM ask to get a calculation done.
 
@@ -146,12 +211,24 @@ def example_calculator(host):
     return 0
 
 
+    # 类: Category
+    # 描述: Category类提供相关功能
+    # 用途: 用于处理Category相关的操作
+    # 类: Category
+    # 描述: Category类提供相关功能
+    # 用途: 用于处理Category相关的操作
 class Category(Enum):
     """The category of the book."""
     Fiction = "Fiction"
     NonFiction = "Non-Fiction"
 
 
+    # 类: Book
+    # 描述: Book类提供相关功能
+    # 用途: 用于处理Book相关的操作
+    # 类: Book
+    # 描述: Book类提供相关功能
+    # 用途: 用于处理Book相关的操作
 class Book(BaseModel):
     """Represents an entry about a book."""
     title: str = Field(..., description="Title of the book.")
@@ -162,6 +239,14 @@ class Book(BaseModel):
     summary: str = Field(..., description="Summary of the book.")
 
 
+    # 函数: example_struct
+    # 描述: example_struct函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
+    # 函数: example_struct
+    # 描述: example_struct函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
 def example_struct(host):
     """A example structured output based on pydantic models.
 
@@ -188,6 +273,14 @@ def example_struct(host):
     return 0
 
 
+    # 函数: get_current_datetime
+    # 描述: get_current_datetime函数提供相关功能
+    # 参数: output_format: Optional[str] = None
+    # 返回: 无返回值
+    # 函数: get_current_datetime
+    # 描述: get_current_datetime函数提供相关功能
+    # 参数: output_format: Optional[str] = None
+    # 返回: 无返回值
 def get_current_datetime(output_format: Optional[str] = None):
     """Get the current date and time in the given format.
 
@@ -198,6 +291,14 @@ def get_current_datetime(output_format: Optional[str] = None):
 
 
 # Example function to get the weather.
+    # 函数: get_current_weather
+    # 描述: get_current_weather函数提供相关功能
+    # 参数: location, unit
+    # 返回: 有返回值
+    # 函数: get_current_weather
+    # 描述: get_current_weather函数提供相关功能
+    # 参数: location, unit
+    # 返回: 有返回值
 def get_current_weather(location, unit):
     """Get the current weather in a given location"""
     if "London" in location:
@@ -209,6 +310,14 @@ def get_current_weather(location, unit):
     return json.dumps({"location": location, "temperature": "unknown"})
 
 
+    # 函数: example_concurrent
+    # 描述: example_concurrent函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
+    # 函数: example_concurrent
+    # 描述: example_concurrent函数提供相关功能
+    # 参数: host
+    # 返回: 无返回值
 def example_concurrent(host):
     """An example for parallel function calling with a Python function, a pydantic
     function model and an OpenAI like function definition.
@@ -293,6 +402,14 @@ def example_concurrent(host):
     return res
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     parser = argparse.ArgumentParser(description=sys.modules[__name__].__doc__)
     parser.add_argument("--host", default="localhost:8080", help="llama.cpp server")

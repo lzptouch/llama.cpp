@@ -18,6 +18,14 @@
 #include "htp-ops.h"
 
 // Dot product of two F16 vectors, accumulating to float
+// 函数: hvx_dot_f16_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_dot_f16_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_dot_f16_f16_aa(float * restrict r, const void * restrict x, const void * restrict y, unsigned int n, float s) {
     const HVX_Vector * restrict vx = (const HVX_Vector * restrict) x; // fp16
     const HVX_Vector * restrict vy = (const HVX_Vector * restrict) y; // fp16
@@ -104,6 +112,14 @@ static inline void hvx_dot_f16_f16_aa_rx2(float * restrict r,
 }
 
 // MAD: y (F32) += x (F16) * s (F32)
+// 函数: hvx_mad_f32_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mad_f32_f16_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mad_f32_f16_aa(float * restrict y, const void * restrict x, int n, float s) {
     const HVX_Vector * restrict ptr_x = (const HVX_Vector *) x;
     HVX_Vector * restrict ptr_y = (HVX_Vector *) y;
@@ -194,18 +210,180 @@ static inline void hvx_mad_f32_f16_aa_rx2(float * restrict y,
 
 #define FLASH_ATTN_BLOCK_SIZE 128
 
+// 类: htp_fa_context
+// 描述: htp_fa_context类提供相关功能
+// 用途: 用于处理htp_fa_context相关的操作
+// 类: htp_fa_context
+// 描述: htp_fa_context类提供相关功能
+// 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
 struct htp_fa_context {
     const struct htp_ops_context * octx;
 
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src0_div21;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src0_div1;
 
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values broadcast_rk2;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values broadcast_rk3;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values broadcast_rv2;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values broadcast_rv3;
 
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src3_div2;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values src3_div3;
 
     float scale;
@@ -229,6 +407,14 @@ struct htp_fa_context {
     bool is_q_fp32;
 };
 
+// 函数: hvx_scale_vec_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_vec_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_vec_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const int n, HVX_Vector vs) {
     assert((size_t) dst % 128 == 0);
     assert((size_t) src % 128 == 0);
@@ -250,7 +436,33 @@ static inline void hvx_scale_vec_f32_aa(uint8_t * restrict dst, const uint8_t * 
     }
 }
 
+// 函数: flash_attn_ext_f16_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: flash_attn_ext_f16_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void flash_attn_ext_f16_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_fa_context
+    // 描述: htp_fa_context类提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 类: htp_fa_context
+    // 描述: htp_fa_context类提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
     struct htp_fa_context * factx = (struct htp_fa_context *) data;
     const struct htp_ops_context * octx = factx->octx;
     const struct htp_tensor * q = &octx->src0;
@@ -571,6 +783,14 @@ static void flash_attn_ext_f16_thread(unsigned int nth, unsigned int ith, void *
     }
 }
 
+// 函数: op_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_flash_attn_ext(struct htp_ops_context * octx) {
     const struct htp_tensor * q = &octx->src0;
     const struct htp_tensor * k = &octx->src1;
@@ -583,6 +803,24 @@ int op_flash_attn_ext(struct htp_ops_context * octx) {
         return HTP_STATUS_NO_SUPPORT;
     }
 
+    // 类: htp_fa_context
+    // 描述: htp_fa_context类提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 类: htp_fa_context
+    // 描述: htp_fa_context类提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
+    // 结构体: htp_fa_context
+    // 描述: htp_fa_context结构体提供相关功能
+    // 用途: 用于处理htp_fa_context相关的操作
     struct htp_fa_context factx;
     factx.octx = octx;
 

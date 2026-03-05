@@ -1,9 +1,20 @@
+// ============================================================================
+// 文件: embed_wgsl.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-webgpu/wgsl-shaders/embed_wgsl.py
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 import os
 import re
 import ast
 import argparse
 
 
+    # 函数: extract_block
+    # 描述: extract_block函数提供相关功能
+    # 参数: text, name
+    # 返回: 无返回值
 def extract_block(text, name):
     pattern = rf'#define\({name}\)\s*(.*?)#end\({name}\)'
     match = re.search(pattern, text, re.DOTALL)
@@ -12,6 +23,10 @@ def extract_block(text, name):
     return match.group(1).strip()
 
 
+    # 函数: parse_decls
+    # 描述: parse_decls函数提供相关功能
+    # 参数: decls_text
+    # 返回: 有返回值
 def parse_decls(decls_text):
     decls = {}
     for name, code in re.findall(r'#decl\((.*?)\)\s*(.*?)#enddecl\(\1\)', decls_text, re.DOTALL):
@@ -19,6 +34,10 @@ def parse_decls(decls_text):
     return decls
 
 
+    # 函数: replace_repl_placeholders
+    # 描述: replace_repl_placeholders函数提供相关功能
+    # 参数: variant, template_map
+    # 返回: 无返回值
 def replace_repl_placeholders(variant, template_map):
     for repl, code in variant["REPLS"].items():
         for key, val in template_map.items():
@@ -28,6 +47,10 @@ def replace_repl_placeholders(variant, template_map):
     return variant
 
 
+    # 函数: replace_placeholders
+    # 描述: replace_placeholders函数提供相关功能
+    # 参数: shader_text, replacements
+    # 返回: 无返回值
 def replace_placeholders(shader_text, replacements):
     for key, val in replacements.items():
         # Match {{KEY}} literally, where KEY is escaped
@@ -36,6 +59,10 @@ def replace_placeholders(shader_text, replacements):
     return shader_text
 
 
+    # 函数: expand_includes
+    # 描述: expand_includes函数提供相关功能
+    # 参数: shader, input_dir
+    # 返回: 无返回值
 def expand_includes(shader, input_dir):
     """
     Replace #include "file" lines in the text with the contents of that file.
@@ -43,6 +70,10 @@ def expand_includes(shader, input_dir):
     """
     include_pattern = re.compile(r'^\s*#include\s+"([^"]+)"\s*$', re.MULTILINE)
 
+    # 函数: replacer
+    # 描述: replacer函数提供相关功能
+    # 参数: match
+    # 返回: 无返回值
     def replacer(match):
         fname = match.group(1)
         file_path = os.path.join(input_dir, fname)
@@ -56,11 +87,19 @@ def expand_includes(shader, input_dir):
     return include_pattern.sub(replacer, shader)
 
 
+    # 函数: chunk_shader
+    # 描述: chunk_shader函数提供相关功能
+    # 参数: shader_code, max_chunk_len=60000
+    # 返回: 有返回值
 def chunk_shader(shader_code, max_chunk_len=60000):
     """Split shader_code into safe raw-string sized chunks."""
     return [shader_code[i : i + max_chunk_len] for i in range(0, len(shader_code), max_chunk_len)]
 
 
+    # 函数: raw_delim
+    # 描述: raw_delim函数提供相关功能
+    # 参数: shader_code
+    # 返回: 无返回值
 def raw_delim(shader_code):
     """Pick a raw-string delimiter that does not appear in the shader."""
     delim = "wgsl"
@@ -69,6 +108,10 @@ def raw_delim(shader_code):
     return delim
 
 
+    # 函数: write_shader
+    # 描述: write_shader函数提供相关功能
+    # 参数: shader_name, shader_code, output_dir, outfile, input_dir
+    # 返回: 无返回值
 def write_shader(shader_name, shader_code, output_dir, outfile, input_dir):
     shader_code = expand_includes(shader_code, input_dir)
 
@@ -98,6 +141,10 @@ def write_shader(shader_name, shader_code, output_dir, outfile, input_dir):
         outfile.write(f'const char* wgsl_{shader_name} = wgsl_{shader_name}_str().c_str();\n\n')
 
 
+    # 函数: generate_variants
+    # 描述: generate_variants函数提供相关功能
+    # 参数: fname, input_dir, output_dir, outfile
+    # 返回: 无返回值
 def generate_variants(fname, input_dir, output_dir, outfile):
     shader_path = os.path.join(input_dir, fname)
     shader_base_name = fname.split(".")[0]
@@ -160,6 +207,10 @@ def generate_variants(fname, input_dir, output_dir, outfile):
             write_shader(output_name, final_shader, output_dir, outfile, input_dir)
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_dir", required=True)

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-backend-buffer-type.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/ggml-backend-buffer-type.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-remoting.h"
 
 static ggml_backend_buffer_t ggml_backend_remoting_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft,
@@ -31,6 +38,14 @@ static ggml_backend_buffer_t ggml_backend_remoting_buffer_type_alloc_buffer(ggml
     return buffer;
 }
 
+// 函数: ggml_backend_remoting_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_remoting_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     virtgpu * gpu = BUFT_TO_GPU(buft);
 
@@ -38,12 +53,28 @@ static const char * ggml_backend_remoting_buffer_type_get_name(ggml_backend_buff
     return gpu->cached_buffer_type.name;
 }
 
+// 函数: ggml_backend_remoting_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_remoting_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     virtgpu * gpu = BUFT_TO_GPU(buft);
 
     return gpu->cached_buffer_type.alignment;
 }
 
+// 函数: ggml_backend_remoting_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_remoting_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     virtgpu * gpu = BUFT_TO_GPU(buft);
 
@@ -56,9 +87,25 @@ static size_t ggml_backend_remoting_buffer_type_get_alloc_size(ggml_backend_buff
 
     if (tensor->buffer == NULL || !tensor->buffer->context ||
         !buft->device->iface.supports_buft(buft->device, tensor->buffer->buft)) {
+        // 函数: ggml_nbytes
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_nbytes
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_nbytes(tensor);
     }
 
+    // 函数: apir_buffer_type_get_alloc_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apir_buffer_type_get_alloc_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     return apir_buffer_type_get_alloc_size(gpu, gpu->cached_buffer_type.host_handle, tensor);
 }
 

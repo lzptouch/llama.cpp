@@ -6,6 +6,24 @@
 
 #define LLAMA_MAX_SEQ 256
 
+// 类: llama_cparams
+// 描述: llama_cparams类提供相关功能
+// 用途: 用于处理llama_cparams相关的操作
+// 类: llama_cparams
+// 描述: llama_cparams类提供相关功能
+// 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
+    // 结构体: llama_cparams
+    // 描述: llama_cparams结构体提供相关功能
+    // 用途: 用于处理llama_cparams相关的操作
 struct llama_cparams {
     uint32_t n_ctx;           // context size used during inference
     uint32_t n_ctx_seq;       // context for a single sequence

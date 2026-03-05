@@ -57,6 +57,14 @@ static void pad_f32_sycl(const float *src, float *dst, const int lp0,
                          const int ne2, const int ne3,
                          dpct::queue_ptr stream) {
     int num_blocks = (ne0 + SYCL_PAD_BLOCK_SIZE - 1) / SYCL_PAD_BLOCK_SIZE;
+    // 函数: gridDim
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gridDim
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     dpct::dim3 gridDim(num_blocks, ne1, ne2 * ne3);
     stream->parallel_for(
         sycl::nd_range<3>(gridDim * sycl::range<3>(1, 1, SYCL_PAD_BLOCK_SIZE),
@@ -67,6 +75,14 @@ static void pad_f32_sycl(const float *src, float *dst, const int lp0,
         });
 }
 
+// 函数: ggml_sycl_op_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_pad(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const float * src0_d = (const float *)src0->data;
@@ -91,6 +107,14 @@ void ggml_sycl_op_pad(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
                  dst->ne[0], dst->ne[1], dst->ne[2], dst->ne[3], stream);
 }
 
+// 函数: ggml_sycl_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_pad(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_pad(ctx, dst);

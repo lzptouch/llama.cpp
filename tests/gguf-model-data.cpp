@@ -17,6 +17,30 @@
 #include <nlohmann/json.hpp>
 
 // Equivalent of RangeView
+// 类: gguf_buf_reader
+// 描述: gguf_buf_reader类提供相关功能
+// 用途: 用于处理gguf_buf_reader相关的操作
+// 类: gguf_buf_reader
+// 描述: gguf_buf_reader类提供相关功能
+// 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
+    // 结构体: gguf_buf_reader
+    // 描述: gguf_buf_reader结构体提供相关功能
+    // 用途: 用于处理gguf_buf_reader相关的操作
 struct gguf_buf_reader {
     const char * data;
     size_t       size;
@@ -24,11 +48,27 @@ struct gguf_buf_reader {
 
     gguf_buf_reader(const std::vector<char> & buf) : data(buf.data()), size(buf.size()), pos(0) {}
 
+    // 函数: has_n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_n_bytes(size_t n) const {
         return pos + n <= size;
     }
 
     template <typename T>
+    // 函数: read_val
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_val
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read_val(T & out) {
         if (!has_n_bytes(sizeof(T))) {
             return false;
@@ -38,6 +78,14 @@ struct gguf_buf_reader {
         return true;
     }
 
+    // 函数: read_str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read_str(std::string & out) {
         uint64_t len;
         if (!read_val(len)) {
@@ -51,6 +99,14 @@ struct gguf_buf_reader {
         return true;
     }
 
+    // 函数: skip
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: skip
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool skip(size_t n) {
         if (!has_n_bytes(n)) {
             return false;
@@ -60,6 +116,14 @@ struct gguf_buf_reader {
     }
 };
 
+// 函数: gguf_val_type_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_val_type_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t gguf_val_type_size(int32_t vtype) {
     switch (vtype) {
         case GGUF_TYPE_UINT8:   return 1;
@@ -78,6 +142,14 @@ static size_t gguf_val_type_size(int32_t vtype) {
 }
 
 // Equivalent of readMetadataValue(), skips unused values rather than storing
+// 函数: gguf_skip_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_skip_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool gguf_skip_value(gguf_buf_reader & r, int32_t vtype) {
     if (vtype == GGUF_TYPE_STRING) {
         std::string tmp;
@@ -123,6 +195,14 @@ static bool gguf_skip_value(gguf_buf_reader & r, int32_t vtype) {
     return r.skip(sz);
 }
 
+// 函数: gguf_read_uint32_val
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_read_uint32_val
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool gguf_read_uint32_val(gguf_buf_reader & r, int32_t vtype, uint32_t & out) {
     if (vtype == GGUF_TYPE_UINT8) {
         uint8_t v;
@@ -193,6 +273,14 @@ static bool gguf_read_uint32_val(gguf_buf_reader & r, int32_t vtype, uint32_t & 
 
 // Follows the same header -> KV -> tensor parsing sequence as gguf() huggingface/gguf
 static std::optional<gguf_remote_model> gguf_parse_meta(const std::vector<char> & buf) {
+    // 函数: r
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: r
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     gguf_buf_reader r(buf);
 
     // Header: magic(4) + version(4) + tensor_count(8) + kv_count(8) = 24 bytes minimum
@@ -274,12 +362,68 @@ static std::optional<gguf_remote_model> gguf_parse_meta(const std::vector<char> 
             uint32_t * target = nullptr;
 
             if      (key == arch_prefix + "embedding_length")         { target = &model.n_embd; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "feed_forward_length")      { target = &model.n_ff; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "block_count")              { target = &model.n_layer; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "attention.head_count")     { target = &model.n_head; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "attention.head_count_kv")  { target = &model.n_head_kv; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "expert_count")             { target = &model.n_expert; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "attention.key_length")     { target = &model.n_embd_head_k; }
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: if
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             else if (key == arch_prefix + "attention.value_length")   { target = &model.n_embd_head_v; }
 
             if (target) {
@@ -341,10 +485,26 @@ static std::optional<gguf_remote_model> gguf_parse_meta(const std::vector<char> 
 }
 
 // cache handling for local download
+// 函数: get_default_cache_dir
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_default_cache_dir
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_default_cache_dir() {
     return fs_get_cache_directory() + "gguf-headers/";
 }
 
+// 函数: sanitize_for_path
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sanitize_for_path
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string sanitize_for_path(const std::string & s) {
     std::string out = s;
     for (char & c : out) {
@@ -355,6 +515,14 @@ static std::string sanitize_for_path(const std::string & s) {
     return out;
 }
 
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool read_file(const std::string & path, std::vector<char> & out) {
     std::ifstream f(path, std::ios::binary | std::ios::ate);
     if (!f.good()) {
@@ -370,6 +538,14 @@ static bool read_file(const std::string & path, std::vector<char> & out) {
     return f.good();
 }
 
+// 函数: write_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool write_file(const std::string & path, const std::vector<char> & data) {
     std::ofstream f(path, std::ios::binary | std::ios::trunc);
     if (!f.good()) {
@@ -552,6 +728,14 @@ static std::optional<gguf_remote_model> fetch_or_cached(
     }
 
     fs_create_directory_with_parents(cdir);
+    // 函数: fetch_and_parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: fetch_and_parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return fetch_and_parse(repo, filename, cache_path);
 }
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-batch.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-batch.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-batch.h"
 
 #include "llama-impl.h"
@@ -500,6 +507,14 @@ llama_ubatch llama_batch_allocr::split_simple(uint32_t n_ubatch) {
         }
     }
 
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ubatch_add(idxs, idxs.size(), false);
 }
 
@@ -605,6 +620,14 @@ llama_ubatch llama_batch_allocr::split_equal(uint32_t n_ubatch, bool sequential)
         idxs.insert(idxs.end(), idxs_per_seq[s].begin(), idxs_per_seq[s].end());
     }
 
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ubatch_add(idxs, n_seqs, true);
 }
 
@@ -647,6 +670,14 @@ llama_ubatch llama_batch_allocr::split_seq(uint32_t n_ubatch) {
         cur_seq_set = seq_set[cur_idx];
     }
 
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ubatch_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ubatch_add(idxs, 1, true);
 }
 
@@ -858,6 +889,24 @@ void llama_batch_allocr::ubatch_print(const llama_ubatch & ubatch, int debug) {
 // interface implementation
 //
 
+// 类: llama_batch
+// 描述: llama_batch类提供相关功能
+// 用途: 用于处理llama_batch相关的操作
+// 类: llama_batch
+// 描述: llama_batch类提供相关功能
+// 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
 struct llama_batch llama_batch_get_one(
              llama_token * tokens,
                  int32_t   n_tokens) {
@@ -872,6 +921,24 @@ struct llama_batch llama_batch_get_one(
     };
 }
 
+// 类: llama_batch
+// 描述: llama_batch类提供相关功能
+// 用途: 用于处理llama_batch相关的操作
+// 类: llama_batch
+// 描述: llama_batch类提供相关功能
+// 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
 struct llama_batch llama_batch_init(int32_t n_tokens_alloc, int32_t embd, int32_t n_seq_max) {
     llama_batch batch = {
         /*n_tokens =*/ 0,
@@ -902,6 +969,14 @@ struct llama_batch llama_batch_init(int32_t n_tokens_alloc, int32_t embd, int32_
     return batch;
 }
 
+// 函数: llama_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_batch_free(struct llama_batch batch) {
     if (batch.token)    free(batch.token);
     if (batch.embd)     free(batch.embd);

@@ -18,6 +18,14 @@
 #define HVX_OP_MUL(a, b) Q6_Vsf_vmpy_VsfVsf(a, b)
 #endif
 
+// 函数: hvx_vec_rsqrt_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_rsqrt_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_rsqrt_f32(HVX_Vector in_vec) {
     //Algorithm :
     //  x2 = input*0.5
@@ -87,26 +95,66 @@ static inline HVX_Vector hvx_vec_rsqrt_f32(HVX_Vector in_vec) {
         }                                                                    \
     } while(0)
 
+// 函数: hvx_sqrt_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqrt_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqrt_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
     hvx_sqrt_f32_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sqrt_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqrt_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqrt_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_sqrt_f32_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sqrt_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqrt_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqrt_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_sqrt_f32_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_sqrt_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqrt_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqrt_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_sqrt_f32_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_sqrt_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqrt_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqrt_f32(uint8_t * restrict dst, const uint8_t * restrict src, const int num_elems) {
     if ((unsigned long) dst % 128 == 0) {
         if ((unsigned long) src % 128 == 0) {

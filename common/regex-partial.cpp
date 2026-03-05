@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: regex-partial.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/regex-partial.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "regex-partial.h"
 #include "common.h"
 #include <functional>
@@ -68,6 +75,14 @@ common_regex_match common_regex::search(const std::string & input, size_t pos, b
   The regex will match a reversed string fully, and the end of the first (And only) capturing group will indicate the reversed start of the original partial pattern.
   All other groups are turned into non-capturing groups, and reluctant quantifiers are ignored.
 */
+// 函数: regex_to_reversed_partial_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: regex_to_reversed_partial_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string regex_to_reversed_partial_regex(const std::string & pattern) {
     auto it = pattern.begin();
     const auto end = pattern.end();

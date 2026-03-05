@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/quantize/README.md
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 # quantize
 
 This tool takes a GGUF input model file, typically in a high-precision format like F32 or BF16, and converts it to a quantized format.

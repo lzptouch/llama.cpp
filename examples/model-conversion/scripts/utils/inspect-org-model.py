@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: inspect-org-model.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/inspect-org-model.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse
@@ -25,6 +32,10 @@ DTYPE_SIZES = {
 SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB']
 
 
+    # 函数: get_weight_map
+    # 描述: get_weight_map函数提供相关功能
+    # 参数: model_path: Path
+    # 返回: 无返回值
 def get_weight_map(model_path: Path) -> Optional[dict[str, str]]:
     index_file = model_path / MODEL_SAFETENSORS_INDEX
 
@@ -36,6 +47,10 @@ def get_weight_map(model_path: Path) -> Optional[dict[str, str]]:
     return None
 
 
+    # 函数: get_all_tensor_names
+    # 描述: get_all_tensor_names函数提供相关功能
+    # 参数: model_path: Path
+    # 返回: 有返回值
 def get_all_tensor_names(model_path: Path) -> list[str]:
     weight_map = get_weight_map(model_path)
 
@@ -55,6 +70,10 @@ def get_all_tensor_names(model_path: Path) -> list[str]:
     sys.exit(1)
 
 
+    # 函数: find_tensor_file
+    # 描述: find_tensor_file函数提供相关功能
+    # 参数: model_path: Path, tensor_name: str
+    # 返回: 有返回值
 def find_tensor_file(model_path: Path, tensor_name: str) -> Optional[str]:
     weight_map = get_weight_map(model_path)
 
@@ -68,12 +87,20 @@ def find_tensor_file(model_path: Path, tensor_name: str) -> Optional[str]:
     return None
 
 
+    # 函数: read_safetensors_header
+    # 描述: read_safetensors_header函数提供相关功能
+    # 参数: file_path: Path
+    # 返回: 有返回值
 def read_safetensors_header(file_path: Path) -> dict:
     with open(file_path, 'rb') as f:
         header_size = struct.unpack('<Q', f.read(8))[0]
         return json.loads(f.read(header_size))
 
 
+    # 函数: get_tensor_size_bytes
+    # 描述: get_tensor_size_bytes函数提供相关功能
+    # 参数: tensor_meta: dict
+    # 返回: 有返回值
 def get_tensor_size_bytes(tensor_meta: dict) -> int:
     offsets = tensor_meta.get("data_offsets")
     if offsets and len(offsets) == 2:
@@ -84,6 +111,10 @@ def get_tensor_size_bytes(tensor_meta: dict) -> int:
     return n_elements * DTYPE_SIZES.get(tensor_meta.get("dtype", "F32"), 4)
 
 
+    # 函数: format_size
+    # 描述: format_size函数提供相关功能
+    # 参数: size_bytes: int
+    # 返回: 有返回值
 def format_size(size_bytes: int) -> str:
     val = float(size_bytes)
     for unit in SIZE_UNITS[:-1]:
@@ -93,6 +124,10 @@ def format_size(size_bytes: int) -> str:
     return f"{val:.2f} {SIZE_UNITS[-1]}"
 
 
+    # 函数: get_all_tensor_metadata
+    # 描述: get_all_tensor_metadata函数提供相关功能
+    # 参数: model_path: Path
+    # 返回: 无返回值
 def get_all_tensor_metadata(model_path: Path) -> dict[str, dict]:
     weight_map = get_weight_map(model_path)
 
@@ -125,12 +160,20 @@ def get_all_tensor_metadata(model_path: Path) -> dict[str, dict]:
     sys.exit(1)
 
 
+    # 函数: normalize_tensor_name
+    # 描述: normalize_tensor_name函数提供相关功能
+    # 参数: tensor_name: str
+    # 返回: 有返回值
 def normalize_tensor_name(tensor_name: str) -> str:
     normalized = re.sub(r'\.\d+\.', '.#.', tensor_name)
     normalized = re.sub(r'\.\d+$', '.#', normalized)
     return normalized
 
 
+    # 函数: list_all_tensors
+    # 描述: list_all_tensors函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def list_all_tensors(
     model_path: Path,
     short: bool = False,
@@ -175,6 +218,10 @@ def list_all_tensors(
         print(f"\nTotal: {format_size(total_bytes)}")
 
 
+    # 函数: print_tensor_info
+    # 描述: print_tensor_info函数提供相关功能
+    # 参数: model_path: Path, tensor_name: str, num_values: Optional[int] = None
+    # 返回: 无返回值
 def print_tensor_info(model_path: Path, tensor_name: str, num_values: Optional[int] = None):
     tensor_file = find_tensor_file(model_path, tensor_name)
 
@@ -220,6 +267,10 @@ def print_tensor_info(model_path: Path, tensor_name: str, num_values: Optional[i
         sys.exit(1)
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     parser = argparse.ArgumentParser(
         description="Print tensor information from a safetensors model"

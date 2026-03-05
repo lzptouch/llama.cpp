@@ -71,6 +71,14 @@ enum htp_op {
     INVALID
 };
 
+// 函数: htp_t_block_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_t_block_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t htp_t_block_size(uint32_t t) {
     switch (t) {
         case HTP_TYPE_F32:
@@ -89,6 +97,14 @@ static inline size_t htp_t_block_size(uint32_t t) {
     return 0;
 }
 
+// 函数: htp_type_nbytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_type_nbytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t htp_type_nbytes(uint32_t t) {
     switch (t) {
         case HTP_TYPE_F32:
@@ -114,6 +130,24 @@ static inline size_t htp_type_nbytes(uint32_t t) {
 
 #define HTP_MAX_DIMS 4
 
+// 类: htp_tensor
+// 描述: htp_tensor类提供相关功能
+// 用途: 用于处理htp_tensor相关的操作
+// 类: htp_tensor
+// 描述: htp_tensor类提供相关功能
+// 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
 struct htp_tensor {
     uint32_t data;                // Buffer offset in the messages, and data pointer on the NSP
     uint32_t type;                // Data type
@@ -123,22 +157,166 @@ struct htp_tensor {
 
 #define HTP_MAX_OP_PARAMS 64
 
+// 类: htp_general_req
+// 描述: htp_general_req类提供相关功能
+// 用途: 用于处理htp_general_req相关的操作
+// 类: htp_general_req
+// 描述: htp_general_req类提供相关功能
+// 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
 struct htp_general_req {
     uint32_t op;  // GGML/HTP Op
     int32_t  op_params[HTP_MAX_OP_PARAMS / sizeof(int32_t)];
     // Params for the op, e.g. epsilon of RMS norm
     uint32_t flags;          // Request flags
 
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor src0;  // Input0 tensor
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor src1;  // Input1 tensor
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor src2;  // Input2 tensor
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor src3;  // Input3 tensor
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor src4;  // Input4 tensor
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor dst;   // Output tensor
 
     // should be multiple of 64 bytes (cacheline)
 };
 
+// 类: htp_general_rsp
+// 描述: htp_general_rsp类提供相关功能
+// 用途: 用于处理htp_general_rsp相关的操作
+// 类: htp_general_rsp
+// 描述: htp_general_rsp类提供相关功能
+// 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
 struct htp_general_rsp {
     uint32_t op;           // GGML/HTP Op
     uint32_t status;       // HTP_STATUS_...

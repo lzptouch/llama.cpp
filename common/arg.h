@@ -16,6 +16,24 @@
 // CLI argument parsing
 //
 
+// 类: common_arg
+// 描述: common_arg类提供相关功能
+// 用途: 用于处理common_arg相关的操作
+// 类: common_arg
+// 描述: common_arg类提供相关功能
+// 用途: 用于处理common_arg相关的操作
+    // 结构体: common_arg
+    // 描述: common_arg结构体提供相关功能
+    // 用途: 用于处理common_arg相关的操作
+    // 结构体: common_arg
+    // 描述: common_arg结构体提供相关功能
+    // 用途: 用于处理common_arg相关的操作
+    // 结构体: common_arg
+    // 描述: common_arg结构体提供相关功能
+    // 用途: 用于处理common_arg相关的操作
+    // 结构体: common_arg
+    // 描述: common_arg结构体提供相关功能
+    // 用途: 用于处理common_arg相关的操作
 struct common_arg {
     std::set<enum llama_example> examples = {LLAMA_EXAMPLE_COMMON};
     std::set<enum llama_example> excludes = {};
@@ -76,10 +94,50 @@ struct common_arg {
     common_arg & set_env(const char * env);
     common_arg & set_sparam();
     common_arg & set_preset_only();
+    // 函数: in_example
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: in_example
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool in_example(enum llama_example ex);
+    // 函数: is_exclude
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_exclude
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_exclude(enum llama_example ex);
+    // 函数: get_value_from_env
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_value_from_env
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_value_from_env(std::string & output) const;
+    // 函数: has_value_from_env
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_value_from_env
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_value_from_env() const;
+    // 函数: to_string
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_string
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string to_string() const;
 
     // for using as key in std::map
@@ -87,12 +145,28 @@ struct common_arg {
         if (args.empty() || other.args.empty()) {
             return false;
         }
+        // 函数: strcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: strcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return strcmp(args[0], other.args[0]) < 0;
     }
     bool operator==(const common_arg& other) const {
         if (args.empty() || other.args.empty()) {
             return false;
         }
+        // 函数: strcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: strcmp
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return strcmp(args[0], other.args[0]) == 0;
     }
 
@@ -102,11 +176,53 @@ struct common_arg {
 };
 
 namespace common_arg_utils {
+    // 函数: is_truthy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_truthy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_truthy(const std::string & value);
+    // 函数: is_falsey
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_falsey
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_falsey(const std::string & value);
+    // 函数: is_autoy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_autoy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_autoy(const std::string & value);
 }
 
+// 类: common_params_context
+// 描述: common_params_context类提供相关功能
+// 用途: 用于处理common_params_context相关的操作
+// 类: common_params_context
+// 描述: common_params_context类提供相关功能
+// 用途: 用于处理common_params_context相关的操作
+    // 结构体: common_params_context
+    // 描述: common_params_context结构体提供相关功能
+    // 用途: 用于处理common_params_context相关的操作
+    // 结构体: common_params_context
+    // 描述: common_params_context结构体提供相关功能
+    // 用途: 用于处理common_params_context相关的操作
+    // 结构体: common_params_context
+    // 描述: common_params_context结构体提供相关功能
+    // 用途: 用于处理common_params_context相关的操作
+    // 结构体: common_params_context
+    // 描述: common_params_context结构体提供相关功能
+    // 用途: 用于处理common_params_context相关的操作
 struct common_params_context {
     enum llama_example ex = LLAMA_EXAMPLE_COMMON;
     common_params & params;
@@ -117,15 +233,47 @@ struct common_params_context {
 
 // parse input arguments from CLI
 // if one argument has invalid value, it will automatically display usage of the specific argument (and not the full usage message)
+// 函数: common_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_params_parse(int argc, char ** argv, common_params & params, llama_example ex, void(*print_usage)(int, char **) = nullptr);
 
 // parse input arguments from CLI into a map
+// 函数: common_params_to_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_to_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_params_to_map(int argc, char ** argv, llama_example ex, std::map<common_arg, std::string> & out_map);
 
 // populate preset-only arguments
 // these arguments are not treated as command line arguments
 // see: https://github.com/ggml-org/llama.cpp/issues/18163
+// 函数: common_params_add_preset_options
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_add_preset_options
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_params_add_preset_options(std::vector<common_arg> & args);
 
 // initialize argument parser context - used by test-arg-parser and preset
+// 函数: common_params_parser_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_parser_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 common_params_context common_params_parser_init(common_params & params, llama_example ex, void(*print_usage)(int, char **) = nullptr);

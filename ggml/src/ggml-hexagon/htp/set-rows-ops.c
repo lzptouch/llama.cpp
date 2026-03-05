@@ -43,15 +43,131 @@
                                             \
     const uint32_t nr  = ne01;
 
+// 类: htp_set_rows_context
+// 描述: htp_set_rows_context类提供相关功能
+// 用途: 用于处理htp_set_rows_context相关的操作
+// 类: htp_set_rows_context
+// 描述: htp_set_rows_context类提供相关功能
+// 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
 struct htp_set_rows_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values div_ne12;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values div_ne11;
     uint32_t src0_nrows_per_thread;
 };
 
+// 函数: set_rows_thread_f32_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_rows_thread_f32_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_rows_thread_f32_f32(unsigned int nth, unsigned int ith, void *data) {
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
     struct htp_set_rows_context * srctx = (struct htp_set_rows_context *)data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = srctx->octx;
 
     set_rows_preamble;
@@ -88,8 +204,52 @@ static void set_rows_thread_f32_f32(unsigned int nth, unsigned int ith, void *da
     }
 }
 
+// 函数: set_rows_thread_f16_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_rows_thread_f16_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_rows_thread_f16_f32(unsigned int nth, unsigned int ith, void *data) {
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
     struct htp_set_rows_context * srctx = (struct htp_set_rows_context *)data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = srctx->octx;
 
     set_rows_preamble;
@@ -125,6 +285,14 @@ static void set_rows_thread_f16_f32(unsigned int nth, unsigned int ith, void *da
     }
 }
 
+// 函数: op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 int op_set_rows(struct htp_ops_context * octx) {
     set_rows_preamble;
 
@@ -144,6 +312,24 @@ int op_set_rows(struct htp_ops_context * octx) {
         return HTP_STATUS_OK;
     }
 
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 类: htp_set_rows_context
+    // 描述: htp_set_rows_context类提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
+    // 结构体: htp_set_rows_context
+    // 描述: htp_set_rows_context结构体提供相关功能
+    // 用途: 用于处理htp_set_rows_context相关的操作
     struct htp_set_rows_context srctx;
     srctx.octx = octx;
     srctx.div_ne12 = init_fastdiv_values(ne12);

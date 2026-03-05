@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: argsort-ops.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-hexagon/htp/argsort-ops.c
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -19,11 +26,55 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
+// 类: htp_argsort_context
+// 描述: htp_argsort_context类提供相关功能
+// 用途: 用于处理htp_argsort_context相关的操作
+// 类: htp_argsort_context
+// 描述: htp_argsort_context类提供相关功能
+// 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
 struct htp_argsort_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
     uint32_t                 nrows_per_thread;
 };
 
+// 函数: all_greater_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: all_greater_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool all_greater_f32(HVX_Vector x, HVX_Vector y)
 {
     const HVX_Vector one  = Q6_V_vsplat_R(1);
@@ -32,10 +83,26 @@ static inline bool all_greater_f32(HVX_Vector x, HVX_Vector y)
     HVX_VectorPred pred = Q6_Q_vcmp_gt_VsfVsf(x, y);
     HVX_Vector matches = Q6_V_vmux_QVV(pred, one, zero);
     HVX_Vector sum = hvx_vec_reduce_sum_i32(matches);
+    // 函数: hvx_vec_get_i32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: hvx_vec_get_i32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     return hvx_vec_get_i32(sum) == 32;
 }
 
 // Sorts values and mirrors swaps to indices.
+// 函数: quicksort_values_indices_asc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quicksort_values_indices_asc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void quicksort_values_indices_asc(float * values, int32_t * indices, int left, int right) {
     if (left >= right) return;
 
@@ -102,6 +169,14 @@ static void quicksort_values_indices_asc(float * values, int32_t * indices, int 
     if (i < right) quicksort_values_indices_asc(values, indices, i, right);
 }
 
+// 函数: quicksort_values_indices_desc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quicksort_values_indices_desc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void quicksort_values_indices_desc(float * values, int32_t * indices, int left, int right) {
     if (left >= right) return;
 
@@ -164,8 +239,52 @@ static void quicksort_values_indices_desc(float * values, int32_t * indices, int
     if (i < right) quicksort_values_indices_desc(values, indices, i, right);
 }
 
+// 函数: htp_argsort_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_argsort_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_argsort_f32(unsigned int n, unsigned int i, void * data) {
+    // 类: htp_argsort_context
+    // 描述: htp_argsort_context类提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 类: htp_argsort_context
+    // 描述: htp_argsort_context类提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
     struct htp_argsort_context * actx = (struct htp_argsort_context *)data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = actx->octx;
 
     // Unpack context
@@ -235,6 +354,14 @@ static void htp_argsort_f32(unsigned int n, unsigned int i, void * data) {
     }
 }
 
+// 函数: op_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_argsort(struct htp_ops_context * octx) {
     // Check supported types
     if (octx->src0.type != HTP_TYPE_F32) {
@@ -270,6 +397,24 @@ int op_argsort(struct htp_ops_context * octx) {
     uint32_t total_rows = octx->src0.ne[1] * octx->src0.ne[2] * octx->src0.ne[3];
     uint32_t n_jobs = MIN(total_rows, octx->n_threads);
 
+    // 类: htp_argsort_context
+    // 描述: htp_argsort_context类提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 类: htp_argsort_context
+    // 描述: htp_argsort_context类提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
+    // 结构体: htp_argsort_context
+    // 描述: htp_argsort_context结构体提供相关功能
+    // 用途: 用于处理htp_argsort_context相关的操作
     struct htp_argsort_context actx;
     actx.octx = octx;
     actx.nrows_per_thread = (total_rows + n_jobs - 1) / n_jobs;

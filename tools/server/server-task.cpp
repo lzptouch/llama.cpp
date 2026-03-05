@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-task.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-task.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "server-common.h"
 #include "server-task.h"
 
@@ -90,6 +97,14 @@ json task_params::to_json(bool only_metrics) const {
 
     auto grammar_triggers = json::array();
     for (const auto & trigger : sampling.grammar_triggers) {
+        // 函数: ct
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ct
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         server_grammar_trigger ct(trigger);
         grammar_triggers.push_back(ct.to_json());
     }
@@ -368,6 +383,14 @@ task_params server_task::params_from_json_cmpl(
         const auto grammar_triggers = data.find("grammar_triggers");
         if (grammar_triggers != data.end()) {
             for (const auto & t : *grammar_triggers) {
+                // 函数: ct
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: ct
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 server_grammar_trigger ct(t);
                 if (ct.value.type == COMMON_GRAMMAR_TRIGGER_TYPE_WORD) {
                     const auto & word = ct.value.value;
@@ -548,6 +571,14 @@ json result_prompt_progress::to_json() const {
     };
 }
 
+// 函数: stop_type_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: stop_type_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline std::string stop_type_to_str(stop_type type) {
     switch (type) {
         case STOP_TYPE_EOS:   return "eos";
@@ -564,6 +595,14 @@ static inline std::string stop_type_to_str(stop_type type) {
 json completion_token_output::to_json(bool post_sampling_probs) const {
     json probs_for_token = json::array();
     for (const auto & p : probs) {
+        // 函数: txt
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: txt
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::string txt(p.txt);
         txt.resize(validate_utf8(txt));
         probs_for_token.push_back(json {
@@ -582,6 +621,14 @@ json completion_token_output::to_json(bool post_sampling_probs) const {
 json completion_token_output::probs_vector_to_json(const std::vector<completion_token_output> & probs, bool post_sampling_probs) {
     json out = json::array();
     for (const auto & p : probs) {
+        // 函数: txt
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: txt
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::string txt(p.text_to_send);
         txt.resize(validate_utf8(txt));
         out.push_back(json {
@@ -621,8 +668,24 @@ json server_task_result_cmpl_final::to_json() {
     GGML_ASSERT(is_updated && "update() must be called before to_json()");
     switch (res_type) {
         case TASK_RESPONSE_TYPE_NONE:
+            // 函数: to_json_non_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_non_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_non_oaicompat();
         case TASK_RESPONSE_TYPE_OAI_CMPL:
+            // 函数: to_json_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_oaicompat();
         case TASK_RESPONSE_TYPE_OAI_CHAT:
             return stream ? to_json_oaicompat_chat_stream() : to_json_oaicompat_chat();
@@ -1296,14 +1359,54 @@ json server_task_result_cmpl_partial::to_json() {
     GGML_ASSERT(is_updated && "update() must be called before to_json()");
     switch (res_type) {
         case TASK_RESPONSE_TYPE_NONE:
+            // 函数: to_json_non_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_non_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_non_oaicompat();
         case TASK_RESPONSE_TYPE_OAI_CMPL:
+            // 函数: to_json_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_oaicompat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_oaicompat();
         case TASK_RESPONSE_TYPE_OAI_CHAT:
+            // 函数: to_json_oaicompat_chat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_oaicompat_chat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_oaicompat_chat();
         case TASK_RESPONSE_TYPE_OAI_RESP:
+            // 函数: to_json_oaicompat_resp
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_oaicompat_resp
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_oaicompat_resp();
         case TASK_RESPONSE_TYPE_ANTHROPIC:
+            // 函数: to_json_anthropic
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: to_json_anthropic
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return to_json_anthropic();
         default:
             GGML_ASSERT(false && "Invalid task_response_type");

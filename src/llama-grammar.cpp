@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-grammar.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-grammar.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-grammar.h"
 
 #include "llama-impl.h"
@@ -90,10 +97,26 @@ static std::pair<std::vector<uint32_t>, llama_partial_utf8> decode_utf8(
     return std::make_pair(std::move(code_points), llama_partial_utf8{ value, n_remain });
 }
 
+// 函数: is_digit_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_digit_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_digit_char(char c) {
     return '0' <= c && c <= '9';
 }
 
+// 函数: is_word_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_word_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_word_char(char c) {
     return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || c == '-' || is_digit_char(c);
 }
@@ -121,6 +144,14 @@ static std::pair<uint32_t, const char *> parse_hex(const char * src, int size) {
     return std::make_pair(value, pos);
 }
 
+// 函数: parse_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * parse_space(const char * src, bool newline_ok) {
     const char * pos = src;
     while (*pos == ' ' || *pos == '\t' || *pos == '#' ||
@@ -136,6 +167,14 @@ static const char * parse_space(const char * src, bool newline_ok) {
     return pos;
 }
 
+// 函数: parse_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * parse_name(const char * src) {
     const char * pos = src;
     while (is_word_char(*pos)) {
@@ -147,6 +186,14 @@ static const char * parse_name(const char * src) {
     return pos;
 }
 
+// 函数: parse_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * parse_int(const char * src) {
     const char * pos = src;
     while (is_digit_char(*pos)) {
@@ -176,6 +223,14 @@ static std::pair<uint32_t, const char *> parse_char(const char * src) {
                       throw std::runtime_error(std::string("unknown escape at ") + src);
         }
     } else if (*src) {
+        // 函数: decode_utf8
+        // 描述: 解码: 解码数据或生成输出结果
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: decode_utf8
+        // 描述: 解码: 解码数据或生成输出结果
+        // 参数: 无参数
+        // 返回: 无返回值
         return decode_utf8(src);
     }
     throw std::runtime_error("unexpected end of input");
@@ -227,6 +282,14 @@ static std::pair<uint32_t, const char *> parse_token(const llama_vocab * vocab, 
     return std::make_pair(tokens[0], pos);
 }
 
+// 函数: print_grammar_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_grammar_char
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_grammar_char(FILE * file, uint32_t c) {
     if (0x20 <= c && c <= 0x7f) {
         fprintf(file, "%c", static_cast<char>(c));
@@ -236,6 +299,14 @@ static void print_grammar_char(FILE * file, uint32_t c) {
     }
 }
 
+// 函数: is_char_element
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_char_element
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_char_element(llama_grammar_element elem) {
     switch (elem.type) {
         case LLAMA_GRETYPE_CHAR:           return true;
@@ -247,6 +318,14 @@ static bool is_char_element(llama_grammar_element elem) {
     }
 }
 
+// 函数: print_rule_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_rule_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_rule_binary(FILE * file, const llama_grammar_rule & rule) {
     for (auto elem : rule) {
         switch (elem.type) {
@@ -393,6 +472,14 @@ size_t llama_grammar_trigger_pattern::find(const std::string & input) const {
         // match against the entire input
         std::smatch match;
         if (std::regex_match(input, match, regex)) {
+            // 函数: find_start_pos
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: find_start_pos
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return find_start_pos(match);
         }
     }
@@ -400,6 +487,14 @@ size_t llama_grammar_trigger_pattern::find(const std::string & input) const {
     // search anywhere
     std::smatch match;
     if (std::regex_search(input, match, regex)) {
+        // 函数: find_start_pos
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: find_start_pos
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return find_start_pos(match);
     }
 
@@ -480,6 +575,14 @@ const char * llama_grammar_parser::parse_sequence(
         //        --> S'
         //            S'     ::= S |
 
+        // 函数: prev_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: prev_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_grammar_rule prev_rule(rule.begin() + last_sym_start, rule.end());
         if (min_times == 0) {
             rule.resize(last_sym_start);
@@ -493,6 +596,14 @@ const char * llama_grammar_parser::parse_sequence(
         uint32_t last_rec_rule_id = 0;
         auto n_opt = no_max ? 1 : max_times - min_times;
 
+        // 函数: rec_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: rec_rule
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_grammar_rule rec_rule(prev_rule);
         for (uint64_t i = 0; i < n_opt; i++) {
             rec_rule.resize(prev_rule.size());
@@ -642,6 +753,14 @@ const char * llama_grammar_parser::parse_rule(const char * src) {
     const char * pos      = parse_space(name_end, false);
     size_t       name_len = name_end - src;
     uint32_t     rule_id  = get_symbol_id(src, name_len);
+    // 函数: name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const std::string name(src, name_len);
 
     if (!(pos[0] == ':' && pos[1] == ':' && pos[2] == '=')) {
@@ -658,6 +777,14 @@ const char * llama_grammar_parser::parse_rule(const char * src) {
     } else if (*pos) {
         throw std::runtime_error(std::string("expecting newline or end at ") + pos);
     }
+    // 函数: parse_space
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_space
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return parse_space(pos, true);
 }
 
@@ -722,6 +849,14 @@ llama_grammar_stack llama_grammar_parser::c_rules() const {
 }
 
 // returns true iff pos points to the end of one of the definitions of a rule
+// 函数: llama_grammar_is_end_of_sequence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_is_end_of_sequence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool llama_grammar_is_end_of_sequence(const llama_grammar_element * pos) {
     switch (pos->type) {
         case LLAMA_GRETYPE_END: return true;  // NOLINT
@@ -846,6 +981,14 @@ static void llama_grammar_advance_stack(
             const llama_grammar_element * subpos  = rules[rule_id].data();
             do {
                 // init new stack without the top (pos)
+                // 函数: new_stack
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: new_stack
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llama_grammar_stack new_stack(stack.begin(), stack.end() - 1);
                 if (!llama_grammar_is_end_of_sequence(pos + 1)) {
                     // if this rule ref is followed by another element, add that to stack
@@ -968,6 +1111,24 @@ llama_grammar_stacks & llama_grammar_get_stacks(struct llama_grammar * grammar) 
 }
 
 static void llama_grammar_accept_chr(
+        // 类: llama_grammar
+        // 描述: llama_grammar类提供相关功能
+        // 用途: 用于处理llama_grammar相关的操作
+        // 类: llama_grammar
+        // 描述: llama_grammar类提供相关功能
+        // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
         struct llama_grammar       & grammar,
         const llama_grammar_stack  & stack,
               uint32_t               chr,
@@ -985,6 +1146,14 @@ static void llama_grammar_accept_chr(
 
     auto match = llama_grammar_match_char(pos, chr);
     if (match.first) {
+        // 函数: new_stack
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: new_stack
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_grammar_stack new_stack(stack.begin(), stack.end() - 1);
         if (!llama_grammar_is_end_of_sequence(match.second)) {
             new_stack.push_back(match.second);
@@ -993,6 +1162,14 @@ static void llama_grammar_accept_chr(
     }
 }
 
+// 函数: llama_grammar_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_accept(struct llama_grammar * grammar, uint32_t chr) {
     llama_grammar_stacks stacks_new;
     stacks_new.reserve(grammar->stacks.size());
@@ -1060,6 +1237,14 @@ llama_grammar_candidates llama_grammar_reject_candidates_for_stack(
     const auto * stack_pos_after = llama_grammar_match_char(stack_pos, 0).second;
 
     // update top of stack to next element, if any
+    // 函数: stack_after
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stack_after
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_grammar_stack stack_after(stack.begin(), stack.end() - 1);
     if (!llama_grammar_is_end_of_sequence(stack_pos_after)) {
         stack_after.push_back(stack_pos_after);
@@ -1077,6 +1262,24 @@ llama_grammar_candidates llama_grammar_reject_candidates_for_stack(
 
 ////////////////////
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_init_impl(
         const struct llama_vocab * vocab,
         const llama_grammar_element ** rules,
@@ -1085,6 +1288,14 @@ struct llama_grammar * llama_grammar_init_impl(
     const llama_grammar_element * pos;
 
     // copy rule definitions into vectors
+    // 函数: vec_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_grammar_rules vec_rules(n_rules);
     for (size_t i = 0; i < n_rules; i++) {
         for (pos = rules[i]; pos->type != LLAMA_GRETYPE_END; pos++) {
@@ -1146,6 +1357,24 @@ struct llama_grammar * llama_grammar_init_impl(
     };
 }
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_init_impl(
         const struct llama_vocab * vocab,
                       const char * grammar_str,
@@ -1155,6 +1384,14 @@ struct llama_grammar * llama_grammar_init_impl(
                             size_t num_trigger_patterns,
                const llama_token * trigger_tokens,
                             size_t num_trigger_tokens) {
+    // 函数: parser
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parser
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_grammar_parser parser(vocab);
 
     // if there is a grammar, parse it
@@ -1178,6 +1415,14 @@ struct llama_grammar * llama_grammar_init_impl(
     const llama_grammar_element * pos;
 
     // copy rule definitions into vectors
+    // 函数: vec_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_rules
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_grammar_rules vec_rules(n_rules);
     for (size_t i = 0; i < n_rules; i++) {
         for (pos = grammar_rules[i]; pos->type != LLAMA_GRETYPE_END; pos++) {
@@ -1252,6 +1497,14 @@ struct llama_grammar * llama_grammar_init_impl(
     };
 }
 
+// 函数: llama_grammar_free_impl
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_free_impl
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_free_impl(struct llama_grammar * grammar) {
     if (grammar == nullptr) {
         return;
@@ -1260,6 +1513,24 @@ void llama_grammar_free_impl(struct llama_grammar * grammar) {
     delete grammar;
 }
 
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+// 类: llama_grammar
+// 描述: llama_grammar类提供相关功能
+// 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
+    // 结构体: llama_grammar
+    // 描述: llama_grammar结构体提供相关功能
+    // 用途: 用于处理llama_grammar相关的操作
 struct llama_grammar * llama_grammar_clone_impl(const struct llama_grammar & grammar) {
     auto * result = new llama_grammar {
         grammar.vocab,
@@ -1290,6 +1561,14 @@ struct llama_grammar * llama_grammar_clone_impl(const struct llama_grammar & gra
     return result;
 }
 
+// 函数: llama_grammar_apply_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_apply_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_apply_impl(const struct llama_grammar & grammar, llama_token_data_array * cur_p) {
     GGML_ASSERT(grammar.vocab != nullptr);
 
@@ -1333,6 +1612,14 @@ void llama_grammar_apply_impl(const struct llama_grammar & grammar, llama_token_
     }
 }
 
+// 函数: llama_grammar_accept_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_accept_impl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_accept_impl(struct llama_grammar & grammar, llama_token token) {
     GGML_ASSERT(grammar.vocab != nullptr);
 
@@ -1392,6 +1679,14 @@ void llama_grammar_accept_impl(struct llama_grammar & grammar, llama_token token
     llama_grammar_accept_token(grammar, token, piece);
 }
 
+// 函数: llama_grammar_accept_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_accept_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_accept_str(struct llama_grammar & grammar, const std::string & piece) {
     // Note terminating 0 in decoded string
     const auto   decoded     = decode_utf8(piece, grammar.partial_utf8);
@@ -1407,6 +1702,14 @@ void llama_grammar_accept_str(struct llama_grammar & grammar, const std::string 
     }
 }
 
+// 函数: llama_grammar_accept_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_grammar_accept_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_grammar_accept_token(struct llama_grammar & grammar, llama_token token, const std::string & piece) {
     // Note terminating 0 in decoded string
     const auto   decoded     = decode_utf8(piece, grammar.partial_utf8);

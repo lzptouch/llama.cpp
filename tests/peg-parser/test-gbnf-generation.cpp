@@ -1,18 +1,49 @@
+// ============================================================================
+// 文件: test-gbnf-generation.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/peg-parser/test-gbnf-generation.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "tests.h"
 
 #include "json-schema-to-grammar.h"
 
 #include <regex>
 
+// 函数: trim_leading_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: trim_leading_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string trim_leading_space(const std::string & s) {
     static const std::regex leading_ws_re = std::regex(R"((^|\n)\s+)");
     return std::regex_replace(s, leading_ws_re, "$1");
 }
 
+// 函数: assert_gbnf_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_gbnf_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_gbnf_equal(testing & t, const std::string & expected, const std::string & actual) {
     t.assert_equal("gbnf are equal", trim_leading_space(expected), trim_leading_space(actual));
 }
 
+// 函数: test_gbnf_generation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_gbnf_generation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void test_gbnf_generation(testing &t) {
     t.test("literal grammar generation", [](testing &t) {
         auto parser = build_peg_parser([](common_peg_parser_builder & p) {

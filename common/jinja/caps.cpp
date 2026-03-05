@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: caps.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/caps.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "value.h"
 #include "runtime.h"
 #include "caps.h"
@@ -37,6 +44,14 @@ static void caps_try_execute(jinja::program & prog,
 
     bool success = false;
     try {
+        // 函数: runtime
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: runtime
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         jinja::runtime runtime(ctx);
         runtime.execute(prog);
         success = true;
@@ -49,6 +64,14 @@ static void caps_try_execute(jinja::program & prog,
 }
 
 // for debugging only
+// 函数: caps_print_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: caps_print_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void caps_print_stats(value & v, const std::string & path) {
     std::string ops;
     for (const auto & name : v->stats.ops) {
@@ -83,6 +106,14 @@ std::string caps::to_string() const {
     return ss.str();
 }
 
+// 函数: caps_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: caps_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 caps caps_get(jinja::program & prog) {
     caps result;
 

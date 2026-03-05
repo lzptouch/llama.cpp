@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: convert_pt_to_hf.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/tts/convert_pt_to_hf.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 # convert the https://huggingface.co/novateur/WavTokenizer-large-speech-75token to HF format
 # the goal is to be able to reuse the convert_hf_to_gguf.py after that to create a GGUF file with the WavTokenizer decoder
 #
@@ -49,6 +56,14 @@ for key in state_dict.keys():
     print(key)
 
 # Ensure the state_dict is flat and contains only torch.Tensor objects
+    # 函数: flatten_state_dict
+    # 描述: flatten_state_dict函数提供相关功能
+    # 参数: state_dict, parent_key='', sep='.'
+    # 返回: 无返回值
+    # 函数: flatten_state_dict
+    # 描述: flatten_state_dict函数提供相关功能
+    # 参数: state_dict, parent_key='', sep='.'
+    # 返回: 无返回值
 def flatten_state_dict(state_dict, parent_key='', sep='.'):
     items = []
     items_new = []

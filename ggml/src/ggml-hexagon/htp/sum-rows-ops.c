@@ -18,7 +18,43 @@
 #include "htp-ops.h"
 
 #define sum_rows_preamble                       \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *src0 =  &octx->src0;\
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *dst  = &octx->dst;  \
                                            \
     const uint32_t ne00 = src0->ne[0];     \
@@ -41,6 +77,24 @@
     const uint32_t  nb2 = dst->nb[2];      \
     const uint32_t  nb3 = dst->nb[3];      \
 
+// 类: sum_rows_context
+// 描述: sum_rows_context类提供相关功能
+// 用途: 用于处理sum_rows_context相关的操作
+// 类: sum_rows_context
+// 描述: sum_rows_context类提供相关功能
+// 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
 struct sum_rows_context {
     const uint8_t * src_data;
     uint8_t       * dst_data;
@@ -52,6 +106,14 @@ struct sum_rows_context {
     bool            opt_path;
 };
 
+// 函数: sum_rows_thread_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sum_rows_thread_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void sum_rows_thread_f32(unsigned int nth, unsigned int ith, void *data) {
     const struct sum_rows_context * smctx = (const struct sum_rows_context *) data;
 
@@ -91,6 +153,14 @@ static void sum_rows_thread_f32(unsigned int nth, unsigned int ith, void *data) 
     }
 }
 
+// 函数: op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_sum_rows(struct htp_ops_context * octx) {
     sum_rows_preamble;
 
@@ -113,6 +183,24 @@ int op_sum_rows(struct htp_ops_context * octx) {
         opt_path = true;
     }
 
+    // 类: sum_rows_context
+    // 描述: sum_rows_context类提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 类: sum_rows_context
+    // 描述: sum_rows_context类提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
+    // 结构体: sum_rows_context
+    // 描述: sum_rows_context结构体提供相关功能
+    // 用途: 用于处理sum_rows_context相关的操作
     struct sum_rows_context smctx = {
         .src_data        = (const uint8_t *) src0->data,
         .dst_data        = (uint8_t *) dst->data,

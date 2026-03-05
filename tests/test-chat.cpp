@@ -64,6 +64,14 @@ template <class T> static bool equals(const T & expected, const T & actual) {
     return expected == actual;
 }
 
+// 函数: normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_msg normalize(const common_chat_msg & msg) {
     common_chat_msg normalized = msg;
     for (auto & tool_call : normalized.tool_calls) {
@@ -78,6 +86,14 @@ static common_chat_msg normalize(const common_chat_msg & msg) {
 
 
 template <>
+// 函数: equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool equals(const common_chat_msg & expected, const common_chat_msg & actual) {
     return normalize(expected) == normalize(actual);
 }
@@ -91,6 +107,14 @@ template <class T> static void assert_equals(const T & expected, const T & actua
     }
 }
 
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read_file(const std::string & path) {
     std::cerr << "# Reading: " << path << '\n' << std::flush;
     std::ifstream fs(path, std::ios_base::binary);
@@ -109,6 +133,14 @@ static std::string read_file(const std::string & path) {
     return out;
 }
 
+// 函数: read_templates
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_templates
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_templates_ptr read_templates(const std::string & path) {
     return common_chat_templates_ptr(common_chat_templates_init(/* model= */ nullptr, read_file(path)));
 }
@@ -119,6 +151,14 @@ static std::unique_ptr<llama_grammar> build_grammar(const std::string & grammar_
 }
 
 // TODO: extract to common helper (copied from test-grammar-integration.cpp)
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool match_string(const std::string & input, llama_grammar * grammar) {
     const auto cpts = unicode_cpts_from_utf8(input);
 
@@ -141,6 +181,14 @@ static bool match_string(const std::string & input, llama_grammar * grammar) {
     return false;
 }
 
+// 函数: renormalize_json
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: renormalize_json
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 static std::string renormalize_json(const std::string & json_str) {
     try {
         auto json_obj = json::parse(json_str);
@@ -150,6 +198,14 @@ static std::string renormalize_json(const std::string & json_str) {
         return json_str;
     }
 }
+// 函数: assert_msg_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_msg_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_msg_equals(const common_chat_msg & expected, const common_chat_msg & actual, bool ignore_whitespace_differences = false) {
     assert_equals(expected.role, actual.role);
     if (ignore_whitespace_differences) {
@@ -260,11 +316,43 @@ common_chat_tool code_interpreter_tool {
 std::vector<common_chat_tool> tools           { special_function_tool, special_function_tool_with_optional_param, python_tool };
 std::vector<common_chat_tool> llama_3_1_tools { special_function_tool, code_interpreter_tool };
 
+// 类: delta_data
+// 描述: delta_data类提供相关功能
+// 用途: 用于处理delta_data相关的操作
+// 类: delta_data
+// 描述: delta_data类提供相关功能
+// 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
+    // 结构体: delta_data
+    // 描述: delta_data结构体提供相关功能
+    // 用途: 用于处理delta_data相关的操作
 struct delta_data {
     std::string        delta;
     common_chat_params params;
 };
 
+// 函数: simple_assist_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: simple_assist_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_msg simple_assist_msg(const std::string & content, const std::string & reasoning_content = "", const std::string & tool_name = "", const std::string & arguments = "", const std::string & id = "") {
     common_chat_msg msg;
     msg.role = "assistant";
@@ -442,6 +530,14 @@ static void test_templates(const struct common_chat_templates * tmpls, const std
  * Also test if there is any problem with partial message
  */
 template <typename T>
+// 函数: test_parser_with_streaming
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_parser_with_streaming
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_parser_with_streaming(const common_chat_msg & expected, const std::string & raw_message, T parse_msg) {
     constexpr auto utf8_truncate_safe_len = [](const std::string_view s) -> size_t {
         auto len = s.size();
@@ -555,12 +651,60 @@ const common_chat_msg message_assist_call_python_lines_unclosed  = simple_assist
 const common_chat_msg message_assist_call_code_interpreter       = simple_assist_msg("", "", "code_interpreter", "{\"code\":\"print('hey')\"}");
 
 // Use for PEG parser implementations
+// 类: peg_test_case
+// 描述: peg_test_case类提供相关功能
+// 用途: 用于处理peg_test_case相关的操作
+// 类: peg_test_case
+// 描述: peg_test_case类提供相关功能
+// 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
+    // 结构体: peg_test_case
+    // 描述: peg_test_case结构体提供相关功能
+    // 用途: 用于处理peg_test_case相关的操作
 struct peg_test_case {
     common_chat_templates_inputs params;
     std::string input;
     common_chat_msg expect;
 };
 
+// 类: make_peg_parser
+// 描述: make_peg_parser类提供相关功能
+// 用途: 用于处理make_peg_parser相关的操作
+// 类: make_peg_parser
+// 描述: make_peg_parser类提供相关功能
+// 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
+    // 结构体: make_peg_parser
+    // 描述: make_peg_parser结构体提供相关功能
+    // 用途: 用于处理make_peg_parser相关的操作
 struct make_peg_parser {
     common_chat_params params_;
     common_peg_arena arena_;
@@ -570,6 +714,14 @@ struct make_peg_parser {
         arena_.load(params_.parser);
     }
 
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_chat_msg parse(const std::string & msg, bool is_partial) {
         common_chat_parser_params parser_params;
         parser_params.format = params_.format;
@@ -577,6 +729,14 @@ struct make_peg_parser {
     }
 };
 
+// 函数: test_peg_parser
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_peg_parser
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_peg_parser(common_chat_templates * tmpls, const std::function<void(peg_test_case &)> & init) {
     peg_test_case tc;
     init(tc);
@@ -621,6 +781,14 @@ static void test_peg_parser(common_chat_templates * tmpls, const std::function<v
     assert_msg_equals(tc.expect, msg_accum, true);
 }
 
+// 函数: test_msgs_oaicompat_json_conversion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_msgs_oaicompat_json_conversion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_msgs_oaicompat_json_conversion() {
     printf("[%s]\n", __func__);
     std::vector<common_chat_msg> msgs{
@@ -698,6 +866,14 @@ static void test_msgs_oaicompat_json_conversion() {
     }
 }
 
+// 函数: test_tools_oaicompat_json_conversion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_tools_oaicompat_json_conversion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_tools_oaicompat_json_conversion() {
     printf("[%s]\n", __func__);
     std::vector<common_chat_tool> tools{
@@ -768,6 +944,30 @@ static void test_tools_oaicompat_json_conversion() {
 }
 
 // for compat; ref: https://github.com/ggml-org/llama.cpp/pull/18961
+// 类: test_parser_params
+// 描述: test_parser_params类提供相关功能
+// 用途: 用于处理test_parser_params相关的操作
+// 类: test_parser_params
+// 描述: test_parser_params类提供相关功能
+// 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
+    // 结构体: test_parser_params
+    // 描述: test_parser_params结构体提供相关功能
+    // 用途: 用于处理test_parser_params相关的操作
 struct test_parser_params {
     common_chat_format       format                = COMMON_CHAT_FORMAT_CONTENT_ONLY;
     common_reasoning_format  reasoning_format      = COMMON_REASONING_FORMAT_NONE;
@@ -776,6 +976,14 @@ struct test_parser_params {
     bool                     parse_tool_calls      = true;
 };
 
+// 函数: test_chat_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_chat_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_msg test_chat_parse(const std::string & input, bool is_partial, const test_parser_params & syntax) {
     common_chat_parser_params params;
     params.format               = syntax.format;
@@ -786,6 +994,14 @@ static common_chat_msg test_chat_parse(const std::string & input, bool is_partia
     return common_chat_parse(input, is_partial, params);
 }
 
+// 函数: test_template_output_parsers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_template_output_parsers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_template_output_parsers() {
     printf("[%s]\n", __func__);
 

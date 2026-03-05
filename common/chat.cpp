@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: chat.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/chat.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "chat.h"
 #include "chat-parser.h"
 #include "chat-peg-parser.h"
@@ -25,6 +32,14 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: format_time
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_time
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string format_time(const std::chrono::system_clock::time_point & now, const std::string & format) {
     auto time = std::chrono::system_clock::to_time_t(now);
     auto local_time = *std::localtime(&time);
@@ -34,6 +49,14 @@ static std::string format_time(const std::chrono::system_clock::time_point & now
     return res;
 }
 
+// 函数: string_diff
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_diff
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string string_diff(const std::string & last, const std::string & current) {
     if (last.empty()) {
         return current;
@@ -49,6 +72,14 @@ static std::string string_diff(const std::string & last, const std::string & cur
     return current.substr(last.size());
 }
 
+// 函数: has_content_or_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: has_content_or_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool has_content_or_tool_calls(const common_chat_msg & msg) {
     return !msg.content.empty() || !msg.tool_calls.empty();
 }
@@ -184,6 +215,24 @@ std::vector<common_chat_msg_diff> common_chat_msg_diff::compute_diffs(const comm
 
 using chat_template_caps = jinja::caps;
 
+// 类: common_chat_template
+// 描述: common_chat_template类提供相关功能
+// 用途: 用于处理common_chat_template相关的操作
+// 类: common_chat_template
+// 描述: common_chat_template类提供相关功能
+// 用途: 用于处理common_chat_template相关的操作
+    // 结构体: common_chat_template
+    // 描述: common_chat_template结构体提供相关功能
+    // 用途: 用于处理common_chat_template相关的操作
+    // 结构体: common_chat_template
+    // 描述: common_chat_template结构体提供相关功能
+    // 用途: 用于处理common_chat_template相关的操作
+    // 结构体: common_chat_template
+    // 描述: common_chat_template结构体提供相关功能
+    // 用途: 用于处理common_chat_template相关的操作
+    // 结构体: common_chat_template
+    // 描述: common_chat_template结构体提供相关功能
+    // 用途: 用于处理common_chat_template相关的操作
 struct common_chat_template {
     jinja::program prog;
     std::string bos_tok;
@@ -209,6 +258,14 @@ struct common_chat_template {
     const std::string & eos_token() const { return eos_tok; }
 
     // TODO: this is ugly, refactor it somehow
+    // 函数: add_system
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_system
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json add_system(const json & messages, const std::string & system_prompt) const {
         GGML_ASSERT(messages.is_array());
         auto msgs_copy = messages;
@@ -239,12 +296,38 @@ struct common_chat_template {
         return msgs_copy;
     }
 
+    // 函数: original_caps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: original_caps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     chat_template_caps original_caps() const {
         return caps;
     }
 
 };
 
+// 类: common_chat_templates
+// 描述: common_chat_templates类提供相关功能
+// 用途: 用于处理common_chat_templates相关的操作
+// 类: common_chat_templates
+// 描述: common_chat_templates类提供相关功能
+// 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
 struct common_chat_templates {
     bool add_bos;
     bool add_eos;
@@ -253,6 +336,24 @@ struct common_chat_templates {
     std::unique_ptr<common_chat_template> template_tool_use;
 };
 
+// 类: templates_params
+// 描述: templates_params类提供相关功能
+// 用途: 用于处理templates_params相关的操作
+// 类: templates_params
+// 描述: templates_params类提供相关功能
+// 用途: 用于处理templates_params相关的操作
+    // 结构体: templates_params
+    // 描述: templates_params结构体提供相关功能
+    // 用途: 用于处理templates_params相关的操作
+    // 结构体: templates_params
+    // 描述: templates_params结构体提供相关功能
+    // 用途: 用于处理templates_params相关的操作
+    // 结构体: templates_params
+    // 描述: templates_params结构体提供相关功能
+    // 用途: 用于处理templates_params相关的操作
+    // 结构体: templates_params
+    // 描述: templates_params结构体提供相关功能
+    // 用途: 用于处理templates_params相关的操作
 struct templates_params {
     json messages;
     json tools;
@@ -272,6 +373,14 @@ struct templates_params {
     bool mark_input = true; // whether to mark input strings in the jinja context
 };
 
+// 函数: common_chat_tool_choice_parse_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_tool_choice_parse_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_chat_tool_choice common_chat_tool_choice_parse_oaicompat(const std::string & tool_choice) {
     if (tool_choice == "auto") {
         return COMMON_CHAT_TOOL_CHOICE_AUTO;
@@ -285,6 +394,14 @@ common_chat_tool_choice common_chat_tool_choice_parse_oaicompat(const std::strin
     throw std::invalid_argument("Invalid tool_choice: " + tool_choice);
 }
 
+// 函数: common_chat_templates_support_enable_thinking
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_support_enable_thinking
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_chat_templates_support_enable_thinking(const common_chat_templates * chat_templates) {
     common_chat_templates_inputs dummy_inputs;
     common_chat_msg msg;
@@ -391,6 +508,14 @@ std::vector<common_chat_msg> common_chat_msgs_parse_oaicompat(const json & messa
     return msgs;
 }
 
+// 函数: render_message_to_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: render_message_to_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static json render_message_to_json(const std::vector<common_chat_msg> & msgs, const jinja::caps & c) {
     if (!c.supports_string_content && !c.supports_typed_content) {
         LOG_WRN("%s: Neither string content nor typed content is supported by the template. This is unexpected and may lead to issues.\n", __func__);
@@ -424,6 +549,14 @@ static json render_message_to_json(const std::vector<common_chat_msg> & msgs, co
 }
 
 // DEPRECATED: only used in tests
+// 函数: common_chat_msgs_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_msgs_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json common_chat_msgs_to_json_oaicompat(const std::vector<common_chat_msg> & msgs, bool concat_typed_text) {
     jinja::caps c;
     c.supports_string_content = true;
@@ -466,6 +599,14 @@ std::vector<common_chat_tool> common_chat_tools_parse_oaicompat(const json & too
     return result;
 }
 
+// 函数: common_chat_tools_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_tools_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json common_chat_tools_to_json_oaicompat(const std::vector<common_chat_tool> & tools) {
     if (tools.empty()) {
         return json();
@@ -485,6 +626,14 @@ json common_chat_tools_to_json_oaicompat(const std::vector<common_chat_tool> & t
     return result;
 }
 
+// 函数: common_chat_msg_diff_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_msg_diff_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json common_chat_msg_diff_to_json_oaicompat(const common_chat_msg_diff & diff) {
     json delta = json::object();
     if (!diff.reasoning_content_delta.empty()) {
@@ -511,6 +660,14 @@ json common_chat_msg_diff_to_json_oaicompat(const common_chat_msg_diff & diff) {
     return delta;
 }
 
+// 函数: common_chat_verify_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_verify_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_chat_verify_template(const std::string & tmpl, bool use_jinja) {
     if (use_jinja) {
         try {
@@ -567,6 +724,14 @@ std::string common_chat_format_single(
     return ss.str();
 }
 
+// 函数: common_chat_format_example
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_format_example
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_chat_format_example(const struct common_chat_templates * tmpls, bool use_jinja, const std::map<std::string, std::string> & chat_template_kwargs) {
     common_chat_templates_inputs inputs;
     inputs.use_jinja = use_jinja;
@@ -594,14 +759,38 @@ std::string common_chat_format_example(const struct common_chat_templates * tmpl
     "  {{- '<|im_start|>assistant\n' -}}\n" \
     "{%- endif -%}"
 
+// 函数: common_chat_templates_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void common_chat_templates_free(struct common_chat_templates * tmpls) {
     delete tmpls;
 }
 
+// 函数: common_chat_templates_was_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_was_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_chat_templates_was_explicit(const struct common_chat_templates * tmpls) {
     return tmpls->has_explicit_template;
 }
 
+// 函数: common_chat_templates_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_chat_templates_source(const struct common_chat_templates * tmpls, const std::string & variant) {
     if (!variant.empty()) {
         if (variant == "tool_use") {
@@ -683,6 +872,14 @@ common_chat_templates_ptr common_chat_templates_init(
                 }
                 return std::string();
             }
+            // 函数: common_token_to_piece
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_token_to_piece
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return common_token_to_piece(vocab, token, true);
         };
         token_bos = get_token(llama_vocab_bos(vocab), "BOS", "bos_token");
@@ -690,6 +887,14 @@ common_chat_templates_ptr common_chat_templates_init(
         add_bos = llama_vocab_get_add_bos(vocab);
         add_eos = llama_vocab_get_add_eos(vocab);
     }
+    // 函数: tmpls
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tmpls
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_chat_templates_ptr tmpls(new common_chat_templates());
     tmpls->has_explicit_template = has_explicit_template;
     tmpls->add_bos = add_bos;
@@ -712,6 +917,14 @@ common_chat_templates_ptr common_chat_templates_init(
     return tmpls;
 }
 
+// 函数: common_chat_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * common_chat_format_name(common_chat_format format) {
     switch (format) {
         case COMMON_CHAT_FORMAT_CONTENT_ONLY: return "Content-only";
@@ -748,6 +961,14 @@ const char * common_chat_format_name(common_chat_format format) {
     }
 }
 
+// 函数: common_reasoning_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_reasoning_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * common_reasoning_format_name(common_reasoning_format format) {
     switch (format) {
         case COMMON_REASONING_FORMAT_NONE:     return "none";
@@ -759,6 +980,14 @@ const char * common_reasoning_format_name(common_reasoning_format format) {
     }
 }
 
+// 函数: common_reasoning_format_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_reasoning_format_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_reasoning_format common_reasoning_format_from_name(const std::string & format) {
     if (format == "none") {
         return COMMON_REASONING_FORMAT_NONE;
@@ -772,6 +1001,14 @@ common_reasoning_format common_reasoning_format_from_name(const std::string & fo
     throw std::runtime_error("Unknown reasoning format: " + format);
 }
 
+// 函数: foreach_function
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: foreach_function
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void foreach_function(const json & tools, const std::function<void(const json &)> & fn) {
     for (const auto & tool : tools) {
         if (!tool.contains("type") || tool.at("type") != "function" || !tool.contains("function")) {
@@ -782,6 +1019,14 @@ static void foreach_function(const json & tools, const std::function<void(const 
     }
 }
 
+// 函数: foreach_parameter
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: foreach_parameter
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void foreach_parameter(const json & function, const std::function<void(const std::string &, const json &, bool)> & fn) {
     if (!function.contains("parameters") || !function.at("parameters").is_object()) {
         return;
@@ -808,6 +1053,14 @@ static std::string apply(
     const std::optional<json> & tools_override = std::nullopt,
     const std::optional<json> & additional_context = std::nullopt)
 {
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     jinja::context ctx(tmpl.source());
 
     nlohmann::ordered_json inp = nlohmann::ordered_json{
@@ -837,6 +1090,14 @@ static std::string apply(
     jinja::global_from_json(ctx, inp, inputs.mark_input);
 
     // render
+    // 函数: runtime
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: runtime
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     jinja::runtime runtime(ctx);
     const jinja::value results = runtime.execute(tmpl.prog);
     auto parts = runtime.gather_string_parts(results);
@@ -853,6 +1114,14 @@ static std::string apply(
     return result;
 }
 
+// 函数: common_chat_params_init_generic
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_generic
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_generic(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
 
@@ -946,6 +1215,14 @@ static common_chat_params common_chat_params_init_generic(const common_chat_temp
     return data;
 }
 
+// 函数: common_chat_params_init_mistral_nemo
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_mistral_nemo
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_mistral_nemo(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
     data.grammar_lazy = inputs.tool_choice != COMMON_CHAT_TOOL_CHOICE_REQUIRED;
@@ -993,6 +1270,14 @@ static common_chat_params common_chat_params_init_mistral_nemo(const common_chat
 
 
 // Case-insensitive find
+// 函数: ifind_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ifind_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ifind_string(const std::string & haystack, const std::string & needle, size_t pos = 0) {
     auto it = std::search(
         haystack.begin() + pos, haystack.end(),
@@ -1002,6 +1287,14 @@ static size_t ifind_string(const std::string & haystack, const std::string & nee
     return (it == haystack.end()) ? std::string::npos : std::distance(haystack.begin(), it);
 }
 
+// 函数: common_chat_params_init_lfm2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_lfm2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_lfm2(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
     const auto is_json_schema_provided = !inputs.json_schema.is_null();
@@ -1111,6 +1404,14 @@ static common_chat_params common_chat_params_init_lfm2(const common_chat_templat
     return data;
 }
 
+// 函数: common_chat_params_init_ministral_3
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_ministral_3
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_ministral_3(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
 
@@ -1223,6 +1524,14 @@ static common_chat_params common_chat_params_init_ministral_3(const common_chat_
     return data;
 }
 
+// 函数: common_chat_params_init_magistral
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_magistral
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_magistral(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
     data.prompt = apply(tmpl, inputs);
@@ -1281,6 +1590,14 @@ static common_chat_params common_chat_params_init_magistral(const common_chat_te
     return data;
 }
 
+// 函数: common_chat_params_init_command_r7b
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_command_r7b
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_command_r7b(const common_chat_template & tmpl, const struct templates_params & inputs) {
     common_chat_params data;
 
@@ -1361,6 +1678,14 @@ static common_chat_params common_chat_params_init_command_r7b(const common_chat_
     return data;
 }
 
+// 函数: expect_tool_parameters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: expect_tool_parameters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void expect_tool_parameters(const std::string & name, const json & parameters, const std::vector<std::string> & expected_properties) {
     if (!parameters.is_object() || !parameters.contains("type") || parameters.at("type") != "object" || !parameters.contains("properties") || !parameters.contains("required")) {
         throw std::runtime_error("Parameters of tool " + name + " must be an object w/ required properties");
@@ -1380,6 +1705,14 @@ static void expect_tool_parameters(const std::string & name, const json & parame
     }
 }
 
+// 函数: common_chat_params_init_llama_3_x
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_params_init_llama_3_x
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_params common_chat_params_init_llama_3_x(const common_chat_template & tmpl, const struct templates_params & inputs, bool allow_python_tag_builtin_tools) {
     auto builtin_tools = json::array();
     common_chat_params data;

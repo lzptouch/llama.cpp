@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/parser.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "lexer.h"
 #include "runtime.h"
 #include "parser.h"
@@ -14,10 +21,24 @@ namespace jinja {
 
 // Helper to check type without asserting (useful for logic)
 template<typename T>
+// 函数: is_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_type(const statement_ptr & ptr) {
     return dynamic_cast<const T*>(ptr.get()) != nullptr;
 }
 
+// 类: parser
+// 描述: parser类提供相关功能
+// 用途: 用于处理parser相关的操作
+// 类: parser
+// 描述: parser类提供相关功能
+// 用途: 用于处理parser相关的操作
 class parser {
     const std::vector<token> & tokens;
     size_t current = 0;
@@ -27,6 +48,14 @@ class parser {
 public:
     parser(const std::vector<token> & t, const std::string & src) : tokens(t), source(src) {}
 
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     program parse() {
         statements body;
         while (current < tokens.size()) {
@@ -53,6 +82,14 @@ private:
         return tokens[current + offset];
     }
 
+    // 函数: expect
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: expect
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     token expect(token::type type, const std::string&  error) {
         const auto & t = peek();
         if (t.t != type) {
@@ -62,6 +99,14 @@ private:
         return t;
     }
 
+    // 函数: expect_identifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: expect_identifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void expect_identifier(const std::string & name) {
         const auto & t = peek();
         if (t.t != token::identifier || t.value != name) {
@@ -70,14 +115,38 @@ private:
         current++;
     }
 
+    // 函数: is
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is(token::type type) const {
         return peek().t == type;
     }
 
+    // 函数: is_identifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_identifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_identifier(const std::string & name) const {
         return peek().t == token::identifier && peek().value == name;
     }
 
+    // 函数: is_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_statement(const std::vector<std::string> & names) const {
         if (peek(0).t != token::open_statement || peek(1).t != token::identifier) {
             return false;
@@ -86,6 +155,14 @@ private:
         return std::find(names.begin(), names.end(), val) != names.end();
     }
 
+    // 函数: parse_any
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_any
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_any() {
         size_t start_pos = current;
         switch (peek().t) {
@@ -102,6 +179,14 @@ private:
         }
     }
 
+    // 函数: parse_jinja_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_jinja_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_jinja_expression() {
         // Consume {{ }} tokens
         expect(token::open_expression, "Expected {{");
@@ -110,6 +195,14 @@ private:
         return result;
     }
 
+    // 函数: parse_jinja_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_jinja_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_jinja_statement() {
         // Consume {% token
         expect(token::open_statement, "Expected {%");
@@ -210,6 +303,14 @@ private:
         return result;
     }
 
+    // 函数: parse_set_statement
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_set_statement
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_set_statement(size_t start_pos) {
         // NOTE: `set` acts as both declaration statement and assignment expression
         auto left = parse_expression_sequence();
@@ -232,6 +333,14 @@ private:
         return mk_stmt<set_statement>(start_pos, std::move(left), std::move(value), std::move(body));
     }
 
+    // 函数: parse_if_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_if_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_if_statement(size_t start_pos) {
         auto test = parse_expression();
         expect(token::close_statement, "Expected %}");
@@ -262,6 +371,14 @@ private:
         return mk_stmt<if_statement>(start_pos, std::move(test), std::move(body), std::move(alternate));
     }
 
+    // 函数: parse_macro_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_macro_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_macro_statement(size_t start_pos) {
         auto name = parse_primary_expression();
         auto args = parse_args();
@@ -274,6 +391,14 @@ private:
         return mk_stmt<macro_statement>(start_pos, std::move(name), std::move(args), std::move(body));
     }
 
+    // 函数: parse_expression_sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_expression_sequence
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_expression_sequence(bool primary = false) {
         size_t start_pos = current;
         statements exprs;
@@ -286,6 +411,14 @@ private:
         return is_tuple ? mk_stmt<tuple_literal>(start_pos, std::move(exprs)) : std::move(exprs[0]);
     }
 
+    // 函数: parse_for_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_for_statement
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_for_statement(size_t start_pos) {
         // e.g., `message` in `for message in messages`
         auto loop_var = parse_expression_sequence(true); // should be an identifier/tuple
@@ -317,11 +450,27 @@ private:
             std::move(body), std::move(alternate));
     }
 
+    // 函数: parse_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_expression() {
         // Choose parse function with lowest precedence
         return parse_if_expression();
     }
 
+    // 函数: parse_if_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_if_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_if_expression() {
         auto a = parse_logical_or_expression();
         if (is_identifier("if")) {
@@ -343,6 +492,14 @@ private:
         return a;
     }
 
+    // 函数: parse_logical_or_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_logical_or_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_logical_or_expression() {
         auto left = parse_logical_and_expression();
         while (is_identifier("or")) {
@@ -353,6 +510,14 @@ private:
         return left;
     }
 
+    // 函数: parse_logical_and_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_logical_and_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_logical_and_expression() {
         auto left = parse_logical_negation_expression();
         while (is_identifier("and")) {
@@ -363,6 +528,14 @@ private:
         return left;
     }
 
+    // 函数: parse_logical_negation_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_logical_negation_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_logical_negation_expression() {
         // Try parse unary operators
         if (is_identifier("not")) {
@@ -373,6 +546,14 @@ private:
         return parse_comparison_expression();
     }
 
+    // 函数: parse_comparison_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_comparison_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_comparison_expression() {
         // NOTE: membership has same precedence as comparison
         // e.g., ('a' in 'apple' == 'b' in 'banana') evaluates as ('a' in ('apple' == ('b' in 'banana')))
@@ -393,6 +574,14 @@ private:
         return left;
     }
 
+    // 函数: parse_additive_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_additive_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_additive_expression() {
         auto left = parse_multiplicative_expression();
         while (is(token::additive_binary_operator)) {
@@ -403,6 +592,14 @@ private:
         return left;
     }
 
+    // 函数: parse_multiplicative_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_multiplicative_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_multiplicative_expression() {
         auto left = parse_test_expression();
         while (is(token::multiplicative_binary_operator)) {
@@ -413,6 +610,14 @@ private:
         return left;
     }
 
+    // 函数: parse_test_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_test_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_test_expression() {
         auto operand = parse_filter_expression();
         while (is_identifier("is")) {
@@ -428,6 +633,14 @@ private:
         return operand;
     }
 
+    // 函数: parse_filter_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_filter_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_filter_expression() {
         auto operand = parse_call_member_expression();
         while (is(token::pipe)) {
@@ -440,6 +653,14 @@ private:
         return operand;
     }
 
+    // 函数: parse_call_member_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_call_member_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_call_member_expression() {
         // Handle member expressions recursively
         auto member = parse_member_expression(parse_primary_expression());
@@ -448,6 +669,14 @@ private:
             : std::move(member);
     }
 
+    // 函数: parse_call_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_call_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_call_expression(statement_ptr callee) {
         size_t start_pos = current;
         auto expr = mk_stmt<call_expression>(start_pos, std::move(callee), parse_args());
@@ -457,6 +686,14 @@ private:
             : std::move(member);
     }
 
+    // 函数: parse_args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statements parse_args() {
         // comma-separated arguments list
         expect(token::open_paren, "Expected (");
@@ -487,6 +724,14 @@ private:
         return args;
     }
 
+    // 函数: parse_member_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_member_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_member_expression(statement_ptr object) {
         size_t start_pos = current;
         while (is(token::dot) || is(token::open_square_bracket)) {
@@ -504,6 +749,14 @@ private:
         return object;
     }
 
+    // 函数: parse_member_expression_arguments
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_member_expression_arguments
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_member_expression_arguments() {
         // NOTE: This also handles slice expressions colon-separated arguments list
         // e.g., ['test'], [0], [:2], [1:], [1:2], [1:2:3]
@@ -534,6 +787,14 @@ private:
         return std::move(slices[0]);
     }
 
+    // 函数: parse_primary_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: parse_primary_expression
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     statement_ptr parse_primary_expression() {
         size_t start_pos = current;
         auto t = tokens[current++];
@@ -584,6 +845,14 @@ private:
     }
 };
 
+// 函数: parse_from_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_from_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 program parse_from_tokens(const lexer_result & lexer_res) {
     return parser(lexer_res.tokens, lexer_res.source).parse();
 }

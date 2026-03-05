@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: vulkan-shaders-gen.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-vulkan/vulkan-shaders/vulkan-shaders-gen.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -34,6 +41,14 @@
 
 std::mutex lock;
 std::vector<std::pair<std::string, std::string>> shader_fnames;
+// 函数: c_locale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: c_locale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::locale c_locale("C");
 
 std::string GLSLC = "glslc";
@@ -76,6 +91,14 @@ enum MatMulIdType {
 
 namespace {
 
+// 函数: execute_command
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_command
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void execute_command(std::vector<std::string>& command, std::string& stdout_str, std::string& stderr_str) {
 #ifdef _WIN32
     HANDLE stdout_read, stdout_write;
@@ -177,7 +200,33 @@ void execute_command(std::vector<std::string>& command, std::string& stdout_str,
 #endif
 }
 
+// 函数: directory_exists
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: directory_exists
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool directory_exists(const std::string& path) {
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
     struct stat info;
     if (stat(path.c_str(), &info) != 0) {
         return false; // Path doesn't exist or can't be accessed
@@ -185,6 +234,14 @@ bool directory_exists(const std::string& path) {
     return (info.st_mode & S_IFDIR) != 0; // Check if it is a directory
 }
 
+// 函数: create_directory
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_directory
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool create_directory(const std::string& path) {
 #ifdef _WIN32
     return _mkdir(path.c_str()) == 0 || errno == EEXIST; // EEXIST means the directory already exists
@@ -193,6 +250,14 @@ bool create_directory(const std::string& path) {
 #endif
 }
 
+// 函数: to_uppercase
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: to_uppercase
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string to_uppercase(const std::string& input) {
     std::string result = input;
     for (char& c : result) {
@@ -201,6 +266,14 @@ std::string to_uppercase(const std::string& input) {
     return result;
 }
 
+// 函数: string_starts_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_starts_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool string_starts_with(const std::string& str, const std::string& prefix) {
     if (prefix.size() > str.size()) {
         return false;
@@ -208,6 +281,14 @@ bool string_starts_with(const std::string& str, const std::string& prefix) {
     return std::equal(prefix.begin(), prefix.end(), str.begin());
 }
 
+// 函数: string_ends_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_ends_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool string_ends_with(const std::string& str, const std::string& suffix) {
     if (suffix.size() > str.size()) {
         return false;
@@ -215,38 +296,102 @@ bool string_ends_with(const std::string& str, const std::string& suffix) {
     return std::equal(suffix.rbegin(), suffix.rend(), str.rbegin());
 }
 
+// 函数: is_quantized_type
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_quantized_type
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 bool is_quantized_type(const std::string& type_name) {
     return type_name != "f32" && type_name != "f16" && type_name != "bf16";
 }
 
+// 函数: is_legacy_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_legacy_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool is_legacy_quant(const std::string& type_name) {
     return type_name == "q4_0" || type_name == "q4_1" || type_name == "q5_0" || type_name == "q5_1" || type_name == "q8_0";
 }
 
+// 函数: is_k_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_k_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool is_k_quant(const std::string& type_name) {
     return string_ends_with(type_name, "_k");
 }
 
+// 函数: is_iq_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_iq_quant
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool is_iq_quant(const std::string& type_name) {
     return string_starts_with(type_name, "iq");
 }
 
 static const char path_separator = '/';
 
+// 函数: join_paths
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: join_paths
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string join_paths(const std::string& path1, const std::string& path2) {
     return path1 + path_separator + path2;
 }
 
+// 函数: basename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: basename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string basename(const std::string &path) {
     return path.substr(path.find_last_of("/\\") + 1);
 }
 
+// 函数: make_generic_stringstream
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_generic_stringstream
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::stringstream make_generic_stringstream() {
     std::stringstream ss;
     ss.imbue(c_locale);
     return ss;
 }
 
+// 函数: read_binary_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_binary_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string read_binary_file(const std::string& path, bool may_not_exist = false) {
     FILE* f = fopen(path.c_str(), "rb");
     if (!f) {
@@ -271,6 +416,14 @@ std::string read_binary_file(const std::string& path, bool may_not_exist = false
     return data;
 }
 
+// 函数: write_binary_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_binary_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void write_binary_file(const std::string& path, const std::string& content) {
     FILE* f = fopen(path.c_str(), "wb");
     if (!f) {
@@ -286,6 +439,14 @@ void write_binary_file(const std::string& path, const std::string& content) {
     }
 }
 
+// 函数: write_file_if_changed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_file_if_changed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void write_file_if_changed(const std::string& path, const std::string& content) {
     std::string existing = read_binary_file(path, true);
     if (existing != content) {
@@ -300,6 +461,14 @@ static std::mutex compile_count_mutex;
 static std::condition_variable compile_count_cond;
 static bool generate_dep_file = true;
 
+// 函数: decrement_compile_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: decrement_compile_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void decrement_compile_count(uint32_t * count) {
     if (count) {
         std::lock_guard<std::mutex> guard(compile_count_mutex);
@@ -311,6 +480,14 @@ void decrement_compile_count(uint32_t * count) {
 
 using compile_count_guard = std::unique_ptr<uint32_t, decltype(&decrement_compile_count)>;
 
+// 函数: acquire_compile_slot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: acquire_compile_slot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 compile_count_guard acquire_compile_slot() {
     // wait until fewer than N compiles are in progress.
     // 16 is an arbitrary limit, the goal is to avoid "failed to create pipe" errors.
@@ -321,6 +498,14 @@ compile_count_guard acquire_compile_slot() {
     return compile_count_guard(&compile_count, &decrement_compile_count);
 }
 
+// 函数: string_to_spv_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_to_spv_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void string_to_spv_func(std::string name, std::string in_path, std::string out_path, std::map<std::string, std::string> defines, bool coopmat, bool dep_file, compile_count_guard slot) {
     std::string target_env = (name.find("_cm2") != std::string::npos) ? "--target-env=vulkan1.3" : "--target-env=vulkan1.2";
 
@@ -404,6 +589,14 @@ std::map<std::string, std::string> merge_maps(const std::map<std::string, std::s
 }
 
 static std::vector<std::future<void>> compiles;
+// 函数: string_to_spv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_to_spv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void string_to_spv(std::string name, const std::string& source, const std::map<std::string, std::string>& defines, bool fp16 = true, bool coopmat = false, bool coopmat2 = false, bool f16acc = false) {
     name = name + (f16acc ? "_f16acc" : "") + (coopmat ? "_cm1" : "") + (coopmat2 ? "_cm2" : (fp16 ? "" : "_fp32"));
     std::string out_path = join_paths(output_dir, name + ".spv");
@@ -424,6 +617,14 @@ void string_to_spv(std::string name, const std::string& source, const std::map<s
     generate_dep_file = false;
 }
 
+// 函数: matmul_shaders
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matmul_shaders
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void matmul_shaders(bool fp16, MatMulIdType matmul_id_type, bool coopmat, bool coopmat2, bool f16acc) {
     std::string load_vec = coopmat2 ? "1" : fp16 ? "8" : "4";
     std::string aligned_b_type_f32 = coopmat2 ? "float" : fp16 ? "mat2x4" : "vec4";
@@ -594,6 +795,14 @@ void matmul_shaders(bool fp16, MatMulIdType matmul_id_type, bool coopmat, bool c
     }
 }
 
+// 函数: process_shaders
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_shaders
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void process_shaders() {
     // matmul
     for (const MatMulIdType& matmul_id_type : {MatMulIdType::NONE, MatMulIdType::DEFAULT, MatMulIdType::SUBGROUP}) {
@@ -1033,6 +1242,14 @@ void process_shaders() {
     }
 }
 
+// 函数: write_output_files
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_output_files
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void write_output_files() {
     std::stringstream hdr = make_generic_stringstream();
     std::stringstream src = make_generic_stringstream();
@@ -1171,6 +1388,14 @@ void write_output_files() {
 
 } // namespace
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char** argv) {
     std::map<std::string, std::string> args;
     for (int i = 1; i < argc; ++i) {

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 message(STATUS  "GGML_SYCL_TARGET=${GGML_SYCL_TARGET}")
 
 if (NOT GGML_SYCL_TARGET MATCHES "^(INTEL)$")

@@ -69,7 +69,43 @@
     const uint32_t nb2 = dst->nb[2];   \
     const uint32_t nb3 = dst->nb[3];
 
+// 类: htp_act_context
+// 描述: htp_act_context类提供相关功能
+// 用途: 用于处理htp_act_context相关的操作
+// 类: htp_act_context
+// 描述: htp_act_context类提供相关功能
+// 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
 struct htp_act_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context *  octx;
 
     // Precomputed values
@@ -95,7 +131,33 @@ struct htp_act_context {
     int                       nc;
 };
 
+// 函数: glu_swiglu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: glu_swiglu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void glu_swiglu_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context * actx = (struct htp_act_context *) data;
     const struct htp_tensor * src0 = &actx->octx->src0;
     const struct htp_tensor * src1 = &actx->octx->src1;
@@ -205,7 +267,33 @@ static void glu_swiglu_f32_per_thread(unsigned int nth, unsigned int ith, void *
          (unsigned) HAP_perf_qtimer_count_to_us(t2 - t1));
 }
 
+// 函数: glu_swiglu_oai_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: glu_swiglu_oai_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void glu_swiglu_oai_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context * actx = (struct htp_act_context *) data;
     const struct htp_tensor * src0 = &actx->octx->src0;
     const struct htp_tensor * src1 = &actx->octx->src1;
@@ -330,7 +418,33 @@ static void glu_swiglu_oai_f32_per_thread(unsigned int nth, unsigned int ith, vo
 }
 
 
+// 函数: unary_gelu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_gelu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_gelu_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context * actx = (struct htp_act_context *) data;
     const struct htp_tensor * src0 = &actx->octx->src0;
     const struct htp_tensor * dst  = &actx->octx->dst;
@@ -431,7 +545,33 @@ static void unary_gelu_f32_per_thread(unsigned int nth, unsigned int ith, void *
 }
 
 
+// 函数: unary_silu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_silu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_silu_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context * actx = (struct htp_act_context *) data;
     const struct htp_tensor * src0 = &actx->octx->src0;
     const struct htp_tensor * dst  = &actx->octx->dst;
@@ -531,7 +671,33 @@ static void unary_silu_f32_per_thread(unsigned int nth, unsigned int ith, void *
 static const float GELU_COEF_A     = 0.044715f;
 static const float SQRT_2_OVER_PI  = 0.79788456080286535587989211986876f;
 
+// 函数: glu_geglu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: glu_geglu_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void glu_geglu_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context * actx = (struct htp_act_context *) data;
     const struct htp_tensor * src0 = &actx->octx->src0;
     const struct htp_tensor * src1 = &actx->octx->src1;
@@ -651,9 +817,35 @@ static void glu_geglu_f32_per_thread(unsigned int nth, unsigned int ith, void * 
          (unsigned) HAP_perf_qtimer_count_to_us(t2 - t1));
 }
 
+// 函数: execute_op_activations_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_op_activations_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int execute_op_activations_f32(struct htp_ops_context * octx) {
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     if (((src0->ne[0] * SIZEOF_FP32) != src0->nb[1]) || ((dst->ne[0] * SIZEOF_FP32) != dst->nb[1])) {
@@ -751,6 +943,24 @@ static int execute_op_activations_f32(struct htp_ops_context * octx) {
     uint32_t n_jobs = MIN(n_threads, src0_nrows);
 
     // Prepare context
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 类: htp_act_context
+    // 描述: htp_act_context类提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
+    // 结构体: htp_act_context
+    // 描述: htp_act_context结构体提供相关功能
+    // 用途: 用于处理htp_act_context相关的操作
     struct htp_act_context actx;
     actx.octx = octx;
 
@@ -798,6 +1008,14 @@ static int execute_op_activations_f32(struct htp_ops_context * octx) {
     return HTP_STATUS_OK;
 }
 
+// 函数: op_activations
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_activations
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_activations(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_speculative.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_speculative.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
@@ -7,6 +14,14 @@ server = ServerPreset.stories15m_moe()
 
 MODEL_DRAFT_FILE_URL = "https://huggingface.co/ggml-org/models/resolve/main/tinyllamas/stories15M-q4_0.gguf"
 
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.stories15m_moe()
@@ -18,10 +33,26 @@ def create_server():
 
 
 @pytest.fixture(autouse=True)
+    # 函数: fixture_create_server
+    # 描述: fixture_create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: fixture_create_server
+    # 描述: fixture_create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
 def fixture_create_server():
     return create_server()
 
 
+    # 函数: test_with_and_without_draft
+    # 描述: test_with_and_without_draft函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_with_and_without_draft
+    # 描述: test_with_and_without_draft函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_with_and_without_draft():
     global server
     server.model_draft = None  # disable draft model
@@ -51,6 +82,14 @@ def test_with_and_without_draft():
     assert content_no_draft == content_draft
 
 
+    # 函数: test_different_draft_min_draft_max
+    # 描述: test_different_draft_min_draft_max函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_different_draft_min_draft_max
+    # 描述: test_different_draft_min_draft_max函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_different_draft_min_draft_max():
     global server
     test_values = [
@@ -78,6 +117,14 @@ def test_different_draft_min_draft_max():
         last_content = res.body["content"]
 
 
+    # 函数: test_slot_ctx_not_exceeded
+    # 描述: test_slot_ctx_not_exceeded函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_slot_ctx_not_exceeded
+    # 描述: test_slot_ctx_not_exceeded函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_slot_ctx_not_exceeded():
     global server
     server.n_ctx = 256
@@ -92,6 +139,14 @@ def test_slot_ctx_not_exceeded():
     assert len(res.body["content"]) > 0
 
 
+    # 函数: test_with_ctx_shift
+    # 描述: test_with_ctx_shift函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_with_ctx_shift
+    # 描述: test_with_ctx_shift函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_with_ctx_shift():
     global server
     server.n_ctx = 256
@@ -114,6 +169,14 @@ def test_with_ctx_shift():
     (1, 2),
     (2, 2),
 ])
+    # 函数: test_multi_requests_parallel
+    # 描述: test_multi_requests_parallel函数提供相关功能
+    # 参数: n_slots: int, n_requests: int
+    # 返回: 无返回值
+    # 函数: test_multi_requests_parallel
+    # 描述: test_multi_requests_parallel函数提供相关功能
+    # 参数: n_slots: int, n_requests: int
+    # 返回: 无返回值
 def test_multi_requests_parallel(n_slots: int, n_requests: int):
     global server
     server.n_slots = n_slots

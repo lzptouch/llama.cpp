@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend-dispatched.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend-dispatched.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 
 #include "backend-virgl-apir.h"
@@ -15,6 +22,14 @@ uint64_t timer_start = 0;
 uint64_t timer_total = 0;
 uint64_t timer_count = 0;
 
+// 函数: backend_dispatch_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_dispatch_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_dispatch_initialize(void * ggml_backend_reg_fct_p) {
     if (reg != NULL) {
         GGML_LOG_WARN(GGML_VIRTGPU_BCK "%s: already initialized\n", __func__);

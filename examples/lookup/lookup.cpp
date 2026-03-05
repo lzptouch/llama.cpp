@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: lookup.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/lookup/lookup.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "ggml.h"
 #include "common.h"
@@ -12,6 +19,14 @@
 #include <string>
 #include <vector>
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv){
     common_params params;
 
@@ -102,6 +117,24 @@ int main(int argc, char ** argv){
 
     bool has_eos = false;
 
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = common_sampler_init(model, params.sampling);
 
     std::vector<llama_token> draft;

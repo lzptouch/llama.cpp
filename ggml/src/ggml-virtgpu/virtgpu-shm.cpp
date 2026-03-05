@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: virtgpu-shm.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-shm.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-shm.h"
 
 #include "virtgpu.h"
@@ -34,6 +41,14 @@ static uint32_t virtgpu_ioctl_resource_create_blob(virtgpu *  gpu,
     return args.bo_handle;
 }
 
+// 函数: virtgpu_ioctl_gem_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_gem_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void virtgpu_ioctl_gem_close(virtgpu * gpu, uint32_t gem_handle) {
     drm_gem_close args = {
         .handle = gem_handle,
@@ -47,6 +62,14 @@ static void virtgpu_ioctl_gem_close(virtgpu * gpu, uint32_t gem_handle) {
 #endif
 }
 
+// 函数: virtgpu_ioctl_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_map
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void * virtgpu_ioctl_map(virtgpu * gpu, uint32_t gem_handle, size_t size) {
     drm_virtgpu_map args = {
         .offset = 0,
@@ -66,11 +89,27 @@ static void * virtgpu_ioctl_map(virtgpu * gpu, uint32_t gem_handle, size_t size)
     return ptr;
 }
 
+// 函数: virtgpu_shmem_destroy
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_shmem_destroy
+// 描述: 销毁: 完全销毁对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 void virtgpu_shmem_destroy(virtgpu * gpu, virtgpu_shmem * shmem) {
     munmap(shmem->mmap_ptr, shmem->mmap_size);
     virtgpu_ioctl_gem_close(gpu, shmem->gem_handle);
 }
 
+// 函数: virtgpu_shmem_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_shmem_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 int virtgpu_shmem_create(virtgpu * gpu, size_t size, virtgpu_shmem * shmem) {
     size = align64(size, 16384);
 

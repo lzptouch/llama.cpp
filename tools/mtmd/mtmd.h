@@ -60,12 +60,156 @@ enum mtmd_input_chunk_type {
 };
 
 // opaque types
+// 类: mtmd_context
+// 描述: mtmd_context类提供相关功能
+// 用途: 用于处理mtmd_context相关的操作
+// 类: mtmd_context
+// 描述: mtmd_context类提供相关功能
+// 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
 struct mtmd_context;
+// 类: mtmd_bitmap
+// 描述: mtmd_bitmap类提供相关功能
+// 用途: 用于处理mtmd_bitmap相关的操作
+// 类: mtmd_bitmap
+// 描述: mtmd_bitmap类提供相关功能
+// 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
 struct mtmd_bitmap;
+// 类: mtmd_image_tokens
+// 描述: mtmd_image_tokens类提供相关功能
+// 用途: 用于处理mtmd_image_tokens相关的操作
+// 类: mtmd_image_tokens
+// 描述: mtmd_image_tokens类提供相关功能
+// 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
 struct mtmd_image_tokens;
+// 类: mtmd_input_chunk
+// 描述: mtmd_input_chunk类提供相关功能
+// 用途: 用于处理mtmd_input_chunk相关的操作
+// 类: mtmd_input_chunk
+// 描述: mtmd_input_chunk类提供相关功能
+// 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
 struct mtmd_input_chunk;
+// 类: mtmd_input_chunks
+// 描述: mtmd_input_chunks类提供相关功能
+// 用途: 用于处理mtmd_input_chunks相关的操作
+// 类: mtmd_input_chunks
+// 描述: mtmd_input_chunks类提供相关功能
+// 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
 struct mtmd_input_chunks;
 
+// 类: mtmd_input_text
+// 描述: mtmd_input_text类提供相关功能
+// 用途: 用于处理mtmd_input_text相关的操作
+// 类: mtmd_input_text
+// 描述: mtmd_input_text类提供相关功能
+// 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
+    // 结构体: mtmd_input_text
+    // 描述: mtmd_input_text结构体提供相关功能
+    // 用途: 用于处理mtmd_input_text相关的操作
 struct mtmd_input_text {
     const char * text;
     bool add_special;
@@ -83,6 +227,30 @@ typedef struct mtmd_input_chunk  mtmd_input_chunk;
 typedef struct mtmd_input_chunks mtmd_input_chunks;
 typedef struct mtmd_input_text   mtmd_input_text;
 
+// 类: mtmd_context_params
+// 描述: mtmd_context_params类提供相关功能
+// 用途: 用于处理mtmd_context_params相关的操作
+// 类: mtmd_context_params
+// 描述: mtmd_context_params类提供相关功能
+// 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
 struct mtmd_context_params {
     bool use_gpu;
     bool print_timings;
@@ -248,26 +416,178 @@ MTMD_API mtmd_input_chunks * mtmd_test_create_input_chunks(void);
 
 namespace mtmd {
 
+// 类: mtmd_context_deleter
+// 描述: mtmd_context_deleter类提供相关功能
+// 用途: 用于处理mtmd_context_deleter相关的操作
+// 类: mtmd_context_deleter
+// 描述: mtmd_context_deleter类提供相关功能
+// 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
+    // 结构体: mtmd_context_deleter
+    // 描述: mtmd_context_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_context_deleter相关的操作
 struct mtmd_context_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(mtmd_context * val) { mtmd_free(val); }
 };
 using context_ptr = std::unique_ptr<mtmd_context, mtmd_context_deleter>;
 
+// 类: mtmd_bitmap_deleter
+// 描述: mtmd_bitmap_deleter类提供相关功能
+// 用途: 用于处理mtmd_bitmap_deleter相关的操作
+// 类: mtmd_bitmap_deleter
+// 描述: mtmd_bitmap_deleter类提供相关功能
+// 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
+    // 结构体: mtmd_bitmap_deleter
+    // 描述: mtmd_bitmap_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap_deleter相关的操作
 struct mtmd_bitmap_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(mtmd_bitmap * val) { mtmd_bitmap_free(val); }
 };
 using bitmap_ptr = std::unique_ptr<mtmd_bitmap, mtmd_bitmap_deleter>;
 
+// 类: mtmd_input_chunks_deleter
+// 描述: mtmd_input_chunks_deleter类提供相关功能
+// 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+// 类: mtmd_input_chunks_deleter
+// 描述: mtmd_input_chunks_deleter类提供相关功能
+// 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
+    // 结构体: mtmd_input_chunks_deleter
+    // 描述: mtmd_input_chunks_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks_deleter相关的操作
 struct mtmd_input_chunks_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(mtmd_input_chunks * val) { mtmd_input_chunks_free(val); }
 };
 using input_chunks_ptr = std::unique_ptr<mtmd_input_chunks, mtmd_input_chunks_deleter>;
 
+// 类: mtmd_input_chunk_deleter
+// 描述: mtmd_input_chunk_deleter类提供相关功能
+// 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+// 类: mtmd_input_chunk_deleter
+// 描述: mtmd_input_chunk_deleter类提供相关功能
+// 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
+    // 结构体: mtmd_input_chunk_deleter
+    // 描述: mtmd_input_chunk_deleter结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk_deleter相关的操作
 struct mtmd_input_chunk_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(mtmd_input_chunk * val) { mtmd_input_chunk_free(val); }
 };
 using input_chunk_ptr = std::unique_ptr<mtmd_input_chunk, mtmd_input_chunk_deleter>;
 
+// 类: bitmap
+// 描述: bitmap类提供相关功能
+// 用途: 用于处理bitmap相关的操作
+// 类: bitmap
+// 描述: bitmap类提供相关功能
+// 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
+    // 结构体: bitmap
+    // 描述: bitmap结构体提供相关功能
+    // 用途: 用于处理bitmap相关的操作
 struct bitmap {
     bitmap_ptr ptr;
     bitmap() : ptr(nullptr) {}
@@ -277,14 +597,78 @@ struct bitmap {
         ptr.reset(mtmd_bitmap_init(nx, ny, data));
     }
     ~bitmap() = default;
+    // 函数: nx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: nx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t nx() const { return mtmd_bitmap_get_nx(ptr.get()); }
+    // 函数: ny
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ny
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t ny() const { return mtmd_bitmap_get_ny(ptr.get()); }
     const unsigned char * data() const { return mtmd_bitmap_get_data(ptr.get()); }
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() const { return mtmd_bitmap_get_n_bytes(ptr.get()); }
+    // 函数: id
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: id
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string id() const { return mtmd_bitmap_get_id(ptr.get()); }
+    // 函数: set_id
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_id
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_id(const char * id) const { mtmd_bitmap_set_id(ptr.get(), id); }
 };
 
+// 类: bitmaps
+// 描述: bitmaps类提供相关功能
+// 用途: 用于处理bitmaps相关的操作
+// 类: bitmaps
+// 描述: bitmaps类提供相关功能
+// 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
+    // 结构体: bitmaps
+    // 描述: bitmaps结构体提供相关功能
+    // 用途: 用于处理bitmaps相关的操作
 struct bitmaps {
     std::vector<bitmap> entries;
     ~bitmaps() = default;
@@ -301,13 +685,53 @@ struct bitmaps {
     }
 };
 
+// 类: input_chunks
+// 描述: input_chunks类提供相关功能
+// 用途: 用于处理input_chunks相关的操作
+// 类: input_chunks
+// 描述: input_chunks类提供相关功能
+// 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
+    // 结构体: input_chunks
+    // 描述: input_chunks结构体提供相关功能
+    // 用途: 用于处理input_chunks相关的操作
 struct input_chunks {
     input_chunks_ptr ptr;
     input_chunks() = default;
     input_chunks(mtmd_input_chunks * chunks) : ptr(chunks) {}
     ~input_chunks() = default;
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const { return mtmd_input_chunks_size(ptr.get()); }
     const mtmd_input_chunk * operator[](size_t idx) const {
+        // 函数: mtmd_input_chunks_get
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: mtmd_input_chunks_get
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return mtmd_input_chunks_get(ptr.get(), idx);
     }
 };

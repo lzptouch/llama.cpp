@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: vec.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/vec.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "vec.h"
 
 #include <cassert>
@@ -8,6 +15,14 @@ ggml_fp16_t ggml_table_gelu_f16[1 << 16];
 // precomputed quick gelu table for f16 (128 KB)
 ggml_fp16_t ggml_table_gelu_quick_f16[1 << 16];
 
+// 函数: ggml_vec_dot_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_f32(int n, float * GGML_RESTRICT s, size_t bs, const float * GGML_RESTRICT x, size_t bx, const float * GGML_RESTRICT y, size_t by, int nrc) {
    assert(nrc == 1);
    GGML_UNUSED(nrc);
@@ -136,6 +151,14 @@ void ggml_vec_dot_f32(int n, float * GGML_RESTRICT s, size_t bs, const float * G
     *s = sumf;
 }
 
+// 函数: ggml_vec_dot_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_bf16(int n, float * GGML_RESTRICT s, size_t bs, ggml_bf16_t * GGML_RESTRICT x, size_t bx, ggml_bf16_t * GGML_RESTRICT y, size_t by, int nrc) {
     assert(nrc == 1);
     GGML_UNUSED(nrc);
@@ -261,6 +284,14 @@ void ggml_vec_dot_bf16(int n, float * GGML_RESTRICT s, size_t bs, ggml_bf16_t * 
     *s = sumf;
 }
 
+// 函数: ggml_vec_dot_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_f16(int n, float * GGML_RESTRICT s, size_t bs, ggml_fp16_t * GGML_RESTRICT x, size_t bx, ggml_fp16_t * GGML_RESTRICT y, size_t by, int nrc) {
     assert(nrc == 1);
     GGML_UNUSED(nrc);
@@ -393,6 +424,14 @@ void ggml_vec_dot_f16(int n, float * GGML_RESTRICT s, size_t bs, ggml_fp16_t * G
     *s = sumf;
 }
 
+// 函数: ggml_vec_silu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_silu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_silu_f32(const int n, float * y, const float * x) {
     int i = 0;
 #if defined(__AVX512F__) && defined(__AVX512DQ__)
@@ -430,6 +469,14 @@ void ggml_vec_silu_f32(const int n, float * y, const float * x) {
     }
 }
 
+// 函数: ggml_vec_swiglu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_swiglu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_swiglu_f32(const int n, float * y, const float * x, const float * g) {
     int i = 0;
 #if defined(__AVX512F__) && defined(__AVX512DQ__)
@@ -468,6 +515,14 @@ void ggml_vec_swiglu_f32(const int n, float * y, const float * x, const float * 
     }
 }
 
+// 函数: ggml_vec_cvar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_cvar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_cvar_f32(const int n, float * y, const float * x, const float mean) {
     int i = 0;
     ggml_float sum = 0;
@@ -544,6 +599,14 @@ ggml_float ggml_vec_cvar_f32(const int n, float * y, const float * x, const floa
     return sum/n;
 }
 
+// 函数: ggml_vec_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_soft_max_f32(const int n, float * y, const float * x, float max) {
     int i = 0;
     ggml_float sum = 0;
@@ -615,6 +678,14 @@ ggml_float ggml_vec_soft_max_f32(const int n, float * y, const float * x, float 
     return sum;
 }
 
+// 函数: ggml_vec_log_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_log_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_log_soft_max_f32(const int n, float * y, const float * x, float max) {
     // log(soft_max) = log(soft_max_i / soft_max_sum) = log(soft_max_i) - log(soft_max_sum) = (logit_i - max) - log(soft_max_i)
 

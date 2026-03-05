@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: virtgpu.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu.h"
 
 #include <stdio.h>
@@ -7,26 +14,98 @@
 #include <cerrno>
 #include <cstdlib>
 
+// 函数: virtgpu_open_device
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_open_device
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_open_device(virtgpu * gpu, const drmDevicePtr dev);
+// 函数: virtgpu_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_open(virtgpu * gpu);
 
+// 函数: virtgpu_init_capset
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_init_capset
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_init_capset(virtgpu * gpu);
+// 函数: virtgpu_init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_init_context(virtgpu * gpu);
 
+// 函数: virtgpu_ioctl_context_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_context_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static int      virtgpu_ioctl_context_init(virtgpu * gpu, virgl_renderer_capset capset_id);
 static int      virtgpu_ioctl_get_caps(virtgpu *             gpu,
                                        virgl_renderer_capset id,
                                        uint32_t              version,
                                        void *                capset,
                                        size_t                capset_size);
+// 函数: virtgpu_ioctl_getparam
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_getparam
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint64_t virtgpu_ioctl_getparam(virtgpu * gpu, uint64_t param);
+// 函数: virtgpu_init_renderer_info
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_init_renderer_info
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void     virtgpu_init_renderer_info(virtgpu * gpu);
 
+// 函数: log_call_duration
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_call_duration
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void log_call_duration(long long call_duration_ns, const char * name);
 
 const uint64_t APIR_HANDSHAKE_MAX_WAIT_MS   = 2 * 1000;   // 2s
 const uint64_t APIR_LOADLIBRARY_MAX_WAIT_MS = 60 * 1000;  // 60s
 
+// 函数: virtgpu_handshake
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_handshake
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int virtgpu_handshake(virtgpu * gpu) {
     apir_encoder * encoder;
     apir_decoder * decoder;
@@ -90,6 +169,14 @@ static int virtgpu_handshake(virtgpu * gpu) {
     return 0;
 }
 
+// 函数: virtgpu_load_library
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_load_library
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static ApirLoadLibraryReturnCode virtgpu_load_library(virtgpu * gpu) {
     apir_encoder *            encoder;
     apir_decoder *            decoder;
@@ -173,6 +260,14 @@ static ApirLoadLibraryReturnCode virtgpu_load_library(virtgpu * gpu) {
     return ret;
 }
 
+// 函数: create_virtgpu
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_virtgpu
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 virtgpu * create_virtgpu() {
     virtgpu * gpu = new virtgpu();
 
@@ -231,6 +326,14 @@ virtgpu * create_virtgpu() {
     return gpu;
 }
 
+// 函数: virtgpu_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_open(virtgpu * gpu) {
     drmDevicePtr devs[8];
     int          count = drmGetDevices2(0, devs, ARRAY_SIZE(devs));
@@ -252,6 +355,14 @@ static virt_gpu_result_t virtgpu_open(virtgpu * gpu) {
     return result;
 }
 
+// 函数: virtgpu_open_device
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_open_device
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_open_device(virtgpu * gpu, const drmDevicePtr dev) {
     const char * node_path = dev->nodes[DRM_NODE_RENDER];
 
@@ -286,6 +397,14 @@ static virt_gpu_result_t virtgpu_open_device(virtgpu * gpu, const drmDevicePtr d
     return APIR_SUCCESS;
 }
 
+// 函数: virtgpu_init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_init_context(virtgpu * gpu) {
     assert(!gpu->capset.version);
     const int ret = virtgpu_ioctl_context_init(gpu, gpu->capset.id);
@@ -297,6 +416,14 @@ static virt_gpu_result_t virtgpu_init_context(virtgpu * gpu) {
     return APIR_SUCCESS;
 }
 
+// 函数: virtgpu_init_capset
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_init_capset
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static virt_gpu_result_t virtgpu_init_capset(virtgpu * gpu) {
     if (gpu->use_apir_capset) {
         GGML_LOG_INFO(GGML_VIRTGPU "Using the APIR capset\n");
@@ -321,6 +448,14 @@ static virt_gpu_result_t virtgpu_init_capset(virtgpu * gpu) {
     return APIR_SUCCESS;
 }
 
+// 函数: virtgpu_ioctl_context_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_context_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static int virtgpu_ioctl_context_init(virtgpu * gpu, virgl_renderer_capset capset_id) {
     drm_virtgpu_context_set_param ctx_set_params[3] = {
         {
@@ -359,9 +494,25 @@ static int virtgpu_ioctl_get_caps(virtgpu *             gpu,
         .pad         = 0,
     };
 
+    // 函数: virtgpu_ioctl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: virtgpu_ioctl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return virtgpu_ioctl(gpu, DRM_IOCTL_VIRTGPU_GET_CAPS, &args);
 }
 
+// 函数: virtgpu_ioctl_getparam
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: virtgpu_ioctl_getparam
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint64_t virtgpu_ioctl_getparam(virtgpu * gpu, uint64_t param) {
     /* val must be zeroed because kernel only writes the lower 32 bits */
     uint64_t             val  = 0;
@@ -374,6 +525,14 @@ static uint64_t virtgpu_ioctl_getparam(virtgpu * gpu, uint64_t param) {
     return ret ? 0 : val;
 }
 
+// 函数: remote_call_prepare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remote_call_prepare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 apir_encoder * remote_call_prepare(virtgpu * gpu, ApirCommandType apir_cmd_type, int32_t cmd_flags) {
     /*
      * Prepare the command encoder and its buffer
@@ -411,6 +570,14 @@ apir_encoder * remote_call_prepare(virtgpu * gpu, ApirCommandType apir_cmd_type,
     return &enc;
 }
 
+// 函数: remote_call_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remote_call_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void remote_call_finish(virtgpu * gpu, apir_encoder * enc, apir_decoder * dec) {
     UNUSED(gpu);
 
@@ -530,6 +697,14 @@ uint32_t remote_call(virtgpu *       gpu,
     return returned_value;
 }
 
+// 函数: log_call_duration
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_call_duration
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void log_call_duration(long long call_duration_ns, const char * name) {
     double call_duration_ms = (double) call_duration_ns / 1e6;  // 1 millisecond = 1e6 nanoseconds
     double call_duration_s  = (double) call_duration_ns / 1e9;  // 1 second = 1e9 nanoseconds

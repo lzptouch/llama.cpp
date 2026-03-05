@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: apir_cs_ggml-rpc-front.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/apir_cs_ggml-rpc-front.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend/shared/apir_cs_rpc.h"
 #include "ggml-backend-impl.h"
 #include "ggml-impl.h"
@@ -8,6 +15,14 @@
 #include <unordered_set>
 #include <vector>
 
+// 函数: apir_serialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_serialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 apir_rpc_tensor apir_serialize_tensor(const ggml_tensor * tensor) {
     apir_rpc_tensor result;
     result.id   = reinterpret_cast<uint64_t>(tensor);
@@ -62,6 +77,14 @@ void apir_add_tensor(ggml_tensor *                       tensor,
     tensors.push_back(apir_serialize_tensor(tensor));
 }
 
+// 函数: apir_serialize_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_serialize_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void apir_serialize_graph(const ggml_cgraph * cgraph, std::vector<uint8_t> & output) {
     uint32_t                          n_nodes = cgraph->n_nodes;
     std::vector<apir_rpc_tensor>      tensors;

@@ -1,5 +1,20 @@
+// ============================================================================
+// 文件: virtgpu-forward-buffer.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-forward-buffer.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-forward-impl.h"
 
+// 函数: apir_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * apir_buffer_get_base(virtgpu * gpu, apir_buffer_context_t * buffer_context) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -143,6 +158,14 @@ bool apir_buffer_cpy_tensor(virtgpu *               gpu,
     return ret_val;
 }
 
+// 函数: apir_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void apir_buffer_clear(virtgpu * gpu, apir_buffer_context_t * buffer_context, uint8_t value) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -158,6 +181,14 @@ void apir_buffer_clear(virtgpu * gpu, apir_buffer_context_t * buffer_context, ui
     remote_call_finish(gpu, encoder, decoder);
 }
 
+// 函数: apir_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void apir_buffer_free_buffer(virtgpu * gpu, apir_buffer_context_t * buffer_context) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;

@@ -95,6 +95,14 @@
 static void * const webgpu_ptr_base = (void *) (uintptr_t) 0x1000;  // NOLINT
 
 // Always returns the base offset of a tensor, regardless of views.
+// 函数: webgpu_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: webgpu_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint64_t webgpu_tensor_offset(const ggml_tensor * tensor) {
     if (tensor->view_src) {
         return (uint8_t *) tensor->view_src->data - (uint8_t *) webgpu_ptr_base;
@@ -111,17 +119,71 @@ static void ggml_webgpu_create_buffer(wgpu::Device &    device,
                                       wgpu::BufferUsage usage,
                                       const char *      label);
 
+// 类: webgpu_pool_bufs
+// 描述: webgpu_pool_bufs类提供相关功能
+// 用途: 用于处理webgpu_pool_bufs相关的操作
+// 类: webgpu_pool_bufs
+// 描述: webgpu_pool_bufs类提供相关功能
+// 用途: 用于处理webgpu_pool_bufs相关的操作
+    // 结构体: webgpu_pool_bufs
+    // 描述: webgpu_pool_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_pool_bufs相关的操作
+    // 结构体: webgpu_pool_bufs
+    // 描述: webgpu_pool_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_pool_bufs相关的操作
+    // 结构体: webgpu_pool_bufs
+    // 描述: webgpu_pool_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_pool_bufs相关的操作
+    // 结构体: webgpu_pool_bufs
+    // 描述: webgpu_pool_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_pool_bufs相关的操作
 struct webgpu_pool_bufs {
     wgpu::Buffer host_buf;
     wgpu::Buffer dev_buf;
 };
 
 // The futures to wait on for a single queue submission
+// 类: webgpu_submission_futures
+// 描述: webgpu_submission_futures类提供相关功能
+// 用途: 用于处理webgpu_submission_futures相关的操作
+// 类: webgpu_submission_futures
+// 描述: webgpu_submission_futures类提供相关功能
+// 用途: 用于处理webgpu_submission_futures相关的操作
+    // 结构体: webgpu_submission_futures
+    // 描述: webgpu_submission_futures结构体提供相关功能
+    // 用途: 用于处理webgpu_submission_futures相关的操作
+    // 结构体: webgpu_submission_futures
+    // 描述: webgpu_submission_futures结构体提供相关功能
+    // 用途: 用于处理webgpu_submission_futures相关的操作
+    // 结构体: webgpu_submission_futures
+    // 描述: webgpu_submission_futures结构体提供相关功能
+    // 用途: 用于处理webgpu_submission_futures相关的操作
+    // 结构体: webgpu_submission_futures
+    // 描述: webgpu_submission_futures结构体提供相关功能
+    // 用途: 用于处理webgpu_submission_futures相关的操作
 struct webgpu_submission_futures {
     std::vector<wgpu::FutureWaitInfo> futures;
 };
 
 // Holds a pool of parameter buffers for WebGPU operations
+// 类: webgpu_buf_pool
+// 描述: webgpu_buf_pool类提供相关功能
+// 用途: 用于处理webgpu_buf_pool相关的操作
+// 类: webgpu_buf_pool
+// 描述: webgpu_buf_pool类提供相关功能
+// 用途: 用于处理webgpu_buf_pool相关的操作
+    // 结构体: webgpu_buf_pool
+    // 描述: webgpu_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_buf_pool相关的操作
+    // 结构体: webgpu_buf_pool
+    // 描述: webgpu_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_buf_pool相关的操作
+    // 结构体: webgpu_buf_pool
+    // 描述: webgpu_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_buf_pool相关的操作
+    // 结构体: webgpu_buf_pool
+    // 描述: webgpu_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_buf_pool相关的操作
 struct webgpu_buf_pool {
     std::vector<webgpu_pool_bufs> free;
 
@@ -148,6 +210,14 @@ struct webgpu_buf_pool {
         }
     }
 
+    // 函数: alloc_bufs
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc_bufs
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     webgpu_pool_bufs alloc_bufs() {
         std::unique_lock<std::mutex> lock(mutex);
         cv.wait(lock, [this] { return !free.empty(); });
@@ -156,12 +226,28 @@ struct webgpu_buf_pool {
         return bufs;
     }
 
+    // 函数: free_bufs
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free_bufs
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free_bufs(std::vector<webgpu_pool_bufs> bufs) {
         std::lock_guard<std::mutex> lock(mutex);
         free.insert(free.end(), bufs.begin(), bufs.end());
         cv.notify_all();
     }
 
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cleanup() {
         std::lock_guard<std::mutex> lock(mutex);
         for (auto & bufs : free) {
@@ -179,6 +265,24 @@ struct webgpu_buf_pool {
 };
 
 #ifdef GGML_WEBGPU_GPU_PROFILE
+// 类: webgpu_gpu_profile_bufs
+// 描述: webgpu_gpu_profile_bufs类提供相关功能
+// 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
+// 类: webgpu_gpu_profile_bufs
+// 描述: webgpu_gpu_profile_bufs类提供相关功能
+// 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
+    // 结构体: webgpu_gpu_profile_bufs
+    // 描述: webgpu_gpu_profile_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
+    // 结构体: webgpu_gpu_profile_bufs
+    // 描述: webgpu_gpu_profile_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
+    // 结构体: webgpu_gpu_profile_bufs
+    // 描述: webgpu_gpu_profile_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
+    // 结构体: webgpu_gpu_profile_bufs
+    // 描述: webgpu_gpu_profile_bufs结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_bufs相关的操作
 struct webgpu_gpu_profile_bufs {
     wgpu::Buffer   host_buf;
     wgpu::Buffer   dev_buf;
@@ -186,6 +290,24 @@ struct webgpu_gpu_profile_bufs {
 };
 
 // Holds a pool of parameter buffers for WebGPU operations
+// 类: webgpu_gpu_profile_buf_pool
+// 描述: webgpu_gpu_profile_buf_pool类提供相关功能
+// 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
+// 类: webgpu_gpu_profile_buf_pool
+// 描述: webgpu_gpu_profile_buf_pool类提供相关功能
+// 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
+    // 结构体: webgpu_gpu_profile_buf_pool
+    // 描述: webgpu_gpu_profile_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
+    // 结构体: webgpu_gpu_profile_buf_pool
+    // 描述: webgpu_gpu_profile_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
+    // 结构体: webgpu_gpu_profile_buf_pool
+    // 描述: webgpu_gpu_profile_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
+    // 结构体: webgpu_gpu_profile_buf_pool
+    // 描述: webgpu_gpu_profile_buf_pool结构体提供相关功能
+    // 用途: 用于处理webgpu_gpu_profile_buf_pool相关的操作
 struct webgpu_gpu_profile_buf_pool {
     std::vector<webgpu_gpu_profile_bufs> free;
 
@@ -214,6 +336,14 @@ struct webgpu_gpu_profile_buf_pool {
         }
     }
 
+    // 函数: alloc_bufs
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc_bufs
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     webgpu_gpu_profile_bufs alloc_bufs() {
         std::unique_lock<std::mutex> lock(mutex);
         cv.wait(lock, [this] { return !free.empty(); });
@@ -222,12 +352,28 @@ struct webgpu_gpu_profile_buf_pool {
         return bufs;
     }
 
+    // 函数: free_bufs
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free_bufs
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free_bufs(std::vector<webgpu_gpu_profile_bufs> bufs) {
         std::lock_guard<std::mutex> lock(mutex);
         free.insert(free.end(), bufs.begin(), bufs.end());
         cv.notify_all();
     }
 
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cleanup() {
         std::lock_guard<std::mutex> lock(mutex);
         for (auto & bufs : free) {
@@ -242,6 +388,24 @@ struct webgpu_gpu_profile_buf_pool {
 };
 #endif
 
+// 类: webgpu_command
+// 描述: webgpu_command类提供相关功能
+// 用途: 用于处理webgpu_command相关的操作
+// 类: webgpu_command
+// 描述: webgpu_command类提供相关功能
+// 用途: 用于处理webgpu_command相关的操作
+    // 结构体: webgpu_command
+    // 描述: webgpu_command结构体提供相关功能
+    // 用途: 用于处理webgpu_command相关的操作
+    // 结构体: webgpu_command
+    // 描述: webgpu_command结构体提供相关功能
+    // 用途: 用于处理webgpu_command相关的操作
+    // 结构体: webgpu_command
+    // 描述: webgpu_command结构体提供相关功能
+    // 用途: 用于处理webgpu_command相关的操作
+    // 结构体: webgpu_command
+    // 描述: webgpu_command结构体提供相关功能
+    // 用途: 用于处理webgpu_command相关的操作
 struct webgpu_command {
     wgpu::CommandBuffer             commands;
     std::vector<webgpu_pool_bufs>   params_bufs;
@@ -252,6 +416,24 @@ struct webgpu_command {
 #endif
 };
 
+// 类: webgpu_capabilities
+// 描述: webgpu_capabilities类提供相关功能
+// 用途: 用于处理webgpu_capabilities相关的操作
+// 类: webgpu_capabilities
+// 描述: webgpu_capabilities类提供相关功能
+// 用途: 用于处理webgpu_capabilities相关的操作
+    // 结构体: webgpu_capabilities
+    // 描述: webgpu_capabilities结构体提供相关功能
+    // 用途: 用于处理webgpu_capabilities相关的操作
+    // 结构体: webgpu_capabilities
+    // 描述: webgpu_capabilities结构体提供相关功能
+    // 用途: 用于处理webgpu_capabilities相关的操作
+    // 结构体: webgpu_capabilities
+    // 描述: webgpu_capabilities结构体提供相关功能
+    // 用途: 用于处理webgpu_capabilities相关的操作
+    // 结构体: webgpu_capabilities
+    // 描述: webgpu_capabilities结构体提供相关功能
+    // 用途: 用于处理webgpu_capabilities相关的操作
 struct webgpu_capabilities {
     wgpu::Limits limits;
     bool         supports_subgroup_matrix = false;
@@ -266,6 +448,24 @@ struct webgpu_capabilities {
 };
 
 // Stores global webgpu members
+// 类: webgpu_global_context_struct
+// 描述: webgpu_global_context_struct类提供相关功能
+// 用途: 用于处理webgpu_global_context_struct相关的操作
+// 类: webgpu_global_context_struct
+// 描述: webgpu_global_context_struct类提供相关功能
+// 用途: 用于处理webgpu_global_context_struct相关的操作
+    // 结构体: webgpu_global_context_struct
+    // 描述: webgpu_global_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_global_context_struct相关的操作
+    // 结构体: webgpu_global_context_struct
+    // 描述: webgpu_global_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_global_context_struct相关的操作
+    // 结构体: webgpu_global_context_struct
+    // 描述: webgpu_global_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_global_context_struct相关的操作
+    // 结构体: webgpu_global_context_struct
+    // 描述: webgpu_global_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_global_context_struct相关的操作
 struct webgpu_global_context_struct {
     wgpu::Instance instance;
     wgpu::Adapter  adapter;
@@ -322,6 +522,24 @@ struct webgpu_global_context_struct {
 typedef std::shared_ptr<webgpu_global_context_struct> webgpu_global_context;
 
 // All the base objects needed to run operations on a WebGPU device
+// 类: webgpu_context_struct
+// 描述: webgpu_context_struct类提供相关功能
+// 用途: 用于处理webgpu_context_struct相关的操作
+// 类: webgpu_context_struct
+// 描述: webgpu_context_struct类提供相关功能
+// 用途: 用于处理webgpu_context_struct相关的操作
+    // 结构体: webgpu_context_struct
+    // 描述: webgpu_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_context_struct相关的操作
+    // 结构体: webgpu_context_struct
+    // 描述: webgpu_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_context_struct相关的操作
+    // 结构体: webgpu_context_struct
+    // 描述: webgpu_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_context_struct相关的操作
+    // 结构体: webgpu_context_struct
+    // 描述: webgpu_context_struct结构体提供相关功能
+    // 用途: 用于处理webgpu_context_struct相关的操作
 struct webgpu_context_struct {
     // Points to global instances owned by ggml_backend_webgpu_reg_context
     webgpu_global_context global_ctx;
@@ -345,6 +563,24 @@ struct webgpu_context_struct {
 typedef std::shared_ptr<webgpu_context_struct> webgpu_context;
 
 // Metadata required for the ggml backend registration/discovery interface
+// 类: ggml_backend_webgpu_reg_context
+// 描述: ggml_backend_webgpu_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
+// 类: ggml_backend_webgpu_reg_context
+// 描述: ggml_backend_webgpu_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
+    // 结构体: ggml_backend_webgpu_reg_context
+    // 描述: ggml_backend_webgpu_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
+    // 结构体: ggml_backend_webgpu_reg_context
+    // 描述: ggml_backend_webgpu_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
+    // 结构体: ggml_backend_webgpu_reg_context
+    // 描述: ggml_backend_webgpu_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
+    // 结构体: ggml_backend_webgpu_reg_context
+    // 描述: ggml_backend_webgpu_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_reg_context相关的操作
 struct ggml_backend_webgpu_reg_context {
     // Since the Instance is a global entrypoint into the WebGPU API, it lives here
     webgpu_global_context webgpu_global_ctx;
@@ -353,6 +589,24 @@ struct ggml_backend_webgpu_reg_context {
 };
 
 // Per-device struct for the global logical device interface
+// 类: ggml_backend_webgpu_device_context
+// 描述: ggml_backend_webgpu_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
+// 类: ggml_backend_webgpu_device_context
+// 描述: ggml_backend_webgpu_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
+    // 结构体: ggml_backend_webgpu_device_context
+    // 描述: ggml_backend_webgpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
+    // 结构体: ggml_backend_webgpu_device_context
+    // 描述: ggml_backend_webgpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
+    // 结构体: ggml_backend_webgpu_device_context
+    // 描述: ggml_backend_webgpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
+    // 结构体: ggml_backend_webgpu_device_context
+    // 描述: ggml_backend_webgpu_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_device_context相关的操作
 struct ggml_backend_webgpu_device_context {
     webgpu_global_context webgpu_global_ctx;
     std::string           device_name;
@@ -360,12 +614,48 @@ struct ggml_backend_webgpu_device_context {
 };
 
 // Per-thread data required to actually run WebGPU operations in a backend instance
+// 类: ggml_backend_webgpu_context
+// 描述: ggml_backend_webgpu_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_context相关的操作
+// 类: ggml_backend_webgpu_context
+// 描述: ggml_backend_webgpu_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_context相关的操作
+    // 结构体: ggml_backend_webgpu_context
+    // 描述: ggml_backend_webgpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_context相关的操作
+    // 结构体: ggml_backend_webgpu_context
+    // 描述: ggml_backend_webgpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_context相关的操作
+    // 结构体: ggml_backend_webgpu_context
+    // 描述: ggml_backend_webgpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_context相关的操作
+    // 结构体: ggml_backend_webgpu_context
+    // 描述: ggml_backend_webgpu_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_context相关的操作
 struct ggml_backend_webgpu_context {
     webgpu_context webgpu_ctx;
     std::string    name;
 };
 
 // Per-thread data related to buffers
+// 类: ggml_backend_webgpu_buffer_context
+// 描述: ggml_backend_webgpu_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
+// 类: ggml_backend_webgpu_buffer_context
+// 描述: ggml_backend_webgpu_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
+    // 结构体: ggml_backend_webgpu_buffer_context
+    // 描述: ggml_backend_webgpu_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
+    // 结构体: ggml_backend_webgpu_buffer_context
+    // 描述: ggml_backend_webgpu_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
+    // 结构体: ggml_backend_webgpu_buffer_context
+    // 描述: ggml_backend_webgpu_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
+    // 结构体: ggml_backend_webgpu_buffer_context
+    // 描述: ggml_backend_webgpu_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_webgpu_buffer_context相关的操作
 struct ggml_backend_webgpu_buffer_context {
     wgpu::Buffer          buffer;
     std::string           label;
@@ -475,6 +765,14 @@ static void ggml_backend_webgpu_map_buffer(webgpu_global_context & ctx,
 // This function adds debugging information to shaders, as WebGPU does not support printing directly.
 // To use, add a bind group entry to the setup for the shader you are debugging, add the buffer and
 // debug statements in the shader, and then call this function after encoding the commands and submitting them.
+// 函数: ggml_backend_webgpu_debug
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_debug
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_debug(webgpu_global_context & ctx) {
     wgpu::CommandEncoder encoder = ctx->device.CreateCommandEncoder();
     encoder.CopyBufferToBuffer(ctx->debug_dev_buf, 0, ctx->debug_host_buf, 0, ctx->debug_host_buf.GetSize());
@@ -697,11 +995,27 @@ static void ggml_backend_webgpu_buffer_memset(webgpu_global_context & ctx,
 
 /** GGML Backend Interface */
 
+// 函数: ggml_backend_webgpu_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_webgpu_name(ggml_backend_t backend) {
     ggml_backend_webgpu_context * ctx = (ggml_backend_webgpu_context *) backend->context;
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_webgpu_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_free(ggml_backend_t backend) {
     ggml_backend_webgpu_context * ctx = (ggml_backend_webgpu_context *) backend->context;
     WEBGPU_LOG_DEBUG("ggml_backend_webgpu_free(" << ctx->name << ")");
@@ -749,42 +1063,116 @@ static void ggml_backend_webgpu_free(ggml_backend_t backend) {
     delete backend;
 }
 
+// 函数: ggml_webgpu_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_webgpu_tensor_offset(const ggml_tensor * tensor) {
     return webgpu_tensor_offset(tensor) + tensor->view_offs;
 }
 
+// 函数: ggml_webgpu_tensor_buf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_buf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static wgpu::Buffer ggml_webgpu_tensor_buf(const ggml_tensor * tensor) {
     ggml_backend_webgpu_buffer_context * ctx = (ggml_backend_webgpu_buffer_context *) tensor->buffer->context;
     return ctx->buffer;
 }
 
+// 函数: ggml_webgpu_tensor_misalignment
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_misalignment
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_webgpu_tensor_misalignment(webgpu_context & ctx, const ggml_tensor * t) {
     size_t offset = ggml_webgpu_tensor_offset(t);
     return offset & (ctx->global_ctx->capabilities.limits.minStorageBufferOffsetAlignment - 1);
 }
 
+// 函数: ggml_webgpu_tensor_align_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_align_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_webgpu_tensor_align_offset(webgpu_context & ctx, const ggml_tensor * t) {
     size_t offset = ggml_webgpu_tensor_offset(t);
     return offset & ~(ctx->global_ctx->capabilities.limits.minStorageBufferOffsetAlignment - 1);
 }
 
+// 函数: ggml_webgpu_tensor_binding_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_binding_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_webgpu_tensor_binding_size(webgpu_context & ctx, ggml_tensor * t) {
     return ROUNDUP_POW2(ggml_nbytes(t) + ggml_webgpu_tensor_misalignment(ctx, t), WEBGPU_STORAGE_BUF_BINDING_MULT);
 }
 
 // Used to determine if two tensors are the same for in-place operations
+// 函数: ggml_webgpu_tensor_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_webgpu_tensor_equal(ggml_tensor * a, ggml_tensor * b) {
     return (ggml_webgpu_tensor_buf(a).Get() == ggml_webgpu_tensor_buf(b).Get()) &&
            (ggml_webgpu_tensor_offset(a) == ggml_webgpu_tensor_offset(b));
 }
 
 // Used to determine if two tensors share the same buffer and their byte ranges overlap,
+// 函数: ggml_webgpu_tensor_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_tensor_overlap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_webgpu_tensor_overlap(ggml_tensor * a, ggml_tensor * b) {
     return (ggml_webgpu_tensor_buf(a).Get() == ggml_webgpu_tensor_buf(b).Get()) &&
            ggml_webgpu_tensor_offset(a) < (ggml_webgpu_tensor_offset(b) + ggml_nbytes(b)) &&
            ggml_webgpu_tensor_offset(b) < (ggml_webgpu_tensor_offset(a) + ggml_nbytes(a));
 }
 
+// 类: binary_overlap_flags
+// 描述: binary_overlap_flags类提供相关功能
+// 用途: 用于处理binary_overlap_flags相关的操作
+// 类: binary_overlap_flags
+// 描述: binary_overlap_flags类提供相关功能
+// 用途: 用于处理binary_overlap_flags相关的操作
+    // 结构体: binary_overlap_flags
+    // 描述: binary_overlap_flags结构体提供相关功能
+    // 用途: 用于处理binary_overlap_flags相关的操作
+    // 结构体: binary_overlap_flags
+    // 描述: binary_overlap_flags结构体提供相关功能
+    // 用途: 用于处理binary_overlap_flags相关的操作
+    // 结构体: binary_overlap_flags
+    // 描述: binary_overlap_flags结构体提供相关功能
+    // 用途: 用于处理binary_overlap_flags相关的操作
+    // 结构体: binary_overlap_flags
+    // 描述: binary_overlap_flags结构体提供相关功能
+    // 用途: 用于处理binary_overlap_flags相关的操作
 struct binary_overlap_flags {
     bool inplace;  // src0 == dst
     bool overlap;  // src1 == dst
@@ -800,6 +1188,14 @@ static binary_overlap_flags ggml_webgpu_detect_binary_overlap(ggml_tensor * src0
     return flags;
 }
 
+// 函数: ggml_webgpu_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_cpy(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     uint32_t ne = (uint32_t) ggml_nelements(dst);
 
@@ -832,6 +1228,14 @@ static webgpu_command ggml_webgpu_cpy(webgpu_context & ctx, ggml_tensor * src, g
                                      params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_pad(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     ggml_webgpu_shader_lib_context shader_lib_ctx = {
         .src0 = src, .dst = dst, .max_wg_size = ctx->global_ctx->capabilities.limits.maxComputeInvocationsPerWorkgroup
@@ -1021,6 +1425,14 @@ static webgpu_command ggml_webgpu_get_rows(webgpu_context & ctx,
 
     uint32_t wg_x = CEIL_DIV(dst->ne[1] * dst->ne[2] * dst->ne[3], decisions->wg_size);
 
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
@@ -1150,6 +1562,14 @@ static webgpu_command ggml_webgpu_mul_mat(webgpu_context & ctx,
         wg_y               = 1;
     }
 
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x, wg_y);
 }
 
@@ -1258,10 +1678,26 @@ static webgpu_command ggml_webgpu_flash_attn(webgpu_context & ctx,
 
     uint32_t wg_per_head = CEIL_DIV(Q->ne[1], decisions->q_tile);
     uint32_t wg_x        = wg_per_head * Q->ne[2] * Q->ne[3];  // wg per head * number of heads * number of batches
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 #endif
 
+// 函数: ggml_webgpu_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_unary_op(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     bool is_unary = dst->op == GGML_OP_UNARY;
     bool inplace  = ggml_webgpu_tensor_equal(src, dst) || (dst->op == GGML_OP_FILL);
@@ -1403,9 +1839,25 @@ static webgpu_command ggml_webgpu_binary_op(webgpu_context & ctx,
     }
 
     uint32_t wg_x = CEIL_DIV(ne, decisions->wg_size);
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_rms_norm(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     int inplace = ggml_webgpu_tensor_equal(src, dst);
 
@@ -1526,9 +1978,25 @@ static webgpu_command ggml_webgpu_rope(webgpu_context & ctx,
 
     webgpu_pipeline pipeline = ctx->rope_pipelines[dst->type][has_freq_factor][inplace];
     uint32_t        wg_x     = CEIL_DIV(ggml_nelements(dst), WEBGPU_MAX_WG_SIZE);
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_webgpu_build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_glu(webgpu_context & ctx, ggml_tensor * src0, ggml_tensor * src1, ggml_tensor * dst) {
     const int split = (src1 != nullptr);
 
@@ -1581,6 +2049,14 @@ static webgpu_command ggml_webgpu_glu(webgpu_context & ctx, ggml_tensor * src0, 
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_scale(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     bool inplace = ggml_webgpu_tensor_equal(src, dst);
 
@@ -1706,6 +2182,14 @@ static webgpu_command ggml_webgpu_soft_max(webgpu_context & ctx,
                                      ggml_nrows(dst));
 }
 
+// 函数: ggml_webgpu_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_argmax(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     std::vector<uint32_t> params = { (uint32_t) (ggml_webgpu_tensor_misalignment(ctx, src) / ggml_type_size(src->type)),
                                      (uint32_t) (ggml_webgpu_tensor_misalignment(ctx, dst) / ggml_type_size(dst->type)),
@@ -1731,6 +2215,14 @@ static webgpu_command ggml_webgpu_argmax(webgpu_context & ctx, ggml_tensor * src
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_argsort(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     bool is_top_k = dst->op == GGML_OP_TOP_K;
 
@@ -1888,6 +2380,14 @@ static webgpu_command ggml_webgpu_argsort(webgpu_context & ctx, ggml_tensor * sr
                                            workgroups_list);
 }
 
+// 函数: ggml_webgpu_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_cumsum(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     std::vector<uint32_t> params = { (uint32_t) (ggml_webgpu_tensor_misalignment(ctx, src) / ggml_type_size(src->type)),
                                      (uint32_t) (ggml_webgpu_tensor_misalignment(ctx, dst) / ggml_type_size(dst->type)),
@@ -1916,6 +2416,14 @@ static webgpu_command ggml_webgpu_cumsum(webgpu_context & ctx, ggml_tensor * src
     return ggml_backend_webgpu_build(ctx->global_ctx, ctx->param_buf_pool, pipeline, params, entries, wg_x);
 }
 
+// 函数: ggml_webgpu_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static webgpu_command ggml_webgpu_sum_rows(webgpu_context & ctx, ggml_tensor * src, ggml_tensor * dst) {
     bool                  total_sum = dst->op == GGML_OP_SUM;
     std::vector<uint32_t> params = { (uint32_t) (ggml_webgpu_tensor_misalignment(ctx, src) / ggml_type_size(src->type)),
@@ -1972,15 +2480,55 @@ static std::optional<webgpu_command> ggml_webgpu_encode_node(webgpu_context ctx,
             return std::nullopt;
         case GGML_OP_CPY:
         case GGML_OP_CONT:
+            // 函数: ggml_webgpu_cpy
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_cpy
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_cpy(ctx, src0, node);
         case GGML_OP_SET_ROWS:
+            // 函数: ggml_webgpu_set_rows
+            // 描述: 设置: 设置某个属性或配置
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_set_rows
+            // 描述: 设置: 设置某个属性或配置
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_set_rows(ctx, src0, src1, node);
         case GGML_OP_GET_ROWS:
+            // 函数: ggml_webgpu_get_rows
+            // 描述: 获取: 获取某个属性、值或资源
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_get_rows
+            // 描述: 获取: 获取某个属性、值或资源
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_get_rows(ctx, src0, src1, node);
         case GGML_OP_MUL_MAT:
+            // 函数: ggml_webgpu_mul_mat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_mul_mat
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_mul_mat(ctx, src0, src1, node);
         case GGML_OP_FLASH_ATTN_EXT:
 #ifndef __EMSCRIPTEN__
+            // 函数: ggml_webgpu_flash_attn
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_flash_attn
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_flash_attn(ctx, src0, src1, src2, node->src[3], node->src[4], node);
 #else
             return std::nullopt;
@@ -1989,52 +2537,220 @@ static std::optional<webgpu_command> ggml_webgpu_encode_node(webgpu_context ctx,
         case GGML_OP_SUB:
         case GGML_OP_MUL:
         case GGML_OP_DIV:
+            // 函数: ggml_webgpu_binary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_binary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_binary_op(ctx, src0, src1, node);
         case GGML_OP_RMS_NORM:
+            // 函数: ggml_webgpu_rms_norm
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_rms_norm
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_rms_norm(ctx, src0, node);
         case GGML_OP_ROPE:
+            // 函数: ggml_webgpu_rope
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_rope
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_rope(ctx, src0, src1, src2, node);
         case GGML_OP_GLU:
+            // 函数: ggml_webgpu_glu
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_glu
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_glu(ctx, src0, src1, node);
         case GGML_OP_SCALE:
+            // 函数: ggml_webgpu_scale
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_scale
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_scale(ctx, src0, node);
         case GGML_OP_SOFT_MAX:
+            // 函数: ggml_webgpu_soft_max
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_soft_max
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_soft_max(ctx, src0, src1, src2, node);
         case GGML_OP_UNARY:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_CLAMP:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_FILL:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_LOG:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_SQR:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_SQRT:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_SIN:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_COS:
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_unary_op
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_unary_op(ctx, src0, node);
         case GGML_OP_PAD:
+            // 函数: ggml_webgpu_pad
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_pad
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_pad(ctx, src0, node);
         case GGML_OP_ARGMAX:
+            // 函数: ggml_webgpu_argmax
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_argmax
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_argmax(ctx, src0, node);
         case GGML_OP_ARGSORT:
+            // 函数: ggml_webgpu_argsort
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_argsort
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_argsort(ctx, src0, node);
         case GGML_OP_TOP_K:
             // we reuse the same argsort implementation for top_k
+            // 函数: ggml_webgpu_argsort
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_argsort
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_argsort(ctx, src0, node);
         case GGML_OP_CUMSUM:
+            // 函数: ggml_webgpu_cumsum
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_cumsum
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_cumsum(ctx, src0, node);
         case GGML_OP_SUM:
         case GGML_OP_SUM_ROWS:
+            // 函数: ggml_webgpu_sum_rows
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_webgpu_sum_rows
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_webgpu_sum_rows(ctx, src0, node);
         default:
             return std::nullopt;
     }
 }
 
+// 函数: ggml_backend_webgpu_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status ggml_backend_webgpu_graph_compute(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
     WEBGPU_LOG_DEBUG("ggml_backend_webgpu_graph_compute(" << cgraph->n_nodes << " nodes)");
 
@@ -2097,6 +2813,14 @@ static ggml_backend_i ggml_backend_webgpu_i = {
 
 /* GGML Backend Buffer Interface */
 
+// 函数: ggml_backend_webgpu_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_webgpu_buffer_context * ctx = static_cast<ggml_backend_webgpu_buffer_context *>(buffer->context);
     if (ctx != nullptr && ctx->buffer != nullptr) {
@@ -2106,6 +2830,14 @@ static void ggml_backend_webgpu_buffer_free_buffer(ggml_backend_buffer_t buffer)
 }
 
 // Returns the "fake" base pointer.
+// 函数: ggml_backend_webgpu_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_webgpu_buffer_get_base(ggml_backend_buffer_t buffer) {
     GGML_UNUSED(buffer);
     return webgpu_ptr_base;
@@ -2234,6 +2966,14 @@ static void ggml_backend_webgpu_buffer_get_tensor(ggml_backend_buffer_t buffer,
     WEBGPU_CPU_PROFILE_TOTAL_END(get_tensor, buf_ctx->global_ctx);
 }
 
+// 函数: ggml_backend_webgpu_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     WEBGPU_LOG_DEBUG("ggml_backend_webgpu_buffer_clear(" << buffer << ", " << (uint32_t) value << ")");
     WEBGPU_CPU_PROFILE_TOTAL_START(clear);
@@ -2259,6 +2999,14 @@ static ggml_backend_buffer_i ggml_backend_webgpu_buffer_interface = {
 
 /* GGML Backend Buffer Type Interface */
 
+// 函数: ggml_backend_webgpu_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_webgpu_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_webgpu_device_context * ctx = static_cast<ggml_backend_webgpu_device_context *>(buft->device->context);
     return ctx->device_name.c_str();
@@ -2278,11 +3026,35 @@ static ggml_backend_buffer_t ggml_backend_webgpu_buffer_type_alloc_buffer(ggml_b
                               buf_name.c_str());
 
     ggml_backend_webgpu_buffer_context * buf_ctx =
+        // 函数: ggml_backend_webgpu_buffer_context
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_backend_webgpu_buffer_context
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         new ggml_backend_webgpu_buffer_context(buf, buf_name, ctx->webgpu_global_ctx);
 
+    // 函数: ggml_backend_buffer_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_buffer_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_buffer_init(buft, ggml_backend_webgpu_buffer_interface, buf_ctx, size);
 }
 
+// 函数: ggml_backend_webgpu_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_webgpu_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     ggml_backend_webgpu_device_context * dev_ctx =
         static_cast<ggml_backend_webgpu_device_context *>(buft->device->context);
@@ -2291,6 +3063,14 @@ static size_t ggml_backend_webgpu_buffer_type_get_alignment(ggml_backend_buffer_
 
 // maxBufferSize might be larger, but you can't bind more than
 // maxStorageBufferBindingSize to a single binding.
+// 函数: ggml_backend_webgpu_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_webgpu_buffer_type_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_backend_webgpu_device_context * dev_ctx =
         static_cast<ggml_backend_webgpu_device_context *>(buft->device->context);
@@ -2327,16 +3107,40 @@ static size_t ggml_backend_webgpu_buffer_type_get_alloc_size(ggml_backend_buffer
 
 /* GGML Backend Device Interface */
 
+// 函数: ggml_backend_webgpu_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_webgpu_device_get_name(ggml_backend_dev_t dev) {
     ggml_backend_webgpu_device_context * ctx = static_cast<ggml_backend_webgpu_device_context *>(dev->context);
     return ctx->device_name.c_str();
 }
 
+// 函数: ggml_backend_webgpu_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_webgpu_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_webgpu_device_context * ctx = static_cast<ggml_backend_webgpu_device_context *>(dev->context);
     return ctx->device_desc.c_str();
 }
 
+// 函数: ggml_backend_webgpu_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     ggml_backend_webgpu_device_context * ctx = static_cast<ggml_backend_webgpu_device_context *>(dev->context);
     // TODO: for now, return maxBufferSize as both free and total memory
@@ -2358,6 +3162,14 @@ static enum ggml_backend_dev_type ggml_backend_webgpu_device_get_type(ggml_backe
     return GGML_BACKEND_DEVICE_TYPE_GPU;
 }
 
+// 函数: ggml_backend_webgpu_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_webgpu_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_webgpu_device_get_name(dev);
     props->description = ggml_backend_webgpu_device_get_description(dev);
@@ -2371,11 +3183,27 @@ static void ggml_backend_webgpu_device_get_props(ggml_backend_dev_t dev, struct 
     };
 }
 
+// 函数: ggml_backend_webgpu_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_webgpu_guid(void) {
     static const char * guid_str = "__ggml_webgpu :)";
     return reinterpret_cast<ggml_guid_t>((void *) guid_str);
 }
 
+// 函数: ggml_webgpu_init_memset_pipeline
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_memset_pipeline
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_memset_pipeline(webgpu_global_context & ctx) {
     // we use the maximum workgroup size for the memset pipeline
     size_t max_threads = WEBGPU_MAX_WG_SIZE * ctx->capabilities.limits.maxComputeWorkgroupsPerDimension;
@@ -2390,6 +3218,14 @@ static void ggml_webgpu_init_memset_pipeline(webgpu_global_context & ctx) {
     ctx->memset_pipelines[0] = ggml_webgpu_create_pipeline(ctx->device, wgsl_memset, "memset", constants);
 }
 
+// 函数: ggml_webgpu_init_cpy_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_cpy_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_cpy_pipeline(webgpu_context & webgpu_ctx) {
     std::vector<wgpu::ConstantEntry> constants = ggml_webgpu_wg_size_entry(WEBGPU_MAX_WG_SIZE);
 
@@ -2405,6 +3241,14 @@ static void ggml_webgpu_init_cpy_pipeline(webgpu_context & webgpu_ctx) {
         ggml_webgpu_create_pipeline(webgpu_ctx->global_ctx->device, wgsl_cpy_f16_f16, "cpy_f16_f16", constants);
 }
 
+// 函数: ggml_webgpu_init_rms_norm_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_rms_norm_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_rms_norm_pipeline(webgpu_context & webgpu_ctx) {
     std::vector<wgpu::ConstantEntry> constants = ggml_webgpu_wg_size_entry(WEBGPU_ROW_SPLIT_WG_SIZE);
 
@@ -2414,6 +3258,14 @@ static void ggml_webgpu_init_rms_norm_pipeline(webgpu_context & webgpu_ctx) {
         webgpu_ctx->global_ctx->device, wgsl_rms_norm_inplace, "rms_norm_inplace", constants);
 }
 
+// 函数: ggml_webgpu_init_rope_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_rope_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_rope_pipeline(webgpu_context & webgpu_ctx) {
     std::vector<wgpu::ConstantEntry> constants = ggml_webgpu_wg_size_entry(WEBGPU_MAX_WG_SIZE);
 
@@ -2436,6 +3288,14 @@ static void ggml_webgpu_init_rope_pipeline(webgpu_context & webgpu_ctx) {
         webgpu_ctx->global_ctx->device, wgsl_rope_f16_ff_inplace, "rope_f16_ff_inplace", constants);
 }
 
+// 函数: ggml_webgpu_init_glu_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_glu_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_glu_pipeline(webgpu_context & webgpu_ctx) {
     std::vector<wgpu::ConstantEntry> constants = ggml_webgpu_wg_size_entry(WEBGPU_MAX_WG_SIZE);
 
@@ -2496,6 +3356,14 @@ static void ggml_webgpu_init_glu_pipeline(webgpu_context & webgpu_ctx) {
         webgpu_ctx->global_ctx->device, wgsl_geglu_quick_f16_split, "geglu_quick_f16_split", constants);
 }
 
+// 函数: ggml_webgpu_init_soft_max_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_init_soft_max_pipeline
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_webgpu_init_soft_max_pipeline(webgpu_context & webgpu_ctx) {
     std::vector<wgpu::ConstantEntry> constants = ggml_webgpu_wg_size_entry(WEBGPU_ROW_SPLIT_WG_SIZE);
 
@@ -2532,6 +3400,14 @@ static void ggml_webgpu_init_soft_max_pipeline(webgpu_context & webgpu_ctx) {
                                     "soft_max_f32_mask_f16_sink_inplace", constants);
 }
 
+// 函数: create_webgpu_device
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: create_webgpu_device
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool create_webgpu_device(ggml_backend_webgpu_reg_context * ctx) {
     wgpu::RequestAdapterOptions options = {};
 
@@ -2682,6 +3558,14 @@ static bool create_webgpu_device(ggml_backend_webgpu_reg_context * ctx) {
     return true;
 }
 
+// 函数: initialize_webgpu_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: initialize_webgpu_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static webgpu_context initialize_webgpu_context(ggml_backend_dev_t dev) {
     ggml_backend_webgpu_device_context * dev_ctx    = (ggml_backend_webgpu_device_context *) dev->context;
     webgpu_context                       webgpu_ctx = std::make_shared<webgpu_context_struct>();
@@ -2712,6 +3596,14 @@ static webgpu_context initialize_webgpu_context(ggml_backend_dev_t dev) {
     return webgpu_ctx;
 }
 
+// 函数: ggml_backend_webgpu_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_webgpu_backend_init(ggml_backend_dev_t dev, const char * params) {
     GGML_UNUSED(params);
 
@@ -2734,6 +3626,14 @@ static ggml_backend_t ggml_backend_webgpu_backend_init(ggml_backend_dev_t dev, c
     return backend;
 }
 
+// 函数: ggml_backend_webgpu_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_webgpu_device_get_buffer_type(ggml_backend_dev_t dev) {
     // See GGML Backend Buffer Type Interface section
 
@@ -2755,11 +3655,27 @@ static ggml_backend_buffer_type_t ggml_backend_webgpu_device_get_buffer_type(ggm
     return &ggml_backend_webgpu_buffer_type;
 }
 
+// 函数: ggml_backend_webgpu_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_webgpu_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     GGML_UNUSED(dev);
     return buft->iface.get_name == ggml_backend_webgpu_buffer_type_get_name;
 }
 
+// 函数: ggml_webgpu_supported_qtype
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_webgpu_supported_qtype
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_webgpu_supported_qtype(ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -2787,6 +3703,14 @@ static bool ggml_webgpu_supported_qtype(ggml_type type) {
     }
 }
 
+// 函数: ggml_backend_webgpu_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_webgpu_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_webgpu_device_context * ctx = static_cast<ggml_backend_webgpu_device_context *>(dev->context);
 
@@ -3056,17 +3980,41 @@ static struct ggml_backend_device_i ggml_backend_webgpu_device_i = {
 
 /* GGML Backend Registration Interface */
 
+// 函数: ggml_backend_webgpu_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_webgpu_reg_get_name(ggml_backend_reg_t reg) {
     ggml_backend_webgpu_reg_context * ctx = static_cast<ggml_backend_webgpu_reg_context *>(reg->context);
     return ctx->name;
 }
 
+// 函数: ggml_backend_webgpu_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_webgpu_reg_get_device_count(ggml_backend_reg_t reg) {
     ggml_backend_webgpu_reg_context * ctx = static_cast<ggml_backend_webgpu_reg_context *>(reg->context);
     return ctx->device_count;
 }
 
 // Only one device is supported for now
+// 函数: ggml_backend_webgpu_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_webgpu_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(index == 0);
     WEBGPU_LOG_DEBUG("ggml_backend_reg_get_device()");
@@ -3101,6 +4049,14 @@ static const struct ggml_backend_reg_i ggml_backend_webgpu_reg_i = {
 
 /* End GGML Backend Registration Interface */
 
+// 函数: ggml_backend_webgpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_webgpu_reg() {
     WEBGPU_LOG_DEBUG("ggml_backend_webgpu_reg()");
 
@@ -3141,6 +4097,14 @@ ggml_backend_reg_t ggml_backend_webgpu_reg() {
     return &reg;
 }
 
+// 函数: ggml_backend_webgpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_webgpu_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_webgpu_init(void) {
     ggml_backend_dev_t dev = ggml_backend_reg_dev_get(ggml_backend_webgpu_reg(), 0);
 

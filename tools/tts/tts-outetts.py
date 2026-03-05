@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: tts-outetts.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/tts/tts-outetts.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 import sys
 #import json
 #import struct
@@ -8,16 +15,40 @@ import numpy as np
 from concurrent.futures import ThreadPoolExecutor
 
 
+    # 函数: fill_hann_window
+    # 描述: fill_hann_window函数提供相关功能
+    # 参数: size, periodic=True
+    # 返回: 有返回值
+    # 函数: fill_hann_window
+    # 描述: fill_hann_window函数提供相关功能
+    # 参数: size, periodic=True
+    # 返回: 有返回值
 def fill_hann_window(size, periodic=True):
     if periodic:
         return np.hanning(size + 1)[:-1]
     return np.hanning(size)
 
 
+    # 函数: irfft
+    # 描述: irfft函数提供相关功能
+    # 参数: n_fft, complex_input
+    # 返回: 有返回值
+    # 函数: irfft
+    # 描述: irfft函数提供相关功能
+    # 参数: n_fft, complex_input
+    # 返回: 有返回值
 def irfft(n_fft, complex_input):
     return np.fft.irfft(complex_input, n=n_fft)
 
 
+    # 函数: fold
+    # 描述: fold函数提供相关功能
+    # 参数: buffer, n_out, n_win, n_hop, n_pad
+    # 返回: 无返回值
+    # 函数: fold
+    # 描述: fold函数提供相关功能
+    # 参数: buffer, n_out, n_win, n_hop, n_pad
+    # 返回: 无返回值
 def fold(buffer, n_out, n_win, n_hop, n_pad):
     result = np.zeros(n_out)
     n_frames = len(buffer) // n_win
@@ -30,6 +61,14 @@ def fold(buffer, n_out, n_win, n_hop, n_pad):
     return result[n_pad:-n_pad] if n_pad > 0 else result
 
 
+    # 函数: process_frame
+    # 描述: process_frame函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
+    # 函数: process_frame
+    # 描述: process_frame函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
 def process_frame(args):
     l, n_fft, ST, hann = args
     frame = irfft(n_fft, ST[l])
@@ -38,6 +77,14 @@ def process_frame(args):
     return frame, hann2
 
 
+    # 函数: embd_to_audio
+    # 描述: embd_to_audio函数提供相关功能
+    # 参数: embd, n_codes, n_embd, n_thread=4
+    # 返回: 无返回值
+    # 函数: embd_to_audio
+    # 描述: embd_to_audio函数提供相关功能
+    # 参数: embd, n_codes, n_embd, n_thread=4
+    # 返回: 无返回值
 def embd_to_audio(embd, n_codes, n_embd, n_thread=4):
     embd = np.asarray(embd, dtype=np.float32).reshape(n_codes, n_embd)
 
@@ -85,6 +132,14 @@ def embd_to_audio(embd, n_codes, n_embd, n_thread=4):
     return audio
 
 
+    # 函数: save_wav
+    # 描述: save_wav函数提供相关功能
+    # 参数: filename, audio_data, sample_rate
+    # 返回: 无返回值
+    # 函数: save_wav
+    # 描述: save_wav函数提供相关功能
+    # 参数: filename, audio_data, sample_rate
+    # 返回: 无返回值
 def save_wav(filename, audio_data, sample_rate):
     num_channels = 1
     bits_per_sample = 16
@@ -119,6 +174,14 @@ def save_wav(filename, audio_data, sample_rate):
         f.write(pcm_data.tobytes())
 
 
+    # 函数: process_text
+    # 描述: process_text函数提供相关功能
+    # 参数: text: str
+    # 返回: 无返回值
+    # 函数: process_text
+    # 描述: process_text函数提供相关功能
+    # 参数: text: str
+    # 返回: 无返回值
 def process_text(text: str):
     text = re.sub(r'\d+(\.\d+)?', lambda x: x.group(), text.lower()) # TODO this needs to be fixed
     text = re.sub(r'[-_/,\.\\]', ' ', text)

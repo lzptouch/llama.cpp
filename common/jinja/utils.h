@@ -8,6 +8,14 @@
 
 namespace jinja {
 
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void string_replace_all(std::string & s, const std::string & search, const std::string & replace) {
     if (search.empty()) {
         return;
@@ -26,6 +34,14 @@ static void string_replace_all(std::string & s, const std::string & search, cons
 }
 
 // for displaying source code around error position
+// 函数: peak_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: peak_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string peak_source(const std::string & source, size_t pos, size_t max_peak_chars = 40) {
     if (source.empty()) {
         return "(no source available)";
@@ -41,6 +57,14 @@ static std::string peak_source(const std::string & source, size_t pos, size_t ma
     return output;
 }
 
+// 函数: fmt_error_with_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fmt_error_with_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string fmt_error_with_source(const std::string & tag, const std::string & msg, const std::string & source, size_t pos) {
     std::ostringstream oss;
     oss << tag << ": " << msg << "\n";
@@ -49,6 +73,24 @@ static std::string fmt_error_with_source(const std::string & tag, const std::str
 }
 
 // Note: this is a simple hasher, not cryptographically secure, just for hash table usage
+// 类: hasher
+// 描述: hasher类提供相关功能
+// 用途: 用于处理hasher相关的操作
+// 类: hasher
+// 描述: hasher类提供相关功能
+// 用途: 用于处理hasher相关的操作
+    // 结构体: hasher
+    // 描述: hasher结构体提供相关功能
+    // 用途: 用于处理hasher相关的操作
+    // 结构体: hasher
+    // 描述: hasher结构体提供相关功能
+    // 用途: 用于处理hasher相关的操作
+    // 结构体: hasher
+    // 描述: hasher结构体提供相关功能
+    // 用途: 用于处理hasher相关的操作
+    // 结构体: hasher
+    // 描述: hasher结构体提供相关功能
+    // 用途: 用于处理hasher相关的操作
 struct hasher {
     static constexpr auto size_t_digits = sizeof(size_t) * 8;
     static constexpr size_t prime = size_t_digits == 64 ? 0x100000001b3 : 0x01000193;
@@ -110,11 +152,27 @@ struct hasher {
 
     // convenience function for testing only
     hasher& update(const std::string & s) noexcept {
+        // 函数: update
+        // 描述: 更新: 更新现有数据或状态
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: update
+        // 描述: 更新: 更新现有数据或状态
+        // 参数: 无参数
+        // 返回: 无返回值
         return update(s.data(), s.size());
     }
 
     // finalize and get the hash value
     // note: after calling digest, the hasher state is modified, do not call update() again
+    // 函数: digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t digest() noexcept {
         // if there are remaining bytes in buffer, fill the rest with zeros and process
         if (idx > 0) {
@@ -130,6 +188,14 @@ struct hasher {
 
 private:
     // IMPORTANT: block must have at least block_size bytes
+    // 函数: update_block
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update_block
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update_block(const uint8_t * block) noexcept {
         size_t blk = static_cast<uint32_t>(block[0])
                     | (static_cast<uint32_t>(block[1]) << 8)

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: repack.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/repack.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define GGML_COMMON_IMPL_CPP
 #define GGML_COMMON_DECL_CPP
 #include "ggml-common.h"
@@ -24,6 +31,14 @@
 
 #define UNUSED GGML_UNUSED
 
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int nearest_int(float fval) {
     assert(fabsf(fval) <= 4194303.f);
     float val = fval + 12582912.f;
@@ -48,6 +63,14 @@ static inline int nearest_int(float fval) {
 
 extern "C" {
 
+// 函数: ggml_quantize_mat_q8_0_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x4_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK8_0 == 32);
     assert(k % QK8_0 == 0);
@@ -86,6 +109,14 @@ void ggml_quantize_mat_q8_0_4x4_generic(const float * GGML_RESTRICT x, void * GG
     }
 }
 
+// 函数: ggml_quantize_mat_q8_0_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x8_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK8_0 == 32);
     assert(k % QK8_0 == 0);
@@ -125,6 +156,14 @@ void ggml_quantize_mat_q8_0_4x8_generic(const float * GGML_RESTRICT x, void * GG
 }
 
 
+// 函数: ggml_quantize_mat_q8_K_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x4_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK_K == 256);
     assert(k % QK_K == 0);
@@ -176,6 +215,14 @@ void ggml_quantize_mat_q8_K_4x4_generic(const float * GGML_RESTRICT x, void * GG
     }
 }
 
+// 函数: ggml_quantize_mat_q8_K_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x8_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK_K == 256);
     assert(k % QK_K == 0);
@@ -230,6 +277,14 @@ void ggml_quantize_mat_q8_K_4x8_generic(const float * GGML_RESTRICT x, void * GG
 } // extern "C"
 
 template <int64_t INTER_SIZE, ggml_type PARAM_TYPE>
+// 函数: ggml_quantize_mat_t
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_t
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_t(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t nrow, int64_t n_per_row);
 
 template <> void ggml_quantize_mat_t<4, GGML_TYPE_Q8_0>(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t nrow, int64_t n_per_row) {
@@ -654,6 +709,14 @@ static void ggml_gemm_q5_K_NxM_q8_K_generic_impl(int                        n,
 
 extern "C" {
 
+// 函数: ggml_gemv_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -699,6 +762,14 @@ void ggml_gemv_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -743,6 +814,14 @@ void ggml_gemv_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -787,6 +866,14 @@ void ggml_gemv_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -858,6 +945,14 @@ void ggml_gemv_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -929,6 +1024,14 @@ void ggml_gemv_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -1005,23 +1108,63 @@ void ggml_gemv_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemv_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemv_q5_K_NxM_q8_K_generic_impl<4, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemv_q5_K_NxM_q8_K_generic_impl<8, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
 
+// 函数: ggml_gemv_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemv_q6_K_NxM_q8_K_generic_impl<4, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemv_q6_K_NxM_q8_K_generic_impl<8, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1060,6 +1203,14 @@ void ggml_gemv_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs
     }
 }
 
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1098,6 +1249,14 @@ void ggml_gemv_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs
     }
 }
 
+// 函数: ggml_gemv_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1136,6 +1295,14 @@ void ggml_gemv_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs,
     }
 }
 
+// 函数: ggml_gemv_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1268,6 +1435,14 @@ void ggml_gemv_q8_0_4x8_q8_0_generic(int                        n,
     }
 }
 
+// 函数: ggml_gemm_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1324,6 +1499,14 @@ void ggml_gemm_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1378,6 +1561,14 @@ void ggml_gemm_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1432,6 +1623,14 @@ void ggml_gemm_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -1515,6 +1714,14 @@ void ggml_gemm_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -1596,6 +1803,14 @@ void ggml_gemm_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -1686,22 +1901,62 @@ void ggml_gemm_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, 
     }
 }
 
+// 函数: ggml_gemm_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemm_q5_K_NxM_q8_K_generic_impl<4, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemm_q5_K_NxM_q8_K_generic_impl<8, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     ggml_gemm_q6_K_NxM_q8_K_generic_impl<4, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
    ggml_gemm_q6_K_NxM_q8_K_generic_impl<8, 8>(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1758,6 +2013,14 @@ void ggml_gemm_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs
     }
 }
 
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1802,6 +2065,14 @@ void ggml_gemm_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs
     }
 }
 
+// 函数: ggml_gemm_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1846,6 +2117,14 @@ void ggml_gemm_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs,
     }
 }
 
+// 函数: ggml_gemm_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -1928,6 +2207,14 @@ void ggml_gemm_q8_0_4x4_q8_0_generic(int                        n,
                                 sumi += v0 * a_ptr[l].qs[k * 4 * blocklen + m * blocklen + i];
                             }
                             sumf[m][j] +=
+                                // 函数: GGML_CPU_FP16_TO_FP32
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
+                                // 函数: GGML_CPU_FP16_TO_FP32
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
                                 sumi * GGML_CPU_FP16_TO_FP32(b_ptr[l].d[j]) * GGML_CPU_FP16_TO_FP32(a_ptr[l].d[m]);
                         }
                     }
@@ -1980,6 +2267,14 @@ void ggml_gemm_q8_0_4x8_q8_0_generic(int                        n,
                                 sumi += v0 * a_ptr[l].qs[k * 4 * blocklen + m * blocklen + i];
                             }
                             sumf[m][j] +=
+                                // 函数: GGML_CPU_FP16_TO_FP32
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
+                                // 函数: GGML_CPU_FP16_TO_FP32
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
                                 sumi * GGML_CPU_FP16_TO_FP32(b_ptr[l].d[j]) * GGML_CPU_FP16_TO_FP32(a_ptr[l].d[m]);
                         }
                     }
@@ -1996,6 +2291,14 @@ void ggml_gemm_q8_0_4x8_q8_0_generic(int                        n,
 
 } // extern "C"
 
+// 函数: make_block_q8_0x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q8_0x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q8_0x4 make_block_q8_0x4(block_q8_0 * in, unsigned int blck_size_interleave) {
     block_q8_0x4 out;
 
@@ -2013,6 +2316,14 @@ static block_q8_0x4 make_block_q8_0x4(block_q8_0 * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: make_block_q4_0x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q4_0x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q4_0x4 make_block_q4_0x4(block_q4_0 * in, unsigned int blck_size_interleave) {
     block_q4_0x4 out;
 
@@ -2058,6 +2369,14 @@ static block_q4_0x4 make_block_q4_0x4(block_q4_0 * in, unsigned int blck_size_in
 // returns an interleaved block_q4_0x8
 // in the interleaved block_q4_0x8, place deltas for 8 block_q4_0 blocks
 // first, then interleave quants from 8 block_q4_0s in blocks of blck_size_interleave
+// 函数: make_block_q4_0x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q4_0x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q4_0x8 make_block_q4_0x8(block_q4_0 * in, unsigned int blck_size_interleave) {
     block_q4_0x8 out;
 
@@ -2082,6 +2401,14 @@ static block_q4_0x8 make_block_q4_0x8(block_q4_0 * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: make_block_q4_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q4_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q4_Kx8 make_block_q4_Kx8(block_q4_K * in, unsigned int blck_size_interleave) {
     block_q4_Kx8 out;
     //Delta(scale) and dmin values of the eight Q4_K structures are copied onto the output interleaved structure
@@ -2159,6 +2486,14 @@ static block_q4_Kx8 make_block_q4_Kx8(block_q4_K * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: make_block_q2_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q2_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q2_Kx8 make_block_q2_Kx8(block_q2_K * in, unsigned int blck_size_interleave) {
     block_q2_Kx8 out;
 
@@ -2201,6 +2536,14 @@ static block_q2_Kx8 make_block_q2_Kx8(block_q2_K * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: make_block_q5_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q5_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q5_Kx8 make_block_q5_Kx8(block_q5_K * in, unsigned int blck_size_interleave) {
     block_q5_Kx8 out;
     //Delta(scale) and dmin values of the eight Q5_K structures are copied onto the output interleaved structure
@@ -2286,6 +2629,14 @@ static block_q5_Kx8 make_block_q5_Kx8(block_q5_K * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: make_block_q6_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_q6_Kx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_q6_Kx8 make_block_q6_Kx8(block_q6_K * in, unsigned int blck_size_interleave) {
     block_q6_Kx8  out;
     constexpr int n_blocks = 8;  // Kx8
@@ -2332,6 +2683,14 @@ static block_q6_Kx8 make_block_q6_Kx8(block_q6_K * in, unsigned int blck_size_in
     return out;
 }
 
+// 函数: repack_q4_0_to_q4_0_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q4_0_to_q4_0_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_q4_0_to_q4_0_4_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_Q4_0);
     GGML_ASSERT(interleave_block == 4 || interleave_block == 8);
@@ -2363,6 +2722,14 @@ static int repack_q4_0_to_q4_0_4_bl(struct ggml_tensor * t, int interleave_block
     GGML_UNUSED(data_size);
 }
 
+// 函数: repack_q4_K_to_q4_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q4_K_to_q4_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_q4_K_to_q4_K_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_Q4_K);
     GGML_ASSERT(interleave_block == 8 || interleave_block == 4);
@@ -2394,6 +2761,14 @@ static int repack_q4_K_to_q4_K_8_bl(struct ggml_tensor * t, int interleave_block
     GGML_UNUSED(data_size);
 }
 
+// 函数: repack_q2_K_to_q2_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q2_K_to_q2_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_q2_K_to_q2_K_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_Q2_K);
     GGML_ASSERT(interleave_block == 8);
@@ -2457,6 +2832,14 @@ static int repack_q5_K_to_q5_K_8_bl(struct ggml_tensor *       t,
     return 0;
 }
 
+// 函数: repack_q6_K_to_q6_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q6_K_to_q6_K_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_q6_K_to_q6_K_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_Q6_K);
     GGML_ASSERT(interleave_block == 4 || interleave_block == 8);
@@ -2486,6 +2869,14 @@ static int repack_q6_K_to_q6_K_8_bl(struct ggml_tensor * t, int interleave_block
     return 0;
 }
 
+// 函数: repack_q4_0_to_q4_0_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q4_0_to_q4_0_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_q4_0_to_q4_0_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_Q4_0);
     GGML_ASSERT(interleave_block == 8);
@@ -2549,6 +2940,14 @@ static int repack_q8_0_to_q8_0_4_bl(struct ggml_tensor *       t,
     return 0;
 }
 
+// 函数: make_block_iq4_nlx4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_iq4_nlx4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_iq4_nlx4 make_block_iq4_nlx4(block_iq4_nl * in, unsigned int blck_size_interleave) {
     block_iq4_nlx4 out;
 
@@ -2584,6 +2983,14 @@ static block_iq4_nlx4 make_block_iq4_nlx4(block_iq4_nl * in, unsigned int blck_s
     return out;
 }
 
+// 函数: repack_iq4_nl_to_iq4_nl_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_iq4_nl_to_iq4_nl_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_iq4_nl_to_iq4_nl_4_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_IQ4_NL);
     GGML_ASSERT(interleave_block == 4);
@@ -2617,6 +3024,14 @@ static int repack_iq4_nl_to_iq4_nl_4_bl(struct ggml_tensor * t, int interleave_b
     GGML_UNUSED(data_size);
 }
 
+// 函数: make_block_iq4_nlx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_iq4_nlx8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_iq4_nlx8 make_block_iq4_nlx8(block_iq4_nl * in, unsigned int blck_size_interleave) {
     block_iq4_nlx8 out;
 
@@ -2641,6 +3056,14 @@ static block_iq4_nlx8 make_block_iq4_nlx8(block_iq4_nl * in, unsigned int blck_s
     return out;
 }
 
+// 函数: repack_iq4_nl_to_iq4_nl_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_iq4_nl_to_iq4_nl_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_iq4_nl_to_iq4_nl_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_IQ4_NL);
     GGML_ASSERT(interleave_block == 8);
@@ -2675,6 +3098,14 @@ static int repack_iq4_nl_to_iq4_nl_8_bl(struct ggml_tensor * t, int interleave_b
 }
 
 
+// 函数: make_block_mxfp4x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_mxfp4x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_mxfp4x4 make_block_mxfp4x4(block_mxfp4 * in, unsigned int blck_size_interleave) {
     block_mxfp4x4 out;
 
@@ -2699,6 +3130,14 @@ static block_mxfp4x4 make_block_mxfp4x4(block_mxfp4 * in, unsigned int blck_size
     return out;
 }
 
+// 函数: repack_mxfp4_to_mxfp4_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_mxfp4_to_mxfp4_4_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_mxfp4_to_mxfp4_4_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_MXFP4);
     GGML_ASSERT(interleave_block == 4);
@@ -2732,6 +3171,14 @@ static int repack_mxfp4_to_mxfp4_4_bl(struct ggml_tensor * t, int interleave_blo
     GGML_UNUSED(data_size);
 }
 
+// 函数: make_block_mxfp4x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_block_mxfp4x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static block_mxfp4x8 make_block_mxfp4x8(block_mxfp4 * in, unsigned int blck_size_interleave) {
     block_mxfp4x8 out;
 
@@ -2756,6 +3203,14 @@ static block_mxfp4x8 make_block_mxfp4x8(block_mxfp4 * in, unsigned int blck_size
     return out;
 }
 
+// 函数: repack_mxfp4_to_mxfp4_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_mxfp4_to_mxfp4_8_bl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int repack_mxfp4_to_mxfp4_8_bl(struct ggml_tensor * t, int interleave_block, const void * GGML_RESTRICT data, size_t data_size) {
     GGML_ASSERT(t->type == GGML_TYPE_MXFP4);
     GGML_ASSERT(interleave_block == 8);
@@ -2792,50 +3247,146 @@ static int repack_mxfp4_to_mxfp4_8_bl(struct ggml_tensor * t, int interleave_blo
 namespace ggml::cpu::repack {
 // repack
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS>
+// 函数: repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int repack(struct ggml_tensor *, const void *, size_t);
 
 // TODO: generalise.
 template <> int repack<block_q4_0, 4, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_0_to_q4_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_0_to_q4_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_0_to_q4_0_4_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_q4_0, 8, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_0_to_q4_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_0_to_q4_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_0_to_q4_0_4_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q4_0, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_0_to_q4_0_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_0_to_q4_0_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_0_to_q4_0_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q4_K, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_K_to_q4_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_K_to_q4_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_K_to_q4_K_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q4_K, 4, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q4_K_to_q4_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q4_K_to_q4_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q4_K_to_q4_K_8_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_q2_K, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q2_K_to_q2_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q2_K_to_q2_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q2_K_to_q2_K_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q5_K, 4, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q5_K_to_q5_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q5_K_to_q5_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q5_K_to_q5_K_8_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_q5_K, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q5_K_to_q5_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q5_K_to_q5_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q5_K_to_q5_K_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q6_K, 4, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q6_K_to_q6_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q6_K_to_q6_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q6_K_to_q6_K_8_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_q6_K, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q6_K_to_q6_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q6_K_to_q6_K_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q6_K_to_q6_K_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_iq4_nl, 4, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_iq4_nl_to_iq4_nl_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_iq4_nl_to_iq4_nl_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_iq4_nl_to_iq4_nl_4_bl(t, 4, data, data_size);
 }
 
@@ -2845,27 +3396,75 @@ template <> int repack<block_iq4_nl, 4, 4>(struct ggml_tensor * t, const void * 
 //}
 
 template <> int repack<block_iq4_nl, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_iq4_nl_to_iq4_nl_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_iq4_nl_to_iq4_nl_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_iq4_nl_to_iq4_nl_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_mxfp4, 4, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_mxfp4_to_mxfp4_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_mxfp4_to_mxfp4_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_mxfp4_to_mxfp4_4_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_mxfp4, 8, 8>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_mxfp4_to_mxfp4_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_mxfp4_to_mxfp4_8_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_mxfp4_to_mxfp4_8_bl(t, 8, data, data_size);
 }
 
 template <> int repack<block_q8_0, 4, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q8_0_to_q8_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q8_0_to_q8_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q8_0_to_q8_0_4_bl(t, 4, data, data_size);
 }
 
 template <> int repack<block_q8_0, 8, 4>(struct ggml_tensor * t, const void * data, size_t data_size) {
+    // 函数: repack_q8_0_to_q8_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack_q8_0_to_q8_0_4_bl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return repack_q8_0_to_q8_0_4_bl(t, 8, data, data_size);
 }
 
 // gemv
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PARAM_TYPE>
+// 函数: gemv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gemv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void gemv(int, float *, size_t, const void *, const void *, int, int);
 
 template <> void gemv<block_q4_0, 4, 4, GGML_TYPE_Q8_0>(int n, float * s, size_t bs, const void * vx, const void * vy, int nr, int nc) {
@@ -2941,6 +3540,14 @@ template <> void gemv<block_q8_0, 8, 4, GGML_TYPE_Q8_0>(int n, float * s, size_t
 
 // gemm
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PARAM_TYPE>
+// 函数: gemm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gemm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void gemm(int, float *, size_t, const void *, const void *, int, int);
 
 template <> void gemm<block_q4_0, 4, 4, GGML_TYPE_Q8_0>(int n, float * s, size_t bs, const void * vx, const void * vy, int nr, int nc) {
@@ -3014,13 +3621,35 @@ template <> void gemm<block_q8_0, 8, 4, GGML_TYPE_Q8_0>(int n, float * s, size_t
     ggml_gemm_q8_0_4x8_q8_0(n, s, bs, vx, vy, nr, nc);
 }
 
+// 类: tensor_traits_base
+// 描述: tensor_traits_base类提供相关功能
+// 用途: 用于处理tensor_traits_base相关的操作
+// 类: tensor_traits_base
+// 描述: tensor_traits_base类提供相关功能
+// 用途: 用于处理tensor_traits_base相关的操作
 class tensor_traits_base : public ggml::cpu::tensor_traits {
   public:
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual int repack(struct ggml_tensor * t, const void * data, size_t data_size) = 0;
 };
 
 template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PARAM_TYPE> class tensor_traits : public tensor_traits_base {
 
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: work_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool work_size(int /* n_threads */, const struct ggml_tensor * op, size_t & size) override {
         // not realy a GGML_TYPE_Q8_0 but same size.
         switch (op->op) {
@@ -3050,6 +3679,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
         return false;
     }
 
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute_forward
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     bool compute_forward(struct ggml_compute_params * params, struct ggml_tensor * op) override {
         switch (op->op) {
             case GGML_OP_MUL_MAT:
@@ -3114,6 +3751,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
         }
     }
 
+    // 函数: forward_mul_mat
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: forward_mul_mat
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     void forward_mul_mat(ggml_compute_params * params, ggml_tensor * op) {
         const ggml_tensor * src0 = op->src[0];
         const ggml_tensor * src1 = op->src[1];
@@ -3247,6 +3892,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
         }
     }
 
+    // 函数: forward_mul_mat_id
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: forward_mul_mat_id
+    // 描述: 前向传播: 执行神经网络的前向传播
+    // 参数: 无参数
+    // 返回: 无返回值
     void forward_mul_mat_id(ggml_compute_params * params, ggml_tensor * op) {
         const ggml_tensor * src0 = op->src[0];
         const ggml_tensor * src1 = op->src[1];
@@ -3284,6 +3937,24 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
         const size_t nbw2 = nbw1*ne11;
         const size_t nbw3 = nbw2*ne12;
 
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
         struct mmid_row_mapping {
             int32_t i1;
             int32_t i2;
@@ -3299,6 +3970,24 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
 
         // total of [n_as][ne12 + 1] elemets of type mmid_row_mapping (2*int32_t = int64_t)
         auto * matrix_row_counts = (int64_t *) (wdata_src1_end);                                        // [n_as]
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
         struct mmid_row_mapping * matrix_rows = (struct mmid_row_mapping *) (matrix_row_counts + n_as); // [n_as][ne12]
 
         // src1: float32 => param type
@@ -3360,6 +4049,24 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
             }
 
             for (int ir1 = 0; ir1 < nr1; ir1++) {
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
                 struct mmid_row_mapping row_mapping = MMID_MATRIX_ROW(cur_a, ir1);
 
                 const int id = row_mapping.i1;  // selected expert index
@@ -3380,6 +4087,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
 #undef MMID_MATRIX_ROW
     }
 
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: repack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int repack(struct ggml_tensor * t, const void * data, size_t data_size) override {
         GGML_LOG_DEBUG("%s: repack tensor %s with %s_%dx%d\n", __func__, t->name, ggml_type_name(t->type),
                        (int) NB_COLS, (int) INTER_SIZE);
@@ -3389,6 +4104,14 @@ template <typename BLOC_TYPE, int64_t INTER_SIZE, int64_t NB_COLS, ggml_type PAR
 
 }  // namespace ggml::cpu::repack
 
+// 函数: ggml_repack_get_optimal_repack_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_repack_get_optimal_repack_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const ggml::cpu::tensor_traits * ggml_repack_get_optimal_repack_type(const struct ggml_tensor * cur) {
     // instance for Q4
     static const ggml::cpu::repack::tensor_traits<block_q4_0, 4, 4, GGML_TYPE_Q8_0> q4_0_4x4_q8_0;
@@ -3540,12 +4263,28 @@ static void ggml_backend_cpu_repack_buffer_set_tensor(ggml_backend_buffer_t buff
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_repack_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_repack_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_repack_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU_REPACK";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_repack_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_repack_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_cpu_repack_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     ggml_backend_buffer_t buffer = ggml_backend_buft_alloc_buffer(ggml_backend_cpu_buffer_type(), size);
 
@@ -3561,6 +4300,14 @@ static ggml_backend_buffer_t ggml_backend_cpu_repack_buffer_type_alloc_buffer(gg
     return buffer;
 }
 
+// 函数: ggml_backend_cpu_repack_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_repack_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_repack_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return TENSOR_ALIGNMENT;
 
@@ -3568,7 +4315,21 @@ static size_t ggml_backend_cpu_repack_buffer_type_get_alignment(ggml_backend_buf
 }
 
 namespace ggml::cpu::repack {
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
+// 类: extra_buffer_type
+// 描述: extra_buffer_type类提供相关功能
+// 用途: 用于处理extra_buffer_type相关的操作
 class extra_buffer_type : ggml::cpu::extra_buffer_type {
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: supports_op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool supports_op(ggml_backend_dev_t, const struct ggml_tensor * op) override {
         if (    op->op == GGML_OP_MUL_MAT &&
                 op->src[0]->buffer &&
@@ -3605,6 +4366,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
         return false;
     }
 
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor_traits
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     ggml::cpu::tensor_traits * get_tensor_traits(const struct ggml_tensor * op) override {
         if (op->op == GGML_OP_MUL_MAT || op->op == GGML_OP_MUL_MAT_ID) {
             if (op->src[0]->buffer && op->src[0]->buffer->buft == ggml_backend_cpu_repack_buffer_type()) {
@@ -3616,6 +4385,14 @@ class extra_buffer_type : ggml::cpu::extra_buffer_type {
 };
 }  // namespace ggml::cpu::repack
 
+// 函数: ggml_backend_cpu_repack_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_repack_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_repack_buffer_type(void) {
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type_repack = {
         /* .iface    = */ {

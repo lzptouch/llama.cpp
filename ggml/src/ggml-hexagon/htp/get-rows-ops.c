@@ -15,10 +15,82 @@
 #include "htp-ops.h"
 #include "hvx-utils.h"
 
+// 类: get_rows_context
+// 描述: get_rows_context类提供相关功能
+// 用途: 用于处理get_rows_context相关的操作
+// 类: get_rows_context
+// 描述: get_rows_context类提供相关功能
+// 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
 struct get_rows_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
     uint32_t src1_nrows_per_thread;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values get_rows_div_ne10;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values get_rows_div_ne10_ne11;
 };
 
@@ -46,8 +118,52 @@ struct get_rows_context {
                                             \
     const uint32_t nr = ne10 * ne11 * ne12;
 
+// 函数: get_rows_thread_f32_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_rows_thread_f32_f32
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static void get_rows_thread_f32_f32(unsigned int nth, unsigned int ith, void *data) {
+    // 类: get_rows_context
+    // 描述: get_rows_context类提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 类: get_rows_context
+    // 描述: get_rows_context类提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
     struct get_rows_context * grctx = (struct get_rows_context *)data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = grctx->octx;
     get_rows_preamble;
 
@@ -79,6 +195,14 @@ static void get_rows_thread_f32_f32(unsigned int nth, unsigned int ith, void *da
     }
 }
 
+// 函数: op_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int op_get_rows(struct htp_ops_context * octx) {
     get_rows_preamble;
 
@@ -98,6 +222,24 @@ int op_get_rows(struct htp_ops_context * octx) {
         return HTP_STATUS_OK;
     }
 
+    // 类: get_rows_context
+    // 描述: get_rows_context类提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 类: get_rows_context
+    // 描述: get_rows_context类提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
+    // 结构体: get_rows_context
+    // 描述: get_rows_context结构体提供相关功能
+    // 用途: 用于处理get_rows_context相关的操作
     struct get_rows_context grctx;
     grctx.octx = octx;
     grctx.get_rows_div_ne10      = init_fastdiv_values(octx->src1.ne[0]);

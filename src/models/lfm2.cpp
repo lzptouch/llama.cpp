@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: lfm2.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/lfm2.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "../llama-memory-hybrid-iswa.h"
@@ -137,6 +144,14 @@ llm_build_lfm2<iswa>::llm_build_lfm2(const llama_model & model, const llm_graph_
     ggml_build_forward_expand(gf, cur);
 
     inp_hybrid_type * inp_hybrid = nullptr;
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (iswa) {
         inp_hybrid = build_inp_mem_hybrid_iswa();
     } else {

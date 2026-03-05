@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-metal-device.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-metal-device.h"
 
 #include "ggml-metal-impl.h"
@@ -9,7 +16,33 @@
 #include <string>
 #include <unordered_map>
 
+// 类: ggml_metal_device_deleter
+// 描述: ggml_metal_device_deleter类提供相关功能
+// 用途: 用于处理ggml_metal_device_deleter相关的操作
+// 类: ggml_metal_device_deleter
+// 描述: ggml_metal_device_deleter类提供相关功能
+// 用途: 用于处理ggml_metal_device_deleter相关的操作
+    // 结构体: ggml_metal_device_deleter
+    // 描述: ggml_metal_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_metal_device_deleter相关的操作
+    // 结构体: ggml_metal_device_deleter
+    // 描述: ggml_metal_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_metal_device_deleter相关的操作
+    // 结构体: ggml_metal_device_deleter
+    // 描述: ggml_metal_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_metal_device_deleter相关的操作
+    // 结构体: ggml_metal_device_deleter
+    // 描述: ggml_metal_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_metal_device_deleter相关的操作
 struct ggml_metal_device_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(ggml_metal_device_t ctx) {
         ggml_metal_device_free(ctx);
     }
@@ -17,6 +50,14 @@ struct ggml_metal_device_deleter {
 
 typedef std::unique_ptr<ggml_metal_device, ggml_metal_device_deleter> ggml_metal_device_ptr;
 
+// 函数: ggml_metal_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_device_t ggml_metal_device_get(int device) {
     static std::vector<ggml_metal_device_ptr> devs;
 
@@ -25,16 +66,50 @@ ggml_metal_device_t ggml_metal_device_get(int device) {
     return devs.back().get();
 }
 
+// 类: ggml_metal_pipelines
+// 描述: ggml_metal_pipelines类提供相关功能
+// 用途: 用于处理ggml_metal_pipelines相关的操作
+// 类: ggml_metal_pipelines
+// 描述: ggml_metal_pipelines类提供相关功能
+// 用途: 用于处理ggml_metal_pipelines相关的操作
+    // 结构体: ggml_metal_pipelines
+    // 描述: ggml_metal_pipelines结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipelines相关的操作
+    // 结构体: ggml_metal_pipelines
+    // 描述: ggml_metal_pipelines结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipelines相关的操作
+    // 结构体: ggml_metal_pipelines
+    // 描述: ggml_metal_pipelines结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipelines相关的操作
+    // 结构体: ggml_metal_pipelines
+    // 描述: ggml_metal_pipelines结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipelines相关的操作
 struct ggml_metal_pipelines {
     std::unordered_map<std::string, ggml_metal_pipeline_t> data;
 };
 
+// 函数: ggml_metal_pipelines_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_pipelines_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipelines_t ggml_metal_pipelines_init(void) {
     ggml_metal_pipelines_t res = new ggml_metal_pipelines();
 
     return res;
 }
 
+// 函数: ggml_metal_pipelines_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_pipelines_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_metal_pipelines_free(ggml_metal_pipelines_t ppls) {
     if (!ppls) {
         return;
@@ -47,10 +122,26 @@ void ggml_metal_pipelines_free(ggml_metal_pipelines_t ppls) {
     delete ppls;
 }
 
+// 函数: ggml_metal_pipelines_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_pipelines_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_metal_pipelines_add(ggml_metal_pipelines_t ppls, const char * name, ggml_metal_pipeline_t pipeline) {
     ppls->data[name] = pipeline;
 }
 
+// 函数: ggml_metal_pipelines_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_pipelines_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_t ggml_metal_pipelines_get(ggml_metal_pipelines_t ppls, const char * name) {
     if (ppls->data.find(name) == ppls->data.end()) {
         return nullptr;
@@ -59,6 +150,24 @@ ggml_metal_pipeline_t ggml_metal_pipelines_get(ggml_metal_pipelines_t ppls, cons
     return ppls->data[name];
 }
 
+// 类: ggml_metal_pipeline_with_params
+// 描述: ggml_metal_pipeline_with_params类提供相关功能
+// 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+// 类: ggml_metal_pipeline_with_params
+// 描述: ggml_metal_pipeline_with_params类提供相关功能
+// 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
 struct ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_base(ggml_metal_library_t lib, ggml_op op) {
     char base[256];
     char name[256];
@@ -81,6 +190,14 @@ struct ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_base(ggml
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_cpy
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_cpy
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cpy(ggml_metal_library_t lib, ggml_type tsrc, ggml_type tdst) {
     char base[256];
     char name[256];
@@ -96,6 +213,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cpy(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_pool_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_pool_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pool_1d(ggml_metal_library_t lib, const ggml_tensor * op, ggml_op_pool op_pool) {
     GGML_ASSERT(ggml_is_contiguous(op->src[0]));
     GGML_ASSERT(op->src[0]->type == GGML_TYPE_F32 && op->src[0]->type == op->type);
@@ -121,6 +246,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pool_1d(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_pool_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_pool_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pool_2d(ggml_metal_library_t lib, const ggml_tensor * op, ggml_op_pool op_pool) {
     GGML_ASSERT(ggml_is_contiguous(op->src[0]));
     GGML_ASSERT(op->src[0]->type == GGML_TYPE_F32 && op->src[0]->type == op->type);
@@ -146,6 +279,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pool_2d(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_get_rows(ggml_metal_library_t lib, ggml_type tsrc) {
     char base[256];
     char name[256];
@@ -161,6 +302,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_get_rows(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_set_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_set_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_set_rows(ggml_metal_library_t lib, ggml_type tidx, ggml_type tdst) {
     char base[256];
     char name[256];
@@ -176,6 +325,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_set_rows(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_diag
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_diag
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_diag(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -196,6 +353,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_diag(ggml_metal_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_repeat
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_repeat
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_repeat(ggml_metal_library_t lib, ggml_type tsrc) {
     char base[256];
     char name[256];
@@ -211,6 +376,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_repeat(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_unary
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_unary
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_unary(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -278,6 +451,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_unary(ggml_metal
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_glu
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_glu
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_glu(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(ggml_is_contiguous_1(op->src[0]));
 
@@ -310,6 +491,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_glu(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_sum
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_sum
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_sum(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_SUM);
 
@@ -327,6 +516,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_sum(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_sum_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_sum_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_sum_rows(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(ggml_is_contiguous_rows(op->src[0]));
 
@@ -371,6 +568,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_sum_rows(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_cumsum_blk
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_cumsum_blk
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cumsum_blk(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(op->op == GGML_OP_CUMSUM);
 
@@ -388,6 +593,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cumsum_blk(ggml_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_cumsum_add
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_cumsum_add
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cumsum_add(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(op->op == GGML_OP_CUMSUM);
 
@@ -405,6 +618,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_cumsum_add(ggml_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_tri
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_tri
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_tri(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(op->op == GGML_OP_TRI);
     GGML_ASSERT(op->src[0]->nb[0] == ggml_type_size(op->src[0]->type));
@@ -427,6 +648,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_tri(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_soft_max
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_soft_max
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_soft_max(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(!op->src[1] || op->src[1]->type == GGML_TYPE_F16 || op->src[1]->type == GGML_TYPE_F32);
 
@@ -454,6 +683,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_soft_max(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_ssm_conv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_ssm_conv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_conv(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(op->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(op->src[1]->type == GGML_TYPE_F32);
@@ -481,6 +718,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_conv(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_ssm_conv_batched
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_ssm_conv_batched
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_conv_batched(ggml_metal_library_t lib, const ggml_tensor * op, int ssm_conv_bs) {
     GGML_ASSERT(op->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(op->src[1]->type == GGML_TYPE_F32);
@@ -513,6 +758,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_conv_batched
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_ssm_scan
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_ssm_scan
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_scan(ggml_metal_library_t lib, const ggml_tensor * op)  {
     GGML_TENSOR_LOCALS( int32_t, ne0, op->src[0], ne);
 
@@ -539,6 +792,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_ssm_scan(ggml_me
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_rwkv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_rwkv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_rwkv(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -577,6 +838,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_rwkv(ggml_metal_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_solve_tri
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_solve_tri
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_solve_tri(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -607,6 +876,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_solve_tri(ggml_m
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mv_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mv_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv_ext(ggml_metal_library_t lib, ggml_type tsrc0, ggml_type tsrc1, int nsg, int nxpsg, int r1ptg) {
     char base[256];
     char name[256];
@@ -629,6 +906,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv_ext(ggml_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -660,6 +945,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mv
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_TENSOR_LOCALS( int32_t, ne0, op->src[0], ne);
     GGML_TENSOR_LOCALS( int32_t, ne1, op->src[1], ne);
@@ -834,6 +1127,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mm_id_map0
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mm_id_map0
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm_id_map0(ggml_metal_library_t lib, int ne02, int ne20) {
     char base[256];
     char name[256];
@@ -851,6 +1152,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm_id_map0(g
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mm_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mm_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm_id(ggml_metal_library_t lib, const ggml_tensor * op) {
     char base[256];
     char name[256];
@@ -879,6 +1188,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mm_id(ggml_m
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_mul_mv_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_mul_mv_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv_id(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_TENSOR_LOCALS( int32_t, ne0, op->src[0], ne);
     GGML_TENSOR_LOCALS( int32_t, ne1, op->src[1], ne);
@@ -1046,6 +1363,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_mul_mv_id(ggml_m
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_argmax
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_argmax
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argmax(ggml_metal_library_t lib, const ggml_tensor * op) {
     GGML_ASSERT(op->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(ggml_is_contiguous_1(op->src[0]));
@@ -1067,6 +1392,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argmax(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_argsort
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_argsort
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argsort(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_ARGSORT);
 
@@ -1093,6 +1426,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argsort(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_argsort_merge
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_argsort_merge
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argsort_merge(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_ARGSORT);
 
@@ -1120,6 +1461,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_argsort_merge(gg
 }
 
 // note: reuse the argsort kernel for top_k
+// 函数: ggml_metal_library_get_pipeline_top_k
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_top_k
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_top_k(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_TOP_K);
 
@@ -1147,6 +1496,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_top_k(ggml_metal
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_top_k_merge
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_top_k_merge
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_top_k_merge(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_TOP_K);
 
@@ -1415,6 +1772,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_flash_attn_ext_v
     GGML_UNUSED(op);
 }
 
+// 函数: ggml_metal_library_get_pipeline_bin
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_bin
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_bin(ggml_metal_library_t lib, const ggml_tensor * op, int32_t n_fuse) {
     char base[256];
     char name[256];
@@ -1459,6 +1824,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_bin(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_bin_one
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_bin_one
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_bin_one(ggml_metal_library_t lib, ggml_op op) {
     char base[256];
     char name[256];
@@ -1492,6 +1865,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_bin_one(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_l2_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_l2_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_l2_norm(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_L2_NORM);
 
@@ -1517,6 +1898,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_l2_norm(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_group_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_group_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_group_norm(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_GROUP_NORM);
 
@@ -1538,6 +1927,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_group_norm(ggml_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_norm
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_norm(ggml_metal_library_t lib, const ggml_tensor * op, int n_fuse) {
     assert(op->op == GGML_OP_NORM || op->op == GGML_OP_RMS_NORM);
 
@@ -1581,6 +1978,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_norm(ggml_metal_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_rope
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_rope
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_rope(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_ROPE);
 
@@ -1622,6 +2027,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_rope(ggml_metal_
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_im2col
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_im2col
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_im2col(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_IM2COL);
 
@@ -1643,6 +2056,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_im2col(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_conv_transpose_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_conv_transpose_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_transpose_1d(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_CONV_TRANSPOSE_1D);
 
@@ -1666,6 +2087,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_transpose_1
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_conv_transpose_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_conv_transpose_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_transpose_2d(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_CONV_TRANSPOSE_2D);
 
@@ -1689,6 +2118,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_transpose_2
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_conv_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_conv_2d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_2d(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_CONV_2D);
 
@@ -1711,6 +2148,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_conv_2d(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_upscale
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_upscale
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_upscale(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_UPSCALE);
 
@@ -1728,6 +2173,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_upscale(ggml_met
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_pad
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_pad
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pad(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_PAD);
 
@@ -1747,6 +2200,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pad(ggml_metal_l
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_pad_reflect_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_pad_reflect_1d
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pad_reflect_1d(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_PAD_REFLECT_1D);
 
@@ -1764,6 +2225,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_pad_reflect_1d(g
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_arange
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_arange
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_arange(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_ARANGE);
 
@@ -1781,6 +2250,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_arange(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_timestep_embedding
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_timestep_embedding
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_timestep_embedding(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_TIMESTEP_EMBEDDING);
 
@@ -1798,6 +2275,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_timestep_embeddi
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_opt_step_adamw
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_opt_step_adamw
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_opt_step_adamw(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_OPT_STEP_ADAMW);
 
@@ -1815,6 +2300,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_opt_step_adamw(g
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_opt_step_sgd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_opt_step_sgd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_opt_step_sgd(ggml_metal_library_t lib, const ggml_tensor * op) {
     assert(op->op == GGML_OP_OPT_STEP_SGD);
 
@@ -1832,6 +2325,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_opt_step_sgd(ggm
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_memset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_memset
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_memset(ggml_metal_library_t lib, const ggml_tensor *  op) {
     GGML_ASSERT(op->type == GGML_TYPE_I64);
 
@@ -1849,6 +2350,14 @@ ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_memset(ggml_meta
     return res;
 }
 
+// 函数: ggml_metal_library_get_pipeline_count_equal
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_library_get_pipeline_count_equal
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_metal_pipeline_with_params ggml_metal_library_get_pipeline_count_equal(ggml_metal_library_t lib, const ggml_tensor *  op) {
     assert(op->op == GGML_OP_COUNT_EQUAL);
 

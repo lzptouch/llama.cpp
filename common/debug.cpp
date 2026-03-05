@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: debug.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/debug.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "debug.h"
 
 #include "log.h"
@@ -5,6 +12,14 @@
 #include <cmath>
 #include <string>
 
+// 函数: common_ggml_ne_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ggml_ne_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string common_ggml_ne_string(const ggml_tensor * t) {
     std::string str;
     for (int i = 0; i < GGML_MAX_DIMS; ++i) {
@@ -48,6 +63,14 @@ static float common_ggml_get_float_value(const uint8_t * data,
 #define INDENT "    "
 
 template <bool abort>
+// 函数: common_debug_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_debug_print_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_debug_print_tensor(uint8_t * data, ggml_type type, const int64_t * ne, const size_t * nb, int64_t n) {
     GGML_ASSERT(n > 0);
     float sum = 0;

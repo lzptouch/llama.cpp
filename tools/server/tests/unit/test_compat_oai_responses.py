@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_compat_oai_responses.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_compat_oai_responses.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from openai import OpenAI
 from utils import *
@@ -5,10 +12,26 @@ from utils import *
 server: ServerProcess
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
 
+    # 函数: test_responses_with_openai_library
+    # 描述: test_responses_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_responses_with_openai_library
+    # 描述: test_responses_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_responses_with_openai_library():
     global server
     server.start()
@@ -27,6 +50,14 @@ def test_responses_with_openai_library():
     assert res.output[0].id.startswith("msg_")
     assert match_regex("(Suddenly)+", res.output_text)
 
+    # 函数: test_responses_stream_with_openai_library
+    # 描述: test_responses_stream_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_responses_stream_with_openai_library
+    # 描述: test_responses_stream_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_responses_stream_with_openai_library():
     global server
     server.start()

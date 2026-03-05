@@ -25,6 +25,12 @@ hf_token_pth = pathlib.Path.home() / ".cache" / "huggingface" / "token"
 hf_token = hf_token_pth.read_text(encoding="utf-8").strip() if hf_token_pth.exists() else None
 
 
+    # 类: TOKENIZER_TYPE
+    # 描述: TOKENIZER_TYPE类提供相关功能
+    # 用途: 用于处理TOKENIZER_TYPE相关的操作
+    # 类: TOKENIZER_TYPE
+    # 描述: TOKENIZER_TYPE类提供相关功能
+    # 用途: 用于处理TOKENIZER_TYPE相关的操作
 class TOKENIZER_TYPE(IntEnum):
     SPM = auto()
     BPE = auto()
@@ -180,6 +186,14 @@ pre_computed_hashes = [
 ]
 
 
+    # 函数: download_file_with_auth
+    # 描述: download_file_with_auth函数提供相关功能
+    # 参数: url, token, save_path
+    # 返回: 无返回值
+    # 函数: download_file_with_auth
+    # 描述: download_file_with_auth函数提供相关功能
+    # 参数: url, token, save_path
+    # 返回: 无返回值
 def download_file_with_auth(url, token, save_path):
     headers = {"Authorization": f"Bearer {token}"} if token else None
     response = sess.get(url, headers=headers)
@@ -190,6 +204,14 @@ def download_file_with_auth(url, token, save_path):
     logger.info(f"File {save_path} downloaded successfully")
 
 
+    # 函数: download_model
+    # 描述: download_model函数提供相关功能
+    # 参数: model
+    # 返回: 无返回值
+    # 函数: download_model
+    # 描述: download_model函数提供相关功能
+    # 参数: model
+    # 返回: 无返回值
 def download_model(model):
     name = model["name"]
     repo = model["repo"]
@@ -234,6 +256,14 @@ def download_model(model):
 
 # get list of existing models and chkhsh from the convert_hf_to_gguf.py file
 # returns mapping res --> chkhsh
+    # 函数: get_existing_models
+    # 描述: get_existing_models函数提供相关功能
+    # 参数: convert_py
+    # 返回: 无返回值
+    # 函数: get_existing_models
+    # 描述: get_existing_models函数提供相关功能
+    # 参数: convert_py
+    # 返回: 无返回值
 def get_existing_models(convert_py):
     pattern = r'if chkhsh == "([a-f0-9]{64})":\s*\n\s*.*\s*res = "([^"]+)"'
     matches = re.findall(pattern, convert_py)
@@ -320,6 +350,14 @@ for model in [*pre_computed_hashes, *all_models]:
     src_ifs += f"            res = \"{name}\"\n"
 
 src_func = f"""
+    # 函数: get_vocab_base_pre
+    # 描述: get_vocab_base_pre函数提供相关功能
+    # 参数: self, tokenizer
+    # 返回: 无返回值
+    # 函数: get_vocab_base_pre
+    # 描述: get_vocab_base_pre函数提供相关功能
+    # 参数: self, tokenizer
+    # 返回: 无返回值
     def get_vocab_base_pre(self, tokenizer) -> str:
         # encoding this string and hashing the resulting tokens would (hopefully) give us a unique identifier that
         # is specific for the BPE pre-tokenizer used by the model

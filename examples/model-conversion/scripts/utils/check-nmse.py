@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: check-nmse.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/check-nmse.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import numpy as np
@@ -7,6 +14,10 @@ import argparse
 from pathlib import Path
 from common import get_model_name_from_env_path  # type: ignore[import-not-found]
 
+    # 函数: calculate_nmse
+    # 描述: calculate_nmse函数提供相关功能
+    # 参数: reference, test
+    # 返回: 无返回值
 def calculate_nmse(reference, test):
     mse = np.mean((test - reference) ** 2)
     ref_var = np.var(reference)
@@ -18,6 +29,10 @@ def calculate_nmse(reference, test):
 
     return nmse, mse, ref_var
 
+    # 函数: load_logits
+    # 描述: load_logits函数提供相关功能
+    # 参数: file_path
+    # 返回: 无返回值
 def load_logits(file_path):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")
@@ -44,6 +59,10 @@ def load_logits(file_path):
         except:
             return np.loadtxt(file_path, dtype=np.float32)
 
+    # 函数: interpret_nmse
+    # 描述: interpret_nmse函数提供相关功能
+    # 参数: nmse
+    # 返回: 有返回值
 def interpret_nmse(nmse):
     """Provide interpretation of NMSE value"""
     if nmse == 0:
@@ -63,6 +82,10 @@ def interpret_nmse(nmse):
     else:
         return "Very poor match (worse than noise)", "❌"
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     parser = argparse.ArgumentParser(description='Validate model logits')
     parser.add_argument('-m', '--model-path', required=True,  help='Path to the model directory')

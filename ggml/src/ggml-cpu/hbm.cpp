@@ -11,12 +11,28 @@
 
 #include <hbwmalloc.h>
 
+// 函数: ggml_backend_cpu_hbm_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_hbm_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_hbm_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU_HBM";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_hbm_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_hbm_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_hbm_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     hbw_free(buffer->context);
 }
@@ -37,6 +53,14 @@ static ggml_backend_buffer_t ggml_backend_cpu_hbm_buffer_type_alloc_buffer(ggml_
     return buffer;
 }
 
+// 函数: ggml_backend_cpu_hbm_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_hbm_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_hbm_buffer_type(void) {
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type_hbm = {
         /* .iface    = */ {

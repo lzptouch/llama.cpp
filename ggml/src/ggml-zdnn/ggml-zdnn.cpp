@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-zdnn.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-zdnn/ggml-zdnn.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-zdnn.h"
 #include "ggml-impl.h"
 #include "ggml-backend-impl.h"
@@ -76,6 +83,14 @@ static enum ggml_status ggml_zdnn_graph_compute(ggml_backend_t backend, ggml_cgr
     GGML_UNUSED(ctx_dev);
 }
 
+// 函数: ggml_zdnn_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_zdnn_supports_op(const ggml_backend_zdnn_device_context * ctx_dev, const ggml_tensor * op) {
     switch (op->op) {
         case GGML_OP_NONE:
@@ -137,6 +152,14 @@ static ggml_backend_zdnn_device_context g_ggml_ctx_dev_main = {
     /* .name                  = */ "",
 };
 
+// 函数: ggml_backend_zdnn_device_acq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_acq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_zdnn_device_acq(ggml_backend_zdnn_device_context * ctx) {
     assert(ctx != NULL);
 
@@ -155,6 +178,14 @@ static int ggml_backend_zdnn_device_acq(ggml_backend_zdnn_device_context * ctx) 
     return ctx->zdnn_device;
 }
 
+// 函数: ggml_backend_zdnn_device_rel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_rel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_device_rel(ggml_backend_zdnn_device_context * ctx) {
     assert(ctx != NULL);
     assert(ctx->zdnn_device_ref_count > 0);
@@ -167,6 +198,14 @@ static void ggml_backend_zdnn_device_rel(ggml_backend_zdnn_device_context * ctx)
     }
 }
 
+// 函数: ggml_zdnn_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_zdnn_context * ggml_zdnn_init(ggml_backend_dev_t dev) {
     GGML_LOG_INFO("%s: allocating\n", __func__);
     GGML_LOG_INFO("%s: found 1 device\n", __func__);
@@ -191,6 +230,14 @@ static ggml_backend_zdnn_context * ggml_zdnn_init(ggml_backend_dev_t dev) {
     return ctx;
 }
 
+// 函数: ggml_zdnn_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_zdnn_free(ggml_backend_zdnn_context * ctx) {
     GGML_LOG_INFO("%s: deallocating\n", __func__);
     delete ctx;
@@ -200,6 +247,14 @@ static void ggml_zdnn_free(ggml_backend_zdnn_context * ctx) {
 // backend interface
 //
 
+// 函数: ggml_backend_zdnn_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_zdnn_buffer_context * ctx = (ggml_backend_zdnn_buffer_context *)buffer->context;
 
@@ -214,6 +269,14 @@ static void ggml_backend_zdnn_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     delete ctx;
 }
 
+// 函数: ggml_backend_zdnn_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_zdnn_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_zdnn_buffer_context * ctx = (ggml_backend_zdnn_buffer_context *)buffer->context;
     return ctx->all_data;
@@ -275,12 +338,28 @@ static enum ggml_status ggml_backend_zdnn_buffer_init_tensor(ggml_backend_buffer
     GGML_UNUSED(buffer_idx);
 }
 
+// 函数: ggml_backend_zdnn_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_buffer_memset_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     memset((char *)tensor->data + offset, value, size);
 
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_zdnn_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_buffer_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     memcpy((char *)tensor->data + offset, data, size);
 
@@ -294,12 +373,28 @@ static void ggml_backend_zdnn_buffer_set_tensor(ggml_backend_buffer_t buffer, gg
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_zdnn_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_buffer_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     memcpy(data, (const char *)tensor->data + offset, size);
 
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_zdnn_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_backend_zdnn_buffer_context * ctx = (ggml_backend_zdnn_buffer_context *)buffer->context;
 
@@ -322,12 +417,28 @@ static ggml_backend_buffer_i ggml_backend_zdnn_buffer_i = {
 // default buffer type
 //
 
+// 函数: ggml_backend_zdnn_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_zdnn_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return GGML_ZDNN_NAME;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_zdnn_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_zdnn_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     ggml_backend_zdnn_buffer_context * ctx = new ggml_backend_zdnn_buffer_context();
 
@@ -365,12 +476,28 @@ static ggml_backend_buffer_t ggml_backend_zdnn_buffer_type_alloc_buffer(ggml_bac
     return ggml_backend_buffer_init(buft, ggml_backend_zdnn_buffer_i, ctx, size);
 }
 
+// 函数: ggml_backend_zdnn_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_zdnn_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return 256;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_zdnn_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_zdnn_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     /* while it resides in host memory, additional transformation is needed */
     return false;
@@ -378,6 +505,14 @@ static bool ggml_backend_zdnn_buffer_type_is_host(ggml_backend_buffer_type_t buf
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_zdnn_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_zdnn_buffer_type(void) {
     static ggml_backend_buffer_type ggml_backend_buffer_type_zdnn = {
         /* .iface   = */ {
@@ -399,12 +534,28 @@ ggml_backend_buffer_type_t ggml_backend_zdnn_buffer_type(void) {
 // backend
 //
 
+// 函数: ggml_backend_zdnn_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_zdnn_name(ggml_backend_t backend) {
     return GGML_ZDNN_NAME;
 
     GGML_UNUSED(backend);
 }
 
+// 函数: ggml_backend_zdnn_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_free(ggml_backend_t backend) {
     ggml_backend_zdnn_context * ctx = (ggml_backend_zdnn_context *)backend->context;
 
@@ -413,6 +564,14 @@ static void ggml_backend_zdnn_free(ggml_backend_t backend) {
 }
 
 static enum ggml_status ggml_backend_zdnn_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
+    // 函数: ggml_zdnn_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_zdnn_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_zdnn_graph_compute(backend, cgraph);
 }
 
@@ -433,11 +592,27 @@ static ggml_backend_i ggml_backend_zdnn_i = {
     /* .graph_optimize     = */ NULL,
 };
 
+// 函数: ggml_backend_zdnn_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_zdnn_guid(void) {
     static const char * guid_str = "IBM-ZDNN-ACCELER";
     return reinterpret_cast<ggml_guid_t>((void *)guid_str);
 }
 
+// 函数: ggml_backend_is_zdnn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_zdnn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_zdnn(ggml_backend_t backend) {
     return backend != NULL &&
            ggml_guid_matches(backend->guid, ggml_backend_zdnn_guid());
@@ -449,18 +624,42 @@ bool ggml_backend_is_zdnn(ggml_backend_t backend) {
 // backend device
 //
 
+// 函数: ggml_backend_zdnn_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_zdnn_device_get_name(ggml_backend_dev_t dev) {
     return GGML_ZDNN_NAME;
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_zdnn_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_zdnn_device_get_description(ggml_backend_dev_t dev) {
     return "IBM Z Neural Network Processing Assist (NNPA)";
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_zdnn_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     *free  = 0;
     *total = 0;
@@ -474,6 +673,14 @@ static enum ggml_backend_dev_type ggml_backend_zdnn_device_get_type(ggml_backend
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_zdnn_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_zdnn_device_get_props(ggml_backend_dev_t dev, ggml_backend_dev_props * props) {
     props->name        = ggml_backend_zdnn_device_get_name(dev);
     props->description = ggml_backend_zdnn_device_get_description(dev);
@@ -487,6 +694,14 @@ static void ggml_backend_zdnn_device_get_props(ggml_backend_dev_t dev, ggml_back
     };
 }
 
+// 函数: ggml_backend_zdnn_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_zdnn_device_init(ggml_backend_dev_t dev, const char * params) {
     ggml_backend_zdnn_context * ctx = ggml_zdnn_init(dev);
     if (ctx == NULL) {
@@ -507,18 +722,42 @@ static ggml_backend_t ggml_backend_zdnn_device_init(ggml_backend_dev_t dev, cons
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_zdnn_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_zdnn_device_get_buffer_type(ggml_backend_dev_t dev) {
     return ggml_backend_zdnn_buffer_type();
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_zdnn_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_zdnn_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_zdnn_device_context * ctx_dev = (ggml_backend_zdnn_device_context *) dev->context;
 
     return ggml_zdnn_supports_op(ctx_dev, op);
 }
 
+// 函数: ggml_backend_zdnn_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_zdnn_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     return
         buft->iface.get_name == ggml_backend_zdnn_buffer_type_get_name;
@@ -548,12 +787,28 @@ static ggml_backend_device_i ggml_backend_zdnn_device_i = {
 // backend registry
 //
 
+// 函数: ggml_backend_zdnn_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_zdnn_reg_get_name(ggml_backend_reg_t reg) {
     return GGML_ZDNN_NAME;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_zdnn_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_zdnn_reg_device_count(ggml_backend_reg_t reg) {
     if (!zdnn_is_nnpa_installed()) {
         return 0;
@@ -563,6 +818,14 @@ static size_t ggml_backend_zdnn_reg_device_count(ggml_backend_reg_t reg) {
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_zdnn_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_zdnn_reg_device_get(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(index == 0);
 
@@ -579,12 +842,28 @@ static ggml_backend_feature g_ggml_backend_zdnn_features[] = {
     { NULL, NULL },
 };
 
+// 函数: ggml_backend_zdnn_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_feature * ggml_backend_zdnn_get_features(ggml_backend_reg_t reg) {
     return g_ggml_backend_zdnn_features;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_zdnn_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_zdnn_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (strcmp(name, "ggml_backend_get_features") == 0) {
         return (void *) ggml_backend_zdnn_get_features;
@@ -602,11 +881,27 @@ static ggml_backend_reg_i ggml_backend_zdnn_reg_i = {
     /* .get_proc_address = */ ggml_backend_zdnn_get_proc_address
 };
 
+// 函数: ggml_zdnn_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_zdnn_cleanup(void) {
     ggml_backend_zdnn_device_rel(&g_ggml_ctx_dev_main);
 }
 
 // TODO: make thread-safe
+// 函数: ggml_backend_zdnn_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_zdnn_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_zdnn_reg(void) {
     ggml_backend_zdnn_device_acq(&g_ggml_ctx_dev_main);
 

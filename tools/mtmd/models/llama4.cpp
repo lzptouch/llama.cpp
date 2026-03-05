@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama4.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/llama4.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 ggml_cgraph * clip_graph_llama4::build() {
@@ -35,6 +42,14 @@ ggml_cgraph * clip_graph_llama4::build() {
         // first half is X axis and second half is Y axis
         // ref: https://github.com/huggingface/transformers/blob/40a493c7ed4f19f08eadb0639cf26d49bfa5e180/src/transformers/models/llama4/modeling_llama4.py#L1312
         // ref: https://github.com/Blaizzy/mlx-vlm/blob/a57156aa87b33cca6e5ee6cfc14dd4ef8f611be6/mlx_vlm/models/llama4/vision.py#L441
+        // 函数: build_rope_2d
+        // 描述: 构建: 构建数据结构或对象
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: build_rope_2d
+        // 描述: 构建: 构建数据结构或对象
+        // 参数: 无参数
+        // 返回: 无返回值
         return build_rope_2d(ctx0, cur, pos_w, pos_h, hparams.rope_theta, false);
     };
     ggml_tensor * cur = build_vit(

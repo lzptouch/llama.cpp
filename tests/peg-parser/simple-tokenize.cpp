@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: simple-tokenize.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/peg-parser/simple-tokenize.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "simple-tokenize.h"
 
 std::vector<std::string> simple_tokenize(const std::string & input) {

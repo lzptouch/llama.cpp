@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mobilenetv5.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/mobilenetv5.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 // Helpers for MobileNetV5 Blocks
@@ -286,6 +293,14 @@ ggml_cgraph * clip_graph_mobilenetv5::build() {
         int stride = is_stage_start(i) ? 2 : 1;
 
         if (block.s0_conv_exp_w)      cur = build_edge_residual(cur, block, stride);
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (block.attn_q_w)      cur = build_mobilenet_attn(cur, block);
         else                          cur = build_inverted_residual(cur, block, stride);
 

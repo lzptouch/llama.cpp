@@ -1,8 +1,23 @@
+// ============================================================================
+// 文件: roll.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/roll.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "roll.hpp"
 #include "common.hpp"
 
 using namespace sycl;
 
+// 函数: wrap_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: wrap_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int wrap_add(int i, int shift, int n) {
 
     int s = i + shift;
@@ -67,6 +82,14 @@ static void kernel_roll_fused_i0_i1(
     });
 }
 
+// 函数: ggml_sycl_roll
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_roll
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_roll(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     GGML_ASSERT(dst->type == GGML_TYPE_F32);
 

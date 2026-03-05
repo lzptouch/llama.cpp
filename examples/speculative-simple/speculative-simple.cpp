@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: speculative-simple.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/speculative-simple/speculative-simple.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "sampling.h"
@@ -10,6 +17,14 @@
 #include <string>
 #include <vector>
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -116,6 +131,24 @@ int main(int argc, char ** argv) {
     const auto t_enc_start = ggml_time_us();
 
     // target model sampling context
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = common_sampler_init(model_tgt, params.sampling);
 
     // eval the prompt
@@ -133,6 +166,24 @@ int main(int argc, char ** argv) {
     // init the speculator
     const auto & params_spec = params.speculative;
 
+    // 类: common_speculative
+    // 描述: common_speculative类提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 类: common_speculative
+    // 描述: common_speculative类提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
     struct common_speculative * spec = common_speculative_init(params.speculative, ctx_tgt);
 
     common_speculative_begin(spec, prompt_tgt);

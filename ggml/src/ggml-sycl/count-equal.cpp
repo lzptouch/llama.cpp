@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: count-equal.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/count-equal.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "count-equal.hpp"
 
 #include <cstdint>
@@ -28,6 +35,14 @@ static void count_equal(const T *__restrict__ x, const T *__restrict__ y,
         (int *)dst, nequal);
 }
 
+// 函数: ggml_sycl_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_count_equal(ggml_backend_sycl_context &ctx, ggml_tensor *dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     const ggml_tensor * src0 = dst->src[0];

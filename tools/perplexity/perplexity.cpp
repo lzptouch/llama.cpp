@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: perplexity.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/perplexity/perplexity.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "log.h"
@@ -22,6 +29,30 @@
 #pragma warning(disable: 4244 4267) // possible loss of data
 #endif
 
+// 类: results_perplexity
+// 描述: results_perplexity类提供相关功能
+// 用途: 用于处理results_perplexity相关的操作
+// 类: results_perplexity
+// 描述: results_perplexity类提供相关功能
+// 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
 struct results_perplexity {
     std::vector<llama_token> tokens;
     double                   ppl_value;
@@ -29,6 +60,30 @@ struct results_perplexity {
     std::vector<float>       probs;
 };
 
+// 类: results_log_softmax
+// 描述: results_log_softmax类提供相关功能
+// 用途: 用于处理results_log_softmax相关的操作
+// 类: results_log_softmax
+// 描述: results_log_softmax类提供相关功能
+// 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
 struct results_log_softmax {
     double log_softmax;
     float  logit;
@@ -55,6 +110,14 @@ static std::vector<float> softmax(const std::vector<float>& logits) {
     return probs;
 }
 
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static results_log_softmax log_softmax(int n_vocab, const float * logits, int tok) {
     float max_logit = logits[0];
     for (int i = 1; i < n_vocab; ++i) {
@@ -67,6 +130,14 @@ static results_log_softmax log_softmax(int n_vocab, const float * logits, int to
     return {logits[tok] - max_logit - log(sum_exp), logits[tok], expf(logits[tok] - max_logit) / (float) sum_exp};
 }
 
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int nearest_int(float fval) {
     //assert(fval <= 4194303.f);
     float val = fval + 12582912.f;
@@ -74,6 +145,14 @@ static inline int nearest_int(float fval) {
     return (i & 0x007fffff) - 0x00400000;
 }
 
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static double log_softmax(int n_vocab, const float * logits, uint16_t * log_prob, int tok) {
     float max_logit = logits[0];
     float min_logit = logits[0];
@@ -170,6 +249,30 @@ static void process_logits(std::ostream& out, int n_vocab, const float * logits,
     out.write((const char *)log_probs.data(), n_token*nv*sizeof(uint16_t));
 }
 
+// 类: kl_divergence_result
+// 描述: kl_divergence_result类提供相关功能
+// 用途: 用于处理kl_divergence_result相关的操作
+// 类: kl_divergence_result
+// 描述: kl_divergence_result类提供相关功能
+// 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
+    // 结构体: kl_divergence_result
+    // 描述: kl_divergence_result结构体提供相关功能
+    // 用途: 用于处理kl_divergence_result相关的操作
 struct kl_divergence_result {
     double sum_nll          = 0.0;
     double sum_nll2         = 0.0;
@@ -291,6 +394,14 @@ static void process_logits(int n_vocab, const float * logits, const int * tokens
     }
 }
 
+// 函数: perplexity_v2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: perplexity_v2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static results_perplexity perplexity_v2(llama_context * ctx, const common_params & params) {
     // Download: https://huggingface.co/datasets/ggml-org/ci/resolve/main/wikitext-2-raw-v1.zip
     // Run `./perplexity -m models/7B/ggml-model-q4_0.bin -f wiki.test.raw`
@@ -439,6 +550,14 @@ static results_perplexity perplexity_v2(llama_context * ctx, const common_params
     return {tokens, std::exp(nll / count), logit_history, prob_history};
 }
 
+// 函数: perplexity
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: perplexity
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static results_perplexity perplexity(llama_context * ctx, const common_params & params, const int32_t n_ctx) {
     if (params.ppl_stride > 0) {
         return perplexity_v2(ctx, params);
@@ -659,6 +778,14 @@ static results_perplexity perplexity(llama_context * ctx, const common_params & 
     return {tokens, ppl, logit_history, prob_history};
 }
 
+// 函数: decode_helper
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: decode_helper
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static bool decode_helper(llama_context * ctx, llama_batch & batch, std::vector<float> & batch_logits, int n_batch, int n_vocab) {
     int prev_outputs = 0;
     for (int i = 0; i < (int) batch.n_tokens; i += n_batch) {
@@ -739,6 +866,14 @@ static void compute_logprobs(const float * batch_logits, int n_vocab, std::vecto
     }
 }
 
+// 函数: hellaswag_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hellaswag_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void hellaswag_score(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -791,6 +926,30 @@ static void hellaswag_score(llama_context * ctx, const common_params & params) {
     std::mt19937 rng(1);
 
     // Dataholder for hellaswag tasks
+    // 类: hs_data_t
+    // 描述: hs_data_t类提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 类: hs_data_t
+    // 描述: hs_data_t类提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
+    // 结构体: hs_data_t
+    // 描述: hs_data_t结构体提供相关功能
+    // 用途: 用于处理hs_data_t相关的操作
     struct hs_data_t {
         std::string context;
         size_t gold_ending_idx;
@@ -1012,6 +1171,30 @@ static void hellaswag_score(llama_context * ctx, const common_params & params) {
     LOG("\n");
 }
 
+// 类: winogrande_entry
+// 描述: winogrande_entry类提供相关功能
+// 用途: 用于处理winogrande_entry相关的操作
+// 类: winogrande_entry
+// 描述: winogrande_entry类提供相关功能
+// 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
+    // 结构体: winogrande_entry
+    // 描述: winogrande_entry结构体提供相关功能
+    // 用途: 用于处理winogrande_entry相关的操作
 struct winogrande_entry {
     std::string first;
     std::string second;
@@ -1028,6 +1211,14 @@ struct winogrande_entry {
 
 static std::vector<winogrande_entry> load_winogrande_from_csv(const std::string & prompt) {
     std::vector<winogrande_entry> result;
+    // 函数: in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::istringstream in(prompt);
     std::string line;
     std::array<int, 4> comma_pos;
@@ -1042,6 +1233,14 @@ static std::vector<winogrande_entry> load_winogrande_from_csv(const std::string 
                     comma_pos[ipos++] = i;
                     if (ipos == 4) break;
                 }
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: if
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 else if (line[i] == '"') {
                     quote_open = true;
                 }
@@ -1070,6 +1269,14 @@ static std::vector<winogrande_entry> load_winogrande_from_csv(const std::string 
             LOG_ERR("%s: no _ in <%s>\n", __func__, sentence.c_str());
             continue;
         }
+        // 函数: stream
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: stream
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::istringstream stream(answer.c_str());
         int i_answer; stream >> i_answer;
         if (stream.fail() || i_answer < 1 || i_answer > 2) {
@@ -1096,6 +1303,14 @@ static std::vector<winogrande_entry> load_winogrande_from_csv(const std::string 
  *    0,Sarah was a much better surgeon than Maria so _ always got the easier cases.,Sarah,Maria,2
  *
  */
+// 函数: winogrande_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: winogrande_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void winogrande_score(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -1298,6 +1513,14 @@ static void winogrande_score(llama_context * ctx, const common_params & params) 
     LOG_INF("Final Winogrande score(%d tasks): %.4lf +/- %.4lf\n", n_done, 100*p, sigma);
 }
 
+// 函数: deserialize_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: deserialize_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool deserialize_string(std::istream & in, std::string & str) {
     uint32_t size;
     if (!in.read((char *)&size, sizeof(size)).fail()) {
@@ -1307,9 +1530,41 @@ static bool deserialize_string(std::istream & in, std::string & str) {
     return false;
 }
 
+// 类: multiple_choice_answers
+// 描述: multiple_choice_answers类提供相关功能
+// 用途: 用于处理multiple_choice_answers相关的操作
+// 类: multiple_choice_answers
+// 描述: multiple_choice_answers类提供相关功能
+// 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
+    // 结构体: multiple_choice_answers
+    // 描述: multiple_choice_answers结构体提供相关功能
+    // 用途: 用于处理multiple_choice_answers相关的操作
 struct multiple_choice_answers {
     std::vector<std::string> answers;
     std::vector<int>         labels;
+    // 函数: deserialize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: deserialize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool deserialize(std::istream& in) {
         uint32_t n;
         in.read((char *)&n, sizeof(n));
@@ -1324,10 +1579,42 @@ struct multiple_choice_answers {
     }
 };
 
+// 类: multiple_choice_task
+// 描述: multiple_choice_task类提供相关功能
+// 用途: 用于处理multiple_choice_task相关的操作
+// 类: multiple_choice_task
+// 描述: multiple_choice_task类提供相关功能
+// 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
+    // 结构体: multiple_choice_task
+    // 描述: multiple_choice_task结构体提供相关功能
+    // 用途: 用于处理multiple_choice_task相关的操作
 struct multiple_choice_task {
     std::string question;         // the question (or context that needs to be continued)
     multiple_choice_answers mc1;  // possible answers (continuations) with a single correct answer
     multiple_choice_answers mc2;  // possible answers (continuations) with multiple correct answers - not handled yet
+    // 函数: deserialize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: deserialize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool deserialize(std::istream& in) {
         if (!deserialize_string(in, question)) return false;
         return mc1.deserialize(in) && mc2.deserialize(in);
@@ -1341,6 +1628,14 @@ struct multiple_choice_task {
     std::vector<float> log_probs;
 };
 
+// 函数: multiple_choice_prepare_one_task
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: multiple_choice_prepare_one_task
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool multiple_choice_prepare_one_task(llama_context * ctx, multiple_choice_task& task, bool log_error) {
     if (task.question.empty() || task.mc1.answers.empty()) {
         if (log_error) {
@@ -1400,6 +1695,14 @@ static bool multiple_choice_prepare_one_task(llama_context * ctx, multiple_choic
 //     git@hf.co:datasets/Stevross/mmlu
 //     https://huggingface.co/datasets/truthful_qa
 //
+// 函数: multiple_choice_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: multiple_choice_score
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void multiple_choice_score(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -1690,6 +1993,14 @@ static void multiple_choice_score(llama_context * ctx, const common_params & par
     LOG_INF("\n");
 }
 
+// 函数: kl_divergence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: kl_divergence
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void kl_divergence(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -2003,6 +2314,14 @@ static void kl_divergence(llama_context * ctx, const common_params & params) {
     LOG("Same top p: %6.3lf ± %5.3lf %%\n", 100.0*same_top_p, 100.0*sqrt(same_top_p*(1.0 - same_top_p)/(kld.count - 1)));
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -2071,6 +2390,30 @@ int main(int argc, char ** argv) {
         LOG_INF("%s\n", common_params_get_system_info(params).c_str());
     }
 
+    // 类: results_perplexity
+    // 描述: results_perplexity类提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 类: results_perplexity
+    // 描述: results_perplexity类提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
+    // 结构体: results_perplexity
+    // 描述: results_perplexity结构体提供相关功能
+    // 用途: 用于处理results_perplexity相关的操作
     struct results_perplexity results;
     if (params.hellaswag) {
         hellaswag_score(ctx, params);

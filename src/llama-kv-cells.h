@@ -10,16 +10,50 @@
 #include <set>
 #include <vector>
 
+// 类: llama_kv_cell_ext
+// 描述: llama_kv_cell_ext类提供相关功能
+// 用途: 用于处理llama_kv_cell_ext相关的操作
+// 类: llama_kv_cell_ext
+// 描述: llama_kv_cell_ext类提供相关功能
+// 用途: 用于处理llama_kv_cell_ext相关的操作
+    // 结构体: llama_kv_cell_ext
+    // 描述: llama_kv_cell_ext结构体提供相关功能
+    // 用途: 用于处理llama_kv_cell_ext相关的操作
+    // 结构体: llama_kv_cell_ext
+    // 描述: llama_kv_cell_ext结构体提供相关功能
+    // 用途: 用于处理llama_kv_cell_ext相关的操作
+    // 结构体: llama_kv_cell_ext
+    // 描述: llama_kv_cell_ext结构体提供相关功能
+    // 用途: 用于处理llama_kv_cell_ext相关的操作
+    // 结构体: llama_kv_cell_ext
+    // 描述: llama_kv_cell_ext结构体提供相关功能
+    // 用途: 用于处理llama_kv_cell_ext相关的操作
 struct llama_kv_cell_ext {
     // 2D spatial positions, typically used for M-RoPE
     llama_pos x = 0;
     llama_pos y = 0;
 
     // return true if the current 2D spatial position is greater than other
+    // 函数: is_2d_gt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_2d_gt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_2d_gt(llama_pos ox, llama_pos oy) const {
         return (y > oy) || (y == oy && x > ox);
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         static_assert(std::is_trivially_copyable_v<llama_kv_cell_ext>);
 
@@ -29,8 +63,22 @@ struct llama_kv_cell_ext {
 
 // meta information about KV cells that can be part of multiple sequences at the same time
 // TODO: add unit tests
+// 类: llama_kv_cells
+// 描述: llama_kv_cells类提供相关功能
+// 用途: 用于处理llama_kv_cells相关的操作
+// 类: llama_kv_cells
+// 描述: llama_kv_cells类提供相关功能
+// 用途: 用于处理llama_kv_cells相关的操作
 class llama_kv_cells {
 public:
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         for (uint32_t i = 0; i < pos.size(); ++i) {
             pos[i]   = -1;
@@ -48,6 +96,14 @@ public:
         }
     }
 
+    // 函数: reset_shift
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset_shift
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset_shift() {
         has_shift = false;
 
@@ -56,10 +112,26 @@ public:
         }
     }
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t size() const {
         return pos.size();
     }
 
+    // 函数: resize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void resize(uint32_t n) {
         pos.resize(n);
         ext.resize(n);
@@ -69,6 +141,14 @@ public:
         reset();
     }
 
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_empty(uint32_t i) const {
         assert(i < pos.size());
         assert((pos[i] < 0 && pos[i] == -1) || pos[i] >= 0);
@@ -76,22 +156,54 @@ public:
         return pos[i] == -1;
     }
 
+    // 函数: get_used
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_used
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     uint32_t get_used() const {
         return used.size();
     }
 
     // the index of the first cell that is used
     // return 0 if no cells are used
+    // 函数: used_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: used_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t used_min() const {
         return used.empty() ? 0 : *used.begin();
     }
 
     // the index of the last cell that is used + 1
     // return 0 if no cells are used
+    // 函数: used_max_p1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: used_max_p1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t used_max_p1() const {
         return used.empty() ? 0 : *used.rbegin() + 1;
     }
 
+    // 函数: get_has_shift
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_has_shift
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_has_shift() const {
         return has_shift;
     }
@@ -117,6 +229,14 @@ public:
     //}
 
     // copy the state of cells [i, i + n) (used for save/restore the state of the cells)
+    // 函数: cp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_kv_cells cp(uint32_t i, uint32_t n) const {
         assert(i + n <= pos.size());
 
@@ -138,6 +258,14 @@ public:
     }
 
     // copy the state of cells [idxs[0], idxs[1], ..., idxs[idxs.size() - 1])
+    // 函数: cp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_kv_cells cp(const std::vector<uint32_t> & idxs) const {
         llama_kv_cells res;
 
@@ -157,6 +285,14 @@ public:
     }
 
     // set the state of cells [i, i + other.pos.size()) (used for save/restore the state of the cells)
+    // 函数: set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void set(uint32_t i, const llama_kv_cells & other) {
         assert(i + other.pos.size() <= pos.size());
 
@@ -188,6 +324,14 @@ public:
     }
 
     // set the state of cells [idxs[0], idxs[1], ..., idxs[idxs.size() - 1])
+    // 函数: set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void set(const std::vector<uint32_t> & idxs, const llama_kv_cells & other) {
         assert(idxs.size() == other.pos.size());
 
@@ -219,6 +363,14 @@ public:
     }
 
     // clear a non-empty cell
+    // 函数: rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void rm(uint32_t i) {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -235,6 +387,14 @@ public:
 
     // note: call only if the cell has seq_id
     // return true if the cell becomes empty
+    // 函数: seq_rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool seq_rm(uint32_t i, llama_seq_id seq_id) {
         assert(i < pos.size());
         assert(seq[i].test(seq_id));
@@ -258,6 +418,14 @@ public:
     }
 
     // return true if the cell becomes empty (i.e. it did not contain seq_id before the call)
+    // 函数: seq_keep
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_keep
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool seq_keep(uint32_t i, llama_seq_id seq_id) {
         assert(i < pos.size());
 
@@ -290,6 +458,14 @@ public:
     }
 
     // number of different sequences in the cell
+    // 函数: seq_count
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_count
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int seq_count(uint32_t i) const {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -298,6 +474,14 @@ public:
     }
 
     // check if the cell contains seq_id
+    // 函数: seq_has
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_has
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool seq_has(uint32_t i, llama_seq_id seq_id) const {
         assert(i < pos.size());
         assert(seq_id >= 0);
@@ -306,6 +490,14 @@ public:
     }
 
     // note: call only if the cell is not empty and the seq_id is not in the cell
+    // 函数: seq_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seq_add(uint32_t i, llama_seq_id seq_id) {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -317,6 +509,14 @@ public:
 
     // return the sequence id of this cell
     // note: call only for cells with exactly one sequence
+    // 函数: seq_get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_seq_id seq_get(uint32_t i) const {
         assert(seq[i].count() == 1);
 
@@ -331,6 +531,14 @@ public:
 
     // the minimum position of sequence seq_id currently present in any of the cells
     // return -1 if the sequence is not present
+    // 函数: seq_pos_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_min
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos seq_pos_min(llama_seq_id seq_id) const {
         assert(seq_id >= 0);
         assert(seq_id < LLAMA_MAX_SEQ);
@@ -346,6 +554,14 @@ public:
 
     // the maximum position of sequence seq_id currently present in any of the cells
     // return -1 if the sequence is not present
+    // 函数: seq_pos_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos seq_pos_max(llama_seq_id seq_id) const {
         assert(seq_id >= 0);
         assert(seq_id < LLAMA_MAX_SEQ);
@@ -360,6 +576,14 @@ public:
     }
 
     // note: call only if the cell is not empty
+    // 函数: pos_get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos pos_get(uint32_t i) const {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -375,6 +599,14 @@ public:
     }
 
     // note: call only if the cell is not empty
+    // 函数: get_shift
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_shift
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llama_pos get_shift(uint32_t i) const {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -383,6 +615,14 @@ public:
     }
 
     // check if a cell is not empty and its position is within [p0, p1)
+    // 函数: pos_in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool pos_in(uint32_t i, llama_pos p0, llama_pos p1) const {
         assert(i < pos.size());
 
@@ -392,6 +632,14 @@ public:
     // set the position of an empty cell
     // does not modify "has_shift"
     // note: call only if the cell is empty
+    // 函数: pos_set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void pos_set(uint32_t i, llama_pos p) {
         assert(i < pos.size());
         assert(pos[i] == -1);
@@ -402,6 +650,14 @@ public:
         used.insert(i);
     }
 
+    // 函数: ext_set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ext_set
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void ext_set(uint32_t i, llama_kv_cell_ext p) {
         assert(i < ext.size());
         ext[i] = p;
@@ -410,6 +666,14 @@ public:
     // pos[i] = pos[i] + d
     // sets "has_shift" to true
     // note: call only if the cell is not empty
+    // 函数: pos_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool pos_add(uint32_t i, llama_pos d) {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -439,6 +703,14 @@ public:
     // pos[i] = pos[i] / d
     // sets "has_shift" to true
     // note: call only if the cell is not empty
+    // 函数: pos_div
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_div
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void pos_div(uint32_t i, int d) {
         assert(i < pos.size());
         assert(pos[i] != -1);
@@ -500,6 +772,14 @@ private:
 
     // helper functions for updating `seq_pos`, once cell at a time:
 
+    // 函数: seq_pos_dec
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_dec
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seq_pos_dec(llama_seq_id s, llama_pos p) {
         auto it = seq_pos[s].find(p);
         assert(it != seq_pos[s].end());
@@ -509,11 +789,27 @@ private:
         }
     }
 
+    // 函数: seq_pos_inc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_inc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seq_pos_inc(llama_seq_id s, llama_pos p) {
         seq_pos[s][p]++;
     }
 
     // remove cell i
+    // 函数: seq_pos_rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_rm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seq_pos_rm(uint32_t i) {
         for (int s = 0; s < LLAMA_MAX_SEQ; ++s) {
             if (seq[i].test(s)) {
@@ -523,6 +819,14 @@ private:
     }
 
     // add cell i
+    // 函数: seq_pos_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: seq_pos_add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void seq_pos_add(uint32_t i) {
         for (int s = 0; s < LLAMA_MAX_SEQ; ++s) {
             if (seq[i].test(s)) {

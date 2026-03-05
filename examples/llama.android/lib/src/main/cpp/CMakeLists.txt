@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/llama.android/lib/src/main/cpp/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 cmake_minimum_required(VERSION 3.31.6)
 
 project("ai-chat" VERSION 1.0.0 LANGUAGES C CXX)

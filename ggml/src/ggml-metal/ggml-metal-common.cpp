@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-metal-common.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-metal-common.h"
 
 #include "ggml-impl.h"
@@ -7,6 +14,24 @@
 
 // represents a memory range (i.e. an interval from a starting address p0 to an ending address p1 in a given buffer pb)
 // the type indicates whether it is a source range (i.e. ops read data from it) or a destination range (i.e. ops write data to it)
+// 类: ggml_mem_range
+// 描述: ggml_mem_range类提供相关功能
+// 用途: 用于处理ggml_mem_range相关的操作
+// 类: ggml_mem_range
+// 描述: ggml_mem_range类提供相关功能
+// 用途: 用于处理ggml_mem_range相关的操作
+    // 结构体: ggml_mem_range
+    // 描述: ggml_mem_range结构体提供相关功能
+    // 用途: 用于处理ggml_mem_range相关的操作
+    // 结构体: ggml_mem_range
+    // 描述: ggml_mem_range结构体提供相关功能
+    // 用途: 用于处理ggml_mem_range相关的操作
+    // 结构体: ggml_mem_range
+    // 描述: ggml_mem_range结构体提供相关功能
+    // 用途: 用于处理ggml_mem_range相关的操作
+    // 结构体: ggml_mem_range
+    // 描述: ggml_mem_range结构体提供相关功能
+    // 用途: 用于处理ggml_mem_range相关的操作
 struct ggml_mem_range {
     uint64_t pb; // buffer id
 
@@ -16,12 +41,38 @@ struct ggml_mem_range {
     ggml_mem_range_type pt;
 };
 
+// 类: ggml_mem_ranges
+// 描述: ggml_mem_ranges类提供相关功能
+// 用途: 用于处理ggml_mem_ranges相关的操作
+// 类: ggml_mem_ranges
+// 描述: ggml_mem_ranges类提供相关功能
+// 用途: 用于处理ggml_mem_ranges相关的操作
+    // 结构体: ggml_mem_ranges
+    // 描述: ggml_mem_ranges结构体提供相关功能
+    // 用途: 用于处理ggml_mem_ranges相关的操作
+    // 结构体: ggml_mem_ranges
+    // 描述: ggml_mem_ranges结构体提供相关功能
+    // 用途: 用于处理ggml_mem_ranges相关的操作
+    // 结构体: ggml_mem_ranges
+    // 描述: ggml_mem_ranges结构体提供相关功能
+    // 用途: 用于处理ggml_mem_ranges相关的操作
+    // 结构体: ggml_mem_ranges
+    // 描述: ggml_mem_ranges结构体提供相关功能
+    // 用途: 用于处理ggml_mem_ranges相关的操作
 struct ggml_mem_ranges {
     std::vector<ggml_mem_range> ranges;
 
     int debug = 0;
 };
 
+// 函数: ggml_mem_ranges_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_mem_ranges_t ggml_mem_ranges_init(int debug) {
     auto * res = new ggml_mem_ranges;
 
@@ -31,20 +82,52 @@ ggml_mem_ranges_t ggml_mem_ranges_init(int debug) {
     return res;
 }
 
+// 函数: ggml_mem_ranges_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_mem_ranges_free(ggml_mem_ranges_t mrs) {
     delete mrs;
 }
 
+// 函数: ggml_mem_ranges_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_mem_ranges_reset(ggml_mem_ranges_t mrs) {
     mrs->ranges.clear();
 }
 
+// 函数: ggml_mem_ranges_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_add(ggml_mem_ranges_t mrs, ggml_mem_range mr) {
     mrs->ranges.push_back(mr);
 
     return true;
 }
 
+// 函数: ggml_mem_range_from_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_range_from_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_mem_range ggml_mem_range_from_tensor(const ggml_tensor * tensor, ggml_mem_range_type pt) {
     // always use the base tensor
     tensor = tensor->view_src ? tensor->view_src : tensor;
@@ -79,14 +162,38 @@ static ggml_mem_range ggml_mem_range_from_tensor(const ggml_tensor * tensor, ggm
     return mr;
 }
 
+// 函数: ggml_mem_range_from_tensor_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_range_from_tensor_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_mem_range ggml_mem_range_from_tensor_src(const ggml_tensor * tensor) {
     return ggml_mem_range_from_tensor(tensor, MEM_RANGE_TYPE_SRC);
 }
 
+// 函数: ggml_mem_range_from_tensor_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_range_from_tensor_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_mem_range ggml_mem_range_from_tensor_dst(const ggml_tensor * tensor) {
     return ggml_mem_range_from_tensor(tensor, MEM_RANGE_TYPE_DST);
 }
 
+// 函数: ggml_mem_ranges_add_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_add_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_add_src(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     GGML_ASSERT(tensor);
 
@@ -99,6 +206,14 @@ static bool ggml_mem_ranges_add_src(ggml_mem_ranges_t mrs, const ggml_tensor * t
     return ggml_mem_ranges_add(mrs, mr);
 }
 
+// 函数: ggml_mem_ranges_add_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_add_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_add_dst(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     GGML_ASSERT(tensor);
 
@@ -111,6 +226,14 @@ static bool ggml_mem_ranges_add_dst(ggml_mem_ranges_t mrs, const ggml_tensor * t
     return ggml_mem_ranges_add(mrs, mr);
 }
 
+// 函数: ggml_mem_ranges_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_mem_ranges_add(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     for (int i = 0; i < GGML_MAX_SRC; i++) {
         if (tensor->src[i]) {
@@ -121,6 +244,14 @@ bool ggml_mem_ranges_add(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     return ggml_mem_ranges_add_dst(mrs, tensor);
 }
 
+// 函数: ggml_mem_ranges_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_check(ggml_mem_ranges_t mrs, ggml_mem_range mr) {
     for (size_t i = 0; i < mrs->ranges.size(); i++) {
         const auto & cmp = mrs->ranges[i];
@@ -152,6 +283,14 @@ static bool ggml_mem_ranges_check(ggml_mem_ranges_t mrs, ggml_mem_range mr) {
     return true;
 }
 
+// 函数: ggml_mem_ranges_check_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_check_src
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_check_src(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     GGML_ASSERT(tensor);
 
@@ -162,6 +301,14 @@ static bool ggml_mem_ranges_check_src(ggml_mem_ranges_t mrs, const ggml_tensor *
     return res;
 }
 
+// 函数: ggml_mem_ranges_check_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_check_dst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_mem_ranges_check_dst(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     GGML_ASSERT(tensor);
 
@@ -172,6 +319,14 @@ static bool ggml_mem_ranges_check_dst(ggml_mem_ranges_t mrs, const ggml_tensor *
     return res;
 }
 
+// 函数: ggml_mem_ranges_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_mem_ranges_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_mem_ranges_check(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     for (int i = 0; i < GGML_MAX_SRC; i++) {
         if (tensor->src[i]) {
@@ -184,23 +339,73 @@ bool ggml_mem_ranges_check(ggml_mem_ranges_t mrs, const ggml_tensor * tensor) {
     return ggml_mem_ranges_check_dst(mrs, tensor);
 }
 
+// 类: node_info
+// 描述: node_info类提供相关功能
+// 用途: 用于处理node_info相关的操作
+// 类: node_info
+// 描述: node_info类提供相关功能
+// 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
 struct node_info {
     ggml_tensor * node;
 
     std::vector<ggml_tensor *> fused;
 
+    // 函数: op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_op op() const {
         return node->op;
     }
 
+    // 函数: dst
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dst
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const ggml_tensor * dst() const {
         return fused.empty() ? node : fused.back();
     }
 
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_empty() const {
         return ggml_op_is_empty(node->op);
     }
 
+    // 函数: add_fused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_fused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_fused(ggml_tensor * t) {
         fused.push_back(t);
     }
@@ -228,6 +433,14 @@ static std::vector<int> ggml_metal_graph_optimize_reorder(const std::vector<node
             }
         }
 
+        // 函数: ggml_mem_ranges_add_dst
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_mem_ranges_add_dst
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_mem_ranges_add_dst(mrs, node.dst());
     };
 
@@ -251,6 +464,14 @@ static std::vector<int> ggml_metal_graph_optimize_reorder(const std::vector<node
             }
         }
 
+        // 函数: ggml_mem_ranges_check_dst
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_mem_ranges_check_dst
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_mem_ranges_check_dst(mrs, node.dst());
     };
 
@@ -286,6 +507,14 @@ static std::vector<int> ggml_metal_graph_optimize_reorder(const std::vector<node
             case GGML_OP_REPEAT:
                 return true;
             default:
+                // 函数: ggml_op_is_empty
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: ggml_op_is_empty
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return ggml_op_is_empty(op);
         }
     };
@@ -372,6 +601,14 @@ static std::vector<int> ggml_metal_graph_optimize_reorder(const std::vector<node
     return res;
 }
 
+// 函数: ggml_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_graph_optimize(ggml_cgraph * gf) {
     constexpr int MAX_FUSE = 16;
 

@@ -25,7 +25,33 @@
 #include "htp-ops.h"
 #include "worker-pool.h"
 
+// 函数: htp_iface_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_open
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_open(const char * uri, remote_handle64 * handle) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx;
     int                  err = 0;
 
@@ -99,7 +125,33 @@ AEEResult htp_iface_open(const char * uri, remote_handle64 * handle) {
     return AEE_SUCCESS;
 }
 
+// 函数: htp_iface_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_close(remote_handle64 handle) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx = (struct htp_context *) handle;
 
     if (!ctx) {
@@ -115,6 +167,14 @@ AEEResult htp_iface_close(remote_handle64 handle) {
     return AEE_SUCCESS;
 }
 
+// 函数: htp_iface_enable_etm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_enable_etm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_enable_etm(remote_handle64 handle) {
     int err = HAP_user_etm_enable();
     if (err) {
@@ -127,6 +187,14 @@ AEEResult htp_iface_enable_etm(remote_handle64 handle) {
     return err;
 }
 
+// 函数: htp_iface_disable_etm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_disable_etm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_disable_etm(remote_handle64 handle) {
     int err = HAP_user_etm_disable();
     if (err) {
@@ -139,6 +207,14 @@ AEEResult htp_iface_disable_etm(remote_handle64 handle) {
     return err;
 }
 
+// 函数: vtcm_acquire
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vtcm_acquire
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int vtcm_acquire(struct htp_context * ctx) {
     int err;
     if (!ctx->vtcm_valid) {
@@ -166,6 +242,14 @@ static int vtcm_acquire(struct htp_context * ctx) {
     return 0;
 }
 
+// 函数: vtcm_release
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vtcm_release
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int vtcm_release(struct htp_context * ctx) {
     ctx->vtcm_inuse = false;
 
@@ -178,7 +262,33 @@ static int vtcm_release(struct htp_context * ctx) {
     return 0;
 }
 
+// 函数: vtcm_release_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vtcm_release_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int vtcm_release_callback(unsigned int rctx, void * state) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx = (struct htp_context *) state;
 
     if (!ctx || ctx->vtcm_rctx != rctx) {
@@ -199,6 +309,14 @@ static int vtcm_release_callback(unsigned int rctx, void * state) {
     return 0;
 }
 
+// 函数: vtcm_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vtcm_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int vtcm_alloc(struct htp_context * ctx) {
     unsigned int vtcm_size = 8 * 1024 * 1024;  // 8MB default
     HAP_compute_res_query_VTCM(0, &vtcm_size, NULL, NULL, NULL);
@@ -235,6 +353,14 @@ static int vtcm_alloc(struct htp_context * ctx) {
     return 0;
 }
 
+// 函数: vtcm_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vtcm_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void vtcm_free(struct htp_context * ctx) {
     if (ctx->vtcm_rctx) {
         HAP_compute_res_release(ctx->vtcm_rctx);
@@ -243,10 +369,52 @@ static void vtcm_free(struct htp_context * ctx) {
     }
 }
 
+// 函数: htp_packet_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_packet_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_packet_callback(dspqueue_t queue, int error, void * context);
+// 函数: htp_error_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_error_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_error_callback(dspqueue_t queue, int error, void * context);
 
+// 函数: htp_iface_start
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_start
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_start(remote_handle64 handle, uint32 sess_id, uint64 dsp_queue_id, uint32 n_hvx) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx = (struct htp_context *) handle;
 
     if (!ctx) {
@@ -313,7 +481,33 @@ AEEResult htp_iface_start(remote_handle64 handle, uint32 sess_id, uint64 dsp_que
     return AEE_SUCCESS;
 }
 
+// 函数: htp_iface_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_iface_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult htp_iface_stop(remote_handle64 handle) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx = (struct htp_context *) handle;
     if (!ctx) {
         return AEE_EBADPARM;
@@ -346,23 +540,65 @@ AEEResult htp_iface_stop(remote_handle64 handle) {
     return AEE_SUCCESS;
 }
 
+// 函数: htp_error_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_error_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_error_callback(dspqueue_t queue, int error, void * context) {
     // No errors expected on the DSP.
     FARF(ERROR, "Error callback: 0x%08x", (unsigned) error);
 }
 
+// 类: profile_data
+// 描述: profile_data类提供相关功能
+// 用途: 用于处理profile_data相关的操作
+// 类: profile_data
+// 描述: profile_data类提供相关功能
+// 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
 struct profile_data {
     uint64_t usecs;
     uint64_t cycles;
     uint64_t pkts;
 };
 
+// 函数: profile_start
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: profile_start
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void profile_start(struct profile_data * d) {
     d->usecs  = HAP_perf_get_qtimer_count();
     d->cycles = hex_get_cycles();
     d->pkts   = hex_get_pktcnt();
 }
 
+// 函数: profile_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: profile_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void profile_stop(struct profile_data * d) {
     d->usecs  = HAP_perf_qtimer_count_to_us(HAP_perf_get_qtimer_count() - d->usecs);
     d->cycles = hex_get_cycles() - d->cycles;
@@ -372,10 +608,64 @@ static inline void profile_stop(struct profile_data * d) {
 static int send_htp_rsp(struct htp_context *     c,
                         uint32_t                 op,
                         uint32_t                 status,
+                        // 类: dspqueue_buffer
+                        // 描述: dspqueue_buffer类提供相关功能
+                        // 用途: 用于处理dspqueue_buffer相关的操作
+                        // 类: dspqueue_buffer
+                        // 描述: dspqueue_buffer类提供相关功能
+                        // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                         struct dspqueue_buffer * bufs,
                         size_t                   n_bufs,
+                        // 类: profile_data
+                        // 描述: profile_data类提供相关功能
+                        // 用途: 用于处理profile_data相关的操作
+                        // 类: profile_data
+                        // 描述: profile_data类提供相关功能
+                        // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
                         struct profile_data *    prof) {
     // Prep response struct
+    // 类: htp_general_rsp
+    // 描述: htp_general_rsp类提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 类: htp_general_rsp
+    // 描述: htp_general_rsp类提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
     struct htp_general_rsp rsp;
     rsp.op          = op;
     rsp.status      = status;
@@ -399,9 +689,63 @@ static int send_htp_rsp(struct htp_context *     c,
 }
 
 static void proc_matmul_req(struct htp_context *     ctx,
+                            // 类: htp_general_req
+                            // 描述: htp_general_req类提供相关功能
+                            // 用途: 用于处理htp_general_req相关的操作
+                            // 类: htp_general_req
+                            // 描述: htp_general_req类提供相关功能
+                            // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
                             struct htp_general_req * req,
+                            // 类: dspqueue_buffer
+                            // 描述: dspqueue_buffer类提供相关功能
+                            // 用途: 用于处理dspqueue_buffer相关的操作
+                            // 类: dspqueue_buffer
+                            // 描述: dspqueue_buffer类提供相关功能
+                            // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                             struct dspqueue_buffer * bufs,
                             size_t                   n_bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -413,6 +757,24 @@ static void proc_matmul_req(struct htp_context *     ctx,
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -427,6 +789,24 @@ static void proc_matmul_req(struct htp_context *     ctx,
     octx.dst.data  = (uint32_t) bufs[2].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -440,7 +820,33 @@ static void proc_matmul_req(struct htp_context *     ctx,
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_argsort_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_argsort_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_argsort_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -452,6 +858,24 @@ static void proc_argsort_req(struct htp_context * ctx, struct htp_general_req * 
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -466,6 +890,24 @@ static void proc_argsort_req(struct htp_context * ctx, struct htp_general_req * 
     octx.dst.data  = (uint32_t) bufs[1].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -479,7 +921,33 @@ static void proc_argsort_req(struct htp_context * ctx, struct htp_general_req * 
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_cpy_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_cpy_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_cpy_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -491,6 +959,24 @@ static void proc_cpy_req(struct htp_context * ctx, struct htp_general_req * req,
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -503,6 +989,24 @@ static void proc_cpy_req(struct htp_context * ctx, struct htp_general_req * req,
     octx.dst.data  = (uint32_t) bufs[1].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -516,7 +1020,33 @@ static void proc_cpy_req(struct htp_context * ctx, struct htp_general_req * req,
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_get_rows_req
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_get_rows_req
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_get_rows_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -528,6 +1058,24 @@ static void proc_get_rows_req(struct htp_context * ctx, struct htp_general_req *
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -542,6 +1090,24 @@ static void proc_get_rows_req(struct htp_context * ctx, struct htp_general_req *
     octx.dst.data  = (uint32_t) bufs[2].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -556,9 +1122,63 @@ static void proc_get_rows_req(struct htp_context * ctx, struct htp_general_req *
 }
 
 static void proc_matmul_id_req(struct htp_context *     ctx,
+                               // 类: htp_general_req
+                               // 描述: htp_general_req类提供相关功能
+                               // 用途: 用于处理htp_general_req相关的操作
+                               // 类: htp_general_req
+                               // 描述: htp_general_req类提供相关功能
+                               // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
                                struct htp_general_req * req,
+                               // 类: dspqueue_buffer
+                               // 描述: dspqueue_buffer类提供相关功能
+                               // 用途: 用于处理dspqueue_buffer相关的操作
+                               // 类: dspqueue_buffer
+                               // 描述: dspqueue_buffer类提供相关功能
+                               // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                                struct dspqueue_buffer * bufs,
                                size_t                   n_bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -570,6 +1190,24 @@ static void proc_matmul_id_req(struct htp_context *     ctx,
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -586,6 +1224,24 @@ static void proc_matmul_id_req(struct htp_context *     ctx,
     octx.dst.data  = (uint32_t) bufs[3].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -599,7 +1255,33 @@ static void proc_matmul_id_req(struct htp_context *     ctx,
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_binary_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_binary_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_binary_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -611,6 +1293,24 @@ static void proc_binary_req(struct htp_context * ctx, struct htp_general_req * r
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -625,6 +1325,24 @@ static void proc_binary_req(struct htp_context * ctx, struct htp_general_req * r
     octx.dst.data  = (uint32_t) bufs[2].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -638,7 +1356,33 @@ static void proc_binary_req(struct htp_context * ctx, struct htp_general_req * r
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_add_id_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_add_id_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_add_id_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -650,6 +1394,24 @@ static void proc_add_id_req(struct htp_context * ctx, struct htp_general_req * r
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -666,6 +1428,24 @@ static void proc_add_id_req(struct htp_context * ctx, struct htp_general_req * r
     octx.dst.data  = (uint32_t) bufs[3].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -679,7 +1459,33 @@ static void proc_add_id_req(struct htp_context * ctx, struct htp_general_req * r
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_unary_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_unary_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_unary_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[HTP_MAX_PACKET_BUFFERS];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -691,6 +1497,24 @@ static void proc_unary_req(struct htp_context * ctx, struct htp_general_req * re
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -705,6 +1529,24 @@ static void proc_unary_req(struct htp_context * ctx, struct htp_general_req * re
     octx.dst.data  = (uint32_t) bufs[1].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -718,7 +1560,33 @@ static void proc_unary_req(struct htp_context * ctx, struct htp_general_req * re
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_sum_rows_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_sum_rows_req
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_sum_rows_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[HTP_MAX_PACKET_BUFFERS];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -730,6 +1598,24 @@ static void proc_sum_rows_req(struct htp_context * ctx, struct htp_general_req *
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -744,6 +1630,24 @@ static void proc_sum_rows_req(struct htp_context * ctx, struct htp_general_req *
     octx.dst.data  = (uint32_t) bufs[1].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -758,9 +1662,63 @@ static void proc_sum_rows_req(struct htp_context * ctx, struct htp_general_req *
 }
 
 static void proc_activations_req(struct htp_context *     ctx,
+                                 // 类: htp_general_req
+                                 // 描述: htp_general_req类提供相关功能
+                                 // 用途: 用于处理htp_general_req相关的操作
+                                 // 类: htp_general_req
+                                 // 描述: htp_general_req类提供相关功能
+                                 // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
                                  struct htp_general_req * req,
+                                 // 类: dspqueue_buffer
+                                 // 描述: dspqueue_buffer类提供相关功能
+                                 // 用途: 用于处理dspqueue_buffer相关的操作
+                                 // 类: dspqueue_buffer
+                                 // 描述: dspqueue_buffer类提供相关功能
+                                 // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                                  struct dspqueue_buffer * bufs,
                                  uint32_t                 n_bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[HTP_MAX_PACKET_BUFFERS];
 
     int write_idx = (n_bufs == 3) ? 2 : 1;
@@ -774,6 +1732,24 @@ static void proc_activations_req(struct htp_context *     ctx,
                           DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT); // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -796,6 +1772,24 @@ static void proc_activations_req(struct htp_context *     ctx,
     }
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -814,9 +1808,63 @@ static void proc_activations_req(struct htp_context *     ctx,
 }
 
 static void proc_rope_req(struct htp_context *     ctx,
+                          // 类: htp_general_req
+                          // 描述: htp_general_req类提供相关功能
+                          // 用途: 用于处理htp_general_req相关的操作
+                          // 类: htp_general_req
+                          // 描述: htp_general_req类提供相关功能
+                          // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
                           struct htp_general_req * req,
+                          // 类: dspqueue_buffer
+                          // 描述: dspqueue_buffer类提供相关功能
+                          // 用途: 用于处理dspqueue_buffer相关的操作
+                          // 类: dspqueue_buffer
+                          // 描述: dspqueue_buffer类提供相关功能
+                          // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                           struct dspqueue_buffer * bufs,
                           uint32_t                 n_bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[HTP_MAX_PACKET_BUFFERS];
 
     int write_idx = n_bufs - 1;
@@ -830,6 +1878,24 @@ static void proc_rope_req(struct htp_context *     ctx,
                           DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT); // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -854,6 +1920,24 @@ static void proc_rope_req(struct htp_context *     ctx,
     }
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -867,7 +1951,33 @@ static void proc_rope_req(struct htp_context *     ctx,
     send_htp_rsp(ctx, req->op, rsp_status, rsp_bufs, 1, &prof);
 }
 
+// 函数: proc_set_rows_req
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: proc_set_rows_req
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void proc_set_rows_req(struct htp_context * ctx, struct htp_general_req * req, struct dspqueue_buffer * bufs) {
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_bufs[1];
 
     // We had written to the output buffer, we'd also need to flush it
@@ -879,6 +1989,24 @@ static void proc_set_rows_req(struct htp_context * ctx, struct htp_general_req *
                          DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT);  // Invalidate CPU
 
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx = { 0 };
     octx.ctx                    = ctx;
     octx.src0                   = req->src0;
@@ -893,6 +2021,24 @@ static void proc_set_rows_req(struct htp_context * ctx, struct htp_general_req *
     octx.dst.data  = (uint32_t) bufs[2].ptr;
     octx.n_threads = ctx->n_threads;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -907,10 +2053,64 @@ static void proc_set_rows_req(struct htp_context * ctx, struct htp_general_req *
 }
 
 static void proc_flash_attn_ext_req(struct htp_context *     ctx,
+                                    // 类: htp_general_req
+                                    // 描述: htp_general_req类提供相关功能
+                                    // 用途: 用于处理htp_general_req相关的操作
+                                    // 类: htp_general_req
+                                    // 描述: htp_general_req类提供相关功能
+                                    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
                                     struct htp_general_req * req,
+                                    // 类: dspqueue_buffer
+                                    // 描述: dspqueue_buffer类提供相关功能
+                                    // 用途: 用于处理dspqueue_buffer相关的操作
+                                    // 类: dspqueue_buffer
+                                    // 描述: dspqueue_buffer类提供相关功能
+                                    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                                     struct dspqueue_buffer * bufs,
                                     uint32_t                 n_bufs) {
     // Setup Op context
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context octx;
     memset(&octx, 0, sizeof(octx));
 
@@ -945,6 +2145,24 @@ static void proc_flash_attn_ext_req(struct htp_context *     ctx,
 
     octx.dst.data = (uint32_t) bufs[last_buf].ptr;
 
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 类: profile_data
+    // 描述: profile_data类提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
+    // 结构体: profile_data
+    // 描述: profile_data结构体提供相关功能
+    // 用途: 用于处理profile_data相关的操作
     struct profile_data prof;
     profile_start(&prof);
 
@@ -956,6 +2174,24 @@ static void proc_flash_attn_ext_req(struct htp_context *     ctx,
 
     profile_stop(&prof);
 
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 类: dspqueue_buffer
+    // 描述: dspqueue_buffer类提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
     struct dspqueue_buffer rsp_buf = bufs[last_buf];
     rsp_buf.flags = (DSPQUEUE_BUFFER_FLAG_FLUSH_SENDER |         // Flush HTP
                      DSPQUEUE_BUFFER_FLAG_INVALIDATE_RECIPIENT); // Invalidate CPU
@@ -963,7 +2199,33 @@ static void proc_flash_attn_ext_req(struct htp_context *     ctx,
     send_htp_rsp(ctx, req->op, rsp_status, &bufs[last_buf], 1, &prof);
 }
 
+// 函数: htp_packet_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_packet_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_packet_callback(dspqueue_t queue, int error, void * context) {
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 类: htp_context
+    // 描述: htp_context类提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
     struct htp_context * ctx = (struct htp_context *) context;
 
     // Repeatedly read packets from the queue until it's empty. We don't
@@ -972,9 +2234,45 @@ static void htp_packet_callback(dspqueue_t queue, int error, void * context) {
     // keep the DSP busy as much as possible and avoid waiting for the CPU.
 
     while (1) {
+        // 类: htp_general_req
+        // 描述: htp_general_req类提供相关功能
+        // 用途: 用于处理htp_general_req相关的操作
+        // 类: htp_general_req
+        // 描述: htp_general_req类提供相关功能
+        // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
+    // 结构体: htp_general_req
+    // 描述: htp_general_req结构体提供相关功能
+    // 用途: 用于处理htp_general_req相关的操作
         struct htp_general_req req;
         uint32_t               req_size;
 
+        // 类: dspqueue_buffer
+        // 描述: dspqueue_buffer类提供相关功能
+        // 用途: 用于处理dspqueue_buffer相关的操作
+        // 类: dspqueue_buffer
+        // 描述: dspqueue_buffer类提供相关功能
+        // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
         struct dspqueue_buffer bufs[HTP_MAX_PACKET_BUFFERS];
         uint32_t               n_bufs;
         uint32_t               flags;

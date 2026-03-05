@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: compare_tokens.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/compare_tokens.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse
@@ -5,6 +12,10 @@ import sys
 from common import compare_tokens  # type: ignore
 
 
+    # 函数: parse_arguments
+    # 描述: parse_arguments函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description='Compare tokens between two models',
@@ -40,6 +51,10 @@ Examples:
     return parser.parse_args()
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     args = parse_arguments()
 

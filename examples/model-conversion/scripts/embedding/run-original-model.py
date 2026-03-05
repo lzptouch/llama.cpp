@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: run-original-model.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/embedding/run-original-model.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse
@@ -13,6 +20,14 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from utils.common import save_output_data
 
 
+    # 函数: parse_arguments
+    # 描述: parse_arguments函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: parse_arguments
+    # 描述: parse_arguments函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Run original embedding model')
     parser.add_argument(
@@ -40,6 +55,14 @@ def parse_arguments():
     return parser.parse_args()
 
 
+    # 函数: load_model_and_tokenizer
+    # 描述: load_model_and_tokenizer函数提供相关功能
+    # 参数: model_path, use_sentence_transformers=False, device="auto"
+    # 返回: 无返回值
+    # 函数: load_model_and_tokenizer
+    # 描述: load_model_and_tokenizer函数提供相关功能
+    # 参数: model_path, use_sentence_transformers=False, device="auto"
+    # 返回: 无返回值
 def load_model_and_tokenizer(model_path, use_sentence_transformers=False, device="auto"):
     if device == "cpu":
         device_map = {"": "cpu"}
@@ -116,6 +139,14 @@ def load_model_and_tokenizer(model_path, use_sentence_transformers=False, device
     return model, tokenizer, config
 
 
+    # 函数: get_prompt
+    # 描述: get_prompt函数提供相关功能
+    # 参数: args
+    # 返回: 有返回值
+    # 函数: get_prompt
+    # 描述: get_prompt函数提供相关功能
+    # 参数: args
+    # 返回: 有返回值
 def get_prompt(args):
     if args.prompts_file:
         try:
@@ -131,6 +162,14 @@ def get_prompt(args):
         return "Hello world today"
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     args = parse_arguments()
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: speculative.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/speculative.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "speculative.h"
 
 #include "common.h"
@@ -39,6 +46,24 @@ const std::map<std::string, enum common_speculative_type> common_speculative_typ
     {"ngram_cache",   COMMON_SPECULATIVE_TYPE_NGRAM_CACHE}
 };
 
+// 类: common_speculative_config
+// 描述: common_speculative_config类提供相关功能
+// 用途: 用于处理common_speculative_config相关的操作
+// 类: common_speculative_config
+// 描述: common_speculative_config类提供相关功能
+// 用途: 用于处理common_speculative_config相关的操作
+    // 结构体: common_speculative_config
+    // 描述: common_speculative_config结构体提供相关功能
+    // 用途: 用于处理common_speculative_config相关的操作
+    // 结构体: common_speculative_config
+    // 描述: common_speculative_config结构体提供相关功能
+    // 用途: 用于处理common_speculative_config相关的操作
+    // 结构体: common_speculative_config
+    // 描述: common_speculative_config结构体提供相关功能
+    // 用途: 用于处理common_speculative_config相关的操作
+    // 结构体: common_speculative_config
+    // 描述: common_speculative_config结构体提供相关功能
+    // 用途: 用于处理common_speculative_config相关的操作
 struct common_speculative_config {
     common_speculative_type type;
     common_params_speculative params;
@@ -110,6 +135,24 @@ static bool common_speculative_are_compatible(
 //
 // each implementation has a unique type and a state that is implementation-specific
 // in a subclass of common_speculative_state
+// 类: common_speculative_state
+// 描述: common_speculative_state类提供相关功能
+// 用途: 用于处理common_speculative_state相关的操作
+// 类: common_speculative_state
+// 描述: common_speculative_state类提供相关功能
+// 用途: 用于处理common_speculative_state相关的操作
+    // 结构体: common_speculative_state
+    // 描述: common_speculative_state结构体提供相关功能
+    // 用途: 用于处理common_speculative_state相关的操作
+    // 结构体: common_speculative_state
+    // 描述: common_speculative_state结构体提供相关功能
+    // 用途: 用于处理common_speculative_state相关的操作
+    // 结构体: common_speculative_state
+    // 描述: common_speculative_state结构体提供相关功能
+    // 用途: 用于处理common_speculative_state相关的操作
+    // 结构体: common_speculative_state
+    // 描述: common_speculative_state结构体提供相关功能
+    // 用途: 用于处理common_speculative_state相关的操作
 struct common_speculative_state {
     const enum common_speculative_type type;
 
@@ -133,6 +176,14 @@ struct common_speculative_state {
 
     virtual ~common_speculative_state() = default;
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void begin(const llama_tokens & prompt) = 0;
 
     virtual void draft(
@@ -141,9 +192,35 @@ struct common_speculative_state {
             llama_token id_last,
             llama_tokens & result) = 0;
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void accept(uint16_t n_accepted) = 0;
 };
 
+// 类: common_speculative_state_draft
+// 描述: common_speculative_state_draft类提供相关功能
+// 用途: 用于处理common_speculative_state_draft相关的操作
+// 类: common_speculative_state_draft
+// 描述: common_speculative_state_draft类提供相关功能
+// 用途: 用于处理common_speculative_state_draft相关的操作
+    // 结构体: common_speculative_state_draft
+    // 描述: common_speculative_state_draft结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_draft相关的操作
+    // 结构体: common_speculative_state_draft
+    // 描述: common_speculative_state_draft结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_draft相关的操作
+    // 结构体: common_speculative_state_draft
+    // 描述: common_speculative_state_draft结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_draft相关的操作
+    // 结构体: common_speculative_state_draft
+    // 描述: common_speculative_state_draft结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_draft相关的操作
 struct common_speculative_state_draft : public common_speculative_state {
     llama_context * ctx_tgt; // only used for retokenizing from ctx_dft
     llama_context * ctx_dft;
@@ -217,6 +294,14 @@ struct common_speculative_state_draft : public common_speculative_state {
         llama_batch_free(batch);
     }
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         GGML_UNUSED(prompt);
     }
@@ -403,11 +488,27 @@ struct common_speculative_state_draft : public common_speculative_state {
         }
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         // noop
         GGML_UNUSED(n_accepted);
     }
 
+    // 函数: replace_to_dft
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: replace_to_dft
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string replace_to_dft(const std::string & input) const {
         std::string result = input;
 
@@ -422,6 +523,14 @@ struct common_speculative_state_draft : public common_speculative_state {
         return result;
     }
 
+    // 函数: replace_to_tgt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: replace_to_tgt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string replace_to_tgt(const std::string & input) const {
         std::string result = input;
 
@@ -437,9 +546,35 @@ struct common_speculative_state_draft : public common_speculative_state {
     }
 };
 
+// 类: common_speculative_state_eagle3
+// 描述: common_speculative_state_eagle3类提供相关功能
+// 用途: 用于处理common_speculative_state_eagle3相关的操作
+// 类: common_speculative_state_eagle3
+// 描述: common_speculative_state_eagle3类提供相关功能
+// 用途: 用于处理common_speculative_state_eagle3相关的操作
+    // 结构体: common_speculative_state_eagle3
+    // 描述: common_speculative_state_eagle3结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_eagle3相关的操作
+    // 结构体: common_speculative_state_eagle3
+    // 描述: common_speculative_state_eagle3结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_eagle3相关的操作
+    // 结构体: common_speculative_state_eagle3
+    // 描述: common_speculative_state_eagle3结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_eagle3相关的操作
+    // 结构体: common_speculative_state_eagle3
+    // 描述: common_speculative_state_eagle3结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_eagle3相关的操作
 struct common_speculative_state_eagle3 : public common_speculative_state {
     common_speculative_state_eagle3(enum common_speculative_type type) : common_speculative_state(type) {}
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         GGML_UNUSED(prompt);
     }
@@ -456,6 +591,14 @@ struct common_speculative_state_eagle3 : public common_speculative_state {
         GGML_UNUSED(draft_tokens);
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         // noop
         GGML_UNUSED(n_accepted);
@@ -463,6 +606,24 @@ struct common_speculative_state_eagle3 : public common_speculative_state {
 };
 
 // state of self-speculation (simple implementation, not ngram-map)
+// 类: common_speculative_state_ngram_simple
+// 描述: common_speculative_state_ngram_simple类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_simple相关的操作
+// 类: common_speculative_state_ngram_simple
+// 描述: common_speculative_state_ngram_simple类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_simple相关的操作
+    // 结构体: common_speculative_state_ngram_simple
+    // 描述: common_speculative_state_ngram_simple结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_simple相关的操作
+    // 结构体: common_speculative_state_ngram_simple
+    // 描述: common_speculative_state_ngram_simple结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_simple相关的操作
+    // 结构体: common_speculative_state_ngram_simple
+    // 描述: common_speculative_state_ngram_simple结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_simple相关的操作
+    // 结构体: common_speculative_state_ngram_simple
+    // 描述: common_speculative_state_ngram_simple结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_simple相关的操作
 struct common_speculative_state_ngram_simple : public common_speculative_state {
     common_ngram_simple_config config;
 
@@ -471,6 +632,14 @@ struct common_speculative_state_ngram_simple : public common_speculative_state {
             common_ngram_simple_config config)
         : common_speculative_state(type), config(config) {}
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         GGML_UNUSED(prompt);
     }
@@ -485,12 +654,38 @@ struct common_speculative_state_ngram_simple : public common_speculative_state {
         GGML_UNUSED(params);
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         // noop
         GGML_UNUSED(n_accepted);
     }
 };
 
+// 类: common_speculative_state_ngram_map_k
+// 描述: common_speculative_state_ngram_map_k类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
+// 类: common_speculative_state_ngram_map_k
+// 描述: common_speculative_state_ngram_map_k类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
+    // 结构体: common_speculative_state_ngram_map_k
+    // 描述: common_speculative_state_ngram_map_k结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
+    // 结构体: common_speculative_state_ngram_map_k
+    // 描述: common_speculative_state_ngram_map_k结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
+    // 结构体: common_speculative_state_ngram_map_k
+    // 描述: common_speculative_state_ngram_map_k结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
+    // 结构体: common_speculative_state_ngram_map_k
+    // 描述: common_speculative_state_ngram_map_k结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_map_k相关的操作
 struct common_speculative_state_ngram_map_k : public common_speculative_state {
     // draft ngram map for speculative decoding without draft model
     common_ngram_map map;
@@ -500,6 +695,14 @@ struct common_speculative_state_ngram_map_k : public common_speculative_state {
             common_ngram_map map)
         : common_speculative_state(type), map(std::move(map)) {}
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         common_ngram_map_begin(map, prompt);
     }
@@ -513,11 +716,37 @@ struct common_speculative_state_ngram_map_k : public common_speculative_state {
         GGML_UNUSED(params);
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         common_ngram_map_accept(map, n_accepted);
     }
 };
 
+// 类: common_speculative_state_ngram_mod
+// 描述: common_speculative_state_ngram_mod类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_mod相关的操作
+// 类: common_speculative_state_ngram_mod
+// 描述: common_speculative_state_ngram_mod类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_mod相关的操作
+    // 结构体: common_speculative_state_ngram_mod
+    // 描述: common_speculative_state_ngram_mod结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_mod相关的操作
+    // 结构体: common_speculative_state_ngram_mod
+    // 描述: common_speculative_state_ngram_mod结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_mod相关的操作
+    // 结构体: common_speculative_state_ngram_mod
+    // 描述: common_speculative_state_ngram_mod结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_mod相关的操作
+    // 结构体: common_speculative_state_ngram_mod
+    // 描述: common_speculative_state_ngram_mod结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_mod相关的操作
 struct common_speculative_state_ngram_mod : public common_speculative_state {
     common_ngram_mod & mod;
 
@@ -538,6 +767,14 @@ struct common_speculative_state_ngram_mod : public common_speculative_state {
         static_assert(sizeof(llama_token) == sizeof(common_ngram_mod::entry_t));
     }
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         i_last = 0;
 
@@ -621,6 +858,14 @@ struct common_speculative_state_ngram_mod : public common_speculative_state {
         n_draft_last = result.size();
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         if (verbose) {
             LOG_INF("%s: accepted %d tokens from %zu drafted tokens\n", __func__, n_accepted, n_draft_last);
@@ -644,6 +889,24 @@ struct common_speculative_state_ngram_mod : public common_speculative_state {
     }
 };
 
+// 类: common_speculative_state_ngram_cache
+// 描述: common_speculative_state_ngram_cache类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_cache相关的操作
+// 类: common_speculative_state_ngram_cache
+// 描述: common_speculative_state_ngram_cache类提供相关功能
+// 用途: 用于处理common_speculative_state_ngram_cache相关的操作
+    // 结构体: common_speculative_state_ngram_cache
+    // 描述: common_speculative_state_ngram_cache结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_cache相关的操作
+    // 结构体: common_speculative_state_ngram_cache
+    // 描述: common_speculative_state_ngram_cache结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_cache相关的操作
+    // 结构体: common_speculative_state_ngram_cache
+    // 描述: common_speculative_state_ngram_cache结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_cache相关的操作
+    // 结构体: common_speculative_state_ngram_cache
+    // 描述: common_speculative_state_ngram_cache结构体提供相关功能
+    // 用途: 用于处理common_speculative_state_ngram_cache相关的操作
 struct common_speculative_state_ngram_cache : public common_speculative_state {
     uint16_t n_draft;
     bool save_dynamic;
@@ -686,6 +949,14 @@ struct common_speculative_state_ngram_cache : public common_speculative_state {
         }
     }
 
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: begin
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void begin(const llama_tokens & prompt) override {
         GGML_UNUSED(prompt);
     }
@@ -731,17 +1002,51 @@ struct common_speculative_state_ngram_cache : public common_speculative_state {
         }
     }
 
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: accept
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void accept(uint16_t n_accepted) override {
         // TODO: noop
         GGML_UNUSED(n_accepted);
     }
 };
 
+// 类: common_speculative
+// 描述: common_speculative类提供相关功能
+// 用途: 用于处理common_speculative相关的操作
+// 类: common_speculative
+// 描述: common_speculative类提供相关功能
+// 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
+    // 结构体: common_speculative
+    // 描述: common_speculative结构体提供相关功能
+    // 用途: 用于处理common_speculative相关的操作
 struct common_speculative {
     std::vector<std::unique_ptr<common_speculative_state>> impls; // list of implementations to use and their states
     common_speculative_state * curr_impl = nullptr; // current implementation in use (for stats)
 };
 
+// 函数: get_common_ngram_map
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_common_ngram_map
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static common_ngram_map get_common_ngram_map(const common_speculative_config & config) {
     uint16_t size_key   = config.params.ngram_size_n;
     uint16_t size_value = config.params.ngram_size_m;
@@ -760,11 +1065,27 @@ static common_speculative_state_ngram_cache create_state_ngram_cache(
     bool save_static = false;
     bool save_dynamic = false;
 
+    // 函数: state
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: state
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_speculative_state_ngram_cache state(config.type, path_static, path_dynamic, n_draft, save_static, save_dynamic);
 
     return state;
 }
 
+// 函数: common_speculative_type_name_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_type_name_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_speculative_type_name_str() {
     std::string result;
     for (size_t i = 0; i < common_speculative_types.size(); i++) {
@@ -776,6 +1097,14 @@ std::string common_speculative_type_name_str() {
     return result;
 }
 
+// 函数: common_speculative_type_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_type_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_speculative_type_to_str(enum common_speculative_type type) {
     switch (type) {
         case COMMON_SPECULATIVE_TYPE_NONE:          return "none";
@@ -798,6 +1127,14 @@ enum common_speculative_type common_speculative_type_from_name(const std::string
     return it->second;
 }
 
+// 函数: common_speculative_is_compat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_is_compat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_speculative_is_compat(llama_context * ctx_tgt) {
     auto * mem = llama_get_memory(ctx_tgt);
     if (mem == nullptr) {
@@ -972,6 +1309,14 @@ common_speculative * common_speculative_init(
     return result;
 }
 
+// 函数: common_speculative_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void common_speculative_free(common_speculative * spec) {
     if (spec == nullptr) {
         return;
@@ -980,6 +1325,14 @@ void common_speculative_free(common_speculative * spec) {
     delete spec;
 }
 
+// 函数: common_speculative_begin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_begin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_speculative_begin(common_speculative * spec, const llama_tokens & prompt) {
     if (spec == nullptr) {
         return;
@@ -1003,6 +1356,14 @@ llama_tokens common_speculative_draft(
 
     for (auto & impl : spec->impls) {
         {
+            // 函数: tm
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: tm
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             common_time_meas tm(impl->t_draft_us, !impl->gen_perf);
             impl->draft(params, prompt_tgt, id_last, result);
             impl->n_call_draft++;
@@ -1024,6 +1385,14 @@ llama_tokens common_speculative_draft(
     return result;
 }
 
+// 函数: common_speculative_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_speculative_accept(common_speculative * spec, uint16_t n_accepted) {
     if (n_accepted == 0) {
         return;
@@ -1045,6 +1414,14 @@ void common_speculative_accept(common_speculative * spec, uint16_t n_accepted) {
     }
 }
 
+// 函数: common_speculative_print_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_speculative_print_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_speculative_print_stats(const common_speculative * spec) {
     if (spec == nullptr) {
         return;

@@ -16,8 +16,56 @@ template <class T> static void assert_equals(const T & expected, const T & actua
     }
 }
 
+// 类: test_case
+// 描述: test_case类提供相关功能
+// 用途: 用于处理test_case相关的操作
+// 类: test_case
+// 描述: test_case类提供相关功能
+// 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
 struct test_case {
     std::string pattern;
+    // 类: input_output
+    // 描述: input_output类提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 类: input_output
+    // 描述: input_output类提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
+    // 结构体: input_output
+    // 描述: input_output结构体提供相关功能
+    // 用途: 用于处理input_output相关的操作
     struct input_output {
         std::string input;
         common_regex_match output;
@@ -25,6 +73,14 @@ struct test_case {
     std::vector<input_output> inputs_outputs;
 };
 
+// 函数: common_regex_match_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_regex_match_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string common_regex_match_type_name(common_regex_match_type type) {
     switch (type) {
         case COMMON_REGEX_MATCH_TYPE_NONE:
@@ -37,6 +93,14 @@ static std::string common_regex_match_type_name(common_regex_match_type type) {
     return "?";
 }
 
+// 函数: test_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_regex() {
     printf("[%s]\n", __func__);
     auto test = [](const test_case & test_case) {

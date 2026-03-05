@@ -31,9 +31,33 @@
 
 typedef void * (*rpcmem_alloc_pfn_t)(int heapid, uint32_t flags, int size);
 typedef void * (*rpcmem_alloc2_pfn_t)(int heapid, uint32_t flags, size_t size);
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void   (*rpcmem_free_pfn_t)(void * po);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int    (*rpcmem_to_fd_pfn_t)(void * po);
 
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef AEEResult (*dspqueue_create_pfn_t)(int                 domain,
                                            uint32_t            flags,
                                            uint32_t            req_queue_size,
@@ -42,29 +66,161 @@ typedef AEEResult (*dspqueue_create_pfn_t)(int                 domain,
                                            dspqueue_callback_t error_callback,
                                            void *              callback_context,
                                            dspqueue_t *        queue);
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef AEEResult (*dspqueue_close_pfn_t)(dspqueue_t queue);
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef AEEResult (*dspqueue_export_pfn_t)(dspqueue_t queue, uint64_t *queue_id);
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef AEEResult (*dspqueue_write_pfn_t)(dspqueue_t queue, uint32_t flags,
                                           uint32_t num_buffers,
+                                          // 类: dspqueue_buffer
+                                          // 描述: dspqueue_buffer类提供相关功能
+                                          // 用途: 用于处理dspqueue_buffer相关的操作
+                                          // 类: dspqueue_buffer
+                                          // 描述: dspqueue_buffer类提供相关功能
+                                          // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                                           struct dspqueue_buffer *buffers,
                                           uint32_t message_length,
                                           const uint8_t *message,
                                           uint32_t timeout_us);
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: AEEResult
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef AEEResult (*dspqueue_read_pfn_t)(dspqueue_t queue, uint32_t *flags,
                                          uint32_t max_buffers, uint32_t *num_buffers,
+                                         // 类: dspqueue_buffer
+                                         // 描述: dspqueue_buffer类提供相关功能
+                                         // 用途: 用于处理dspqueue_buffer相关的操作
+                                         // 类: dspqueue_buffer
+                                         // 描述: dspqueue_buffer类提供相关功能
+                                         // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                                          struct dspqueue_buffer *buffers,
                                          uint32_t max_message_length,
                                          uint32_t *message_length, uint8_t *message,
                                          uint32_t timeout_us);
 
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*fastrpc_mmap_pfn_t)(int domain, int fd, void *addr, int offset, size_t length, enum fastrpc_map_flags flags);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*fastrpc_munmap_pfn_t)(int domain, int fd, void *addr, size_t length);
 
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_handle64_open_pfn_t)(const char* name, remote_handle64 *ph);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_handle64_invoke_pfn_t)(remote_handle64 h, uint32_t dwScalars, remote_arg *pra);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_handle64_close_pfn_t)(remote_handle h);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_handle_control_pfn_t)(uint32_t req, void* data, uint32_t datalen);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_handle64_control_pfn_t)(remote_handle64 h, uint32_t req, void* data, uint32_t datalen);
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef int (*remote_session_control_pfn_t)(uint32_t req, void *data, uint32_t datalen);
 
 //
@@ -96,10 +252,26 @@ remote_session_control_pfn_t  remote_session_control_pfn  = nullptr;
 // Driver API
 //
 
+// 函数: rpcmem_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rpcmem_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * rpcmem_alloc(int heapid, uint32_t flags, int size) {
     return rpcmem_alloc_pfn(heapid, flags, size);
 }
 
+// 函数: rpcmem_alloc2
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rpcmem_alloc2
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * rpcmem_alloc2(int heapid, uint32_t flags, size_t size) {
     if (rpcmem_alloc2_pfn) {
         return rpcmem_alloc2_pfn(heapid, flags, size);
@@ -109,19 +281,51 @@ void * rpcmem_alloc2(int heapid, uint32_t flags, size_t size) {
     }
 }
 
+// 函数: rpcmem_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rpcmem_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void rpcmem_free(void * po) {
     return rpcmem_free_pfn(po);
 }
 
+// 函数: rpcmem_to_fd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rpcmem_to_fd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int rpcmem_to_fd(void * po) {
     return rpcmem_to_fd_pfn(po);
 }
 
 HTPDRV_API int fastrpc_mmap(int domain, int fd, void * addr, int offset, size_t length, enum fastrpc_map_flags flags) {
+    // 函数: fastrpc_mmap_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: fastrpc_mmap_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return fastrpc_mmap_pfn(domain, fd, addr, offset, length, flags);
 }
 
 HTPDRV_API int fastrpc_munmap(int domain, int fd, void * addr, size_t length) {
+    // 函数: fastrpc_munmap_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: fastrpc_munmap_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return fastrpc_munmap_pfn(domain, fd, addr, length);
 }
 
@@ -137,10 +341,26 @@ AEEResult dspqueue_create(int                 domain,
                                callback_context, queue);
 }
 
+// 函数: dspqueue_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dspqueue_close
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult dspqueue_close(dspqueue_t queue) {
     return dspqueue_close_pfn(queue);
 }
 
+// 函数: dspqueue_export
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dspqueue_export
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult dspqueue_export(dspqueue_t queue, uint64_t * queue_id) {
     return dspqueue_export_pfn(queue, queue_id);
 }
@@ -148,10 +368,36 @@ AEEResult dspqueue_export(dspqueue_t queue, uint64_t * queue_id) {
 AEEResult dspqueue_write(dspqueue_t               queue,
                          uint32_t                 flags,
                          uint32_t                 num_buffers,
+                         // 类: dspqueue_buffer
+                         // 描述: dspqueue_buffer类提供相关功能
+                         // 用途: 用于处理dspqueue_buffer相关的操作
+                         // 类: dspqueue_buffer
+                         // 描述: dspqueue_buffer类提供相关功能
+                         // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                          struct dspqueue_buffer * buffers,
                          uint32_t                 message_length,
                          const uint8_t *          message,
                          uint32_t                 timeout_us) {
+    // 函数: dspqueue_write_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dspqueue_write_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return dspqueue_write_pfn(queue, flags, num_buffers, buffers, message_length, message, timeout_us);
 }
 
@@ -159,6 +405,24 @@ AEEResult dspqueue_read(dspqueue_t               queue,
                         uint32_t *               flags,
                         uint32_t                 max_buffers,
                         uint32_t *               num_buffers,
+                        // 类: dspqueue_buffer
+                        // 描述: dspqueue_buffer类提供相关功能
+                        // 用途: 用于处理dspqueue_buffer相关的操作
+                        // 类: dspqueue_buffer
+                        // 描述: dspqueue_buffer类提供相关功能
+                        // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
                         struct dspqueue_buffer * buffers,
                         uint32_t                 max_message_length,
                         uint32_t *               message_length,
@@ -169,31 +433,87 @@ AEEResult dspqueue_read(dspqueue_t               queue,
 }
 
 HTPDRV_API int remote_handle64_open(const char * name, remote_handle64 * ph) {
+    // 函数: remote_handle64_open_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_handle64_open_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_handle64_open_pfn(name, ph);
 }
 
 HTPDRV_API int remote_handle64_invoke(remote_handle64 h, uint32_t dwScalars, remote_arg * pra) {
+    // 函数: remote_handle64_invoke_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_handle64_invoke_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_handle64_invoke_pfn(h, dwScalars, pra);
 }
 
 HTPDRV_API int remote_handle64_close(remote_handle64 h) {
+    // 函数: remote_handle64_close_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_handle64_close_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_handle64_close_pfn(h);
 }
 
 HTPDRV_API int remote_handle_control(uint32_t req, void * data, uint32_t datalen) {
+    // 函数: remote_handle_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_handle_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_handle_control_pfn(req, data, datalen);
 }
 
 HTPDRV_API int remote_handle64_control(remote_handle64 h, uint32_t req, void * data, uint32_t datalen) {
+    // 函数: remote_handle64_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_handle64_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_handle64_control_pfn(h, req, data, datalen);
 }
 
 HTPDRV_API int remote_session_control(uint32_t req, void * data, uint32_t datalen) {
+    // 函数: remote_session_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: remote_session_control_pfn
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return remote_session_control_pfn(req, data, datalen);
 }
 
 #ifdef _WIN32
 
+// 函数: wstr_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: wstr_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string wstr_to_str(std::wstring_view wstr) {
     std::string result;
     if (wstr.empty()) {
@@ -219,6 +539,14 @@ static std::string wstr_to_str(std::wstring_view wstr) {
     return result;
 }
 
+// 函数: get_driver_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_driver_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_driver_path() {
     std::wstring serviceName = L"qcnspmcdm";
     std::string result;
@@ -305,6 +633,14 @@ static std::string get_driver_path() {
 
 using dl_handle_ptr = std::unique_ptr<dl_handle, dl_handle_deleter>;
 
+// 函数: htpdrv_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htpdrv_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 int htpdrv_init() {
     static dl_handle_ptr lib_cdsp_rpc_handle = nullptr;
     static bool initialized = false;
@@ -359,6 +695,14 @@ int htpdrv_init() {
     return AEE_SUCCESS;
 }
 
+// 函数: get_domain
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_domain
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 domain * get_domain(int domain_id) {
     int i    = 0;
     int size = sizeof(supported_domains) / sizeof(domain);
@@ -372,12 +716,38 @@ domain * get_domain(int domain_id) {
     return NULL;
 }
 
+// 函数: get_hex_arch_ver
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_hex_arch_ver
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 int get_hex_arch_ver(int domain, int * arch) {
     if (!remote_handle_control_pfn) {
         GGML_LOG_ERROR("ggml-hex: remote_handle_control is not supported on this device\n");
         return AEE_EUNSUPPORTEDAPI;
     }
 
+    // 类: remote_dsp_capability
+    // 描述: remote_dsp_capability类提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
+    // 类: remote_dsp_capability
+    // 描述: remote_dsp_capability类提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
+    // 结构体: remote_dsp_capability
+    // 描述: remote_dsp_capability结构体提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
+    // 结构体: remote_dsp_capability
+    // 描述: remote_dsp_capability结构体提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
+    // 结构体: remote_dsp_capability
+    // 描述: remote_dsp_capability结构体提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
+    // 结构体: remote_dsp_capability
+    // 描述: remote_dsp_capability结构体提供相关功能
+    // 用途: 用于处理remote_dsp_capability相关的操作
     struct remote_dsp_capability arch_ver;
     arch_ver.domain       = (uint32_t) domain;
     arch_ver.attribute_ID = ARCH_VER;

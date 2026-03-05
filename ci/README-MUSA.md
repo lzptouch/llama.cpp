@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README-MUSA.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ci/README-MUSA.md
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 ## Running MUSA CI in a Docker Container
 
 Assuming `$PWD` is the root of the `llama.cpp` repository, follow these steps to set up and run MUSA CI in a Docker container:

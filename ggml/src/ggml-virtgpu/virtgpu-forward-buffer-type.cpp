@@ -1,5 +1,20 @@
+// ============================================================================
+// 文件: virtgpu-forward-buffer-type.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-forward-buffer-type.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-forward-impl.h"
 
+// 函数: apir_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 char * apir_buffer_type_get_name(virtgpu * gpu, apir_buffer_type_host_handle_t host_handle) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -24,6 +39,14 @@ char * apir_buffer_type_get_name(virtgpu * gpu, apir_buffer_type_host_handle_t h
     return string;
 }
 
+// 函数: apir_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t apir_buffer_type_get_alignment(virtgpu * gpu, apir_buffer_type_host_handle_t host_handle) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;
@@ -43,6 +66,14 @@ size_t apir_buffer_type_get_alignment(virtgpu * gpu, apir_buffer_type_host_handl
     return alignment;
 }
 
+// 函数: apir_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t apir_buffer_type_get_max_size(virtgpu * gpu, apir_buffer_type_host_handle_t host_handle) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;

@@ -1,6 +1,21 @@
+// ============================================================================
+// 文件: utils.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-zdnn/utils.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml.h"
 #include "utils.hpp"
 
+// 函数: ggml_zdnn_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_type_mapping
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 zdnn_data_types ggml_zdnn_type_mapping(ggml_type type) {
     switch (type) {
         case GGML_TYPE_F32:
@@ -39,10 +54,26 @@ void ggml_zdnn_create_tensor(zdnn_tensor_desc  & pre_tfm_desc,
     ZDNN_CHECK(zdnn_init_ztensor_with_malloc(&pre_tfm_desc, &tfm_desc, &ztensor));
 }
 
+// 函数: ggml_zdnn_load_tensor
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_load_tensor
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_zdnn_load_tensor(zdnn_ztensor & ztensor, void * buffer) {
     ZDNN_CHECK(zdnn_transform_ztensor(&ztensor, buffer));
 }
 
+// 函数: ggml_zdnn_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_zdnn_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_zdnn_init_tensor(ggml_backend_zdnn_buffer * buffer, const ggml_tensor * tensor) {
     switch (tensor->op) {
         case GGML_OP_MUL_MAT:

@@ -17,7 +17,43 @@
 #include "htp-msg.h"
 #include "htp-ops.h"
 
+// 类: htp_unary_context
+// 描述: htp_unary_context类提供相关功能
+// 用途: 用于处理htp_unary_context相关的操作
+// 类: htp_unary_context
+// 描述: htp_unary_context类提供相关功能
+// 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
 struct htp_unary_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
 
     // Precomputed values
@@ -166,8 +202,34 @@ static void sqrt_f32(const float * restrict src,
     }
 }
 
+// 函数: unary_job_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_job_f32_per_thread
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_job_f32_per_thread(unsigned int nth, unsigned int ith, void * data) {
     const struct htp_unary_context * uctx = (const struct htp_unary_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = uctx->octx;
     const struct htp_tensor * src = &octx->src0;
     const struct htp_tensor * dst = &octx->dst;
@@ -274,10 +336,36 @@ static void unary_job_f32_per_thread(unsigned int nth, unsigned int ith, void * 
          dst->ne[3], (unsigned) HAP_perf_qtimer_count_to_us(t2 - t1));
 }
 
+// 函数: execute_op_unary_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_op_unary_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int execute_op_unary_f32(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 
     const struct htp_tensor * src0 = &octx->src0;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     const char * op_type = NULL;
@@ -340,6 +428,24 @@ static int execute_op_unary_f32(struct htp_ops_context * octx) {
     if (!(octx->flags & HTP_OPFLAGS_SKIP_COMPUTE)) {
         uint32_t n_jobs = MIN(n_threads, src0_nrows);
 
+        // 类: htp_unary_context
+        // 描述: htp_unary_context类提供相关功能
+        // 用途: 用于处理htp_unary_context相关的操作
+        // 类: htp_unary_context
+        // 描述: htp_unary_context类提供相关功能
+        // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
+    // 结构体: htp_unary_context
+    // 描述: htp_unary_context结构体提供相关功能
+    // 用途: 用于处理htp_unary_context相关的操作
         struct htp_unary_context uctx = {
             .octx                  = octx,
             .src0_nrows_per_thread = (src0_nrows + n_jobs - 1) / n_jobs,
@@ -367,6 +473,14 @@ static int execute_op_unary_f32(struct htp_ops_context * octx) {
     return err;
 }
 
+// 函数: op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_unary(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 

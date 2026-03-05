@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-hip/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 if (NOT EXISTS $ENV{ROCM_PATH})
     if (NOT EXISTS /opt/rocm)
         set(ROCM_PATH /usr)

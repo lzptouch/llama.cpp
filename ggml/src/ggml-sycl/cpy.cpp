@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: cpy.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/cpy.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "cpy.hpp"
 
 #include <float.h>
@@ -8,6 +15,14 @@
 #include "ggml.h"
 
 
+// 函数: cpy_1_f32_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_f32_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_f32_f32(const char * cxi, char * cdsti) {
     const float * xi   = (const float *) cxi;
     float *       dsti = (float *) cdsti;
@@ -15,6 +30,14 @@ static void cpy_1_f32_f32(const char * cxi, char * cdsti) {
     *dsti = *xi;
 }
 
+// 函数: cpy_1_f32_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_f32_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_f32_f16(const char * cxi, char * cdsti) {
     const float * xi   = (const float *) cxi;
     sycl::half *  dsti = (sycl::half *) cdsti;
@@ -22,6 +45,14 @@ static void cpy_1_f32_f16(const char * cxi, char * cdsti) {
     *dsti = sycl::vec<float, 1>(*xi).convert<sycl::half, sycl::rounding_mode::automatic>()[0];
 }
 
+// 函数: cpy_1_f16_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_f16_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_f16_f16(const char * cxi, char * cdsti) {
     const sycl::half * xi   = (const sycl::half *) cxi;
     sycl::half *       dsti = (sycl::half *) cdsti;
@@ -29,6 +60,14 @@ static void cpy_1_f16_f16(const char * cxi, char * cdsti) {
     *dsti = *xi;
 }
 
+// 函数: cpy_1_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_f16_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_f16_f32(const char * cxi, char * cdsti) {
     const sycl::half * xi   = (const sycl::half *) cxi;
     float *            dsti = (float *) cdsti;
@@ -36,6 +75,14 @@ static void cpy_1_f16_f32(const char * cxi, char * cdsti) {
     *dsti = *xi;
 }
 
+// 函数: cpy_1_i16_i16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_i16_i16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_i16_i16(const char * cxi, char * cdsti) {
     const int16_t * xi   = (const int16_t *) cxi;
     int16_t *       dsti = (int16_t *) cdsti;
@@ -43,6 +90,14 @@ static void cpy_1_i16_i16(const char * cxi, char * cdsti) {
     *dsti = *xi;
 }
 
+// 函数: cpy_1_i32_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_1_i32_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_1_i32_i32(const char * cxi, char * cdsti) {
     const int32_t * xi   = (const int32_t *) cxi;
     int32_t *       dsti = (int32_t *) cdsti;
@@ -81,6 +136,14 @@ static void cpy_f32_f16(const char * cx, char * cdst, const int ne, const int ne
 
 /* quantized type same copy */
 template<typename T>
+// 函数: cpy_blck_q_q
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_blck_q_q
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_blck_q_q(const char * cxi, char * cdsti) {
     const T * xi = (const T *) cxi;
     T * dsti = (T *) cdsti;
@@ -88,6 +151,14 @@ static void cpy_blck_q_q(const char * cxi, char * cdsti) {
 }
 
 
+// 函数: cpy_blck_q8_0_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_blck_q8_0_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_blck_q8_0_f32(const char * cxi, char * cdsti) {
     float * cdstf = (float *) (cdsti);
 
@@ -509,6 +580,14 @@ static void ggml_cpy_q4_1_q4_1(const char * cx, char * cdst, const int ne, const
         });
 }
 
+// 函数: ggml_sycl_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_cpy(ggml_backend_sycl_context & ctx, const ggml_tensor * src0, const ggml_tensor * src1) try {
     // Unlike other operators ggml_sycl_cpy takes 2 distinct tensors instead of a dst ggml_tensor and rely on its src field
     scope_op_debug_print scope_dbg_print(__func__, src1, /*num_src=*/0, debug_get_tensor_str("\tsrc0", src0));
@@ -596,6 +675,14 @@ void ggml_sycl_cpy(ggml_backend_sycl_context & ctx, const ggml_tensor * src0, co
     std::exit(1);
 }
 
+// 函数: ggml_sycl_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_dup(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_cpy(ctx, dst->src[0], dst);

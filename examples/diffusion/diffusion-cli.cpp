@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: diffusion-cli.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/diffusion/diffusion-cli.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "chat.h"
 #include "common.h"
@@ -22,12 +29,38 @@ enum transfer_schedule {
     BLOCK_BASED    = 1,  // LLaDA-style: process in blocks with get_num_transfer_tokens
 };
 
+// 函数: bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef bool (*diffusion_step_callback_t)(int32_t             step,
                                           int32_t             total_steps,
                                           const llama_token * tokens,
                                           int32_t             n_tokens,
                                           void *              user_data);
 
+// 类: diffusion_params
+// 描述: diffusion_params类提供相关功能
+// 用途: 用于处理diffusion_params相关的操作
+// 类: diffusion_params
+// 描述: diffusion_params类提供相关功能
+// 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
 struct diffusion_params {
     int32_t                   steps                   = 0;
     float                     temperature             = 0;
@@ -53,6 +86,24 @@ struct diffusion_params {
     int32_t max_length = 0;            // Maximum sequence length
 };
 
+// 类: callback_data
+// 描述: callback_data类提供相关功能
+// 用途: 用于处理callback_data相关的操作
+// 类: callback_data
+// 描述: callback_data类提供相关功能
+// 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
 struct callback_data {
     diffusion_params *  diff_params;
     const llama_vocab * vocab;
@@ -83,6 +134,14 @@ static float calculate_confidence(const llama_token_data_array & cur_p,
         case RANDOM:
             {
                 std::uniform_real_distribution<float> uniform(0.0f, 1.0f);
+                // 函数: uniform
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: uniform
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return uniform(rng);  // Random confidence
             }
 
@@ -175,6 +234,14 @@ static bool diffusion_step_callback(int32_t             step,
     return true;
 }
 
+// 函数: add_gumbel_noise
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add_gumbel_noise
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void add_gumbel_noise(float * logits, int32_t n_vocab, float temperature, std::mt19937 & rng) {
     if (temperature == 0.0f) {
         return;
@@ -220,6 +287,14 @@ static void diffusion_generate(llama_context *          ctx,
     std::copy(input_tokens, input_tokens + n_input, output_tokens);
     std::fill(output_tokens + n_input, output_tokens + params.max_length, params.mask_token_id);
 
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::mt19937 rng(params.seed);
 
     llama_set_causal_attn(ctx, false);
@@ -233,6 +308,24 @@ static void diffusion_generate(llama_context *          ctx,
     mask_positions.reserve(params.max_length);
 
     // Setup sampler chain
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
     struct llama_sampler * sampler = llama_sampler_chain_init(llama_sampler_chain_default_params());
     if (params.top_k > 0) {
         llama_sampler_chain_add(sampler, llama_sampler_init_top_k(params.top_k));
@@ -245,6 +338,24 @@ static void diffusion_generate(llama_context *          ctx,
     }
     llama_sampler_chain_add(sampler, llama_sampler_init_dist(params.seed));
 
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
     struct llama_sampler * dist_sampler = llama_sampler_init_dist(params.seed);
 
     llama_batch batch = llama_batch_init(params.max_length, 0, 1);
@@ -510,6 +621,14 @@ static void diffusion_generate(llama_context *          ctx,
     n_generated = params.max_length;
 }
 
+// 函数: format_input_text
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_input_text
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string format_input_text(const std::string & prompt, const std::string & system_prompt, bool use_chat_template, llama_model * model) {
     if (!use_chat_template) {
         return prompt;
@@ -537,6 +656,14 @@ static std::string format_input_text(const std::string & prompt, const std::stri
     return result.prompt;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     ggml_time_init();
 
@@ -614,6 +741,24 @@ int main(int argc, char ** argv) {
     int32_t                  n_generated = 0;
     std::vector<llama_token> output_tokens(params.n_ubatch);
 
+    // 类: diffusion_params
+    // 描述: diffusion_params类提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 类: diffusion_params
+    // 描述: diffusion_params类提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
+    // 结构体: diffusion_params
+    // 描述: diffusion_params结构体提供相关功能
+    // 用途: 用于处理diffusion_params相关的操作
     struct diffusion_params diff_params;
 
     char shift_logits_str[8];

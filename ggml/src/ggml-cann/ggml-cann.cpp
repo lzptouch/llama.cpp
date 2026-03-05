@@ -75,6 +75,14 @@ thread_local int g_current_cann_device = -1;
  *
  * @param device The target device ID to set.
  */
+// 函数: ggml_cann_set_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_set_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_set_device(const int32_t device) {
     // int current_device = -1;
     // Note: In some CANN versions, if no device has been set yet,
@@ -110,6 +118,14 @@ std::optional<std::string> get_env_as_lowercase(const std::string & name) {
 /**
  * @brief Verify whether the environment variable is a valid value.
  */
+// 函数: parse_bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool parse_bool(const std::string & value) {
     static const std::unordered_set<std::string> valid_values = { "on", "1", "yes", "y", "enable", "true" };
     return valid_values.find(value) != valid_values.end();
@@ -125,6 +141,14 @@ bool parse_bool(const std::string & value) {
  * @param value The string to parse.
  * @return The parsed integer, or 0 if conversion fails.
  */
+// 函数: parse_integer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_integer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int parse_integer(const std::string & value) {
     try {
         return std::stoi(value);
@@ -141,6 +165,14 @@ int parse_integer(const std::string & value) {
  *
  * @return A structure containing the device information.
  */
+// 函数: ggml_cann_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_cann_device_info ggml_cann_init() {
     ggml_cann_device_info info = {};
 
@@ -194,6 +226,24 @@ const ggml_cann_device_info & ggml_cann_info() {
  *
  * This class manages a pool of CANN buffers for a specific device.
  */
+// 类: ggml_cann_pool_buf_prio
+// 描述: ggml_cann_pool_buf_prio类提供相关功能
+// 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
+// 类: ggml_cann_pool_buf_prio
+// 描述: ggml_cann_pool_buf_prio类提供相关功能
+// 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
+    // 结构体: ggml_cann_pool_buf_prio
+    // 描述: ggml_cann_pool_buf_prio结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
+    // 结构体: ggml_cann_pool_buf_prio
+    // 描述: ggml_cann_pool_buf_prio结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
+    // 结构体: ggml_cann_pool_buf_prio
+    // 描述: ggml_cann_pool_buf_prio结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
+    // 结构体: ggml_cann_pool_buf_prio
+    // 描述: ggml_cann_pool_buf_prio结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf_prio相关的操作
 struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
     /**
      * @brief The maximum reuse margin for a buffer.
@@ -223,6 +273,24 @@ struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
     /**
      * @brief Structure representing a CANN buffer.
      */
+    // 类: ggml_cann_buffer
+    // 描述: ggml_cann_buffer类提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 类: ggml_cann_buffer
+    // 描述: ggml_cann_buffer类提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
     struct ggml_cann_buffer {
         void *                                ptr  = nullptr;  ///< Pointer to the buffer.
         size_t                                size = 0;        ///< Size of the buffer.
@@ -247,6 +315,14 @@ struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
      *
      * @param device The device ID to associate with this buffer pool.
      */
+    // 函数: ggml_cann_pool_buf_prio
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_cann_pool_buf_prio
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_cann_pool_buf_prio(int device) : device(device) {
         disable_clean = parse_bool(get_env_as_lowercase("GGML_CANN_DISABLE_BUF_POOL_CLEAN").value_or(""));
     }
@@ -272,6 +348,14 @@ struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
      * the allocated buffer.
      * @return A pointer to the allocated buffer.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size, size_t * actual_size) override {
         size = GGML_PAD(size, alignment);
         if (size == 0) {
@@ -361,6 +445,14 @@ struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
      * @param ptr Pointer to the buffer to free.
      * @param size Size of the buffer to free.
      */
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free(void * ptr, size_t size) override {
         GGML_UNUSED(size);
         auto it = buffer_pool.find(ptr);
@@ -384,6 +476,24 @@ struct ggml_cann_pool_buf_prio : public ggml_cann_pool {
  *
  * This class manages a pool of CANN buffers for a specific device.
  */
+// 类: ggml_cann_pool_buf
+// 描述: ggml_cann_pool_buf类提供相关功能
+// 用途: 用于处理ggml_cann_pool_buf相关的操作
+// 类: ggml_cann_pool_buf
+// 描述: ggml_cann_pool_buf类提供相关功能
+// 用途: 用于处理ggml_cann_pool_buf相关的操作
+    // 结构体: ggml_cann_pool_buf
+    // 描述: ggml_cann_pool_buf结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf相关的操作
+    // 结构体: ggml_cann_pool_buf
+    // 描述: ggml_cann_pool_buf结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf相关的操作
+    // 结构体: ggml_cann_pool_buf
+    // 描述: ggml_cann_pool_buf结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf相关的操作
+    // 结构体: ggml_cann_pool_buf
+    // 描述: ggml_cann_pool_buf结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_buf相关的操作
 struct ggml_cann_pool_buf : public ggml_cann_pool {
     /**
      * @brief The maximum reuse margin for a buffer.
@@ -418,6 +528,24 @@ struct ggml_cann_pool_buf : public ggml_cann_pool {
     /**
      * @brief Structure representing a CANN buffer.
      */
+    // 类: ggml_cann_buffer
+    // 描述: ggml_cann_buffer类提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 类: ggml_cann_buffer
+    // 描述: ggml_cann_buffer类提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
+    // 结构体: ggml_cann_buffer
+    // 描述: ggml_cann_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cann_buffer相关的操作
     struct ggml_cann_buffer {
         void *                                ptr  = nullptr;  ///< Pointer to the buffer memory.
         size_t                                size = 0;        ///< Size of the buffer.
@@ -440,6 +568,14 @@ struct ggml_cann_pool_buf : public ggml_cann_pool {
      *
      * @param device The device ID to associate with this buffer pool.
      */
+    // 函数: ggml_cann_pool_buf
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_cann_pool_buf
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_cann_pool_buf(int device) : device(device) {
         disable_clean = parse_bool(get_env_as_lowercase("GGML_CANN_DISABLE_BUF_POOL_CLEAN").value_or(""));
     }
@@ -467,6 +603,14 @@ struct ggml_cann_pool_buf : public ggml_cann_pool {
      * the allocated buffer.
      * @return A pointer to the allocated buffer.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size, size_t * actual_size) override {
         size = GGML_PAD(size, alignment);
         if (size == 0) {
@@ -559,6 +703,14 @@ struct ggml_cann_pool_buf : public ggml_cann_pool {
      * @param ptr Pointer to the buffer to free.
      * @param size Size of the buffer to free.
      */
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free(void * ptr, size_t size) override {
         GGML_UNUSED(size);
         for (int i = 0; i < MAX_BUFFERS; ++i) {
@@ -586,6 +738,24 @@ struct ggml_cann_pool_buf : public ggml_cann_pool {
  * This class manages a pool of CANN buffers with virtual memory for a specific
  * device.
  */
+// 类: ggml_cann_pool_vmm
+// 描述: ggml_cann_pool_vmm类提供相关功能
+// 用途: 用于处理ggml_cann_pool_vmm相关的操作
+// 类: ggml_cann_pool_vmm
+// 描述: ggml_cann_pool_vmm类提供相关功能
+// 用途: 用于处理ggml_cann_pool_vmm相关的操作
+    // 结构体: ggml_cann_pool_vmm
+    // 描述: ggml_cann_pool_vmm结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_vmm相关的操作
+    // 结构体: ggml_cann_pool_vmm
+    // 描述: ggml_cann_pool_vmm结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_vmm相关的操作
+    // 结构体: ggml_cann_pool_vmm
+    // 描述: ggml_cann_pool_vmm结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_vmm相关的操作
+    // 结构体: ggml_cann_pool_vmm
+    // 描述: ggml_cann_pool_vmm结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_vmm相关的操作
 struct ggml_cann_pool_vmm : public ggml_cann_pool {
     /**
      * @brief The maximum size of the virtual memory pool (32 GB).
@@ -633,6 +803,14 @@ struct ggml_cann_pool_vmm : public ggml_cann_pool {
      *
      * @param device The device ID to associate with this buffer pool.
      */
+    // 函数: ggml_cann_pool_vmm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_cann_pool_vmm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_cann_pool_vmm(int device) : device(device) {
         auto dev    = ggml_cann_info().devices[device];
         granularity = dev.vmm_granularity;
@@ -662,6 +840,14 @@ struct ggml_cann_pool_vmm : public ggml_cann_pool {
      * the allocated buffer.
      * @return A pointer to the allocated buffer.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size, size_t * actual_size) override {
         // round up the allocation size to the alignment to ensure that all
         // allocations are aligned for all data types
@@ -731,6 +917,14 @@ struct ggml_cann_pool_vmm : public ggml_cann_pool {
      * @param ptr Pointer to the buffer to free.
      * @param size Size of the buffer to free.
      */
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free(void * ptr, size_t size) override {
 #ifdef DEBUG_CANN_MALLOC
         GGML_LOG_INFO("cann pool[%d]: freed %llu bytes at %llx\n", device, (unsigned long long) size,
@@ -776,6 +970,24 @@ std::unique_ptr<ggml_cann_pool> ggml_backend_cann_context::new_pool_for_device(i
  * This structure holds information about a CANN buffer, including the device
  * ID, device pointer, and a name derived from GGML_CANN_NAME and the device ID.
  */
+// 类: ggml_backend_cann_buffer_context
+// 描述: ggml_backend_cann_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
+// 类: ggml_backend_cann_buffer_context
+// 描述: ggml_backend_cann_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_context
+    // 描述: ggml_backend_cann_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_context
+    // 描述: ggml_backend_cann_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_context
+    // 描述: ggml_backend_cann_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_context
+    // 描述: ggml_backend_cann_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_context相关的操作
 struct ggml_backend_cann_buffer_context {
     int32_t device;             ///< The device ID associated with this buffer context.
     void *  dev_ptr = nullptr;  ///< Pointer to the device memory allocated for the buffer.
@@ -799,6 +1011,24 @@ struct ggml_backend_cann_buffer_context {
  * @brief Structure representing context information for a specific backend
  * buffer type.
  */
+// 类: ggml_backend_cann_buffer_type_context
+// 描述: ggml_backend_cann_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
+// 类: ggml_backend_cann_buffer_type_context
+// 描述: ggml_backend_cann_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_type_context
+    // 描述: ggml_backend_cann_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_type_context
+    // 描述: ggml_backend_cann_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_type_context
+    // 描述: ggml_backend_cann_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
+    // 结构体: ggml_backend_cann_buffer_type_context
+    // 描述: ggml_backend_cann_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_buffer_type_context相关的操作
 struct ggml_backend_cann_buffer_type_context {
     int32_t     device; /**< Device identifier associated with the buffer context. */
     std::string name;   /**< Name associated with the buffer context. */
@@ -813,6 +1043,14 @@ struct ggml_backend_cann_buffer_type_context {
  * @param buft Pointer to the buffer type context.
  * @return Const pointer to the C-style string containing the name.
  */
+// 函数: ggml_backend_cann_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_buffer_type_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_cann_buffer_type_context * buft_ctx = (ggml_backend_cann_buffer_type_context *) buft->context;
 
@@ -830,6 +1068,14 @@ static const char * ggml_backend_cann_buffer_type_name(ggml_backend_buffer_type_
  * @return bool Returns true if the buffer type is associated with the CANN
  * backend, otherwise false.
  */
+// 函数: ggml_backend_buft_is_cann
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_is_cann
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buft_is_cann(ggml_backend_buffer_type_t buft) {
     return buft->iface.get_name == ggml_backend_cann_buffer_type_name;
 }
@@ -842,6 +1088,14 @@ static bool ggml_backend_buft_is_cann(ggml_backend_buffer_type_t buft) {
  *
  * @param buffer The CANN buffer to free.
  */
+// 函数: ggml_backend_cann_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_cann_buffer_context * ctx = (ggml_backend_cann_buffer_context *) buffer->context;
     delete ctx;
@@ -856,6 +1110,14 @@ static void ggml_backend_cann_buffer_free_buffer(ggml_backend_buffer_t buffer) {
  * @param buffer The CANN buffer whose base pointer is to be retrieved.
  * @return A pointer to the base of the device memory allocated for the buffer.
  */
+// 函数: ggml_backend_cann_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_cann_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_cann_buffer_context * ctx = (ggml_backend_cann_buffer_context *) buffer->context;
     return ctx->dev_ptr;
@@ -874,6 +1136,14 @@ static void * ggml_backend_cann_buffer_get_base(ggml_backend_buffer_t buffer) {
  * @param dst Pointer to the destination buffer where transformed data will be
  * stored.
  */
+// 函数: ggml_backend_cann_transform_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform_q4_0(ggml_tensor * tensor, const void * src, void * dst) {
     int64_t n_elems     = ggml_nelements(tensor);
     int64_t groups      = n_elems / QK4_0;
@@ -921,6 +1191,14 @@ static void ggml_backend_cann_transform_q4_0(ggml_tensor * tensor, const void * 
  * @param dst Pointer to the destination buffer where the Q4.0 formatted data
  * will be stored.
  */
+// 函数: ggml_backend_cann_transform_back_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform_back_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform_back_q4_0(const ggml_tensor * tensor, void * src, void * dst) {
     int64_t n_elems     = ggml_nelements(tensor);
     int64_t groups      = n_elems / QK4_0;
@@ -968,6 +1246,14 @@ static void ggml_backend_cann_transform_back_q4_0(const ggml_tensor * tensor, vo
  * @param dst Pointer to the destination buffer where transformed data will be
  * stored.
  */
+// 函数: ggml_backend_cann_transform_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform_q8_0(ggml_tensor * tensor, const void * src, void * dst) {
     int64_t n_elems     = ggml_nelements(tensor);
     int64_t groups      = n_elems / QK8_0;
@@ -999,6 +1285,14 @@ static void ggml_backend_cann_transform_q8_0(ggml_tensor * tensor, const void * 
  * @param dst Pointer to the destination buffer where the Q8.0 formatted data
  * will be stored.
  */
+// 函数: ggml_backend_cann_transform_back_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform_back_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform_back_q8_0(const ggml_tensor * tensor, const void * src, void * dst) {
     int64_t n_elems     = ggml_nelements(tensor);
     int64_t groups      = n_elems / QK8_0;
@@ -1029,6 +1323,14 @@ static void ggml_backend_cann_transform_back_q8_0(const ggml_tensor * tensor, co
  * @param dst Pointer to the destination buffer where transformed data will be
  * stored.
  */
+// 函数: ggml_backend_cann_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform(ggml_tensor * tensor, const void * src, void * dst) {
     switch (tensor->type) {
         case GGML_TYPE_Q4_0:
@@ -1054,6 +1356,14 @@ static void ggml_backend_cann_transform(ggml_tensor * tensor, const void * src, 
  * @param dst Pointer to the destination buffer where transformed tensor data
  * will be stored.
  */
+// 函数: ggml_backend_cann_transform_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_transform_back
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_transform_back(const ggml_tensor * tensor, void * src, void * dst) {
     switch (tensor->type) {
         case GGML_TYPE_Q4_0:
@@ -1076,6 +1386,14 @@ static void ggml_backend_cann_transform_back(const ggml_tensor * tensor, void * 
  * @param type The tensor type to check.
  * @return true if transformation is needed, false otherwise.
  */
+// 函数: need_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: need_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool need_transform(ggml_type type) {
     switch (type) {
         case GGML_TYPE_Q4_0:
@@ -1123,6 +1441,24 @@ static enum ggml_status ggml_backend_cann_buffer_init_tensor(ggml_backend_buffer
  * allocation, reallocation, and clearing of cached memory. The struct is
  * designed to be used with a global array, one per device.
  */
+// 类: ggml_cann_nz_workspace
+// 描述: ggml_cann_nz_workspace类提供相关功能
+// 用途: 用于处理ggml_cann_nz_workspace相关的操作
+// 类: ggml_cann_nz_workspace
+// 描述: ggml_cann_nz_workspace类提供相关功能
+// 用途: 用于处理ggml_cann_nz_workspace相关的操作
+    // 结构体: ggml_cann_nz_workspace
+    // 描述: ggml_cann_nz_workspace结构体提供相关功能
+    // 用途: 用于处理ggml_cann_nz_workspace相关的操作
+    // 结构体: ggml_cann_nz_workspace
+    // 描述: ggml_cann_nz_workspace结构体提供相关功能
+    // 用途: 用于处理ggml_cann_nz_workspace相关的操作
+    // 结构体: ggml_cann_nz_workspace
+    // 描述: ggml_cann_nz_workspace结构体提供相关功能
+    // 用途: 用于处理ggml_cann_nz_workspace相关的操作
+    // 结构体: ggml_cann_nz_workspace
+    // 描述: ggml_cann_nz_workspace结构体提供相关功能
+    // 用途: 用于处理ggml_cann_nz_workspace相关的操作
 struct ggml_cann_nz_workspace {
     void * ptr;        // Pointer to allocated device buffer
     size_t allocated;  // Size of currently allocated buffer in bytes
@@ -1138,6 +1474,14 @@ struct ggml_cann_nz_workspace {
      * If a buffer has been allocated, this function releases it using
      * aclrtFree and resets internal state.
      */
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear() {
         if (ptr) {
             ACL_CHECK(aclrtFree(ptr));
@@ -1155,6 +1499,14 @@ struct ggml_cann_nz_workspace {
      *
      * @param new_size Size in bytes to allocate for the workspace.
      */
+    // 函数: realloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: realloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void realloc(size_t new_size) {
         if (new_size > allocated) {
             clear();
@@ -1168,6 +1520,14 @@ struct ggml_cann_nz_workspace {
      *
      * @return Pointer to the allocated buffer, or nullptr if not allocated.
      */
+    // 函数: get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void * get() const { return ptr; }
 };
 
@@ -1190,6 +1550,14 @@ static ggml_cann_nz_workspace g_nz_workspaces[GGML_CANN_MAX_DEVICES];
  * @note The workspace buffer used in this function is managed globally and reused
  *       across calls. This reduces overhead from repeated memory allocation and deallocation.
  */
+// 函数: weight_format_to_nz
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: weight_format_to_nz
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void weight_format_to_nz(ggml_tensor * tensor, size_t offset, int device) {
     acl_tensor_ptr weightTransposed = ggml_cann_create_tensor(tensor, tensor->ne, tensor->nb, 2, ACL_FORMAT_ND, offset);
     uint64_t       workspaceSize    = 0;
@@ -1335,6 +1703,14 @@ static bool ggml_backend_cann_buffer_cpy_tensor(ggml_backend_buffer_t buffer,
  * @param buffer The CANN buffer to be cleared.
  * @param value The value to which each byte in the buffer will be set.
  */
+// 函数: ggml_backend_cann_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_backend_cann_buffer_context * ctx = (ggml_backend_cann_buffer_context *) buffer->context;
 
@@ -1370,6 +1746,14 @@ static const ggml_backend_buffer_i ggml_backend_cann_buffer_interface = {
  * @param size Size in bytes of the buffer to allocate.
  * @return Pointer to the allocated buffer, or nullptr if allocation fails.
  */
+// 函数: ggml_backend_cann_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_cann_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     ggml_backend_cann_buffer_type_context * buft_ctx = (ggml_backend_cann_buffer_type_context *) buft->context;
 
@@ -1405,6 +1789,14 @@ static ggml_backend_buffer_t ggml_backend_cann_buffer_type_alloc_buffer(ggml_bac
  * @return The alignment requirement in bytes (fixed at 128 bytes for CANN
  * buffers).
  */
+// 函数: ggml_backend_cann_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cann_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return 128;
 
@@ -1461,6 +1853,14 @@ static size_t ggml_backend_cann_buffer_type_get_alloc_size(ggml_backend_buffer_t
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cann_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cann_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 
@@ -1492,6 +1892,14 @@ static const ggml_backend_buffer_type_i ggml_backend_cann_buffer_type_interface 
  * @return A pointer to the buffer type interface for the specified device, or
  * nullptr if the device index is out of range.
  */
+// 函数: ggml_backend_cann_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cann_buffer_type(int32_t device) {
     static std::mutex           mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -1528,6 +1936,14 @@ ggml_backend_buffer_type_t ggml_backend_cann_buffer_type(int32_t device) {
  * @param buft Pointer to the host buffer type context.
  * @return Const pointer to the C-style string containing the name.
  */
+// 函数: ggml_backend_cann_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_host_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_host_buffer_type_name(ggml_backend_buffer_type_t buft) {
     return "CANN_Host";
 
@@ -1543,6 +1959,14 @@ static const char * ggml_backend_cann_host_buffer_type_name(ggml_backend_buffer_
  * @param buft Pointer to the host buffer context.
  * @return Const pointer to the C-style string containing the name.
  */
+// 函数: ggml_backend_cann_host_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_host_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_host_buffer_name(ggml_backend_buffer_t buffer) {
     return "CANN_Host";
 
@@ -1557,6 +1981,14 @@ static const char * ggml_backend_cann_host_buffer_name(ggml_backend_buffer_t buf
  *
  * @param buffer The CANN host buffer to free.
  */
+// 函数: ggml_backend_cann_host_buffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_host_buffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_host_buffer_free(ggml_backend_buffer_t buffer) {
     ACL_CHECK(aclrtFreeHost(buffer->context));
 }
@@ -1568,6 +2000,14 @@ static void ggml_backend_cann_host_buffer_free(ggml_backend_buffer_t buffer) {
  * @param size Size in bytes of the host buffer to allocate.
  * @return Pointer to the allocated host buffer, or nullptr if allocation fails.
  */
+// 函数: ggml_cann_host_malloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_host_malloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_cann_host_malloc(size_t size) {
     if (getenv("GGML_CANN_NO_PINNED") != nullptr) {
         return nullptr;
@@ -1602,6 +2042,14 @@ static ggml_backend_buffer_t ggml_backend_cann_host_buffer_type_alloc_buffer(ggm
 
     if (hostPtr == nullptr) {
         // fallback to cpu buffer
+        // 函数: ggml_backend_buft_alloc_buffer
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_backend_buft_alloc_buffer
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_backend_buft_alloc_buffer(ggml_backend_cpu_buffer_type(), size);
     }
 
@@ -1618,6 +2066,14 @@ static ggml_backend_buffer_t ggml_backend_cann_host_buffer_type_alloc_buffer(ggm
  * Provides function pointers for allocating, querying properties, and managing
  * memory for CANN buffer types in the GGML backend.
  */
+// 函数: ggml_backend_cann_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cann_host_buffer_type() {
     static struct ggml_backend_buffer_type ggml_backend_cann_buffer_type_host = {
         /* .iface    = */ {
@@ -1649,6 +2105,14 @@ ggml_backend_buffer_type_t ggml_backend_cann_host_buffer_type() {
  * stored.
  * @return true if the computation was successful; false otherwise.
  */
+// 函数: ggml_cann_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_cann_compute_forward(ggml_backend_cann_context & ctx, struct ggml_tensor * dst) {
     switch (dst->op) {
         case GGML_OP_REPEAT:
@@ -1901,6 +2365,14 @@ static bool ggml_cann_compute_forward(ggml_backend_cann_context & ctx, struct gg
  * @param backend Pointer to the CANN backend structure.
  * @return A pointer to a constant string representing the backend name.
  */
+// 函数: ggml_backend_cann_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_name(ggml_backend_t backend) {
     ggml_backend_cann_context * cann_ctx = (ggml_backend_cann_context *) backend->context;
 
@@ -1915,6 +2387,14 @@ static const char * ggml_backend_cann_name(ggml_backend_t backend) {
  *
  * @param backend Pointer to the CANN backend structure to be freed.
  */
+// 函数: ggml_backend_cann_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_free(ggml_backend_t backend) {
     ggml_backend_cann_context * cann_ctx = (ggml_backend_cann_context *) backend->context;
     ACL_CHECK(aclrtSynchronizeDevice());
@@ -2064,6 +2544,14 @@ static bool ggml_backend_cann_cpy_tensor_async(ggml_backend_t      backend_src,
  *
  * @param backend Pointer to the CANN backend structure to synchronize.
  */
+// 函数: ggml_backend_cann_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_synchronize(ggml_backend_t backend) {
     ggml_backend_cann_context * cann_ctx = (ggml_backend_cann_context *) backend->context;
     ggml_cann_set_device(cann_ctx->device);
@@ -2245,6 +2733,14 @@ static enum ggml_status ggml_backend_cann_graph_compute(ggml_backend_t backend, 
  * @return bool Returns true if the operation is supported by the backend,
  *              otherwise false.
  */
+// 函数: ggml_backend_cann_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cann_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     switch (op->op) {
         case GGML_OP_UNARY:
@@ -2531,6 +3027,14 @@ static bool ggml_backend_cann_supports_op(ggml_backend_dev_t dev, const ggml_ten
  *
  * @param event Pointer to the event structure to be recorded.
  */
+// 函数: ggml_backend_cann_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_event_record(ggml_backend_t backend, ggml_backend_event_t event) {
     ggml_backend_cann_context * cann_ctx = (ggml_backend_cann_context *) backend->context;
     ACL_CHECK(aclrtRecordEvent((aclrtEvent) event->context, cann_ctx->stream()));
@@ -2546,6 +3050,14 @@ static void ggml_backend_cann_event_record(ggml_backend_t backend, ggml_backend_
  * @param event Pointer to the event structure that the backend needs to wait
  * for.
  */
+// 函数: ggml_backend_cann_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_event_wait(ggml_backend_t backend, ggml_backend_event_t event) {
     ggml_backend_cann_context * cann_ctx = (ggml_backend_cann_context *) backend->context;
     if (ggml_backend_is_cann(backend)) {
@@ -2587,6 +3099,14 @@ static const ggml_backend_i ggml_backend_cann_interface = {
  *
  * @return A pointer to the static GUID.
  */
+// 函数: ggml_backend_cann_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_cann_guid() {
     static ggml_guid guid = { 0xa1, 0x94, 0xaf, 0xac, 0xbd, 0x4f, 0x47, 0x34,
                               0xbe, 0x1a, 0x9e, 0x71, 0x1f, 0x9e, 0xed, 0x64 };
@@ -2594,6 +3114,24 @@ static ggml_guid_t ggml_backend_cann_guid() {
 }
 
 // backend device
+// 类: ggml_backend_cann_device_context
+// 描述: ggml_backend_cann_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_device_context相关的操作
+// 类: ggml_backend_cann_device_context
+// 描述: ggml_backend_cann_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_device_context相关的操作
+    // 结构体: ggml_backend_cann_device_context
+    // 描述: ggml_backend_cann_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_device_context相关的操作
+    // 结构体: ggml_backend_cann_device_context
+    // 描述: ggml_backend_cann_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_device_context相关的操作
+    // 结构体: ggml_backend_cann_device_context
+    // 描述: ggml_backend_cann_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_device_context相关的操作
+    // 结构体: ggml_backend_cann_device_context
+    // 描述: ggml_backend_cann_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_device_context相关的操作
 struct ggml_backend_cann_device_context {
     int         device;
     std::string name;
@@ -2601,16 +3139,40 @@ struct ggml_backend_cann_device_context {
     int op_offload_min_batch_size;
 };
 
+// 函数: ggml_backend_cann_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_device_get_name(ggml_backend_dev_t dev) {
     ggml_backend_cann_device_context * ctx = (ggml_backend_cann_device_context *) dev->context;
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_cann_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_cann_device_context * ctx = (ggml_backend_cann_device_context *) dev->context;
     return ctx->description.c_str();
 }
 
+// 函数: ggml_backend_cann_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     ggml_backend_cann_device_context * ctx = (ggml_backend_cann_device_context *) dev->context;
     ggml_backend_cann_get_device_memory(ctx->device, free, total);
@@ -2621,6 +3183,14 @@ static enum ggml_backend_dev_type ggml_backend_cann_device_get_type(ggml_backend
     return GGML_BACKEND_DEVICE_TYPE_GPU;
 }
 
+// 函数: ggml_backend_cann_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_device_get_props(ggml_backend_dev_t dev, ggml_backend_dev_props * props) {
     props->name        = ggml_backend_cann_device_get_name(dev);
     props->description = ggml_backend_cann_device_get_description(dev);
@@ -2637,6 +3207,14 @@ static void ggml_backend_cann_device_get_props(ggml_backend_dev_t dev, ggml_back
     };
 }
 
+// 函数: ggml_backend_cann_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_cann_device_init(ggml_backend_dev_t dev, const char * params) {
     GGML_UNUSED(params);
     ggml_backend_cann_device_context * ctx = (ggml_backend_cann_device_context *) dev->context;
@@ -2656,6 +3234,14 @@ static ggml_backend_t ggml_backend_cann_device_init(ggml_backend_dev_t dev, cons
  * @return bool Returns true if the CANN backend supports the buffer type,
  *              otherwise false.
  */
+// 函数: ggml_backend_cann_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cann_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     if (ggml_backend_buft_is_cann(buft)) {
         ggml_backend_cann_device_context *      dev_ctx  = (ggml_backend_cann_device_context *) dev->context;
@@ -2665,11 +3251,27 @@ static bool ggml_backend_cann_supports_buft(ggml_backend_dev_t dev, ggml_backend
     return false;
 }
 
+// 函数: ggml_backend_cann_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_cann_device_get_buffer_type(ggml_backend_dev_t dev) {
     ggml_backend_cann_device_context * ctx = (ggml_backend_cann_device_context *) dev->context;
     return ggml_backend_cann_buffer_type(ctx->device);
 }
 
+// 函数: ggml_backend_cann_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_get_host_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_cann_device_get_host_buffer_type(ggml_backend_dev_t dev) {
     GGML_UNUSED(dev);
     return ggml_backend_cann_host_buffer_type();
@@ -2689,6 +3291,14 @@ static ggml_backend_buffer_type_t ggml_backend_cann_device_get_host_buffer_type(
  * @return bool Returns true if the operation should be offloaded, otherwise
  * false.
  */
+// 函数: ggml_backend_cann_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cann_offload_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_backend_cann_device_context * dev_ctx = (ggml_backend_cann_device_context *)dev->context;
 
@@ -2705,6 +3315,14 @@ static bool ggml_backend_cann_offload_op(ggml_backend_dev_t dev, const ggml_tens
  * @param backend Pointer to the CANN backend.
  * @return ggml_backend_event_t Returns a pointer to the new event structure.
  */
+// 函数: ggml_backend_cann_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_event_t ggml_backend_cann_device_event_new(ggml_backend_dev_t dev) {
     ggml_backend_cann_device_context * dev_ctx = (ggml_backend_cann_device_context *) dev->context;
 
@@ -2727,6 +3345,14 @@ static ggml_backend_event_t ggml_backend_cann_device_event_new(ggml_backend_dev_
  *
  * @param event Pointer to the event structure to be freed.
  */
+// 函数: ggml_backend_cann_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_device_event_free(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     ACL_CHECK(aclrtDestroyEvent((aclrtEvent) event->context));
 
@@ -2741,6 +3367,14 @@ static void ggml_backend_cann_device_event_free(ggml_backend_dev_t dev, ggml_bac
  *
  * @param event Pointer to the event structure to be synchronized.
  */
+// 函数: ggml_backend_cann_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cann_device_event_synchronize(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     ACL_CHECK(aclrtSynchronizeEvent((aclrtEvent) event->context));
 
@@ -2766,26 +3400,76 @@ static const ggml_backend_device_i ggml_backend_cann_device_interface = {
 };
 
 // backend reg
+// 类: ggml_backend_cann_reg_context
+// 描述: ggml_backend_cann_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_reg_context相关的操作
+// 类: ggml_backend_cann_reg_context
+// 描述: ggml_backend_cann_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_reg_context相关的操作
+    // 结构体: ggml_backend_cann_reg_context
+    // 描述: ggml_backend_cann_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_reg_context相关的操作
+    // 结构体: ggml_backend_cann_reg_context
+    // 描述: ggml_backend_cann_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_reg_context相关的操作
+    // 结构体: ggml_backend_cann_reg_context
+    // 描述: ggml_backend_cann_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_reg_context相关的操作
+    // 结构体: ggml_backend_cann_reg_context
+    // 描述: ggml_backend_cann_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_reg_context相关的操作
 struct ggml_backend_cann_reg_context {
     std::vector<ggml_backend_dev_t> devices;
 };
 
+// 函数: ggml_backend_cann_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cann_reg_get_name(ggml_backend_reg_t reg) {
     GGML_UNUSED(reg);
     return GGML_CANN_NAME;
 }
 
+// 函数: ggml_backend_cann_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cann_reg_get_device_count(ggml_backend_reg_t reg) {
     ggml_backend_cann_reg_context * ctx = (ggml_backend_cann_reg_context *) reg->context;
     return ctx->devices.size();
 }
 
+// 函数: ggml_backend_cann_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_cann_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     ggml_backend_cann_reg_context * ctx = (ggml_backend_cann_reg_context *) reg->context;
     GGML_ASSERT(index < ctx->devices.size());
     return ctx->devices[index];
 }
 
+// 函数: ggml_backend_cann_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_cann_reg_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     GGML_UNUSED(reg);
     GGML_UNUSED(name);
@@ -2801,6 +3485,14 @@ static const ggml_backend_reg_i ggml_backend_cann_reg_interface = {
 };
 
 // backend registry, called only once for cann backend
+// 函数: ggml_backend_cann_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_cann_reg() {
     static ggml_backend_reg reg;
     static bool             initialized = false;
@@ -2837,6 +3529,14 @@ ggml_backend_reg_t ggml_backend_cann_reg() {
     return &reg;
 }
 
+// 函数: ggml_backend_cann_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_cann_init(int32_t device) {
     aclInit(nullptr);
     if (device < 0 || device >= ggml_backend_cann_get_device_count()) {
@@ -2859,20 +3559,52 @@ ggml_backend_t ggml_backend_cann_init(int32_t device) {
     return cann_backend;
 }
 
+// 函数: ggml_backend_is_cann
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_cann
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_cann(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_cann_guid());
 }
 
+// 函数: ggml_backend_cann_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t ggml_backend_cann_get_device_count() {
     return ggml_cann_info().device_count;
 }
 
+// 函数: ggml_backend_cann_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_get_device_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cann_get_device_description(int32_t device, char * description, size_t description_size) {
     ggml_cann_set_device(device);
     const char * soc_name = aclrtGetSocName();
     snprintf(description, description_size, "%s", soc_name);
 }
 
+// 函数: ggml_backend_cann_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cann_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_cann_get_device_memory(int32_t device, size_t * free, size_t * total) {
     ggml_cann_set_device(device);
     ACL_CHECK(aclrtGetMemInfo(ACL_HBM_MEM, free, total));

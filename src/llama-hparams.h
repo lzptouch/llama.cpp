@@ -23,16 +23,70 @@ enum llama_swa_type {
     LLAMA_SWA_TYPE_SYMMETRIC = 3,
 };
 
+// 类: llama_hparams_posnet
+// 描述: llama_hparams_posnet类提供相关功能
+// 用途: 用于处理llama_hparams_posnet相关的操作
+// 类: llama_hparams_posnet
+// 描述: llama_hparams_posnet类提供相关功能
+// 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
 struct llama_hparams_posnet {
     uint32_t n_embd;
     uint32_t n_layer;
 };
 
+// 类: llama_hparams_convnext
+// 描述: llama_hparams_convnext类提供相关功能
+// 用途: 用于处理llama_hparams_convnext相关的操作
+// 类: llama_hparams_convnext
+// 描述: llama_hparams_convnext类提供相关功能
+// 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
 struct llama_hparams_convnext {
     uint32_t n_embd;
     uint32_t n_layer;
 };
 
+// 类: llama_hparams
+// 描述: llama_hparams类提供相关功能
+// 用途: 用于处理llama_hparams相关的操作
+// 类: llama_hparams
+// 描述: llama_hparams类提供相关功能
+// 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
 struct llama_hparams {
     bool vocab_only;
     bool no_alloc;
@@ -56,7 +110,43 @@ struct llama_hparams {
     uint32_t n_embd_head_v_mla_impl = 0;
 
     // for WavTokenizer
+    // 类: llama_hparams_posnet
+    // 描述: llama_hparams_posnet类提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 类: llama_hparams_posnet
+    // 描述: llama_hparams_posnet类提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
+    // 结构体: llama_hparams_posnet
+    // 描述: llama_hparams_posnet结构体提供相关功能
+    // 用途: 用于处理llama_hparams_posnet相关的操作
     struct llama_hparams_posnet   posnet;
+    // 类: llama_hparams_convnext
+    // 描述: llama_hparams_convnext类提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 类: llama_hparams_convnext
+    // 描述: llama_hparams_convnext类提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
+    // 结构体: llama_hparams_convnext
+    // 描述: llama_hparams_convnext结构体提供相关功能
+    // 用途: 用于处理llama_hparams_convnext相关的操作
     struct llama_hparams_convnext convnext;
 
     uint32_t n_shortconv_l_cache  = 0;
@@ -234,68 +324,268 @@ struct llama_hparams {
     //   il == 2: dense
     //   il == 3: swa
     //   etc ...
+    // 函数: set_swa_pattern
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_swa_pattern
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_swa_pattern(uint32_t n_pattern, bool dense_first = false);
 
     // return true if one of the layers is SWA
+    // 函数: is_swa_any
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_swa_any
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_swa_any() const;
 
+    // 函数: n_head
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_head
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_head(uint32_t il = 0) const;
 
+    // 函数: n_head_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_head_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_head_kv(uint32_t il = 0) const;
 
+    // 函数: n_ff
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_ff
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_ff(uint32_t il = 0) const;
 
+    // 函数: n_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_gqa(uint32_t il = 0) const;
 
     // dimension of main + auxiliary input embeddings
+    // 函数: n_embd_inp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_inp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_inp() const;
 
     // dimension of output embeddings
+    // 函数: n_embd_out
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_out
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_out() const;
 
     // dimension of key embeddings across all k-v heads
+    // 函数: n_embd_k_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_k_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_k_gqa(uint32_t il = 0) const;
 
     // dimension of value embeddings across all k-v heads
+    // 函数: n_embd_v_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_v_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_v_gqa(uint32_t il = 0) const;
 
     // true if any layer has a different n_embd_k_gqa/n_embd_v_gqa
+    // 函数: is_n_embd_k_gqa_variable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_n_embd_k_gqa_variable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_n_embd_k_gqa_variable() const;
+    // 函数: is_n_embd_v_gqa_variable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_n_embd_v_gqa_variable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_n_embd_v_gqa_variable() const;
 
     // return the maximum n_embd_k_gqa/n_embd_v_gqa across all layers
+    // 函数: n_embd_k_gqa_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_k_gqa_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_k_gqa_max() const;
+    // 函数: n_embd_v_gqa_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_v_gqa_max
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_v_gqa_max() const;
 
     // dimension of the rolling state embeddings
     // corresponds to Mamba's conv_states size or RWKV's token_shift states size
+    // 函数: n_embd_r
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_r
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_r() const;
 
     // dimension of the recurrent state embeddings
+    // 函数: n_embd_s
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_s
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_s() const;
 
     // whether or not the given layer is recurrent (for hybrid models)
+    // 函数: is_recurrent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_recurrent
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_recurrent(uint32_t il) const;
 
+    // 函数: n_pos_per_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_pos_per_embd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_pos_per_embd() const;
 
+    // 函数: is_swa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_swa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_swa(uint32_t il) const;
 
     // note: currently only support if either all or none of the layers are MLA
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_mla() const;
 
+    // 函数: n_embd_head_k_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_head_k_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_head_k_mla() const;
+    // 函数: n_embd_head_v_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_head_v_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_head_v_mla() const;
 
+    // 函数: has_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_kv(uint32_t il) const;
 
     // number of layers for which has_kv() returns true
+    // 函数: n_layer_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_layer_kv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_layer_kv() const;
 
     // note that this function uses different SWA parameters from those in the hparams
     // note: inlined on purpose for performance reasons
     // TODO: think of a better place for this function
     // TODO: pack the SWA params in a struct?
+    // 函数: is_masked_swa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_masked_swa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_masked_swa(uint32_t n_swa, llama_swa_type swa_type, llama_pos p0, llama_pos p1) {
         assert(p0 >= 0 && p1 >= 0);
 
@@ -333,6 +623,14 @@ struct llama_hparams {
     }
 
 
+    // 函数: use_mrope
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: use_mrope
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool use_mrope() const;
 };
 

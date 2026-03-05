@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-alloc.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-alloc.c
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-alloc.h"
 #include "ggml-backend-impl.h"
 #include "ggml.h"
@@ -18,6 +25,14 @@
 #define AT_PRINTF(...)
 
 // ops that return true for this function must not use restrict pointers for their backend implementations
+// 函数: ggml_op_can_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_op_can_inplace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_op_can_inplace(enum ggml_op op) {
     switch (op) {
         case GGML_OP_FILL:
@@ -48,6 +63,14 @@ bool ggml_op_can_inplace(enum ggml_op op) {
     }
 }
 
+// 函数: aligned_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: aligned_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t aligned_offset(const void * buffer, size_t offset, size_t alignment) {
     assert(alignment && !(alignment & (alignment - 1))); // power of 2
     size_t align = (alignment - (((uintptr_t)buffer + offset) % alignment)) % alignment;
@@ -56,12 +79,48 @@ static size_t aligned_offset(const void * buffer, size_t offset, size_t alignmen
 
 // tallocr
 
+// 类: ggml_tallocr
+// 描述: ggml_tallocr类提供相关功能
+// 用途: 用于处理ggml_tallocr相关的操作
+// 类: ggml_tallocr
+// 描述: ggml_tallocr类提供相关功能
+// 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
 struct ggml_tallocr ggml_tallocr_new(ggml_backend_buffer_t buffer) {
     void * base = ggml_backend_buffer_get_base(buffer);
     size_t align = ggml_backend_buffer_get_alignment(buffer);
 
     assert(align && !(align & (align - 1))); // power of 2
 
+    // 类: ggml_tallocr
+    // 描述: ggml_tallocr类提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 类: ggml_tallocr
+    // 描述: ggml_tallocr类提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
     struct ggml_tallocr talloc = (struct ggml_tallocr) {
         /*.buffer    = */ buffer,
         /*.base      = */ base,
@@ -86,6 +145,14 @@ enum ggml_status ggml_tallocr_alloc(struct ggml_tallocr * talloc, struct ggml_te
 
     assert(((uintptr_t)addr % talloc->alignment) == 0);
 
+    // 函数: ggml_backend_tensor_alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_tensor_alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_tensor_alloc(talloc->buffer, tensor, addr);
 }
 
@@ -94,6 +161,24 @@ enum ggml_status ggml_tallocr_alloc(struct ggml_tallocr * talloc, struct ggml_te
 #define GGML_VBUFFER_MAX_CHUNKS 16
 
 // relative memory address within an allocation that can be split into multiple buffers (chunks)
+// 类: buffer_address
+// 描述: buffer_address类提供相关功能
+// 用途: 用于处理buffer_address相关的操作
+// 类: buffer_address
+// 描述: buffer_address类提供相关功能
+// 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
 struct buffer_address {
     int chunk;     // index of a backend buffer
     size_t offset; // local memory offset within the buffer
@@ -101,35 +186,159 @@ struct buffer_address {
 
 static const struct buffer_address GGML_BUFFER_ADDRESS_INVALID = { -1, SIZE_MAX };
 
+// 函数: ggml_buffer_address_less
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_buffer_address_less
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_buffer_address_less(struct buffer_address a, struct buffer_address b) {
     return a.chunk != b.chunk ? a.chunk < b.chunk : a.offset < b.offset;
 }
 
+// 类: free_block
+// 描述: free_block类提供相关功能
+// 用途: 用于处理free_block相关的操作
+// 类: free_block
+// 描述: free_block类提供相关功能
+// 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
 struct free_block {
     size_t offset;
     size_t size;
 };
 
+// 类: tallocr_chunk
+// 描述: tallocr_chunk类提供相关功能
+// 用途: 用于处理tallocr_chunk相关的操作
+// 类: tallocr_chunk
+// 描述: tallocr_chunk类提供相关功能
+// 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
 struct tallocr_chunk {
+    // 类: free_block
+    // 描述: free_block类提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 类: free_block
+    // 描述: free_block类提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
     struct free_block free_blocks[MAX_FREE_BLOCKS];
     int n_free_blocks;
     size_t max_size;
 };
 
+// 类: ggml_dyn_tallocr
+// 描述: ggml_dyn_tallocr类提供相关功能
+// 用途: 用于处理ggml_dyn_tallocr相关的操作
+// 类: ggml_dyn_tallocr
+// 描述: ggml_dyn_tallocr类提供相关功能
+// 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
 struct ggml_dyn_tallocr {
     size_t alignment;
     size_t max_chunk_size;
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
     struct tallocr_chunk * chunks[GGML_VBUFFER_MAX_CHUNKS];
     int n_chunks;
 
 #ifdef GGML_ALLOCATOR_DEBUG
     struct {
         const struct ggml_tensor * tensor;
+        // 类: buffer_address
+        // 描述: buffer_address类提供相关功能
+        // 用途: 用于处理buffer_address相关的操作
+        // 类: buffer_address
+        // 描述: buffer_address类提供相关功能
+        // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
         struct buffer_address addr;
     } allocated_tensors[1024];
 #endif
 };
 
+// 函数: ggml_dyn_tallocr_insert_block
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_insert_block
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_dyn_tallocr_insert_block(struct tallocr_chunk * chunk, size_t offset, size_t size) {
     GGML_ASSERT(chunk->n_free_blocks < MAX_FREE_BLOCKS && "out of free blocks");
     // insert the new block in the correct position to keep the array sorted by address (to make merging blocks faster)
@@ -147,6 +356,14 @@ static void ggml_dyn_tallocr_insert_block(struct tallocr_chunk * chunk, size_t o
     chunk->n_free_blocks++;
 }
 
+// 函数: ggml_dyn_tallocr_remove_block
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_remove_block
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_dyn_tallocr_remove_block(struct tallocr_chunk * chunk, int idx) {
     // shift all elements after idx by 1 to the left, overwriting the element at idx
     for (int i = idx; i < chunk->n_free_blocks; i++) {
@@ -155,10 +372,36 @@ static void ggml_dyn_tallocr_remove_block(struct tallocr_chunk * chunk, int idx)
     chunk->n_free_blocks--;
 }
 
+// 函数: ggml_dyn_tallocr_new_chunk
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_new_chunk
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_dyn_tallocr_new_chunk(struct ggml_dyn_tallocr * alloc, size_t min_size) {
     if (alloc->n_chunks >= GGML_VBUFFER_MAX_CHUNKS) {
         return -1;
     }
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
     struct tallocr_chunk * chunk = calloc(1, sizeof(struct tallocr_chunk));
     chunk->n_free_blocks = 1;
     chunk->free_blocks[0].offset = 0;
@@ -176,6 +419,14 @@ static int ggml_dyn_tallocr_new_chunk(struct ggml_dyn_tallocr * alloc, size_t mi
 }
 
 #ifdef GGML_ALLOCATOR_DEBUG
+// 函数: add_allocated_tensor
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add_allocated_tensor
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void add_allocated_tensor(struct ggml_dyn_tallocr * alloc, struct buffer_address addr, const struct ggml_tensor * tensor) {
     for (int i = 0; i < 1024; i++) {
         if (alloc->allocated_tensors[i].tensor == NULL) {
@@ -186,6 +437,14 @@ static void add_allocated_tensor(struct ggml_dyn_tallocr * alloc, struct buffer_
     }
     GGML_ABORT("out of allocated_tensors");
 }
+// 函数: remove_allocated_tensor
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remove_allocated_tensor
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void remove_allocated_tensor(struct ggml_dyn_tallocr * alloc, struct buffer_address addr, const struct ggml_tensor * tensor) {
     for (int i = 0; i < 1024; i++) {
         if (alloc->allocated_tensors[i].addr.chunk == addr.chunk && alloc->allocated_tensors[i].addr.offset == addr.offset) {
@@ -208,9 +467,45 @@ static struct buffer_address ggml_dyn_tallocr_alloc(struct ggml_dyn_tallocr * al
 
     // find the best fitting free block besides the last block, within any chunk
     for (int c = 0; c < alloc->n_chunks; ++c) {
+        // 类: tallocr_chunk
+        // 描述: tallocr_chunk类提供相关功能
+        // 用途: 用于处理tallocr_chunk相关的操作
+        // 类: tallocr_chunk
+        // 描述: tallocr_chunk类提供相关功能
+        // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
         struct tallocr_chunk * chunk = alloc->chunks[c];
         size_t best_fit_size = SIZE_MAX;
         for (int i = 0; i < chunk->n_free_blocks - 1; i++) {
+            // 类: free_block
+            // 描述: free_block类提供相关功能
+            // 用途: 用于处理free_block相关的操作
+            // 类: free_block
+            // 描述: free_block类提供相关功能
+            // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
             struct free_block * block = &chunk->free_blocks[i];
             max_avail = MAX(max_avail, block->size);
             if (block->size >= size && block->size <= best_fit_size) {
@@ -225,8 +520,44 @@ static struct buffer_address ggml_dyn_tallocr_alloc(struct ggml_dyn_tallocr * al
         // no suitable block found, try the last block (this may grow a chunks size)
         int64_t best_reuse = INT64_MIN;
         for (int c = 0; c < alloc->n_chunks; ++c) {
+            // 类: tallocr_chunk
+            // 描述: tallocr_chunk类提供相关功能
+            // 用途: 用于处理tallocr_chunk相关的操作
+            // 类: tallocr_chunk
+            // 描述: tallocr_chunk类提供相关功能
+            // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
             struct tallocr_chunk * chunk = alloc->chunks[c];
             if (chunk->n_free_blocks > 0) {
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
                 struct free_block * block = &chunk->free_blocks[chunk->n_free_blocks - 1];
                 max_avail = MAX(max_avail, block->size);
                 int64_t reuse_factor = chunk->max_size - block->offset - size;
@@ -256,8 +587,62 @@ static struct buffer_address ggml_dyn_tallocr_alloc(struct ggml_dyn_tallocr * al
         GGML_ABORT("graph allocation: failed to reserve memory");
     }
 
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
     struct tallocr_chunk * chunk = alloc->chunks[best_fit_chunk];
+    // 类: free_block
+    // 描述: free_block类提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 类: free_block
+    // 描述: free_block类提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
     struct free_block    * block = &chunk->free_blocks[best_fit_block];
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
     struct buffer_address  addr  = {.chunk = best_fit_chunk, .offset = block->offset };
     block->offset += size;
     block->size -= size;
@@ -277,6 +662,24 @@ static struct buffer_address ggml_dyn_tallocr_alloc(struct ggml_dyn_tallocr * al
             for (int j = i + 1; j < 1024; j++) {
                 if (ggml_buffer_address_less(alloc->allocated_tensors[j].addr, alloc->allocated_tensors[i].addr)) {
                     const struct ggml_tensor * tmp_tensor = alloc->allocated_tensors[i].tensor;
+                    // 类: buffer_address
+                    // 描述: buffer_address类提供相关功能
+                    // 用途: 用于处理buffer_address相关的操作
+                    // 类: buffer_address
+                    // 描述: buffer_address类提供相关功能
+                    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
                     struct buffer_address tmp_addr = alloc->allocated_tensors[i].addr;
                     alloc->allocated_tensors[i].tensor = alloc->allocated_tensors[j].tensor;
                     alloc->allocated_tensors[i].addr = alloc->allocated_tensors[j].addr;
@@ -307,19 +710,81 @@ static struct buffer_address ggml_dyn_tallocr_alloc(struct ggml_dyn_tallocr * al
 }
 
 // this is a very naive implementation, but for our case the number of free blocks should be very small
+// 函数: ggml_dyn_tallocr_free_bytes
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_free_bytes
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_dyn_tallocr_free_bytes(struct ggml_dyn_tallocr * alloc, struct buffer_address addr, size_t size) {
     size = aligned_offset(NULL, size, alloc->alignment);
 
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 类: tallocr_chunk
+    // 描述: tallocr_chunk类提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
+    // 结构体: tallocr_chunk
+    // 描述: tallocr_chunk结构体提供相关功能
+    // 用途: 用于处理tallocr_chunk相关的操作
     struct tallocr_chunk * chunk = alloc->chunks[addr.chunk];
 
     // see if we can merge with an existing block
     for (int i = 0; i < chunk->n_free_blocks; i++) {
+        // 类: free_block
+        // 描述: free_block类提供相关功能
+        // 用途: 用于处理free_block相关的操作
+        // 类: free_block
+        // 描述: free_block类提供相关功能
+        // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
         struct free_block * block = &chunk->free_blocks[i];
         // check if ptr is at the end of the block
         if (block->offset + block->size == addr.offset) {
             block->size += size;
             // check if we can merge with the next block
             if (i < chunk->n_free_blocks - 1) {
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
                 struct free_block * next = &chunk->free_blocks[i+1];
                 if (block->offset + block->size == next->offset) {
                     block->size += next->size;
@@ -334,6 +799,24 @@ static void ggml_dyn_tallocr_free_bytes(struct ggml_dyn_tallocr * alloc, struct 
             block->size += size;
             // check if we can merge with the previous block
             if (i > 0) {
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+                // 类: free_block
+                // 描述: free_block类提供相关功能
+                // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
+    // 结构体: free_block
+    // 描述: free_block结构体提供相关功能
+    // 用途: 用于处理free_block相关的操作
                 struct free_block * prev = &chunk->free_blocks[i-1];
                 if (prev->offset + prev->size == block->offset) {
                     prev->size += block->size;
@@ -347,6 +830,14 @@ static void ggml_dyn_tallocr_free_bytes(struct ggml_dyn_tallocr * alloc, struct 
     ggml_dyn_tallocr_insert_block(chunk, addr.offset, size);
 }
 
+// 函数: ggml_dyn_tallocr_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_dyn_tallocr_reset(struct ggml_dyn_tallocr * alloc) {
     for (int i = 0; i < GGML_VBUFFER_MAX_CHUNKS; i++) {
         free(alloc->chunks[i]);
@@ -362,6 +853,24 @@ static void ggml_dyn_tallocr_reset(struct ggml_dyn_tallocr * alloc) {
 }
 
 static struct ggml_dyn_tallocr * ggml_dyn_tallocr_new(size_t alignment, size_t max_buffer_size) {
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
     struct ggml_dyn_tallocr * alloc = (struct ggml_dyn_tallocr *)malloc(sizeof(struct ggml_dyn_tallocr));
 
     *alloc = (struct ggml_dyn_tallocr) {
@@ -379,6 +888,14 @@ static struct ggml_dyn_tallocr * ggml_dyn_tallocr_new(size_t alignment, size_t m
     return alloc;
 }
 
+// 函数: ggml_dyn_tallocr_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_dyn_tallocr_free(struct ggml_dyn_tallocr * alloc) {
     for (int i = 0; i < alloc->n_chunks; ++i) {
         free(alloc->chunks[i]);
@@ -386,6 +903,14 @@ static void ggml_dyn_tallocr_free(struct ggml_dyn_tallocr * alloc) {
     free(alloc);
 }
 
+// 函数: ggml_dyn_tallocr_max_size
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_dyn_tallocr_max_size
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_dyn_tallocr_max_size(struct ggml_dyn_tallocr * alloc, int chunk) {
     return chunk < alloc->n_chunks ? alloc->chunks[chunk]->max_size : 0;
 }
@@ -393,10 +918,36 @@ static size_t ggml_dyn_tallocr_max_size(struct ggml_dyn_tallocr * alloc, int chu
 
 // virtual buffer with contiguous memory range, split into multiple backend buffers (chunks)
 
+// 类: vbuffer
+// 描述: vbuffer类提供相关功能
+// 用途: 用于处理vbuffer相关的操作
+// 类: vbuffer
+// 描述: vbuffer类提供相关功能
+// 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
 struct vbuffer {
     ggml_backend_buffer_t chunks[GGML_VBUFFER_MAX_CHUNKS];
 };
 
+// 函数: ggml_vbuffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vbuffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vbuffer_free(struct vbuffer * buf) {
     if (buf == NULL) {
         return;
@@ -407,10 +958,26 @@ static void ggml_vbuffer_free(struct vbuffer * buf) {
     free(buf);
 }
 
+// 函数: ggml_vbuffer_chunk_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vbuffer_chunk_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_vbuffer_chunk_size(struct vbuffer * buf, int chunk) {
     return buf->chunks[chunk] ? ggml_backend_buffer_get_size(buf->chunks[chunk]) : 0;
 }
 
+// 函数: ggml_vbuffer_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vbuffer_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_vbuffer_size(struct vbuffer * buf) {
     size_t size = 0;
     for (int i = 0; i < GGML_VBUFFER_MAX_CHUNKS && buf->chunks[i]; ++i) {
@@ -420,6 +987,24 @@ static size_t ggml_vbuffer_size(struct vbuffer * buf) {
 }
 
 static struct vbuffer * ggml_vbuffer_alloc(ggml_backend_buffer_type_t buft, const struct ggml_dyn_tallocr * talloc, enum ggml_backend_buffer_usage usage) {
+    // 类: vbuffer
+    // 描述: vbuffer类提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 类: vbuffer
+    // 描述: vbuffer类提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
     struct vbuffer * buf = (struct vbuffer *)calloc(1, sizeof(struct vbuffer));
     if (buf == NULL) {
         return NULL;
@@ -437,12 +1022,28 @@ static struct vbuffer * ggml_vbuffer_alloc(ggml_backend_buffer_type_t buft, cons
     return buf;
 }
 
+// 函数: ggml_vbuffer_tensor_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vbuffer_tensor_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vbuffer_tensor_alloc(struct vbuffer * buf, struct ggml_tensor * tensor, struct buffer_address buf_addr) {
     void * base = ggml_backend_buffer_get_base(buf->chunks[buf_addr.chunk]);
     void * addr = (char *)base + buf_addr.offset;
     ggml_backend_tensor_alloc(buf->chunks[buf_addr.chunk], tensor, addr);
 }
 
+// 函数: ggml_vbuffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vbuffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_vbuffer_reset(struct vbuffer * buf) {
     for (int i = 0; i < GGML_VBUFFER_MAX_CHUNKS && buf->chunks[i]; ++i) {
         ggml_backend_buffer_reset(buf->chunks[i]);
@@ -454,45 +1055,341 @@ static void ggml_vbuffer_reset(struct vbuffer * buf) {
 
 // graph allocator
 
+// 类: hash_node
+// 描述: hash_node类提供相关功能
+// 用途: 用于处理hash_node相关的操作
+// 类: hash_node
+// 描述: hash_node类提供相关功能
+// 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
 struct hash_node {
     int n_children;
     int n_views;
     int buffer_id;
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
     struct buffer_address addr;
     bool allocated;
 };
 
+// 类: tensor_alloc
+// 描述: tensor_alloc类提供相关功能
+// 用途: 用于处理tensor_alloc相关的操作
+// 类: tensor_alloc
+// 描述: tensor_alloc类提供相关功能
+// 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
 struct tensor_alloc {
     int buffer_id;
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 类: buffer_address
+    // 描述: buffer_address类提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
     struct buffer_address addr;
     size_t size_max; // 0 = pre-allocated, unused, or view
 };
 
+// 类: leaf_alloc
+// 描述: leaf_alloc类提供相关功能
+// 用途: 用于处理leaf_alloc相关的操作
+// 类: leaf_alloc
+// 描述: leaf_alloc类提供相关功能
+// 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
 struct leaf_alloc {
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
     struct tensor_alloc leaf;
 };
 
+// 类: node_alloc
+// 描述: node_alloc类提供相关功能
+// 用途: 用于处理node_alloc相关的操作
+// 类: node_alloc
+// 描述: node_alloc类提供相关功能
+// 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
 struct node_alloc {
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
     struct tensor_alloc dst;
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 类: tensor_alloc
+    // 描述: tensor_alloc类提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
+    // 结构体: tensor_alloc
+    // 描述: tensor_alloc结构体提供相关功能
+    // 用途: 用于处理tensor_alloc相关的操作
     struct tensor_alloc src[GGML_MAX_SRC];
 };
 
+// 类: ggml_gallocr
+// 描述: ggml_gallocr类提供相关功能
+// 用途: 用于处理ggml_gallocr相关的操作
+// 类: ggml_gallocr
+// 描述: ggml_gallocr类提供相关功能
+// 用途: 用于处理ggml_gallocr相关的操作
+    // 结构体: ggml_gallocr
+    // 描述: ggml_gallocr结构体提供相关功能
+    // 用途: 用于处理ggml_gallocr相关的操作
+    // 结构体: ggml_gallocr
+    // 描述: ggml_gallocr结构体提供相关功能
+    // 用途: 用于处理ggml_gallocr相关的操作
+    // 结构体: ggml_gallocr
+    // 描述: ggml_gallocr结构体提供相关功能
+    // 用途: 用于处理ggml_gallocr相关的操作
+    // 结构体: ggml_gallocr
+    // 描述: ggml_gallocr结构体提供相关功能
+    // 用途: 用于处理ggml_gallocr相关的操作
 struct ggml_gallocr {
     ggml_backend_buffer_type_t * bufts; // [n_buffers]
+    // 类: vbuffer
+    // 描述: vbuffer类提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 类: vbuffer
+    // 描述: vbuffer类提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
+    // 结构体: vbuffer
+    // 描述: vbuffer结构体提供相关功能
+    // 用途: 用于处理vbuffer相关的操作
     struct vbuffer ** buffers; // [n_buffers]
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
     struct ggml_dyn_tallocr ** buf_tallocs; // [n_buffers]
     int n_buffers;
 
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
     struct ggml_hash_set hash_set;
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
     struct hash_node * hash_values; // [hash_set.size]
 
+    // 类: node_alloc
+    // 描述: node_alloc类提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 类: node_alloc
+    // 描述: node_alloc类提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
     struct node_alloc * node_allocs; // [n_nodes]
     int n_nodes;
 
+    // 类: leaf_alloc
+    // 描述: leaf_alloc类提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 类: leaf_alloc
+    // 描述: leaf_alloc类提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
     struct leaf_alloc * leaf_allocs; // [n_leafs]
     int n_leafs;
 };
 
+// 函数: ggml_gallocr_new_n
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_new_n
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_gallocr_t ggml_gallocr_new_n(ggml_backend_buffer_type_t * bufts, int n_bufs) {
     ggml_gallocr_t galloc = (ggml_gallocr_t)calloc(1, sizeof(struct ggml_gallocr));
     GGML_ASSERT(galloc != NULL);
@@ -529,10 +1426,26 @@ ggml_gallocr_t ggml_gallocr_new_n(ggml_backend_buffer_type_t * bufts, int n_bufs
     return galloc;
 }
 
+// 函数: ggml_gallocr_new
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_new
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_gallocr_t ggml_gallocr_new(ggml_backend_buffer_type_t buft) {
     return ggml_gallocr_new_n(&buft, 1);
 }
 
+// 函数: ggml_gallocr_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gallocr_free(ggml_gallocr_t galloc) {
     if (galloc == NULL) {
         return;
@@ -584,10 +1497,26 @@ static struct hash_node * ggml_gallocr_hash_get(ggml_gallocr_t galloc, struct gg
     return &galloc->hash_values[i];
 }
 
+// 函数: ggml_gallocr_is_own
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_is_own
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_gallocr_is_own(ggml_gallocr_t galloc, struct ggml_tensor * t) {
     return ggml_gallocr_hash_get(galloc, t)->allocated;
 }
 
+// 函数: ggml_gallocr_is_allocated
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_is_allocated
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_gallocr_is_allocated(ggml_gallocr_t galloc, struct ggml_tensor * t) {
     return t->data != NULL // tensor data already set externally
         || t->buffer // tensor on external buffer (but not yet allocated)
@@ -595,8 +1524,52 @@ static bool ggml_gallocr_is_allocated(ggml_gallocr_t galloc, struct ggml_tensor 
 }
 
 // free the extra space at the end if the new tensor is smaller
+// 函数: ggml_gallocr_free_extra_space
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_free_extra_space
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_gallocr_free_extra_space(ggml_gallocr_t galloc, struct ggml_tensor * node, struct ggml_tensor * parent) {
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
     struct hash_node * hn = ggml_gallocr_hash_get(galloc, node);
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
     struct hash_node * p_hn = ggml_gallocr_hash_get(galloc, parent);
 
     size_t parent_size = ggml_backend_buft_get_alloc_size(galloc->bufts[p_hn->buffer_id], parent);
@@ -605,11 +1578,47 @@ static void ggml_gallocr_free_extra_space(ggml_gallocr_t galloc, struct ggml_ten
     GGML_ASSERT(parent_size >= node_size);
 
     // note: we want after the freeing the chunks to continue to be aligned
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
     struct ggml_dyn_tallocr * p_alloc = galloc->buf_tallocs[p_hn->buffer_id];
     parent_size = aligned_offset(NULL, parent_size, p_alloc->alignment);
     node_size = aligned_offset(NULL, node_size, p_alloc->alignment);
 
     if (parent_size > node_size) {
+        // 类: buffer_address
+        // 描述: buffer_address类提供相关功能
+        // 用途: 用于处理buffer_address相关的操作
+        // 类: buffer_address
+        // 描述: buffer_address类提供相关功能
+        // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
+    // 结构体: buffer_address
+    // 描述: buffer_address结构体提供相关功能
+    // 用途: 用于处理buffer_address相关的操作
         struct buffer_address p_addr = p_hn->addr;
         p_addr.offset += node_size;
         size_t extra_size = parent_size - node_size;
@@ -618,8 +1627,34 @@ static void ggml_gallocr_free_extra_space(ggml_gallocr_t galloc, struct ggml_ten
     }
 }
 
+// 函数: ggml_gallocr_allocate_node
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_allocate_node
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_gallocr_allocate_node(ggml_gallocr_t galloc, struct ggml_tensor * node, int buffer_id) {
     GGML_ASSERT(buffer_id >= 0);
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
     struct hash_node * hn = ggml_gallocr_hash_get(galloc, node);
 
     if (!ggml_gallocr_is_allocated(galloc, node) && !ggml_impl_is_view(node)) {
@@ -629,6 +1664,24 @@ static void ggml_gallocr_allocate_node(ggml_gallocr_t galloc, struct ggml_tensor
         // try to reuse a parent's buffer (inplace)
         if (ggml_op_can_inplace(node->op)) {
             for (int i = 0; i < GGML_MAX_SRC; i++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * parent = node->src[i];
                 if (parent == NULL) {
                     continue;
@@ -651,10 +1704,64 @@ static void ggml_gallocr_allocate_node(ggml_gallocr_t galloc, struct ggml_tensor
                     continue;
                 }
 
+                // 类: hash_node
+                // 描述: hash_node类提供相关功能
+                // 用途: 用于处理hash_node相关的操作
+                // 类: hash_node
+                // 描述: hash_node类提供相关功能
+                // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
                 struct hash_node * p_hn = ggml_gallocr_hash_get(galloc, parent);
                 if (p_hn->n_children == 1 && p_hn->n_views == 0) {
                     if (ggml_impl_is_view(parent)) {
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                         struct ggml_tensor * view_src = parent->view_src;
+                        // 类: hash_node
+                        // 描述: hash_node类提供相关功能
+                        // 用途: 用于处理hash_node相关的操作
+                        // 类: hash_node
+                        // 描述: hash_node类提供相关功能
+                        // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
                         struct hash_node * view_src_hn = ggml_gallocr_hash_get(galloc, view_src);
                         if (view_src_hn->n_views == 1 && view_src_hn->n_children == 0 && view_src->data == parent->data) {
                             AT_PRINTF("reusing view parent %s (%s) for %s\n", parent->name, view_src->name, node->name);
@@ -678,6 +1785,24 @@ static void ggml_gallocr_allocate_node(ggml_gallocr_t galloc, struct ggml_tensor
             }
         }
         // allocate tensor from the buffer
+        // 类: ggml_dyn_tallocr
+        // 描述: ggml_dyn_tallocr类提供相关功能
+        // 用途: 用于处理ggml_dyn_tallocr相关的操作
+        // 类: ggml_dyn_tallocr
+        // 描述: ggml_dyn_tallocr类提供相关功能
+        // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
         struct ggml_dyn_tallocr * alloc = galloc->buf_tallocs[buffer_id];
         ggml_backend_buffer_type_t buft = galloc->bufts[buffer_id];
         size_t size = ggml_backend_buft_get_alloc_size(buft, node);
@@ -686,6 +1811,14 @@ static void ggml_gallocr_allocate_node(ggml_gallocr_t galloc, struct ggml_tensor
     }
 }
 
+// 函数: ggml_gallocr_free_node
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_free_node
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_gallocr_free_node(ggml_gallocr_t galloc, struct ggml_tensor * node) {
     // graph outputs are never freed
     if (node->flags & GGML_TENSOR_FLAG_OUTPUT) {
@@ -693,8 +1826,44 @@ static void ggml_gallocr_free_node(ggml_gallocr_t galloc, struct ggml_tensor * n
         return;
     }
 
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 类: hash_node
+    // 描述: hash_node类提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
     struct hash_node * hn = ggml_gallocr_hash_get(galloc, node);
     int buffer_id = hn->buffer_id;
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 类: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr类提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
+    // 结构体: ggml_dyn_tallocr
+    // 描述: ggml_dyn_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_dyn_tallocr相关的操作
     struct ggml_dyn_tallocr * alloc = galloc->buf_tallocs[buffer_id];
     ggml_backend_buffer_type_t buft = galloc->bufts[buffer_id];
     size_t size = ggml_backend_buft_get_alloc_size(buft, node);
@@ -709,10 +1878,26 @@ static void ggml_gallocr_free_node(ggml_gallocr_t galloc, struct ggml_tensor * n
     hn->allocated = false;
 }
 
+// 函数: get_node_buffer_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_node_buffer_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int get_node_buffer_id(const int * node_buffer_ids, int i) {
     return node_buffer_ids ? node_buffer_ids[i] : 0;
 }
 
+// 函数: ggml_gallocr_alloc_graph_impl
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_alloc_graph_impl
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgraph * graph, const int * node_buffer_ids, const int * leaf_buffer_ids) {
     // clear hash tables
     ggml_hash_set_reset(&galloc->hash_set);
@@ -721,6 +1906,24 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
     // allocate leafs
     // these may be tensors that the application is not using in the graph, but may still want to allocate for other purposes
     for (int i = 0; i < graph->n_leafs; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * leaf = graph->leafs[i];
         ggml_gallocr_allocate_node(galloc, leaf, get_node_buffer_id(leaf_buffer_ids, i));
     }
@@ -728,6 +1931,24 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
     // count number of children and views
     // allocate other graph inputs and leafs first to avoid overwriting them
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
 
         // TODO: better way to add external dependencies
@@ -735,6 +1956,24 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
         // control when some tensors are allocated and freed. in this case, the dependencies are in `src`, but the node
         // itself is never used and should not be considered a dependency
         if (ggml_impl_is_view(node) && node->op != GGML_OP_NONE) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * view_src = node->view_src;
             ggml_gallocr_hash_get(galloc, view_src)->n_views += 1;
         }
@@ -744,6 +1983,24 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
         }
 
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * src = node->src[j];
             if (src == NULL) {
                 continue;
@@ -760,11 +2017,47 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
 
     // allocate tensors
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         int buffer_id = get_node_buffer_id(node_buffer_ids, i);
 
         // allocate parents (only leafs need to be allocated at this point)
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * parent = node->src[j];
             if (parent == NULL) {
                 continue;
@@ -777,6 +2070,24 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
 
         AT_PRINTF("exec: %s (%s) <= ", ggml_op_desc(node), node->name);
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * parent = node->src[j];
             if (parent == NULL) {
                 continue;
@@ -790,10 +2101,46 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
 
         // update parents
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * parent = node->src[j];
             if (parent == NULL) {
                 continue;
             }
+            // 类: hash_node
+            // 描述: hash_node类提供相关功能
+            // 用途: 用于处理hash_node相关的操作
+            // 类: hash_node
+            // 描述: hash_node类提供相关功能
+            // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
             struct hash_node * p_hn = ggml_gallocr_hash_get(galloc, parent);
             p_hn->n_children -= 1;
 
@@ -802,7 +2149,43 @@ static void ggml_gallocr_alloc_graph_impl(ggml_gallocr_t galloc, struct ggml_cgr
 
             if (p_hn->n_children == 0 && p_hn->n_views == 0) {
                 if (ggml_impl_is_view(parent)) {
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                     struct ggml_tensor * view_src = parent->view_src;
+                    // 类: hash_node
+                    // 描述: hash_node类提供相关功能
+                    // 用途: 用于处理hash_node相关的操作
+                    // 类: hash_node
+                    // 描述: hash_node类提供相关功能
+                    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
                     struct hash_node * view_src_hn = ggml_gallocr_hash_get(galloc, view_src);
                     view_src_hn->n_views -= 1;
                     AT_PRINTF("view_src %s: %d children, %d views\n",
@@ -853,25 +2236,115 @@ static bool ggml_gallocr_reserve_n_impl(
     }
     galloc->n_nodes = graph->n_nodes;
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
         struct node_alloc * node_alloc = &galloc->node_allocs[i];
         if (node->view_src || node->data) {
             node_alloc->dst.buffer_id = -1;
             node_alloc->dst.addr = GGML_BUFFER_ADDRESS_INVALID;
             node_alloc->dst.size_max = 0;
         } else {
+            // 类: hash_node
+            // 描述: hash_node类提供相关功能
+            // 用途: 用于处理hash_node相关的操作
+            // 类: hash_node
+            // 描述: hash_node类提供相关功能
+            // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
             struct hash_node * hn = ggml_gallocr_hash_get(galloc, node);
             node_alloc->dst.buffer_id = hn->buffer_id;
             node_alloc->dst.addr = hn->addr;
             node_alloc->dst.size_max  = ggml_backend_buft_get_alloc_size(galloc->bufts[hn->buffer_id], node);
         }
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * src = node->src[j];
             if (!src || src->view_src || src->data) {
                 node_alloc->src[j].buffer_id = -1;
                 node_alloc->src[j].addr = GGML_BUFFER_ADDRESS_INVALID;
                 node_alloc->src[j].size_max = 0;
             } else {
+                // 类: hash_node
+                // 描述: hash_node类提供相关功能
+                // 用途: 用于处理hash_node相关的操作
+                // 类: hash_node
+                // 描述: hash_node类提供相关功能
+                // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
                 struct hash_node * hn = ggml_gallocr_hash_get(galloc, src);
                 node_alloc->src[j].buffer_id = hn->buffer_id;
                 node_alloc->src[j].addr = hn->addr;
@@ -886,7 +2359,43 @@ static bool ggml_gallocr_reserve_n_impl(
     }
     galloc->n_leafs = graph->n_leafs;
     for (int i = 0; i < graph->n_leafs; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * leaf = graph->leafs[i];
+        // 类: hash_node
+        // 描述: hash_node类提供相关功能
+        // 用途: 用于处理hash_node相关的操作
+        // 类: hash_node
+        // 描述: hash_node类提供相关功能
+        // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
+    // 结构体: hash_node
+    // 描述: hash_node结构体提供相关功能
+    // 用途: 用于处理hash_node相关的操作
         struct hash_node * hn = ggml_gallocr_hash_get(galloc, leaf);
         if (leaf->view_src || leaf->data) {
             galloc->leaf_allocs[i].leaf.buffer_id = -1;
@@ -957,14 +2466,38 @@ void ggml_gallocr_reserve_n_size(
     }
 }
 
+// 函数: ggml_gallocr_reserve_n
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_reserve_n
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_gallocr_reserve_n(ggml_gallocr_t galloc, struct ggml_cgraph * graph, const int * node_buffer_ids, const int * leaf_buffer_ids) {
     return ggml_gallocr_reserve_n_impl(galloc, graph, node_buffer_ids, leaf_buffer_ids, /*no_alloc =*/ false);
 }
 
+// 函数: ggml_gallocr_reserve
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_reserve
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_gallocr_reserve(ggml_gallocr_t galloc, struct ggml_cgraph *graph) {
     return ggml_gallocr_reserve_n(galloc, graph, NULL, NULL);
 }
 
+// 函数: ggml_gallocr_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_gallocr_init_tensor(ggml_gallocr_t galloc, struct ggml_tensor * tensor, struct tensor_alloc * tensor_alloc) {
     int buffer_id = tensor_alloc->buffer_id;
     assert(tensor->data || tensor->view_src || ggml_backend_buft_get_alloc_size(galloc->bufts[buffer_id], tensor) <= tensor_alloc->size_max);
@@ -992,6 +2525,14 @@ static void ggml_gallocr_init_tensor(ggml_gallocr_t galloc, struct ggml_tensor *
     }
 }
 
+// 函数: ggml_gallocr_node_needs_realloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_node_needs_realloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_gallocr_node_needs_realloc(ggml_gallocr_t galloc, struct ggml_tensor * node, struct tensor_alloc * talloc) {
     size_t node_size = 0;
     if (!node->data && !node->view_src) {
@@ -1004,6 +2545,14 @@ static bool ggml_gallocr_node_needs_realloc(ggml_gallocr_t galloc, struct ggml_t
     return talloc->size_max >= node_size;
 }
 
+// 函数: ggml_gallocr_needs_realloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_needs_realloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_gallocr_needs_realloc(ggml_gallocr_t galloc, struct ggml_cgraph * graph) {
     if (galloc->n_nodes != graph->n_nodes) {
 #ifndef NDEBUG
@@ -1020,7 +2569,43 @@ static bool ggml_gallocr_needs_realloc(ggml_gallocr_t galloc, struct ggml_cgraph
     }
 
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
         struct node_alloc * node_alloc = &galloc->node_allocs[i];
 
         if (!ggml_gallocr_node_needs_realloc(galloc, node, &node_alloc->dst)) {
@@ -1031,6 +2616,24 @@ static bool ggml_gallocr_needs_realloc(ggml_gallocr_t galloc, struct ggml_cgraph
         }
 
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * src = node->src[j];
             if (src == NULL) {
                 continue;
@@ -1047,6 +2650,14 @@ static bool ggml_gallocr_needs_realloc(ggml_gallocr_t galloc, struct ggml_cgraph
     return false;
 }
 
+// 函数: ggml_gallocr_alloc_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_alloc_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_gallocr_alloc_graph(ggml_gallocr_t galloc, struct ggml_cgraph * graph) {
     if (ggml_gallocr_needs_realloc(galloc, graph)) {
         if (galloc->n_buffers == 1) {
@@ -1074,15 +2685,105 @@ bool ggml_gallocr_alloc_graph(ggml_gallocr_t galloc, struct ggml_cgraph * graph)
     // allocate the graph tensors from the previous assignments
     // leafs
     for (int i = 0; i < graph->n_leafs; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * leaf = graph->leafs[i];
+        // 类: leaf_alloc
+        // 描述: leaf_alloc类提供相关功能
+        // 用途: 用于处理leaf_alloc相关的操作
+        // 类: leaf_alloc
+        // 描述: leaf_alloc类提供相关功能
+        // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
+    // 结构体: leaf_alloc
+    // 描述: leaf_alloc结构体提供相关功能
+    // 用途: 用于处理leaf_alloc相关的操作
         struct leaf_alloc * leaf_alloc = &galloc->leaf_allocs[i];
         ggml_gallocr_init_tensor(galloc, leaf, &leaf_alloc->leaf);
     }
     // nodes
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+        // 类: node_alloc
+        // 描述: node_alloc类提供相关功能
+        // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
+    // 结构体: node_alloc
+    // 描述: node_alloc结构体提供相关功能
+    // 用途: 用于处理node_alloc相关的操作
         struct node_alloc * node_alloc = &galloc->node_allocs[i];
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * src = node->src[j];
             if (src == NULL) {
                 continue;
@@ -1095,6 +2796,14 @@ bool ggml_gallocr_alloc_graph(ggml_gallocr_t galloc, struct ggml_cgraph * graph)
     return true;
 }
 
+// 函数: ggml_gallocr_get_buffer_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gallocr_get_buffer_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_gallocr_get_buffer_size(ggml_gallocr_t galloc, int buffer_id) {
     GGML_ASSERT(buffer_id >= 0 && buffer_id < galloc->n_buffers);
 
@@ -1115,6 +2824,14 @@ size_t ggml_gallocr_get_buffer_size(ggml_gallocr_t galloc, int buffer_id) {
 
 // utils
 
+// 函数: free_buffers
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 要释放的对象或资源
+// 返回: 无返回值
+// 函数: free_buffers
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 要释放的对象或资源
+// 返回: 无返回值
 static void free_buffers(ggml_backend_buffer_t ** buffers, const size_t * n_buffers) {
     for (size_t i = 0; i < *n_buffers; i++) {
         ggml_backend_buffer_free((*buffers)[i]);
@@ -1123,6 +2840,24 @@ static void free_buffers(ggml_backend_buffer_t ** buffers, const size_t * n_buff
 }
 
 static bool alloc_tensor_range(struct ggml_context * ctx,
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * first, struct ggml_tensor * last,
         ggml_backend_buffer_type_t buft, size_t size,
         ggml_backend_buffer_t ** buffers, size_t * n_buffers) {
@@ -1137,6 +2872,24 @@ static bool alloc_tensor_range(struct ggml_context * ctx,
     *buffers = realloc(*buffers, sizeof(ggml_backend_buffer_t) * (*n_buffers + 1));
     (*buffers)[(*n_buffers)++] = buffer;
 
+    // 类: ggml_tallocr
+    // 描述: ggml_tallocr类提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 类: ggml_tallocr
+    // 描述: ggml_tallocr类提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
     struct ggml_tallocr tallocr = ggml_tallocr_new(buffer);
 
     for (struct ggml_tensor * t = first; t != last; t = ggml_get_next_tensor(ctx, t)) {
@@ -1164,6 +2917,24 @@ static bool alloc_tensor_range(struct ggml_context * ctx,
 }
 
 static ggml_backend_buffer_t ggml_backend_alloc_ctx_tensors_from_buft_impl(
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx, ggml_backend_buffer_type_t buft, size_t * nbytes_total, bool no_alloc) {
     GGML_ASSERT(ggml_get_no_alloc(ctx) == true);
 
@@ -1175,6 +2946,24 @@ static ggml_backend_buffer_t ggml_backend_alloc_ctx_tensors_from_buft_impl(
     *nbytes_total = 0;
 
     size_t cur_buf_size = 0;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * first = ggml_get_first_tensor(ctx);
     for (struct ggml_tensor * t = first; t != NULL; t = ggml_get_next_tensor(ctx, t)) {
         size_t this_size = 0;
@@ -1227,6 +3016,14 @@ static ggml_backend_buffer_t ggml_backend_alloc_ctx_tensors_from_buft_impl(
     return buffer;
 }
 
+// 函数: ggml_backend_alloc_ctx_tensors_from_buft_size
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_alloc_ctx_tensors_from_buft_size
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_alloc_ctx_tensors_from_buft_size(struct ggml_context * ctx, ggml_backend_buffer_type_t buft) {
     size_t nbytes_total = 0;
     ggml_backend_buffer_t buf = ggml_backend_alloc_ctx_tensors_from_buft_impl(ctx, buft, &nbytes_total, /*no_alloc=*/ true);
@@ -1234,11 +3031,27 @@ size_t ggml_backend_alloc_ctx_tensors_from_buft_size(struct ggml_context * ctx, 
     return nbytes_total;
 }
 
+// 函数: ggml_backend_alloc_ctx_tensors_from_buft
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_alloc_ctx_tensors_from_buft
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_alloc_ctx_tensors_from_buft(struct ggml_context * ctx, ggml_backend_buffer_type_t buft) {
     size_t nbytes_total = 0;
     return ggml_backend_alloc_ctx_tensors_from_buft_impl(ctx, buft, &nbytes_total, /*no_alloc =*/ false);
 }
 
+// 函数: ggml_backend_alloc_ctx_tensors
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_alloc_ctx_tensors
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_alloc_ctx_tensors(struct ggml_context * ctx, ggml_backend_t backend) {
     return ggml_backend_alloc_ctx_tensors_from_buft(ctx, ggml_backend_get_default_buffer_type(backend));
 }

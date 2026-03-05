@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: get_chat_template.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/get_chat_template.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python
 '''
   Fetches the Jinja chat template of a HuggingFace model.
@@ -16,6 +23,10 @@ import re
 import sys
 
 
+    # 函数: get_chat_template
+    # 描述: get_chat_template函数提供相关功能
+    # 参数: model_id, variant=None
+    # 返回: 无返回值
 def get_chat_template(model_id, variant=None):
     try:
         # Use huggingface_hub library if available.
@@ -48,6 +59,10 @@ def get_chat_template(model_id, variant=None):
             for ct in chat_template
         }
 
+    # 函数: format_variants
+    # 描述: format_variants函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
         def format_variants():
             return ', '.join(f'"{v}"' for v in variants.keys())
 
@@ -62,6 +77,10 @@ def get_chat_template(model_id, variant=None):
         return variants[variant]
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
 def main(args):
     if len(args) < 1:
         raise ValueError("Please provide a model ID and an optional variant name")

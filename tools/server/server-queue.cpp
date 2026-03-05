@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-queue.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-queue.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "server-task.h"
 #include "server-queue.h"
 
@@ -313,6 +320,14 @@ server_task_result_ptr server_response::recv_with_timeout(const std::unordered_s
 
 server_task_result_ptr server_response::recv(int id_task) {
     std::unordered_set<int> id_tasks = {id_task};
+    // 函数: recv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: recv
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return recv(id_tasks);
 }
 
@@ -437,6 +452,14 @@ void server_response_reader::stop() {
         cancel_tasks.reserve(id_tasks.size());
         for (const auto & id_task : id_tasks) {
             SRV_WRN("cancel task, id_task = %d\n", id_task);
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             server_task task(SERVER_TASK_TYPE_CANCEL);
             task.id_target = id_task;
             queue_results.remove_waiting_task_id(id_task);

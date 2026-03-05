@@ -13,11 +13,27 @@
 #include "mmq.hpp"
 #include "vecdotq.hpp"
 
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*allocate_tiles_sycl_t)(
     int** x_ql,
     sycl::half2** x_dm,
     int** x_qh,
     int** x_sc);
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*load_tiles_sycl_t)(
     const void* __restrict__ vx,
     int* __restrict__ x_ql,
@@ -28,6 +44,14 @@ typedef void (*load_tiles_sycl_t)(
     const int& i_max,
     const int& k,
     const int& blocks_per_row);
+// 函数: float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef float (*vec_dot_q_mul_mat_sycl_t)(
     const int* __restrict__ x_ql,
     const sycl::half2* __restrict__ x_dm,
@@ -613,6 +637,14 @@ static __dpct_inline__ float vec_dot_q2_K_q8_1_mul_mat(
     const uint8_t * scales = ((const uint8_t *) &x_sc[i * (WARP_SIZE/4) + i/4 + kbx*4]) + ky/4;
 
     const int index_y = j * WARP_SIZE + (QR2_K*k) % WARP_SIZE;
+    // 函数: vec_dot_q2_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_dot_q2_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_dot_q2_K_q8_1_impl_mmq(v, &y_qs[index_y], scales, x_dm[i * (WARP_SIZE/QI2_K) + i/QI2_K + kbx], y_df[index_y/QI8_1]);
 }
 
@@ -767,6 +799,14 @@ static __dpct_inline__ float vec_dot_q3_K_q8_1_mul_mat(
     }
 
     const int index_y = j * WARP_SIZE + (k*QR3_K) % WARP_SIZE;
+    // 函数: vec_dot_q3_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_dot_q3_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_dot_q3_K_q8_1_impl_mmq(v, &y_qs[index_y], scales, x_dmf[i * (WARP_SIZE/QI3_K) + i/QI3_K + kbx], y_df[index_y/QI8_1]);
 }
 
@@ -901,6 +941,14 @@ static __dpct_inline__ float vec_dot_q4_K_q8_1_mul_mat(
     const uint8_t * sc = ((const uint8_t *) &x_sc[i * (WARP_SIZE/8) + i/8 + k/16]) + 2*((k % 16) / 8);
 
     const int index_y = j * WARP_SIZE + (QR4_K*k) % WARP_SIZE;
+    // 函数: vec_dot_q4_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_dot_q4_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_dot_q4_K_q8_1_impl_mmq(&x_ql[i * (WARP_SIZE + 1) + k], &y_qs[index_y], sc, sc+8,
                                       x_dm[i * (WARP_SIZE/QI4_K) + i/QI4_K], &y_ds[index_y/QI8_1]);
 }
@@ -1188,6 +1236,14 @@ static __dpct_inline__ float vec_dot_q6_K_q8_1_mul_mat(
 
     const int index_x = i * (QR6_K*WARP_SIZE + 1) +  QR6_K*k;
     const int index_y = j * WARP_SIZE             + (QR6_K*k) % WARP_SIZE;
+    // 函数: vec_dot_q6_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_dot_q6_K_q8_1_impl_mmq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_dot_q6_K_q8_1_impl_mmq(&x_ql[index_x], &y_qs[index_y], sc, x_dmf[i * (WARP_SIZE/QI6_K) + i/QI6_K], &y_df[index_y/QI8_1]);
 }
 

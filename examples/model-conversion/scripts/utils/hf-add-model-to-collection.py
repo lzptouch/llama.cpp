@@ -1,9 +1,20 @@
+// ============================================================================
+// 文件: hf-add-model-to-collection.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/hf-add-model-to-collection.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 from huggingface_hub import HfApi
 import argparse
 import sys
 
+    # 函数: add_model_to_collection
+    # 描述: add_model_to_collection函数提供相关功能
+    # 参数: collection_slug, model_id, note=""
+    # 返回: 无返回值
 def add_model_to_collection(collection_slug, model_id, note=""):
     """
     Add a model to an existing collection
@@ -50,6 +61,10 @@ def add_model_to_collection(collection_slug, model_id, note=""):
         print(f"❌ Error adding model to collection: {e}")
         return False
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     # This script requires that the environment variable HF_TOKEN is set with your
     # Hugging Face API token.

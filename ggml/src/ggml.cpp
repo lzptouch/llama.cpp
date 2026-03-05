@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-impl.h"
 
 #include <cstdlib>

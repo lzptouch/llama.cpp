@@ -1,7 +1,22 @@
+// ============================================================================
+// 文件: ggml-backend-buffer.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/ggml-backend-buffer.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-remoting.h"
 
 #define BUFFER_TO_GPU(name) ((ggml_backend_remoting_buffer_context *) (name)->context)->gpu
 
+// 函数: ggml_backend_remoting_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_remoting_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_remoting_buffer_context * context = (ggml_backend_remoting_buffer_context *) buffer->context;
     if (context->base) {
@@ -76,6 +91,14 @@ static bool ggml_backend_remoting_buffer_cpy_tensor(ggml_backend_buffer_t buffer
     return ret;
 }
 
+// 函数: ggml_backend_remoting_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_remoting_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     virtgpu * gpu = BUFFER_TO_GPU(buffer);
 
@@ -84,6 +107,14 @@ static void ggml_backend_remoting_buffer_clear(ggml_backend_buffer_t buffer, uin
     return;
 }
 
+// 函数: ggml_backend_remoting_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_remoting_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     virtgpu * gpu = BUFFER_TO_GPU(buffer);
 

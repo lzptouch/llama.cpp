@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-rpc.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-rpc/ggml-rpc.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-rpc.h"
 #include "ggml-impl.h"
 #include "ggml-backend-impl.h"
@@ -49,6 +56,24 @@ typedef int sockfd_t;
 #endif
 
 // cross-platform socket
+// 类: socket_t
+// 描述: socket_t类提供相关功能
+// 用途: 用于处理socket_t相关的操作
+// 类: socket_t
+// 描述: socket_t类提供相关功能
+// 用途: 用于处理socket_t相关的操作
+    // 结构体: socket_t
+    // 描述: socket_t结构体提供相关功能
+    // 用途: 用于处理socket_t相关的操作
+    // 结构体: socket_t
+    // 描述: socket_t结构体提供相关功能
+    // 用途: 用于处理socket_t相关的操作
+    // 结构体: socket_t
+    // 描述: socket_t结构体提供相关功能
+    // 用途: 用于处理socket_t相关的操作
+    // 结构体: socket_t
+    // 描述: socket_t结构体提供相关功能
+    // 用途: 用于处理socket_t相关的操作
 struct socket_t {
     sockfd_t fd;
     socket_t(sockfd_t fd) : fd(fd) {}
@@ -68,6 +93,24 @@ struct socket_t {
 // all RPC structures must be packed
 #pragma pack(push, 1)
 // ggml_tensor is serialized into rpc_tensor
+// 类: rpc_tensor
+// 描述: rpc_tensor类提供相关功能
+// 用途: 用于处理rpc_tensor相关的操作
+// 类: rpc_tensor
+// 描述: rpc_tensor类提供相关功能
+// 用途: 用于处理rpc_tensor相关的操作
+    // 结构体: rpc_tensor
+    // 描述: rpc_tensor结构体提供相关功能
+    // 用途: 用于处理rpc_tensor相关的操作
+    // 结构体: rpc_tensor
+    // 描述: rpc_tensor结构体提供相关功能
+    // 用途: 用于处理rpc_tensor相关的操作
+    // 结构体: rpc_tensor
+    // 描述: rpc_tensor结构体提供相关功能
+    // 用途: 用于处理rpc_tensor相关的操作
+    // 结构体: rpc_tensor
+    // 描述: rpc_tensor结构体提供相关功能
+    // 用途: 用于处理rpc_tensor相关的操作
 struct rpc_tensor {
     uint64_t id;
     uint32_t type;
@@ -115,107 +158,521 @@ static_assert(RPC_CMD_HELLO == 14, "RPC_CMD_HELLO must be always 14");
 // Try RPC_CMD_SET_TENSOR_HASH first when data size is larger than this threshold
 const size_t HASH_THRESHOLD = 10 * 1024 * 1024;
 
+// 类: rpc_msg_hello_rsp
+// 描述: rpc_msg_hello_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_hello_rsp相关的操作
+// 类: rpc_msg_hello_rsp
+// 描述: rpc_msg_hello_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_hello_rsp相关的操作
+    // 结构体: rpc_msg_hello_rsp
+    // 描述: rpc_msg_hello_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_hello_rsp相关的操作
+    // 结构体: rpc_msg_hello_rsp
+    // 描述: rpc_msg_hello_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_hello_rsp相关的操作
+    // 结构体: rpc_msg_hello_rsp
+    // 描述: rpc_msg_hello_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_hello_rsp相关的操作
+    // 结构体: rpc_msg_hello_rsp
+    // 描述: rpc_msg_hello_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_hello_rsp相关的操作
 struct rpc_msg_hello_rsp {
     uint8_t major;
     uint8_t minor;
     uint8_t patch;
 };
 
+// 类: rpc_msg_device_count_rsp
+// 描述: rpc_msg_device_count_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_device_count_rsp相关的操作
+// 类: rpc_msg_device_count_rsp
+// 描述: rpc_msg_device_count_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_device_count_rsp相关的操作
+    // 结构体: rpc_msg_device_count_rsp
+    // 描述: rpc_msg_device_count_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_device_count_rsp相关的操作
+    // 结构体: rpc_msg_device_count_rsp
+    // 描述: rpc_msg_device_count_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_device_count_rsp相关的操作
+    // 结构体: rpc_msg_device_count_rsp
+    // 描述: rpc_msg_device_count_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_device_count_rsp相关的操作
+    // 结构体: rpc_msg_device_count_rsp
+    // 描述: rpc_msg_device_count_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_device_count_rsp相关的操作
 struct rpc_msg_device_count_rsp {
     uint32_t device_count;
 };
 
+// 类: rpc_msg_get_alloc_size_req
+// 描述: rpc_msg_get_alloc_size_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
+// 类: rpc_msg_get_alloc_size_req
+// 描述: rpc_msg_get_alloc_size_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
+    // 结构体: rpc_msg_get_alloc_size_req
+    // 描述: rpc_msg_get_alloc_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
+    // 结构体: rpc_msg_get_alloc_size_req
+    // 描述: rpc_msg_get_alloc_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
+    // 结构体: rpc_msg_get_alloc_size_req
+    // 描述: rpc_msg_get_alloc_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
+    // 结构体: rpc_msg_get_alloc_size_req
+    // 描述: rpc_msg_get_alloc_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_req相关的操作
 struct rpc_msg_get_alloc_size_req {
     uint32_t   device;
     rpc_tensor tensor;
     rpc_tensor srcs[GGML_MAX_SRC];
 };
 
+// 类: rpc_msg_get_alloc_size_rsp
+// 描述: rpc_msg_get_alloc_size_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
+// 类: rpc_msg_get_alloc_size_rsp
+// 描述: rpc_msg_get_alloc_size_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
+    // 结构体: rpc_msg_get_alloc_size_rsp
+    // 描述: rpc_msg_get_alloc_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
+    // 结构体: rpc_msg_get_alloc_size_rsp
+    // 描述: rpc_msg_get_alloc_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
+    // 结构体: rpc_msg_get_alloc_size_rsp
+    // 描述: rpc_msg_get_alloc_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
+    // 结构体: rpc_msg_get_alloc_size_rsp
+    // 描述: rpc_msg_get_alloc_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alloc_size_rsp相关的操作
 struct rpc_msg_get_alloc_size_rsp {
     uint64_t alloc_size;
 };
 
+// 类: rpc_msg_init_tensor_req
+// 描述: rpc_msg_init_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_init_tensor_req相关的操作
+// 类: rpc_msg_init_tensor_req
+// 描述: rpc_msg_init_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_init_tensor_req相关的操作
+    // 结构体: rpc_msg_init_tensor_req
+    // 描述: rpc_msg_init_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_init_tensor_req相关的操作
+    // 结构体: rpc_msg_init_tensor_req
+    // 描述: rpc_msg_init_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_init_tensor_req相关的操作
+    // 结构体: rpc_msg_init_tensor_req
+    // 描述: rpc_msg_init_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_init_tensor_req相关的操作
+    // 结构体: rpc_msg_init_tensor_req
+    // 描述: rpc_msg_init_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_init_tensor_req相关的操作
 struct rpc_msg_init_tensor_req {
     rpc_tensor tensor;
 };
 
+// 类: rpc_msg_alloc_buffer_req
+// 描述: rpc_msg_alloc_buffer_req类提供相关功能
+// 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
+// 类: rpc_msg_alloc_buffer_req
+// 描述: rpc_msg_alloc_buffer_req类提供相关功能
+// 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
+    // 结构体: rpc_msg_alloc_buffer_req
+    // 描述: rpc_msg_alloc_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
+    // 结构体: rpc_msg_alloc_buffer_req
+    // 描述: rpc_msg_alloc_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
+    // 结构体: rpc_msg_alloc_buffer_req
+    // 描述: rpc_msg_alloc_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
+    // 结构体: rpc_msg_alloc_buffer_req
+    // 描述: rpc_msg_alloc_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_req相关的操作
 struct rpc_msg_alloc_buffer_req {
     uint32_t device;
     uint64_t size;
 };
 
+// 类: rpc_msg_alloc_buffer_rsp
+// 描述: rpc_msg_alloc_buffer_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
+// 类: rpc_msg_alloc_buffer_rsp
+// 描述: rpc_msg_alloc_buffer_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
+    // 结构体: rpc_msg_alloc_buffer_rsp
+    // 描述: rpc_msg_alloc_buffer_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
+    // 结构体: rpc_msg_alloc_buffer_rsp
+    // 描述: rpc_msg_alloc_buffer_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
+    // 结构体: rpc_msg_alloc_buffer_rsp
+    // 描述: rpc_msg_alloc_buffer_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
+    // 结构体: rpc_msg_alloc_buffer_rsp
+    // 描述: rpc_msg_alloc_buffer_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_alloc_buffer_rsp相关的操作
 struct rpc_msg_alloc_buffer_rsp {
     uint64_t remote_ptr;
     uint64_t remote_size;
 };
 
+// 类: rpc_msg_get_alignment_req
+// 描述: rpc_msg_get_alignment_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_alignment_req相关的操作
+// 类: rpc_msg_get_alignment_req
+// 描述: rpc_msg_get_alignment_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_alignment_req相关的操作
+    // 结构体: rpc_msg_get_alignment_req
+    // 描述: rpc_msg_get_alignment_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_req相关的操作
+    // 结构体: rpc_msg_get_alignment_req
+    // 描述: rpc_msg_get_alignment_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_req相关的操作
+    // 结构体: rpc_msg_get_alignment_req
+    // 描述: rpc_msg_get_alignment_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_req相关的操作
+    // 结构体: rpc_msg_get_alignment_req
+    // 描述: rpc_msg_get_alignment_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_req相关的操作
 struct rpc_msg_get_alignment_req {
     uint32_t device;
 };
 
+// 类: rpc_msg_get_alignment_rsp
+// 描述: rpc_msg_get_alignment_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
+// 类: rpc_msg_get_alignment_rsp
+// 描述: rpc_msg_get_alignment_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
+    // 结构体: rpc_msg_get_alignment_rsp
+    // 描述: rpc_msg_get_alignment_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
+    // 结构体: rpc_msg_get_alignment_rsp
+    // 描述: rpc_msg_get_alignment_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
+    // 结构体: rpc_msg_get_alignment_rsp
+    // 描述: rpc_msg_get_alignment_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
+    // 结构体: rpc_msg_get_alignment_rsp
+    // 描述: rpc_msg_get_alignment_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_alignment_rsp相关的操作
 struct rpc_msg_get_alignment_rsp {
     uint64_t alignment;
 };
 
+// 类: rpc_msg_get_max_size_req
+// 描述: rpc_msg_get_max_size_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_max_size_req相关的操作
+// 类: rpc_msg_get_max_size_req
+// 描述: rpc_msg_get_max_size_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_max_size_req相关的操作
+    // 结构体: rpc_msg_get_max_size_req
+    // 描述: rpc_msg_get_max_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_req相关的操作
+    // 结构体: rpc_msg_get_max_size_req
+    // 描述: rpc_msg_get_max_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_req相关的操作
+    // 结构体: rpc_msg_get_max_size_req
+    // 描述: rpc_msg_get_max_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_req相关的操作
+    // 结构体: rpc_msg_get_max_size_req
+    // 描述: rpc_msg_get_max_size_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_req相关的操作
 struct rpc_msg_get_max_size_req {
     uint32_t device;
 };
 
+// 类: rpc_msg_get_max_size_rsp
+// 描述: rpc_msg_get_max_size_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
+// 类: rpc_msg_get_max_size_rsp
+// 描述: rpc_msg_get_max_size_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
+    // 结构体: rpc_msg_get_max_size_rsp
+    // 描述: rpc_msg_get_max_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
+    // 结构体: rpc_msg_get_max_size_rsp
+    // 描述: rpc_msg_get_max_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
+    // 结构体: rpc_msg_get_max_size_rsp
+    // 描述: rpc_msg_get_max_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
+    // 结构体: rpc_msg_get_max_size_rsp
+    // 描述: rpc_msg_get_max_size_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_max_size_rsp相关的操作
 struct rpc_msg_get_max_size_rsp {
     uint64_t max_size;
 };
 
+// 类: rpc_msg_buffer_get_base_req
+// 描述: rpc_msg_buffer_get_base_req类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
+// 类: rpc_msg_buffer_get_base_req
+// 描述: rpc_msg_buffer_get_base_req类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
+    // 结构体: rpc_msg_buffer_get_base_req
+    // 描述: rpc_msg_buffer_get_base_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
+    // 结构体: rpc_msg_buffer_get_base_req
+    // 描述: rpc_msg_buffer_get_base_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
+    // 结构体: rpc_msg_buffer_get_base_req
+    // 描述: rpc_msg_buffer_get_base_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
+    // 结构体: rpc_msg_buffer_get_base_req
+    // 描述: rpc_msg_buffer_get_base_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_req相关的操作
 struct rpc_msg_buffer_get_base_req {
     uint64_t remote_ptr;
 };
 
+// 类: rpc_msg_buffer_get_base_rsp
+// 描述: rpc_msg_buffer_get_base_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
+// 类: rpc_msg_buffer_get_base_rsp
+// 描述: rpc_msg_buffer_get_base_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
+    // 结构体: rpc_msg_buffer_get_base_rsp
+    // 描述: rpc_msg_buffer_get_base_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
+    // 结构体: rpc_msg_buffer_get_base_rsp
+    // 描述: rpc_msg_buffer_get_base_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
+    // 结构体: rpc_msg_buffer_get_base_rsp
+    // 描述: rpc_msg_buffer_get_base_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
+    // 结构体: rpc_msg_buffer_get_base_rsp
+    // 描述: rpc_msg_buffer_get_base_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_get_base_rsp相关的操作
 struct rpc_msg_buffer_get_base_rsp {
     uint64_t base_ptr;
 };
 
+// 类: rpc_msg_free_buffer_req
+// 描述: rpc_msg_free_buffer_req类提供相关功能
+// 用途: 用于处理rpc_msg_free_buffer_req相关的操作
+// 类: rpc_msg_free_buffer_req
+// 描述: rpc_msg_free_buffer_req类提供相关功能
+// 用途: 用于处理rpc_msg_free_buffer_req相关的操作
+    // 结构体: rpc_msg_free_buffer_req
+    // 描述: rpc_msg_free_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_free_buffer_req相关的操作
+    // 结构体: rpc_msg_free_buffer_req
+    // 描述: rpc_msg_free_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_free_buffer_req相关的操作
+    // 结构体: rpc_msg_free_buffer_req
+    // 描述: rpc_msg_free_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_free_buffer_req相关的操作
+    // 结构体: rpc_msg_free_buffer_req
+    // 描述: rpc_msg_free_buffer_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_free_buffer_req相关的操作
 struct rpc_msg_free_buffer_req {
     uint64_t remote_ptr;
 };
 
+// 类: rpc_msg_buffer_clear_req
+// 描述: rpc_msg_buffer_clear_req类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
+// 类: rpc_msg_buffer_clear_req
+// 描述: rpc_msg_buffer_clear_req类提供相关功能
+// 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
+    // 结构体: rpc_msg_buffer_clear_req
+    // 描述: rpc_msg_buffer_clear_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
+    // 结构体: rpc_msg_buffer_clear_req
+    // 描述: rpc_msg_buffer_clear_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
+    // 结构体: rpc_msg_buffer_clear_req
+    // 描述: rpc_msg_buffer_clear_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
+    // 结构体: rpc_msg_buffer_clear_req
+    // 描述: rpc_msg_buffer_clear_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_buffer_clear_req相关的操作
 struct rpc_msg_buffer_clear_req {
     uint64_t remote_ptr;
     uint8_t value;
 };
 
+// 类: rpc_msg_set_tensor_hash_req
+// 描述: rpc_msg_set_tensor_hash_req类提供相关功能
+// 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
+// 类: rpc_msg_set_tensor_hash_req
+// 描述: rpc_msg_set_tensor_hash_req类提供相关功能
+// 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_req
+    // 描述: rpc_msg_set_tensor_hash_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_req
+    // 描述: rpc_msg_set_tensor_hash_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_req
+    // 描述: rpc_msg_set_tensor_hash_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_req
+    // 描述: rpc_msg_set_tensor_hash_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_req相关的操作
 struct rpc_msg_set_tensor_hash_req {
     rpc_tensor tensor;
     uint64_t offset;
     uint64_t hash;
 };
 
+// 类: rpc_msg_set_tensor_hash_rsp
+// 描述: rpc_msg_set_tensor_hash_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
+// 类: rpc_msg_set_tensor_hash_rsp
+// 描述: rpc_msg_set_tensor_hash_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_rsp
+    // 描述: rpc_msg_set_tensor_hash_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_rsp
+    // 描述: rpc_msg_set_tensor_hash_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_rsp
+    // 描述: rpc_msg_set_tensor_hash_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
+    // 结构体: rpc_msg_set_tensor_hash_rsp
+    // 描述: rpc_msg_set_tensor_hash_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_set_tensor_hash_rsp相关的操作
 struct rpc_msg_set_tensor_hash_rsp {
     uint8_t result;
 };
 
+// 类: rpc_msg_get_tensor_req
+// 描述: rpc_msg_get_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_tensor_req相关的操作
+// 类: rpc_msg_get_tensor_req
+// 描述: rpc_msg_get_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_tensor_req相关的操作
+    // 结构体: rpc_msg_get_tensor_req
+    // 描述: rpc_msg_get_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_tensor_req相关的操作
+    // 结构体: rpc_msg_get_tensor_req
+    // 描述: rpc_msg_get_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_tensor_req相关的操作
+    // 结构体: rpc_msg_get_tensor_req
+    // 描述: rpc_msg_get_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_tensor_req相关的操作
+    // 结构体: rpc_msg_get_tensor_req
+    // 描述: rpc_msg_get_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_tensor_req相关的操作
 struct rpc_msg_get_tensor_req {
     rpc_tensor tensor;
     uint64_t offset;
     uint64_t size;
 };
 
+// 类: rpc_msg_copy_tensor_req
+// 描述: rpc_msg_copy_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
+// 类: rpc_msg_copy_tensor_req
+// 描述: rpc_msg_copy_tensor_req类提供相关功能
+// 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
+    // 结构体: rpc_msg_copy_tensor_req
+    // 描述: rpc_msg_copy_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
+    // 结构体: rpc_msg_copy_tensor_req
+    // 描述: rpc_msg_copy_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
+    // 结构体: rpc_msg_copy_tensor_req
+    // 描述: rpc_msg_copy_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
+    // 结构体: rpc_msg_copy_tensor_req
+    // 描述: rpc_msg_copy_tensor_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_req相关的操作
 struct rpc_msg_copy_tensor_req {
     rpc_tensor src;
     rpc_tensor dst;
 };
 
+// 类: rpc_msg_copy_tensor_rsp
+// 描述: rpc_msg_copy_tensor_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
+// 类: rpc_msg_copy_tensor_rsp
+// 描述: rpc_msg_copy_tensor_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
+    // 结构体: rpc_msg_copy_tensor_rsp
+    // 描述: rpc_msg_copy_tensor_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
+    // 结构体: rpc_msg_copy_tensor_rsp
+    // 描述: rpc_msg_copy_tensor_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
+    // 结构体: rpc_msg_copy_tensor_rsp
+    // 描述: rpc_msg_copy_tensor_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
+    // 结构体: rpc_msg_copy_tensor_rsp
+    // 描述: rpc_msg_copy_tensor_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_copy_tensor_rsp相关的操作
 struct rpc_msg_copy_tensor_rsp {
     uint8_t result;
 };
 
+// 类: rpc_msg_get_device_memory_req
+// 描述: rpc_msg_get_device_memory_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
+// 类: rpc_msg_get_device_memory_req
+// 描述: rpc_msg_get_device_memory_req类提供相关功能
+// 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
+    // 结构体: rpc_msg_get_device_memory_req
+    // 描述: rpc_msg_get_device_memory_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
+    // 结构体: rpc_msg_get_device_memory_req
+    // 描述: rpc_msg_get_device_memory_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
+    // 结构体: rpc_msg_get_device_memory_req
+    // 描述: rpc_msg_get_device_memory_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
+    // 结构体: rpc_msg_get_device_memory_req
+    // 描述: rpc_msg_get_device_memory_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_req相关的操作
 struct rpc_msg_get_device_memory_req {
     uint32_t device;
 };
 
+// 类: rpc_msg_get_device_memory_rsp
+// 描述: rpc_msg_get_device_memory_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
+// 类: rpc_msg_get_device_memory_rsp
+// 描述: rpc_msg_get_device_memory_rsp类提供相关功能
+// 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
+    // 结构体: rpc_msg_get_device_memory_rsp
+    // 描述: rpc_msg_get_device_memory_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
+    // 结构体: rpc_msg_get_device_memory_rsp
+    // 描述: rpc_msg_get_device_memory_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
+    // 结构体: rpc_msg_get_device_memory_rsp
+    // 描述: rpc_msg_get_device_memory_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
+    // 结构体: rpc_msg_get_device_memory_rsp
+    // 描述: rpc_msg_get_device_memory_rsp结构体提供相关功能
+    // 用途: 用于处理rpc_msg_get_device_memory_rsp相关的操作
 struct rpc_msg_get_device_memory_rsp {
     uint64_t free_mem;
     uint64_t total_mem;
 };
 
+// 类: rpc_msg_graph_recompute_req
+// 描述: rpc_msg_graph_recompute_req类提供相关功能
+// 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
+// 类: rpc_msg_graph_recompute_req
+// 描述: rpc_msg_graph_recompute_req类提供相关功能
+// 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
+    // 结构体: rpc_msg_graph_recompute_req
+    // 描述: rpc_msg_graph_recompute_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
+    // 结构体: rpc_msg_graph_recompute_req
+    // 描述: rpc_msg_graph_recompute_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
+    // 结构体: rpc_msg_graph_recompute_req
+    // 描述: rpc_msg_graph_recompute_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
+    // 结构体: rpc_msg_graph_recompute_req
+    // 描述: rpc_msg_graph_recompute_req结构体提供相关功能
+    // 用途: 用于处理rpc_msg_graph_recompute_req相关的操作
 struct rpc_msg_graph_recompute_req {
     uint32_t device;
 };
@@ -224,11 +681,37 @@ struct rpc_msg_graph_recompute_req {
 
 // RPC data structures
 
+// 函数: ggml_backend_rpc_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_rpc_guid() {
     static ggml_guid guid = {0x99, 0x68, 0x5b, 0x6c, 0xd2, 0x83, 0x3d, 0x24, 0x25, 0x36, 0x72, 0xe1, 0x5b, 0x0e, 0x14, 0x03};
     return &guid;
 }
 
+// 类: ggml_backend_rpc_buffer_type_context
+// 描述: ggml_backend_rpc_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
+// 类: ggml_backend_rpc_buffer_type_context
+// 描述: ggml_backend_rpc_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_type_context
+    // 描述: ggml_backend_rpc_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_type_context
+    // 描述: ggml_backend_rpc_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_type_context
+    // 描述: ggml_backend_rpc_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_type_context
+    // 描述: ggml_backend_rpc_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_type_context相关的操作
 struct ggml_backend_rpc_buffer_type_context {
     std::string endpoint;
     uint32_t    device;
@@ -237,8 +720,34 @@ struct ggml_backend_rpc_buffer_type_context {
     size_t      max_size;
 };
 
+// 类: graph_cache
+// 描述: graph_cache类提供相关功能
+// 用途: 用于处理graph_cache相关的操作
+// 类: graph_cache
+// 描述: graph_cache类提供相关功能
+// 用途: 用于处理graph_cache相关的操作
+    // 结构体: graph_cache
+    // 描述: graph_cache结构体提供相关功能
+    // 用途: 用于处理graph_cache相关的操作
+    // 结构体: graph_cache
+    // 描述: graph_cache结构体提供相关功能
+    // 用途: 用于处理graph_cache相关的操作
+    // 结构体: graph_cache
+    // 描述: graph_cache结构体提供相关功能
+    // 用途: 用于处理graph_cache相关的操作
+    // 结构体: graph_cache
+    // 描述: graph_cache结构体提供相关功能
+    // 用途: 用于处理graph_cache相关的操作
 struct graph_cache {
 
+    // 函数: is_cached
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_cached
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_cached(const ggml_cgraph * cgraph) {
         if ((int)last_graph.size() != cgraph->n_nodes) {
             return false;
@@ -251,6 +760,14 @@ struct graph_cache {
         return true;
     }
 
+    // 函数: add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add(const ggml_cgraph * cgraph) {
         last_graph.resize(cgraph->n_nodes);
         for (int i = 0; i < cgraph->n_nodes; i++) {
@@ -261,6 +778,24 @@ struct graph_cache {
     std::vector<ggml_tensor> last_graph;
 };
 
+// 类: ggml_backend_rpc_context
+// 描述: ggml_backend_rpc_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_context相关的操作
+// 类: ggml_backend_rpc_context
+// 描述: ggml_backend_rpc_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_context相关的操作
+    // 结构体: ggml_backend_rpc_context
+    // 描述: ggml_backend_rpc_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_context相关的操作
+    // 结构体: ggml_backend_rpc_context
+    // 描述: ggml_backend_rpc_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_context相关的操作
+    // 结构体: ggml_backend_rpc_context
+    // 描述: ggml_backend_rpc_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_context相关的操作
+    // 结构体: ggml_backend_rpc_context
+    // 描述: ggml_backend_rpc_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_context相关的操作
 struct ggml_backend_rpc_context {
     std::string endpoint;
     uint32_t    device;
@@ -268,6 +803,24 @@ struct ggml_backend_rpc_context {
     graph_cache gc;
 };
 
+// 类: ggml_backend_rpc_buffer_context
+// 描述: ggml_backend_rpc_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
+// 类: ggml_backend_rpc_buffer_context
+// 描述: ggml_backend_rpc_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_context
+    // 描述: ggml_backend_rpc_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_context
+    // 描述: ggml_backend_rpc_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_context
+    // 描述: ggml_backend_rpc_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
+    // 结构体: ggml_backend_rpc_buffer_context
+    // 描述: ggml_backend_rpc_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_buffer_context相关的操作
 struct ggml_backend_rpc_buffer_context {
     std::shared_ptr<socket_t> sock;
     void * base_ptr;
@@ -277,6 +830,14 @@ struct ggml_backend_rpc_buffer_context {
 // RPC helper functions
 
 // Computes FNV-1a hash of the data
+// 函数: fnv_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fnv_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint64_t fnv_hash(const uint8_t * data, size_t len) {
     const uint64_t fnv_prime = 0x100000001b3ULL;
     uint64_t hash = 0xcbf29ce484222325ULL;
@@ -301,6 +862,14 @@ static std::shared_ptr<socket_t> make_socket(sockfd_t fd) {
     return std::make_shared<socket_t>(fd);
 }
 
+// 函数: set_no_delay
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_no_delay
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static bool set_no_delay(sockfd_t sockfd) {
     int flag = 1;
     // set TCP_NODELAY to disable Nagle's algorithm
@@ -308,6 +877,14 @@ static bool set_no_delay(sockfd_t sockfd) {
     return ret == 0;
 }
 
+// 函数: set_reuse_addr
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_reuse_addr
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static bool set_reuse_addr(sockfd_t sockfd) {
     int flag = 1;
     int ret = setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, (char *)&flag, sizeof(int));
@@ -315,6 +892,24 @@ static bool set_reuse_addr(sockfd_t sockfd) {
 }
 
 static std::shared_ptr<socket_t> socket_connect(const char * host, int port) {
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
     struct sockaddr_in addr;
     auto sockfd = socket(AF_INET, SOCK_STREAM, 0);
     auto sock_ptr = make_socket(sockfd);
@@ -327,6 +922,24 @@ static std::shared_ptr<socket_t> socket_connect(const char * host, int port) {
     }
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
+    // 类: hostent
+    // 描述: hostent类提供相关功能
+    // 用途: 用于处理hostent相关的操作
+    // 类: hostent
+    // 描述: hostent类提供相关功能
+    // 用途: 用于处理hostent相关的操作
+    // 结构体: hostent
+    // 描述: hostent结构体提供相关功能
+    // 用途: 用于处理hostent相关的操作
+    // 结构体: hostent
+    // 描述: hostent结构体提供相关功能
+    // 用途: 用于处理hostent相关的操作
+    // 结构体: hostent
+    // 描述: hostent结构体提供相关功能
+    // 用途: 用于处理hostent相关的操作
+    // 结构体: hostent
+    // 描述: hostent结构体提供相关功能
+    // 用途: 用于处理hostent相关的操作
     struct hostent * server = gethostbyname(host);
     if (server == NULL) {
         GGML_LOG_ERROR("Cannot resolve host '%s'\n", host);
@@ -366,6 +979,24 @@ static std::shared_ptr<socket_t> create_server_socket(const char * host, int por
         GGML_LOG_ERROR("Invalid host address: %s\n", host);
         return nullptr;
     }
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
     struct sockaddr_in serv_addr;
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = inet_addr(host);
@@ -380,6 +1011,14 @@ static std::shared_ptr<socket_t> create_server_socket(const char * host, int por
     return sock;
 }
 
+// 函数: send_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: send_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool send_data(sockfd_t sockfd, const void * data, size_t size) {
     size_t bytes_sent = 0;
     while (bytes_sent < size) {
@@ -395,6 +1034,14 @@ static bool send_data(sockfd_t sockfd, const void * data, size_t size) {
     return true;
 }
 
+// 函数: recv_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: recv_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool recv_data(sockfd_t sockfd, void * data, size_t size) {
     size_t bytes_recv = 0;
     while (bytes_recv < size) {
@@ -414,6 +1061,14 @@ static bool recv_data(sockfd_t sockfd, void * data, size_t size) {
     return true;
 }
 
+// 函数: send_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: send_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool send_msg(sockfd_t sockfd, const void * msg, size_t msg_size) {
     if (!send_data(sockfd, &msg_size, sizeof(msg_size))) {
         return false;
@@ -421,6 +1076,14 @@ static bool send_msg(sockfd_t sockfd, const void * msg, size_t msg_size) {
     return send_data(sockfd, msg, msg_size);
 }
 
+// 函数: recv_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: recv_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool recv_msg(sockfd_t sockfd, void * msg, size_t msg_size) {
     uint64_t size;
     if (!recv_data(sockfd, &size, sizeof(size))) {
@@ -432,6 +1095,14 @@ static bool recv_msg(sockfd_t sockfd, void * msg, size_t msg_size) {
     return recv_data(sockfd, msg, msg_size);
 }
 
+// 函数: recv_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: recv_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool recv_msg(sockfd_t sockfd, std::vector<uint8_t> & input) {
     uint64_t size;
     if (!recv_data(sockfd, &size, sizeof(size))) {
@@ -446,6 +1117,14 @@ static bool recv_msg(sockfd_t sockfd, std::vector<uint8_t> & input) {
     return recv_data(sockfd, input.data(), size);
 }
 
+// 函数: parse_endpoint
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_endpoint
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool parse_endpoint(const std::string & endpoint, std::string & host, int & port) {
     size_t pos = endpoint.find(':');
     if (pos == std::string::npos) {
@@ -458,6 +1137,14 @@ static bool parse_endpoint(const std::string & endpoint, std::string & host, int
 
 // RPC request : | rpc_cmd (1 byte) | request_size (8 bytes) | request_data (request_size bytes) |
 // No response
+// 函数: send_rpc_cmd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: send_rpc_cmd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool send_rpc_cmd(const std::shared_ptr<socket_t> & sock, enum rpc_cmd cmd, const void * input, size_t input_size) {
     uint8_t cmd_byte = cmd;
     if (!send_data(sock->fd, &cmd_byte, sizeof(cmd_byte))) {
@@ -474,6 +1161,14 @@ static bool send_rpc_cmd(const std::shared_ptr<socket_t> & sock, enum rpc_cmd cm
 
 // RPC request : | rpc_cmd (1 byte) | request_size (8 bytes) | request_data (request_size bytes) |
 // RPC response: | response_size (8 bytes) | response_data (response_size bytes) |
+// 函数: send_rpc_cmd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: send_rpc_cmd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool send_rpc_cmd(const std::shared_ptr<socket_t> & sock, enum rpc_cmd cmd, const void * input, size_t input_size, void * output, size_t output_size) {
     if (!send_rpc_cmd(sock, cmd, input, input_size)) {
         return false;
@@ -495,6 +1190,14 @@ static bool send_rpc_cmd(const std::shared_ptr<socket_t> & sock, enum rpc_cmd cm
 
 // RPC client-side implementation
 
+// 函数: check_server_version
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: check_server_version
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool check_server_version(const std::shared_ptr<socket_t> & sock) {
     rpc_msg_hello_rsp response;
     bool status = send_rpc_cmd(sock, RPC_CMD_HELLO, nullptr, 0, &response, sizeof(response));
@@ -551,6 +1254,14 @@ static std::shared_ptr<socket_t> get_socket(const std::string & endpoint) {
     return sock;
 }
 
+// 函数: ggml_backend_rpc_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_rpc_buffer_context * ctx = (ggml_backend_rpc_buffer_context *)buffer->context;
     rpc_msg_free_buffer_req request = {ctx->remote_ptr};
@@ -559,6 +1270,14 @@ static void ggml_backend_rpc_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     delete ctx;
 }
 
+// 函数: ggml_backend_rpc_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_rpc_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_rpc_buffer_context * ctx = (ggml_backend_rpc_buffer_context *)buffer->context;
     if (ctx->base_ptr != nullptr) {
@@ -572,10 +1291,26 @@ static void * ggml_backend_rpc_buffer_get_base(ggml_backend_buffer_t buffer) {
     return ctx->base_ptr;
 }
 
+// 函数: ggml_backend_buffer_is_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_rpc(ggml_backend_buffer_t buffer) {
     return buffer->iface.free_buffer == ggml_backend_rpc_buffer_free_buffer;
 }
 
+// 函数: serialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: serialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static rpc_tensor serialize_tensor(const ggml_tensor * tensor) {
     rpc_tensor result;
     if (!tensor) {
@@ -633,6 +1368,14 @@ static enum ggml_status ggml_backend_rpc_buffer_init_tensor(ggml_backend_buffer_
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_backend_rpc_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_buffer_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     ggml_backend_rpc_buffer_context * ctx = (ggml_backend_rpc_buffer_context *)buffer->context;
     rpc_tensor rpc_tensor = serialize_tensor(tensor);
@@ -659,6 +1402,14 @@ static void ggml_backend_rpc_buffer_set_tensor(ggml_backend_buffer_t buffer, ggm
     RPC_STATUS_ASSERT(status);
 }
 
+// 函数: ggml_backend_rpc_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_buffer_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     ggml_backend_rpc_buffer_context * ctx = (ggml_backend_rpc_buffer_context *)buffer->context;
     rpc_msg_get_tensor_req request;
@@ -669,6 +1420,14 @@ static void ggml_backend_rpc_buffer_get_tensor(ggml_backend_buffer_t buffer, con
     RPC_STATUS_ASSERT(status);
 }
 
+// 函数: ggml_backend_rpc_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_rpc_buffer_cpy_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * src, ggml_tensor * dst) {
     if (ggml_backend_buffer_is_rpc(src->buffer)) {
         // check if src and dst are on the same server
@@ -691,6 +1450,14 @@ static bool ggml_backend_rpc_buffer_cpy_tensor(ggml_backend_buffer_t buffer, con
     return false;
 }
 
+// 函数: ggml_backend_rpc_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_backend_rpc_buffer_context * ctx = (ggml_backend_rpc_buffer_context *)buffer->context;
     rpc_msg_buffer_clear_req request = {ctx->remote_ptr, value};
@@ -710,11 +1477,27 @@ static ggml_backend_buffer_i ggml_backend_rpc_buffer_interface = {
     /* .reset           = */ NULL,
 };
 
+// 函数: ggml_backend_rpc_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_rpc_buffer_type_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_rpc_buffer_type_context * buft_ctx = (ggml_backend_rpc_buffer_type_context *)buft->context;
     return buft_ctx->name.c_str();
 }
 
+// 函数: ggml_backend_rpc_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_rpc_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     ggml_backend_rpc_buffer_type_context * buft_ctx = (ggml_backend_rpc_buffer_type_context *)buft->context;
     rpc_msg_alloc_buffer_req request = {buft_ctx->device, size};
@@ -733,6 +1516,14 @@ static ggml_backend_buffer_t ggml_backend_rpc_buffer_type_alloc_buffer(ggml_back
     }
 }
 
+// 函数: get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static size_t get_alignment(const std::shared_ptr<socket_t> & sock, uint32_t device) {
     rpc_msg_get_alignment_req request = {device};
     rpc_msg_get_alignment_rsp response;
@@ -741,11 +1532,27 @@ static size_t get_alignment(const std::shared_ptr<socket_t> & sock, uint32_t dev
     return response.alignment;
 }
 
+// 函数: ggml_backend_rpc_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_rpc_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     ggml_backend_rpc_buffer_type_context * buft_ctx = (ggml_backend_rpc_buffer_type_context *)buft->context;
     return buft_ctx->alignment;
 }
 
+// 函数: get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static size_t get_max_size(const std::shared_ptr<socket_t> & sock, uint32_t device) {
     rpc_msg_get_max_size_req request = {device};
     rpc_msg_get_max_size_rsp response;
@@ -754,11 +1561,27 @@ static size_t get_max_size(const std::shared_ptr<socket_t> & sock, uint32_t devi
     return response.max_size;
 }
 
+// 函数: ggml_backend_rpc_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_rpc_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_backend_rpc_buffer_type_context * buft_ctx = (ggml_backend_rpc_buffer_type_context *)buft->context;
     return buft_ctx->max_size;
 }
 
+// 函数: ggml_backend_rpc_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_rpc_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     // should we query the remote server for the actual size
     bool rpc_get = false;
@@ -806,23 +1629,55 @@ static ggml_backend_buffer_type_i ggml_backend_rpc_buffer_type_interface = {
     /* .is_host          = */ NULL,
 };
 
+// 函数: ggml_backend_rpc_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_rpc_name(ggml_backend_t backend) {
     ggml_backend_rpc_context * rpc_ctx = (ggml_backend_rpc_context *)backend->context;
 
     return rpc_ctx->name.c_str();
 }
 
+// 函数: ggml_backend_rpc_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_free(ggml_backend_t backend) {
     ggml_backend_rpc_context * rpc_ctx = (ggml_backend_rpc_context *)backend->context;
     delete rpc_ctx;
     delete backend;
 }
 
+// 函数: ggml_backend_rpc_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_synchronize(ggml_backend_t backend) {
     GGML_UNUSED(backend);
     // this is no-op because we don't have any async operations
 }
 
+// 函数: add_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void add_tensor(ggml_tensor * tensor, std::vector<rpc_tensor> & tensors, std::unordered_set<ggml_tensor*> & visited) {
     if (tensor == nullptr) {
         return;
@@ -838,6 +1693,14 @@ static void add_tensor(ggml_tensor * tensor, std::vector<rpc_tensor> & tensors, 
     tensors.push_back(serialize_tensor(tensor));
 }
 
+// 函数: serialize_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: serialize_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void serialize_graph(uint32_t device, const ggml_cgraph * cgraph, std::vector<uint8_t> & output) {
     uint32_t n_nodes = cgraph->n_nodes;
     std::vector<rpc_tensor> tensors;
@@ -904,6 +1767,14 @@ static ggml_backend_i ggml_backend_rpc_interface = {
     /* .graph_optimize          = */ NULL,
 };
 
+// 函数: ggml_backend_rpc_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_rpc_buffer_type(const char * endpoint, uint32_t device) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -938,6 +1809,14 @@ ggml_backend_buffer_type_t ggml_backend_rpc_buffer_type(const char * endpoint, u
     return buft;
 }
 
+// 函数: ggml_backend_rpc_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_rpc_init(const char * endpoint, uint32_t device) {
     std::string dev_name = "RPC" + std::to_string(device) + "[" + std::string(endpoint) + "]";
     ggml_backend_rpc_context * ctx = new ggml_backend_rpc_context {
@@ -956,10 +1835,26 @@ ggml_backend_t ggml_backend_rpc_init(const char * endpoint, uint32_t device) {
     return backend;
 }
 
+// 函数: ggml_backend_is_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_rpc(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_rpc_guid());
 }
 
+// 函数: get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static void get_device_memory(const std::shared_ptr<socket_t> & sock, uint32_t device, size_t * free, size_t * total) {
     rpc_msg_get_device_memory_req request;
     request.device = device;
@@ -970,6 +1865,14 @@ static void get_device_memory(const std::shared_ptr<socket_t> & sock, uint32_t d
     *total = response.total_mem;
 }
 
+// 函数: ggml_backend_rpc_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_get_device_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_rpc_get_device_memory(const char * endpoint, uint32_t device, size_t * free, size_t * total) {
     auto sock = get_socket(endpoint);
     if (sock == nullptr) {
@@ -982,6 +1885,12 @@ void ggml_backend_rpc_get_device_memory(const char * endpoint, uint32_t device, 
 
 // RPC server-side implementation
 
+// 类: rpc_server
+// 描述: rpc_server类提供相关功能
+// 用途: 用于处理rpc_server相关的操作
+// 类: rpc_server
+// 描述: rpc_server类提供相关功能
+// 用途: 用于处理rpc_server相关的操作
 class rpc_server {
 public:
     rpc_server(std::vector<ggml_backend_t> all_backends, const char * cache_dir)
@@ -990,32 +1899,212 @@ public:
     }
     ~rpc_server();
 
+    // 函数: hello
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: hello
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void hello(rpc_msg_hello_rsp & response);
+    // 函数: alloc_buffer
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc_buffer
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     bool alloc_buffer(const rpc_msg_alloc_buffer_req & request, rpc_msg_alloc_buffer_rsp & response);
+    // 函数: get_alignment
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_alignment
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_alignment(const rpc_msg_get_alignment_req & request, rpc_msg_get_alignment_rsp & response);
+    // 函数: get_max_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_max_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_max_size(const rpc_msg_get_max_size_req & request, rpc_msg_get_max_size_rsp & response);
+    // 函数: buffer_get_base
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: buffer_get_base
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     bool buffer_get_base(const rpc_msg_buffer_get_base_req & request, rpc_msg_buffer_get_base_rsp & response);
+    // 函数: free_buffer
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free_buffer
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     bool free_buffer(const rpc_msg_free_buffer_req & request);
+    // 函数: buffer_clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: buffer_clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     bool buffer_clear(const rpc_msg_buffer_clear_req & request);
+    // 函数: set_tensor
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_tensor
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     bool set_tensor(const std::vector<uint8_t> & input);
+    // 函数: set_tensor_hash
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_tensor_hash
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     bool set_tensor_hash(const rpc_msg_set_tensor_hash_req & request, rpc_msg_set_tensor_hash_rsp & response);
+    // 函数: get_tensor
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_tensor
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_tensor(const rpc_msg_get_tensor_req & request, std::vector<uint8_t> & response);
+    // 函数: copy_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: copy_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool copy_tensor(const rpc_msg_copy_tensor_req & request, rpc_msg_copy_tensor_rsp & response);
+    // 函数: graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     bool graph_compute(const std::vector<uint8_t> & input);
+    // 函数: graph_recompute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: graph_recompute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     bool graph_recompute(const rpc_msg_graph_recompute_req & request);
+    // 函数: init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     bool init_tensor(const rpc_msg_init_tensor_req & request);
+    // 函数: get_alloc_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_alloc_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_alloc_size(const rpc_msg_get_alloc_size_req & request, rpc_msg_get_alloc_size_rsp & response);
+    // 函数: get_device_memory
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_device_memory
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_device_memory(const rpc_msg_get_device_memory_req & request, rpc_msg_get_device_memory_rsp & response);
 
+    // 类: stored_graph
+    // 描述: stored_graph类提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
+    // 类: stored_graph
+    // 描述: stored_graph类提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
+    // 结构体: stored_graph
+    // 描述: stored_graph结构体提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
+    // 结构体: stored_graph
+    // 描述: stored_graph结构体提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
+    // 结构体: stored_graph
+    // 描述: stored_graph结构体提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
+    // 结构体: stored_graph
+    // 描述: stored_graph结构体提供相关功能
+    // 用途: 用于处理stored_graph相关的操作
     struct stored_graph {
         ggml_context_ptr ctx_ptr;
         ggml_cgraph *    graph;
     };
 
 private:
+    // 函数: get_cached_file
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_cached_file
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     bool get_cached_file(uint64_t hash, std::vector<uint8_t> & data);
+    // 函数: deserialize_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: deserialize_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * deserialize_tensor(struct ggml_context * ctx, const rpc_tensor * tensor);
     ggml_tensor * create_node(uint64_t id,
+                              // 类: ggml_context
+                              // 描述: ggml_context类提供相关功能
+                              // 用途: 用于处理ggml_context相关的操作
+                              // 类: ggml_context
+                              // 描述: ggml_context类提供相关功能
+                              // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
                               struct ggml_context * ctx,
                               const std::unordered_map<uint64_t, const rpc_tensor*> & tensor_ptrs,
                               std::unordered_map<uint64_t, struct ggml_tensor*> & tensor_map);
@@ -1041,6 +2130,24 @@ bool rpc_server::get_alloc_size(const rpc_msg_get_alloc_size_req & request, rpc_
         return false;
     }
     ggml_backend_buffer_type_t buft;
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ ggml_tensor_overhead()*(1 + GGML_MAX_SRC),
         /*.mem_buffer =*/ NULL,
@@ -1209,6 +2316,24 @@ bool rpc_server::set_tensor(const std::vector<uint8_t> & input) {
     memcpy(&offset, input.data() + sizeof(rpc_tensor), sizeof(offset));
     const size_t size = input.size() - sizeof(rpc_tensor) - sizeof(offset);
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ ggml_tensor_overhead(),
         /*.mem_buffer =*/ NULL,
@@ -1243,6 +2368,14 @@ bool rpc_server::set_tensor(const std::vector<uint8_t> & input) {
         snprintf(hash_str, sizeof(hash_str), "%016" PRIx64, hash);
         // save to cache_dir/hash_str
         fs::path cache_file = fs::path(cache_dir) / hash_str;
+        // 函数: ofs
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ofs
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::ofstream ofs(cache_file, std::ios::binary);
         ofs.write((const char *)data, size);
         GGML_LOG_INFO("[%s] saved to '%s'\n", __func__, cache_file.c_str());
@@ -1262,6 +2395,14 @@ bool rpc_server::get_cached_file(uint64_t hash, std::vector<uint8_t> & data) {
     if (!fs::exists(cache_file, ec)) {
         return false;
     }
+    // 函数: ifs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ifs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ifstream ifs(cache_file, std::ios::binary);
     ifs.seekg(0, std::ios::end);
     size_t size = ifs.tellg();
@@ -1279,6 +2420,24 @@ bool rpc_server::set_tensor_hash(const rpc_msg_set_tensor_hash_req & request, rp
         return true;
     }
     size_t size = cached_file.size();
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ ggml_tensor_overhead(),
         /*.mem_buffer =*/ NULL,
@@ -1314,6 +2473,24 @@ bool rpc_server::set_tensor_hash(const rpc_msg_set_tensor_hash_req & request, rp
 }
 
 bool rpc_server::init_tensor(const rpc_msg_init_tensor_req & request) {
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ ggml_tensor_overhead(),
         /*.mem_buffer =*/ NULL,
@@ -1347,6 +2524,24 @@ bool rpc_server::init_tensor(const rpc_msg_init_tensor_req & request) {
 }
 
 bool rpc_server::get_tensor(const rpc_msg_get_tensor_req & request, std::vector<uint8_t> & response) {
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ ggml_tensor_overhead(),
         /*.mem_buffer =*/ NULL,
@@ -1382,6 +2577,24 @@ bool rpc_server::get_tensor(const rpc_msg_get_tensor_req & request, std::vector<
 }
 
 bool rpc_server::copy_tensor(const rpc_msg_copy_tensor_req & request, rpc_msg_copy_tensor_rsp & response) {
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params {
         /*.mem_size   =*/ 2*ggml_tensor_overhead(),
         /*.mem_buffer =*/ NULL,
@@ -1423,6 +2636,24 @@ bool rpc_server::copy_tensor(const rpc_msg_copy_tensor_req & request, rpc_msg_co
 }
 
 ggml_tensor * rpc_server::create_node(uint64_t id,
+                                      // 类: ggml_context
+                                      // 描述: ggml_context类提供相关功能
+                                      // 用途: 用于处理ggml_context相关的操作
+                                      // 类: ggml_context
+                                      // 描述: ggml_context类提供相关功能
+                                      // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
                                       struct ggml_context * ctx,
                                       const std::unordered_map<uint64_t, const rpc_tensor*> & tensor_ptrs,
                                       std::unordered_map<uint64_t, struct ggml_tensor*> & tensor_map) {
@@ -1436,6 +2667,24 @@ ggml_tensor * rpc_server::create_node(uint64_t id,
     }
     const rpc_tensor * tensor = it_ptr->second;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * result = deserialize_tensor(ctx, tensor);
     if (result == nullptr) {
         return nullptr;
@@ -1506,6 +2755,24 @@ bool rpc_server::graph_compute(const std::vector<uint8_t> & input) {
 
     size_t buf_size = ggml_tensor_overhead()*(n_nodes + n_tensors) + ggml_graph_overhead_custom(n_nodes, false);
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /*.mem_size   =*/ buf_size,
         /*.mem_buffer =*/ NULL,
@@ -1514,6 +2781,24 @@ bool rpc_server::graph_compute(const std::vector<uint8_t> & input) {
     ggml_context_ptr ctx_ptr { ggml_init(params) };
     GGML_ASSERT(ctx_ptr != nullptr);
     ggml_context * ctx = ctx_ptr.get();
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph = ggml_new_graph_custom(ctx, n_nodes, false);
     graph->n_nodes = n_nodes;
     std::unordered_map<uint64_t, const rpc_tensor*> tensor_ptrs;
@@ -1580,6 +2865,14 @@ rpc_server::~rpc_server() {
 
 static void rpc_serve_client(const std::vector<ggml_backend_t> & backends, const char * cache_dir,
                              sockfd_t sockfd) {
+    // 函数: server
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: server
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     rpc_server server(backends, cache_dir);
     uint8_t cmd;
     if (!recv_data(sockfd, &cmd, 1)) {
@@ -1903,6 +3196,24 @@ void ggml_backend_rpc_start_server(const char * endpoint, const char * cache_dir
 
 // device interface
 
+// 类: ggml_backend_rpc_device_context
+// 描述: ggml_backend_rpc_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_device_context相关的操作
+// 类: ggml_backend_rpc_device_context
+// 描述: ggml_backend_rpc_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_device_context相关的操作
+    // 结构体: ggml_backend_rpc_device_context
+    // 描述: ggml_backend_rpc_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_device_context相关的操作
+    // 结构体: ggml_backend_rpc_device_context
+    // 描述: ggml_backend_rpc_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_device_context相关的操作
+    // 结构体: ggml_backend_rpc_device_context
+    // 描述: ggml_backend_rpc_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_device_context相关的操作
+    // 结构体: ggml_backend_rpc_device_context
+    // 描述: ggml_backend_rpc_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_device_context相关的操作
 struct ggml_backend_rpc_device_context {
     std::string endpoint;
     uint32_t    device;
@@ -1910,18 +3221,42 @@ struct ggml_backend_rpc_device_context {
     std::string description;
 };
 
+// 函数: ggml_backend_rpc_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_rpc_device_get_name(ggml_backend_dev_t dev) {
     ggml_backend_rpc_device_context * ctx = (ggml_backend_rpc_device_context *)dev->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_rpc_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_rpc_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_rpc_device_context * ctx = (ggml_backend_rpc_device_context *)dev->context;
 
     return ctx->description.c_str();
 }
 
+// 函数: ggml_backend_rpc_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     ggml_backend_rpc_device_context * ctx = (ggml_backend_rpc_device_context *)dev->context;
 
@@ -1935,6 +3270,14 @@ static enum ggml_backend_dev_type ggml_backend_rpc_device_get_type(ggml_backend_
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_rpc_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_rpc_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_rpc_device_get_name(dev);
     props->description = ggml_backend_rpc_device_get_description(dev);
@@ -1948,6 +3291,14 @@ static void ggml_backend_rpc_device_get_props(ggml_backend_dev_t dev, struct ggm
     };
 }
 
+// 函数: ggml_backend_rpc_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_rpc_device_init(ggml_backend_dev_t dev, const char * params) {
     ggml_backend_rpc_device_context * ctx = (ggml_backend_rpc_device_context *)dev->context;
 
@@ -1956,6 +3307,14 @@ static ggml_backend_t ggml_backend_rpc_device_init(ggml_backend_dev_t dev, const
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_rpc_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_rpc_device_get_buffer_type(ggml_backend_dev_t dev) {
     ggml_backend_rpc_device_context * ctx = (ggml_backend_rpc_device_context *)dev->context;
 
@@ -1964,6 +3323,14 @@ static ggml_backend_buffer_type_t ggml_backend_rpc_device_get_buffer_type(ggml_b
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_rpc_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_rpc_device_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     GGML_UNUSED(dev);
     GGML_UNUSED(op);
@@ -1971,6 +3338,14 @@ static bool ggml_backend_rpc_device_supports_op(ggml_backend_dev_t dev, const st
     return true;
 }
 
+// 函数: ggml_backend_rpc_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_rpc_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     if (!buft || buft->iface.get_name != ggml_backend_rpc_buffer_type_name) {
         return false;
@@ -2000,21 +3375,63 @@ static const struct ggml_backend_device_i ggml_backend_rpc_device_i = {
 
 // backend reg interface
 
+// 类: ggml_backend_rpc_reg_context
+// 描述: ggml_backend_rpc_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
+// 类: ggml_backend_rpc_reg_context
+// 描述: ggml_backend_rpc_reg_context类提供相关功能
+// 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
+    // 结构体: ggml_backend_rpc_reg_context
+    // 描述: ggml_backend_rpc_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
+    // 结构体: ggml_backend_rpc_reg_context
+    // 描述: ggml_backend_rpc_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
+    // 结构体: ggml_backend_rpc_reg_context
+    // 描述: ggml_backend_rpc_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
+    // 结构体: ggml_backend_rpc_reg_context
+    // 描述: ggml_backend_rpc_reg_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_rpc_reg_context相关的操作
 struct ggml_backend_rpc_reg_context {
     std::string                     name;
     std::vector<ggml_backend_dev_t> devices;
 };
 
+// 函数: ggml_backend_rpc_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_rpc_reg_get_name(ggml_backend_reg_t reg) {
     ggml_backend_rpc_reg_context * ctx = (ggml_backend_rpc_reg_context *)reg->context;
     return ctx ? ctx->name.c_str() : "RPC";
 }
 
+// 函数: ggml_backend_rpc_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_rpc_reg_get_device_count(ggml_backend_reg_t reg) {
     ggml_backend_rpc_reg_context * ctx = (ggml_backend_rpc_reg_context *)reg->context;
     return ctx ? ctx->devices.size() : 0;
 }
 
+// 函数: ggml_backend_rpc_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_rpc_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     ggml_backend_rpc_reg_context * ctx = (ggml_backend_rpc_reg_context *)reg->context;
     if (ctx == nullptr) {
@@ -2025,6 +3442,14 @@ static ggml_backend_dev_t ggml_backend_rpc_reg_get_device(ggml_backend_reg_t reg
     }
 }
 
+// 函数: ggml_backend_rpc_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_rpc_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (std::strcmp(name, "ggml_backend_rpc_add_server") == 0) {
         return (void *)ggml_backend_rpc_add_server;
@@ -2044,6 +3469,14 @@ static const struct ggml_backend_reg_i ggml_backend_rpc_reg_i = {
     /* .get_proc_address = */ ggml_backend_rpc_get_proc_address,
 };
 
+// 函数: ggml_backend_rpc_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_rpc_reg(void) {
     static struct ggml_backend_reg ggml_backend_rpc_reg = {
         /* .api_version = */ GGML_BACKEND_API_VERSION,
@@ -2054,6 +3487,14 @@ ggml_backend_reg_t ggml_backend_rpc_reg(void) {
     return &ggml_backend_rpc_reg;
 }
 
+// 函数: ggml_backend_rpc_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t ggml_backend_rpc_get_device_count(const char * endpoint) {
     auto sock = get_socket(endpoint);
     if (sock == nullptr) {
@@ -2073,6 +3514,14 @@ static const ggml_backend_reg_i ggml_backend_rpc_reg_interface = {
     /* .get_proc_address  = */ ggml_backend_rpc_get_proc_address,
 };
 
+// 函数: ggml_backend_rpc_add_server
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_rpc_add_server
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_rpc_add_server(const char * endpoint) {
     static std::unordered_map<std::string, ggml_backend_reg_t> reg_map;
     static std::mutex mutex;

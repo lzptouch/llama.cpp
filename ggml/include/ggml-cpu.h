@@ -9,11 +9,47 @@ extern "C" {
 
     // the compute plan that needs to be prepared for ggml_graph_compute()
     // since https://github.com/ggml-org/ggml/issues/287
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 类: ggml_cplan
+    // 描述: ggml_cplan类提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
+    // 结构体: ggml_cplan
+    // 描述: ggml_cplan结构体提供相关功能
+    // 用途: 用于处理ggml_cplan相关的操作
     struct ggml_cplan {
         size_t    work_size; // size of work buffer, calculated by `ggml_graph_plan()`
         uint8_t * work_data; // work buffer, to be allocated by caller before calling to `ggml_graph_compute()`
 
         int n_threads;
+        // 类: ggml_threadpool
+        // 描述: ggml_threadpool类提供相关功能
+        // 用途: 用于处理ggml_threadpool相关的操作
+        // 类: ggml_threadpool
+        // 描述: ggml_threadpool类提供相关功能
+        // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
         struct ggml_threadpool * threadpool;
 
         // abort ggml_graph_compute when true
@@ -66,6 +102,24 @@ extern "C" {
     GGML_BACKEND_API struct ggml_cplan ggml_graph_plan(
                   const struct ggml_cgraph * cgraph,
                                        int   n_threads, /* = GGML_DEFAULT_N_THREADS */
+                    // 类: ggml_threadpool
+                    // 描述: ggml_threadpool类提供相关功能
+                    // 用途: 用于处理ggml_threadpool相关的操作
+                    // 类: ggml_threadpool
+                    // 描述: ggml_threadpool类提供相关功能
+                    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
                     struct ggml_threadpool * threadpool /* = NULL */ );
     GGML_BACKEND_API enum ggml_status  ggml_graph_compute(struct ggml_cgraph * cgraph, struct ggml_cplan * cplan);
 
@@ -110,9 +164,35 @@ extern "C" {
 
     // Internal types and functions exposed for tests and benchmarks
 
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef void (*ggml_vec_dot_t)  (int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT x, size_t bx,
                                        const void * GGML_RESTRICT y, size_t by, int nrc);
 
+    // 类: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu类提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
+    // 类: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu类提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
+    // 结构体: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
+    // 结构体: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
+    // 结构体: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
+    // 结构体: ggml_type_traits_cpu
+    // 描述: ggml_type_traits_cpu结构体提供相关功能
+    // 用途: 用于处理ggml_type_traits_cpu相关的操作
     struct ggml_type_traits_cpu {
         ggml_from_float_t        from_float;
         ggml_vec_dot_t           vec_dot;

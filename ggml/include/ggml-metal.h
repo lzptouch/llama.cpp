@@ -27,7 +27,43 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor;
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+// 类: ggml_cgraph
+// 描述: ggml_cgraph类提供相关功能
+// 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
 struct ggml_cgraph;
 
 #ifdef __cplusplus

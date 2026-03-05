@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: qwen35moe.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/qwen35moe.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "llama-memory-recurrent.h"
@@ -108,6 +115,14 @@ ggml_tensor * llm_build_qwen35moe::build_norm_gated(
     ggml_tensor * normalized = build_norm(input, weights, nullptr, LLM_NORM_RMS, layer);
     ggml_tensor * gated_silu = ggml_silu(ctx0, gate);
 
+    // 函数: ggml_mul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_mul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_mul(ctx0, normalized, gated_silu);
 }
 

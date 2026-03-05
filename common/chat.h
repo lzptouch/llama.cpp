@@ -12,8 +12,44 @@
 
 #include <nlohmann/json_fwd.hpp>
 
+// 类: common_chat_templates
+// 描述: common_chat_templates类提供相关功能
+// 用途: 用于处理common_chat_templates相关的操作
+// 类: common_chat_templates
+// 描述: common_chat_templates类提供相关功能
+// 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
+    // 结构体: common_chat_templates
+    // 描述: common_chat_templates结构体提供相关功能
+    // 用途: 用于处理common_chat_templates相关的操作
 struct common_chat_templates;
 
+// 类: common_chat_tool_call
+// 描述: common_chat_tool_call类提供相关功能
+// 用途: 用于处理common_chat_tool_call相关的操作
+// 类: common_chat_tool_call
+// 描述: common_chat_tool_call类提供相关功能
+// 用途: 用于处理common_chat_tool_call相关的操作
+    // 结构体: common_chat_tool_call
+    // 描述: common_chat_tool_call结构体提供相关功能
+    // 用途: 用于处理common_chat_tool_call相关的操作
+    // 结构体: common_chat_tool_call
+    // 描述: common_chat_tool_call结构体提供相关功能
+    // 用途: 用于处理common_chat_tool_call相关的操作
+    // 结构体: common_chat_tool_call
+    // 描述: common_chat_tool_call结构体提供相关功能
+    // 用途: 用于处理common_chat_tool_call相关的操作
+    // 结构体: common_chat_tool_call
+    // 描述: common_chat_tool_call结构体提供相关功能
+    // 用途: 用于处理common_chat_tool_call相关的操作
 struct common_chat_tool_call {
     std::string name;
     std::string arguments;
@@ -24,6 +60,24 @@ struct common_chat_tool_call {
     }
 };
 
+// 类: common_chat_msg_content_part
+// 描述: common_chat_msg_content_part类提供相关功能
+// 用途: 用于处理common_chat_msg_content_part相关的操作
+// 类: common_chat_msg_content_part
+// 描述: common_chat_msg_content_part类提供相关功能
+// 用途: 用于处理common_chat_msg_content_part相关的操作
+    // 结构体: common_chat_msg_content_part
+    // 描述: common_chat_msg_content_part结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_content_part相关的操作
+    // 结构体: common_chat_msg_content_part
+    // 描述: common_chat_msg_content_part结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_content_part相关的操作
+    // 结构体: common_chat_msg_content_part
+    // 描述: common_chat_msg_content_part结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_content_part相关的操作
+    // 结构体: common_chat_msg_content_part
+    // 描述: common_chat_msg_content_part结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_content_part相关的操作
 struct common_chat_msg_content_part {
     std::string type;
     std::string text;
@@ -38,6 +92,24 @@ struct common_chat_msg_content_part {
     }
 };
 
+// 类: common_chat_msg
+// 描述: common_chat_msg类提供相关功能
+// 用途: 用于处理common_chat_msg相关的操作
+// 类: common_chat_msg
+// 描述: common_chat_msg类提供相关功能
+// 用途: 用于处理common_chat_msg相关的操作
+    // 结构体: common_chat_msg
+    // 描述: common_chat_msg结构体提供相关功能
+    // 用途: 用于处理common_chat_msg相关的操作
+    // 结构体: common_chat_msg
+    // 描述: common_chat_msg结构体提供相关功能
+    // 用途: 用于处理common_chat_msg相关的操作
+    // 结构体: common_chat_msg
+    // 描述: common_chat_msg结构体提供相关功能
+    // 用途: 用于处理common_chat_msg相关的操作
+    // 结构体: common_chat_msg
+    // 描述: common_chat_msg结构体提供相关功能
+    // 用途: 用于处理common_chat_msg相关的操作
 struct common_chat_msg {
     std::string role;
     std::string content;
@@ -47,11 +119,35 @@ struct common_chat_msg {
     std::string tool_name;
     std::string tool_call_id;
 
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json_oaicompat
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     nlohmann::ordered_json to_json_oaicompat(bool concat_typed_text = false) const;
 
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool empty() const {
         return content.empty() && content_parts.empty() && tool_calls.empty() && reasoning_content.empty() && tool_name.empty() && tool_call_id.empty();
     }
+    // 函数: set_tool_call_ids
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_tool_call_ids
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_tool_call_ids(std::vector<std::string> & ids_cache, const std::function<std::string()> & gen_tool_call_id) {
         for (auto i = 0u; i < tool_calls.size(); i++) {
             if (ids_cache.size() <= i) {
@@ -78,6 +174,24 @@ struct common_chat_msg {
     }
 };
 
+// 类: common_chat_msg_diff
+// 描述: common_chat_msg_diff类提供相关功能
+// 用途: 用于处理common_chat_msg_diff相关的操作
+// 类: common_chat_msg_diff
+// 描述: common_chat_msg_diff类提供相关功能
+// 用途: 用于处理common_chat_msg_diff相关的操作
+    // 结构体: common_chat_msg_diff
+    // 描述: common_chat_msg_diff结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_diff相关的操作
+    // 结构体: common_chat_msg_diff
+    // 描述: common_chat_msg_diff结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_diff相关的操作
+    // 结构体: common_chat_msg_diff
+    // 描述: common_chat_msg_diff结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_diff相关的操作
+    // 结构体: common_chat_msg_diff
+    // 描述: common_chat_msg_diff结构体提供相关功能
+    // 用途: 用于处理common_chat_msg_diff相关的操作
 struct common_chat_msg_diff {
     std::string reasoning_content_delta;
     std::string content_delta;
@@ -93,6 +207,24 @@ struct common_chat_msg_diff {
     }
 };
 
+// 类: common_chat_tool
+// 描述: common_chat_tool类提供相关功能
+// 用途: 用于处理common_chat_tool相关的操作
+// 类: common_chat_tool
+// 描述: common_chat_tool类提供相关功能
+// 用途: 用于处理common_chat_tool相关的操作
+    // 结构体: common_chat_tool
+    // 描述: common_chat_tool结构体提供相关功能
+    // 用途: 用于处理common_chat_tool相关的操作
+    // 结构体: common_chat_tool
+    // 描述: common_chat_tool结构体提供相关功能
+    // 用途: 用于处理common_chat_tool相关的操作
+    // 结构体: common_chat_tool
+    // 描述: common_chat_tool结构体提供相关功能
+    // 用途: 用于处理common_chat_tool相关的操作
+    // 结构体: common_chat_tool
+    // 描述: common_chat_tool结构体提供相关功能
+    // 用途: 用于处理common_chat_tool相关的操作
 struct common_chat_tool {
     std::string name;
     std::string description;
@@ -141,6 +273,24 @@ enum common_chat_format {
     COMMON_CHAT_FORMAT_COUNT, // Not a format, just the # formats
 };
 
+// 类: common_chat_templates_inputs
+// 描述: common_chat_templates_inputs类提供相关功能
+// 用途: 用于处理common_chat_templates_inputs相关的操作
+// 类: common_chat_templates_inputs
+// 描述: common_chat_templates_inputs类提供相关功能
+// 用途: 用于处理common_chat_templates_inputs相关的操作
+    // 结构体: common_chat_templates_inputs
+    // 描述: common_chat_templates_inputs结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_inputs相关的操作
+    // 结构体: common_chat_templates_inputs
+    // 描述: common_chat_templates_inputs结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_inputs相关的操作
+    // 结构体: common_chat_templates_inputs
+    // 描述: common_chat_templates_inputs结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_inputs相关的操作
+    // 结构体: common_chat_templates_inputs
+    // 描述: common_chat_templates_inputs结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_inputs相关的操作
 struct common_chat_templates_inputs {
     std::vector<common_chat_msg> messages;
     std::string grammar;
@@ -159,6 +309,24 @@ struct common_chat_templates_inputs {
     bool add_eos = false;
 };
 
+// 类: common_chat_params
+// 描述: common_chat_params类提供相关功能
+// 用途: 用于处理common_chat_params相关的操作
+// 类: common_chat_params
+// 描述: common_chat_params类提供相关功能
+// 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
 struct common_chat_params {
     common_chat_format                  format = COMMON_CHAT_FORMAT_CONTENT_ONLY;
     std::string                         prompt;
@@ -173,6 +341,24 @@ struct common_chat_params {
 
 // per-message parsing syntax
 // should be derived from common_chat_params
+// 类: common_chat_parser_params
+// 描述: common_chat_parser_params类提供相关功能
+// 用途: 用于处理common_chat_parser_params相关的操作
+// 类: common_chat_parser_params
+// 描述: common_chat_parser_params类提供相关功能
+// 用途: 用于处理common_chat_parser_params相关的操作
+    // 结构体: common_chat_parser_params
+    // 描述: common_chat_parser_params结构体提供相关功能
+    // 用途: 用于处理common_chat_parser_params相关的操作
+    // 结构体: common_chat_parser_params
+    // 描述: common_chat_parser_params结构体提供相关功能
+    // 用途: 用于处理common_chat_parser_params相关的操作
+    // 结构体: common_chat_parser_params
+    // 描述: common_chat_parser_params结构体提供相关功能
+    // 用途: 用于处理common_chat_parser_params相关的操作
+    // 结构体: common_chat_parser_params
+    // 描述: common_chat_parser_params结构体提供相关功能
+    // 用途: 用于处理common_chat_parser_params相关的操作
 struct common_chat_parser_params {
     common_chat_format       format                = COMMON_CHAT_FORMAT_CONTENT_ONLY;
     common_reasoning_format  reasoning_format      = COMMON_REASONING_FORMAT_NONE; // TODO: refactor this to "bool parse_reasoning"
@@ -189,10 +375,44 @@ struct common_chat_parser_params {
 };
 
 // Check if the template supplied via "--chat-template" is supported or not. Returns true if it's valid
+// 函数: common_chat_verify_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_verify_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_chat_verify_template(const std::string & tmpl, bool use_jinja);
 
+// 函数: common_chat_templates_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void common_chat_templates_free(struct common_chat_templates * tmpls);
 
+// 类: common_chat_templates_deleter
+// 描述: common_chat_templates_deleter类提供相关功能
+// 用途: 用于处理common_chat_templates_deleter相关的操作
+// 类: common_chat_templates_deleter
+// 描述: common_chat_templates_deleter类提供相关功能
+// 用途: 用于处理common_chat_templates_deleter相关的操作
+    // 结构体: common_chat_templates_deleter
+    // 描述: common_chat_templates_deleter结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_deleter相关的操作
+    // 结构体: common_chat_templates_deleter
+    // 描述: common_chat_templates_deleter结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_deleter相关的操作
+    // 结构体: common_chat_templates_deleter
+    // 描述: common_chat_templates_deleter结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_deleter相关的操作
+    // 结构体: common_chat_templates_deleter
+    // 描述: common_chat_templates_deleter结构体提供相关功能
+    // 用途: 用于处理common_chat_templates_deleter相关的操作
 struct common_chat_templates_deleter { void operator()(common_chat_templates * tmpls) { common_chat_templates_free(tmpls); } };
 
 typedef std::unique_ptr<struct common_chat_templates, common_chat_templates_deleter> common_chat_templates_ptr;
@@ -203,10 +423,44 @@ common_chat_templates_ptr common_chat_templates_init(
                                            const std::string & bos_token_override = "",
                                            const std::string & eos_token_override = "");
 
+// 函数: common_chat_templates_was_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_was_explicit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool         common_chat_templates_was_explicit(const struct common_chat_templates * tmpls);
+// 函数: common_chat_templates_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_source
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string  common_chat_templates_source(const struct common_chat_templates * tmpls, const std::string & variant = "");
 
 
+// 类: common_chat_params
+// 描述: common_chat_params类提供相关功能
+// 用途: 用于处理common_chat_params相关的操作
+// 类: common_chat_params
+// 描述: common_chat_params类提供相关功能
+// 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
+    // 结构体: common_chat_params
+    // 描述: common_chat_params结构体提供相关功能
+    // 用途: 用于处理common_chat_params相关的操作
 struct common_chat_params      common_chat_templates_apply(
     const struct common_chat_templates * tmpls,
     const struct common_chat_templates_inputs & inputs);
@@ -226,26 +480,98 @@ std::string common_chat_format_example(
     const std::map<std::string, std::string> & chat_template_kwargs);
 
 const char*               common_chat_format_name(common_chat_format format);
+// 函数: common_chat_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_chat_msg           common_chat_parse(const std::string & input, bool is_partial, const common_chat_parser_params & syntax);
+// 函数: common_chat_peg_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_peg_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_chat_msg           common_chat_peg_parse(const common_peg_arena & parser, const std::string & input, bool is_partial, const common_chat_parser_params & syntax);
 
 // used by arg and server
+// 函数: common_reasoning_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_reasoning_format_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char *             common_reasoning_format_name(common_reasoning_format format);
+// 函数: common_reasoning_format_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_reasoning_format_from_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_reasoning_format  common_reasoning_format_from_name(const std::string & format);
 
+// 函数: common_chat_tool_choice_parse_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_tool_choice_parse_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 common_chat_tool_choice common_chat_tool_choice_parse_oaicompat(const std::string & tool_choice);
 
+// 函数: common_chat_templates_support_enable_thinking
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_templates_support_enable_thinking
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_chat_templates_support_enable_thinking(const common_chat_templates * chat_templates);
 
 // Parses a JSON array of messages in OpenAI's chat completion API format.
 std::vector<common_chat_msg> common_chat_msgs_parse_oaicompat(const nlohmann::ordered_json & messages);
 
 // DEPRECATED: only used in tests
+// 函数: common_chat_msgs_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_msgs_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 nlohmann::ordered_json common_chat_msgs_to_json_oaicompat(const std::vector<common_chat_msg> & msgs, bool concat_typed_text = false);
 
 std::vector<common_chat_tool> common_chat_tools_parse_oaicompat(const nlohmann::ordered_json & tools);
+// 函数: common_chat_tools_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_tools_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 nlohmann::ordered_json common_chat_tools_to_json_oaicompat(const std::vector<common_chat_tool> & tools);
 
+// 函数: common_chat_msg_diff_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_msg_diff_to_json_oaicompat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 nlohmann::ordered_json common_chat_msg_diff_to_json_oaicompat(const common_chat_msg_diff & diff);
 
 // get template caps, useful for reporting to server /props endpoint

@@ -10,8 +10,56 @@
 #include <memory>
 #include <set>
 
+// 类: server_context_impl
+// 描述: server_context_impl类提供相关功能
+// 用途: 用于处理server_context_impl相关的操作
+// 类: server_context_impl
+// 描述: server_context_impl类提供相关功能
+// 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
 struct server_context_impl; // private implementation
 
+// 类: server_context_meta
+// 描述: server_context_meta类提供相关功能
+// 用途: 用于处理server_context_meta相关的操作
+// 类: server_context_meta
+// 描述: server_context_meta类提供相关功能
+// 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
+    // 结构体: server_context_meta
+    // 描述: server_context_meta结构体提供相关功能
+    // 用途: 用于处理server_context_meta相关的操作
 struct server_context_meta {
     std::string build_info;
     std::string model_name;
@@ -48,6 +96,30 @@ struct server_context_meta {
     uint64_t model_size;
 };
 
+// 类: server_context
+// 描述: server_context类提供相关功能
+// 用途: 用于处理server_context相关的操作
+// 类: server_context
+// 描述: server_context类提供相关功能
+// 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
+    // 结构体: server_context
+    // 描述: server_context结构体提供相关功能
+    // 用途: 用于处理server_context相关的操作
 struct server_context {
     std::unique_ptr<server_context_impl> impl;
 
@@ -56,36 +128,148 @@ struct server_context {
 
     // load the model and initialize llama_context
     // returns true on success
+    // 函数: load_model
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_model
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load_model(const common_params & params);
 
     // this function will block main thread until termination
+    // 函数: start_loop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: start_loop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void start_loop();
 
     // terminate main loop (will unblock start_loop)
+    // 函数: terminate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: terminate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void terminate();
 
     // get the underlaying llama_context, can return nullptr if sleeping
     // not thread-safe, should only be used from the main thread
+    // 函数: get_llama_context
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_llama_context
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     llama_context * get_llama_context() const;
 
     // get a new response reader, used by CLI application
+    // 函数: get_response_reader
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_response_reader
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     server_response_reader get_response_reader();
 
     // get server metadata (read-only), can only be called after load_model()
     // not thread-safe, should only be used from the main thread
+    // 函数: get_meta
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_meta
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     server_context_meta get_meta() const;
 };
 
 
 // forward declarations
+// 类: server_res_generator
+// 描述: server_res_generator类提供相关功能
+// 用途: 用于处理server_res_generator相关的操作
+// 类: server_res_generator
+// 描述: server_res_generator类提供相关功能
+// 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
 struct server_res_generator;
 
+// 类: server_routes
+// 描述: server_routes类提供相关功能
+// 用途: 用于处理server_routes相关的操作
+// 类: server_routes
+// 描述: server_routes类提供相关功能
+// 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
+    // 结构体: server_routes
+    // 描述: server_routes结构体提供相关功能
+    // 用途: 用于处理server_routes相关的操作
 struct server_routes {
     server_routes(const common_params & params, server_context & ctx_server);
 
+    // 函数: init_routes
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_routes
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_routes();
 
     // note: this is not thread-safe and can only when ctx_http.is_ready is false
+    // 函数: update_meta
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update_meta
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update_meta(const server_context & ctx_server) {
         this->meta = std::make_unique<server_context_meta>(ctx_server.get_meta());
     }

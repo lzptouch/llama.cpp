@@ -15,10 +15,26 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: build_grammar
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_grammar
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static llama_grammar * build_grammar(const std::string & grammar_str) {
     return llama_grammar_init_impl(nullptr, grammar_str.c_str(), "root", false, nullptr, 0, nullptr, 0);
 }
 
+// 函数: test_build_grammar_fails
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_build_grammar_fails
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static bool test_build_grammar_fails(const std::string & grammar_str) {
     fprintf(stderr, "⚫ Testing failure for grammar: %s\n", grammar_str.c_str());
     bool grammar_fails = false;
@@ -32,12 +48,44 @@ static bool test_build_grammar_fails(const std::string & grammar_str) {
     return grammar_fails;
 }
 
+// 类: token_and_piece
+// 描述: token_and_piece类提供相关功能
+// 用途: 用于处理token_and_piece相关的操作
+// 类: token_and_piece
+// 描述: token_and_piece类提供相关功能
+// 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
+    // 结构体: token_and_piece
+    // 描述: token_and_piece结构体提供相关功能
+    // 用途: 用于处理token_and_piece相关的操作
 struct token_and_piece {
     llama_token token;
     std::string piece;
 };
 
 // token() encodes a 32-bit ID as 5 bytes: a 0xff marker followed by the ID in big-endian order.
+// 函数: token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string token(llama_token id) {
     return std::string{
         static_cast<char>(0xff),
@@ -80,6 +128,14 @@ static std::vector<token_and_piece> parse_tokens(const std::string & input) {
     return result;
 }
 
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool match_string(const std::string & input, llama_grammar * grammar) {
     const auto parsed = parse_tokens(input);
 
@@ -109,6 +165,14 @@ static bool match_string(const std::string & input, llama_grammar * grammar) {
     return false;
 }
 
+// 函数: test
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test(const std::string & test_desc, const std::string & grammar_str, const std::vector<std::string> & passing_strings, const std::vector<std::string> & failing_strings) {
     fprintf(stderr, "⚫ Testing %s\n%s\n", test_desc.c_str(), grammar_str.c_str());
     fflush(stderr);
@@ -181,13 +245,37 @@ static void test(const std::string & test_desc, const std::string & grammar_str,
     // Clean up allocated memory
     llama_grammar_free_impl(grammar);
 }
+// 函数: test_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_grammar(const std::string & test_desc, const std::string & grammar_str, const std::vector<std::string> & passing_strings, const std::vector<std::string> & failing_strings) {
     test(test_desc + ". Grammar: " + grammar_str, grammar_str, passing_strings, failing_strings);
 }
+// 函数: test_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_schema(const std::string & test_desc, const std::string & schema_str, const std::vector<std::string> & passing_strings, const std::vector<std::string> & failing_strings) {
     test(test_desc + ". Schema: " + schema_str, json_schema_to_grammar(json::parse(schema_str), true), passing_strings, failing_strings);
 }
 
+// 函数: test_simple_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_simple_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_simple_grammar() {
     test_schema(
         "min 0",
@@ -505,6 +593,14 @@ static void test_simple_grammar() {
     );
 }
 
+// 函数: test_complex_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_complex_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_complex_grammar() {
     // Test case for a more complex grammar, with both failure strings and success strings
     test_grammar(
@@ -594,6 +690,14 @@ static void test_complex_grammar() {
     );
 }
 
+// 函数: test_special_chars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_special_chars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_special_chars() {
     // A collection of tests to exercise special characters such as "."
     test_grammar(
@@ -621,6 +725,14 @@ static void test_special_chars() {
     );
 }
 
+// 函数: test_quantifiers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_quantifiers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_quantifiers() {
     // A collection of tests to exercise * + and ? quantifiers
 
@@ -786,6 +898,14 @@ static void test_quantifiers() {
     );
 }
 
+// 函数: test_failure_missing_root
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_failure_missing_root
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_failure_missing_root() {
     fprintf(stderr, "⚫ Testing missing root node:\n");
     // Test case for a grammar that is missing a root rule
@@ -806,6 +926,14 @@ static void test_failure_missing_root() {
     fprintf(stderr, "  ✅︎ Passed\n");
 }
 
+// 函数: test_failure_missing_reference
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_failure_missing_reference
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_failure_missing_reference() {
     fprintf(stderr, "⚫ Testing missing reference node:\n");
 
@@ -828,6 +956,14 @@ static void test_failure_missing_reference() {
     fprintf(stderr, "  ✅︎ Passed\n");
 }
 
+// 函数: test_failure_left_recursion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_failure_left_recursion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_failure_left_recursion() {
     fprintf(stderr, "⚫ Testing left recursion detection:\n");
 
@@ -860,6 +996,14 @@ static void test_failure_left_recursion() {
     fprintf(stderr, "  ✅︎ Passed\n");
 }
 
+// 函数: test_json_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_json_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_json_schema() {
     // Note that this is similar to the regular grammar tests,
     //  but we convert each json schema to a grammar before parsing.
@@ -1424,6 +1568,14 @@ static void test_json_schema() {
     );
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main() {
     fprintf(stdout, "Running grammar integration tests...\n");
     test_simple_grammar();

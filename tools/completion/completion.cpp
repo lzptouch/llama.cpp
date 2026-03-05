@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: completion.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/completion/completion.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "console.h"
@@ -41,6 +48,14 @@ static std::vector<llama_token> * g_output_tokens;
 static bool is_interacting  = false;
 static bool need_insert_eot = false;
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int argc, char ** argv) {
     (void) argc;
 
@@ -50,11 +65,27 @@ static void print_usage(int argc, char ** argv) {
     LOG("\n");
 }
 
+// 函数: file_exists
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: file_exists
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool file_exists(const std::string & path) {
     std::ifstream f(path.c_str());
     return f.good();
 }
 
+// 函数: file_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: file_is_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool file_is_empty(const std::string & path) {
     std::ifstream f;
     f.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -63,6 +94,14 @@ static bool file_is_empty(const std::string & path) {
 }
 
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
+// 函数: sigint_handler
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sigint_handler
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void sigint_handler(int signo) {
     if (signo == SIGINT) {
         if (!is_interacting && g_params->interactive) {
@@ -83,6 +122,14 @@ static void sigint_handler(int signo) {
 }
 #endif
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
     g_params = &params;
@@ -170,8 +217,56 @@ int main(int argc, char ** argv) {
     auto * ggml_threadpool_new_fn = (decltype(ggml_threadpool_new) *) ggml_backend_reg_get_proc_address(reg, "ggml_threadpool_new");
     auto * ggml_threadpool_free_fn = (decltype(ggml_threadpool_free) *) ggml_backend_reg_get_proc_address(reg, "ggml_threadpool_free");
 
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
     struct ggml_threadpool_params tpp_batch =
             ggml_threadpool_params_from_cpu_params(params.cpuparams_batch);
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
     struct ggml_threadpool_params tpp =
             ggml_threadpool_params_from_cpu_params(params.cpuparams);
 
@@ -180,6 +275,30 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool_batch = NULL;
     if (!ggml_threadpool_params_match(&tpp, &tpp_batch)) {
         threadpool_batch = ggml_threadpool_new_fn(&tpp_batch);
@@ -192,6 +311,30 @@ int main(int argc, char ** argv) {
         tpp.paused = true;
     }
 
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool = ggml_threadpool_new_fn(&tpp);
     if (!threadpool) {
         LOG_ERR("%s: threadpool create failed : n_threads %d\n", __func__, tpp.n_threads);
@@ -441,6 +584,30 @@ int main(int argc, char ** argv) {
     // ctrl+C handling
     {
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+        // 类: sigaction
+        // 描述: sigaction类提供相关功能
+        // 用途: 用于处理sigaction相关的操作
+        // 类: sigaction
+        // 描述: sigaction类提供相关功能
+        // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
         struct sigaction sigint_action;
         sigint_action.sa_handler = sigint_handler;
         sigemptyset (&sigint_action.sa_mask);

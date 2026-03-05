@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-sampling.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-sampling.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "ggml.h"
 #include "llama.h"
 
@@ -12,6 +19,14 @@
 
 extern struct llama_sampler * llama_sampler_init_dry_testing(int32_t context_size, float dry_multiplier, float dry_base, int32_t dry_allowed_length, int32_t dry_penalty_last_n, const std::vector<std::vector<llama_token>>& seq_breakers);
 
+// 函数: dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump(const llama_token_data_array * cur_p) {
     for (size_t i = 0; i < cur_p->size; i++) {
         printf("%d: %f (%f)\n", cur_p->data[i].id, cur_p->data[i].p, cur_p->data[i].logit);
@@ -20,6 +35,30 @@ static void dump(const llama_token_data_array * cur_p) {
 
 #define DUMP(__cur_p) do { printf("%s:%d (%s)\n", __FILE__, __LINE__, __func__); dump((__cur_p)); printf("-\n"); } while(0)
 
+// 类: sampler_tester
+// 描述: sampler_tester类提供相关功能
+// 用途: 用于处理sampler_tester相关的操作
+// 类: sampler_tester
+// 描述: sampler_tester类提供相关功能
+// 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
+    // 结构体: sampler_tester
+    // 描述: sampler_tester结构体提供相关功能
+    // 用途: 用于处理sampler_tester相关的操作
 struct sampler_tester {
     sampler_tester(size_t n_vocab) {
         cur.reserve(n_vocab);
@@ -41,11 +80,27 @@ struct sampler_tester {
         cur_p = llama_token_data_array { cur.data(), cur.size(), -1, false };
     }
 
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void apply(llama_sampler * sampler) {
         llama_sampler_apply(sampler, &cur_p);
         llama_sampler_free(sampler);
     }
 
+    // 函数: check
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void check() {
         GGML_ASSERT(cur_p.size == probs_expected.size());
         for (size_t i = 0; i < cur_p.size; i++) {
@@ -61,6 +116,14 @@ private:
     std::vector<llama_token_data> cur;
 };
 
+// 函数: test_temp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_temp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_temp(const std::vector<float> & probs, const std::vector<float> & probs_expected, float temp) {
     sampler_tester tester(probs, probs_expected);
 
@@ -72,6 +135,14 @@ static void test_temp(const std::vector<float> & probs, const std::vector<float>
     tester.check();
 }
 
+// 函数: test_temp_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_temp_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_temp_ext(const std::vector<float> & probs, const std::vector<float> & probs_expected, float temp, float delta, float exponent) {
     sampler_tester tester(probs, probs_expected);
 
@@ -83,6 +154,14 @@ static void test_temp_ext(const std::vector<float> & probs, const std::vector<fl
     tester.check();
 }
 
+// 函数: test_top_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_top_k
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_top_k(const std::vector<float> & probs, const std::vector<float> & probs_expected, int k) {
     sampler_tester tester(probs, probs_expected);
 
@@ -94,6 +173,14 @@ static void test_top_k(const std::vector<float> & probs, const std::vector<float
     tester.check();
 }
 
+// 函数: test_top_p
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_top_p
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_top_p(const std::vector<float> & probs, const std::vector<float> & probs_expected, float p) {
     sampler_tester tester(probs, probs_expected);
 
@@ -105,6 +192,14 @@ static void test_top_p(const std::vector<float> & probs, const std::vector<float
     tester.check();
 }
 
+// 函数: test_min_p
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_min_p
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_min_p(const std::vector<float> & probs, const std::vector<float> & probs_expected, float p) {
     sampler_tester tester(probs, probs_expected);
 
@@ -116,6 +211,14 @@ static void test_min_p(const std::vector<float> & probs, const std::vector<float
     tester.check();
 }
 
+// 函数: test_xtc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_xtc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_xtc(const std::vector<float> & probs, const std::vector<float> & probs_expected, float p, float t) {
     sampler_tester tester(probs, probs_expected);
 
@@ -126,6 +229,14 @@ static void test_xtc(const std::vector<float> & probs, const std::vector<float> 
     tester.check();
 }
 
+// 函数: test_typical
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_typical
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_typical(const std::vector<float> & probs, const std::vector<float> & probs_expected, float p) {
     sampler_tester tester(probs, probs_expected);
 
@@ -142,6 +253,14 @@ static void test_penalties(
 ) {
     GGML_ASSERT(probs.size() == probs_expected.size());
 
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     sampler_tester tester(probs, probs_expected);
 
     auto * sampler = llama_sampler_init_penalties(last_tokens.size(), repeat_penalty, alpha_frequency, alpha_presence);
@@ -166,6 +285,14 @@ static void test_dry(
 ) {
     GGML_ASSERT(probs.size() == expected_probs.size());
 
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     sampler_tester tester(probs, expected_probs);
 
     auto * sampler = llama_sampler_init_dry_testing(1024, dry_multiplier, dry_base, dry_allowed_length, dry_penalty_last_n, seq_breakers);
@@ -181,6 +308,14 @@ static void test_dry(
     tester.check();
 }
 
+// 函数: test_top_n_sigma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_top_n_sigma
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_top_n_sigma(const std::vector<float> & probs, const std::vector<float> & probs_expected, int n) {
     sampler_tester tester(probs, probs_expected);
 
@@ -194,6 +329,14 @@ static void test_top_n_sigma(const std::vector<float> & probs, const std::vector
 
 static void test_sampler_queue(const size_t n_vocab, const std::string & samplers_sequence, const int top_k, const float top_p, const float min_p
 ) {
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tester
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     sampler_tester tester(n_vocab);
 
           llama_token min_token_id = 0;
@@ -267,6 +410,14 @@ static void test_sampler_queue(const size_t n_vocab, const std::string & sampler
            samplers_sequence.c_str(), n_vocab, top_k, top_p, min_p);
 }
 
+// 函数: bench
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bench
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void bench(llama_sampler * cnstr, const char * cnstr_name, const std::vector<llama_token_data> & data, int n_iter) {
     std::vector<llama_token_data> cur(data.size());
     std::copy(data.begin(), data.end(), cur.begin());
@@ -287,6 +438,14 @@ static void bench(llama_sampler * cnstr, const char * cnstr_name, const std::vec
 
 #define BENCH(__cnstr, __data, __n_iter) bench((__cnstr), #__cnstr, (__data), (__n_iter))
 
+// 函数: test_perf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_perf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_perf() {
     const int n_vocab = 1 << 17;
 
@@ -305,6 +464,14 @@ static void test_perf() {
     BENCH(llama_sampler_init_xtc    (1.0f, 0.1f, 1, 1),       data, 32);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(void) {
     ggml_time_init();
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: chat-parser-xml-toolcall.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/chat-parser-xml-toolcall.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "chat.h"
 #include "chat-parser.h"
 #include "common.h"
@@ -8,22 +15,52 @@
 
 using json = nlohmann::ordered_json;
 
+// 类: xml_toolcall_syntax_exception
+// 描述: xml_toolcall_syntax_exception类提供相关功能
+// 用途: 用于处理xml_toolcall_syntax_exception相关的操作
+// 类: xml_toolcall_syntax_exception
+// 描述: xml_toolcall_syntax_exception类提供相关功能
+// 用途: 用于处理xml_toolcall_syntax_exception相关的操作
 class xml_toolcall_syntax_exception : public std::runtime_error {
   public:
     xml_toolcall_syntax_exception(const std::string & message) : std::runtime_error(message) {}
 };
 
 template<typename T>
+// 函数: sort_uniq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sort_uniq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void sort_uniq(std::vector<T> &vec) {
     std::sort(vec.begin(), vec.end());
     vec.erase(std::unique(vec.begin(), vec.end()), vec.end());
 }
 
 template<typename T>
+// 函数: all_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: all_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool all_space(const T &str) {
     return std::all_of(str.begin(), str.end(), [](unsigned char ch) { return std::isspace(ch); });
 }
 
+// 函数: utf8_truncate_safe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_truncate_safe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t utf8_truncate_safe(const std::string_view s) {
     size_t len = s.size();
     if (len == 0) return 0;
@@ -49,10 +86,26 @@ static size_t utf8_truncate_safe(const std::string_view s) {
     return len - std::min(len, size_t(3));
 }
 
+// 函数: utf8_truncate_safe_resize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_truncate_safe_resize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void utf8_truncate_safe_resize(std::string &s) {
     s.resize(utf8_truncate_safe(s));
 }
 
+// 函数: utf8_truncate_safe_view
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_truncate_safe_view
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline std::string_view utf8_truncate_safe_view(const std::string_view s) {
     return s.substr(0, utf8_truncate_safe(s));
 }
@@ -81,6 +134,14 @@ static std::optional<common_chat_msg_parser::find_regex_result> try_find_2_liter
 /**
  * make a GBNF that accept any strings except those containing any of the forbidden strings.
  */
+// 函数: make_gbnf_excluding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_gbnf_excluding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string make_gbnf_excluding(std::vector<std::string> forbids) {
     constexpr auto charclass_escape = [](unsigned char c) -> std::string {
         if (c == '\\' || c == ']' || c == '^' || c == '-') {
@@ -165,6 +226,14 @@ std::string make_gbnf_excluding(std::vector<std::string> forbids) {
  * form.scope_start and form.scope_end can be empty.
  * Requires data.format for model-specific hacks.
  */
+// 函数: build_grammar_xml_tool_call
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_grammar_xml_tool_call
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 void build_grammar_xml_tool_call(common_chat_params & data, const json & tools, const struct xml_tool_call_format & form) {
     GGML_ASSERT(!form.tool_start.empty());
     GGML_ASSERT(!form.tool_sep.empty());
@@ -204,6 +273,24 @@ void build_grammar_xml_tool_call(common_chat_params & data, const json & tools, 
                 auto parameters = function.at("parameters");
                 builder.resolve_refs(parameters);
 
+                // 类: parameter_rule
+                // 描述: parameter_rule类提供相关功能
+                // 用途: 用于处理parameter_rule相关的操作
+                // 类: parameter_rule
+                // 描述: parameter_rule类提供相关功能
+                // 用途: 用于处理parameter_rule相关的操作
+    // 结构体: parameter_rule
+    // 描述: parameter_rule结构体提供相关功能
+    // 用途: 用于处理parameter_rule相关的操作
+    // 结构体: parameter_rule
+    // 描述: parameter_rule结构体提供相关功能
+    // 用途: 用于处理parameter_rule相关的操作
+    // 结构体: parameter_rule
+    // 描述: parameter_rule结构体提供相关功能
+    // 用途: 用于处理parameter_rule相关的操作
+    // 结构体: parameter_rule
+    // 描述: parameter_rule结构体提供相关功能
+    // 用途: 用于处理parameter_rule相关的操作
                 struct parameter_rule {
                     std::string symbol_name;
                     bool is_required;
@@ -295,6 +382,14 @@ void build_grammar_xml_tool_call(common_chat_params & data, const json & tools, 
  * Throws xml_toolcall_syntax_exception if there is invalid syntax and cannot recover the original status for common_chat_msg_parser.
  * form.scope_start, form.tool_sep and form.scope_end can be empty.
  */
+// 函数: parse_xml_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_xml_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct xml_tool_call_format & form) {
     GGML_ASSERT(!form.tool_start.empty());
     GGML_ASSERT(!form.key_start.empty());
@@ -376,10 +471,26 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
     };
     // Helper to find a val_end or last_val_end, returns matched pattern size
     const auto try_find_val_end = [try_find_close, &builder, &form]() {
+        // 函数: try_find_close
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: try_find_close
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return try_find_close(builder, form.val_end, form.last_val_end, form.tool_end, form.last_tool_end);
     };
     // Helper to find a tool_end or last_tool_end, returns matched pattern size
     const auto try_find_tool_end = [try_find_close, &builder, &form]() {
+        // 函数: try_find_close
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: try_find_close
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return try_find_close(builder, form.tool_end, form.last_tool_end, form.scope_end, std::nullopt);
     };
 
@@ -389,6 +500,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
         if (auto tc = builder.try_find_literal(form.scope_start)) {
             if (all_space(tc->prelude)) {
                 if (form.scope_start.size() != tc->groups[0].end - tc->groups[0].begin)
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw common_chat_msg_partial_exception("Partial literal: " + gbnf_format_literal(form.scope_start));
             } else {
                 builder.move_to(start_pos);
@@ -414,6 +533,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
         }
         if (!func_name) {
             // Partial tool name not supported
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw common_chat_msg_partial_exception("incomplete tool_call");
         }
         // If the model generate multiple tool call and the first tool call has no argument
@@ -429,6 +556,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
         // Kimi-K2 uses functions.{{ tool_call['function']['name'] }}:{{ loop.index }} as function name
         if (builder.syntax().format == COMMON_CHAT_FORMAT_KIMI_K2) {
             if (string_starts_with(function_name, "functions.")) {
+                // 函数: re
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: re
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 static const std::regex re(":\\d+$");
                 if (std::regex_search(function_name, re)) {
                     function_name = function_name.substr(10, function_name.rfind(":") - 10);
@@ -460,6 +595,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                     tool_call_arg.resize(tool_call_arg.size() - 1);
                 }
                 builder.add_tool_call(function_name, "", tool_call_arg);
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw common_chat_msg_partial_exception("Partial literal: " + gbnf_format_literal(form.key_start));
             }
 
@@ -467,10 +610,26 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
             auto key_res = builder.try_find_literal(form.key_val_sep);
             if (!key_res) {
                 gen_partial_args([&](auto &rest, auto &needle) {arguments[rest + needle] = "";});
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw common_chat_msg_partial_exception("Expected " + gbnf_format_literal(form.key_val_sep) + " after " + gbnf_format_literal(form.key_start));
             }
             if (key_res->groups[0].end - key_res->groups[0].begin != form.key_val_sep.size()) {
                 gen_partial_args([&](auto &, auto &needle) {arguments[key_res->prelude + needle] = "";});
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw common_chat_msg_partial_exception("Partial literal: " + gbnf_format_literal(form.key_val_sep));
             }
             auto &key = key_res->prelude;
@@ -485,14 +644,38 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                                 gbnf_format_literal(form.key_val_sep).c_str(),
                                 gbnf_format_literal(*form.key_val_sep2).c_str()
                         );
+                        // 函数: return_error
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: return_error
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         return return_error(builder, start_pos, false);
                     }
                     if (tc->groups[0].end - tc->groups[0].begin != form.key_val_sep2->size()) {
                         gen_partial_args([&](auto &, auto &needle) {arguments[key] = needle;});
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         throw common_chat_msg_partial_exception("Partial literal: " + gbnf_format_literal(*form.key_val_sep2));
                     }
                 } else {
                     gen_partial_args([&](auto &, auto &needle) {arguments[key] = needle;});
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw common_chat_msg_partial_exception("Expected " + gbnf_format_literal(*form.key_val_sep2) + " after " + gbnf_format_literal(form.key_val_sep));
                 }
             }
@@ -541,6 +724,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                         gen_partial_args([&](auto &, auto &needle) {arguments[key] = needle;});
                     }
                     LOG_DBG("Possible JSON arg_value: %s\n", value_json->json.dump().c_str());
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw common_chat_msg_partial_exception("JSON arg_value detected. Waiting for more tokens for validations.");
                 }
                 builder.move_to(json_end);
@@ -549,6 +740,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                     if (tc->groups[0].end - tc->groups[0].begin != val_end_size) {
                         gen_partial_args([&](auto &, auto &needle) {arguments[key] = needle;});
                         LOG_DBG("Possible terminated JSON arg_value: %s\n", value_json->json.dump().c_str());
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         throw common_chat_msg_partial_exception("Partial literal: " + gbnf_format_literal(form.val_end) + (form.last_val_end ? gbnf_format_literal(*form.last_val_end) : ""));
                     } else arguments[key] = value_json->json;
                 } else builder.move_to(val_start);
@@ -590,11 +789,27 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                         gbnf_format_literal(form.tool_end).c_str(),
                         gbnf_format_literal(tc->prelude).c_str()
                 );
+                // 函数: return_error
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: return_error
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return return_error(builder, start_pos, recovery);
             }
             if (tc->groups[0].end - tc->groups[0].begin == tool_end_size) {
                 // Add the parsed tool call
                 if (!builder.add_tool_call(function_name, "", arguments.dump())) {
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: common_chat_msg_partial_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw common_chat_msg_partial_exception("Failed to add XML-Style tool call");
                 }
                 recovery = false;
@@ -607,6 +822,14 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
             tool_call_arg.resize(tool_call_arg.size() - 1);
         }
         builder.add_tool_call(function_name, "", tool_call_arg);
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw common_chat_msg_partial_exception("Expected " + gbnf_format_literal(form.tool_end) + " after " + gbnf_format_literal(form.val_end));
     }
     if (auto tc = builder.try_find_literal(form.scope_end)) {
@@ -615,17 +838,41 @@ inline bool parse_xml_tool_calls(common_chat_msg_parser & builder, const struct 
                     gbnf_format_literal(form.scope_end).c_str(),
                     gbnf_format_literal(tc->prelude).c_str()
             );
+            // 函数: return_error
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: return_error
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return return_error(builder, start_pos, recovery);
         }
     } else {
         if (all_space(form.scope_end)) return true;
         builder.consume_spaces();
         if (builder.pos() == builder.input().size())
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw common_chat_msg_partial_exception("incomplete tool calls");
         LOG_DBG("Failed to parse XML-Style tool call: Expected %s, but found %s\n",
                 gbnf_format_literal(form.scope_end).c_str(),
                 gbnf_format_literal(builder.consume_rest()).c_str()
         );
+        // 函数: return_error
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: return_error
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return return_error(builder, start_pos, recovery);
     }
 
@@ -651,6 +898,14 @@ bool common_chat_msg_parser::try_consume_xml_tool_calls(const struct xml_tool_ca
  * Parse content uses reasoning and XML-Style tool call
  * TODO: Note that form.allow_toolcall_in_think is not tested yet. If anyone confirms it works, this comment can be removed.
  */
+// 函数: parse_msg_with_xml_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_msg_with_xml_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void parse_msg_with_xml_tool_calls(common_chat_msg_parser & builder, const struct xml_tool_call_format & form, const std::string & start_think = "<think>", const std::string & end_think = "</think>") {
     constexpr auto rstrip = [](std::string &s) {
         s.resize(std::distance(s.begin(), std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base()));

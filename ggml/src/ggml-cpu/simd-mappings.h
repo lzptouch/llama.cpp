@@ -41,12 +41,28 @@ extern "C" {
 
     #define GGML_CPU_FP16_TO_FP32(x) GGML_CPU_COMPUTE_FP16_TO_FP32(x)
 
+    // 函数: neon_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: neon_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline float neon_compute_fp16_to_fp32(ggml_fp16_t h) {
         __fp16 tmp;
         memcpy(&tmp, &h, sizeof(ggml_fp16_t));
         return (float)tmp;
     }
 
+    // 函数: neon_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: neon_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline ggml_fp16_t neon_compute_fp32_to_fp16(float f) {
         ggml_fp16_t res;
         __fp16 tmp = f;
@@ -68,6 +84,14 @@ extern "C" {
     #define GGML_CPU_FP16_TO_FP32(x) GGML_CPU_COMPUTE_FP16_TO_FP32(x)
     #define GGML_CPU_FP32_TO_FP16(x) GGML_CPU_COMPUTE_FP32_TO_FP16(x)
 
+    // 函数: power_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: power_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline float power_compute_fp16_to_fp32(ggml_fp16_t h) {
         float f;
         double d;
@@ -81,6 +105,14 @@ extern "C" {
         return f;
     }
 
+    // 函数: power_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: power_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline ggml_fp16_t power_compute_fp32_to_fp16(float f) {
         double d;
         ggml_fp16_t r;
@@ -93,12 +125,28 @@ extern "C" {
         return r;
     }
 #elif defined(__riscv) && defined(__riscv_zfhmin)
+    // 函数: riscv_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: riscv_compute_fp16_to_fp32
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline float riscv_compute_fp16_to_fp32(ggml_fp16_t h) {
         _Float16 hf;
         memcpy(&hf, &h, sizeof(ggml_fp16_t));
         return hf;
     }
 
+    // 函数: riscv_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: riscv_compute_fp32_to_fp16
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline ggml_fp16_t riscv_compute_fp32_to_fp16(float f) {
         ggml_fp16_t res;
         _Float16 hf = (_Float16)f;
@@ -593,6 +641,14 @@ do {                                                              \
 #define GGML_F32Cx8_LOAD(x)     _mm256_cvtph_ps(_mm_loadu_si128((const __m128i *)(x)))
 #define GGML_F32Cx8_STORE(x, y) _mm_storeu_si128((__m128i *)(x), _mm256_cvtps_ph(y, 0))
 #else
+// 函数: __avx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 __avx_f32cx8_load(const ggml_fp16_t * x) {
     float tmp[8];
 
@@ -602,6 +658,14 @@ static inline __m256 __avx_f32cx8_load(const ggml_fp16_t * x) {
 
     return _mm256_loadu_ps(tmp);
 }
+// 函数: __avx_f32cx8_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx_f32cx8_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void __avx_f32cx8_store(ggml_fp16_t *x, __m256 y) {
     float arr[8];
 
@@ -792,6 +856,14 @@ inline static v128_t __wasm_f16x4_load(const ggml_fp16_t * p) {
     tmp[2] = GGML_CPU_FP16_TO_FP32(p[2]);
     tmp[3] = GGML_CPU_FP16_TO_FP32(p[3]);
 
+    // 函数: wasm_v128_load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: wasm_v128_load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return wasm_v128_load(tmp);
 }
 
@@ -900,6 +972,14 @@ inline static void __wasm_f16x4_store(ggml_fp16_t * p, v128_t x) {
 #define GGML_F16_STEP 32
 #define GGML_F16_EPR  4
 
+// 函数: __sse_f16x4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __sse_f16x4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128 __sse_f16x4_load(const ggml_fp16_t * x) {
     float tmp[4];
 
@@ -911,6 +991,14 @@ static inline __m128 __sse_f16x4_load(const ggml_fp16_t * x) {
     return _mm_loadu_ps(tmp);
 }
 
+// 函数: __sse_f16x4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __sse_f16x4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void __sse_f16x4_store(ggml_fp16_t * x, __m128 y) {
     float arr[4];
 
@@ -998,6 +1086,14 @@ do {                                                              \
 #define GGML_F32Cx8_ZERO    (__m256)__lasx_xvldi(0)
 #define GGML_F32Cx8_SET1(x) (__m256)__lasx_xvreplfr2vr_s((x))
 
+// 函数: __lasx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lasx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 __lasx_f32cx8_load(const ggml_fp16_t * x) {
     __m256i a;
     memcpy(&a, x, sizeof(ggml_fp16_t) * 8);
@@ -1005,6 +1101,14 @@ static inline __m256 __lasx_f32cx8_load(const ggml_fp16_t * x) {
     return __lasx_xvfcvtl_s_h(a);
 }
 
+// 函数: __lasx_f32cx8_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lasx_f32cx8_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void __lasx_f32cx8_store(ggml_fp16_t * x, __m256 y) {
     __m256i a = __lasx_xvfcvt_h_s(y, y);
     a = __lasx_xvpermi_d(a, 0 | (2 << 2));
@@ -1084,6 +1188,14 @@ static inline void __lasx_f32cx8_store(ggml_fp16_t * x, __m256 y) {
 #define GGML_F16_STEP 32
 #define GGML_F16_EPR  4
 
+// 函数: __lsx_f16x4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lsx_f16x4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128 __lsx_f16x4_load(const ggml_fp16_t * x) {
     float tmp[4];
 
@@ -1095,6 +1207,14 @@ static inline __m128 __lsx_f16x4_load(const ggml_fp16_t * x) {
     return (__m128)__lsx_vld(tmp, 0);
 }
 
+// 函数: __lsx_f16x4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lsx_f16x4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void __lsx_f16x4_store(ggml_fp16_t * x, __m128 y) {
     float arr[4];
 
@@ -1183,6 +1303,14 @@ static inline void __lsx_f16x4_store(ggml_fp16_t * x, __m128 y) {
 #define GGML_F16_STEP GGML_F32_STEP
 #define GGML_F16_EPR  GGML_F32_EPR
 
+// 函数: __lzs_f16cx4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lzs_f16cx4_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline float32x4_t __lzs_f16cx4_load(const ggml_fp16_t * x) {
     float tmp[4];
 
@@ -1195,6 +1323,14 @@ static inline float32x4_t __lzs_f16cx4_load(const ggml_fp16_t * x) {
     return vec_xl(0, (const float *)(tmp));
 }
 
+// 函数: __lzs_f16cx4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lzs_f16cx4_store
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void __lzs_f16cx4_store(ggml_fp16_t * x, float32x4_t v_y) {
     float arr[4];
 

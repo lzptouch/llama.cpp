@@ -1,11 +1,34 @@
+// ============================================================================
+// 文件: ggml-backend-reg.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/ggml-backend-reg.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-remoting.h"
 #include "ggml-virtgpu.h"
 
 #include <iostream>
 #include <mutex>
 
+// 函数: ggml_virtgpu_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_virtgpu_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_virtgpu_cleanup(virtgpu * gpu);
 
+// 函数: apir_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_initialize
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static virtgpu * apir_initialize() {
     static virtgpu *         gpu         = NULL;
     static std::atomic<bool> initialized = false;
@@ -85,6 +108,14 @@ static virtgpu * apir_initialize() {
     return gpu;
 }
 
+// 函数: ggml_backend_remoting_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_remoting_get_device_count() {
     virtgpu * gpu = apir_initialize();
     if (!gpu) {
@@ -94,6 +125,14 @@ static int ggml_backend_remoting_get_device_count() {
     return gpu->cached_device_info.device_count;
 }
 
+// 函数: ggml_backend_remoting_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_remoting_reg_get_device_count(ggml_backend_reg_t reg) {
     UNUSED(reg);
 
@@ -102,11 +141,27 @@ static size_t ggml_backend_remoting_reg_get_device_count(ggml_backend_reg_t reg)
 
 static std::vector<ggml_backend_dev_t> devices;
 
+// 函数: ggml_backend_remoting_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_dev_t ggml_backend_remoting_get_device(size_t device) {
     GGML_ASSERT(device < devices.size());
     return devices[device];
 }
 
+// 函数: ggml_backend_remoting_reg_init_devices
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_reg_init_devices
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_remoting_reg_init_devices(ggml_backend_reg_t reg) {
     if (devices.size() > 0) {
         GGML_LOG_INFO(GGML_VIRTGPU "%s: already initialized\n", __func__);
@@ -150,12 +205,28 @@ static void ggml_backend_remoting_reg_init_devices(ggml_backend_reg_t reg) {
     }
 }
 
+// 函数: ggml_backend_remoting_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_remoting_reg_get_device(ggml_backend_reg_t reg, size_t device) {
     UNUSED(reg);
 
     return ggml_backend_remoting_get_device(device);
 }
 
+// 函数: ggml_backend_remoting_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_remoting_reg_get_name(ggml_backend_reg_t reg) {
     UNUSED(reg);
 
@@ -169,6 +240,14 @@ static const ggml_backend_reg_i ggml_backend_remoting_reg_i = {
     /* .get_proc_address = */ NULL,
 };
 
+// 函数: ggml_backend_virtgpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_virtgpu_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_virtgpu_reg() {
     virtgpu * gpu = apir_initialize();
     if (!gpu) {
@@ -193,6 +272,14 @@ ggml_backend_reg_t ggml_backend_virtgpu_reg() {
 }
 
 // public function, not exposed in the GGML interface at the moment
+// 函数: ggml_virtgpu_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_virtgpu_cleanup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_virtgpu_cleanup(virtgpu * gpu) {
     if (gpu->cached_device_info.name) {
         free(gpu->cached_device_info.name);

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: run-casual-gen-embeddings-org.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/causal/run-casual-gen-embeddings-org.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse

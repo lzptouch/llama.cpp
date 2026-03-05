@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server_embd.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/server_embd.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 import asyncio
 import asyncio.threads
 import requests

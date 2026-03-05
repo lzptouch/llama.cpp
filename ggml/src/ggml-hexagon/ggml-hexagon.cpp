@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-hexagon.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-hexagon/ggml-hexagon.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
@@ -53,14 +60,38 @@ static int opt_opsync = 0;  // synchronous ops
 #define HEX_VERBOSE(...) \
     if (opt_verbose) GGML_LOG_DEBUG(__VA_ARGS__)
 
+// 函数: hex_is_aligned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_is_aligned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uint64_t hex_is_aligned(void * addr, uint32_t align) {
     return ((size_t) addr & (align - 1)) == 0;
 }
 
+// 函数: hex_round_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_round_up
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t hex_round_up(size_t n, size_t m) {
     return m * ((n + m - 1) / m);
 }
 
+// 函数: status_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: status_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * status_to_str(uint32_t status) {
     switch (status) {
         case HTP_STATUS_OK:
@@ -80,6 +111,14 @@ static const char * status_to_str(uint32_t status) {
 
 // ** debug helpers
 
+// 函数: ggml_hexagon_dump_op_exec
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_dump_op_exec
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_hexagon_dump_op_exec(const std::string &sess_name, const ggml_tensor * op, const uint32_t req_flags) {
     if (!opt_verbose) return;
 
@@ -88,6 +127,14 @@ static void ggml_hexagon_dump_op_exec(const std::string &sess_name, const ggml_t
                 ggml_op_name(op->op), desc.names, desc.dims, desc.types, desc.strides, desc.buffs, req_flags);
 }
 
+// 函数: ggml_hexagon_dump_op_supp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_dump_op_supp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_hexagon_dump_op_supp(const std::string &sess_name, const struct ggml_tensor * op, bool supp) {
     if (!opt_verbose) return;
 
@@ -100,6 +147,14 @@ static void ggml_hexagon_dump_op_prof(const std::string &sess_name, const ggml_t
                                       uint32_t op_usec, uint32_t op_cycles, uint32_t op_pkts, uint64_t call_usec) {
     if (!opt_profile) return;
 
+    // 函数: desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     op_desc desc(op);
     GGML_LOG_DEBUG("ggml-hex: %s profile-op %s: %s : %s : %s : %s : %s : op-usec %u op-cycles %u op-pkts %u (%f) call-usec %llu\n", sess_name.c_str(),
                 ggml_op_name(op->op), desc.names, desc.dims, desc.types, desc.strides, desc.buffs,
@@ -108,14 +163,64 @@ static void ggml_hexagon_dump_op_prof(const std::string &sess_name, const ggml_t
 
 // ** backend sessions
 
+// 类: ggml_hexagon_session
+// 描述: ggml_hexagon_session类提供相关功能
+// 用途: 用于处理ggml_hexagon_session相关的操作
+// 类: ggml_hexagon_session
+// 描述: ggml_hexagon_session类提供相关功能
+// 用途: 用于处理ggml_hexagon_session相关的操作
+    // 结构体: ggml_hexagon_session
+    // 描述: ggml_hexagon_session结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_session相关的操作
+    // 结构体: ggml_hexagon_session
+    // 描述: ggml_hexagon_session结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_session相关的操作
+    // 结构体: ggml_hexagon_session
+    // 描述: ggml_hexagon_session结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_session相关的操作
+    // 结构体: ggml_hexagon_session
+    // 描述: ggml_hexagon_session结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_session相关的操作
 struct ggml_hexagon_session {
     ggml_hexagon_session(int dev_id, ggml_backend_dev_t dev) noexcept(false);
     ~ggml_hexagon_session() noexcept(true);
 
+    // 函数: allocate
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: allocate
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void allocate(int dev_id) noexcept(false);
+    // 函数: release
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: release
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void release() noexcept(true);
 
+    // 函数: enqueue
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: enqueue
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void enqueue(struct htp_general_req &req, struct dspqueue_buffer *bufs, uint32_t n_bufs, bool sync = false);
+    // 函数: flush
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: flush
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void flush();
 
     ggml_backend_buffer_type buffer_type        = {};
@@ -169,10 +274,46 @@ void ggml_hexagon_session::flush() {
     // may arrive while we're processing the previous one.
 
     while (this->op_pending) {
+        // 类: htp_general_rsp
+        // 描述: htp_general_rsp类提供相关功能
+        // 用途: 用于处理htp_general_rsp相关的操作
+        // 类: htp_general_rsp
+        // 描述: htp_general_rsp类提供相关功能
+        // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
+    // 结构体: htp_general_rsp
+    // 描述: htp_general_rsp结构体提供相关功能
+    // 用途: 用于处理htp_general_rsp相关的操作
         struct htp_general_rsp rsp;
         uint32_t               rsp_size;
         uint32_t               flags;
 
+        // 类: dspqueue_buffer
+        // 描述: dspqueue_buffer类提供相关功能
+        // 用途: 用于处理dspqueue_buffer相关的操作
+        // 类: dspqueue_buffer
+        // 描述: dspqueue_buffer类提供相关功能
+        // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
+    // 结构体: dspqueue_buffer
+    // 描述: dspqueue_buffer结构体提供相关功能
+    // 用途: 用于处理dspqueue_buffer相关的操作
         struct dspqueue_buffer bufs[HTP_MAX_PACKET_BUFFERS];
         uint32_t               n_bufs;
 
@@ -216,6 +357,24 @@ void ggml_hexagon_session::flush() {
 
 // ** backend buffers
 
+// 类: ggml_backend_hexagon_buffer_type_context
+// 描述: ggml_backend_hexagon_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
+// 类: ggml_backend_hexagon_buffer_type_context
+// 描述: ggml_backend_hexagon_buffer_type_context类提供相关功能
+// 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_type_context
+    // 描述: ggml_backend_hexagon_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_type_context
+    // 描述: ggml_backend_hexagon_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_type_context
+    // 描述: ggml_backend_hexagon_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_type_context
+    // 描述: ggml_backend_hexagon_buffer_type_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_type_context相关的操作
 struct ggml_backend_hexagon_buffer_type_context {
     ggml_backend_hexagon_buffer_type_context(const std::string & name, ggml_hexagon_session * sess) {
         this->sess = sess;
@@ -226,7 +385,33 @@ struct ggml_backend_hexagon_buffer_type_context {
     std::string            name;
 };
 
+// 类: ggml_backend_hexagon_buffer_context
+// 描述: ggml_backend_hexagon_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
+// 类: ggml_backend_hexagon_buffer_context
+// 描述: ggml_backend_hexagon_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_context
+    // 描述: ggml_backend_hexagon_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_context
+    // 描述: ggml_backend_hexagon_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_context
+    // 描述: ggml_backend_hexagon_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
+    // 结构体: ggml_backend_hexagon_buffer_context
+    // 描述: ggml_backend_hexagon_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_hexagon_buffer_context相关的操作
 struct ggml_backend_hexagon_buffer_context {
+    // 函数: mmap_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mmap_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool mmap_to(ggml_hexagon_session * s) {
         HEX_VERBOSE("ggml-hex: %s mmaping buffer: base %p domain-id %d session-id %d size %zu fd %d repack %d\n",
                     s->name.c_str(), (void *) this->base, s->domain_id, s->session_id, this->size, this->fd,
@@ -242,6 +427,14 @@ struct ggml_backend_hexagon_buffer_context {
         return true;
     }
 
+    // 函数: mmap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mmap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool mmap() {
         if (this->mapped) {
             return true;
@@ -253,6 +446,14 @@ struct ggml_backend_hexagon_buffer_context {
         return true;
     }
 
+    // 函数: munmap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: munmap
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void munmap() {
         if (!this->mapped) {
             return;
@@ -304,15 +505,39 @@ struct ggml_backend_hexagon_buffer_context {
     bool                   repack;  // repacked buffer
 };
 
+// 函数: ggml_backend_hexagon_buffer_get_sess
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_get_sess
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_hexagon_session * ggml_backend_hexagon_buffer_get_sess(ggml_backend_buffer_t buffer) {
     return static_cast<ggml_backend_hexagon_buffer_type_context *>(buffer->buft->context)->sess;
 }
 
+// 函数: ggml_backend_hexagon_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     auto ctx = static_cast<ggml_backend_hexagon_buffer_context *>(buffer->context);
     delete ctx;
 }
 
+// 函数: ggml_backend_hexagon_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_hexagon_buffer_get_base(ggml_backend_buffer_t buffer) {
     auto ctx = static_cast<ggml_backend_hexagon_buffer_context *>(buffer->context);
     return ctx->base;
@@ -337,15 +562,49 @@ static enum ggml_status ggml_backend_hexagon_buffer_init_tensor(ggml_backend_buf
 }
 
 // ======== Q4x4x2 ====================
+// 类: x2_q4
+// 描述: x2_q4类提供相关功能
+// 用途: 用于处理x2_q4相关的操作
+// 类: x2_q4
+// 描述: x2_q4类提供相关功能
+// 用途: 用于处理x2_q4相关的操作
+    // 结构体: x2_q4
+    // 描述: x2_q4结构体提供相关功能
+    // 用途: 用于处理x2_q4相关的操作
+    // 结构体: x2_q4
+    // 描述: x2_q4结构体提供相关功能
+    // 用途: 用于处理x2_q4相关的操作
+    // 结构体: x2_q4
+    // 描述: x2_q4结构体提供相关功能
+    // 用途: 用于处理x2_q4相关的操作
+    // 结构体: x2_q4
+    // 描述: x2_q4结构体提供相关功能
+    // 用途: 用于处理x2_q4相关的操作
 struct x2_q4 {
     int v[2];
 };
 
+// 函数: unpack_q4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_q4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static x2_q4 unpack_q4(uint8_t v) {
     x2_q4 x = { (int) (v & 0x0f) - 8, (int) (v >> 4) - 8 };
     return x;
 }
 
+// 函数: dump_block_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_block_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_block_q4_0(const block_q4_0 * b, int i) {
     HEX_VERBOSE("ggml-hex: repack q4_0 %d: %d %d %d %d ... %d %d %d %d : %.6f\n", i, unpack_q4(b->qs[0]).v[0],
                 unpack_q4(b->qs[1]).v[0], unpack_q4(b->qs[2]).v[0], unpack_q4(b->qs[3]).v[0], unpack_q4(b->qs[12]).v[1],
@@ -353,6 +612,14 @@ static void dump_block_q4_0(const block_q4_0 * b, int i) {
                 GGML_FP16_TO_FP32(b->d));
 }
 
+// 函数: dump_packed_block_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_packed_block_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_packed_block_q4x4x2(const uint8_t * v, unsigned int i, size_t k) {
     static const int qk        = QK_Q4_0x4x2;
     const int        dblk_size = 8 * 2;   // 8x __fp16
@@ -378,6 +645,14 @@ static void dump_packed_block_q4x4x2(const uint8_t * v, unsigned int i, size_t k
                 GGML_FP16_TO_FP32(d[4]), GGML_FP16_TO_FP32(d[5]), GGML_FP16_TO_FP32(d[6]), GGML_FP16_TO_FP32(d[7]));
 }
 
+// 函数: unpack_q4_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_q4_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_q4_0_quants(uint8_t * qs, const block_q4_0 * x, unsigned int bi) {
     static const int qk = QK4_0;
 
@@ -389,6 +664,14 @@ static void unpack_q4_0_quants(uint8_t * qs, const block_q4_0 * x, unsigned int 
     }
 }
 
+// 函数: pack_q4_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_q4_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void pack_q4_0_quants(block_q4_0 * x, const uint8_t * qs, unsigned int bi) {
     static const int qk = QK4_0;
 
@@ -399,6 +682,14 @@ static void pack_q4_0_quants(block_q4_0 * x, const uint8_t * qs, unsigned int bi
     }
 }
 
+// 函数: repack_row_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_row_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_row_q4x4x2(uint8_t * y, const block_q4_0 * x, int64_t k) {
     static const int qk = QK_Q4_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -464,6 +755,14 @@ static void repack_row_q4x4x2(uint8_t * y, const block_q4_0 * x, int64_t k) {
     }
 }
 
+// 函数: unpack_row_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_row_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_row_q4x4x2(block_q4_0 * x, const uint8_t * y, int64_t k) {
     static const int qk = QK_Q4_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -531,6 +830,14 @@ static void unpack_row_q4x4x2(block_q4_0 * x, const uint8_t * y, int64_t k) {
     }
 }
 
+// 函数: init_row_q4x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_row_q4x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_row_q4x4x2(block_q4_0 * x, int64_t k) {
     static const int qk = QK_Q4_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -567,6 +874,14 @@ static void init_row_q4x4x2(block_q4_0 * x, int64_t k) {
 }
 
 // repack q4_0 data into q4x4x2 tensor
+// 函数: repack_q4_0_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q4_0_q4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_q4_0_q4x4x2(ggml_tensor * t, const void * data, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -628,6 +943,14 @@ static void repack_q4_0_q4x4x2(ggml_tensor * t, const void * data, size_t size) 
 }
 
 // repack q4x4x2 tensor into q4_0 data
+// 函数: repack_q4x4x2_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q4x4x2_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_q4x4x2_q4_0(void * data, const ggml_tensor * t, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -683,11 +1006,27 @@ static void repack_q4x4x2_q4_0(void * data, const ggml_tensor * t, size_t size) 
 }
 
 // ======== Q8x4x2 ====================
+// 函数: dump_block_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_block_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_block_q8_0(const block_q8_0 * b, int i) {
     HEX_VERBOSE("ggml-hex: repack q8_0 %d: %d %d %d %d ... %d %d %d %d : %.6f\n", i, b->qs[0], b->qs[1], b->qs[2],
                 b->qs[3], b->qs[28], b->qs[29], b->qs[30], b->qs[31], GGML_FP16_TO_FP32(b->d));
 }
 
+// 函数: dump_packed_block_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_packed_block_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_packed_block_q8x4x2(const uint8_t * v, unsigned int i, size_t k) {
     static const int qk        = QK_Q8_0x4x2;
     const int        dblk_size = 8 * 2;   // 8x __fp16
@@ -709,6 +1048,14 @@ static void dump_packed_block_q8x4x2(const uint8_t * v, unsigned int i, size_t k
                 GGML_FP16_TO_FP32(d[4]), GGML_FP16_TO_FP32(d[5]), GGML_FP16_TO_FP32(d[6]), GGML_FP16_TO_FP32(d[7]));
 }
 
+// 函数: unpack_q8_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_q8_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_q8_0_quants(uint8_t * qs, const block_q8_0 * x, unsigned int bi) {
     static const int qk = QK8_0;
 
@@ -717,6 +1064,14 @@ static void unpack_q8_0_quants(uint8_t * qs, const block_q8_0 * x, unsigned int 
     }
 }
 
+// 函数: pack_q8_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_q8_0_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void pack_q8_0_quants(block_q8_0 * x, const uint8_t * qs, unsigned int bi) {
     static const int qk = QK8_0;
 
@@ -725,6 +1080,14 @@ static void pack_q8_0_quants(block_q8_0 * x, const uint8_t * qs, unsigned int bi
     }
 }
 
+// 函数: repack_row_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_row_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_row_q8x4x2(uint8_t * y, const block_q8_0 * x, int64_t k) {
     static const int qk = QK_Q8_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -791,6 +1154,14 @@ static void repack_row_q8x4x2(uint8_t * y, const block_q8_0 * x, int64_t k) {
     }
 }
 
+// 函数: unpack_row_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_row_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_row_q8x4x2(block_q8_0 * x, const uint8_t * y, int64_t k) {
     static const int qk = QK_Q8_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -857,6 +1228,14 @@ static void unpack_row_q8x4x2(block_q8_0 * x, const uint8_t * y, int64_t k) {
     }
 }
 
+// 函数: init_row_q8x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_row_q8x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_row_q8x4x2(block_q8_0 * x, int64_t k) {
     static const int qk = QK_Q8_0x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -893,6 +1272,14 @@ static void init_row_q8x4x2(block_q8_0 * x, int64_t k) {
 }
 
 // repack q8_0 data into q8x4x2 tensor
+// 函数: repack_q8_0_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q8_0_q8x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_q8_0_q8x4x2(ggml_tensor * t, const void * data, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -954,6 +1341,14 @@ static void repack_q8_0_q8x4x2(ggml_tensor * t, const void * data, size_t size) 
 }
 
 // repack q8x4x2 tensor into q8_0 data
+// 函数: repack_q8x4x2_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_q8x4x2_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_q8x4x2_q8_0(void * data, const ggml_tensor * t, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -1009,10 +1404,36 @@ static void repack_q8x4x2_q8_0(void * data, const ggml_tensor * t, size_t size) 
 }
 
 // ======== MXFP4x4x2 ====================
+// 类: x2_mxfp4
+// 描述: x2_mxfp4类提供相关功能
+// 用途: 用于处理x2_mxfp4相关的操作
+// 类: x2_mxfp4
+// 描述: x2_mxfp4类提供相关功能
+// 用途: 用于处理x2_mxfp4相关的操作
+    // 结构体: x2_mxfp4
+    // 描述: x2_mxfp4结构体提供相关功能
+    // 用途: 用于处理x2_mxfp4相关的操作
+    // 结构体: x2_mxfp4
+    // 描述: x2_mxfp4结构体提供相关功能
+    // 用途: 用于处理x2_mxfp4相关的操作
+    // 结构体: x2_mxfp4
+    // 描述: x2_mxfp4结构体提供相关功能
+    // 用途: 用于处理x2_mxfp4相关的操作
+    // 结构体: x2_mxfp4
+    // 描述: x2_mxfp4结构体提供相关功能
+    // 用途: 用于处理x2_mxfp4相关的操作
 struct x2_mxfp4 {
     int v[2];
 };
 
+// 函数: unpack_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static x2_mxfp4 unpack_mxfp4(uint8_t v) {
     x2_mxfp4 x;
     x.v[0] = kvalues_mxfp4[(v & 0x0f)];
@@ -1020,6 +1441,14 @@ static x2_mxfp4 unpack_mxfp4(uint8_t v) {
     return x;
 }
 
+// 函数: dump_block_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_block_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_block_mxfp4(const block_mxfp4 * b, int i) {
     HEX_VERBOSE("ggml-hex: repack mxfp4 %d: %d %d %d %d ... %d %d %d %d : %.6f\n", i, unpack_mxfp4(b->qs[0]).v[0],
                 unpack_mxfp4(b->qs[1]).v[0], unpack_mxfp4(b->qs[2]).v[0], unpack_mxfp4(b->qs[3]).v[0],
@@ -1027,6 +1456,14 @@ static void dump_block_mxfp4(const block_mxfp4 * b, int i) {
                 unpack_mxfp4(b->qs[15]).v[1], GGML_E8M0_TO_FP32_HALF(b->e));
 }
 
+// 函数: dump_packed_block_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_packed_block_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_packed_block_mxfp4x4x2(const uint8_t * v, unsigned int i, size_t k) {
     static const int qk        = QK_MXFP4x4x2;
     const int        eblk_size = 8 * 1;   // 8x E8M0
@@ -1054,6 +1491,14 @@ static void dump_packed_block_mxfp4x4x2(const uint8_t * v, unsigned int i, size_
                 GGML_E8M0_TO_FP32_HALF(e[5]), GGML_E8M0_TO_FP32_HALF(e[6]), GGML_E8M0_TO_FP32_HALF(e[7]));
 }
 
+// 函数: unpack_mxfp4_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_mxfp4_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_mxfp4_quants(uint8_t * qs, const block_mxfp4 * x, unsigned int bi) {
     static const int qk = QK_MXFP4;
 
@@ -1065,6 +1510,14 @@ static void unpack_mxfp4_quants(uint8_t * qs, const block_mxfp4 * x, unsigned in
     }
 }
 
+// 函数: pack_mxfp4_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pack_mxfp4_quants
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void pack_mxfp4_quants(block_mxfp4 * x, const uint8_t * qs, unsigned int bi) {
     static const int qk = QK4_0;
 
@@ -1075,6 +1528,14 @@ static void pack_mxfp4_quants(block_mxfp4 * x, const uint8_t * qs, unsigned int 
     }
 }
 
+// 函数: repack_row_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_row_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_row_mxfp4x4x2(uint8_t * y, const block_mxfp4 * x, int64_t k) {
     static const int qk = QK_MXFP4x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -1141,6 +1602,14 @@ static void repack_row_mxfp4x4x2(uint8_t * y, const block_mxfp4 * x, int64_t k) 
     }
 }
 
+// 函数: unpack_row_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unpack_row_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unpack_row_mxfp4x4x2(block_mxfp4 * x, const uint8_t * y, int64_t k) {
     static const int qk = QK_MXFP4x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -1208,6 +1677,14 @@ static void unpack_row_mxfp4x4x2(block_mxfp4 * x, const uint8_t * y, int64_t k) 
     }
 }
 
+// 函数: init_row_mxfp4x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_row_mxfp4x4x2
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_row_mxfp4x4x2(block_mxfp4 * x, int64_t k) {
     static const int qk = QK_MXFP4x4x2;
     const int        nb = (k + qk - 1) / qk;  // number of blocks (padded)
@@ -1244,6 +1721,14 @@ static void init_row_mxfp4x4x2(block_mxfp4 * x, int64_t k) {
 }
 
 // repack mxfp4 data into mxfp4x4x2 tensor
+// 函数: repack_mxfp4_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_mxfp4_mxfp4x4x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_mxfp4_mxfp4x4x2(ggml_tensor * t, const void * data, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -1305,6 +1790,14 @@ static void repack_mxfp4_mxfp4x4x2(ggml_tensor * t, const void * data, size_t si
 }
 
 // repack mxfp4x4x2 tensor into mxfp4 data
+// 函数: repack_mxfp4x4x2_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: repack_mxfp4x4x2_mxfp4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void repack_mxfp4x4x2_mxfp4(void * data, const ggml_tensor * t, size_t size) {
     int64_t nrows = ggml_nrows(t);
 
@@ -1433,6 +1926,24 @@ static void ggml_backend_hexagon_buffer_get_tensor(ggml_backend_buffer_t buffer,
 
 static bool ggml_backend_hexagon_buffer_cpy_tensor(ggml_backend_buffer_t      buffer,
                                                    const struct ggml_tensor * src,
+                                                   // 类: ggml_tensor
+                                                   // 描述: ggml_tensor类提供相关功能
+                                                   // 用途: 用于处理ggml_tensor相关的操作
+                                                   // 类: ggml_tensor
+                                                   // 描述: ggml_tensor类提供相关功能
+                                                   // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                                                    struct ggml_tensor *       dst) {
     GGML_UNUSED(buffer);
     GGML_UNUSED(src);
@@ -1441,6 +1952,14 @@ static bool ggml_backend_hexagon_buffer_cpy_tensor(ggml_backend_buffer_t      bu
     return false;
 }
 
+// 函数: ggml_backend_hexagon_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     auto ctx  = (ggml_backend_hexagon_buffer_context *) buffer->context;
     auto sess = ctx->sess;
@@ -1462,6 +1981,14 @@ static ggml_backend_buffer_i ggml_backend_hexagon_buffer_interface = {
 
 // ** backend buffer type
 
+// 函数: ggml_backend_hexagon_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_hexagon_buffer_type_name(ggml_backend_buffer_type_t buffer_type) {
     return static_cast<ggml_backend_hexagon_buffer_type_context *>(buffer_type->context)->name.c_str();
 }
@@ -1471,6 +1998,14 @@ static ggml_backend_buffer_t ggml_backend_hexagon_buffer_type_alloc_buffer(
     auto sess = static_cast<ggml_backend_hexagon_buffer_type_context *>(buffer_type->context)->sess;
     try {
         ggml_backend_hexagon_buffer_context * ctx = new ggml_backend_hexagon_buffer_context(sess, size, false /*repack*/);
+        // 函数: ggml_backend_buffer_init
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_backend_buffer_init
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_backend_buffer_init(buffer_type, ggml_backend_hexagon_buffer_interface, ctx, size);
     } catch (const std::exception & exc) {
         GGML_LOG_ERROR("ggml-hex: %s failed to allocate buffer context: %s\n", sess->name.c_str(), exc.what());
@@ -1483,6 +2018,14 @@ static ggml_backend_buffer_t ggml_backend_hexagon_repack_buffer_type_alloc_buffe
     auto sess = static_cast<ggml_backend_hexagon_buffer_type_context *>(buffer_type->context)->sess;
     try {
         ggml_backend_hexagon_buffer_context * ctx = new ggml_backend_hexagon_buffer_context(sess, size, true /*repack*/);
+        // 函数: ggml_backend_buffer_init
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_backend_buffer_init
+        // 描述: 初始化: 初始化对象、资源或环境
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_backend_buffer_init(buffer_type, ggml_backend_hexagon_buffer_interface, ctx, size);
     } catch (const std::exception & exc) {
         GGML_LOG_ERROR("ggml-hex: %s failed to allocate buffer context: %s\n", sess->name.c_str(), exc.what());
@@ -1490,25 +2033,65 @@ static ggml_backend_buffer_t ggml_backend_hexagon_repack_buffer_type_alloc_buffe
     }
 }
 
+// 函数: ggml_backend_hexagon_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_hexagon_buffer_type_get_alignment(ggml_backend_buffer_type_t buffer_type) {
     return 128;  // HVX alignment
     GGML_UNUSED(buffer_type);
 }
 
+// 函数: ggml_backend_hexagon_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_hexagon_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const struct ggml_tensor * t) {
     return ggml_nbytes(t);
 }
 
+// 函数: ggml_backend_hexagon_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_hexagon_buffer_type_get_max_size(ggml_backend_buffer_type_t buffer_type) {
     return 1 * 1024 * 1024 * 1024;  // 1GB per buffer
     GGML_UNUSED(buffer_type);
 }
 
+// 函数: ggml_backend_hexagon_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_hexagon_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     return opt_hostbuf;
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_hexagon_repack_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_repack_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_hexagon_repack_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     return false;
     GGML_UNUSED(buft);
@@ -1558,6 +2141,24 @@ void ggml_hexagon_session::allocate(int dev_id) noexcept(false) {
 
     // Create new session
     if (dev_id != 0) {
+        // 类: remote_rpc_reserve_new_session
+        // 描述: remote_rpc_reserve_new_session类提供相关功能
+        // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
+        // 类: remote_rpc_reserve_new_session
+        // 描述: remote_rpc_reserve_new_session类提供相关功能
+        // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
+    // 结构体: remote_rpc_reserve_new_session
+    // 描述: remote_rpc_reserve_new_session结构体提供相关功能
+    // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
+    // 结构体: remote_rpc_reserve_new_session
+    // 描述: remote_rpc_reserve_new_session结构体提供相关功能
+    // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
+    // 结构体: remote_rpc_reserve_new_session
+    // 描述: remote_rpc_reserve_new_session结构体提供相关功能
+    // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
+    // 结构体: remote_rpc_reserve_new_session
+    // 描述: remote_rpc_reserve_new_session结构体提供相关功能
+    // 用途: 用于处理remote_rpc_reserve_new_session相关的操作
         struct remote_rpc_reserve_new_session n;
         n.domain_name_len  = strlen(CDSP_DOMAIN_NAME);
         n.domain_name      = const_cast<char *>(CDSP_DOMAIN_NAME);
@@ -1583,6 +2184,24 @@ void ggml_hexagon_session::allocate(int dev_id) noexcept(false) {
         char htp_uri[256];
         snprintf(htp_uri, sizeof(htp_uri), "file:///libggml-htp-v%u.so?htp_iface_skel_handle_invoke&_modver=1.0", opt_arch);
 
+        // 类: remote_rpc_get_uri
+        // 描述: remote_rpc_get_uri类提供相关功能
+        // 用途: 用于处理remote_rpc_get_uri相关的操作
+        // 类: remote_rpc_get_uri
+        // 描述: remote_rpc_get_uri类提供相关功能
+        // 用途: 用于处理remote_rpc_get_uri相关的操作
+    // 结构体: remote_rpc_get_uri
+    // 描述: remote_rpc_get_uri结构体提供相关功能
+    // 用途: 用于处理remote_rpc_get_uri相关的操作
+    // 结构体: remote_rpc_get_uri
+    // 描述: remote_rpc_get_uri结构体提供相关功能
+    // 用途: 用于处理remote_rpc_get_uri相关的操作
+    // 结构体: remote_rpc_get_uri
+    // 描述: remote_rpc_get_uri结构体提供相关功能
+    // 用途: 用于处理remote_rpc_get_uri相关的操作
+    // 结构体: remote_rpc_get_uri
+    // 描述: remote_rpc_get_uri结构体提供相关功能
+    // 用途: 用于处理remote_rpc_get_uri相关的操作
         struct remote_rpc_get_uri u = {};
         u.session_id      = this->session_id;
         u.domain_name     = const_cast<char *>(CDSP_DOMAIN_NAME);
@@ -1605,6 +2224,24 @@ void ggml_hexagon_session::allocate(int dev_id) noexcept(false) {
 
     // Enable Unsigned PD
     {
+        // 类: remote_rpc_control_unsigned_module
+        // 描述: remote_rpc_control_unsigned_module类提供相关功能
+        // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
+        // 类: remote_rpc_control_unsigned_module
+        // 描述: remote_rpc_control_unsigned_module类提供相关功能
+        // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
+    // 结构体: remote_rpc_control_unsigned_module
+    // 描述: remote_rpc_control_unsigned_module结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
+    // 结构体: remote_rpc_control_unsigned_module
+    // 描述: remote_rpc_control_unsigned_module结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
+    // 结构体: remote_rpc_control_unsigned_module
+    // 描述: remote_rpc_control_unsigned_module结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
+    // 结构体: remote_rpc_control_unsigned_module
+    // 描述: remote_rpc_control_unsigned_module结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_unsigned_module相关的操作
         struct remote_rpc_control_unsigned_module u;
         u.domain = this->domain_id;
         u.enable = 1;
@@ -1629,6 +2266,24 @@ void ggml_hexagon_session::allocate(int dev_id) noexcept(false) {
 
     // Enable FastRPC QoS mode
     {
+        // 类: remote_rpc_control_latency
+        // 描述: remote_rpc_control_latency类提供相关功能
+        // 用途: 用于处理remote_rpc_control_latency相关的操作
+        // 类: remote_rpc_control_latency
+        // 描述: remote_rpc_control_latency类提供相关功能
+        // 用途: 用于处理remote_rpc_control_latency相关的操作
+    // 结构体: remote_rpc_control_latency
+    // 描述: remote_rpc_control_latency结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_latency相关的操作
+    // 结构体: remote_rpc_control_latency
+    // 描述: remote_rpc_control_latency结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_latency相关的操作
+    // 结构体: remote_rpc_control_latency
+    // 描述: remote_rpc_control_latency结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_latency相关的操作
+    // 结构体: remote_rpc_control_latency
+    // 描述: remote_rpc_control_latency结构体提供相关功能
+    // 用途: 用于处理remote_rpc_control_latency相关的操作
         struct remote_rpc_control_latency l;
         l.enable = 1;
 
@@ -1738,10 +2393,26 @@ ggml_hexagon_session::~ggml_hexagon_session() noexcept(true) {
 
 // ** backend interface
 
+// 函数: ggml_backend_buffer_is_hexagon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_hexagon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_hexagon(const struct ggml_backend_buffer * b) {
     return b->buft->iface.get_alignment == ggml_backend_hexagon_buffer_type_get_alignment;
 }
 
+// 函数: ggml_backend_buffer_is_hexagon_repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_hexagon_repack
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool ggml_backend_buffer_is_hexagon_repack(const struct ggml_backend_buffer * b) {
     if (!opt_hostbuf) {
         return ggml_backend_buffer_is_hexagon(b);
@@ -1749,6 +2420,14 @@ static inline bool ggml_backend_buffer_is_hexagon_repack(const struct ggml_backe
     return b->buft->iface.alloc_buffer == ggml_backend_hexagon_repack_buffer_type_alloc_buffer;
 }
 
+// 函数: ggml_hexagon_supported_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_flash_attn_ext(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -1781,6 +2460,14 @@ static bool ggml_hexagon_supported_flash_attn_ext(const struct ggml_hexagon_sess
 }
 
 
+// 函数: ggml_hexagon_supported_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_mul_mat(const struct ggml_hexagon_session * sess, const struct ggml_tensor * dst) {
     const struct ggml_tensor * src0 = dst->src[0];
     const struct ggml_tensor * src1 = dst->src[1];
@@ -1829,6 +2516,14 @@ static bool ggml_hexagon_supported_mul_mat(const struct ggml_hexagon_session * s
     return true;
 }
 
+// 函数: ggml_hexagon_supported_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_mul_mat_id(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -1860,6 +2555,14 @@ static bool ggml_hexagon_supported_mul_mat_id(const struct ggml_hexagon_session 
     return true;
 }
 
+// 函数: ggml_hexagon_supported_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_binary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_binary(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -1884,6 +2587,14 @@ static bool ggml_hexagon_supported_binary(const struct ggml_hexagon_session * se
     return true;
 }
 
+// 函数: ggml_hexagon_supported_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_add_id(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -1910,6 +2621,14 @@ static bool ggml_hexagon_supported_add_id(const struct ggml_hexagon_session * se
     return true;
 }
 
+// 函数: ggml_hexagon_supported_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_unary(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * dst  = op;
@@ -1932,6 +2651,14 @@ static bool ggml_hexagon_supported_unary(const struct ggml_hexagon_session * ses
     return true;
 }
 
+// 函数: ggml_hexagon_supported_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_sum_rows(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * dst  = op;
@@ -1983,6 +2710,14 @@ static bool ggml_hexagon_supported_activations(const struct ggml_hexagon_session
     return true;
 }
 
+// 函数: ggml_hexagon_supported_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_softmax(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -2031,6 +2766,14 @@ static bool ggml_hexagon_supported_softmax(const struct ggml_hexagon_session * s
     return true;
 }
 
+// 函数: ggml_hexagon_supported_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_set_rows(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0]; // values
     const struct ggml_tensor * src1 = op->src[1]; // indices
@@ -2051,6 +2794,14 @@ static bool ggml_hexagon_supported_set_rows(const struct ggml_hexagon_session * 
     return true;
 }
 
+// 函数: ggml_hexagon_supported_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_get_rows(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0]; // values
     const struct ggml_tensor * src1 = op->src[1]; // indices
@@ -2071,6 +2822,14 @@ static bool ggml_hexagon_supported_get_rows(const struct ggml_hexagon_session * 
     return true;
 }
 
+// 函数: ggml_hexagon_supported_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_argsort(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0]; // values
     const struct ggml_tensor * dst  = op;         // indices
@@ -2091,6 +2850,14 @@ static bool ggml_hexagon_supported_argsort(const struct ggml_hexagon_session * s
     return true;
 }
 
+// 函数: ggml_hexagon_supported_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_rope(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const int32_t * op_params = &op->op_params[0];
 
@@ -2147,6 +2914,14 @@ enum dspqbuf_type {
     DSPQBUF_TYPE_CONSTANT,
 };
 
+// 函数: dspqbuf_dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dspqbuf_dump
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dspqbuf_dump(dspqueue_buffer * d, const struct ggml_tensor * t, dspqbuf_type type) {
     if (opt_verbose < 2) return;
 
@@ -2159,6 +2934,14 @@ static void dspqbuf_dump(dspqueue_buffer * d, const struct ggml_tensor * t, dspq
 }
 
 // Init hexagon tensor from GGML tensor and Hexagon buffer
+// 函数: htp_req_tensor_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_req_tensor_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void htp_req_tensor_init(htp_tensor * h, const ggml_tensor * t) {
     h->data  = 0;  // updated by the receiver
     h->type  = t->type;
@@ -2172,6 +2955,14 @@ static void htp_req_tensor_init(htp_tensor * h, const ggml_tensor * t) {
     h->nb[3] = t->nb[3];
 }
 
+// 函数: htp_req_buff_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_req_buff_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static size_t htp_req_buff_init(htp_tensor *h, dspqueue_buffer * d, const ggml_tensor * t, dspqbuf_type type) {
     if (!t) {
         return 0;
@@ -2212,9 +3003,25 @@ static size_t htp_req_buff_init(htp_tensor *h, dspqueue_buffer * d, const ggml_t
     return 1;
 }
 
+// 函数: size_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: size_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef size_t (*htp_req_init_func_t)(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * op);
 
 template <htp_req_init_func_t _init_req_func>
+// 函数: ggml_hexagon_dispatch_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_dispatch_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_hexagon_dispatch_op(ggml_hexagon_session *sess, const struct ggml_tensor * op, uint32_t flags) {
     uint64_t t = ggml_time_us();
 
@@ -2244,6 +3051,14 @@ static inline void ggml_hexagon_dispatch_op(ggml_hexagon_session *sess, const st
 }
 
 template <bool _is_src0_constant>
+// 函数: init_binary_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_binary_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_binary_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     switch (t->op) {
         case GGML_OP_MUL_MAT:
@@ -2278,6 +3093,14 @@ static inline size_t init_binary_req(htp_general_req * req, dspqueue_buffer * bu
     return n_bufs;
 }
 
+// 函数: init_cpy_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_cpy_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_cpy_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     req->op = HTP_OP_CPY;
 
@@ -2288,6 +3111,14 @@ static inline size_t init_cpy_req(htp_general_req * req, dspqueue_buffer * bufs,
     return n_bufs;
 }
 
+// 函数: init_get_rows_req
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_get_rows_req
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_get_rows_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     req->op = HTP_OP_GET_ROWS;
 
@@ -2299,6 +3130,14 @@ static inline size_t init_get_rows_req(htp_general_req * req, dspqueue_buffer * 
     return n_bufs;
 }
 
+// 函数: init_argsort_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_argsort_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_argsort_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     req->op = HTP_OP_ARGSORT;
     memcpy(&req->op_params, &t->op_params, sizeof(t->op_params));
@@ -2311,6 +3150,14 @@ static inline size_t init_argsort_req(htp_general_req * req, dspqueue_buffer * b
 }
 
 template <bool _is_src0_constant>
+// 函数: init_binary_id_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_binary_id_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_binary_id_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     switch (t->op) {
         case GGML_OP_MUL_MAT_ID:
@@ -2337,6 +3184,14 @@ static inline size_t init_binary_id_req(htp_general_req * req, dspqueue_buffer *
     return n_bufs;
 }
 
+// 函数: init_set_rows_req
+// 描述: 设置: 设置某个属性或配置
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_set_rows_req
+// 描述: 设置: 设置某个属性或配置
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_set_rows_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     req->op = HTP_OP_SET_ROWS;
 
@@ -2348,6 +3203,14 @@ static inline size_t init_set_rows_req(htp_general_req * req, dspqueue_buffer * 
     return n_bufs;
 }
 
+// 函数: init_unary_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_unary_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_unary_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     memcpy(&req->op_params, &t->op_params, sizeof(t->op_params));
 
@@ -2418,6 +3281,14 @@ static inline size_t init_unary_req(htp_general_req * req, dspqueue_buffer * buf
     return n_bufs;
 }
 
+// 函数: init_sum_rows_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_sum_rows_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_sum_rows_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     memcpy(&req->op_params, &t->op_params, sizeof(t->op_params));
     req->op = HTP_OP_SUM_ROWS;
@@ -2429,6 +3300,14 @@ static inline size_t init_sum_rows_req(htp_general_req * req, dspqueue_buffer * 
     return n_bufs;
 }
 
+// 函数: init_rope_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_rope_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_rope_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     memcpy(&req->op_params, &t->op_params, sizeof(t->op_params));
     req->op = HTP_OP_ROPE;
@@ -2442,6 +3321,14 @@ static inline size_t init_rope_req(htp_general_req * req, dspqueue_buffer * bufs
     return n_bufs;
 }
 
+// 函数: init_flash_attn_ext_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_flash_attn_ext_req
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static inline size_t init_flash_attn_ext_req(htp_general_req * req, dspqueue_buffer * bufs, const ggml_tensor * t) {
     memcpy(&req->op_params, &t->op_params, sizeof(t->op_params));
     req->op = HTP_OP_FLASH_ATTN_EXT;
@@ -2457,27 +3344,67 @@ static inline size_t init_flash_attn_ext_req(htp_general_req * req, dspqueue_buf
     return n_bufs;
 }
 
+// 函数: ggml_backend_hexagon_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_hexagon_name(ggml_backend_t backend) {
     auto sess = static_cast<ggml_hexagon_session *>(backend->context);
     return sess->name.c_str();
 }
 
+// 函数: ggml_backend_hexagon_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_free(ggml_backend_t backend) {
     // we just need to delete the backend here
     // the sessions are allocated & freed as part of the registry
     delete backend;
 }
 
+// 函数: op_reuse_src1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_reuse_src1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool op_reuse_src1(const ggml_tensor * op1, const ggml_tensor * op0) {
     return (op0 && op0->src[1] == op1->src[1] && ggml_is_quantized(op0->src[0]->type));
 }
 
+// 函数: is_compute_op
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_compute_op
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool is_compute_op(ggml_tensor *node)
 {
     return !ggml_op_is_empty(node->op) && !ggml_is_empty(node) && (node->flags & GGML_TENSOR_FLAG_COMPUTE);
 }
 
 // scan the graph and figure out last compute op index
+// 函数: last_compute_op
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: last_compute_op
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static inline int last_compute_op(ggml_cgraph * graph) {
     int last = 0;
     for (int i = 0; i < graph->n_nodes; ++i) {
@@ -2489,6 +3416,14 @@ static inline int last_compute_op(ggml_cgraph * graph) {
     return last;
 }
 
+// 函数: ggml_backend_hexagon_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status ggml_backend_hexagon_graph_compute(ggml_backend_t backend, ggml_cgraph * graph) {
     auto sess = static_cast<ggml_hexagon_session *>(backend->context);
 
@@ -2606,6 +3541,14 @@ static ggml_status ggml_backend_hexagon_graph_compute(ggml_backend_t backend, gg
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_backend_hexagon_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_synchronize(ggml_backend_t backend) {
     auto sess = static_cast<ggml_hexagon_session *>(backend->context);
 
@@ -2615,35 +3558,109 @@ static void ggml_backend_hexagon_synchronize(ggml_backend_t backend) {
     sess->flush();
 }
 
+// 类: node_info
+// 描述: node_info类提供相关功能
+// 用途: 用于处理node_info相关的操作
+// 类: node_info
+// 描述: node_info类提供相关功能
+// 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
+    // 结构体: node_info
+    // 描述: node_info结构体提供相关功能
+    // 用途: 用于处理node_info相关的操作
 struct node_info {
     ggml_tensor * node;
 
     std::vector<ggml_tensor *> fused;
 
+    // 函数: op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_op op() const {
         return node->op;
     }
 
+    // 函数: dst
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dst
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const ggml_tensor * dst() const {
         return fused.empty() ? node : fused.back();
     }
 
+    // 函数: src0
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: src0
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const ggml_tensor * src0() const {
         return node->src[0];
     }
 
+    // 函数: src1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: src1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const ggml_tensor * src1() const {
         return node->src[1];
     }
 
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_empty() const {
         return ggml_op_is_empty(node->op);
     }
 
+    // 函数: add_fused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_fused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_fused(ggml_tensor * t) {
         fused.push_back(t);
     }
 
+    // 函数: stackable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stackable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool stackable() const {
         switch (this->op()) {
             case GGML_OP_MUL_MAT:
@@ -2654,6 +3671,14 @@ struct node_info {
         }
     }
 
+    // 函数: same_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: same_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool same_input(const node_info& n) const {
         return n.src1() == this->src1();
     }
@@ -2706,6 +3731,14 @@ static std::vector<int> ggml_hexagon_graph_optimize_reorder(const std::vector<no
     return res;
 }
 
+// 函数: ggml_backend_hexagon_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_graph_optimize(ggml_backend_t backend, ggml_cgraph * gf) {
     const int n = gf->n_nodes;
 
@@ -2799,18 +3832,42 @@ static struct ggml_backend_i hexagon_backend_i = {
     /* .graph_optimize          = */ ggml_backend_hexagon_graph_optimize,
 };
 
+// 函数: ggml_backend_hexagon_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_hexagon_guid() {
     static ggml_guid guid = { 0x7b, 0x57, 0xdc, 0xaf, 0xde, 0x12, 0x1d, 0x49,
                               0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x11 };
     return &guid;
 }
 
+// 函数: ggml_backend_is_hexagon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_hexagon
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_hexagon(ggml_backend_t backend) {
     return backend && backend->iface.get_name == ggml_backend_hexagon_name;
 }
 
 // device interface
 
+// 函数: ggml_backend_hexagon_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_hexagon_device_init(ggml_backend_dev_t dev, const char * params) {
     auto sess = static_cast<ggml_hexagon_session *>(dev->context);
 
@@ -2824,6 +3881,14 @@ static ggml_backend_t ggml_backend_hexagon_device_init(ggml_backend_dev_t dev, c
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_hexagon_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_hexagon_device_get_name(ggml_backend_dev_t dev) {
     auto sess = static_cast<ggml_hexagon_session *>(dev->context);
     return sess->name.c_str();
@@ -2831,11 +3896,27 @@ static const char * ggml_backend_hexagon_device_get_name(ggml_backend_dev_t dev)
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_hexagon_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_hexagon_device_get_description(ggml_backend_dev_t dev) {
     return "Hexagon";
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_hexagon_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     // ~2GB per session for now
     *free  = 2ULL * 1024 * 1024 * 1024;
@@ -2850,6 +3931,14 @@ static enum ggml_backend_dev_type ggml_backend_hexagon_device_get_type(ggml_back
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_hexagon_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_hexagon_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_hexagon_device_get_name(dev);
     props->description = ggml_backend_hexagon_device_get_description(dev);
@@ -2863,16 +3952,40 @@ static void ggml_backend_hexagon_device_get_props(ggml_backend_dev_t dev, struct
     };
 }
 
+// 函数: ggml_backend_hexagon_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_hexagon_device_get_buffer_type(ggml_backend_dev_t dev) {
     auto sess = static_cast<ggml_hexagon_session *>(dev->context);
     return &sess->buffer_type;
 }
 
+// 函数: ggml_backend_hexagon_device_get_repack_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_repack_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_hexagon_device_get_repack_buffer_type(ggml_backend_dev_t dev) {
     auto sess = static_cast<ggml_hexagon_session *>(dev->context);
     return &sess->repack_buffer_type;
 }
 
+// 函数: ggml_hexagon_supported_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_buffer(ggml_hexagon_session *sess, const struct ggml_tensor * t) {
     if (t && t->buffer) {
         if (ggml_backend_buffer_is_hexagon(t->buffer)      == false) return false; // not our buffer
@@ -2881,6 +3994,14 @@ static bool ggml_hexagon_supported_buffer(ggml_hexagon_session *sess, const stru
     return true;
 }
 
+// 函数: ggml_hexagon_supported_buffers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_buffers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_buffers(ggml_hexagon_session *sess, const struct ggml_tensor * t) {
     // all srcs & dsts must be mapped to the same session
     if (!ggml_hexagon_supported_buffer(sess, t)) {
@@ -2896,6 +4017,14 @@ static bool ggml_hexagon_supported_buffers(ggml_hexagon_session *sess, const str
     return true;
 }
 
+// 函数: ggml_hexagon_supported_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_supported_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_hexagon_supported_cpy(const struct ggml_hexagon_session * sess, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * dst  = op;
@@ -2917,6 +4046,14 @@ static bool ggml_hexagon_supported_cpy(const struct ggml_hexagon_session * sess,
     return true;
 }
 
+// 函数: ggml_backend_hexagon_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_hexagon_device_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     auto sess = static_cast<ggml_hexagon_session *>(dev->context);
 
@@ -3021,6 +4158,14 @@ static bool ggml_backend_hexagon_device_supports_op(ggml_backend_dev_t dev, cons
     return supp;
 }
 
+// 函数: ggml_backend_hexagon_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_hexagon_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     if (buft->iface.get_alignment != ggml_backend_hexagon_buffer_type_get_alignment) {
         return false;
@@ -3037,6 +4182,14 @@ static bool ggml_backend_hexagon_device_supports_buft(ggml_backend_dev_t dev, gg
     return supp;
 }
 
+// 函数: ggml_backend_hexagon_device_get_extra_buffers_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_device_get_extra_buffers_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t * ggml_backend_hexagon_device_get_extra_buffers_type(ggml_backend_dev_t dev) {
     auto s0 = static_cast<ggml_hexagon_session *>(dev->context);
     HEX_VERBOSE("ggml-hex: device-get-extra-buft : %s \n", s0->name.c_str());
@@ -3069,6 +4222,24 @@ static const struct ggml_backend_device_i ggml_backend_hexagon_device_i = {
 
 #define GGML_HEXAGON_MAX_SESSIONS 16
 
+// 类: ggml_hexagon_registry
+// 描述: ggml_hexagon_registry类提供相关功能
+// 用途: 用于处理ggml_hexagon_registry相关的操作
+// 类: ggml_hexagon_registry
+// 描述: ggml_hexagon_registry类提供相关功能
+// 用途: 用于处理ggml_hexagon_registry相关的操作
+    // 结构体: ggml_hexagon_registry
+    // 描述: ggml_hexagon_registry结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_registry相关的操作
+    // 结构体: ggml_hexagon_registry
+    // 描述: ggml_hexagon_registry结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_registry相关的操作
+    // 结构体: ggml_hexagon_registry
+    // 描述: ggml_hexagon_registry结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_registry相关的操作
+    // 结构体: ggml_hexagon_registry
+    // 描述: ggml_hexagon_registry结构体提供相关功能
+    // 用途: 用于处理ggml_hexagon_registry相关的操作
 struct ggml_hexagon_registry {
     ggml_hexagon_registry(ggml_backend_reg_t reg);
     ~ggml_hexagon_registry();
@@ -3119,16 +4290,40 @@ ggml_hexagon_registry::~ggml_hexagon_registry() {
     }
 }
 
+// 函数: ggml_backend_hexagon_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_hexagon_reg_get_name(ggml_backend_reg_t reg) {
     return "HTP";
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_hexagon_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_hexagon_reg_get_device_count(ggml_backend_reg_t reg) {
     return opt_ndev;
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_hexagon_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_hexagon_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     auto hreg = static_cast<ggml_hexagon_registry *>(reg->context);
 
@@ -3139,6 +4334,14 @@ static ggml_backend_dev_t ggml_backend_hexagon_reg_get_device(ggml_backend_reg_t
     return &hreg->devices[index];
 }
 
+// 函数: ggml_backend_hexagon_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_hexagon_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (strcmp(name, "ggml_backend_dev_get_extra_bufts") == 0 && opt_hostbuf) {
         ggml_backend_dev_get_extra_bufts_t fct = ggml_backend_hexagon_device_get_extra_buffers_type;
@@ -3148,6 +4351,14 @@ static void * ggml_backend_hexagon_get_proc_address(ggml_backend_reg_t reg, cons
     return NULL;
 }
 
+// 函数: ggml_hexagon_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_hexagon_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_hexagon_init(ggml_backend_reg * reg) {
     // Basic sanity checks to make sure definitions match
     static_assert((unsigned int) HTP_TYPE_Q4_0 == (unsigned int) GGML_TYPE_Q4_0,
@@ -3204,6 +4415,14 @@ static const struct ggml_backend_reg_i ggml_backend_hexagon_reg_i = {
     /* .get_proc_address = */ ggml_backend_hexagon_get_proc_address,
 };
 
+// 函数: ggml_backend_hexagon_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_hexagon_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_hexagon_reg(void) {
     static bool initialized = false;
 

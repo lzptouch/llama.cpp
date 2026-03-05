@@ -3,6 +3,14 @@
 
 #include <HAP_farf.h>
 
+// 函数: hex_dump_int8_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_int8_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_int8_line(char * pref, const int8_t * x, int n) {
     char str[1024], *p = str, *p_end = str + sizeof(str);
     p += snprintf(p, p_end - p, "%s: ", pref);
@@ -12,6 +20,14 @@ static inline void hex_dump_int8_line(char * pref, const int8_t * x, int n) {
     FARF(HIGH, "%s\n", str);
 }
 
+// 函数: hex_dump_uint8_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_uint8_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_uint8_line(char * pref, const uint8_t * x, uint32_t n) {
     char str[1024], *p = str, *p_end = str + sizeof(str);
     p += snprintf(p, p_end - p, "%s: ", pref);
@@ -21,6 +37,14 @@ static inline void hex_dump_uint8_line(char * pref, const uint8_t * x, uint32_t 
     FARF(HIGH, "%s\n", str);
 }
 
+// 函数: hex_dump_int32_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_int32_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_int32_line(char * pref, const int32_t * x, uint32_t n) {
     char str[1024], *p = str, *p_end = str + sizeof(str);
     p += snprintf(p, p_end - p, "%s: ", pref);
@@ -30,6 +54,14 @@ static inline void hex_dump_int32_line(char * pref, const int32_t * x, uint32_t 
     FARF(HIGH, "%s\n", str);
 }
 
+// 函数: hex_dump_f16_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_f16_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_f16_line(char * pref, const __fp16 * x, uint32_t n) {
     char str[1024], *p = str, *p_end = str + sizeof(str);
     p += snprintf(p, p_end - p, "%s: ", pref);
@@ -39,6 +71,14 @@ static inline void hex_dump_f16_line(char * pref, const __fp16 * x, uint32_t n) 
     FARF(HIGH, "%s\n", str);
 }
 
+// 函数: hex_dump_f32_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_f32_line
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_f32_line(char * pref, const float * x, uint32_t n) {
     char str[1024], *p = str, *p_end = str + sizeof(str);
     p += snprintf(p, p_end - p, "%s: ", pref);
@@ -48,6 +88,14 @@ static inline void hex_dump_f32_line(char * pref, const float * x, uint32_t n) {
     FARF(HIGH, "%s\n", str);
 }
 
+// 函数: hex_dump_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_f32(char * pref, const float * x, uint32_t n) {
     uint32_t n0 = n / 16;
     uint32_t n1 = n % 16;
@@ -61,6 +109,14 @@ static inline void hex_dump_f32(char * pref, const float * x, uint32_t n) {
     }
 }
 
+// 函数: hex_dump_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hex_dump_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hex_dump_f16(char * pref, const __fp16 * x, uint32_t n) {
     uint32_t n0 = n / 16;
     uint32_t n1 = n % 16;

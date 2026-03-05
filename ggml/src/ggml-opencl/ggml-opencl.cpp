@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-opencl.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-opencl/ggml-opencl.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define CL_TARGET_OPENCL_VERSION GGML_OPENCL_TARGET_VERSION
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 
@@ -51,6 +58,14 @@
 // OpenCL
 //------------------------------------------------------------------------------
 
+// 函数: ggml_cl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_cl_compute_forward(ggml_backend_t backend, struct ggml_tensor * tensor);
 
 // See https://gmplib.org/~tege/divcnst-pldi94.pdf figure 4.1.
@@ -59,6 +74,24 @@ bool ggml_cl_compute_forward(ggml_backend_t backend, struct ggml_tensor * tensor
 // and a shift:
 //
 // n/d = (mulhi(n, mp) + n) >> L;
+// 类: fastdiv_vals
+// 描述: fastdiv_vals类提供相关功能
+// 用途: 用于处理fastdiv_vals相关的操作
+// 类: fastdiv_vals
+// 描述: fastdiv_vals类提供相关功能
+// 用途: 用于处理fastdiv_vals相关的操作
+    // 结构体: fastdiv_vals
+    // 描述: fastdiv_vals结构体提供相关功能
+    // 用途: 用于处理fastdiv_vals相关的操作
+    // 结构体: fastdiv_vals
+    // 描述: fastdiv_vals结构体提供相关功能
+    // 用途: 用于处理fastdiv_vals相关的操作
+    // 结构体: fastdiv_vals
+    // 描述: fastdiv_vals结构体提供相关功能
+    // 用途: 用于处理fastdiv_vals相关的操作
+    // 结构体: fastdiv_vals
+    // 描述: fastdiv_vals结构体提供相关功能
+    // 用途: 用于处理fastdiv_vals相关的操作
 struct fastdiv_vals {
     uint32_t mp;
     uint32_t L;
@@ -67,6 +100,14 @@ struct fastdiv_vals {
 };
 static_assert(sizeof(fastdiv_vals) == 16, "fastdiv_vals size incorrect");
 
+// 函数: init_fastdiv_values
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_fastdiv_values
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static fastdiv_vals init_fastdiv_values(uint64_t d_64) {
     GGML_ASSERT(d_64 != 0);
     GGML_ASSERT(d_64 <= std::numeric_limits<uint32_t>::max());
@@ -102,29 +143,97 @@ enum ADRENO_CL_COMPILER_TYPE {
     DX,
 };
 
+// 类: ggml_cl_version
+// 描述: ggml_cl_version类提供相关功能
+// 用途: 用于处理ggml_cl_version相关的操作
+// 类: ggml_cl_version
+// 描述: ggml_cl_version类提供相关功能
+// 用途: 用于处理ggml_cl_version相关的操作
+    // 结构体: ggml_cl_version
+    // 描述: ggml_cl_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_version相关的操作
+    // 结构体: ggml_cl_version
+    // 描述: ggml_cl_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_version相关的操作
+    // 结构体: ggml_cl_version
+    // 描述: ggml_cl_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_version相关的操作
+    // 结构体: ggml_cl_version
+    // 描述: ggml_cl_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_version相关的操作
 struct ggml_cl_version {
     cl_uint major = 0;
     cl_uint minor = 0;
 };
 
 
+// 类: ggml_cl_compiler_version
+// 描述: ggml_cl_compiler_version类提供相关功能
+// 用途: 用于处理ggml_cl_compiler_version相关的操作
+// 类: ggml_cl_compiler_version
+// 描述: ggml_cl_compiler_version类提供相关功能
+// 用途: 用于处理ggml_cl_compiler_version相关的操作
+    // 结构体: ggml_cl_compiler_version
+    // 描述: ggml_cl_compiler_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_compiler_version相关的操作
+    // 结构体: ggml_cl_compiler_version
+    // 描述: ggml_cl_compiler_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_compiler_version相关的操作
+    // 结构体: ggml_cl_compiler_version
+    // 描述: ggml_cl_compiler_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_compiler_version相关的操作
+    // 结构体: ggml_cl_compiler_version
+    // 描述: ggml_cl_compiler_version结构体提供相关功能
+    // 用途: 用于处理ggml_cl_compiler_version相关的操作
 struct ggml_cl_compiler_version {
     ADRENO_CL_COMPILER_TYPE type;
     int major = -1;
     int minor = -1;
     int patch = -1;
 
+    // 函数: same
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: same
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool same(ADRENO_CL_COMPILER_TYPE t, int x, int y, int z) const {
         return major == x && minor == y && patch == z && type == t;
     }
+    // 函数: newer_than
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: newer_than
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool newer_than(ADRENO_CL_COMPILER_TYPE t, int x, int y, int z) const {
         return major*10000 + minor*100 + patch > x*10000 + y*100 + z && type == t;
     }
+    // 函数: newer_than_or_same
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: newer_than_or_same
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool newer_than_or_same(ADRENO_CL_COMPILER_TYPE t, int x, int y, int z) const {
         return same(t, x, y, z) || newer_than(t, x, y, z);
     }
 };
 
+// 函数: align_to
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: align_to
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t align_to(size_t value, size_t to_alignment) {
     GGML_ASSERT(to_alignment && "Invalid alignment (must be non-zero)");
     GGML_ASSERT((to_alignment & (to_alignment - 1)) == 0 && "to_alignment must be power-of-two");
@@ -134,6 +243,14 @@ static size_t align_to(size_t value, size_t to_alignment) {
 
 
 // Parses a version string of form "XX.YY ". On an error returns ggml_cl_version with all zeroes.
+// 函数: parse_cl_version
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cl_version
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_cl_version parse_cl_version(std::string_view str) {
     size_t major_str_begin = 0;
     size_t major_str_end   = str.find(".", major_str_begin);
@@ -160,6 +277,14 @@ static ggml_cl_version parse_cl_version(std::string_view str) {
 }
 
 // Returns OpenCL platform's version. On an error returns ggml_cl_version with all zeroes.
+// 函数: get_opencl_platform_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_opencl_platform_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml_cl_version get_opencl_platform_version(cl_platform_id platform) {
     size_t param_size;
     CL_CHECK(clGetPlatformInfo(platform, CL_PLATFORM_VERSION, 0, nullptr, &param_size));
@@ -176,6 +301,14 @@ static ggml_cl_version get_opencl_platform_version(cl_platform_id platform) {
 }
 
 // Return a version to use in OpenCL C compilation. On an error returns ggml_cl_version with all zeroes.
+// 函数: get_opencl_c_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_opencl_c_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml_cl_version get_opencl_c_version(ggml_cl_version platform_version, cl_device_id device) {
     size_t param_size;
 
@@ -219,6 +352,14 @@ static ggml_cl_version get_opencl_c_version(ggml_cl_version platform_version, cl
     return parse_cl_version(param_value);
 }
 
+// 函数: get_adreno_gpu_gen
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_adreno_gpu_gen
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ADRENO_GPU_GEN get_adreno_gpu_gen(const char *device_name) {
     if (strstr(device_name, "730") ||
         strstr(device_name, "740") ||
@@ -238,6 +379,14 @@ static ADRENO_GPU_GEN get_adreno_gpu_gen(const char *device_name) {
     return ADRENO_GPU_GEN::ADRENO_UNKNOWN;
 }
 
+// 函数: get_adreno_cl_compiler_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_adreno_cl_compiler_version
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static ggml_cl_compiler_version get_adreno_cl_compiler_version(const char *driver_version) {
     std::string driver_ver_str(driver_version);
     ADRENO_CL_COMPILER_TYPE type = ADRENO_CL_COMPILER_TYPE::E031;
@@ -265,6 +414,24 @@ static ggml_cl_compiler_version get_adreno_cl_compiler_version(const char *drive
 }
 
 // cl buffer wrapper
+// 类: ggml_cl_buffer
+// 描述: ggml_cl_buffer类提供相关功能
+// 用途: 用于处理ggml_cl_buffer相关的操作
+// 类: ggml_cl_buffer
+// 描述: ggml_cl_buffer类提供相关功能
+// 用途: 用于处理ggml_cl_buffer相关的操作
+    // 结构体: ggml_cl_buffer
+    // 描述: ggml_cl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cl_buffer相关的操作
+    // 结构体: ggml_cl_buffer
+    // 描述: ggml_cl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cl_buffer相关的操作
+    // 结构体: ggml_cl_buffer
+    // 描述: ggml_cl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cl_buffer相关的操作
+    // 结构体: ggml_cl_buffer
+    // 描述: ggml_cl_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_cl_buffer相关的操作
 struct ggml_cl_buffer {
     cl_mem buffer;
     size_t size;
@@ -278,6 +445,14 @@ struct ggml_cl_buffer {
         }
     }
 
+    // 函数: allocate
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: allocate
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void allocate(cl_context context, size_t new_size) {
         if (new_size > size) {
             size = new_size;
@@ -291,6 +466,24 @@ struct ggml_cl_buffer {
 };
 
 // Profiling
+// 类: ProfilingInfo
+// 描述: ProfilingInfo类提供相关功能
+// 用途: 用于处理profilinginfo相关的操作
+// 类: ProfilingInfo
+// 描述: ProfilingInfo类提供相关功能
+// 用途: 用于处理profilinginfo相关的操作
+    // 结构体: ProfilingInfo
+    // 描述: ProfilingInfo结构体提供相关功能
+    // 用途: 用于处理ProfilingInfo相关的操作
+    // 结构体: ProfilingInfo
+    // 描述: ProfilingInfo结构体提供相关功能
+    // 用途: 用于处理ProfilingInfo相关的操作
+    // 结构体: ProfilingInfo
+    // 描述: ProfilingInfo结构体提供相关功能
+    // 用途: 用于处理ProfilingInfo相关的操作
+    // 结构体: ProfilingInfo
+    // 描述: ProfilingInfo结构体提供相关功能
+    // 用途: 用于处理ProfilingInfo相关的操作
 struct ProfilingInfo {
     std::string op_name;
     std::string kernel_name;
@@ -355,9 +548,45 @@ static void populateProfilingInfo(
     info.output_size[3] = tensor->ne[3];
 }
 
+// 类: ggml_backend_opencl_context
+// 描述: ggml_backend_opencl_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_context相关的操作
+// 类: ggml_backend_opencl_context
+// 描述: ggml_backend_opencl_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
 struct ggml_backend_opencl_context;
 
 // backend device context
+// 类: ggml_backend_opencl_device_context
+// 描述: ggml_backend_opencl_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_device_context相关的操作
+// 类: ggml_backend_opencl_device_context
+// 描述: ggml_backend_opencl_device_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_device_context相关的操作
+    // 结构体: ggml_backend_opencl_device_context
+    // 描述: ggml_backend_opencl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_device_context相关的操作
+    // 结构体: ggml_backend_opencl_device_context
+    // 描述: ggml_backend_opencl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_device_context相关的操作
+    // 结构体: ggml_backend_opencl_device_context
+    // 描述: ggml_backend_opencl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_device_context相关的操作
+    // 结构体: ggml_backend_opencl_device_context
+    // 描述: ggml_backend_opencl_device_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_device_context相关的操作
 struct ggml_backend_opencl_device_context {
     cl_platform_id platform;
     std::string platform_name;
@@ -377,6 +606,24 @@ struct ggml_backend_opencl_device_context {
 };
 
 // backend context
+// 类: ggml_backend_opencl_context
+// 描述: ggml_backend_opencl_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_context相关的操作
+// 类: ggml_backend_opencl_context
+// 描述: ggml_backend_opencl_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
+    // 结构体: ggml_backend_opencl_context
+    // 描述: ggml_backend_opencl_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_context相关的操作
 struct ggml_backend_opencl_context {
     int ref_count;
 
@@ -574,6 +821,14 @@ struct ggml_backend_opencl_context {
 
     std::vector<ProfilingInfo> profiling_info;
 
+    // 函数: write_profiling_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_profiling_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_profiling_info() {
         FILE * fperf = fopen("cl_profiling.csv", "w");
         if (!fperf) {
@@ -653,6 +908,14 @@ struct ggml_backend_opencl_context {
         fclose(ftrace);
     }
 
+    // 函数: get_kernel_workgroup_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_kernel_workgroup_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     size_t get_kernel_workgroup_size(cl_kernel kernel) const {
         size_t workgroup_size = 0;
         size_t ret_size = 0;
@@ -663,6 +926,14 @@ struct ggml_backend_opencl_context {
         return workgroup_size;
     }
 
+    // 函数: enqueue_ndrange_kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: enqueue_ndrange_kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void enqueue_ndrange_kernel(cl_kernel kernel, cl_uint work_dim, size_t *global_work_size, size_t *local_work_size, const ggml_tensor * tensor) {
 #ifdef GGML_OPENCL_PROFILING
         cl_event evt;
@@ -703,6 +974,14 @@ struct ggml_backend_opencl_context {
     cl_kernel CL_mul_mat_vec_q8_0_f32;
 #endif // GGML_OPENCL_USE_ADRENO_KERNELS
 
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void free() {
         ref_count--;
         if (ref_count == 0) {
@@ -717,6 +996,14 @@ struct ggml_backend_opencl_context {
 // All registered devices with a default device in the front.
 static std::vector<ggml_backend_device> g_ggml_backend_opencl_devices;
 
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline std::string read_file(const std::string &path) {
   std::ifstream ifs(path);
   if (!ifs) {
@@ -730,6 +1017,14 @@ inline std::string read_file(const std::string &path) {
   return text;
 }
 
+// 函数: build_program_from_source
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_program_from_source
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static cl_program build_program_from_source(cl_context ctx, cl_device_id dev, const char* program_buffer, const std::string &compile_opts) {
     cl_program p;
     char *program_log;
@@ -759,6 +1054,14 @@ static cl_program build_program_from_source(cl_context ctx, cl_device_id dev, co
     return p;
 }
 
+// 函数: load_cl_kernels
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: load_cl_kernels
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static void load_cl_kernels(ggml_backend_opencl_context *backend_ctx, ggml_cl_version opencl_c_version) {
     cl_int err;
 
@@ -2461,6 +2764,14 @@ static void load_cl_kernels(ggml_backend_opencl_context *backend_ctx, ggml_cl_ve
 // XXX    static bool initialized = false;
 // XXX    static ggml_backend_opencl_context *backend_ctx = nullptr;
 
+// 函数: ggml_cl2_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl2_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_opencl_context * ggml_cl2_init(ggml_backend_dev_t dev);
 
 namespace /* anonymous */ {
@@ -2475,18 +2786,126 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
     GGML_LOG_INFO("ggml_opencl: OpenCL profiling enabled\n");
 #endif
 
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
     struct cl_device;
+    // 类: cl_platform
+    // 描述: cl_platform类提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 类: cl_platform
+    // 描述: cl_platform类提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
     struct cl_platform {
         cl_platform_id id;
         unsigned number;
         char name[128];
         char vendor[128];
+        // 类: cl_device
+        // 描述: cl_device类提供相关功能
+        // 用途: 用于处理cl_device相关的操作
+        // 类: cl_device
+        // 描述: cl_device类提供相关功能
+        // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
         struct cl_device * devices;
         unsigned n_devices;
+        // 类: cl_device
+        // 描述: cl_device类提供相关功能
+        // 用途: 用于处理cl_device相关的操作
+        // 类: cl_device
+        // 描述: cl_device类提供相关功能
+        // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
         struct cl_device * default_device;
     };
 
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
     struct cl_device {
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
         struct cl_platform * platform;
         cl_device_id id;
         unsigned number;
@@ -2497,10 +2916,64 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
 
     enum { NPLAT = 16, NDEV = 16 };
 
+    // 类: cl_platform
+    // 描述: cl_platform类提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 类: cl_platform
+    // 描述: cl_platform类提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
     struct cl_platform platforms[NPLAT];
     unsigned n_platforms = 0;
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
     struct cl_device devices[NDEV];
     unsigned n_devices = 0;
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 类: cl_device
+    // 描述: cl_device类提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
     struct cl_device * default_device = NULL;
     unsigned           default_platform_number = 0;
 
@@ -2511,6 +2984,24 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
     }
 
     for (unsigned i = 0; i < n_platforms; i++) {
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
         struct cl_platform * p = &platforms[i];
         p->number = i;
         p->id = platform_ids[i];
@@ -2528,6 +3019,24 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
         p->default_device = NULL;
 
         for (unsigned j = 0; j < p->n_devices; j++) {
+            // 类: cl_device
+            // 描述: cl_device类提供相关功能
+            // 用途: 用于处理cl_device相关的操作
+            // 类: cl_device
+            // 描述: cl_device类提供相关功能
+            // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
             struct cl_device * d = &devices[n_devices];
             d->number = n_devices++;
             d->id = device_ids[j];
@@ -2579,6 +3088,24 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
         // Choose a platform by matching a substring.
         if (user_platform_number == -1 && user_platform_string != NULL && user_platform_string[0] != 0) {
             for (unsigned i = 0; i < n_platforms; i++) {
+                // 类: cl_platform
+                // 描述: cl_platform类提供相关功能
+                // 用途: 用于处理cl_platform相关的操作
+                // 类: cl_platform
+                // 描述: cl_platform类提供相关功能
+                // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
                 struct cl_platform * p = &platforms[i];
                 if (strstr(p->name, user_platform_string) != NULL ||
                     strstr(p->vendor, user_platform_string) != NULL) {
@@ -2593,6 +3120,24 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
         }
 
         int                  platform_idx = user_platform_number != -1 ? user_platform_number : default_platform_number;
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+        // 类: cl_platform
+        // 描述: cl_platform类提供相关功能
+        // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
+    // 结构体: cl_platform
+    // 描述: cl_platform结构体提供相关功能
+    // 用途: 用于处理cl_platform相关的操作
         struct cl_platform * p            = &platforms[platform_idx];
         candidate_devices                 = p->devices;
         n_candidate_devices               = p->n_devices;
@@ -2604,6 +3149,24 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
 
         if (user_device_number == -1 && user_device_string != NULL && user_device_string[0] != 0) {
             for (unsigned i = 0; i < n_candidate_devices; i++) {
+                // 类: cl_device
+                // 描述: cl_device类提供相关功能
+                // 用途: 用于处理cl_device相关的操作
+                // 类: cl_device
+                // 描述: cl_device类提供相关功能
+                // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
+    // 结构体: cl_device
+    // 描述: cl_device结构体提供相关功能
+    // 用途: 用于处理cl_device相关的操作
                 struct cl_device * d = &candidate_devices[i];
                 if (strstr(d->name, user_device_string) != NULL) {
                     user_device_number = d->number;
@@ -2698,6 +3261,14 @@ static std::vector<ggml_backend_device> ggml_opencl_probe_devices(ggml_backend_r
 }
 
 // Initialize device if it is supported (returns nullptr if it is not).
+// 函数: ggml_cl2_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl2_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_opencl_context * ggml_cl2_init(ggml_backend_dev_t dev) {
     GGML_ASSERT(dev);
     GGML_ASSERT(dev->context);
@@ -2905,6 +3476,14 @@ static ggml_backend_opencl_context * ggml_cl2_init(ggml_backend_dev_t dev) {
     return dev_ctx->backend_ctx;
 }
 
+// 函数: ggml_cl2_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl2_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl2_free(ggml_backend_t backend) {
     ggml_backend_opencl_context * ctx = (ggml_backend_opencl_context *) backend->context;
     ctx->free();
@@ -2926,6 +3505,24 @@ static void ggml_cl2_free(ggml_backend_t backend) {
 //------------------------------------------------------------------------------
 // Tensor extra management
 //------------------------------------------------------------------------------
+// 类: ggml_tensor_extra_cl
+// 描述: ggml_tensor_extra_cl类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl相关的操作
+// 类: ggml_tensor_extra_cl
+// 描述: ggml_tensor_extra_cl类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl相关的操作
+    // 结构体: ggml_tensor_extra_cl
+    // 描述: ggml_tensor_extra_cl结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl相关的操作
+    // 结构体: ggml_tensor_extra_cl
+    // 描述: ggml_tensor_extra_cl结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl相关的操作
+    // 结构体: ggml_tensor_extra_cl
+    // 描述: ggml_tensor_extra_cl结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl相关的操作
+    // 结构体: ggml_tensor_extra_cl
+    // 描述: ggml_tensor_extra_cl结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl相关的操作
 struct ggml_tensor_extra_cl {
     // The buffer object that holds the data.
     cl_mem data_device;
@@ -2938,6 +3535,14 @@ struct ggml_tensor_extra_cl {
     // block to the pool.
     size_t actual_size;
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         data_device = nullptr;
         offset = 0;
@@ -2949,6 +3554,24 @@ struct ggml_tensor_extra_cl {
 // These tensors are loaded from files and should not be allocated in scratch --
 // they should always be allocated from the pool. Hence, they do not have an
 // `offset`, which indicate their locations in the scratch buffer.
+// 类: ggml_tensor_extra_cl_q4_0
+// 描述: ggml_tensor_extra_cl_q4_0类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
+// 类: ggml_tensor_extra_cl_q4_0
+// 描述: ggml_tensor_extra_cl_q4_0类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_0
+    // 描述: ggml_tensor_extra_cl_q4_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_0
+    // 描述: ggml_tensor_extra_cl_q4_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_0
+    // 描述: ggml_tensor_extra_cl_q4_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_0
+    // 描述: ggml_tensor_extra_cl_q4_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_0相关的操作
 struct ggml_tensor_extra_cl_q4_0 {
     // Quantized values.
     cl_mem q = nullptr;
@@ -2967,6 +3590,14 @@ struct ggml_tensor_extra_cl_q4_0 {
         reset();
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         // q and d are subbuffers into the bigger buffer allocated in ggml_backend_buffer.
         // They must be properly released so that the original buffer can be
@@ -2990,6 +3621,24 @@ struct ggml_tensor_extra_cl_q4_0 {
     }
 };
 
+// 类: ggml_tensor_extra_cl_q4_1
+// 描述: ggml_tensor_extra_cl_q4_1类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
+// 类: ggml_tensor_extra_cl_q4_1
+// 描述: ggml_tensor_extra_cl_q4_1类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_1
+    // 描述: ggml_tensor_extra_cl_q4_1结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_1
+    // 描述: ggml_tensor_extra_cl_q4_1结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_1
+    // 描述: ggml_tensor_extra_cl_q4_1结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
+    // 结构体: ggml_tensor_extra_cl_q4_1
+    // 描述: ggml_tensor_extra_cl_q4_1结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q4_1相关的操作
 struct ggml_tensor_extra_cl_q4_1 {
     // Quantized values.
     cl_mem q = nullptr;
@@ -3014,6 +3663,14 @@ struct ggml_tensor_extra_cl_q4_1 {
         reset();
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         // q and d are subbuffers into the bigger buffer allocated in ggml_backend_buffer.
         // They must be properly released so that the original buffer can be
@@ -3043,6 +3700,24 @@ struct ggml_tensor_extra_cl_q4_1 {
     }
 };
 
+// 类: ggml_tensor_extra_cl_mxfp4
+// 描述: ggml_tensor_extra_cl_mxfp4类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
+// 类: ggml_tensor_extra_cl_mxfp4
+// 描述: ggml_tensor_extra_cl_mxfp4类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
+    // 结构体: ggml_tensor_extra_cl_mxfp4
+    // 描述: ggml_tensor_extra_cl_mxfp4结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
+    // 结构体: ggml_tensor_extra_cl_mxfp4
+    // 描述: ggml_tensor_extra_cl_mxfp4结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
+    // 结构体: ggml_tensor_extra_cl_mxfp4
+    // 描述: ggml_tensor_extra_cl_mxfp4结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
+    // 结构体: ggml_tensor_extra_cl_mxfp4
+    // 描述: ggml_tensor_extra_cl_mxfp4结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_mxfp4相关的操作
 struct ggml_tensor_extra_cl_mxfp4 {
     // Quantized values.
     cl_mem q = nullptr;
@@ -3061,6 +3736,14 @@ struct ggml_tensor_extra_cl_mxfp4 {
         reset();
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         // q and d are subbuffers into the bigger buffer allocated in ggml_backend_buffer.
         // They must be properly released so that the original buffer can be
@@ -3086,6 +3769,24 @@ struct ggml_tensor_extra_cl_mxfp4 {
     }
 };
 
+// 类: ggml_tensor_extra_cl_q8_0
+// 描述: ggml_tensor_extra_cl_q8_0类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
+// 类: ggml_tensor_extra_cl_q8_0
+// 描述: ggml_tensor_extra_cl_q8_0类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q8_0
+    // 描述: ggml_tensor_extra_cl_q8_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q8_0
+    // 描述: ggml_tensor_extra_cl_q8_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q8_0
+    // 描述: ggml_tensor_extra_cl_q8_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
+    // 结构体: ggml_tensor_extra_cl_q8_0
+    // 描述: ggml_tensor_extra_cl_q8_0结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q8_0相关的操作
 struct ggml_tensor_extra_cl_q8_0 {
     cl_mem q = nullptr;
     cl_mem q_img = nullptr;
@@ -3100,6 +3801,14 @@ struct ggml_tensor_extra_cl_q8_0 {
         reset();
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         // q and d are subbuffers into the bigger buffer allocated in ggml_backend_buffer.
         // They must be properly released so that the original buffer can be
@@ -3121,6 +3830,24 @@ struct ggml_tensor_extra_cl_q8_0 {
     }
 };
 
+// 类: ggml_tensor_extra_cl_q6_K
+// 描述: ggml_tensor_extra_cl_q6_K类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q6_k相关的操作
+// 类: ggml_tensor_extra_cl_q6_K
+// 描述: ggml_tensor_extra_cl_q6_K类提供相关功能
+// 用途: 用于处理ggml_tensor_extra_cl_q6_k相关的操作
+    // 结构体: ggml_tensor_extra_cl_q6_K
+    // 描述: ggml_tensor_extra_cl_q6_K结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q6_K相关的操作
+    // 结构体: ggml_tensor_extra_cl_q6_K
+    // 描述: ggml_tensor_extra_cl_q6_K结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q6_K相关的操作
+    // 结构体: ggml_tensor_extra_cl_q6_K
+    // 描述: ggml_tensor_extra_cl_q6_K结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q6_K相关的操作
+    // 结构体: ggml_tensor_extra_cl_q6_K
+    // 描述: ggml_tensor_extra_cl_q6_K结构体提供相关功能
+    // 用途: 用于处理ggml_tensor_extra_cl_q6_K相关的操作
 struct ggml_tensor_extra_cl_q6_K {
     // Lower 4 bits of quantized weights.
     cl_mem ql = nullptr;
@@ -3140,6 +3867,14 @@ struct ggml_tensor_extra_cl_q6_K {
         reset();
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         if (ql != nullptr) {
             CL_CHECK(clReleaseMemObject(ql));
@@ -3172,16 +3907,40 @@ struct ggml_tensor_extra_cl_q6_K {
 //
 // backend
 //
+// 函数: ggml_backend_opencl_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_name(ggml_backend_t backend) {
     return "OpenCL";
 
     UNUSED(backend);
 }
 
+// 函数: ggml_backend_opencl_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_free(ggml_backend_t backend) {
     ggml_cl2_free(backend);
 }
 
+// 函数: ggml_backend_opencl_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_set_tensor_async(ggml_backend_t backend, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     GGML_UNUSED(backend);
     GGML_UNUSED(tensor);
@@ -3190,6 +3949,14 @@ static void ggml_backend_opencl_set_tensor_async(ggml_backend_t backend, ggml_te
     GGML_UNUSED(size);
 }
 
+// 函数: ggml_backend_opencl_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_get_tensor_async(ggml_backend_t backend, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_UNUSED(backend);
     GGML_UNUSED(tensor);
@@ -3198,6 +3965,14 @@ static void ggml_backend_opencl_get_tensor_async(ggml_backend_t backend, const g
     GGML_UNUSED(size);
 }
 
+// 函数: ggml_backend_opencl_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_opencl_cpy_tensor_async(ggml_backend_t backend, const ggml_tensor * src, ggml_tensor * dst) {
     GGML_UNUSED(backend);
     GGML_UNUSED(src);
@@ -3205,6 +3980,14 @@ static bool ggml_backend_opencl_cpy_tensor_async(ggml_backend_t backend, const g
     return false;
 }
 
+// 函数: ggml_backend_opencl_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_synchronize(ggml_backend_t backend) {
     auto * backend_ctx = static_cast<ggml_backend_opencl_context *>(backend->context);
 
@@ -3217,6 +4000,14 @@ static void ggml_backend_opencl_synchronize(ggml_backend_t backend) {
 // Syncronizes the 'backend_ctx's device with others so that commands
 // enqueued to it won't start until commands in the other devices have
 // completed.
+// 函数: sync_with_other_backends
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sync_with_other_backends
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void sync_with_other_backends(ggml_backend_opencl_context * backend_ctx) {
     if (g_ggml_backend_opencl_devices.size() < 2)
       return; // No other devices to synchronize with.
@@ -3240,11 +4031,27 @@ static void sync_with_other_backends(ggml_backend_opencl_context * backend_ctx) 
     }
 }
 
+// 函数: sync_with_other_backends
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sync_with_other_backends
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void sync_with_other_backends(ggml_backend_t backend) {
     auto * backend_ctx = static_cast<ggml_backend_opencl_context *>(backend->context);
     sync_with_other_backends(backend_ctx);
 }
 
+// 函数: ggml_opencl_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_can_fuse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_opencl_can_fuse(const struct ggml_cgraph * cgraph, int node_idx, std::initializer_list<enum ggml_op> ops) {
     if (!ggml_can_fuse(cgraph, node_idx, ops)) {
         return false;
@@ -3312,10 +4119,42 @@ static bool ggml_opencl_can_fuse(const struct ggml_cgraph * cgraph, int node_idx
     return true;
 }
 
+// 函数: ggml_opencl_op_rms_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_rms_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor * rms_norm_tensor, ggml_tensor * mul_tensor);
+// 函数: ggml_opencl_op_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_norm_fused(ggml_backend_t backend, ggml_tensor * norm_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
+// 函数: ggml_opencl_op_group_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_group_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_group_norm_fused(ggml_backend_t backend, ggml_tensor * gn_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
 
+// 函数: ggml_backend_opencl_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_status ggml_backend_opencl_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     ggml_backend_opencl_context *backend_ctx = (ggml_backend_opencl_context *)backend->context;
 
@@ -3361,6 +4200,14 @@ static ggml_status ggml_backend_opencl_graph_compute(ggml_backend_t backend, ggm
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_opencl_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_opencl_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     ggml_backend_opencl_device_context * dev_ctx     = (ggml_backend_opencl_device_context *)dev->context;
     ggml_backend_opencl_context *        backend_ctx = dev_ctx->backend_ctx;
@@ -3621,8 +4468,24 @@ static bool ggml_opencl_supports_op(ggml_backend_dev_t dev, const struct ggml_te
 }
 
 // Forward declaration - implementation appears later in the file.
+// 函数: ggml_backend_opencl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_buffer_type_get_name(ggml_backend_buffer_type_t buffer_type);
 
+// 函数: ggml_backend_opencl_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_opencl_guid() {
     static ggml_guid guid = { 0xde, 0xe0, 0x70, 0xa2, 0x73, 0x4e, 0x4d, 0xbc, 0xb0, 0xc7, 0x4f, 0xd4, 0x6d, 0x4e, 0x90, 0xfe };
     return &guid;
@@ -3645,6 +4508,14 @@ static ggml_backend_i ggml_backend_opencl_i = {
     /* .graph_optimize          = */ NULL,
 };
 
+// 函数: ggml_backend_opencl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_opencl_init(void) {
     ggml_backend_dev_t dev = ggml_backend_reg_dev_get(ggml_backend_opencl_reg(), 0);
     ggml_backend_opencl_context *backend_ctx = ggml_cl2_init(dev);
@@ -3659,6 +4530,14 @@ ggml_backend_t ggml_backend_opencl_init(void) {
     return backend;
 }
 
+// 函数: ggml_backend_is_opencl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_opencl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_opencl(ggml_backend_t backend) {
     return backend && backend->iface.get_name == ggml_backend_opencl_name;
 }
@@ -3666,6 +4545,24 @@ bool ggml_backend_is_opencl(ggml_backend_t backend) {
 //
 // buffer
 //
+// 类: ggml_backend_opencl_buffer_context
+// 描述: ggml_backend_opencl_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
+// 类: ggml_backend_opencl_buffer_context
+// 描述: ggml_backend_opencl_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
+    // 结构体: ggml_backend_opencl_buffer_context
+    // 描述: ggml_backend_opencl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
+    // 结构体: ggml_backend_opencl_buffer_context
+    // 描述: ggml_backend_opencl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
+    // 结构体: ggml_backend_opencl_buffer_context
+    // 描述: ggml_backend_opencl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
+    // 结构体: ggml_backend_opencl_buffer_context
+    // 描述: ggml_backend_opencl_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_opencl_buffer_context相关的操作
 struct ggml_backend_opencl_buffer_context {
     // A buffer context can hold multiple cl_mem objects. This is for flattening
     // quantized weights and should be used with GGML_OPENCL_SMALL_ALLOC where
@@ -3718,6 +4615,14 @@ struct ggml_backend_opencl_buffer_context {
         }
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl * ggml_opencl_alloc_temp_tensor_extra() {
         ggml_tensor_extra_cl * extra;
         if (temp_tensor_extras.empty()) {
@@ -3733,6 +4638,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q4_0
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q4_0
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl_q4_0 * ggml_opencl_alloc_temp_tensor_extra_q4_0() {
         ggml_tensor_extra_cl_q4_0 * extra;
         if (temp_tensor_extras_q4_0.empty()) {
@@ -3748,6 +4661,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q4_1
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q4_1
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl_q4_1 * ggml_opencl_alloc_temp_tensor_extra_q4_1() {
         ggml_tensor_extra_cl_q4_1 * extra;
         if (temp_tensor_extras_q4_1.empty()) {
@@ -3763,6 +4684,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_mxfp4
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_mxfp4
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl_mxfp4 * ggml_opencl_alloc_temp_tensor_extra_mxfp4() {
         ggml_tensor_extra_cl_mxfp4 * extra;
         if (temp_tensor_extras_mxfp4.empty()) {
@@ -3778,6 +4707,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q8_0
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q8_0
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl_q8_0 * ggml_opencl_alloc_temp_tensor_extra_q8_0() {
         ggml_tensor_extra_cl_q8_0 * extra;
         if (temp_tensor_extras_q8_0.empty()) {
@@ -3793,6 +4730,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q6_K
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_opencl_alloc_temp_tensor_extra_q6_K
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor_extra_cl_q6_K * ggml_opencl_alloc_temp_tensor_extra_q6_K() {
         ggml_tensor_extra_cl_q6_K * extra;
         if (temp_tensor_extras_q6_K.empty()) {
@@ -3808,6 +4753,14 @@ struct ggml_backend_opencl_buffer_context {
         return extra;
     }
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         for (ggml_tensor_extra_cl * e : temp_tensor_extras_in_use) {
             temp_tensor_extras.push_back(e);
@@ -3874,11 +4827,27 @@ struct ggml_backend_opencl_buffer_context {
     std::string name;
 };
 
+// 函数: ggml_backend_opencl_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_backend_opencl_buffer_context * ctx = (ggml_backend_opencl_buffer_context *) buffer->context;
     delete ctx;
 }
 
+// 函数: ggml_backend_opencl_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_opencl_buffer_get_base(ggml_backend_buffer_t buffer) {
     ggml_backend_opencl_context * backend_ctx = ggml_cl2_init(buffer->buft->device);
     return (void *) (uintptr_t) backend_ctx->alignment;
@@ -3929,6 +4898,14 @@ static enum ggml_status ggml_backend_opencl_buffer_init_tensor(ggml_backend_buff
 
 // The optimized gemm and gemv kernels are used for large matrices without batch.
 // tensor is the quantized weights matrix.
+// 函数: use_adreno_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: use_adreno_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool use_adreno_kernels(const ggml_backend_opencl_context *backend_ctx, const ggml_tensor *tensor) {
     int64_t threshold_ne0 = 512;
     int64_t threshold_ne1 = 512;
@@ -3941,12 +4918,28 @@ inline bool use_adreno_kernels(const ggml_backend_opencl_context *backend_ctx, c
             tensor->ne[2] == 1 && tensor->ne[3] == 1;
 }
 
+// 函数: use_adreno_moe_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: use_adreno_moe_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool use_adreno_moe_kernels(const ggml_backend_opencl_context *backend_ctx, const ggml_tensor *tensor) {
     GGML_UNUSED(backend_ctx);
     int ne01 = tensor->ne[1];
     return ((strstr(tensor->name, "ffn") != NULL) || (strstr(tensor->name, "as") != NULL)) && (ne01 % 64 == 0);
 }
 
+// 函数: enable_adreno_trans_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: enable_adreno_trans_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool enable_adreno_trans_weight(const ggml_backend_opencl_context *backend_ctx, const ggml_tensor *tensor) {
 
     bool adreno_kernel = use_adreno_kernels(backend_ctx, tensor);
@@ -3956,6 +4949,14 @@ inline bool enable_adreno_trans_weight(const ggml_backend_opencl_context *backen
     return ((elem_num < 128 * 1024 * 1024) && adreno_kernel);  // max element num: 2**27
 }
 
+// 函数: ggml_backend_opencl_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_buffer_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     ggml_backend_opencl_context *backend_ctx = ggml_cl2_init(buffer->buft->device);
 
@@ -4663,6 +5664,14 @@ static void ggml_backend_opencl_buffer_set_tensor(ggml_backend_buffer_t buffer, 
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_opencl_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_buffer_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_ASSERT(tensor->extra);
 
@@ -4967,6 +5976,14 @@ static void ggml_backend_opencl_buffer_get_tensor(ggml_backend_buffer_t buffer, 
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_opencl_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_backend_dev_t dev = buffer->buft->device;
     ggml_backend_opencl_context *backend_ctx = ggml_cl2_init(dev);
@@ -4979,6 +5996,14 @@ static void ggml_backend_opencl_buffer_clear(ggml_backend_buffer_t buffer, uint8
     CL_CHECK(clFinish(queue));
 }
 
+// 函数: ggml_backend_opencl_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_buffer_reset(ggml_backend_buffer_t buffer) {
     ggml_backend_opencl_buffer_context * ctx = (ggml_backend_opencl_buffer_context *) buffer->context;
     ctx->reset();
@@ -5000,12 +6025,28 @@ static ggml_backend_buffer_i ggml_backend_opencl_buffer_interface = {
 // buffer type
 //
 
+// 函数: ggml_backend_opencl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_buffer_type_get_name(ggml_backend_buffer_type_t buffer_type) {
     return "OpenCL";
 
     GGML_UNUSED(buffer_type);
 }
 
+// 函数: ggml_backend_opencl_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_opencl_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buffer_type, size_t size) {
     ggml_backend_opencl_context *backend_ctx = ggml_cl2_init(buffer_type->device);
 
@@ -5024,11 +6065,27 @@ static ggml_backend_buffer_t ggml_backend_opencl_buffer_type_alloc_buffer(ggml_b
     return ggml_backend_buffer_init(buffer_type, ggml_backend_opencl_buffer_interface, ctx, size);
 }
 
+// 函数: ggml_backend_opencl_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_opencl_buffer_type_get_alignment(ggml_backend_buffer_type_t buffer_type) {
     ggml_backend_opencl_context * backend_ctx = ggml_cl2_init(buffer_type->device);
     return backend_ctx->alignment;
 }
 
+// 函数: ggml_backend_opencl_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_opencl_buffer_type_get_max_size(ggml_backend_buffer_type_t buffer_type) {
     static size_t max_size = -1;
     if (max_size == (size_t)-1) {
@@ -5038,6 +6095,14 @@ static size_t ggml_backend_opencl_buffer_type_get_max_size(ggml_backend_buffer_t
     return max_size;
 }
 
+// 函数: ggml_backend_opencl_buffer_type_supports_backend
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_buffer_type_supports_backend
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_opencl_buffer_type_supports_backend(ggml_backend_buffer_type_t buft, ggml_backend_t backend) {
     return ggml_backend_is_opencl(backend);
 
@@ -5057,17 +6122,41 @@ static ggml_backend_buffer_type_i ggml_backend_opencl_buffer_type_interface = {
 // backend device
 //
 
+// 函数: ggml_backend_opencl_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_device_get_name(ggml_backend_dev_t dev) {
     return "GPUOpenCL";
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_opencl_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_device_get_description(ggml_backend_dev_t dev) {
     ggml_backend_opencl_device_context *dev_ctx = (ggml_backend_opencl_device_context *) dev->context;
     return dev_ctx->device_name.c_str();
 }
 
+// 函数: ggml_backend_opencl_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     *free = 0;
     *total = 0;
@@ -5081,6 +6170,14 @@ static enum ggml_backend_dev_type ggml_backend_opencl_device_get_type(ggml_backe
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_opencl_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_opencl_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_opencl_device_get_name(dev);
     props->description = ggml_backend_opencl_device_get_description(dev);
@@ -5094,6 +6191,14 @@ static void ggml_backend_opencl_device_get_props(ggml_backend_dev_t dev, struct 
     };
 }
 
+// 函数: ggml_backend_opencl_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_opencl_device_init(ggml_backend_dev_t dev, const char * params) {
     ggml_backend_opencl_context * backend_ctx = ggml_cl2_init(dev);
     // Getting a new reference to the backend, increase ref_count
@@ -5111,6 +6216,14 @@ static ggml_backend_t ggml_backend_opencl_device_init(ggml_backend_dev_t dev, co
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_opencl_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_opencl_device_get_buffer_type(ggml_backend_dev_t dev) {
     auto * dev_ctx = static_cast<ggml_backend_opencl_device_context *>(dev->context);
 
@@ -5123,6 +6236,14 @@ static ggml_backend_buffer_type_t ggml_backend_opencl_device_get_buffer_type(ggm
     return &dev_ctx->buffer_type;
 }
 
+// 函数: ggml_backend_opencl_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_opencl_device_buffer_from_ptr(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     GGML_UNUSED(dev);
     GGML_UNUSED(ptr);
@@ -5131,10 +6252,26 @@ static ggml_backend_buffer_t ggml_backend_opencl_device_buffer_from_ptr(ggml_bac
     return nullptr;
 }
 
+// 函数: ggml_backend_opencl_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_opencl_device_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     return ggml_opencl_supports_op(dev, op);
 }
 
+// 函数: ggml_backend_opencl_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_opencl_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     // Check 'dev' and 'buffer_type' are not objects belonging to this backend.
     if (dev->iface.get_name != ggml_backend_opencl_device_get_name ||
@@ -5150,6 +6287,24 @@ static bool ggml_backend_opencl_device_supports_buft(ggml_backend_dev_t dev, ggm
 }
 
 namespace /* anonymous */ {
+// 类: ggml_backend_device_i
+// 描述: ggml_backend_device_i类提供相关功能
+// 用途: 用于处理ggml_backend_device_i相关的操作
+// 类: ggml_backend_device_i
+// 描述: ggml_backend_device_i类提供相关功能
+// 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
 struct ggml_backend_device_i ggml_backend_opencl_device_i = {
     /* .get_name             = */ ggml_backend_opencl_device_get_name,
     /* .get_description      = */ ggml_backend_opencl_device_get_description,
@@ -5171,18 +6326,42 @@ struct ggml_backend_device_i ggml_backend_opencl_device_i = {
 
 // Backend registry
 
+// 函数: ggml_backend_opencl_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_opencl_reg_get_name(ggml_backend_reg_t reg) {
     return "OpenCL";
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_opencl_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_opencl_reg_device_count(ggml_backend_reg_t reg) {
     return g_ggml_backend_opencl_devices.size();
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_opencl_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_opencl_reg_device_get(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(index < ggml_backend_opencl_reg_device_count(reg));
 
@@ -5199,6 +6378,14 @@ static struct ggml_backend_reg_i ggml_backend_opencl_reg_i = {
     /* .get_proc_address = */ NULL,
 };
 
+// 函数: ggml_backend_opencl_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_opencl_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_opencl_reg(void) {
     static std::mutex mutex;
     static ggml_backend_reg reg;
@@ -5240,6 +6427,14 @@ static_assert(sizeof(block_q4_0) == sizeof(ggml_fp16_t) + QK4_0 / 2,
 #include "half.hpp"
 #endif
 
+// 函数: dump_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dump_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void dump_tensor(ggml_backend_t backend, const struct ggml_tensor * tensor) {
     void * buf = malloc(ggml_nbytes(tensor));
 
@@ -5375,6 +6570,14 @@ static void dump_tensor(ggml_backend_t backend, const struct ggml_tensor * tenso
 // Ops
 //------------------------------------------------------------------------------
 
+// 函数: ggml_cl_can_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_can_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_cl_can_mul_mat(const struct ggml_tensor * src0, const struct ggml_tensor * src1, struct ggml_tensor * dst) {
     const int64_t ne10 = src1->ne[0];
 
@@ -5463,6 +6666,14 @@ static void ggml_cl_copy_to_contiguous(ggml_backend_t backend, const ggml_tensor
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, src);
 }
 
+// 函数: ggml_cl_nop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_nop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_nop(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     UNUSED(backend);
     UNUSED(src0);
@@ -5470,6 +6681,14 @@ static void ggml_cl_nop(ggml_backend_t backend, const ggml_tensor * src0, const 
     UNUSED(dst);
 }
 
+// 函数: ggml_cl_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_get_rows(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -5542,6 +6761,14 @@ static void ggml_cl_get_rows(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_set_rows(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -5659,6 +6886,14 @@ static void ggml_cl_set_rows(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_add(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -5837,6 +7072,14 @@ static void ggml_cl_add(ggml_backend_t backend, const ggml_tensor * src0, const 
     }
 }
 
+// 函数: ggml_cl_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_add_id(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -5906,6 +7149,14 @@ static void ggml_cl_add_id(ggml_backend_t backend, const ggml_tensor * src0, con
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6042,6 +7293,14 @@ static void ggml_cl_mul(ggml_backend_t backend, const ggml_tensor * src0, const 
     }
 }
 
+// 函数: ggml_cl_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_div(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6163,6 +7422,14 @@ static void ggml_cl_div(ggml_backend_t backend, const ggml_tensor * src0, const 
     }
 }
 
+// 函数: ggml_cl_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_sub(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6284,6 +7551,14 @@ static void ggml_cl_sub(ggml_backend_t backend, const ggml_tensor * src0, const 
     }
 }
 
+// 函数: ggml_cl_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_sqr(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6334,6 +7609,14 @@ static void ggml_cl_sqr(ggml_backend_t backend, const ggml_tensor * src0, const 
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_sqrt(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6384,6 +7667,14 @@ static void ggml_cl_sqrt(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mean(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6444,6 +7735,14 @@ static void ggml_cl_mean(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_ssm_conv(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6508,6 +7807,14 @@ static void ggml_cl_ssm_conv(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_gelu(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6546,6 +7853,14 @@ static void ggml_cl_gelu(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_gelu_erf(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6584,6 +7899,14 @@ static void ggml_cl_gelu_erf(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_gelu_quick(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6622,6 +7945,14 @@ static void ggml_cl_gelu_quick(ggml_backend_t backend, const ggml_tensor * src0,
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_silu(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6665,6 +7996,14 @@ static void ggml_cl_silu(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_relu(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6701,6 +8040,14 @@ static void ggml_cl_relu(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_sigmoid(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6744,6 +8091,14 @@ static void ggml_cl_sigmoid(ggml_backend_t backend, const ggml_tensor * src0, co
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_tri(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6782,6 +8137,14 @@ static void ggml_cl_tri(ggml_backend_t backend, const ggml_tensor * src0, const 
     backend_ctx->enqueue_ndrange_kernel(kernel, 1, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_fill
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_fill
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_fill(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(dst);
     GGML_ASSERT(dst->extra);
@@ -6812,6 +8175,14 @@ static void ggml_cl_fill(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 1, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_clamp(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6855,6 +8226,14 @@ static void ggml_cl_clamp(ggml_backend_t backend, const ggml_tensor * src0, cons
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_norm(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6907,6 +8286,14 @@ static void ggml_cl_norm(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_rms_norm(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -6982,6 +8369,14 @@ static void ggml_cl_rms_norm(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_opencl_op_rms_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_rms_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor * rms_norm_tensor, ggml_tensor * mul_tensor) {
     GGML_ASSERT(mul_tensor);
     GGML_ASSERT(rms_norm_tensor);
@@ -7093,6 +8488,14 @@ static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor * 
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_opencl_op_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_norm_fused(ggml_backend_t backend, ggml_tensor * norm_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor) {
     GGML_ASSERT(norm_tensor && mul_tensor && add_tensor);
 
@@ -7179,6 +8582,14 @@ static void ggml_opencl_op_norm_fused(ggml_backend_t backend, ggml_tensor * norm
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, gws, lws, dst);
 }
 
+// 函数: ggml_opencl_op_group_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_opencl_op_group_norm_fused
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_opencl_op_group_norm_fused(ggml_backend_t backend, ggml_tensor * gn_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor) {
     GGML_ASSERT(gn_tensor && mul_tensor && add_tensor);
 
@@ -7227,6 +8638,14 @@ static void ggml_opencl_op_group_norm_fused(ggml_backend_t backend, ggml_tensor 
     backend_ctx->enqueue_ndrange_kernel(kernel, 1, gws, lws, dst);
 }
 
+// 函数: ggml_cl_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_group_norm(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7277,6 +8696,14 @@ static void ggml_cl_group_norm(ggml_backend_t backend, const ggml_tensor * src0,
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_tanh(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7373,6 +8800,14 @@ static void ggml_cl_tanh(ggml_backend_t backend, const ggml_tensor * src0, const
     }
 }
 
+// 函数: ggml_cl_expm1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_expm1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_expm1(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7469,6 +8904,14 @@ static void ggml_cl_expm1(ggml_backend_t backend, const ggml_tensor * src0, cons
     }
 }
 
+// 函数: ggml_cl_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_softplus(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7565,6 +9008,14 @@ static void ggml_cl_softplus(ggml_backend_t backend, const ggml_tensor * src0, c
     }
 }
 
+// 函数: ggml_cl_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_repeat(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1_shape_def, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7630,6 +9081,14 @@ static void ggml_cl_repeat(ggml_backend_t backend, const ggml_tensor * src0, con
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_pad(ggml_backend_t backend, const ggml_tensor * src0, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7725,6 +9184,14 @@ static void ggml_cl_pad(ggml_backend_t backend, const ggml_tensor * src0, ggml_t
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_upscale(ggml_backend_t backend, const ggml_tensor * src0, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7839,6 +9306,14 @@ static void ggml_cl_upscale(ggml_backend_t backend, const ggml_tensor * src0, gg
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_concat(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7923,6 +9398,14 @@ static void ggml_cl_concat(ggml_backend_t backend, const ggml_tensor * src0, con
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_timestep_embedding(ggml_backend_t backend, const ggml_tensor * src0, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -7967,6 +9450,14 @@ static void ggml_cl_timestep_embedding(ggml_backend_t backend, const ggml_tensor
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, NULL, dst);
 }
 
+// 函数: ggml_cl_flash_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_flash_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_flash_attn(ggml_backend_t backend, const ggml_tensor * q, const ggml_tensor * k, ggml_tensor * dst) {
     const ggml_tensor * v = dst->src[2];
     const ggml_tensor * mask = dst->src[3];
@@ -8103,6 +9594,14 @@ static void ggml_cl_flash_attn(ggml_backend_t backend, const ggml_tensor * q, co
     }
 }
 
+// 函数: ggml_cl_mul_mat_f16_f32_tiled
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul_mat_f16_f32_tiled
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul_mat_f16_f32_tiled(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     ggml_backend_opencl_context *backend_ctx = (ggml_backend_opencl_context *)backend->context;
 
@@ -8155,6 +9654,14 @@ static void ggml_cl_mul_mat_f16_f32_tiled(ggml_backend_t backend, const ggml_ten
     backend_ctx->enqueue_ndrange_kernel(kernel, 2, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_conv_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_conv_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_conv_2d(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_TENSOR_BINARY_OP_LOCALS;
     ggml_backend_opencl_context *backend_ctx = (ggml_backend_opencl_context *)backend->context;
@@ -8231,6 +9738,14 @@ static void ggml_cl_conv_2d(ggml_backend_t backend, const ggml_tensor * src0, co
     backend_ctx->enqueue_ndrange_kernel(kernel, 2, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_mul_mat_kq_kqv_adreno
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul_mat_kq_kqv_adreno
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul_mat_kq_kqv_adreno(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     ggml_backend_opencl_context *backend_ctx = (ggml_backend_opencl_context *)backend->context;
 
@@ -8371,6 +9886,14 @@ static void ggml_cl_mul_mat_kq_kqv_adreno(ggml_backend_t backend, const ggml_ten
     CL_CHECK(clReleaseMemObject(D_sub_buffer));
 }
 
+// 函数: ggml_cl_mul_mat_q8_0_f32_adreno
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul_mat_q8_0_f32_adreno
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul_mat_q8_0_f32_adreno(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
 #ifdef GGML_OPENCL_USE_ADRENO_KERNELS
     GGML_ASSERT(src0);
@@ -8618,6 +10141,14 @@ static void ggml_cl_mul_mat_q8_0_f32_adreno(ggml_backend_t backend, const ggml_t
 #endif
 }
 
+// 函数: ggml_cl_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul_mat(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -9945,6 +11476,14 @@ static void ggml_cl_mul_mat(ggml_backend_t backend, const ggml_tensor * src0, co
     }
 }
 
+// 函数: ggml_cl_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_mul_mat_id(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10341,6 +11880,14 @@ static void ggml_cl_mul_mat_id(ggml_backend_t backend, const ggml_tensor * src0,
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_scale(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10392,6 +11939,14 @@ static void ggml_cl_scale(ggml_backend_t backend, const ggml_tensor * src0, cons
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size_ptr, dst);
 }
 
+// 函数: ggml_cl_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_cpy(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10493,11 +12048,27 @@ static void ggml_cl_cpy(ggml_backend_t backend, const ggml_tensor * src0, const 
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, src1);
 }
 
+// 函数: ggml_cl_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_dup(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     ggml_cl_cpy(backend, src0, dst, nullptr);
     UNUSED(src1);
 }
 
+// 函数: ggml_cl_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_diag_mask_inf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_diag_mask_inf(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10560,6 +12131,14 @@ static void ggml_cl_diag_mask_inf(ggml_backend_t backend, const ggml_tensor * sr
     }
 }
 
+// 函数: ggml_cl_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_soft_max(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10688,6 +12267,14 @@ static void ggml_cl_soft_max(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_rope(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10871,6 +12458,14 @@ static void ggml_cl_rope(ggml_backend_t backend, const ggml_tensor * src0, const
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_solve_tri(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -10937,6 +12532,14 @@ static void ggml_cl_solve_tri(ggml_backend_t backend, const ggml_tensor * src0, 
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_im2col(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src1);
@@ -11020,6 +12623,14 @@ static void ggml_cl_im2col(ggml_backend_t backend, const ggml_tensor * src0, con
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_argsort(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -11066,6 +12677,14 @@ static void ggml_cl_argsort(ggml_backend_t backend, const ggml_tensor * src0, co
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_sum_rows(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -11126,6 +12745,14 @@ static void ggml_cl_sum_rows(ggml_backend_t backend, const ggml_tensor * src0, c
     backend_ctx->enqueue_ndrange_kernel(kernel, 3, global_work_size, local_work_size, dst);
 }
 
+// 函数: ggml_cl_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_cl_glu(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     GGML_ASSERT(src0);
     GGML_ASSERT(src0->extra);
@@ -11240,8 +12867,24 @@ static void ggml_cl_glu(ggml_backend_t backend, const ggml_tensor * src0, const 
 // Op offloading
 //------------------------------------------------------------------------------
 
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*ggml_cl_func_t)(ggml_backend_t backend, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst);
 
+// 函数: ggml_cl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cl_compute_forward
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_cl_compute_forward(ggml_backend_t backend, struct ggml_tensor * tensor) {
     ggml_cl_func_t func = nullptr;
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: nemotron-v2-vl.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/nemotron-v2-vl.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 ggml_cgraph * clip_graph_nemotron_v2_vl::build() {
@@ -20,6 +27,14 @@ ggml_cgraph * clip_graph_nemotron_v2_vl::build() {
     cur = ggml_view_2d(ctx0, cur,
         n_embd, n_patches,
         ggml_row_size(cur->type, n_embd),
+        // 函数: ggml_row_size
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_row_size
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         n_registers * ggml_row_size(cur->type, n_embd));
 
     cur = build_patch_merge_permute(cur, model.hparams.n_merge);

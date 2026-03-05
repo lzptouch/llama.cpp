@@ -23,8 +23,44 @@
 #define MM_SPAD_SRC1_NROWS 16
 #define MM_SPAD_DST_NROWS  2
 
+// 类: htp_matmul_context
+// 描述: htp_matmul_context类提供相关功能
+// 用途: 用于处理htp_matmul_context相关的操作
+// 类: htp_matmul_context
+// 描述: htp_matmul_context类提供相关功能
+// 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
 struct htp_matmul_context {
     const char * type;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
 
     void (*vec_dot_1x1)(const int n, float * restrict s0,
@@ -43,13 +79,93 @@ struct htp_matmul_context {
     uint32_t src0_nrows_per_thread;
     uint32_t src1_nrows_per_thread;
 
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values mm_div_ne12_ne1;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values mm_div_ne1;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values mm_div_r2;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values mm_div_r3;
 };
 
 // vdelta control to expand first 32 e8m0 values into 32 uint32 elements
+// 函数: __attribute__
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __attribute__
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const uint8_t __attribute__((aligned(128))) expand_x32_e8m0[128] = {
     0x00, 0x00, 0x00, 0x00, 0x01, 0x04, 0x00, 0x00, 0x02, 0x00, 0x08, 0x08, 0x01, 0x02, 0x00, 0x04, 0x04, 0x00, 0x00,
     0x00, 0x11, 0x10, 0x10, 0x10, 0x02, 0x00, 0x04, 0x00, 0x01, 0x02, 0x08, 0x08, 0x08, 0x08, 0x00, 0x00, 0x01, 0x04,
@@ -60,6 +176,14 @@ static const uint8_t __attribute__((aligned(128))) expand_x32_e8m0[128] = {
     0x00, 0x00, 0x09, 0x08, 0x00, 0x00, 0x22, 0x20, 0x24, 0x20, 0x21, 0x22, 0x20, 0x20,
 };
 
+// 函数: __attribute__
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __attribute__
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const uint8_t __attribute__((aligned(VLEN))) kvalues_mxfp4_lut[] = {
     0,    0, 1,    0, 2,    0, 3, 0, 4, 0, 6, 0, 8, 0, 12, 0, 0, 0, 0xff, 0, 0xfe, 0, 0xfd, 0, 0xfc, 0,
     0xfa, 0, 0xf8, 0, 0xf4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0, 0, 0, 0,    0, 0,    0, 0,    0, 0,    0,
@@ -70,6 +194,14 @@ static const uint8_t __attribute__((aligned(VLEN))) kvalues_mxfp4_lut[] = {
 
 // q4x4x2 and q8x4x2 are the flat q4/8_0 formats where all quants are stored first followed by all scales
 
+// 函数: q8x4x2_row_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: q8x4x2_row_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t q8x4x2_row_size(uint32_t ne) {
     // ensures perfect alignment of quants and full row
     const uint32_t qk = QK_Q8_0x4x2;
@@ -77,6 +209,14 @@ static inline size_t q8x4x2_row_size(uint32_t ne) {
     return hex_round_up(ne + nb * 8 * sizeof(__fp16), 128);
 }
 
+// 函数: hvx_vec_load_q4x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_load_q4x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector_x8 hvx_vec_load_q4x4x8(const uint8_t * restrict ptr) {
     const HVX_Vector * restrict vptr = (const HVX_Vector *) ptr;
 
@@ -111,6 +251,14 @@ static inline HVX_Vector_x8 hvx_vec_load_q4x4x8(const uint8_t * restrict ptr) {
     return r;
 }
 
+// 函数: hvx_vec_load_mxfp4x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_load_mxfp4x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector_x8 hvx_vec_load_mxfp4x4x8(const uint8_t * restrict ptr) {
     const HVX_Vector * restrict vptr = (const HVX_Vector *) ptr;
 
@@ -144,6 +292,14 @@ static inline HVX_Vector_x8 hvx_vec_load_mxfp4x4x8(const uint8_t * restrict ptr)
     return r;
 }
 
+// 函数: hvx_vec_load_q8x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_load_q8x4x8
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector_x8 hvx_vec_load_q8x4x8(const uint8_t * restrict ptr) {
     const HVX_Vector * restrict vptr = (const HVX_Vector *) ptr;
 
@@ -166,6 +322,14 @@ static inline HVX_Vector_x8 hvx_vec_load_q8x4x8(const uint8_t * restrict ptr) {
 // This version is parameterized to support less than 1024 elements.
 // if() checks are optimized out at compile time -- make sure to pass N as a constexpr.
 
+// 函数: hvx_vec_rmpy_x8_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_rmpy_x8_n
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_rmpy_x8_n(HVX_Vector_x8 x, HVX_Vector_x8 y, unsigned int n) {
     HVX_Vector r0 = Q6_V_vsplat_R(0);
     HVX_Vector r1 = Q6_V_vsplat_R(0);
@@ -212,11 +376,27 @@ static inline HVX_Vector hvx_vec_rmpy_x8_n(HVX_Vector_x8 x, HVX_Vector_x8 y, uns
     return r0;
 }
 
+// 函数: hvx_vec_rmpy_x8_full
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_rmpy_x8_full
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_rmpy_x8_full(HVX_Vector_x8 x, HVX_Vector_x8 y) {
     return hvx_vec_rmpy_x8_n(x, y, 1024);
 }
 
 // Handle most common cases of tensors not multiple of 1024.
+// 函数: hvx_vec_rmpy_x8_nloe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_rmpy_x8_nloe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_rmpy_x8_nloe(HVX_Vector_x8 x, HVX_Vector_x8 y, unsigned int n) {
     if (n <= 256) { return hvx_vec_rmpy_x8_n(x, y, 256); };
     if (n <= 512) { return hvx_vec_rmpy_x8_n(x, y, 512); };
@@ -224,6 +404,14 @@ static inline HVX_Vector hvx_vec_rmpy_x8_nloe(HVX_Vector_x8 x, HVX_Vector_x8 y, 
     return hvx_vec_rmpy_x8_n(x, y, 1024);
 }
 
+// 函数: vec_dot_q4x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_q4x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_q4x4x2_q8x4x2_1x1(const int n, float * restrict s0, const void * restrict vx0, const void * restrict vy0) {
     assert(n % 32 == 0);  // min sub-block size
     assert((unsigned long) vx0 % 128 == 0);
@@ -523,6 +711,14 @@ static void vec_dot_q4x4x2_q8x4x2_2x2(const int n, float * restrict s0, float * 
     hvx_vec_store_u(s1, 8, r0_r1_c1_sum);  // row0,col1 row1,col1
 }
 
+// 函数: vec_dot_q8x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_q8x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_q8x4x2_q8x4x2_1x1(const int n, float * restrict s0, const void * restrict vx0, const void * restrict vy0) {
     assert(n % 32 == 0);  // min sub-block size
     assert((unsigned long) vx0 % 128 == 0);
@@ -822,6 +1018,14 @@ static void vec_dot_q8x4x2_q8x4x2_2x2(const int n, float * restrict s0, float * 
     hvx_vec_store_u(&s1[0], 8, r0_r1_c1_sum);  // row0,col1 row1,col1
 }
 
+// 函数: vec_dot_mxfp4x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_mxfp4x4x2_q8x4x2_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_mxfp4x4x2_q8x4x2_1x1(const int n, float * restrict s0, const void * restrict vx0, const void * restrict vy0) {
     assert(n % 32 == 0);  // min sub-block size
     assert((unsigned long) vx0 % 128 == 0);
@@ -1227,6 +1431,14 @@ static void vec_dot_mxfp4x4x2_q8x4x2_2x2(const int n, float * restrict s0, float
     hvx_vec_store_u(&s1[0], 8, r0_r1_c1_sum);  // row0,col1 row1,col1
 }
 
+// 函数: vec_dot_f16_f16_aa_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_f16_f16_aa_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_f16_f16_aa_1x1(const int n, float * restrict s, const void * restrict vx, const void * restrict vy) {
     const HVX_Vector * restrict x = (const HVX_Vector *) vx;
     const HVX_Vector * restrict y = (const HVX_Vector *) vy;
@@ -1375,6 +1587,14 @@ static void vec_dot_f16_f16_aa_2x2(const int n, float * restrict s0, float * res
     hvx_vec_store_u(&s1[0], 8, r0_r1_c1_sum);  // row0,col1 row1,col1
 }
 
+// 函数: vec_dot_f16_f16_uu_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_f16_f16_uu_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_f16_f16_uu_1x1(const int n, float * restrict s, const void * restrict vx, const void * restrict vy) {
     const HVX_UVector * restrict x = (const HVX_UVector *) vx;
     const HVX_UVector * restrict y = (const HVX_UVector *) vy;
@@ -1405,6 +1625,14 @@ static void vec_dot_f16_f16_uu_1x1(const int n, float * restrict s, const void *
     hvx_vec_store_u(&s[0], 4, rsum);
 }
 
+// 函数: vec_dot_f16_f32_uu_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_dot_f16_f32_uu_1x1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void vec_dot_f16_f32_uu_1x1(const int n, float * restrict s, const void * restrict x, const void * restrict y) {
     const HVX_UVector * restrict vx = (const HVX_UVector * restrict) x;
     const HVX_UVector * restrict vy = (const HVX_UVector * restrict) y;
@@ -1459,12 +1687,138 @@ static void vec_dot_f16_f32_uu_1x1(const int n, float * restrict s, const void *
 }
 
 #define htp_matmul_tensors_preamble    \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict src0    = &octx->src0;      \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict src1    = &octx->src1;      \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict src2    = &octx->src2;      \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict dst     = &octx->dst;       \
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * restrict src0_spad = &octx->src0_spad; \
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * restrict src1_spad = &octx->src1_spad; \
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * restrict dst_spad  = &octx->dst_spad;  \
                                                              \
     const uint32_t ne00 = src0->ne[0]; \
@@ -1503,7 +1857,43 @@ static void vec_dot_f16_f32_uu_1x1(const int n, float * restrict s, const void *
     const uint32_t nb3 = dst->nb[3];
 
 #define htp_matmul_preamble                                     \
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = data;                   \
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx  = mmctx->octx;               \
     htp_matmul_tensors_preamble;                                \
     dma_queue *dma_queue           = octx->ctx->dma[ith];       \
@@ -1511,6 +1901,14 @@ static void vec_dot_f16_f32_uu_1x1(const int n, float * restrict s, const void *
 
 // *** matmul with support for 4d tensors and full broadcasting
 
+// 函数: matmul_4d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matmul_4d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void matmul_4d(unsigned int nth, unsigned int ith, void * data) {
     htp_matmul_preamble;
 
@@ -1591,6 +1989,14 @@ static void matmul_4d(unsigned int nth, unsigned int ith, void * data) {
 }
 
 // src1 tensor is already in VTCM spad
+// 函数: matmul_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matmul_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void matmul_2d(unsigned int nth, unsigned int ith, void * data) {
     htp_matmul_preamble;
 
@@ -1691,6 +2097,14 @@ static void matmul_2d(unsigned int nth, unsigned int ith, void * data) {
 }
 
 // q8x4x2 src1 tensor is already in VTCM spad
+// 函数: matvec_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matvec_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void matvec_2d(unsigned int nth, unsigned int ith, void * data) {
     htp_matmul_preamble;
 
@@ -1775,16 +2189,78 @@ static void matvec_2d(unsigned int nth, unsigned int ith, void * data) {
 
 #define MMID_MATRIX_ROW(row_id, i1) matrix_rows[(row_id) * ids->ne[0] * ids->ne[1] + (i1)]
 
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+// 类: mmid_row_mapping
+// 描述: mmid_row_mapping类提供相关功能
+// 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
 struct mmid_row_mapping {
     uint32_t i1;
     uint32_t i2;
 };
 
 // src1 tensor is already in VTCM spad
+// 函数: matmul_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matmul_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void matmul_id(unsigned int nth, unsigned int ith, void * data) {
     htp_matmul_preamble;
 
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict     ids = &octx->src2;
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * restrict src2_spad = &octx->src2_spad;
 
     uint64_t t1, t2;
@@ -1849,6 +2325,24 @@ static void matmul_id(unsigned int nth, unsigned int ith, void * data) {
             const uint8_t * ss0 = dma_queue_pop(dma_queue).dst;
 
             for (uint32_t cid = 0; cid < cne1; ++cid) {
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
                 struct mmid_row_mapping row_mapping = MMID_MATRIX_ROW(cur_a, cid);
                 const int               rm1         = row_mapping.i1;  // expert idx
                 const int               rm2         = row_mapping.i2;  // token idx
@@ -1878,6 +2372,24 @@ static void matmul_id(unsigned int nth, unsigned int ith, void * data) {
             const uint8_t * ss0 = dma_queue_pop(dma_queue).dst;
 
             for (uint32_t cid = 0; cid < cne1; ++cid) {
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+                // 类: mmid_row_mapping
+                // 描述: mmid_row_mapping类提供相关功能
+                // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
                 struct mmid_row_mapping row_mapping = MMID_MATRIX_ROW(cur_a, cid);
                 const int               rm1         = row_mapping.i1;  // expert idx
                 const int               rm2         = row_mapping.i2;  // token idx
@@ -1900,10 +2412,54 @@ static void matmul_id(unsigned int nth, unsigned int ith, void * data) {
 }
 
 // src1 tensor is already in VTCM spad
+// 函数: matvec_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: matvec_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void matvec_id(unsigned int nth, unsigned int ith, void * data) {
     htp_matmul_preamble;
 
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict     ids = &octx->src2;
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * restrict src2_spad = &octx->src2_spad;
 
     uint64_t t1, t2;
@@ -1992,6 +2548,14 @@ static void matvec_id(unsigned int nth, unsigned int ith, void * data) {
 
 // *** dynamic quant
 
+// 函数: quantize_block_f32_q8x1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_block_f32_q8x1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static inline void quantize_block_f32_q8x1(float * restrict x, uint8_t * restrict y_q, uint8_t * restrict y_d) {
     assert((unsigned long) x % 128 == 0);
     assert((unsigned long) y_q % 128 == 0);
@@ -2051,6 +2615,14 @@ static inline void quantize_block_f32_q8x1(float * restrict x, uint8_t * restric
     *(HVX_Vector *) y_q = vx_i8;
 }
 
+// 函数: quantize_block_f32_q8x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_block_f32_q8x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static inline void quantize_block_f32_q8x2(float * restrict x, uint8_t * restrict y_q, uint8_t * restrict y_d) {
     assert((unsigned long) x % 128 == 0);
     assert((unsigned long) y_q % 128 == 0);
@@ -2094,6 +2666,14 @@ static inline void quantize_block_f32_q8x2(float * restrict x, uint8_t * restric
     *(HVX_Vector *) y_q = vx_i8;
 }
 
+// 函数: quantize_block_f32_q8x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_block_f32_q8x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static inline void quantize_block_f32_q8x4(float * restrict x, uint8_t * restrict y_q, uint8_t * restrict y_d) {
     assert((unsigned long) x % 128 == 0);
     assert((unsigned long) y_q % 128 == 0);
@@ -2134,6 +2714,14 @@ static inline void quantize_block_f32_q8x4(float * restrict x, uint8_t * restric
 }
 
 // Overrides input x
+// 函数: quantize_row_f32_q8x4x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_row_f32_q8x4x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_row_f32_q8x4x2(float * restrict x, uint8_t * restrict y, uint32_t k) {
     assert(k % 32 == 0);
     const uint32_t qk = QK_Q8_0x4x2;
@@ -2169,12 +2757,74 @@ static void quantize_row_f32_q8x4x2(float * restrict x, uint8_t * restrict y, ui
     hvx_copy_f16_ua(y_d, t_d, nb * 8);
 }
 
+// 函数: quantize_f32_q8x4x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_f32_q8x4x2
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_f32_q8x4x2(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = mmctx->octx;
 
     const struct htp_tensor * src = &octx->src1;
     uint8_t * restrict dst = octx->src1_spad.data;
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 类: htp_spad
+    // 描述: htp_spad类提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
+    // 结构体: htp_spad
+    // 描述: htp_spad结构体提供相关功能
+    // 用途: 用于处理htp_spad相关的操作
     struct htp_spad * spad = &octx->src0_spad;
     uint32_t nrows_per_thread = mmctx->src1_nrows_per_thread;
 
@@ -2216,8 +2866,52 @@ static void quantize_f32_q8x4x2(unsigned int nth, unsigned int ith, void * data)
          ir_last, src_row_size, dst_row_size, (unsigned) HAP_perf_qtimer_count_to_us(t2 - t1));
 }
 
+// 函数: quantize_f32_f16
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_f32_f16
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_f32_f16(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = mmctx->octx;
 
     const struct htp_tensor * src = &octx->src1;
@@ -2258,8 +2952,52 @@ static void quantize_f32_f16(unsigned int nth, unsigned int ith, void * data) {
 }
 
 // TODO just a plain copy that should be done via the DMA during the Op setup
+// 函数: quantize_f16_f16
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_f16_f16
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_f16_f16(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = mmctx->octx;
 
     const struct htp_tensor * src = &octx->src1;
@@ -2300,10 +3038,26 @@ static void quantize_f16_f16(unsigned int nth, unsigned int ith, void * data) {
 }
 
 
+// 函数: htp_is_permuted
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_is_permuted
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool htp_is_permuted(const struct htp_tensor * t) {
     return t->nb[0] > t->nb[1] || t->nb[1] > t->nb[2] || t->nb[2] > t->nb[3];
 }
 
+// 函数: htp_mminit_vec_dot
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: htp_mminit_vec_dot
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static int htp_mminit_vec_dot(struct htp_matmul_context * mmctx, enum htp_data_type type) {
     switch (type) {
         case HTP_TYPE_Q4_0:
@@ -2355,10 +3109,54 @@ static void htp_mminit_spad(struct htp_ops_context * octx,
     octx->dst_spad.size  = octx->dst_spad.size_per_thread * octx->n_threads;
 }
 
+// 函数: op_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_matmul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_matmul(struct htp_ops_context * octx) {
     htp_matmul_tensors_preamble;
 
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context mmctx_struct = {0};
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = &mmctx_struct;
     mmctx->octx = octx;
 
@@ -2491,13 +3289,75 @@ int op_matmul(struct htp_ops_context * octx) {
     return HTP_STATUS_OK;
 }
 
+// 函数: op_matmul_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_matmul_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_matmul_id(struct htp_ops_context * octx) {
     htp_matmul_tensors_preamble;
 
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context mmctx_struct = {0};
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 类: htp_matmul_context
+    // 描述: htp_matmul_context类提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
+    // 结构体: htp_matmul_context
+    // 描述: htp_matmul_context结构体提供相关功能
+    // 用途: 用于处理htp_matmul_context相关的操作
     struct htp_matmul_context * mmctx = &mmctx_struct;
     mmctx->octx = octx;
 
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor * restrict ids = &octx->src2;
 
     const size_t src0_row_size = nb01;
@@ -2562,6 +3422,24 @@ int op_matmul_id(struct htp_ops_context * octx) {
     if (src1_nrows > 1) {
         // initialize matrix_row_counts and map
         uint32_t *                matrix_row_counts = (uint32_t *) octx->src2_spad.data + 0;
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+        // 类: mmid_row_mapping
+        // 描述: mmid_row_mapping类提供相关功能
+        // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
+    // 结构体: mmid_row_mapping
+    // 描述: mmid_row_mapping结构体提供相关功能
+    // 用途: 用于处理mmid_row_mapping相关的操作
         struct mmid_row_mapping * matrix_rows       = (void *) octx->src2_spad.data + matrix_row_counts_size;
 
         memset(matrix_row_counts, 0, n_as * sizeof(uint32_t));

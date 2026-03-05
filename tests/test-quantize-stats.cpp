@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-quantize-stats.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-quantize-stats.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "ggml.h"
 #include "ggml-cpu.h"
 #include "llama.h"
@@ -22,6 +29,30 @@
 #pragma warning(disable: 4244 4267) // possible loss of data
 #endif
 
+// 类: quantize_stats_params
+// 描述: quantize_stats_params类提供相关功能
+// 用途: 用于处理quantize_stats_params相关的操作
+// 类: quantize_stats_params
+// 描述: quantize_stats_params类提供相关功能
+// 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
+    // 结构体: quantize_stats_params
+    // 描述: quantize_stats_params结构体提供相关功能
+    // 用途: 用于处理quantize_stats_params相关的操作
 struct quantize_stats_params {
     std::string model = "models/7B/ggml-model-f16.gguf";
     bool verbose = false;
@@ -36,6 +67,30 @@ struct quantize_stats_params {
 constexpr size_t HISTOGRAM_BUCKETS = 150;
 constexpr double HISTOGRAM_RANGE = 0.03;
 
+// 类: error_stats
+// 描述: error_stats类提供相关功能
+// 用途: 用于处理error_stats相关的操作
+// 类: error_stats
+// 描述: error_stats类提供相关功能
+// 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
+    // 结构体: error_stats
+    // 描述: error_stats结构体提供相关功能
+    // 用途: 用于处理error_stats相关的操作
 struct error_stats {
     size_t num_samples;
     double total_error;
@@ -43,6 +98,14 @@ struct error_stats {
     uint64_t error_histogram[HISTOGRAM_BUCKETS];
 };
 
+// 函数: quantize_stats_print_usage
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_stats_print_usage
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void quantize_stats_print_usage(int /*argc*/, char ** argv) {
     quantize_stats_params params;
     fprintf(stderr, "usage: %s [options]\n", argv[0]);
@@ -69,6 +132,14 @@ static void quantize_stats_print_usage(int /*argc*/, char ** argv) {
 }
 
 // Check if a layer is included/excluded by command line
+// 函数: layer_included
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: layer_included
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool layer_included(const quantize_stats_params & params, const std::string & layer) {
     for (const auto& excluded : params.exclude_layers) {
         if (std::regex_search(layer, std::regex(excluded))) {
@@ -84,6 +155,14 @@ static bool layer_included(const quantize_stats_params & params, const std::stri
 }
 
 // Update error statistics given vectors with the before/after result of quantization
+// 函数: update_error_stats
+// 描述: 更新: 更新现有数据或状态
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: update_error_stats
+// 描述: 更新: 更新现有数据或状态
+// 参数: 无参数
+// 返回: 无返回值
 static void update_error_stats(int64_t nelements, const float * input, const float * output, error_stats & stats) {
     for (int64_t i = 0; i < nelements; i++) {
         double diff = input[i] - output[i];
@@ -94,6 +173,14 @@ static void update_error_stats(int64_t nelements, const float * input, const flo
     stats.num_samples += nelements;
 }
 
+// 函数: combine_error_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: combine_error_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void combine_error_stats(error_stats & into, const error_stats & from) {
     into.num_samples += from.num_samples;
     into.total_error += from.total_error;
@@ -101,6 +188,14 @@ static void combine_error_stats(error_stats & into, const error_stats & from) {
     for (size_t i=0; i<HISTOGRAM_BUCKETS; ++i) into.error_histogram[i] += from.error_histogram[i];
 }
 
+// 函数: find_quantile
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: find_quantile
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static double find_quantile(const error_stats & stats, double quantile) {
     double sum = std::accumulate(std::begin(stats.error_histogram), std::end(stats.error_histogram), 0.0);
 
@@ -114,6 +209,14 @@ static double find_quantile(const error_stats & stats, double quantile) {
     return INFINITY;
 }
 
+// 函数: print_error_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_error_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_error_stats(const std::string & name, const error_stats & stats, bool print_histogram) {
     double rmse = sqrt(stats.total_error / (double) stats.num_samples);
     double median = find_quantile(stats, .5);
@@ -131,6 +234,14 @@ static void print_error_stats(const std::string & name, const error_stats & stat
 }
 
 // copied from ggml.h - verify that we can access this as a flat array
+// 函数: tensor_is_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tensor_is_contiguous
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool tensor_is_contiguous(const struct ggml_tensor * tensor) {
     static_assert(GGML_MAX_DIMS == 4, "GGML_MAX_DIMS is not 4 - update this function");
 
@@ -222,6 +333,14 @@ static void test_roundtrip_on_layer(
     }
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     ggml_time_init();
 

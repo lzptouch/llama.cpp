@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-gguf.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-gguf.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "ggml.h"
 #include "ggml-backend.h"
 #include "../ggml/src/ggml-impl.h"
@@ -53,6 +60,14 @@ enum handcrafted_file_type {
     HANDCRAFTED_DATA_CUSTOM_ALIGN          = 810 + offset_has_data,
 };
 
+// 函数: handcrafted_file_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: handcrafted_file_type_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string handcrafted_file_type_name(const enum handcrafted_file_type hft) {
     switch (hft) {
         case HANDCRAFTED_HEADER_BAD_MAGIC:           return "HEADER_BAD_MAGIC";
@@ -92,6 +107,14 @@ static std::string handcrafted_file_type_name(const enum handcrafted_file_type h
     GGML_ABORT("fatal error");
 }
 
+// 函数: expect_context_not_null
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: expect_context_not_null
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool expect_context_not_null(const enum handcrafted_file_type hft) {
     if (hft < offset_has_kv) {
         return hft >= HANDCRAFTED_HEADER_EMPTY;
@@ -154,14 +177,38 @@ static std::vector<std::pair<enum gguf_type, enum gguf_type>> get_kv_types(std::
 }
 
 template <typename T>
+// 函数: helper_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: helper_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void helper_write(FILE * file, const T & val) {
     GGML_ASSERT(fwrite(&val, 1, sizeof(val), file) == sizeof(val));
 }
 
+// 函数: helper_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: helper_write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void helper_write(FILE * file, const void * data, const size_t nbytes) {
     GGML_ASSERT(fwrite(data, 1, nbytes, file) == nbytes);
 }
 
+// 函数: get_handcrafted_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_handcrafted_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static FILE * get_handcrafted_file(const unsigned int seed, const enum handcrafted_file_type hft, const int extra_bytes = 0) {
     FILE * file = tmpfile();
 
@@ -438,6 +485,14 @@ static FILE * get_handcrafted_file(const unsigned int seed, const enum handcraft
     return file;
 }
 
+// 函数: handcrafted_check_header
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: handcrafted_check_header
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool handcrafted_check_header(const gguf_context * gguf_ctx, const unsigned int seed, const bool has_kv, const bool has_tensors, const bool alignment_defined) {
     if (!gguf_ctx) {
         return false;
@@ -469,6 +524,14 @@ static bool handcrafted_check_header(const gguf_context * gguf_ctx, const unsign
     return ok;
 }
 
+// 函数: handcrafted_check_kv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: handcrafted_check_kv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool handcrafted_check_kv(const gguf_context * gguf_ctx, const unsigned int seed, const bool has_tensors, const bool alignment_defined) {
     if (!gguf_ctx) {
         return false;
@@ -589,6 +652,14 @@ static bool handcrafted_check_kv(const gguf_context * gguf_ctx, const unsigned i
     return ok;
 }
 
+// 函数: handcrafted_check_tensors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: handcrafted_check_tensors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool handcrafted_check_tensors(const gguf_context * gguf_ctx, const unsigned int seed) {
     if (!gguf_ctx) {
         return false;
@@ -643,6 +714,14 @@ static bool handcrafted_check_tensors(const gguf_context * gguf_ctx, const unsig
     return ok;
 }
 
+// 函数: handcrafted_check_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: handcrafted_check_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool handcrafted_check_tensor_data(const gguf_context * gguf_ctx, const unsigned int seed, FILE * file) {
     if (!gguf_ctx) {
         return false;
@@ -736,12 +815,66 @@ static std::pair<int, int> test_handcrafted_file(const unsigned int seed) {
         GGML_ASSERT(file);
 #endif // _WIN32
 
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx = nullptr;
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
         struct gguf_init_params gguf_params = {
             /*no_alloc =*/ false,
             /*ctx      =*/ hft >= offset_has_data ? &ctx : nullptr,
         };
 
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
         struct gguf_context * gguf_ctx = gguf_init_from_file_impl(file, gguf_params);
 
         if (expect_context_not_null(hft)) {
@@ -826,15 +959,95 @@ static std::pair<int, int> test_handcrafted_file(const unsigned int seed) {
     return std::make_pair(npass, ntest);
 }
 
+// 类: random_gguf_context_result
+// 描述: random_gguf_context_result类提供相关功能
+// 用途: 用于处理random_gguf_context_result相关的操作
+// 类: random_gguf_context_result
+// 描述: random_gguf_context_result类提供相关功能
+// 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
 struct random_gguf_context_result {
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx;
     ggml_backend_buffer_t buffer;
 };
 
 static struct random_gguf_context_result get_random_gguf_context(ggml_backend_t backend, const unsigned int seed) {
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::mt19937 rng(seed);
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx = gguf_init_empty();
 
     for (int i = 0; i < 256; ++i) {
@@ -905,11 +1118,47 @@ static struct random_gguf_context_result get_random_gguf_context(ggml_backend_t 
         }
     }
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params ggml_params = {
         /*.mem_size   =*/ 256*ggml_tensor_overhead(),
         /*.mem_buffer =*/ nullptr,
         /*.no_alloc   =*/ true,
     };
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = ggml_init(ggml_params);
 
     for (int i = 0; i < 256; ++i) {
@@ -928,6 +1177,24 @@ static struct random_gguf_context_result get_random_gguf_context(ggml_backend_t 
             ne[j] = 1 + rng() % 10;
         }
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * tensor = ggml_new_tensor(ctx, type, n_dims, ne);
         ggml_set_name(tensor, name.c_str());
     }
@@ -947,6 +1214,14 @@ static struct random_gguf_context_result get_random_gguf_context(ggml_backend_t 
     return {gguf_ctx, ctx, buf};
 }
 
+// 函数: all_kv_in_other
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: all_kv_in_other
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool all_kv_in_other(const gguf_context * ctx, const gguf_context * other) {
     bool ok = true;
 
@@ -1028,6 +1303,14 @@ static bool all_kv_in_other(const gguf_context * ctx, const gguf_context * other
     return ok;
 }
 
+// 函数: all_tensors_in_other
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: all_tensors_in_other
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool all_tensors_in_other(const gguf_context * ctx, const gguf_context * other) {
     bool ok = true;
 
@@ -1057,10 +1340,54 @@ static bool all_tensors_in_other(const gguf_context * ctx, const gguf_context * 
     return ok;
 }
 
+// 函数: same_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: same_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool same_tensor_data(const struct ggml_context * orig, const struct ggml_context * read) {
     bool ok = true;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * t_orig = ggml_get_first_tensor(orig);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * t_read = ggml_get_first_tensor(read);
 
     if (std::string(t_read->name) != "GGUF tensor data binary blob") {
@@ -1103,10 +1430,64 @@ static std::pair<int, int> test_roundtrip(ggml_backend_dev_t dev, const unsigned
     int npass = 0;
     int ntest = 0;
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx_0;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_0;
     ggml_backend_buffer_t bbuf;
     {
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
         struct random_gguf_context_result result = get_random_gguf_context(backend, seed);
         gguf_ctx_0 = result.gguf_ctx;
         ctx_0      = result.ctx;
@@ -1132,11 +1513,65 @@ static std::pair<int, int> test_roundtrip(ggml_backend_dev_t dev, const unsigned
         rewind(file);
     }
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_1 = nullptr;
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params gguf_params = {
         /*no_alloc =*/ false,
         /*ctx      =*/ only_meta ? nullptr : &ctx_1,
     };
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx_1 = gguf_init_from_file_impl(file, gguf_params);
 
     printf("%s: same_version: ", __func__);
@@ -1232,26 +1667,152 @@ static std::pair<int, int> test_gguf_set_kv(ggml_backend_dev_t dev, const unsign
     int npass = 0;
     int ntest = 0;
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx_0;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_0;
     ggml_backend_buffer_t bbuf_0;
     {
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
         struct random_gguf_context_result result = get_random_gguf_context(backend, seed);
         gguf_ctx_0 = result.gguf_ctx;
         ctx_0      = result.ctx;
         bbuf_0     = result.buffer;
     }
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx_1;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_1;
     ggml_backend_buffer_t bbuf_1;
     {
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+        // 类: random_gguf_context_result
+        // 描述: random_gguf_context_result类提供相关功能
+        // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
+    // 结构体: random_gguf_context_result
+    // 描述: random_gguf_context_result结构体提供相关功能
+    // 用途: 用于处理random_gguf_context_result相关的操作
         struct random_gguf_context_result result = get_random_gguf_context(backend, seed + 1);
         gguf_ctx_1 = result.gguf_ctx;
         ctx_1      = result.ctx;
         bbuf_1     = result.buffer;
     }
 
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * gguf_ctx_2 = gguf_init_empty();
 
     gguf_set_kv(gguf_ctx_1, gguf_ctx_0);
@@ -1317,11 +1878,27 @@ static std::pair<int, int> test_gguf_set_kv(ggml_backend_dev_t dev, const unsign
     return std::make_pair(npass, ntest);
 }
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage() {
     printf("usage: test-gguf [seed]\n");
     printf("  if no seed is unspecified then a random seed is used\n");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     if (argc > 2) {
         print_usage();

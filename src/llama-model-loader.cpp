@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-model-loader.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-model-loader.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-model-loader.h"
 
 #include "ggml.h"
@@ -12,6 +19,14 @@ static const size_t kiB = 1024;
 static const size_t MiB = 1024*kiB;
 static const size_t GiB = 1024*MiB;
 
+// 函数: llama_file_version_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_file_version_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_file_version_name(llama_fver version) {
     switch (version) {
         case GGUF_FILE_VERSION_V1: return "GGUF V1 (support until nov 2023)";
@@ -22,6 +37,14 @@ const char * llama_file_version_name(llama_fver version) {
     return "unknown";
 }
 
+// 函数: llama_model_ftype_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_ftype_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string llama_model_ftype_name(llama_ftype ftype) {
     if (ftype & LLAMA_FTYPE_GUESSED) {
         return llama_model_ftype_name((enum llama_ftype) (ftype & ~LLAMA_FTYPE_GUESSED)) + " (guessed)";
@@ -95,9 +118,35 @@ static std::vector<std::string> llama_get_list_splits(const std::string & path, 
 
 namespace GGUFMeta {
     template <typename T, gguf_type gt_, T (*gfun)(const gguf_context *, const int64_t)>
+    // 类: GKV_Base_Type
+    // 描述: GKV_Base_Type类提供相关功能
+    // 用途: 用于处理gkv_base_type相关的操作
+    // 类: GKV_Base_Type
+    // 描述: GKV_Base_Type类提供相关功能
+    // 用途: 用于处理gkv_base_type相关的操作
+    // 结构体: GKV_Base_Type
+    // 描述: GKV_Base_Type结构体提供相关功能
+    // 用途: 用于处理GKV_Base_Type相关的操作
+    // 结构体: GKV_Base_Type
+    // 描述: GKV_Base_Type结构体提供相关功能
+    // 用途: 用于处理GKV_Base_Type相关的操作
+    // 结构体: GKV_Base_Type
+    // 描述: GKV_Base_Type结构体提供相关功能
+    // 用途: 用于处理GKV_Base_Type相关的操作
+    // 结构体: GKV_Base_Type
+    // 描述: GKV_Base_Type结构体提供相关功能
+    // 用途: 用于处理GKV_Base_Type相关的操作
     struct GKV_Base_Type {
         static constexpr gguf_type gt = gt_;
 
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static T getter(const gguf_context * ctx, const int kid) {
             return gfun(ctx, kid);
         }
@@ -121,11 +170,37 @@ namespace GGUFMeta {
     template<> struct GKV_Base<std::string> {
         static constexpr gguf_type gt = GGUF_TYPE_STRING;
 
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static std::string getter(const gguf_context * ctx, const int kid) {
             return gguf_get_val_str(ctx, kid);
         }
     };
 
+    // 类: ArrayInfo
+    // 描述: ArrayInfo类提供相关功能
+    // 用途: 用于处理arrayinfo相关的操作
+    // 类: ArrayInfo
+    // 描述: ArrayInfo类提供相关功能
+    // 用途: 用于处理arrayinfo相关的操作
+    // 结构体: ArrayInfo
+    // 描述: ArrayInfo结构体提供相关功能
+    // 用途: 用于处理ArrayInfo相关的操作
+    // 结构体: ArrayInfo
+    // 描述: ArrayInfo结构体提供相关功能
+    // 用途: 用于处理ArrayInfo相关的操作
+    // 结构体: ArrayInfo
+    // 描述: ArrayInfo结构体提供相关功能
+    // 用途: 用于处理ArrayInfo相关的操作
+    // 结构体: ArrayInfo
+    // 描述: ArrayInfo结构体提供相关功能
+    // 用途: 用于处理ArrayInfo相关的操作
     struct ArrayInfo {
         const gguf_type gt;
         const size_t length;
@@ -135,6 +210,14 @@ namespace GGUFMeta {
     template<> struct GKV_Base<ArrayInfo> {
         public:
         static constexpr gguf_type gt = GGUF_TYPE_ARRAY;
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: getter
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static ArrayInfo getter(const gguf_context *ctx, const int k) {
             const enum gguf_type arr_type = gguf_get_arr_type(ctx, k);
             return ArrayInfo {
@@ -146,10 +229,24 @@ namespace GGUFMeta {
     };
 
     template<typename T>
+    // 类: GKV
+    // 描述: GKV类提供相关功能
+    // 用途: 用于处理gkv相关的操作
+    // 类: GKV
+    // 描述: GKV类提供相关功能
+    // 用途: 用于处理gkv相关的操作
     class GKV : public GKV_Base<T> {
         GKV() = delete;
 
         public:
+        // 函数: get_kv
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_kv
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         static T get_kv(const gguf_context * ctx, const int k) {
             const enum gguf_type kt = gguf_get_kv_type(ctx, k);
 
@@ -160,6 +257,14 @@ namespace GGUFMeta {
             return GKV::getter(ctx, k);
         }
 
+        // 函数: override_type_to_str
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: override_type_to_str
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static const char * override_type_to_str(const llama_model_kv_override_type ty) {
             switch (ty) {
                 case LLAMA_KV_OVERRIDE_TYPE_BOOL:  return "bool";
@@ -170,6 +275,14 @@ namespace GGUFMeta {
             return "unknown";
         }
 
+        // 函数: validate_override
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: validate_override
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static bool validate_override(const llama_model_kv_override_type expected_type, const struct llama_model_kv_override * ovrd) {
             if (!ovrd) { return false; }
             if (ovrd->tag == expected_type) {
@@ -241,6 +354,14 @@ namespace GGUFMeta {
             return false;
         }
 
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static bool set(const gguf_context * ctx, const int k, T & target, const struct llama_model_kv_override * ovrd = nullptr) {
             if (try_override<T>(target, ovrd)) {
                 return true;
@@ -250,10 +371,26 @@ namespace GGUFMeta {
             return true;
         }
 
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static bool set(const gguf_context * ctx, const char * key, T & target, const struct llama_model_kv_override * ovrd = nullptr) {
             return set(ctx, gguf_find_key(ctx, key), target, ovrd);
         }
 
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: set
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static bool set(const gguf_context * ctx, const std::string & key, T & target, const struct llama_model_kv_override * ovrd = nullptr) {
             return set(ctx, key.c_str(), target, ovrd);
         }
@@ -272,6 +409,24 @@ namespace GGUFMeta {
             return false;
         }
 
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
         struct GGUFMeta::ArrayInfo arr_info =
             GGUFMeta::GKV<GGUFMeta::ArrayInfo>::get_kv(meta.get(), kid);
 
@@ -283,6 +438,14 @@ namespace GGUFMeta {
     template<typename T>
     typename std::enable_if<std::is_integral<T>::value, bool>::type
     llama_model_loader::get_arr_n(enum llm_kv kid, T & result, bool required) {
+        // 函数: get_arr_n
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_arr_n
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_arr_n(llm_kv(kid), result, required);
     }
 
@@ -300,6 +463,24 @@ namespace GGUFMeta {
             return false;
         }
 
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
         struct GGUFMeta::ArrayInfo arr_info =
             GGUFMeta::GKV<GGUFMeta::ArrayInfo>::get_kv(ctx, kid);
 
@@ -313,6 +494,14 @@ namespace GGUFMeta {
                 throw std::runtime_error(format("%s is not a string/float32/uint32/int32 array", key.c_str()));
         }
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (std::is_same<T, std::string>::value) {
             const size_t n_items = gguf_get_arr_n(ctx, kid);
             result.clear();
@@ -341,6 +530,24 @@ namespace GGUFMeta {
             return false;
         }
 
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+        // 类: GGUFMeta
+        // 描述: GGUFMeta类提供相关功能
+        // 用途: 用于处理ggufmeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
         struct GGUFMeta::ArrayInfo arr_info =
             GGUFMeta::GKV<GGUFMeta::ArrayInfo>::get_kv(ctx, kid);
 
@@ -359,6 +566,14 @@ namespace GGUFMeta {
             throw std::runtime_error(format("array length %u for key %s exceeds max %u", (uint32_t) arr_info.length, key.c_str(), (uint32_t) N_MAX));
         }
 
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (std::is_same<T, std::string>::value) {
             const size_t n_items = gguf_get_arr_n(ctx, kid);
 
@@ -381,6 +596,14 @@ namespace GGUFMeta {
 
     template<typename T>
     bool llama_model_loader::get_arr(enum llm_kv kid, T & result, bool required) {
+        // 函数: get_arr
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_arr
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_arr(llm_kv(kid), result, required);
     }
 
@@ -404,6 +627,14 @@ namespace GGUFMeta {
 
     template<typename T>
     bool llama_model_loader::get_key(enum llm_kv kid, T & result, bool required) {
+        // 函数: get_key
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_key
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_key(llm_kv(kid), result, required);
     }
 
@@ -441,6 +672,24 @@ namespace GGUFMeta {
         }
 
         if (gguf_get_kv_type(meta.get(), kid) == GGUF_TYPE_ARRAY) {
+            // 类: GGUFMeta
+            // 描述: GGUFMeta类提供相关功能
+            // 用途: 用于处理ggufmeta相关的操作
+            // 类: GGUFMeta
+            // 描述: GGUFMeta类提供相关功能
+            // 用途: 用于处理ggufmeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
+    // 结构体: GGUFMeta
+    // 描述: GGUFMeta结构体提供相关功能
+    // 用途: 用于处理GGUFMeta相关的操作
             struct GGUFMeta::ArrayInfo arr_info =
                 GGUFMeta::GKV<GGUFMeta::ArrayInfo>::get_kv(meta.get(), kid);
 
@@ -448,6 +697,14 @@ namespace GGUFMeta {
                 throw std::runtime_error(format("key %s has wrong array length; expected %u, got %u", key.c_str(), n, (uint32_t) arr_info.length));
             }
 
+            // 函数: get_arr
+            // 描述: 获取: 获取某个属性、值或资源
+            // 参数: 无参数或索引参数
+            // 返回: 返回请求的属性或值
+            // 函数: get_arr
+            // 描述: 获取: 获取某个属性、值或资源
+            // 参数: 无参数或索引参数
+            // 返回: 返回请求的属性或值
             return get_arr(key, result, required);
         }
 
@@ -467,6 +724,14 @@ namespace GGUFMeta {
 
     template<typename T>
     bool llama_model_loader::get_key_or_arr(enum llm_kv kid, T & result, uint32_t n, bool required) {
+        // 函数: get_key_or_arr
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_key_or_arr
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_key_or_arr(llm_kv(kid), result, n, required);
     }
 
@@ -490,6 +755,14 @@ namespace GGUFMeta {
             return false;
         }
 
+        // 函数: get_key
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_key
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         return get_key(key, result, required);
     }
 
@@ -522,7 +795,43 @@ llama_model_loader::llama_model_loader(
     tensor_buft_overrides = param_tensor_buft_overrides_p;
 
     // Load the main GGUF
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = NULL;
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params params = {
         /*.no_alloc = */ true,
         /*.ctx      = */ &ctx,
@@ -597,6 +906,24 @@ llama_model_loader::llama_model_loader(
         for (idx = 1; idx < n_split; idx++) {
             const char * fname_split = splits[idx].c_str();
 
+            // 类: gguf_init_params
+            // 描述: gguf_init_params类提供相关功能
+            // 用途: 用于处理gguf_init_params相关的操作
+            // 类: gguf_init_params
+            // 描述: gguf_init_params类提供相关功能
+            // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
             struct gguf_init_params split_params = {
                 /*.no_alloc = */ true,
                 /*.ctx      = */ &ctx,
@@ -792,6 +1119,24 @@ const llama_model_loader::llama_tensor_weight & llama_model_loader::require_weig
     return *weight;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * llama_model_loader::get_tensor_meta(const char * name) const {
     const auto * weight = get_weight(name);
     if (!weight) {
@@ -800,7 +1145,43 @@ struct ggml_tensor * llama_model_loader::get_tensor_meta(const char * name) cons
     return weight->tensor;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * llama_model_loader::require_tensor_meta(const std::string & name) const {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tensor = get_tensor_meta(name.c_str());
     if (!tensor) {
         throw std::runtime_error(format("%s: tensor '%s' not found", __func__, name.c_str()));
@@ -838,6 +1219,24 @@ const struct ggml_tensor * llama_model_loader::check_tensor_dims(const std::stri
     return cur;
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * llama_model_loader::create_tensor(struct ggml_context * ctx, const std::string & name, const std::initializer_list<int64_t> & ne, int flags) {
     LLAMA_LOG_DEBUG("%s: loading tensor %s\n", __func__, name.c_str());
     const struct ggml_tensor * cur = check_tensor_dims(name, ne, !(flags & TENSOR_NOT_REQUIRED));
@@ -848,6 +1247,24 @@ struct ggml_tensor * llama_model_loader::create_tensor(struct ggml_context * ctx
 
     bool duplicated = flags & TENSOR_DUPLICATED;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tensor = ggml_dup_tensor(ctx, cur);
     ggml_set_name(tensor, ggml_get_name(cur));
 
@@ -861,6 +1278,24 @@ struct ggml_tensor * llama_model_loader::create_tensor(struct ggml_context * ctx
 
 }
 
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+// 类: ggml_tensor
+// 描述: ggml_tensor类提供相关功能
+// 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
 struct ggml_tensor * llama_model_loader::create_tensor_as_view(struct ggml_context * ctx, struct ggml_tensor * base, const std::string & name, const std::initializer_list<int64_t> & ne, size_t offset, bool required) {
     const struct ggml_tensor * cur = check_tensor_dims(name, ne, required);
 
@@ -877,6 +1312,24 @@ struct ggml_tensor * llama_model_loader::create_tensor_as_view(struct ggml_conte
         dims[i] = i < ne.size() ? ne.begin()[i] : 1;
     }
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * tensor = ggml_view_4d(ctx, base,
                                     dims[0], dims[1], dims[2], dims[3],
                                     cur->nb[1], cur->nb[2], cur->nb[3],
@@ -969,6 +1422,24 @@ void llama_model_loader::load_data_for(struct ggml_tensor * cur) const {
 }
 
 bool llama_model_loader::load_all_data(
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx,
         llama_buf_map & bufs,
         llama_mlocks * lmlocks,
@@ -1239,6 +1710,14 @@ bool llama_model_loader::load_all_data(
         if (progress_callback) {
             // Even though the model is done loading, we still honor
             // cancellation since we need to free allocations.
+            // 函数: progress_callback
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: progress_callback
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return progress_callback(1.0f, progress_callback_user_data);
         }
     }
@@ -1247,6 +1726,14 @@ bool llama_model_loader::load_all_data(
 }
 
 std::string llama_model_loader::ftype_name() const {
+    // 函数: llama_model_ftype_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_model_ftype_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_model_ftype_name(ftype);
 }
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: worker-pool.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-hexagon/htp/worker-pool.c
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "worker-pool.h"
 
 #include <qurt.h>
@@ -12,10 +19,46 @@
 #define WORKER_THREAD_STACK_SZ  (2 * 16384)
 #define LOWEST_USABLE_QURT_PRIO (254)
 
+// 类: worker_pool_s
+// 描述: worker_pool_s类提供相关功能
+// 用途: 用于处理worker_pool_s相关的操作
+// 类: worker_pool_s
+// 描述: worker_pool_s类提供相关功能
+// 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
 struct worker_pool_s;
 
 // internal structure kept in thread-local storage per instance of worker pool
 typedef struct {
+    // 类: worker_pool_s
+    // 描述: worker_pool_s类提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 类: worker_pool_s
+    // 描述: worker_pool_s类提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
+    // 结构体: worker_pool_s
+    // 描述: worker_pool_s结构体提供相关功能
+    // 用途: 用于处理worker_pool_s相关的操作
     struct worker_pool_s * pool;
     unsigned int           id;
 } worker_context_t;
@@ -35,6 +78,14 @@ typedef struct worker_pool_s {
     atomic_bool killed;                          // threads need to exit
 } worker_pool_t;
 
+// 函数: worker_pool_main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void worker_pool_main(void * context) {
     worker_context_t * me   = (worker_context_t *) context;
     worker_pool_t *    pool = me->pool;
@@ -68,6 +119,14 @@ static void worker_pool_main(void * context) {
     FARF(HIGH, "worker-pool: thread %u stopped", me->id);
 }
 
+// 函数: worker_pool_init_with_stack_size
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_init_with_stack_size
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_init_with_stack_size(worker_pool_context_t * context, uint32_t n_threads, uint32_t stack_size) {
     int err = 0;
 
@@ -152,11 +211,27 @@ AEEResult worker_pool_init_with_stack_size(worker_pool_context_t * context, uint
     return AEE_SUCCESS;
 }
 
+// 函数: worker_pool_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_init(worker_pool_context_t * context, uint32_t n_threads) {
     return worker_pool_init_with_stack_size(context, n_threads, WORKER_THREAD_STACK_SZ);
 }
 
 // clean up worker pool
+// 函数: worker_pool_release
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_release
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void worker_pool_release(worker_pool_context_t * context) {
     worker_pool_t * me = (worker_pool_t *) *context;
 
@@ -186,6 +261,14 @@ void worker_pool_release(worker_pool_context_t * context) {
 }
 
 // run jobs
+// 函数: worker_pool_run_jobs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_run_jobs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_run_jobs(worker_pool_context_t context, worker_pool_job_t * job, unsigned int n) {
     worker_pool_t * me = (worker_pool_t *) context;
     if (NULL == me) {
@@ -222,6 +305,14 @@ AEEResult worker_pool_run_jobs(worker_pool_context_t context, worker_pool_job_t 
 }
 
 // run func
+// 函数: worker_pool_run_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_run_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_run_func(worker_pool_context_t context, worker_callback_t func, void * data, unsigned int n) {
     worker_pool_job_t job[n];
 
@@ -233,6 +324,14 @@ AEEResult worker_pool_run_func(worker_pool_context_t context, worker_callback_t 
     return worker_pool_run_jobs(context, job, n);
 }
 
+// 函数: worker_pool_set_thread_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_set_thread_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_set_thread_priority(worker_pool_context_t context, unsigned int prio) {
     worker_pool_t * me = (worker_pool_t *) context;
 
@@ -260,6 +359,14 @@ AEEResult worker_pool_set_thread_priority(worker_pool_context_t context, unsigne
     return result;
 }
 
+// 函数: worker_pool_retrieve_thread_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_retrieve_thread_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_retrieve_thread_id(worker_pool_context_t context, unsigned int * tids) {
     worker_pool_t * me = (worker_pool_t *) context;
     if (!me) {
@@ -275,6 +382,14 @@ AEEResult worker_pool_retrieve_thread_id(worker_pool_context_t context, unsigned
     return AEE_SUCCESS;
 }
 
+// 函数: worker_pool_get_thread_priority
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: worker_pool_get_thread_priority
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 AEEResult worker_pool_get_thread_priority(worker_pool_context_t context, unsigned int * prio) {
     worker_pool_t * me = (worker_pool_t *) context;
     if (!me) {

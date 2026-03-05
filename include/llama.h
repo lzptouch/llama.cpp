@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama.h
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/include/llama.h
+// 描述: llama.cpp 核心头文件，定义了项目的主要数据结构和接口
+// 作用: 为整个项目提供统一的 API 接口，包括模型加载、推理、采样等核心功能
+// ============================================================================
+
 #ifndef LLAMA_H
 #define LLAMA_H
 
@@ -57,361 +64,417 @@ extern "C" {
     // TODO: show sample usage
     //
 
+    // 结构体: llama_vocab
+    // 描述: 词表结构，用于处理模型的分词和词汇管理
+    // 作用: 提供词汇的编码和解码功能，是模型与文本交互的桥梁
     struct llama_vocab;
+    
+    // 结构体: llama_model
+    // 描述: 模型结构，包含模型的权重、配置和状态
+    // 作用: 存储模型的核心数据，是模型加载和推理的基础
     struct llama_model;
+    
+    // 结构体: llama_context
+    // 描述: 上下文结构，包含推理过程中的状态和缓存
+    // 作用: 管理模型推理的上下文环境，包括KV缓存、线程池等
     struct llama_context;
+    
+    // 结构体: llama_sampler
+    // 描述: 采样器结构，用于从模型输出中生成token
+    // 作用: 实现不同的采样策略，如贪婪采样、top-k采样等
     struct llama_sampler;
 
     typedef struct llama_memory_i * llama_memory_t;
 
-    typedef int32_t llama_pos;
-    typedef int32_t llama_token;
-    typedef int32_t llama_seq_id;
+    typedef int32_t llama_pos;    // 位置类型，用于表示token在序列中的位置
+    typedef int32_t llama_token;  // token类型，用于表示模型的词汇单元
+    typedef int32_t llama_seq_id; // 序列ID类型，用于标识不同的推理序列
 
+    // 枚举: llama_vocab_type
+    // 描述: 词表类型枚举，定义了不同模型使用的分词器类型
+    // 作用: 用于区分不同模型的分词策略，确保正确的文本编码和解码
     enum llama_vocab_type {
-        LLAMA_VOCAB_TYPE_NONE   = 0, // For models without vocab
-        LLAMA_VOCAB_TYPE_SPM    = 1, // LLaMA tokenizer based on byte-level BPE with byte fallback
-        LLAMA_VOCAB_TYPE_BPE    = 2, // GPT-2 tokenizer based on byte-level BPE
-        LLAMA_VOCAB_TYPE_WPM    = 3, // BERT tokenizer based on WordPiece
-        LLAMA_VOCAB_TYPE_UGM    = 4, // T5 tokenizer based on Unigram
-        LLAMA_VOCAB_TYPE_RWKV   = 5, // RWKV tokenizer based on greedy tokenization
-        LLAMA_VOCAB_TYPE_PLAMO2 = 6, // PLaMo-2 tokenizer based on Aho-Corasick with dynamic programming
+        LLAMA_VOCAB_TYPE_NONE   = 0, // 无词表的模型
+        LLAMA_VOCAB_TYPE_SPM    = 1, // LLaMA分词器，基于字节级BPE，带有字节回退
+        LLAMA_VOCAB_TYPE_BPE    = 2, // GPT-2分词器，基于字节级BPE
+        LLAMA_VOCAB_TYPE_WPM    = 3, // BERT分词器，基于WordPiece
+        LLAMA_VOCAB_TYPE_UGM    = 4, // T5分词器，基于Unigram
+        LLAMA_VOCAB_TYPE_RWKV   = 5, // RWKV分词器，基于贪婪分词
+        LLAMA_VOCAB_TYPE_PLAMO2 = 6, // PLaMo-2分词器，基于Aho-Corasick和动态规划
     };
 
+    // 枚举: llama_rope_type
+    // 描述: RoPE（旋转位置编码）类型枚举
+    // 作用: 用于指定模型使用的位置编码方式，影响模型对序列位置的理解
     enum llama_rope_type {
-        LLAMA_ROPE_TYPE_NONE   = -1,
-        LLAMA_ROPE_TYPE_NORM   = 0,
-        LLAMA_ROPE_TYPE_NEOX   = GGML_ROPE_TYPE_NEOX,
-        LLAMA_ROPE_TYPE_MROPE  = GGML_ROPE_TYPE_MROPE,
-        LLAMA_ROPE_TYPE_IMROPE = GGML_ROPE_TYPE_IMROPE,
-        LLAMA_ROPE_TYPE_VISION = GGML_ROPE_TYPE_VISION,
+        LLAMA_ROPE_TYPE_NONE   = -1, // 无RoPE编码
+        LLAMA_ROPE_TYPE_NORM   = 0,  // 标准RoPE编码
+        LLAMA_ROPE_TYPE_NEOX   = GGML_ROPE_TYPE_NEOX,  // GPT-NeoX风格的RoPE
+        LLAMA_ROPE_TYPE_MROPE  = GGML_ROPE_TYPE_MROPE, // 改进的RoPE
+        LLAMA_ROPE_TYPE_IMROPE = GGML_ROPE_TYPE_IMROPE, // 改进的RoPE变体
+        LLAMA_ROPE_TYPE_VISION = GGML_ROPE_TYPE_VISION, // 视觉模型专用RoPE
     };
 
-    enum llama_token_type { //TODO: remove, required until per token attributes are available from GGUF file
-        LLAMA_TOKEN_TYPE_UNDEFINED    = 0,
-        LLAMA_TOKEN_TYPE_NORMAL       = 1,
-        LLAMA_TOKEN_TYPE_UNKNOWN      = 2,
-        LLAMA_TOKEN_TYPE_CONTROL      = 3,
-        LLAMA_TOKEN_TYPE_USER_DEFINED = 4,
-        LLAMA_TOKEN_TYPE_UNUSED       = 5,
-        LLAMA_TOKEN_TYPE_BYTE         = 6,
+    // 枚举: llama_token_type
+    // 描述: token类型枚举
+    // 作用: 用于标识不同类型的token，如正常token、控制token等
+    // 注意: 待GGUF文件支持per token属性后将被移除
+    enum llama_token_type { 
+        LLAMA_TOKEN_TYPE_UNDEFINED    = 0, // 未定义类型
+        LLAMA_TOKEN_TYPE_NORMAL       = 1, // 正常token
+        LLAMA_TOKEN_TYPE_UNKNOWN      = 2, // 未知token
+        LLAMA_TOKEN_TYPE_CONTROL      = 3, // 控制token
+        LLAMA_TOKEN_TYPE_USER_DEFINED = 4, // 用户定义token
+        LLAMA_TOKEN_TYPE_UNUSED       = 5, // 未使用token
+        LLAMA_TOKEN_TYPE_BYTE         = 6, // 字节token
     };
 
+    // 枚举: llama_token_attr
+    // 描述: token属性枚举，使用位掩码表示
+    // 作用: 用于描述token的各种属性，如是否为控制token、是否已归一化等
     enum llama_token_attr {
-        LLAMA_TOKEN_ATTR_UNDEFINED    = 0,
-        LLAMA_TOKEN_ATTR_UNKNOWN      = 1 << 0,
-        LLAMA_TOKEN_ATTR_UNUSED       = 1 << 1,
-        LLAMA_TOKEN_ATTR_NORMAL       = 1 << 2,
-        LLAMA_TOKEN_ATTR_CONTROL      = 1 << 3,  // SPECIAL?
-        LLAMA_TOKEN_ATTR_USER_DEFINED = 1 << 4,
-        LLAMA_TOKEN_ATTR_BYTE         = 1 << 5,
-        LLAMA_TOKEN_ATTR_NORMALIZED   = 1 << 6,
-        LLAMA_TOKEN_ATTR_LSTRIP       = 1 << 7,
-        LLAMA_TOKEN_ATTR_RSTRIP       = 1 << 8,
-        LLAMA_TOKEN_ATTR_SINGLE_WORD  = 1 << 9,
+        LLAMA_TOKEN_ATTR_UNDEFINED    = 0,      // 未定义属性
+        LLAMA_TOKEN_ATTR_UNKNOWN      = 1 << 0, // 未知token
+        LLAMA_TOKEN_ATTR_UNUSED       = 1 << 1, // 未使用token
+        LLAMA_TOKEN_ATTR_NORMAL       = 1 << 2, // 正常token
+        LLAMA_TOKEN_ATTR_CONTROL      = 1 << 3, // 控制token
+        LLAMA_TOKEN_ATTR_USER_DEFINED = 1 << 4, // 用户定义token
+        LLAMA_TOKEN_ATTR_BYTE         = 1 << 5, // 字节token
+        LLAMA_TOKEN_ATTR_NORMALIZED   = 1 << 6, // 已归一化token
+        LLAMA_TOKEN_ATTR_LSTRIP       = 1 << 7, // 左侧空格token
+        LLAMA_TOKEN_ATTR_RSTRIP       = 1 << 8, // 右侧空格token
+        LLAMA_TOKEN_ATTR_SINGLE_WORD  = 1 << 9, // 单字token
     };
 
-    // model file types
+    // 枚举: llama_ftype
+    // 描述: 模型文件类型枚举，定义了不同的模型量化格式
+    // 作用: 用于指定模型的量化方式，影响模型的大小和推理性能
     enum llama_ftype {
-        LLAMA_FTYPE_ALL_F32              = 0,
-        LLAMA_FTYPE_MOSTLY_F16           = 1,  // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q4_0          = 2,  // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q4_1          = 3,  // except 1d tensors
-        // LLAMA_FTYPE_MOSTLY_Q4_1_SOME_F16 = 4,  // tok_embeddings.weight and output.weight are F16
-        // LLAMA_FTYPE_MOSTLY_Q4_2       = 5,  // support has been removed
-        // LLAMA_FTYPE_MOSTLY_Q4_3       = 6,  // support has been removed
-        LLAMA_FTYPE_MOSTLY_Q8_0          = 7,  // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q5_0          = 8,  // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q5_1          = 9,  // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q2_K          = 10, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q3_K_S        = 11, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q3_K_M        = 12, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q3_K_L        = 13, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q4_K_S        = 14, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q4_K_M        = 15, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q5_K_S        = 16, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q5_K_M        = 17, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q6_K          = 18, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ2_XXS       = 19, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ2_XS        = 20, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_Q2_K_S        = 21, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ3_XS        = 22, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ3_XXS       = 23, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ1_S         = 24, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ4_NL        = 25, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ3_S         = 26, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ3_M         = 27, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ2_S         = 28, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ2_M         = 29, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ4_XS        = 30, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_IQ1_M         = 31, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_BF16          = 32, // except 1d tensors
-        //LLAMA_FTYPE_MOSTLY_Q4_0_4_4      = 33, // removed from gguf files, use Q4_0 and runtime repack
-        //LLAMA_FTYPE_MOSTLY_Q4_0_4_8      = 34, // removed from gguf files, use Q4_0 and runtime repack
-        //LLAMA_FTYPE_MOSTLY_Q4_0_8_8      = 35, // removed from gguf files, use Q4_0 and runtime repack
-        LLAMA_FTYPE_MOSTLY_TQ1_0         = 36, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_TQ2_0         = 37, // except 1d tensors
-        LLAMA_FTYPE_MOSTLY_MXFP4_MOE     = 38, // except 1d tensors
+        LLAMA_FTYPE_ALL_F32              = 0,  // 全32位浮点数
+        LLAMA_FTYPE_MOSTLY_F16           = 1,  // 主要使用16位浮点数（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q4_0          = 2,  // 主要使用4位量化（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q4_1          = 3,  // 主要使用4位量化变体（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q8_0          = 7,  // 主要使用8位量化（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q5_0          = 8,  // 主要使用5位量化（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q5_1          = 9,  // 主要使用5位量化变体（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q2_K          = 10, // 主要使用K量化2位（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q3_K_S        = 11, // 主要使用K量化3位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q3_K_M        = 12, // 主要使用K量化3位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q3_K_L        = 13, // 主要使用K量化3位大版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q4_K_S        = 14, // 主要使用K量化4位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q4_K_M        = 15, // 主要使用K量化4位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q5_K_S        = 16, // 主要使用K量化5位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q5_K_M        = 17, // 主要使用K量化5位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q6_K          = 18, // 主要使用K量化6位（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ2_XXS       = 19, // 主要使用IQ量化2位超小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ2_XS        = 20, // 主要使用IQ量化2位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_Q2_K_S        = 21, // 主要使用K量化2位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ3_XS        = 22, // 主要使用IQ量化3位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ3_XXS       = 23, // 主要使用IQ量化3位超小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ1_S         = 24, // 主要使用IQ量化1位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ4_NL        = 25, // 主要使用IQ量化4位无长尾版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ3_S         = 26, // 主要使用IQ量化3位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ3_M         = 27, // 主要使用IQ量化3位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ2_S         = 28, // 主要使用IQ量化2位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ2_M         = 29, // 主要使用IQ量化2位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ4_XS        = 30, // 主要使用IQ量化4位小版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_IQ1_M         = 31, // 主要使用IQ量化1位中版本（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_BF16          = 32, // 主要使用BF16格式（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_TQ1_0         = 36, // 主要使用TQ量化1位（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_TQ2_0         = 37, // 主要使用TQ量化2位（除1D张量外）
+        LLAMA_FTYPE_MOSTLY_MXFP4_MOE     = 38, // 主要使用MXFP4格式（除1D张量外）
 
-        LLAMA_FTYPE_GUESSED = 1024, // not specified in the model file
+        LLAMA_FTYPE_GUESSED = 1024, // 模型文件中未指定
     };
 
+    // 枚举: llama_rope_scaling_type
+    // 描述: RoPE缩放类型枚举
+    // 作用: 用于指定模型在处理长序列时的RoPE缩放策略
     enum llama_rope_scaling_type {
-        LLAMA_ROPE_SCALING_TYPE_UNSPECIFIED = -1,
-        LLAMA_ROPE_SCALING_TYPE_NONE        = 0,
-        LLAMA_ROPE_SCALING_TYPE_LINEAR      = 1,
-        LLAMA_ROPE_SCALING_TYPE_YARN        = 2,
-        LLAMA_ROPE_SCALING_TYPE_LONGROPE    = 3,
-        LLAMA_ROPE_SCALING_TYPE_MAX_VALUE   = LLAMA_ROPE_SCALING_TYPE_LONGROPE,
+        LLAMA_ROPE_SCALING_TYPE_UNSPECIFIED = -1, // 未指定
+        LLAMA_ROPE_SCALING_TYPE_NONE        = 0,  // 无缩放
+        LLAMA_ROPE_SCALING_TYPE_LINEAR      = 1,  // 线性缩放
+        LLAMA_ROPE_SCALING_TYPE_YARN        = 2,  // YaRN缩放
+        LLAMA_ROPE_SCALING_TYPE_LONGROPE    = 3,  // LongRoPE缩放
+        LLAMA_ROPE_SCALING_TYPE_MAX_VALUE   = LLAMA_ROPE_SCALING_TYPE_LONGROPE, // 最大值
     };
 
+    // 枚举: llama_pooling_type
+    // 描述: 池化类型枚举
+    // 作用: 用于指定嵌入结果的池化方式
     enum llama_pooling_type {
-        LLAMA_POOLING_TYPE_UNSPECIFIED = -1,
-        LLAMA_POOLING_TYPE_NONE = 0,
-        LLAMA_POOLING_TYPE_MEAN = 1,
-        LLAMA_POOLING_TYPE_CLS  = 2,
-        LLAMA_POOLING_TYPE_LAST = 3,
-        LLAMA_POOLING_TYPE_RANK = 4, // used by reranking models to attach the classification head to the graph
+        LLAMA_POOLING_TYPE_UNSPECIFIED = -1, // 未指定
+        LLAMA_POOLING_TYPE_NONE = 0,         // 无池化
+        LLAMA_POOLING_TYPE_MEAN = 1,         // 均值池化
+        LLAMA_POOLING_TYPE_CLS  = 2,         // CLS标记池化
+        LLAMA_POOLING_TYPE_LAST = 3,         // 最后一个标记池化
+        LLAMA_POOLING_TYPE_RANK = 4,         // 用于重排序模型，将分类头附加到图上
     };
 
+    // 枚举: llama_attention_type
+    // 描述: 注意力类型枚举
+    // 作用: 用于指定模型使用的注意力机制类型
     enum llama_attention_type {
-        LLAMA_ATTENTION_TYPE_UNSPECIFIED = -1,
-        LLAMA_ATTENTION_TYPE_CAUSAL      = 0,
-        LLAMA_ATTENTION_TYPE_NON_CAUSAL  = 1,
+        LLAMA_ATTENTION_TYPE_UNSPECIFIED = -1, // 未指定
+        LLAMA_ATTENTION_TYPE_CAUSAL      = 0,  // 因果注意力
+        LLAMA_ATTENTION_TYPE_NON_CAUSAL  = 1,  // 非因果注意力
     };
 
+    // 枚举: llama_flash_attn_type
+    // 描述: Flash Attention类型枚举
+    // 作用: 用于指定是否启用Flash Attention优化
     enum llama_flash_attn_type {
-        LLAMA_FLASH_ATTN_TYPE_AUTO     = -1,
-        LLAMA_FLASH_ATTN_TYPE_DISABLED = 0,
-        LLAMA_FLASH_ATTN_TYPE_ENABLED  = 1,
+        LLAMA_FLASH_ATTN_TYPE_AUTO     = -1, // 自动选择
+        LLAMA_FLASH_ATTN_TYPE_DISABLED = 0,  // 禁用
+        LLAMA_FLASH_ATTN_TYPE_ENABLED  = 1,  // 启用
     };
 
+    // 函数: llama_flash_attn_type_name
+    // 描述: 获取Flash Attention类型的名称
+    // 参数:
+    //   - flash_attn_type: Flash Attention类型枚举值
+    // 返回: 类型名称的字符串指针
     LLAMA_API const char * llama_flash_attn_type_name(enum llama_flash_attn_type flash_attn_type);
 
+    // 枚举: llama_split_mode
+    // 描述: 模型拆分模式枚举
+    // 作用: 用于指定模型如何在多个GPU之间拆分
     enum llama_split_mode {
-        LLAMA_SPLIT_MODE_NONE  = 0, // single GPU
-        LLAMA_SPLIT_MODE_LAYER = 1, // split layers and KV across GPUs
-        LLAMA_SPLIT_MODE_ROW   = 2, // split layers and KV across GPUs, use tensor parallelism if supported
+        LLAMA_SPLIT_MODE_NONE  = 0, // 单GPU
+        LLAMA_SPLIT_MODE_LAYER = 1, // 跨GPU拆分层和KV缓存
+        LLAMA_SPLIT_MODE_ROW   = 2, // 跨GPU拆分层和KV缓存，支持张量并行
     };
 
-    // TODO: simplify (https://github.com/ggml-org/llama.cpp/pull/9294#pullrequestreview-2286561979)
+    // 结构体: llama_token_data
+    // 描述: token数据结构，包含token的ID、对数概率和概率
+    // 作用: 用于存储和处理模型输出的token信息
     typedef struct llama_token_data {
-        llama_token id; // token id
-        float logit;    // log-odds of the token
-        float p;        // probability of the token
+        llama_token id; // token ID
+        float logit;    // token的对数概率
+        float p;        // token的概率
     } llama_token_data;
 
+    // 结构体: llama_token_data_array
+    // 描述: token数据数组结构，包含多个token数据
+    // 作用: 用于批量处理token数据，是采样器的输入和输出
     typedef struct llama_token_data_array {
-        // TODO: consider SoA
-        // NOTE: this pointer can be modified by the samplers
-        llama_token_data * data;
-        size_t size;
-        int64_t selected; // this is the index in the data array (i.e. not the token id)
-        bool sorted;      // note: do not assume the data is sorted - always check this flag
+        llama_token_data * data;    // token数据数组指针
+        size_t size;                // 数组大小
+        int64_t selected;           // 选中的token在数组中的索引
+        bool sorted;                // 数据是否已排序
     } llama_token_data_array;
 
+    // 类型定义: llama_progress_callback
+    // 描述: 进度回调函数类型
+    // 作用: 用于在模型加载等操作中报告进度
+    // 参数:
+    //   - progress: 进度值，范围0.0-1.0
+    //   - user_data: 用户数据指针
+    // 返回: 布尔值，表示是否继续操作
     typedef bool (*llama_progress_callback)(float progress, void * user_data);
 
-    // Input data for llama_encode/llama_decode
-    // A llama_batch object can contain input about one or many sequences
-    // The provided arrays (i.e. token, embd, pos, etc.) must have size of n_tokens
-    //
-    // - token  : the token ids of the input (used when embd is NULL)
-    // - embd   : token embeddings (i.e. float vector of size n_embd) (used when token is NULL)
-    // - pos    : the positions of the respective token in the sequence
-    //            (if set to NULL, the token position will be tracked automatically by llama_encode/llama_decode)
-    // - seq_id : the sequence to which the respective token belongs
-    //            (if set to NULL, the sequence ID will be assumed to be 0)
-    // - logits : if zero, the logits (and/or the embeddings) for the respective token will not be output
-    //            (if set to NULL:
-    //               - if embeddings: all tokens are output
-    //               - if not:        only the last token is output
-    //            )
-    //
+    // 结构体: llama_batch
+    // 描述: 批处理输入数据结构，用于llama_encode/llama_decode
+    // 作用: 可以包含一个或多个序列的输入数据
+    // 注意: 提供的数组（token、embd、pos等）必须有n_tokens大小
     typedef struct llama_batch {
-        int32_t n_tokens;
+        int32_t n_tokens;           // token数量
 
-        llama_token  *  token;
-        float        *  embd;
-        llama_pos    *  pos;
-        int32_t      *  n_seq_id;
-        llama_seq_id ** seq_id;
-        int8_t       *  logits;   // TODO: rename this to "output"
+        llama_token  *  token;      // token ID数组（当embd为NULL时使用）
+        float        *  embd;       // token嵌入数组（当token为NULL时使用）
+        llama_pos    *  pos;        // token在序列中的位置数组
+        int32_t      *  n_seq_id;   // 每个token所属的序列ID数量
+        llama_seq_id ** seq_id;     // 每个token所属的序列ID数组
+        int8_t       *  logits;     // 是否输出logits和/或嵌入（0表示不输出）
     } llama_batch;
 
+    // 枚举: llama_model_kv_override_type
+    // 描述: 模型键值覆盖类型枚举
+    // 作用: 用于指定模型元数据覆盖的值类型
     enum llama_model_kv_override_type {
-        LLAMA_KV_OVERRIDE_TYPE_INT,
-        LLAMA_KV_OVERRIDE_TYPE_FLOAT,
-        LLAMA_KV_OVERRIDE_TYPE_BOOL,
-        LLAMA_KV_OVERRIDE_TYPE_STR,
+        LLAMA_KV_OVERRIDE_TYPE_INT,    // 整数类型
+        LLAMA_KV_OVERRIDE_TYPE_FLOAT,  // 浮点数类型
+        LLAMA_KV_OVERRIDE_TYPE_BOOL,   // 布尔类型
+        LLAMA_KV_OVERRIDE_TYPE_STR,    // 字符串类型
     };
 
+    // 枚举: llama_model_meta_key
+    // 描述: 模型元数据键枚举
+    // 作用: 用于指定模型的元数据键，如采样参数等
     enum llama_model_meta_key {
-        LLAMA_MODEL_META_KEY_SAMPLING_SEQUENCE,
-        LLAMA_MODEL_META_KEY_SAMPLING_TOP_K,
-        LLAMA_MODEL_META_KEY_SAMPLING_TOP_P,
-        LLAMA_MODEL_META_KEY_SAMPLING_MIN_P,
-        LLAMA_MODEL_META_KEY_SAMPLING_XTC_PROBABILITY,
-        LLAMA_MODEL_META_KEY_SAMPLING_XTC_THRESHOLD,
-        LLAMA_MODEL_META_KEY_SAMPLING_TEMP,
-        LLAMA_MODEL_META_KEY_SAMPLING_PENALTY_LAST_N,
-        LLAMA_MODEL_META_KEY_SAMPLING_PENALTY_REPEAT,
-        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT,
-        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT_TAU,
-        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT_ETA,
+        LLAMA_MODEL_META_KEY_SAMPLING_SEQUENCE,      // 采样序列
+        LLAMA_MODEL_META_KEY_SAMPLING_TOP_K,         // 采样top-k参数
+        LLAMA_MODEL_META_KEY_SAMPLING_TOP_P,         // 采样top-p参数
+        LLAMA_MODEL_META_KEY_SAMPLING_MIN_P,         // 采样min-p参数
+        LLAMA_MODEL_META_KEY_SAMPLING_XTC_PROBABILITY, // 采样XTC概率
+        LLAMA_MODEL_META_KEY_SAMPLING_XTC_THRESHOLD,   // 采样XTC阈值
+        LLAMA_MODEL_META_KEY_SAMPLING_TEMP,          // 采样温度
+        LLAMA_MODEL_META_KEY_SAMPLING_PENALTY_LAST_N,  // 采样重复惩罚最近N个token
+        LLAMA_MODEL_META_KEY_SAMPLING_PENALTY_REPEAT,  // 采样重复惩罚
+        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT,       // 采样Mirostat
+        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT_TAU,   // 采样Mirostat tau参数
+        LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT_ETA,   // 采样Mirostat eta参数
     };
 
+    // 结构体: llama_model_kv_override
+    // 描述: 模型键值覆盖结构
+    // 作用: 用于覆盖模型的元数据键值对
     struct llama_model_kv_override {
-        enum llama_model_kv_override_type tag;
+        enum llama_model_kv_override_type tag; // 值类型标签
 
-        char key[128];
+        char key[128]; // 键名
 
         union {
-            int64_t val_i64;
-            double  val_f64;
-            bool    val_bool;
-            char    val_str[128];
+            int64_t val_i64;   // 整数值
+            double  val_f64;   // 浮点数值
+            bool    val_bool;  // 布尔值
+            char    val_str[128]; // 字符串值
         };
     };
 
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: 模型张量缓冲区类型覆盖结构
+    // 作用: 用于为匹配模式的张量指定缓冲区类型
     struct llama_model_tensor_buft_override {
-        const char * pattern;
-        ggml_backend_buffer_type_t buft;
+        const char * pattern;               // 张量名称模式
+        ggml_backend_buffer_type_t buft;    // 缓冲区类型
     };
 
+    // 结构体: llama_model_params
+    // 描述: 模型参数结构，包含模型加载和配置的各种参数
+    // 作用: 用于控制模型的加载方式、设备分配、内存使用等
     struct llama_model_params {
-        // NULL-terminated list of devices to use for offloading (if NULL, all available devices are used)
-        ggml_backend_dev_t * devices;
+        ggml_backend_dev_t * devices; // 用于卸载的设备列表（NULL表示使用所有可用设备）
 
-        // NULL-terminated list of buffer types to use for tensors that match a pattern
-        const struct llama_model_tensor_buft_override * tensor_buft_overrides;
+        const struct llama_model_tensor_buft_override * tensor_buft_overrides; // 用于匹配模式的张量的缓冲区类型列表
 
-        int32_t n_gpu_layers; // number of layers to store in VRAM, a negative value means all layers
-        enum llama_split_mode split_mode; // how to split the model across multiple GPUs
+        int32_t n_gpu_layers; // 存储在VRAM中的层数，负值表示所有层
+        enum llama_split_mode split_mode; // 如何在多个GPU之间拆分布模型
 
-        // the GPU that is used for the entire model when split_mode is LLAMA_SPLIT_MODE_NONE
-        int32_t main_gpu;
+        int32_t main_gpu; // 当split_mode为LLAMA_SPLIT_MODE_NONE时，用于整个模型的GPU
 
-        // proportion of the model (layers or rows) to offload to each GPU, size: llama_max_devices()
-        const float * tensor_split;
+        const float * tensor_split; // 模型（层或行）卸载到每个GPU的比例，大小：llama_max_devices()
 
-        // Called with a progress value between 0.0 and 1.0. Pass NULL to disable.
-        // If the provided progress_callback returns true, model loading continues.
-        // If it returns false, model loading is immediately aborted.
-        llama_progress_callback progress_callback;
+        llama_progress_callback progress_callback; // 进度回调函数，传入0.0-1.0之间的进度值
+        void * progress_callback_user_data; // 传递给进度回调的上下文指针
 
-        // context pointer passed to the progress callback
-        void * progress_callback_user_data;
+        const struct llama_model_kv_override * kv_overrides; // 模型元数据的键值对覆盖
 
-        // override key-value pairs of the model meta data
-        const struct llama_model_kv_override * kv_overrides;
-
-        // Keep the booleans together to avoid misalignment during copy-by-value.
-        bool vocab_only;      // only load the vocabulary, no weights
-        bool use_mmap;        // use mmap if possible
-        bool use_direct_io;   // use direct io, takes precedence over use_mmap when supported
-        bool use_mlock;       // force system to keep model in RAM
-        bool check_tensors;   // validate model tensor data
-        bool use_extra_bufts; // use extra buffer types (used for weight repacking)
-        bool no_host;         // bypass host buffer allowing extra buffers to be used
-        bool no_alloc;        // only load metadata and simulate memory allocations
+        // 布尔值参数（放在一起以避免复制时的对齐问题）
+        bool vocab_only;      // 只加载词汇表，不加载权重
+        bool use_mmap;        // 如果可能，使用mmap
+        bool use_direct_io;   // 使用直接IO，当支持时优先于use_mmap
+        bool use_mlock;       // 强制系统将模型保持在RAM中
+        bool check_tensors;   // 验证模型张量数据
+        bool use_extra_bufts; // 使用额外的缓冲区类型（用于权重重新打包）
+        bool no_host;         // 绕过主机缓冲区，允许使用额外的缓冲区
+        bool no_alloc;        // 只加载元数据并模拟内存分配
     };
 
+    // 结构体: llama_sampler_seq_config
+    // 描述: 采样器序列配置结构
+    // 作用: 用于为特定序列配置采样器
     struct llama_sampler_seq_config {
-        llama_seq_id           seq_id;
-        struct llama_sampler * sampler;
+        llama_seq_id           seq_id;  // 序列ID
+        struct llama_sampler * sampler; // 采样器指针
     };
 
-    // NOTE: changing the default values of parameters marked as [EXPERIMENTAL] may cause crashes or incorrect results in certain configurations
-    //       https://github.com/ggml-org/llama.cpp/pull/7544
+    // 结构体: llama_context_params
+    // 描述: 上下文参数结构，包含模型推理的各种配置参数
+    // 作用: 用于控制模型推理的上下文大小、批处理大小、线程数等
+    // 注意: 更改标记为[EXPERIMENTAL]的参数的默认值可能会在某些配置中导致崩溃或不正确的结果
     struct llama_context_params {
-        uint32_t n_ctx;             // text context, 0 = from model
-        uint32_t n_batch;           // logical maximum batch size that can be submitted to llama_decode
-        uint32_t n_ubatch;          // physical maximum batch size
-        uint32_t n_seq_max;         // max number of sequences (i.e. distinct states for recurrent models)
-        int32_t  n_threads;         // number of threads to use for generation
-        int32_t  n_threads_batch;   // number of threads to use for batch processing
+        uint32_t n_ctx;             // 文本上下文大小，0表示使用模型默认值
+        uint32_t n_batch;           // 可以提交给llama_decode的逻辑最大批处理大小
+        uint32_t n_ubatch;          // 物理最大批处理大小
+        uint32_t n_seq_max;         // 最大序列数（即循环模型的不同状态）
+        int32_t  n_threads;         // 用于生成的线程数
+        int32_t  n_threads_batch;   // 用于批处理的线程数
 
-        enum llama_rope_scaling_type rope_scaling_type; // RoPE scaling type, from `enum llama_rope_scaling_type`
-        enum llama_pooling_type      pooling_type;      // whether to pool (sum) embedding results by sequence id
-        enum llama_attention_type    attention_type;    // attention type to use for embeddings
-        enum llama_flash_attn_type   flash_attn_type;   // when to enable Flash Attention
+        enum llama_rope_scaling_type rope_scaling_type; // RoPE缩放类型
+        enum llama_pooling_type      pooling_type;      // 是否按序列ID池化（求和）嵌入结果
+        enum llama_attention_type    attention_type;    // 用于嵌入的注意力类型
+        enum llama_flash_attn_type   flash_attn_type;   // 何时启用Flash Attention
 
-        // ref: https://github.com/ggml-org/llama.cpp/pull/2054
-        float    rope_freq_base;   // RoPE base frequency, 0 = from model
-        float    rope_freq_scale;  // RoPE frequency scaling factor, 0 = from model
-        float    yarn_ext_factor;  // YaRN extrapolation mix factor, negative = from model
-        float    yarn_attn_factor; // YaRN magnitude scaling factor
-        float    yarn_beta_fast;   // YaRN low correction dim
-        float    yarn_beta_slow;   // YaRN high correction dim
-        uint32_t yarn_orig_ctx;    // YaRN original context size
-        float    defrag_thold;     // [DEPRECATED] defragment the KV cache if holes/size > thold, <= 0 disabled (default)
+        float    rope_freq_base;   // RoPE基础频率，0表示使用模型默认值
+        float    rope_freq_scale;  // RoPE频率缩放因子，0表示使用模型默认值
+        float    yarn_ext_factor;  // YaRN外推混合因子，负值表示使用模型默认值
+        float    yarn_attn_factor; // YaRN幅度缩放因子
+        float    yarn_beta_fast;   // YaRN低校正维度
+        float    yarn_beta_slow;   // YaRN高校正维度
+        uint32_t yarn_orig_ctx;    // YaRN原始上下文大小
+        float    defrag_thold;     // [已弃用] 如果空洞/大小 > 阈值，则碎片整理KV缓存，<= 0表示禁用（默认）
 
-        ggml_backend_sched_eval_callback cb_eval;
-        void * cb_eval_user_data;
+        ggml_backend_sched_eval_callback cb_eval; // 评估回调
+        void * cb_eval_user_data;                // 评估回调用户数据
 
-        enum ggml_type type_k; // data type for K cache [EXPERIMENTAL]
-        enum ggml_type type_v; // data type for V cache [EXPERIMENTAL]
+        enum ggml_type type_k; // K缓存的数据类型 [EXPERIMENTAL]
+        enum ggml_type type_v; // V缓存的数据类型 [EXPERIMENTAL]
 
-        // Abort callback
-        // if it returns true, execution of llama_decode() will be aborted
-        // currently works only with CPU execution
-        ggml_abort_callback abort_callback;
-        void *              abort_callback_data;
+        ggml_abort_callback abort_callback;    // 中止回调
+        void *              abort_callback_data; // 中止回调数据
 
-        // Keep the booleans together and at the end of the struct to avoid misalignment during copy-by-value.
-        bool embeddings;  // if true, extract embeddings (together with logits)
-        bool offload_kqv; // offload the KQV ops (including the KV cache) to GPU
-        bool no_perf;     // measure performance timings
-        bool op_offload;  // offload host tensor operations to device
-        bool swa_full;    // use full-size SWA cache (https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)
-                          // NOTE: setting to false when n_seq_max > 1 can cause bad performance in some cases
-                          //       ref: https://github.com/ggml-org/llama.cpp/pull/13845#issuecomment-2924800573
-        bool kv_unified;  // use a unified buffer across the input sequences when computing the attention
-                          // try to disable when n_seq_max > 1 for improved performance when the sequences do not share a large prefix
-                          // ref: https://github.com/ggml-org/llama.cpp/pull/14363
+        // 布尔值参数（放在一起并在结构末尾以避免复制时的对齐问题）
+        bool embeddings;  // 如果为true，提取嵌入（与logits一起）
+        bool offload_kqv; // 将KQV操作（包括KV缓存）卸载到GPU
+        bool no_perf;     // 测量性能时间
+        bool op_offload;  // 将主机张量操作卸载到设备
+        bool swa_full;    // 使用全尺寸SWA缓存
+        bool kv_unified;  // 在计算注意力时使用跨输入序列的统一缓冲区
 
         // [EXPERIMENTAL]
-        // backend sampler chain configuration (make sure the caller keeps the sampler chains alive)
-        // note: the samplers must be sampler chains (i.e. use llama_sampler_chain_init)
-        struct llama_sampler_seq_config * samplers;
-        size_t                            n_samplers;
+        // 后端采样器链配置（确保调用者保持采样器链活动）
+        // 注意：采样器必须是采样器链（即使用llama_sampler_chain_init）
+        struct llama_sampler_seq_config * samplers; // 采样器配置数组
+        size_t                            n_samplers; // 采样器配置数量
     };
 
-    // model quantization parameters
+    // 结构体: llama_model_quantize_params
+    // 描述: 模型量化参数结构
+    // 作用: 用于控制模型量化的过程和结果
     typedef struct llama_model_quantize_params {
-        int32_t nthread;                      // number of threads to use for quantizing, if <=0 will use std::thread::hardware_concurrency()
-        enum llama_ftype ftype;               // quantize to this llama_ftype
-        enum ggml_type output_tensor_type;    // output tensor type
-        enum ggml_type token_embedding_type;  // token embeddings tensor type
-        bool allow_requantize;                // allow quantizing non-f32/f16 tensors
-        bool quantize_output_tensor;          // quantize output.weight
-        bool only_copy;                       // only copy tensors - ftype, allow_requantize and quantize_output_tensor are ignored
-        bool pure;                            // quantize all tensors to the default type
-        bool keep_split;                      // quantize to the same number of shards
-        bool dry_run;                         // calculate and show the final quantization size without performing quantization
-        void * imatrix;                       // pointer to importance matrix data
-        void * kv_overrides;                  // pointer to vector containing overrides
-        void * tensor_types;                  // pointer to vector containing tensor types
-        void * prune_layers;                  // pointer to vector containing layer indices to prune
+        int32_t nthread;                      // 用于量化的线程数，如果<=0将使用std::thread::hardware_concurrency()
+        enum llama_ftype ftype;               // 量化到这个llama_ftype
+        enum ggml_type output_tensor_type;    // 输出张量类型
+        enum ggml_type token_embedding_type;  // token嵌入张量类型
+        bool allow_requantize;                // 允许量化非f32/f16张量
+        bool quantize_output_tensor;          // 量化output.weight
+        bool only_copy;                       // 只复制张量 - 忽略ftype、allow_requantize和quantize_output_tensor
+        bool pure;                            // 将所有张量量化为默认类型
+        bool keep_split;                      // 量化到相同数量的分片
+        bool dry_run;                         // 计算并显示最终量化大小，不执行量化
+        void * imatrix;                       // 重要性矩阵数据指针
+        void * kv_overrides;                  // 包含覆盖的向量指针
+        void * tensor_types;                  // 包含张量类型的向量指针
+        void * prune_layers;                  // 包含要剪枝的层索引的向量指针
     } llama_model_quantize_params;
 
+    // 结构体: llama_logit_bias
+    // 描述: logit偏置结构
+    // 作用: 用于为特定token添加偏置，影响其生成概率
     typedef struct llama_logit_bias {
-        llama_token token;
-        float bias;
+        llama_token token; // token ID
+        float bias;        // 偏置值
     } llama_logit_bias;
 
+    // 结构体: llama_sampler_chain_params
+    // 描述: 采样器链参数结构
+    // 作用: 用于配置采样器链的行为
     typedef struct llama_sampler_chain_params {
-        bool no_perf; // whether to measure performance timings
+        bool no_perf; // 是否测量性能时间
     } llama_sampler_chain_params;
 
-    // used in chat template
+    // 结构体: llama_chat_message
+    // 描述: 聊天消息结构
+    // 作用: 用于聊天模板中的消息表示
     typedef struct llama_chat_message {
-        const char * role;
-        const char * content;
+        const char * role;    // 消息角色
+        const char * content; // 消息内容
     } llama_chat_message;
 
-    // lora adapter
+    // 结构体: llama_adapter_lora
+    // 描述: LoRA适配器结构
+    // 作用: 用于实现模型的LoRA微调
     struct llama_adapter_lora;
 
     // Helpers for getting default parameters
@@ -424,60 +487,230 @@ extern "C" {
     // Initialize the llama + ggml backend
     // If numa is true, use NUMA optimizations
     // Call once at the start of the program
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_init
+    // 描述: llama_backend_init函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API void llama_backend_init(void);
 
     // Call once at the end of the program - currently only used for MPI
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_backend_free
+    // 描述: llama_backend_free函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API void llama_backend_free(void);
 
     //optional:
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
+    // 函数: llama_numa_init
+    // 描述: llama_numa_init函数提供相关功能
+    // 参数: enum ggml_numa_strategy numa
+    // 返回: 无返回值
+
     LLAMA_API void llama_numa_init(enum ggml_numa_strategy numa);
 
     // Optional: an auto threadpool gets created in ggml if not passed explicitly
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, ggml_threadpool_t   threadpool, ggml_threadpool_t   threadpool_batch
+    // 返回: 无返回值
+
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: // 函数: llama_detach_threadpool // 描述: llama_detach_threadpool函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  LLAMA_API void llama_detach_threadpool(struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: DEPRECATED(LLAMA_API struct llama_model * llama_load_model_from_file( const char * path_model, // 类: llama_model_params // 描述: llama_model_params类提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 类: llama_model_params // 描述: llama_model_params类提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 struct llama_model_params   params
+    // 返回: llama_model *类型返回值
+
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: "use llama_model_load_from_file instead"
+    // 返回: 无返回值
+
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: // Load the model from a file // If the file is split into multiple parts, the file name must follow this pattern: <name>-%05d-of-%05d.gguf // If the split file name does not follow this pattern, use llama_model_load_from_splits LLAMA_API struct llama_model * llama_model_load_from_file( const char * path_model, // 类: llama_model_params // 描述: llama_model_params类提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 类: llama_model_params // 描述: llama_model_params类提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 // 结构体: llama_model_params // 描述: llama_model_params结构体提供相关功能 // 用途: 用于处理llama_model_params相关的操作 struct llama_model_params   params
+    // 返回: llama_model *类型返回值
+
+    // 函数: llama_attach_threadpool
+    // 描述: llama_attach_threadpool函数提供相关功能
+    // 参数: // Load the model from multiple splits (support custom naming scheme
+    // 返回: 无返回值
+
     LLAMA_API void llama_attach_threadpool(
-            struct llama_context * ctx,
-               ggml_threadpool_t   threadpool,
-               ggml_threadpool_t   threadpool_batch);
-
-    LLAMA_API void llama_detach_threadpool(struct llama_context * ctx);
-
-    DEPRECATED(LLAMA_API struct llama_model * llama_load_model_from_file(
-                             const char * path_model,
-              struct llama_model_params   params),
-            "use llama_model_load_from_file instead");
-
-    // Load the model from a file
-    // If the file is split into multiple parts, the file name must follow this pattern: <name>-%05d-of-%05d.gguf
-    // If the split file name does not follow this pattern, use llama_model_load_from_splits
-    LLAMA_API struct llama_model * llama_model_load_from_file(
-                             const char * path_model,
-              struct llama_model_params   params);
-
-    // Load the model from multiple splits (support custom naming scheme)
     // The paths must be in the correct order
     LLAMA_API struct llama_model * llama_model_load_from_splits(
                              const char ** paths,
                                  size_t    n_paths,
+              // 类: llama_model_params
+              // 描述: llama_model_params类提供相关功能
+              // 用途: 用于处理llama_model_params相关的操作
+              // 类: llama_model_params
+              // 描述: llama_model_params类提供相关功能
+              // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
               struct llama_model_params    params);
 
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: const struct llama_model * model, const char * path_model
+    // 返回: 无返回值
+
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: DEPRECATED(LLAMA_API void llama_free_model(struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: "use llama_model_free instead"
+    // 返回: 无返回值
+
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: // 函数: llama_model_free // 描述: llama_model_free函数提供相关功能 // 参数: struct llama_model * model // 返回: 无返回值  // 函数: llama_model_free // 描述: llama_model_free函数提供相关功能 // 参数: struct llama_model * model // 返回: 无返回值  // 函数: llama_model_free // 描述: llama_model_free函数提供相关功能 // 参数: struct llama_model * model // 返回: 无返回值  LLAMA_API void llama_model_free(struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: LLAMA_API struct llama_context * llama_init_from_model( // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 struct llama_model * model, // 类: llama_context_params // 描述: llama_context_params类提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 类: llama_context_params // 描述: llama_context_params类提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 struct llama_context_params   params
+    // 返回: llama_context *类型返回值
+
+    // 函数: llama_model_save_to_file
+    // 描述: llama_model_save_to_file函数提供相关功能
+    // 参数: DEPRECATED(LLAMA_API struct llama_context * llama_new_context_with_model( // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 struct llama_model * model, // 类: llama_context_params // 描述: llama_context_params类提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 类: llama_context_params // 描述: llama_context_params类提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 // 结构体: llama_context_params // 描述: llama_context_params结构体提供相关功能 // 用途: 用于处理llama_context_params相关的操作 struct llama_context_params   params
+    // 返回: llama_context *类型返回值
+
     LLAMA_API void llama_model_save_to_file(
-            const struct llama_model * model,
-                        const char * path_model);
-
-    DEPRECATED(LLAMA_API void llama_free_model(struct llama_model * model),
-            "use llama_model_free instead");
-
-    LLAMA_API void llama_model_free(struct llama_model * model);
-
-    LLAMA_API struct llama_context * llama_init_from_model(
-                     struct llama_model * model,
-            struct llama_context_params   params);
-
-    DEPRECATED(LLAMA_API struct llama_context * llama_new_context_with_model(
-                     struct llama_model * model,
-            struct llama_context_params   params),
             "use llama_init_from_model instead");
 
     // Frees all allocated memory
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_free
+    // 描述: llama_free函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API void llama_free(struct llama_context * ctx);
 
     enum llama_params_fit_status {
@@ -493,32 +726,494 @@ extern "C" {
     //     with the exception of the context size which is modified if and only if equal to 0
     LLAMA_API enum llama_params_fit_status llama_params_fit(
                                    const char   * path_model,
+                    // 类: llama_model_params
+                    // 描述: llama_model_params类提供相关功能
+                    // 用途: 用于处理llama_model_params相关的操作
+                    // 类: llama_model_params
+                    // 描述: llama_model_params类提供相关功能
+                    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
                     struct llama_model_params   * mparams,
+                    // 类: llama_context_params
+                    // 描述: llama_context_params类提供相关功能
+                    // 用途: 用于处理llama_context_params相关的操作
+                    // 类: llama_context_params
+                    // 描述: llama_context_params类提供相关功能
+                    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
                     struct llama_context_params * cparams,
                                           float * tensor_split,          // writable buffer for tensor split, needs at least llama_max_devices elements
+        // 类: llama_model_tensor_buft_override
+        // 描述: llama_model_tensor_buft_override类提供相关功能
+        // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+        // 类: llama_model_tensor_buft_override
+        // 描述: llama_model_tensor_buft_override类提供相关功能
+        // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
+    // 结构体: llama_model_tensor_buft_override
+    // 描述: llama_model_tensor_buft_override结构体提供相关功能
+    // 用途: 用于处理llama_model_tensor_buft_override相关的操作
         struct llama_model_tensor_buft_override * tensor_buft_overrides, // writable buffer for overrides, needs at least llama_max_tensor_buft_overrides elements
                                          size_t * margins,               // margins of memory to leave per device in bytes
                                        uint32_t   n_ctx_min,             // minimum context size to set when trying to reduce memory use
                             enum ggml_log_level   log_level);            // minimum log level to print during fitting, lower levels go to debug log
 
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_time_us
+    // 描述: llama_time_us函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API int64_t llama_time_us(void);
 
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_devices
+    // 描述: llama_max_devices函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API size_t llama_max_devices(void);
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_parallel_sequences
+    // 描述: llama_max_parallel_sequences函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API size_t llama_max_parallel_sequences(void);
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_max_tensor_buft_overrides
+    // 描述: llama_max_tensor_buft_overrides函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API size_t llama_max_tensor_buft_overrides(void);
 
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mmap
+    // 描述: llama_supports_mmap函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API bool llama_supports_mmap       (void);
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_mlock
+    // 描述: llama_supports_mlock函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API bool llama_supports_mlock      (void);
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_gpu_offload
+    // 描述: llama_supports_gpu_offload函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API bool llama_supports_gpu_offload(void);
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_supports_rpc
+    // 描述: llama_supports_rpc函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API bool llama_supports_rpc        (void);
 
     // NOTE: After creating a llama_context, it is recommended to query the actual values using these functions
     //       In some cases the requested values via llama_context_params may differ from the actual values used by the context
     //       ref: https://github.com/ggml-org/llama.cpp/pull/17046#discussion_r2503085732
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx
+    // 描述: llama_n_ctx函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_n_ctx      (const struct llama_context * ctx);
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ctx_seq
+    // 描述: llama_n_ctx_seq函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_n_ctx_seq  (const struct llama_context * ctx);
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_batch
+    // 描述: llama_n_batch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_n_batch    (const struct llama_context * ctx);
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_ubatch
+    // 描述: llama_n_ubatch函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_n_ubatch   (const struct llama_context * ctx);
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_seq_max
+    // 描述: llama_n_seq_max函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_n_seq_max  (const struct llama_context * ctx);
 
     DEPRECATED(LLAMA_API int32_t llama_n_ctx_train(const struct llama_model * model), "use llama_model_n_ctx_train instead");
@@ -529,32 +1224,392 @@ extern "C" {
     DEPRECATED(LLAMA_API int32_t llama_n_vocab    (const struct llama_vocab * vocab), "use llama_vocab_n_tokens instead");
 
     LLAMA_API const struct llama_model * llama_get_model   (const struct llama_context * ctx);
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
+    // 函数: llama_memory_t
+    // 描述: llama_memory_t函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: llama_memory_t类型返回值
+
     LLAMA_API           llama_memory_t   llama_get_memory  (const struct llama_context * ctx);
     LLAMA_API  enum llama_pooling_type   llama_pooling_type(const struct llama_context * ctx); // TODO: rename to llama_get_pooling_type
 
     LLAMA_API const struct llama_vocab * llama_model_get_vocab(const struct llama_model * model);
     LLAMA_API enum llama_rope_type       llama_model_rope_type(const struct llama_model * model);
 
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_ctx_train
+    // 描述: llama_model_n_ctx_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_ctx_train(const struct llama_model * model);
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd
+    // 描述: llama_model_n_embd函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_embd     (const struct llama_model * model);
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_inp
+    // 描述: llama_model_n_embd_inp函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_embd_inp (const struct llama_model * model);
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_embd_out
+    // 描述: llama_model_n_embd_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_embd_out (const struct llama_model * model);
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_layer
+    // 描述: llama_model_n_layer函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_layer    (const struct llama_model * model);
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head
+    // 描述: llama_model_n_head函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_head     (const struct llama_model * model);
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_head_kv
+    // 描述: llama_model_n_head_kv函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_head_kv  (const struct llama_model * model);
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_swa
+    // 描述: llama_model_n_swa函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_n_swa      (const struct llama_model * model);
 
     // Get the model's RoPE frequency scaling factor
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_rope_freq_scale_train
+    // 描述: llama_model_rope_freq_scale_train函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API float llama_model_rope_freq_scale_train(const struct llama_model * model);
 
     // Returns the number of classifier outputs (only valid for classifier models)
     // Undefined behavior for non-classifier models
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_cls_out
+    // 描述: llama_model_n_cls_out函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_model_n_cls_out(const struct llama_model * model);
 
     // Returns label of classifier output by index (<n_cls_out). Returns nullptr if no label provided
     LLAMA_API const char * llama_model_cls_label(const struct llama_model * model, uint32_t i);
 
     LLAMA_API enum llama_vocab_type llama_vocab_type(const struct llama_vocab * vocab);
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_n_tokens
+    // 描述: llama_vocab_n_tokens函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
 
     LLAMA_API int32_t llama_vocab_n_tokens(const struct llama_vocab * vocab);
 
@@ -565,24 +1620,204 @@ extern "C" {
     // - GGUF array values are not supported by these functions
 
     // Get metadata value as a string by key name
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str
+    // 描述: llama_model_meta_val_str函数提供相关功能
+    // 参数: const struct llama_model * model, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_meta_val_str(const struct llama_model * model, const char * key, char * buf, size_t buf_size);
 
     // Get the number of metadata key/value pairs
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_count
+    // 描述: llama_model_meta_count函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_meta_count(const struct llama_model * model);
 
     // Get sampling metadata key name. Returns nullptr if the key is invalid
     LLAMA_API const char * llama_model_meta_key_str(enum llama_model_meta_key key);
 
     // Get metadata key name by index
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_key_by_index
+    // 描述: llama_model_meta_key_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_meta_key_by_index(const struct llama_model * model, int32_t i, char * buf, size_t buf_size);
 
     // Get metadata value as a string by index
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_meta_val_str_by_index
+    // 描述: llama_model_meta_val_str_by_index函数提供相关功能
+    // 参数: const struct llama_model * model, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_meta_val_str_by_index(const struct llama_model * model, int32_t i, char * buf, size_t buf_size);
 
     // Get a string describing the model type
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_desc
+    // 描述: llama_model_desc函数提供相关功能
+    // 参数: const struct llama_model * model, char * buf, size_t buf_size
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_model_desc(const struct llama_model * model, char * buf, size_t buf_size);
 
     // Returns the total size of all the tensors in the model in bytes
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_size
+    // 描述: llama_model_size函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API uint64_t llama_model_size(const struct llama_model * model);
 
     // Get the default chat template. Returns nullptr if not available
@@ -590,320 +1825,416 @@ extern "C" {
     LLAMA_API const char * llama_model_chat_template(const struct llama_model * model, const char * name);
 
     // Returns the total number of parameters in the model
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_n_params
+    // 描述: llama_model_n_params函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API uint64_t llama_model_n_params(const struct llama_model * model);
 
     // Returns true if the model contains an encoder that requires llama_encode() call
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_encoder
+    // 描述: llama_model_has_encoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API bool llama_model_has_encoder(const struct llama_model * model);
 
     // Returns true if the model contains a decoder that requires llama_decode() call
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_has_decoder
+    // 描述: llama_model_has_decoder函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API bool llama_model_has_decoder(const struct llama_model * model);
 
     // For encoder-decoder models, this function returns id of the token that must be provided
     // to the decoder to start generating output sequence. For other models, it returns -1.
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_model_decoder_start_token(const struct llama_model * model);
 
     // Returns true if the model is recurrent (like Mamba, RWKV, etc.)
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_recurrent
+    // 描述: llama_model_is_recurrent函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API bool llama_model_is_recurrent(const struct llama_model * model);
 
     // Returns true if the model is hybrid (like Jamba, Granite, etc.)
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_hybrid
+    // 描述: llama_model_is_hybrid函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API bool llama_model_is_hybrid(const struct llama_model * model);
 
     // Returns true if the model is diffusion-based (like LLaDA, Dream, etc.)
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
+    // 函数: llama_model_is_diffusion
+    // 描述: llama_model_is_diffusion函数提供相关功能
+    // 参数: const struct llama_model * model
+    // 返回: 无返回值
+
     LLAMA_API bool llama_model_is_diffusion(const struct llama_model * model);
 
     // Returns 0 on success
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: const char * fname_inp, const char * fname_out, const llama_model_quantize_params * params
+    // 返回: 无返回值
+
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: // // Adapters //  // Load a LoRA adapter from file // The adapter is valid as long as the associated model is not freed // All adapters must be loaded before context creation LLAMA_API struct llama_adapter_lora * llama_adapter_lora_init( // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 类: llama_model // 描述: llama_model类提供相关功能 // 用途: 用于处理llama_model相关的操作 // 结构体: llama_model // 描述: llama_model结构体提供相关功能 // 用途: 用于处理llama_model相关的操作 struct llama_model * model, const char * path_lora
+    // 返回: llama_adapter_lora *类型返回值
+
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: // Functions to access the adapter's GGUF metadata scalar values // - The functions return the length of the string on success, or -1 on failure // - The output string is always null-terminated and cleared on failure // - When retrieving a string, an extra byte must be allocated to account for the null terminator // - GGUF array values are not supported by these functions  // Get metadata value as a string by key name // 函数: llama_adapter_meta_val_str // 描述: llama_adapter_meta_val_str函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, const char * key, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_val_str // 描述: llama_adapter_meta_val_str函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, const char * key, char * buf, size_t buf_size // 返回: 无返回值  LLAMA_API int32_t llama_adapter_meta_val_str(const struct llama_adapter_lora * adapter, const char * key, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: // Get the number of metadata key/value pairs // 函数: llama_adapter_meta_count // 描述: llama_adapter_meta_count函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter // 返回: 无返回值  // 函数: llama_adapter_meta_count // 描述: llama_adapter_meta_count函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter // 返回: 无返回值  // 函数: llama_adapter_meta_count // 描述: llama_adapter_meta_count函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter // 返回: 无返回值  LLAMA_API int32_t llama_adapter_meta_count(const struct llama_adapter_lora * adapter
+    // 返回: 无返回值
+
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: // Get metadata key name by index // 函数: llama_adapter_meta_key_by_index // 描述: llama_adapter_meta_key_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_key_by_index // 描述: llama_adapter_meta_key_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_key_by_index // 描述: llama_adapter_meta_key_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_key_by_index // 描述: llama_adapter_meta_key_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  LLAMA_API int32_t llama_adapter_meta_key_by_index(const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
+    // 函数: llama_model_quantize
+    // 描述: llama_model_quantize函数提供相关功能
+    // 参数: // Get metadata value as a string by index // 函数: llama_adapter_meta_val_str_by_index // 描述: llama_adapter_meta_val_str_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_val_str_by_index // 描述: llama_adapter_meta_val_str_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_val_str_by_index // 描述: llama_adapter_meta_val_str_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_val_str_by_index // 描述: llama_adapter_meta_val_str_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  // 函数: llama_adapter_meta_val_str_by_index // 描述: llama_adapter_meta_val_str_by_index函数提供相关功能 // 参数: const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size // 返回: 无返回值  LLAMA_API int32_t llama_adapter_meta_val_str_by_index(const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_model_quantize(
-            const char * fname_inp,
-            const char * fname_out,
-            const llama_model_quantize_params * params);
-
-    //
-    // Adapters
-    //
-
-    // Load a LoRA adapter from file
-    // The adapter is valid as long as the associated model is not freed
-    // All adapters must be loaded before context creation
-    LLAMA_API struct llama_adapter_lora * llama_adapter_lora_init(
-            struct llama_model * model,
-            const char * path_lora);
-
-    // Functions to access the adapter's GGUF metadata scalar values
-    // - The functions return the length of the string on success, or -1 on failure
-    // - The output string is always null-terminated and cleared on failure
-    // - When retrieving a string, an extra byte must be allocated to account for the null terminator
-    // - GGUF array values are not supported by these functions
-
-    // Get metadata value as a string by key name
-    LLAMA_API int32_t llama_adapter_meta_val_str(const struct llama_adapter_lora * adapter, const char * key, char * buf, size_t buf_size);
-
-    // Get the number of metadata key/value pairs
-    LLAMA_API int32_t llama_adapter_meta_count(const struct llama_adapter_lora * adapter);
-
-    // Get metadata key name by index
-    LLAMA_API int32_t llama_adapter_meta_key_by_index(const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size);
-
-    // Get metadata value as a string by index
-    LLAMA_API int32_t llama_adapter_meta_val_str_by_index(const struct llama_adapter_lora * adapter, int32_t i, char * buf, size_t buf_size);
 
     // Manually free a LoRA adapter
     // NOTE: loaded adapters will be free when the associated model is deleted
+    // 函数: DEPRECATED
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: DEPRECATED
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     LLAMA_API DEPRECATED(void llama_adapter_lora_free(struct llama_adapter_lora * adapter),
             "adapters are now freed together with the associated model");
 
     // Get the invocation tokens if the current lora is an alora
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
+    // 函数: llama_adapter_get_alora_n_invocation_tokens
+    // 描述: llama_adapter_get_alora_n_invocation_tokens函数提供相关功能
+    // 参数: const struct llama_adapter_lora * adapter
+    // 返回: uint64_t类型返回值
+
     LLAMA_API uint64_t            llama_adapter_get_alora_n_invocation_tokens(const struct llama_adapter_lora * adapter);
     LLAMA_API const llama_token * llama_adapter_get_alora_invocation_tokens  (const struct llama_adapter_lora * adapter);
 
     // The following functions operate on a llama_context, hence the naming: llama_verb_...
 
     // Set LoRa adapters on the context. Will only modify if the adapters currently in context are different.
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, // 类: llama_adapter_lora // 描述: llama_adapter_lora类提供相关功能 // 用途: 用于处理llama_adapter_lora相关的操作 // 类: llama_adapter_lora // 描述: llama_adapter_lora类提供相关功能 // 用途: 用于处理llama_adapter_lora相关的操作 struct llama_adapter_lora ** adapters, size_t n_adapters, float * scales
+    // 返回: 无返回值
+
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: // Apply a loaded control vector to a llama_context, or if data is NULL, clear // the currently loaded vector. // n_embd should be the size of a single layer's control, and data should point // to an n_embd x n_layers buffer starting from layer 1. // il_start and il_end are the layer range the vector should apply to (both inclusive
+    // 返回: 无返回值
+
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: // See llama_control_vector_load in common to load a control vector. // 函数: llama_set_adapter_cvec // 描述: llama_set_adapter_cvec函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const float * data, size_t   len, int32_t   n_embd, int32_t   il_start, int32_t   il_end // 返回: 无返回值  // 函数: llama_set_adapter_cvec // 描述: llama_set_adapter_cvec函数提供相关功能 // 参数: // // Memory //  // Clear the memory contents // If data == true, the data buffers will also be cleared together with the metadata // 函数: llama_memory_clear // 描述: llama_memory_clear函数提供相关功能 // 参数: llama_memory_t mem, bool data // 返回: 无返回值  LLAMA_API void llama_memory_clear(  // Removes all tokens that belong to the specified sequence and have positions in [p0, p1 // 返回: 无返回值  LLAMA_API int32_t llama_set_adapter_cvec( // Returns false if a partial sequence cannot be removed. Removing a whole sequence never fails // seq_id < 0 : match any sequence // p0 < 0     : [0,  p1] // p1 < 0     : [p0, inf
+    // 返回: 无返回值
+
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: // 函数: llama_memory_seq_rm // 描述: llama_memory_seq_rm函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id, llama_pos p0, llama_pos p1 // 返回: 无返回值  // 函数: llama_memory_seq_rm // 描述: llama_memory_seq_rm函数提供相关功能 // 参数: // Copy all tokens that belong to the specified sequence to another sequence // p0 < 0 : [0,  p1] // p1 < 0 : [p0, inf // 返回: 无返回值  // 函数: llama_memory_seq_rm // 描述: llama_memory_seq_rm函数提供相关功能 // 参数: // 函数: llama_memory_seq_cp // 描述: llama_memory_seq_cp函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id_src, llama_seq_id seq_id_dst, llama_pos p0, llama_pos p1 // 返回: 无返回值  // 函数: llama_memory_seq_cp // 描述: llama_memory_seq_cp函数提供相关功能 // 参数: // Removes all tokens that do not belong to the specified sequence // 函数: llama_memory_seq_keep // 描述: llama_memory_seq_keep函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id // 返回: 无返回值  LLAMA_API void llama_memory_seq_keep(  // Adds relative position "delta" to all tokens that belong to the specified sequence and have positions in [p0, p1 // 返回: 无返回值  LLAMA_API void llama_memory_seq_cp( // p0 < 0 : [0,  p1] // p1 < 0 : [p0, inf // 返回: 无返回值  LLAMA_API bool llama_memory_seq_rm( // 函数: llama_memory_seq_add // 描述: llama_memory_seq_add函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id, llama_pos p0, llama_pos p1, llama_pos delta // 返回: 无返回值  // 函数: llama_memory_seq_add // 描述: llama_memory_seq_add函数提供相关功能 // 参数: // Integer division of the positions by factor of `d > 1` // p0 < 0 : [0,  p1] // p1 < 0 : [p0, inf // 返回: 无返回值  // 函数: llama_memory_seq_add // 描述: llama_memory_seq_add函数提供相关功能 // 参数: // 函数: llama_memory_seq_div // 描述: llama_memory_seq_div函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id, llama_pos p0, llama_pos p1, int d // 返回: 无返回值  // 函数: llama_memory_seq_div // 描述: llama_memory_seq_div函数提供相关功能 // 参数: // Returns the smallest position present in the memory for the specified sequence // This is typically non-zero only for SWA caches // Note that all positions in the range [pos_min, pos_max] are guaranteed to be present in the memory // Return -1 if the sequence is empty // 函数: llama_pos // 描述: llama_pos函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id // 返回: 无返回值  LLAMA_API llama_pos llama_memory_seq_pos_min(  // Returns the largest position present in the memory for the specified sequence // Note that all positions in the range [pos_min, pos_max] are guaranteed to be present in the memory // Return -1 if the sequence is empty // 函数: llama_pos // 描述: llama_pos函数提供相关功能 // 参数: llama_memory_t mem, llama_seq_id seq_id // 返回: 无返回值  LLAMA_API llama_pos llama_memory_seq_pos_max(  // Check if the memory supports shifting // 函数: llama_memory_can_shift // 描述: llama_memory_can_shift函数提供相关功能 // 参数: llama_memory_t mem // 返回: 无返回值  LLAMA_API bool llama_memory_can_shift(llama_memory_t mem // 返回: 无返回值  LLAMA_API void llama_memory_seq_div(  // // State / sessions //  // Returns the *actual* size in bytes of the state // (logits, embedding and memory // 返回: 无返回值  LLAMA_API void llama_memory_seq_add( // Only use when saving the state, not when restoring it, otherwise the size may be too small. // 函数: llama_state_get_size // 描述: llama_state_get_size函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  // 函数: llama_state_get_size // 描述: llama_state_get_size函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  // 函数: llama_state_get_size // 描述: llama_state_get_size函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  LLAMA_API size_t llama_state_get_size(struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: // 函数: DEPRECATED // 描述: 执行主要功能 // 参数: 无参数 // 返回: 无返回值 // 函数: DEPRECATED // 描述: 执行主要功能 // 参数: 无参数 // 返回: 无返回值 LLAMA_API DEPRECATED(size_t llama_get_state_size(struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_set_adapters_lora
+    // 描述: llama_set_adapters_lora函数提供相关功能
+    // 参数: "use llama_state_get_size instead"
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_set_adapters_lora(
-            struct llama_context * ctx,
-            struct llama_adapter_lora ** adapters,
-            size_t n_adapters,
-            float * scales);
-
-    // Apply a loaded control vector to a llama_context, or if data is NULL, clear
-    // the currently loaded vector.
-    // n_embd should be the size of a single layer's control, and data should point
-    // to an n_embd x n_layers buffer starting from layer 1.
-    // il_start and il_end are the layer range the vector should apply to (both inclusive)
-    // See llama_control_vector_load in common to load a control vector.
-    LLAMA_API int32_t llama_set_adapter_cvec(
-            struct llama_context * ctx,
-                     const float * data,
-                          size_t   len,
-                         int32_t   n_embd,
-                         int32_t   il_start,
-                         int32_t   il_end);
-
-    //
-    // Memory
-    //
-
-    // Clear the memory contents
-    // If data == true, the data buffers will also be cleared together with the metadata
-    LLAMA_API void llama_memory_clear(
-            llama_memory_t mem,
-                      bool data);
-
-    // Removes all tokens that belong to the specified sequence and have positions in [p0, p1)
-    // Returns false if a partial sequence cannot be removed. Removing a whole sequence never fails
-    // seq_id < 0 : match any sequence
-    // p0 < 0     : [0,  p1]
-    // p1 < 0     : [p0, inf)
-    LLAMA_API bool llama_memory_seq_rm(
-            llama_memory_t mem,
-              llama_seq_id seq_id,
-                 llama_pos p0,
-                 llama_pos p1);
-
-    // Copy all tokens that belong to the specified sequence to another sequence
-    // p0 < 0 : [0,  p1]
-    // p1 < 0 : [p0, inf)
-    LLAMA_API void llama_memory_seq_cp(
-            llama_memory_t mem,
-              llama_seq_id seq_id_src,
-              llama_seq_id seq_id_dst,
-                 llama_pos p0,
-                 llama_pos p1);
-
-    // Removes all tokens that do not belong to the specified sequence
-    LLAMA_API void llama_memory_seq_keep(
-            llama_memory_t mem,
-              llama_seq_id seq_id);
-
-    // Adds relative position "delta" to all tokens that belong to the specified sequence and have positions in [p0, p1)
-    // p0 < 0 : [0,  p1]
-    // p1 < 0 : [p0, inf)
-    LLAMA_API void llama_memory_seq_add(
-            llama_memory_t mem,
-              llama_seq_id seq_id,
-                 llama_pos p0,
-                 llama_pos p1,
-                 llama_pos delta);
-
-    // Integer division of the positions by factor of `d > 1`
-    // p0 < 0 : [0,  p1]
-    // p1 < 0 : [p0, inf)
-    LLAMA_API void llama_memory_seq_div(
-            llama_memory_t mem,
-              llama_seq_id seq_id,
-                 llama_pos p0,
-                 llama_pos p1,
-                       int d);
-
-    // Returns the smallest position present in the memory for the specified sequence
-    // This is typically non-zero only for SWA caches
-    // Note that all positions in the range [pos_min, pos_max] are guaranteed to be present in the memory
-    // Return -1 if the sequence is empty
-    LLAMA_API llama_pos llama_memory_seq_pos_min(
-            llama_memory_t mem,
-              llama_seq_id seq_id);
-
-    // Returns the largest position present in the memory for the specified sequence
-    // Note that all positions in the range [pos_min, pos_max] are guaranteed to be present in the memory
-    // Return -1 if the sequence is empty
-    LLAMA_API llama_pos llama_memory_seq_pos_max(
-            llama_memory_t mem,
-              llama_seq_id seq_id);
-
-    // Check if the memory supports shifting
-    LLAMA_API bool llama_memory_can_shift(llama_memory_t mem);
-
-    //
-    // State / sessions
-    //
-
-    // Returns the *actual* size in bytes of the state
-    // (logits, embedding and memory)
-    // Only use when saving the state, not when restoring it, otherwise the size may be too small.
-    LLAMA_API size_t llama_state_get_size(struct llama_context * ctx);
-    LLAMA_API DEPRECATED(size_t llama_get_state_size(struct llama_context * ctx),
-        "use llama_state_get_size instead");
 
     // Copies the state to the specified destination address.
     // Destination needs to have allocated enough memory.
     // Returns the number of bytes copied
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, uint8_t * dst, size_t   size
+    // 返回: 无返回值
+
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: LLAMA_API DEPRECATED(size_t llama_copy_state_data( // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 结构体: llama_context // 描述: llama_context结构体提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, uint8_t * dst
+    // 返回: 无返回值
+
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: "use llama_state_get_data instead"
+    // 返回: 无返回值
+
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: // Set the state reading from the specified address // Returns the number of bytes read // 函数: llama_state_set_data // 描述: llama_state_set_data函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const uint8_t * src, size_t   size // 返回: 无返回值  // 函数: llama_state_set_data // 描述: llama_state_set_data函数提供相关功能 // 参数: LLAMA_API DEPRECATED(size_t llama_set_state_data( // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 结构体: llama_context // 描述: llama_context结构体提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const uint8_t * src // 返回: 无返回值  // 函数: llama_state_set_data // 描述: llama_state_set_data函数提供相关功能 // 参数: "use llama_state_set_data instead" // 返回: 无返回值  LLAMA_API size_t llama_state_set_data(  // Save/load session file // 函数: llama_state_load_file // 描述: llama_state_load_file函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * path_session, llama_token * tokens_out, size_t   n_token_capacity, size_t * n_token_count_out // 返回: 无返回值  // 函数: llama_state_load_file // 描述: llama_state_load_file函数提供相关功能 // 参数: LLAMA_API DEPRECATED(bool llama_load_session_file( // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 结构体: llama_context // 描述: llama_context结构体提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * path_session, llama_token * tokens_out, size_t   n_token_capacity, size_t * n_token_count_out // 返回: 无返回值  // 函数: llama_state_load_file // 描述: llama_state_load_file函数提供相关功能 // 参数: "use llama_state_load_file instead" // 返回: 无返回值  LLAMA_API bool llama_state_load_file(  // 函数: llama_state_save_file // 描述: llama_state_save_file函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * path_session, const llama_token * tokens, size_t   n_token_count // 返回: 无返回值  // 函数: llama_state_save_file // 描述: llama_state_save_file函数提供相关功能 // 参数: LLAMA_API DEPRECATED(bool llama_save_session_file( // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 结构体: llama_context // 描述: llama_context结构体提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * path_session, const llama_token * tokens, size_t   n_token_count // 返回: 无返回值  // 函数: llama_state_save_file // 描述: llama_state_save_file函数提供相关功能 // 参数: "use llama_state_save_file instead" // 返回: 无返回值  LLAMA_API bool llama_state_save_file(  // Get the exact size needed to copy the state of a single sequence // 函数: llama_state_seq_get_size // 描述: llama_state_seq_get_size函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, llama_seq_id   seq_id // 返回: 无返回值  // 函数: llama_state_seq_get_size // 描述: llama_state_seq_get_size函数提供相关功能 // 参数: // Copy the state of a single sequence into the specified buffer // 函数: llama_state_seq_get_data // 描述: llama_state_seq_get_data函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, uint8_t * dst, size_t   size, llama_seq_id   seq_id // 返回: 无返回值  LLAMA_API size_t llama_state_seq_get_data(  // Copy the sequence data (originally copied with `llama_state_seq_get_data` // 返回: 无返回值  // 函数: llama_state_seq_get_size // 描述: llama_state_seq_get_size函数提供相关功能 // 参数: // Returns: //  - Positive: Ok //  - Zero: Failed to load // 函数: llama_state_seq_set_data // 描述: llama_state_seq_set_data函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const uint8_t * src, size_t   size, llama_seq_id   dest_seq_id // 返回: 无返回值  // 函数: llama_state_seq_set_data // 描述: llama_state_seq_set_data函数提供相关功能 // 参数: // 函数: llama_state_seq_save_file // 描述: llama_state_seq_save_file函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * filepath, llama_seq_id   seq_id, const llama_token * tokens, size_t   n_token_count // 返回: 无返回值  LLAMA_API size_t llama_state_seq_save_file(  // 函数: llama_state_seq_load_file // 描述: llama_state_seq_load_file函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const char * filepath, llama_seq_id   dest_seq_id, llama_token * tokens_out, size_t   n_token_capacity, size_t * n_token_count_out // 返回: 无返回值  LLAMA_API size_t llama_state_seq_load_file(  // for backwards-compat #define LLAMA_STATE_SEQ_FLAGS_SWA_ONLY 1  // work only with partial states, such as SWA KV cache or recurrent cache (e.g. Mamba // 返回: 无返回值  LLAMA_API size_t llama_state_seq_set_data( #define LLAMA_STATE_SEQ_FLAGS_PARTIAL_ONLY 1  typedef uint32_t llama_state_seq_flags;  // 函数: llama_state_seq_get_size_ext // 描述: llama_state_seq_get_size_ext函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, llama_seq_id   seq_id, llama_state_seq_flags   flags // 返回: 无返回值  // 函数: llama_state_seq_get_size_ext // 描述: llama_state_seq_get_size_ext函数提供相关功能 // 参数: // 函数: llama_state_seq_get_data_ext // 描述: llama_state_seq_get_data_ext函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, uint8_t * dst, size_t   size, llama_seq_id   seq_id, llama_state_seq_flags   flags // 返回: 无返回值  LLAMA_API size_t llama_state_seq_get_data_ext(  // 函数: llama_state_seq_set_data_ext // 描述: llama_state_seq_set_data_ext函数提供相关功能 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, const uint8_t * src, size_t   size, llama_seq_id   dest_seq_id, llama_state_seq_flags   flags // 返回: 无返回值  LLAMA_API size_t llama_state_seq_set_data_ext(  // // Decoding //  // Return batch for single sequence of tokens // The sequence ID will be fixed to 0 // The position of the tokens will be tracked automatically by llama_decode // // NOTE: this is a helper function to facilitate transition to the new batch API - avoid using it // LLAMA_API struct llama_batch llama_batch_get_one( llama_token * tokens, int32_t   n_tokens // 返回: 无返回值  LLAMA_API size_t llama_state_seq_get_size_ext(  // Allocates a batch of tokens on the heap that can hold a maximum of n_tokens // Each token can be assigned up to n_seq_max sequence ids // The batch has to be freed with llama_batch_free( // 返回: 无返回值  LLAMA_API size_t llama_state_seq_get_size( // If embd != 0, llama_batch.embd will be allocated with size of n_tokens * embd * sizeof(float
+    // 返回: embd *类型返回值
+
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: // Otherwise, llama_batch.token will be allocated to store n_tokens llama_token // The rest of the llama_batch members are allocated with size n_tokens // All members are left uninitialized LLAMA_API struct llama_batch llama_batch_init( int32_t n_tokens, int32_t embd, int32_t n_seq_max
+    // 返回: 无返回值
+
+    // 函数: llama_state_get_data
+    // 描述: llama_state_get_data函数提供相关功能
+    // 参数: // Frees a batch of tokens allocated with llama_batch_init(
+    // 返回: 无返回值
+
     LLAMA_API size_t llama_state_get_data(
-            struct llama_context * ctx,
-                         uint8_t * dst,
-                          size_t   size);
-    LLAMA_API DEPRECATED(size_t llama_copy_state_data(
-            struct llama_context * ctx,
-                         uint8_t * dst),
-        "use llama_state_get_data instead");
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    // Set the state reading from the specified address
-    // Returns the number of bytes read
-    LLAMA_API size_t llama_state_set_data(
-            struct llama_context * ctx,
-                   const uint8_t * src,
-                          size_t   size);
-    LLAMA_API DEPRECATED(size_t llama_set_state_data(
-            struct llama_context * ctx,
-                   const uint8_t * src),
-        "use llama_state_set_data instead");
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    // Save/load session file
-    LLAMA_API bool llama_state_load_file(
-            struct llama_context * ctx,
-                      const char * path_session,
-                     llama_token * tokens_out,
-                          size_t   n_token_capacity,
-                          size_t * n_token_count_out);
-    LLAMA_API DEPRECATED(bool llama_load_session_file(
-            struct llama_context * ctx,
-                      const char * path_session,
-                     llama_token * tokens_out,
-                          size_t   n_token_capacity,
-                          size_t * n_token_count_out),
-        "use llama_state_load_file instead");
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    LLAMA_API bool llama_state_save_file(
-            struct llama_context * ctx,
-                      const char * path_session,
-               const llama_token * tokens,
-                          size_t   n_token_count);
-    LLAMA_API DEPRECATED(bool llama_save_session_file(
-            struct llama_context * ctx,
-                      const char * path_session,
-               const llama_token * tokens,
-                          size_t   n_token_count),
-        "use llama_state_save_file instead");
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    // Get the exact size needed to copy the state of a single sequence
-    LLAMA_API size_t llama_state_seq_get_size(
-            struct llama_context * ctx,
-                    llama_seq_id   seq_id);
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    // Copy the state of a single sequence into the specified buffer
-    LLAMA_API size_t llama_state_seq_get_data(
-            struct llama_context * ctx,
-                         uint8_t * dst,
-                          size_t   size,
-                    llama_seq_id   seq_id);
+    // 函数: llama_batch_free
+    // 描述: llama_batch_free函数提供相关功能
+    // 参数: struct llama_batch batch
+    // 返回: 无返回值
 
-    // Copy the sequence data (originally copied with `llama_state_seq_get_data`) into the specified sequence
-    // Returns:
-    //  - Positive: Ok
-    //  - Zero: Failed to load
-    LLAMA_API size_t llama_state_seq_set_data(
-            struct llama_context * ctx,
-                   const uint8_t * src,
-                          size_t   size,
-                    llama_seq_id   dest_seq_id);
-
-    LLAMA_API size_t llama_state_seq_save_file(
-            struct llama_context * ctx,
-                      const char * filepath,
-                    llama_seq_id   seq_id,
-               const llama_token * tokens,
-                          size_t   n_token_count);
-
-    LLAMA_API size_t llama_state_seq_load_file(
-            struct llama_context * ctx,
-                      const char * filepath,
-                    llama_seq_id   dest_seq_id,
-                     llama_token * tokens_out,
-                          size_t   n_token_capacity,
-                          size_t * n_token_count_out);
-
-// for backwards-compat
-#define LLAMA_STATE_SEQ_FLAGS_SWA_ONLY 1
-
-// work only with partial states, such as SWA KV cache or recurrent cache (e.g. Mamba)
-#define LLAMA_STATE_SEQ_FLAGS_PARTIAL_ONLY 1
-
-    typedef uint32_t llama_state_seq_flags;
-
-    LLAMA_API size_t llama_state_seq_get_size_ext(
-            struct llama_context * ctx,
-                    llama_seq_id   seq_id,
-           llama_state_seq_flags   flags);
-
-    LLAMA_API size_t llama_state_seq_get_data_ext(
-            struct llama_context * ctx,
-                         uint8_t * dst,
-                          size_t   size,
-                    llama_seq_id   seq_id,
-           llama_state_seq_flags   flags);
-
-    LLAMA_API size_t llama_state_seq_set_data_ext(
-            struct llama_context * ctx,
-                   const uint8_t * src,
-                          size_t   size,
-                    llama_seq_id   dest_seq_id,
-           llama_state_seq_flags   flags);
-
-    //
-    // Decoding
-    //
-
-    // Return batch for single sequence of tokens
-    // The sequence ID will be fixed to 0
-    // The position of the tokens will be tracked automatically by llama_decode
-    //
-    // NOTE: this is a helper function to facilitate transition to the new batch API - avoid using it
-    //
-    LLAMA_API struct llama_batch llama_batch_get_one(
-                  llama_token * tokens,
-                      int32_t   n_tokens);
-
-    // Allocates a batch of tokens on the heap that can hold a maximum of n_tokens
-    // Each token can be assigned up to n_seq_max sequence ids
-    // The batch has to be freed with llama_batch_free()
-    // If embd != 0, llama_batch.embd will be allocated with size of n_tokens * embd * sizeof(float)
-    // Otherwise, llama_batch.token will be allocated to store n_tokens llama_token
-    // The rest of the llama_batch members are allocated with size n_tokens
-    // All members are left uninitialized
-    LLAMA_API struct llama_batch llama_batch_init(
-            int32_t n_tokens,
-            int32_t embd,
-            int32_t n_seq_max);
-
-    // Frees a batch of tokens allocated with llama_batch_init()
     LLAMA_API void llama_batch_free(struct llama_batch batch);
 
     // Process a batch of tokens.
@@ -912,55 +2243,237 @@ extern "C" {
     // Can store the encoder output internally for later use by the decoder's cross-attention layers.
     //   0 - success
     // < 0 - error. the memory state is restored to the state before this call
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, // 类: llama_batch // 描述: llama_batch类提供相关功能 // 用途: 用于处理llama_batch相关的操作 // 类: llama_batch // 描述: llama_batch类提供相关功能 // 用途: 用于处理llama_batch相关的操作 struct llama_batch   batch
+    // 返回: 无返回值
+
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: // Process a batch of tokens. // Requires the context to have a memory. // For encode-decoder contexts, processes the batch using the decoder. // Positive return values does not mean a fatal error, but rather a warning. // Upon fatal-error or abort, the ubatches that managed to be been processed will remain in the memory state of the context //   To handle this correctly, query the memory state using llama_memory_seq_pos_min() and llama_memory_seq_pos_max(
+    // 返回: 无返回值
+
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: // Upon other return values, the memory state is restored to the state before this call //    0 - success //    1 - could not find a KV slot for the batch (try reducing the size of the batch or increase the context
+    // 返回: 无返回值
+
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: //    2 - aborted     (processed ubatches will remain in the context's memory
+    // 返回: 无返回值
+
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: //   -1 - invalid input batch // < -1 - fatal error (processed ubatches will remain in the context's memory
+    // 返回: 无返回值
+
+    // 函数: llama_encode
+    // 描述: 编码器函数，处理批次令牌而不使用KV缓存
+    // 参数: // 函数: llama_decode // 描述: 解码器函数，处理批次令牌并使用KV缓存 // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context * ctx, // 类: llama_batch // 描述: llama_batch类提供相关功能 // 用途: 用于处理llama_batch相关的操作 // 类: llama_batch // 描述: llama_batch类提供相关功能 // 用途: 用于处理llama_batch相关的操作 struct llama_batch   batch // 返回: 无返回值  // 函数: llama_decode // 描述: 解码器函数，处理批次令牌并使用KV缓存 // 参数: // Set the number of threads used for decoding // n_threads is the number of threads used for generation (single token // 返回: 无返回值  // 函数: llama_decode // 描述: 解码器函数，处理批次令牌并使用KV缓存 // 参数: // n_threads_batch is the number of threads used for prompt and batch processing (multiple tokens // 返回: 无返回值  // 函数: llama_decode // 描述: 解码器函数，处理批次令牌并使用KV缓存 // 参数: // 函数: llama_set_n_threads // 描述: llama_set_n_threads函数提供相关功能 // 参数: struct llama_context * ctx, int32_t n_threads, int32_t n_threads_batch // 返回: 无返回值  // 函数: llama_set_n_threads // 描述: llama_set_n_threads函数提供相关功能 // 参数: struct llama_context * ctx, int32_t n_threads, int32_t n_threads_batch // 返回: 无返回值  // 函数: llama_set_n_threads // 描述: llama_set_n_threads函数提供相关功能 // 参数: struct llama_context * ctx, int32_t n_threads, int32_t n_threads_batch // 返回: 无返回值  LLAMA_API void llama_set_n_threads(struct llama_context * ctx, int32_t n_threads, int32_t n_threads_batch // 返回: 无返回值  // 函数: llama_decode // 描述: 解码器函数，处理批次令牌并使用KV缓存 // 参数: // Get the number of threads used for generation of a single token. // 函数: llama_n_threads // 描述: llama_n_threads函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  // 函数: llama_n_threads // 描述: llama_n_threads函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  // 函数: llama_n_threads // 描述: llama_n_threads函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  // 函数: llama_n_threads // 描述: llama_n_threads函数提供相关功能 // 参数: struct llama_context * ctx // 返回: 无返回值  LLAMA_API int32_t llama_n_threads(struct llama_context * ctx // 返回: 无返回值  LLAMA_API int32_t llama_decode(  // Get the number of threads used for prompt and batch processing (multiple token
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_encode(
-            struct llama_context * ctx,
-              struct llama_batch   batch);
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
 
-    // Process a batch of tokens.
-    // Requires the context to have a memory.
-    // For encode-decoder contexts, processes the batch using the decoder.
-    // Positive return values does not mean a fatal error, but rather a warning.
-    // Upon fatal-error or abort, the ubatches that managed to be been processed will remain in the memory state of the context
-    //   To handle this correctly, query the memory state using llama_memory_seq_pos_min() and llama_memory_seq_pos_max()
-    // Upon other return values, the memory state is restored to the state before this call
-    //    0 - success
-    //    1 - could not find a KV slot for the batch (try reducing the size of the batch or increase the context)
-    //    2 - aborted     (processed ubatches will remain in the context's memory)
-    //   -1 - invalid input batch
-    // < -1 - fatal error (processed ubatches will remain in the context's memory)
-    LLAMA_API int32_t llama_decode(
-            struct llama_context * ctx,
-              struct llama_batch   batch);
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
 
-    // Set the number of threads used for decoding
-    // n_threads is the number of threads used for generation (single token)
-    // n_threads_batch is the number of threads used for prompt and batch processing (multiple tokens)
-    LLAMA_API void llama_set_n_threads(struct llama_context * ctx, int32_t n_threads, int32_t n_threads_batch);
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
 
-    // Get the number of threads used for generation of a single token.
-    LLAMA_API int32_t llama_n_threads(struct llama_context * ctx);
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
 
-    // Get the number of threads used for prompt and batch processing (multiple token).
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_n_threads_batch
+    // 描述: llama_n_threads_batch函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_n_threads_batch(struct llama_context * ctx);
 
     // Set whether the context outputs embeddings or not
     // TODO: rename to avoid confusion with llama_get_embeddings()
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
+    // 函数: llama_set_embeddings
+    // 描述: llama_set_embeddings函数提供相关功能
+    // 参数: struct llama_context * ctx, bool embeddings
+    // 返回: 无返回值
+
     LLAMA_API void llama_set_embeddings(struct llama_context * ctx, bool embeddings);
 
     // Set whether to use causal attention or not
     // If set to true, the model will only attend to the past tokens
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
+    // 函数: llama_set_causal_attn
+    // 描述: llama_set_causal_attn函数提供相关功能
+    // 参数: struct llama_context * ctx, bool causal_attn
+    // 返回: 无返回值
+
     LLAMA_API void llama_set_causal_attn(struct llama_context * ctx, bool causal_attn);
 
     // Set whether the model is in warmup mode or not
     // If true, all model tensors are activated during llama_decode() to load and cache their weights.
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
+    // 函数: llama_set_warmup
+    // 描述: llama_set_warmup函数提供相关功能
+    // 参数: struct llama_context * ctx, bool warmup
+    // 返回: 无返回值
+
     LLAMA_API void llama_set_warmup(struct llama_context * ctx, bool warmup);
 
     // Set abort callback
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
+    // 函数: llama_set_abort_callback
+    // 描述: llama_set_abort_callback函数提供相关功能
+    // 参数: struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data
+    // 返回: 无返回值
+
     LLAMA_API void llama_set_abort_callback(struct llama_context * ctx, ggml_abort_callback abort_callback, void * abort_callback_data);
 
     // Wait until all computations are finished
     // This is automatically done when using one of the functions below to obtain the computation results
     // and is not necessary to call it explicitly in most cases
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_synchronize
+    // 描述: llama_synchronize函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API void llama_synchronize(struct llama_context * ctx);
 
     // Token logits obtained from the last call to llama_decode()
@@ -1006,23 +2519,143 @@ extern "C" {
 
     // Get the backend sampled token for the ith token.
     // Returns LLAMA_TOKEN_NULL if no token was sampled.
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_get_sampled_token_ith(struct llama_context * ctx, int32_t i);
 
     // Get the backend sampled probabilites for the ith token
     // The index matches llama_get_sampled_token_ith().
     // Returns NULL if no probabilites were generated.
     LLAMA_API float *  llama_get_sampled_probs_ith      (struct llama_context * ctx, int32_t i);
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_probs_count_ith
+    // 描述: llama_get_sampled_probs_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_get_sampled_probs_count_ith(struct llama_context * ctx, int32_t i);
 
     // Get the backend sampled logits for the ith token
     // Returns NULL if no logits were sampled.
     LLAMA_API float *  llama_get_sampled_logits_ith      (struct llama_context * ctx, int32_t i);
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
+    // 函数: llama_get_sampled_logits_count_ith
+    // 描述: llama_get_sampled_logits_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_get_sampled_logits_count_ith(struct llama_context * ctx, int32_t i);
 
     // Get the backend sampled candidates (token ids) for the ith token
     // These are needed to map probability/logit indices to vocab token ids.
     // Returns NULL if no candidates were sampled.
     LLAMA_API llama_token * llama_get_sampled_candidates_ith      (struct llama_context * ctx, int32_t i);
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
+    // 函数: llama_get_sampled_candidates_count_ith
+    // 描述: llama_get_sampled_candidates_count_ith函数提供相关功能
+    // 参数: struct llama_context * ctx, int32_t i
+    // 返回: uint32_t类型返回值
+
     LLAMA_API uint32_t      llama_get_sampled_candidates_count_ith(struct llama_context * ctx, int32_t i);
 
     //
@@ -1031,34 +2664,604 @@ extern "C" {
 
     LLAMA_API const char * llama_vocab_get_text(const struct llama_vocab * vocab, llama_token token);
 
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_score
+    // 描述: llama_vocab_get_score函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
     LLAMA_API float llama_vocab_get_score(const struct llama_vocab * vocab, llama_token token);
 
     LLAMA_API enum llama_token_attr llama_vocab_get_attr(const struct llama_vocab * vocab, llama_token token);
 
     // Check if the token is supposed to end generation (end-of-generation, eg. EOS, EOT, etc.)
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_eog
+    // 描述: llama_vocab_is_eog函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
     LLAMA_API bool llama_vocab_is_eog(const struct llama_vocab * vocab, llama_token token);
 
     // Identify if Token Id is a control token or a render-able token
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_is_control
+    // 描述: llama_vocab_is_control函数提供相关功能
+    // 参数: const struct llama_vocab * vocab, llama_token token
+    // 返回: 无返回值
+
     LLAMA_API bool llama_vocab_is_control(const struct llama_vocab * vocab, llama_token token);
 
     // Special tokens
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_bos(const struct llama_vocab * vocab); // beginning-of-sentence
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_eos(const struct llama_vocab * vocab); // end-of-sentence
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_eot(const struct llama_vocab * vocab); // end-of-turn
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_sep(const struct llama_vocab * vocab); // sentence separator
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_nl (const struct llama_vocab * vocab); // next-line
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_pad(const struct llama_vocab * vocab); // padding
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_mask(const struct llama_vocab * vocab); // mask
 
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_bos
+    // 描述: llama_vocab_get_add_bos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API bool llama_vocab_get_add_bos(const struct llama_vocab * vocab);
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_eos
+    // 描述: llama_vocab_get_add_eos函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API bool llama_vocab_get_add_eos(const struct llama_vocab * vocab);
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_vocab_get_add_sep
+    // 描述: llama_vocab_get_add_sep函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API bool llama_vocab_get_add_sep(const struct llama_vocab * vocab);
 
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_pre(const struct llama_vocab * vocab);
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_suf(const struct llama_vocab * vocab);
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_mid(const struct llama_vocab * vocab);
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_pad(const struct llama_vocab * vocab);
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_rep(const struct llama_vocab * vocab);
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: const struct llama_vocab * vocab
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_vocab_fim_sep(const struct llama_vocab * vocab);
 
     DEPRECATED(LLAMA_API const char * llama_token_get_text(const struct llama_vocab * vocab, llama_token token), "use llama_vocab_get_text instead");
@@ -1100,80 +3303,37 @@ extern "C" {
     /// @param add_special Allow to add BOS and EOS tokens if model is configured to do so.
     /// @param parse_special Allow tokenizing special and/or control tokens which otherwise are not exposed and treated
     ///                      as plaintext. Does not insert a leading space.
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: const struct llama_vocab * vocab, const char * text, int32_t   text_len, llama_token * tokens, int32_t   n_tokens_max, bool   add_special, bool   parse_special
+    // 返回: 无返回值
+
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: // Token Id -> Piece. // Uses the vocabulary in the provided context. // Does not write null terminator to the buffer. // User can skip up to 'lstrip' leading spaces before copying (useful when encoding/decoding multiple tokens with 'add_space_prefix'
+    // 返回: 无返回值
+
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: // @param special If true, special tokens are rendered in the output. // 函数: llama_token_to_piece // 描述: llama_token_to_piece函数提供相关功能 // 参数: const struct llama_vocab * vocab, llama_token   token, char * buf, int32_t   length, int32_t   lstrip, bool   special // 返回: 无返回值  // 函数: llama_token_to_piece // 描述: llama_token_to_piece函数提供相关功能 // 参数: /// @details Convert the provided tokens into text (inverse of llama_tokenize(
+    // 返回: 无返回值
+
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: // 返回: 无返回值  // 函数: llama_token_to_piece // 描述: llama_token_to_piece函数提供相关功能 // 参数: /// @param text The char pointer must be large enough to hold the resulting text. /// @return Returns the number of chars/bytes on success, no more than text_len_max. /// @return Returns a negative number on failure - the number of chars/bytes that would have been returned. /// @param remove_special Allow to remove BOS and EOS tokens if model is configured to do so. /// @param unparse_special If true, special tokens are rendered in the output. // 函数: llama_detokenize // 描述: 将令牌转换回文本 // 参数: const struct llama_vocab * vocab, const llama_token * tokens, int32_t   n_tokens, char * text, int32_t   text_len_max, bool   remove_special, bool   unparse_special // 返回: 无返回值  // 函数: llama_detokenize // 描述: 将令牌转换回文本 // 参数: // // Chat templates //  /// Apply chat template. Inspired by hf apply_chat_template( // 返回: 无返回值  LLAMA_API int32_t llama_detokenize( /// /// NOTE: This function does not use a jinja parser. It only support a pre-defined list of template. See more: https://github.com/ggml-org/llama.cpp/wiki/Templates-supported-by-llama_chat_apply_template /// @param tmpl A Jinja template to use for this chat. /// @param chat Pointer to a list of multiple llama_chat_message /// @param n_msg Number of llama_chat_message in this chat /// @param add_ass Whether to end the prompt with the token(s // 返回: 无返回值  LLAMA_API int32_t llama_token_to_piece( /// @param buf A buffer to hold the output formatted prompt. The recommended alloc size is 2 * (total number of characters of all messages
+    // 返回: 无返回值
+
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: /// @param length The size of the allocated buffer /// @return The total number of bytes of the formatted prompt. If is it larger than the size of buffer, you may need to re-alloc it and then re-apply the template. // 函数: llama_chat_apply_template // 描述: 应用聊天模板 // 参数: const char * tmpl, const struct llama_chat_message * chat, size_t   n_msg, bool   add_ass, char * buf, int32_t   length // 返回: 无返回值  // 函数: llama_chat_apply_template // 描述: 应用聊天模板 // 参数: // Get list of built-in chat templates // 函数: llama_chat_builtin_templates // 描述: llama_chat_builtin_templates函数提供相关功能 // 参数: const char ** output, size_t len // 返回: 无返回值  LLAMA_API int32_t llama_chat_builtin_templates(const char ** output, size_t len // 返回: 无返回值  // 函数: llama_chat_apply_template // 描述: 应用聊天模板 // 参数: // // Sampling API // // Sample usage: // //    // prepare the sampling chain at the start //    auto sparams = llama_sampler_chain_default_params( // 返回: 无返回值  // 函数: llama_chat_apply_template // 描述: 应用聊天模板 // 参数: // //    llama_sampler * smpl = llama_sampler_chain_init(sparams // 返回: 无返回值  LLAMA_API int32_t llama_chat_apply_template( // //    llama_sampler_chain_add(smpl, llama_sampler_init_top_k(50)
+    // 返回: 无返回值
+
+    // 函数: llama_tokenize
+    // 描述: 将文本转换为令牌
+    // 参数: //    llama_sampler_chain_add(smpl, llama_sampler_init_top_p(0.9, 1)
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_tokenize(
-        const struct llama_vocab * vocab,
-                      const char * text,
-                         int32_t   text_len,
-                     llama_token * tokens,
-                         int32_t   n_tokens_max,
-                            bool   add_special,
-                            bool   parse_special);
-
-    // Token Id -> Piece.
-    // Uses the vocabulary in the provided context.
-    // Does not write null terminator to the buffer.
-    // User can skip up to 'lstrip' leading spaces before copying (useful when encoding/decoding multiple tokens with 'add_space_prefix')
-    // @param special If true, special tokens are rendered in the output.
-    LLAMA_API int32_t llama_token_to_piece(
-              const struct llama_vocab * vocab,
-                           llama_token   token,
-                                  char * buf,
-                               int32_t   length,
-                               int32_t   lstrip,
-                                  bool   special);
-
-    /// @details Convert the provided tokens into text (inverse of llama_tokenize()).
-    /// @param text The char pointer must be large enough to hold the resulting text.
-    /// @return Returns the number of chars/bytes on success, no more than text_len_max.
-    /// @return Returns a negative number on failure - the number of chars/bytes that would have been returned.
-    /// @param remove_special Allow to remove BOS and EOS tokens if model is configured to do so.
-    /// @param unparse_special If true, special tokens are rendered in the output.
-    LLAMA_API int32_t llama_detokenize(
-        const struct llama_vocab * vocab,
-               const llama_token * tokens,
-                         int32_t   n_tokens,
-                            char * text,
-                         int32_t   text_len_max,
-                            bool   remove_special,
-                            bool   unparse_special);
-
-    //
-    // Chat templates
-    //
-
-    /// Apply chat template. Inspired by hf apply_chat_template() on python.
-    ///
-    /// NOTE: This function does not use a jinja parser. It only support a pre-defined list of template. See more: https://github.com/ggml-org/llama.cpp/wiki/Templates-supported-by-llama_chat_apply_template
-    /// @param tmpl A Jinja template to use for this chat.
-    /// @param chat Pointer to a list of multiple llama_chat_message
-    /// @param n_msg Number of llama_chat_message in this chat
-    /// @param add_ass Whether to end the prompt with the token(s) that indicate the start of an assistant message.
-    /// @param buf A buffer to hold the output formatted prompt. The recommended alloc size is 2 * (total number of characters of all messages)
-    /// @param length The size of the allocated buffer
-    /// @return The total number of bytes of the formatted prompt. If is it larger than the size of buffer, you may need to re-alloc it and then re-apply the template.
-    LLAMA_API int32_t llama_chat_apply_template(
-                            const char * tmpl,
-       const struct llama_chat_message * chat,
-                                size_t   n_msg,
-                                  bool   add_ass,
-                                  char * buf,
-                               int32_t   length);
-
-    // Get list of built-in chat templates
-    LLAMA_API int32_t llama_chat_builtin_templates(const char ** output, size_t len);
-
-    //
-    // Sampling API
-    //
-    // Sample usage:
-    //
-    //    // prepare the sampling chain at the start
-    //    auto sparams = llama_sampler_chain_default_params();
-    //
-    //    llama_sampler * smpl = llama_sampler_chain_init(sparams);
-    //
-    //    llama_sampler_chain_add(smpl, llama_sampler_init_top_k(50));
-    //    llama_sampler_chain_add(smpl, llama_sampler_init_top_p(0.9, 1));
     //    llama_sampler_chain_add(smpl, llama_sampler_init_temp (0.8));
     //
     //    // typically, the chain should end with a sampler such as "greedy", "dist" or "mirostat"
@@ -1199,19 +3359,187 @@ extern "C" {
 
     typedef void * llama_sampler_context_t;
 
+    // 类: llama_sampler_data
+    // 描述: llama_sampler_data类提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 类: llama_sampler_data
+    // 描述: llama_sampler_data类提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
     struct llama_sampler_data {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * logits;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * probs;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * sampled;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * candidates;
     };
 
     // user code can implement the interface below in order to create custom llama_sampler
+    // 类: llama_sampler_i
+    // 描述: llama_sampler_i类提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 类: llama_sampler_i
+    // 描述: llama_sampler_i类提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
     struct llama_sampler_i {
         const char *           (*name)  (const struct llama_sampler * smpl);                                 // can be NULL
         void                   (*accept)(      struct llama_sampler * smpl, llama_token token);              // can be NULL
         void                   (*apply) (      struct llama_sampler * smpl, llama_token_data_array * cur_p); // required
         void                   (*reset) (      struct llama_sampler * smpl);                                 // can be NULL
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+        // 类: llama_sampler
+        // 描述: llama_sampler类提供相关功能
+        // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
         struct llama_sampler * (*clone) (const struct llama_sampler * smpl);                                 // can be NULL if ctx is NULL
         void                   (*free)  (      struct llama_sampler * smpl);                                 // can be NULL if ctx is NULL
 
@@ -1224,23 +3552,263 @@ extern "C" {
 
         // call after .backend_apply()
         void (*backend_accept)(
+                // 类: llama_sampler
+                // 描述: llama_sampler类提供相关功能
+                // 用途: 用于处理llama_sampler相关的操作
+                // 类: llama_sampler
+                // 描述: llama_sampler类提供相关功能
+                // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
                 struct llama_sampler * smpl,
+                // 类: ggml_context
+                // 描述: ggml_context类提供相关功能
+                // 用途: 用于处理ggml_context相关的操作
+                // 类: ggml_context
+                // 描述: ggml_context类提供相关功能
+                // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
                 struct ggml_context  * ctx,
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
                 struct ggml_cgraph   * gf,
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor   * selected_token);
 
         // call after .backend_init()
         void (*backend_apply)(
+                // 类: llama_sampler
+                // 描述: llama_sampler类提供相关功能
+                // 用途: 用于处理llama_sampler相关的操作
+                // 类: llama_sampler
+                // 描述: llama_sampler类提供相关功能
+                // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
                 struct llama_sampler      * smpl,
+                // 类: ggml_context
+                // 描述: ggml_context类提供相关功能
+                // 用途: 用于处理ggml_context相关的操作
+                // 类: ggml_context
+                // 描述: ggml_context类提供相关功能
+                // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
                 struct ggml_context       * ctx,
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
                 struct ggml_cgraph        * gf,
+                // 类: llama_sampler_data
+                // 描述: llama_sampler_data类提供相关功能
+                // 用途: 用于处理llama_sampler_data相关的操作
+                // 类: llama_sampler_data
+                // 描述: llama_sampler_data类提供相关功能
+                // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
+    // 结构体: llama_sampler_data
+    // 描述: llama_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_sampler_data相关的操作
                 struct llama_sampler_data * data);
 
         // called before graph execution to set inputs for the current ubatch
         void (*backend_set_input)(struct llama_sampler * smpl);
     };
 
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 类: llama_sampler
+    // 描述: llama_sampler类提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
+    // 结构体: llama_sampler
+    // 描述: llama_sampler结构体提供相关功能
+    // 用途: 用于处理llama_sampler相关的操作
     struct llama_sampler {
+        // 类: llama_sampler_i
+        // 描述: llama_sampler_i类提供相关功能
+        // 用途: 用于处理llama_sampler_i相关的操作
+        // 类: llama_sampler_i
+        // 描述: llama_sampler_i类提供相关功能
+        // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
+    // 结构体: llama_sampler_i
+    // 描述: llama_sampler_i结构体提供相关功能
+    // 用途: 用于处理llama_sampler_i相关的操作
         struct llama_sampler_i * iface;
 
         llama_sampler_context_t ctx;
@@ -1249,16 +3817,166 @@ extern "C" {
     // [EXPERIMENTAL]
     // attach a sampler to the context
     // note: prefer initializing the context with llama_context_params.samplers when possible
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_set_sampler
+    // 描述: llama_set_sampler函数提供相关功能
+    // 参数: struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl
+    // 返回: 无返回值
+
     LLAMA_API bool llama_set_sampler(struct llama_context * ctx, llama_seq_id seq_id, struct llama_sampler * smpl);
 
     // mirror of llama_sampler_i:
     LLAMA_API struct llama_sampler * llama_sampler_init  (      struct llama_sampler_i * iface, llama_sampler_context_t ctx);
     LLAMA_API const char *           llama_sampler_name  (const struct llama_sampler * smpl);
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_accept
+    // 描述: llama_sampler_accept函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token token
+    // 返回: 无返回值
+
     LLAMA_API void                   llama_sampler_accept(      struct llama_sampler * smpl, llama_token token);
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_apply
+    // 描述: llama_sampler_apply函数提供相关功能
+    // 参数: struct llama_sampler * smpl, llama_token_data_array * cur_p
+    // 返回: 无返回值
+
     LLAMA_API void                   llama_sampler_apply (      struct llama_sampler * smpl, llama_token_data_array * cur_p);
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_reset
+    // 描述: llama_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
     LLAMA_API void                   llama_sampler_reset (      struct llama_sampler * smpl);
     LLAMA_API struct llama_sampler * llama_sampler_clone (const struct llama_sampler * smpl);
     // important: do not free if the sampler has been added to a llama_sampler_chain (via llama_sampler_chain_add)
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_free
+    // 描述: 释放采样器资源
+    // 参数: struct llama_sampler * smpl
+    // 返回: 无返回值
+
     LLAMA_API void                   llama_sampler_free  (      struct llama_sampler * smpl);
 
     // llama_sampler_chain
@@ -1267,6 +3985,36 @@ extern "C" {
     LLAMA_API struct llama_sampler * llama_sampler_chain_init(struct llama_sampler_chain_params params);
 
     // important: takes ownership of the sampler object and will free it when llama_sampler_free is called
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_chain_add
+    // 描述: llama_sampler_chain_add函数提供相关功能
+    // 参数: struct llama_sampler * chain, struct llama_sampler * smpl
+    // 返回: 无返回值
+
     LLAMA_API void                   llama_sampler_chain_add(      struct llama_sampler * chain, struct llama_sampler * smpl);
 
     // return NULL if:
@@ -1277,6 +4025,36 @@ extern "C" {
     LLAMA_API struct llama_sampler * llama_sampler_chain_get(      struct llama_sampler * chain, int32_t i);
 
     // the total number of samplers in the chain
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
+    // 函数: llama_sampler_chain_n
+    // 描述: llama_sampler_chain_n函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: int类型返回值
+
     LLAMA_API int                    llama_sampler_chain_n  (const struct llama_sampler * chain);
 
     // after removing a sampler, the chain will no longer own it, and it will not be freed when the chain is freed
@@ -1444,6 +4222,36 @@ extern "C" {
     LLAMA_API struct llama_sampler * llama_sampler_init_infill(const struct llama_vocab * vocab);
 
     // Returns the seed used by the sampler if applicable, LLAMA_DEFAULT_SEED otherwise
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
+    // 函数: llama_sampler_get_seed
+    // 描述: llama_sampler_get_seed函数提供相关功能
+    // 参数: const struct llama_sampler * smpl
+    // 返回: 无返回值
+
     LLAMA_API uint32_t llama_sampler_get_seed(const struct llama_sampler * smpl);
 
     /// @details Sample and accept a token from the idx-th output of the last evaluation
@@ -1456,6 +4264,36 @@ extern "C" {
     //    llama_sampler_accept(smpl, token);
     //    return token;
     // Returns the sampled token
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
+    // 函数: llama_token
+    // 描述: llama_token函数提供相关功能
+    // 参数: struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx
+    // 返回: 无返回值
+
     LLAMA_API llama_token llama_sampler_sample(struct llama_sampler * smpl, struct llama_context * ctx, int32_t idx);
 
     // TODO: extend in the future
@@ -1468,11 +4306,71 @@ extern "C" {
     /// @details Build a split GGUF final path for this chunk.
     ///          llama_split_path(split_path, sizeof(split_path), "/models/ggml-model-q4_0", 2, 4) => split_path = "/models/ggml-model-q4_0-00002-of-00004.gguf"
     //  Returns the split_path length.
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_path
+    // 描述: llama_split_path函数提供相关功能
+    // 参数: char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_split_path(char * split_path, size_t maxlen, const char * path_prefix, int32_t split_no, int32_t split_count);
 
     /// @details Extract the path prefix from the split_path if and only if the split_no and split_count match.
     ///          llama_split_prefix(split_prefix, 64, "/models/ggml-model-q4_0-00002-of-00004.gguf", 2, 4) => split_prefix = "/models/ggml-model-q4_0"
     //  Returns the split_prefix length.
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
+    // 函数: llama_split_prefix
+    // 描述: llama_split_prefix函数提供相关功能
+    // 参数: char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count
+    // 返回: 无返回值
+
     LLAMA_API int32_t llama_split_prefix(char * split_prefix, size_t maxlen, const char * split_path, int32_t split_no, int32_t split_count);
 
     // Print system information
@@ -1481,7 +4379,67 @@ extern "C" {
     // Set callback for all future logging events.
     // If this is not called, or NULL is supplied, everything is output on stderr.
     // The logger state is global so these functions are NOT thread safe.
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_get
+    // 描述: llama_log_get函数提供相关功能
+    // 参数: ggml_log_callback * log_callback, void ** user_data
+    // 返回: 无返回值
+
     LLAMA_API void llama_log_get(ggml_log_callback * log_callback, void ** user_data);
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
+    // 函数: llama_log_set
+    // 描述: llama_log_set函数提供相关功能
+    // 参数: ggml_log_callback   log_callback, void *  user_data
+    // 返回: 无返回值
+
     LLAMA_API void llama_log_set(ggml_log_callback   log_callback, void *  user_data);
 
     //
@@ -1490,6 +4448,30 @@ extern "C" {
     // NOTE: Used by llama.cpp examples/tools, avoid using in third-party apps. Instead, do your own performance measurements.
     //
 
+    // 类: llama_perf_context_data
+    // 描述: llama_perf_context_data类提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 类: llama_perf_context_data
+    // 描述: llama_perf_context_data类提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
+    // 结构体: llama_perf_context_data
+    // 描述: llama_perf_context_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_context_data相关的操作
     struct llama_perf_context_data {
         // ms == milliseconds
         double t_start_ms;  // absolute start time
@@ -1502,6 +4484,30 @@ extern "C" {
         int32_t n_reused;   // number of times a ggml compute graph had been reused
     };
 
+    // 类: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data类提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 类: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data类提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
+    // 结构体: llama_perf_sampler_data
+    // 描述: llama_perf_sampler_data结构体提供相关功能
+    // 用途: 用于处理llama_perf_sampler_data相关的操作
     struct llama_perf_sampler_data {
         double t_sample_ms; // time needed for sampling in ms
 
@@ -1509,15 +4515,165 @@ extern "C" {
     };
 
     LLAMA_API struct llama_perf_context_data llama_perf_context      (const struct llama_context * ctx);
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_print
+    // 描述: llama_perf_context_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API void                           llama_perf_context_print(const struct llama_context * ctx);
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_perf_context_reset
+    // 描述: llama_perf_context_reset函数提供相关功能
+    // 参数: struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API void                           llama_perf_context_reset(      struct llama_context * ctx);
 
     // NOTE: the following work only with samplers constructed via llama_sampler_chain_init
     LLAMA_API struct llama_perf_sampler_data llama_perf_sampler      (const struct llama_sampler * chain);
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_print
+    // 描述: llama_perf_sampler_print函数提供相关功能
+    // 参数: const struct llama_sampler * chain
+    // 返回: 无返回值
+
     LLAMA_API void                           llama_perf_sampler_print(const struct llama_sampler * chain);
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
+    // 函数: llama_perf_sampler_reset
+    // 描述: llama_perf_sampler_reset函数提供相关功能
+    // 参数: struct llama_sampler * chain
+    // 返回: 无返回值
+
     LLAMA_API void                           llama_perf_sampler_reset(      struct llama_sampler * chain);
 
     // print a breakdown of per-device memory use via LLAMA_LOG:
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
+    // 函数: llama_memory_breakdown_print
+    // 描述: llama_memory_breakdown_print函数提供相关功能
+    // 参数: const struct llama_context * ctx
+    // 返回: 无返回值
+
     LLAMA_API void llama_memory_breakdown_print(const struct llama_context * ctx);
 
     //
@@ -1525,11 +4681,73 @@ extern "C" {
     //
 
     // function that returns whether or not a given tensor contains trainable parameters
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef bool (*llama_opt_param_filter)(const struct ggml_tensor * tensor, void * userdata);
 
     // always returns true
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
+    // 函数: llama_opt_param_filter_all
+    // 描述: llama_opt_param_filter_all函数提供相关功能
+    // 参数: const struct ggml_tensor * tensor, void * userdata
+    // 返回: 无返回值
+
     LLAMA_API bool llama_opt_param_filter_all(const struct ggml_tensor * tensor, void * userdata);
 
+    // 类: llama_opt_params
+    // 描述: llama_opt_params类提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 类: llama_opt_params
+    // 描述: llama_opt_params类提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
     struct llama_opt_params {
         uint32_t n_ctx_train; // assumed context size post training, use context size specified in llama_context if 0
 
@@ -1542,19 +4760,66 @@ extern "C" {
         enum ggml_opt_optimizer_type optimizer_type;
     };
 
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
+    // 函数: llama_opt_init
+    // 描述: llama_opt_init函数提供相关功能
+    // 参数: struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params
+    // 返回: 无返回值
+
     LLAMA_API void llama_opt_init(struct llama_context * lctx, struct llama_model * model, struct llama_opt_params lopt_params);
 
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 // 类: llama_context // 描述: llama_context类提供相关功能 // 用途: 用于处理llama_context相关的操作 struct llama_context    * lctx, ggml_opt_dataset_t        dataset, ggml_opt_result_t         result_train, ggml_opt_result_t         result_eval, int64_t                   idata_split, ggml_opt_epoch_callback   callback_train, ggml_opt_epoch_callback   callback_eval
+    // 返回: 无返回值
+
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
+    // 函数: llama_opt_epoch
+    // 描述: llama_opt_epoch函数提供相关功能
+    // 参数: 无参数
+    // 返回: 无返回值
+
     LLAMA_API void llama_opt_epoch(
-            struct llama_context    * lctx,
-            ggml_opt_dataset_t        dataset,
-            ggml_opt_result_t         result_train,
-            ggml_opt_result_t         result_eval,
-            int64_t                   idata_split,
-            ggml_opt_epoch_callback   callback_train,
-            ggml_opt_epoch_callback   callback_eval);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif // LLAMA_H

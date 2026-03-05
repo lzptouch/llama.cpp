@@ -28,6 +28,30 @@ enum patch_merge_type {
     PATCH_MERGE_SPATIAL_UNPAD,
 };
 
+// 类: clip_hparams
+// 描述: clip_hparams类提供相关功能
+// 用途: 用于处理clip_hparams相关的操作
+// 类: clip_hparams
+// 描述: clip_hparams类提供相关功能
+// 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
+    // 结构体: clip_hparams
+    // 描述: clip_hparams结构体提供相关功能
+    // 用途: 用于处理clip_hparams相关的操作
 struct clip_hparams {
     int32_t image_size = 0;
     int32_t patch_size = 0;
@@ -84,6 +108,14 @@ struct clip_hparams {
     int32_t custom_image_min_tokens = -1;
     int32_t custom_image_max_tokens = -1;
 
+    // 函数: set_limit_image_tokens
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_limit_image_tokens
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_limit_image_tokens(int n_tokens_min, int n_tokens_max) {
         const int cur_merge = n_merge == 0 ? 1 : n_merge;
         const int patch_area = patch_size * patch_size * cur_merge * cur_merge;
@@ -92,6 +124,14 @@ struct clip_hparams {
         warmup_image_size = static_cast<int>(std::sqrt(image_max_pixels));
     }
 
+    // 函数: set_warmup_n_tokens
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_warmup_n_tokens
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_warmup_n_tokens(int n_tokens) {
         int n_tok_per_side = static_cast<int>(std::sqrt(n_tokens));
         GGML_ASSERT(n_tok_per_side * n_tok_per_side == n_tokens && "n_tokens must be n*n");
@@ -101,6 +141,30 @@ struct clip_hparams {
     }
 };
 
+// 类: clip_layer
+// 描述: clip_layer类提供相关功能
+// 用途: 用于处理clip_layer相关的操作
+// 类: clip_layer
+// 描述: clip_layer类提供相关功能
+// 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
+    // 结构体: clip_layer
+    // 描述: clip_layer结构体提供相关功能
+    // 用途: 用于处理clip_layer相关的操作
 struct clip_layer {
     // attention
     ggml_tensor * k_w = nullptr;
@@ -169,12 +233,44 @@ struct clip_layer {
     ggml_tensor * conv_pw2_w    = nullptr;
     ggml_tensor * conv_pw2_b    = nullptr;
 
+    // 函数: has_deepstack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_deepstack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_deepstack() const {
         return deepstack_fc1_w != nullptr;
     }
 };
 
 // Expanded MobileNetV5 block structure for Gemma3n vision encoder
+// 类: mobilenetv5_block
+// 描述: mobilenetv5_block类提供相关功能
+// 用途: 用于处理mobilenetv5_block相关的操作
+// 类: mobilenetv5_block
+// 描述: mobilenetv5_block类提供相关功能
+// 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
+    // 结构体: mobilenetv5_block
+    // 描述: mobilenetv5_block结构体提供相关功能
+    // 用途: 用于处理mobilenetv5_block相关的操作
 struct mobilenetv5_block {
     // Stage 0 (Edge Residual)
     ggml_tensor * s0_conv_exp_w = nullptr;
@@ -213,6 +309,30 @@ struct mobilenetv5_block {
     ggml_tensor * attn_norm_w   = nullptr;
 };
 
+// 类: clip_model
+// 描述: clip_model类提供相关功能
+// 用途: 用于处理clip_model相关的操作
+// 类: clip_model
+// 描述: clip_model类提供相关功能
+// 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
+    // 结构体: clip_model
+    // 描述: clip_model结构体提供相关功能
+    // 用途: 用于处理clip_model相关的操作
 struct clip_model {
     clip_modality modality = CLIP_MODALITY_VISION;
     projector_type proj_type = PROJECTOR_TYPE_MLP;
@@ -375,16 +495,40 @@ struct clip_model {
     ggml_tensor * pre_encode_out_w = nullptr;
     ggml_tensor * pre_encode_out_b = nullptr;
 
+    // 函数: audio_has_avgpool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: audio_has_avgpool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool audio_has_avgpool() const {
         return proj_type == PROJECTOR_TYPE_QWEN2A
             || proj_type == PROJECTOR_TYPE_VOXTRAL
             || proj_type == PROJECTOR_TYPE_MUSIC_FLAMINGO;
     }
 
+    // 函数: audio_has_stack_frames
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: audio_has_stack_frames
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool audio_has_stack_frames() const {
         return proj_type == PROJECTOR_TYPE_ULTRAVOX
             || proj_type == PROJECTOR_TYPE_VOXTRAL;
     }
 };
 
+// 函数: clip_get_hparams
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_hparams
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const clip_hparams * clip_get_hparams(const struct clip_ctx * ctx);

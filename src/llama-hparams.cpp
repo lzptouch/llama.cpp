@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-hparams.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-hparams.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-hparams.h"
 
 #include "ggml.h"
@@ -197,10 +204,26 @@ bool llama_hparams::is_mla() const {
 }
 
 uint32_t llama_hparams::n_embd_head_k_mla() const {
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return is_mla() ? n_embd_head_k_mla_impl : n_embd_head_k;
 }
 
 uint32_t llama_hparams::n_embd_head_v_mla() const {
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_mla
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return is_mla() ? n_embd_head_v_mla_impl : n_embd_head_v;
 }
 

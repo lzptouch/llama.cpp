@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-metal.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-metal/ggml-metal.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-metal.h"
 
 #include "ggml-impl.h"
@@ -23,6 +30,14 @@ static int g_devices = 1;
 
 // shared buffer
 
+// 函数: ggml_backend_metal_buffer_shared_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_shared_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -31,6 +46,14 @@ static void ggml_backend_metal_buffer_shared_free_buffer(ggml_backend_buffer_t b
     ggml_metal_buffer_free(ctx);
 }
 
+// 函数: ggml_backend_metal_buffer_shared_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_metal_buffer_shared_get_base(ggml_backend_buffer_t buffer) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -39,6 +62,14 @@ static void * ggml_backend_metal_buffer_shared_get_base(ggml_backend_buffer_t bu
     return ggml_metal_buffer_get_base(ctx);
 }
 
+// 函数: ggml_backend_metal_buffer_shared_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_shared_memset_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -47,6 +78,14 @@ static void ggml_backend_metal_buffer_shared_memset_tensor(ggml_backend_buffer_t
     ggml_metal_buffer_memset_tensor(ctx, tensor, value, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_shared_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_shared_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -55,6 +94,14 @@ static void ggml_backend_metal_buffer_shared_set_tensor(ggml_backend_buffer_t bu
     ggml_metal_buffer_set_tensor(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_shared_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_shared_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -63,6 +110,14 @@ static void ggml_backend_metal_buffer_shared_get_tensor(ggml_backend_buffer_t bu
     ggml_metal_buffer_get_tensor(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_shared_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_buffer_shared_cpy_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * src, ggml_tensor * dst) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -75,6 +130,14 @@ static bool ggml_backend_metal_buffer_shared_cpy_tensor(ggml_backend_buffer_t bu
     return false;
 }
 
+// 函数: ggml_backend_metal_buffer_shared_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_shared_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_shared_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -97,6 +160,14 @@ static ggml_backend_buffer_i ggml_backend_metal_buffer_shared_i = {
 
 // private buffer
 
+// 函数: ggml_backend_metal_buffer_private_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_private_free_buffer(ggml_backend_buffer_t buffer) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -105,6 +176,14 @@ static void ggml_backend_metal_buffer_private_free_buffer(ggml_backend_buffer_t 
     ggml_metal_buffer_free(ctx);
 }
 
+// 函数: ggml_backend_metal_buffer_private_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_metal_buffer_private_get_base(ggml_backend_buffer_t buffer) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -113,6 +192,14 @@ static void * ggml_backend_metal_buffer_private_get_base(ggml_backend_buffer_t b
     return ggml_metal_buffer_get_base(ctx);
 }
 
+// 函数: ggml_backend_metal_buffer_private_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_private_memset_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -121,6 +208,14 @@ static void ggml_backend_metal_buffer_private_memset_tensor(ggml_backend_buffer_
     ggml_metal_buffer_memset_tensor(ctx, tensor, value, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_private_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_private_set_tensor(ggml_backend_buffer_t buffer, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -129,6 +224,14 @@ static void ggml_backend_metal_buffer_private_set_tensor(ggml_backend_buffer_t b
     ggml_metal_buffer_set_tensor(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_private_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_private_get_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -137,6 +240,14 @@ static void ggml_backend_metal_buffer_private_get_tensor(ggml_backend_buffer_t b
     ggml_metal_buffer_get_tensor(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_buffer_private_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_buffer_private_cpy_tensor(ggml_backend_buffer_t buffer, const ggml_tensor * src, ggml_tensor * dst) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -149,6 +260,14 @@ static bool ggml_backend_metal_buffer_private_cpy_tensor(ggml_backend_buffer_t b
     return false;
 }
 
+// 函数: ggml_backend_metal_buffer_private_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_private_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_buffer_private_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     ggml_metal_buffer_t ctx = (ggml_metal_buffer_t)buffer->context;
 
@@ -169,6 +288,14 @@ static ggml_backend_buffer_i ggml_backend_metal_buffer_private_i = {
     /* .reset           = */ NULL,
 };
 
+// 函数: ggml_backend_buffer_is_metal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_metal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_buffer_is_metal(ggml_backend_buffer_t buffer) {
     return buffer->iface.free_buffer == ggml_backend_metal_buffer_shared_free_buffer ||
            buffer->iface.free_buffer == ggml_backend_metal_buffer_private_free_buffer;
@@ -178,12 +305,56 @@ static bool ggml_backend_buffer_is_metal(ggml_backend_buffer_t buffer) {
 // buffer types
 //
 
+// 类: ggml_backend_metal_buffer_type
+// 描述: ggml_backend_metal_buffer_type类提供相关功能
+// 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
+// 类: ggml_backend_metal_buffer_type
+// 描述: ggml_backend_metal_buffer_type类提供相关功能
+// 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
+    // 结构体: ggml_backend_metal_buffer_type
+    // 描述: ggml_backend_metal_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
+    // 结构体: ggml_backend_metal_buffer_type
+    // 描述: ggml_backend_metal_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
+    // 结构体: ggml_backend_metal_buffer_type
+    // 描述: ggml_backend_metal_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
+    // 结构体: ggml_backend_metal_buffer_type
+    // 描述: ggml_backend_metal_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type相关的操作
 struct ggml_backend_metal_buffer_type {
     int device;
     std::string name;
 };
 
+// 类: ggml_backend_metal_buffer_type_deleter
+// 描述: ggml_backend_metal_buffer_type_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
+// 类: ggml_backend_metal_buffer_type_deleter
+// 描述: ggml_backend_metal_buffer_type_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
+    // 结构体: ggml_backend_metal_buffer_type_deleter
+    // 描述: ggml_backend_metal_buffer_type_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
+    // 结构体: ggml_backend_metal_buffer_type_deleter
+    // 描述: ggml_backend_metal_buffer_type_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
+    // 结构体: ggml_backend_metal_buffer_type_deleter
+    // 描述: ggml_backend_metal_buffer_type_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
+    // 结构体: ggml_backend_metal_buffer_type_deleter
+    // 描述: ggml_backend_metal_buffer_type_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_buffer_type_deleter相关的操作
 struct ggml_backend_metal_buffer_type_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(ggml_backend_metal_buffer_type * ctx) const {
         delete ctx;
     }
@@ -192,6 +363,14 @@ struct ggml_backend_metal_buffer_type_deleter {
 typedef std::unique_ptr<ggml_backend_metal_buffer_type, ggml_backend_metal_buffer_type_deleter> ggml_backend_metal_buffer_type_ptr;
 
 // common method for allocating shread or private Metal buffers
+// 函数: ggml_backend_metal_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_metal_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size, bool shared) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)buft->device->context;
     ggml_metal_buffer_t res = ggml_metal_buffer_init(ctx_dev, size, shared);
@@ -203,6 +382,14 @@ static ggml_backend_buffer_t ggml_backend_metal_buffer_type_alloc_buffer(ggml_ba
     return ggml_backend_buffer_init(buft, buf_i, res, size);
 }
 
+// 函数: ggml_backend_metal_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     size_t res = ggml_nbytes(tensor);
 
@@ -239,38 +426,94 @@ static size_t ggml_backend_metal_buffer_type_get_alloc_size(ggml_backend_buffer_
 
 // default (shared) buffer type
 
+// 函数: ggml_backend_metal_buffer_type_shared_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_buffer_type_shared_get_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_metal_buffer_type * ctx = (ggml_backend_metal_buffer_type *)buft->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_metal_buffer_type_shared_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     return ggml_backend_metal_buffer_type_alloc_buffer(buft, size, true);
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_shared_get_alignment(ggml_backend_buffer_type_t buft) {
     return 32;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_shared_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)buft->device->context;
 
     return ggml_metal_device_get_props(ctx_dev)->max_buffer_size;
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_shared_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     return ggml_backend_metal_buffer_type_get_alloc_size(buft, tensor);
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_buffer_type_shared_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_shared
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_shared
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_shared(int device) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -315,38 +558,94 @@ static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_shared(int devi
 
 // default (private) buffer type
 
+// 函数: ggml_backend_metal_buffer_type_private_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_buffer_type_private_get_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_metal_buffer_type * ctx = (ggml_backend_metal_buffer_type *)buft->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_metal_buffer_type_private_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_metal_buffer_type_private_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     return ggml_backend_metal_buffer_type_alloc_buffer(buft, size, false);
 }
 
+// 函数: ggml_backend_metal_buffer_type_private_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_private_get_alignment(ggml_backend_buffer_type_t buft) {
     return 32;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_private_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_private_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)buft->device->context;
 
     return ggml_metal_device_get_props(ctx_dev)->max_buffer_size;
 }
 
+// 函数: ggml_backend_metal_buffer_type_private_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_private_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     return ggml_backend_metal_buffer_type_get_alloc_size(buft, tensor);
 }
 
+// 函数: ggml_backend_metal_buffer_type_private_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_buffer_type_private_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_private
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_private
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_private(int device) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -390,39 +689,95 @@ static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_private(int dev
 
 // mapped buffer type
 
+// 函数: ggml_backend_metal_buffer_type_mapped_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_buffer_type_mapped_get_name(ggml_backend_buffer_type_t buft) {
     ggml_backend_metal_buffer_type * ctx = (ggml_backend_metal_buffer_type *)buft->context;
 
     return ctx->name.c_str();
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_metal_buffer_type_mapped_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     // for mapped buffers, prefer shared memory
     return ggml_backend_metal_buffer_type_alloc_buffer(buft, size, true);
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_mapped_get_alignment(ggml_backend_buffer_type_t buft) {
     return 32;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_mapped_get_max_size(ggml_backend_buffer_type_t buft) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)buft->device->context;
 
     return ggml_metal_device_get_props(ctx_dev)->max_buffer_size;
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_buffer_type_mapped_get_alloc_size(ggml_backend_buffer_type_t buft, const ggml_tensor * tensor) {
     return ggml_backend_metal_buffer_type_get_alloc_size(buft, tensor);
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_buffer_type_mapped_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_metal_buffer_type_mapped
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_buffer_type_mapped
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_mapped(int device) {
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -468,12 +823,28 @@ static ggml_backend_buffer_type_t ggml_backend_metal_buffer_type_mapped(int devi
 
 // backend
 
+// 函数: ggml_backend_metal_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_name(ggml_backend_t backend) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
     return ggml_metal_get_name(ctx);
 }
 
+// 函数: ggml_backend_metal_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_free(ggml_backend_t backend) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
@@ -485,24 +856,56 @@ static void ggml_backend_metal_free(ggml_backend_t backend) {
     free(backend);
 }
 
+// 函数: ggml_backend_metal_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_synchronize(ggml_backend_t backend) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
     ggml_metal_synchronize(ctx);
 }
 
+// 函数: ggml_backend_metal_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_set_tensor_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_set_tensor_async(ggml_backend_t backend, ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
     ggml_metal_set_tensor_async(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_get_tensor_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_get_tensor_async(ggml_backend_t backend, const ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
     ggml_metal_get_tensor_async(ctx, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_metal_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_cpy_tensor_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_cpy_tensor_async(ggml_backend_t backend_src, ggml_backend_t backend_dst, const ggml_tensor * src, ggml_tensor * dst) {
     if (!ggml_backend_is_metal(backend_src) || !ggml_backend_is_metal(backend_dst)) {
         return false;
@@ -527,9 +930,25 @@ static bool ggml_backend_metal_cpy_tensor_async(ggml_backend_t backend_src, ggml
 static enum ggml_status ggml_backend_metal_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
+    // 函数: ggml_metal_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_metal_graph_compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_metal_graph_compute(ctx, cgraph);
 }
 
+// 函数: ggml_backend_metal_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_event_record(ggml_backend_t backend, ggml_backend_event_t event) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
     ggml_metal_event_t ev = (ggml_metal_event_t)event->context;
@@ -537,6 +956,14 @@ static void ggml_backend_metal_event_record(ggml_backend_t backend, ggml_backend
     ggml_metal_event_record(ctx, ev);
 }
 
+// 函数: ggml_backend_metal_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_event_wait(ggml_backend_t backend, ggml_backend_event_t event) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
     ggml_metal_event_t ev = (ggml_metal_event_t)event->context;
@@ -544,12 +971,28 @@ static void ggml_backend_metal_event_wait(ggml_backend_t backend, ggml_backend_e
     ggml_metal_event_wait(ctx, ev);
 }
 
+// 函数: ggml_backend_metal_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_graph_optimize(ggml_backend_t backend, ggml_cgraph * cgraph) {
     ggml_metal_t ctx = (ggml_metal_t)backend->context;
 
     ggml_metal_graph_optimize(ctx, cgraph);
 }
 
+// 函数: ggml_backend_metal_set_n_cb
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_set_n_cb
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_set_n_cb(ggml_backend_t backend, int n_cb) {
     GGML_ASSERT(ggml_backend_is_metal(backend));
 
@@ -575,11 +1018,27 @@ static ggml_backend_i ggml_backend_metal_i = {
     /* .graph_optimize          = */ ggml_backend_metal_graph_optimize,
 };
 
+// 函数: ggml_backend_metal_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_metal_guid(void) {
     static ggml_guid guid = { 0x81, 0xa1, 0x8b, 0x1e, 0x71, 0xec, 0x79, 0xed, 0x2b, 0x85, 0xdc, 0x8a, 0x61, 0x98, 0x30, 0xe6 };
     return &guid;
 }
 
+// 函数: ggml_backend_metal_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_metal_init(void) {
     ggml_backend_dev_t dev = ggml_backend_reg_dev_get(ggml_backend_metal_reg(), 0);
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
@@ -604,10 +1063,26 @@ ggml_backend_t ggml_backend_metal_init(void) {
     return backend;
 }
 
+// 函数: ggml_backend_is_metal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_metal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_metal(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_metal_guid());
 }
 
+// 函数: ggml_backend_metal_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_metal_set_abort_callback(ggml_backend_t backend, ggml_abort_callback abort_callback, void * user_data) {
     GGML_ASSERT(ggml_backend_is_metal(backend));
 
@@ -616,6 +1091,14 @@ void ggml_backend_metal_set_abort_callback(ggml_backend_t backend, ggml_abort_ca
     ggml_metal_set_abort_callback(ctx, abort_callback, user_data);
 }
 
+// 函数: ggml_backend_metal_supports_family
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_supports_family
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_metal_supports_family(ggml_backend_t backend, int family) {
     GGML_ASSERT(ggml_backend_is_metal(backend));
 
@@ -624,6 +1107,14 @@ bool ggml_backend_metal_supports_family(ggml_backend_t backend, int family) {
     return ggml_metal_supports_family(ctx, family);
 }
 
+// 函数: ggml_backend_metal_capture_next_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_capture_next_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_metal_capture_next_compute(ggml_backend_t backend) {
     GGML_ASSERT(ggml_backend_is_metal(backend));
 
@@ -634,6 +1125,14 @@ void ggml_backend_metal_capture_next_compute(ggml_backend_t backend) {
 
 // backend device
 
+// 函数: ggml_backend_metal_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_device_get_name(ggml_backend_dev_t dev) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -642,12 +1141,28 @@ static const char * ggml_backend_metal_device_get_name(ggml_backend_dev_t dev) {
     return props_dev->name;
 }
 
+// 函数: ggml_backend_metal_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_device_get_description(ggml_backend_dev_t dev) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
     return ggml_metal_device_get_props(ctx_dev)->desc;
 }
 
+// 函数: ggml_backend_metal_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -660,6 +1175,14 @@ static enum ggml_backend_dev_type ggml_backend_metal_device_get_type(ggml_backen
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_metal_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_device_get_props(ggml_backend_dev_t dev, ggml_backend_dev_props * props) {
     props->name        = ggml_backend_metal_device_get_name(dev);
     props->description = ggml_backend_metal_device_get_description(dev);
@@ -675,6 +1198,14 @@ static void ggml_backend_metal_device_get_props(ggml_backend_dev_t dev, ggml_bac
     };
 }
 
+// 函数: ggml_backend_metal_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_metal_device_init_backend(ggml_backend_dev_t dev, const char * params) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -700,6 +1231,14 @@ static ggml_backend_t ggml_backend_metal_device_init_backend(ggml_backend_dev_t 
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_metal_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_metal_device_get_buffer_type(ggml_backend_dev_t dev) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -708,6 +1247,14 @@ static ggml_backend_buffer_type_t ggml_backend_metal_device_get_buffer_type(ggml
     return props_dev->use_shared_buffers ? ggml_backend_metal_buffer_type_shared(props_dev->device) : ggml_backend_metal_buffer_type_private(props_dev->device);
 }
 
+// 函数: ggml_backend_metal_device_buffer_mapped
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_buffer_mapped
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_metal_device_buffer_mapped(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -718,12 +1265,28 @@ static ggml_backend_buffer_t ggml_backend_metal_device_buffer_mapped(ggml_backen
     return ggml_backend_buffer_init(ggml_backend_metal_buffer_type_mapped(props_dev->device), ggml_backend_metal_buffer_shared_i, res, size);
 }
 
+// 函数: ggml_backend_metal_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
     return ggml_metal_device_supports_op(ctx_dev, op);
 }
 
+// 函数: ggml_backend_metal_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     return
         buft->device == dev && (
@@ -734,6 +1297,14 @@ static bool ggml_backend_metal_device_supports_buft(ggml_backend_dev_t dev, ggml
     GGML_UNUSED(dev);
 }
 
+// 函数: get_op_batch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_op_batch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int64_t get_op_batch_size(const ggml_tensor * op) {
     switch (op->op) {
         case GGML_OP_MUL_MAT:
@@ -745,6 +1316,14 @@ static int64_t get_op_batch_size(const ggml_tensor * op) {
     }
 }
 
+// 函数: ggml_backend_metal_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_metal_device_offload_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -753,6 +1332,14 @@ static bool ggml_backend_metal_device_offload_op(ggml_backend_dev_t dev, const g
             get_op_batch_size(op) >= ggml_metal_device_get_props(ctx_dev)->op_offload_min_batch_size;
 }
 
+// 函数: ggml_backend_metal_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_event_t ggml_backend_metal_device_event_new(ggml_backend_dev_t dev) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -767,6 +1354,14 @@ static ggml_backend_event_t ggml_backend_metal_device_event_new(ggml_backend_dev
     return ev;
 }
 
+// 函数: ggml_backend_metal_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_device_event_free(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -777,6 +1372,14 @@ static void ggml_backend_metal_device_event_free(ggml_backend_dev_t dev, ggml_ba
     delete event;
 }
 
+// 函数: ggml_backend_metal_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_device_event_synchronize(ggml_backend_dev_t dev, ggml_backend_event_t event) {
     ggml_metal_device_t ctx_dev = (ggml_metal_device_t)dev->context;
 
@@ -805,23 +1408,83 @@ static ggml_backend_device_i ggml_backend_metal_device_i = {
 
 // backend registry
 
+// 类: ggml_backend_metal_reg
+// 描述: ggml_backend_metal_reg类提供相关功能
+// 用途: 用于处理ggml_backend_metal_reg相关的操作
+// 类: ggml_backend_metal_reg
+// 描述: ggml_backend_metal_reg类提供相关功能
+// 用途: 用于处理ggml_backend_metal_reg相关的操作
+    // 结构体: ggml_backend_metal_reg
+    // 描述: ggml_backend_metal_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg相关的操作
+    // 结构体: ggml_backend_metal_reg
+    // 描述: ggml_backend_metal_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg相关的操作
+    // 结构体: ggml_backend_metal_reg
+    // 描述: ggml_backend_metal_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg相关的操作
+    // 结构体: ggml_backend_metal_reg
+    // 描述: ggml_backend_metal_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg相关的操作
 struct ggml_backend_metal_reg {
     std::vector<ggml_backend_dev_t> devices;
 };
 
 typedef struct ggml_backend_metal_reg * ggml_backend_metal_reg_t;
 
+// 函数: ggml_backend_metal_reg_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_metal_reg_t ggml_backend_metal_reg_init(void) {
     ggml_backend_metal_reg_t ctx = new struct ggml_backend_metal_reg;
 
     return ctx;
 }
 
+// 函数: ggml_backend_metal_reg_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_reg_free(ggml_backend_metal_reg_t ctx) {
     delete ctx;
 }
 
+// 类: ggml_backend_metal_reg_deleter
+// 描述: ggml_backend_metal_reg_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
+// 类: ggml_backend_metal_reg_deleter
+// 描述: ggml_backend_metal_reg_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
+    // 结构体: ggml_backend_metal_reg_deleter
+    // 描述: ggml_backend_metal_reg_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
+    // 结构体: ggml_backend_metal_reg_deleter
+    // 描述: ggml_backend_metal_reg_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
+    // 结构体: ggml_backend_metal_reg_deleter
+    // 描述: ggml_backend_metal_reg_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
+    // 结构体: ggml_backend_metal_reg_deleter
+    // 描述: ggml_backend_metal_reg_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_metal_reg_deleter相关的操作
 struct ggml_backend_metal_reg_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(ggml_backend_metal_reg_t ctx) {
         ggml_backend_metal_reg_free(ctx);
     }
@@ -829,17 +1492,41 @@ struct ggml_backend_metal_reg_deleter {
 
 typedef std::unique_ptr<struct ggml_backend_metal_reg, ggml_backend_metal_reg_deleter> ggml_backend_metal_reg_ptr;
 
+// 函数: ggml_backend_metal_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_metal_reg_get_name(ggml_backend_reg_t reg) {
     return GGML_METAL_NAME;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_metal_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg_device_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_metal_reg_device_count(ggml_backend_reg_t reg) {
     ggml_backend_metal_reg_t ctx = (ggml_backend_metal_reg_t)reg->context;
     return ctx->devices.size();
 }
 
+// 函数: ggml_backend_metal_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg_device_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_metal_reg_device_get(ggml_backend_reg_t reg, size_t index) {
     ggml_backend_metal_reg_t ctx = (ggml_backend_metal_reg_t)reg->context;
     GGML_ASSERT(index < ctx->devices.size());
@@ -853,12 +1540,28 @@ static ggml_backend_feature g_ggml_backend_metal_features[] = {
     { NULL, NULL },
 };
 
+// 函数: ggml_backend_metal_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_get_features
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_feature * ggml_backend_metal_get_features(ggml_backend_reg_t reg) {
     return g_ggml_backend_metal_features;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_metal_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_metal_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (strcmp(name, "ggml_backend_get_features") == 0) {
         return (void *)ggml_backend_metal_get_features;
@@ -876,6 +1579,14 @@ static ggml_backend_reg_i ggml_backend_metal_reg_i = {
     /* .get_proc_address = */ ggml_backend_metal_get_proc_address,
 };
 
+// 函数: ggml_backend_metal_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_metal_device_init(ggml_backend_reg_t reg, int device) {
     return new ggml_backend_device {
         /* .iface   = */ ggml_backend_metal_device_i,
@@ -884,11 +1595,45 @@ static ggml_backend_dev_t ggml_backend_metal_device_init(ggml_backend_reg_t reg,
     };
 }
 
+// 函数: ggml_backend_metal_device_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_device_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_metal_device_free(ggml_backend_dev_t dev) {
     delete dev;
 }
 
+// 类: ggml_backend_device_deleter
+// 描述: ggml_backend_device_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_device_deleter相关的操作
+// 类: ggml_backend_device_deleter
+// 描述: ggml_backend_device_deleter类提供相关功能
+// 用途: 用于处理ggml_backend_device_deleter相关的操作
+    // 结构体: ggml_backend_device_deleter
+    // 描述: ggml_backend_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_deleter相关的操作
+    // 结构体: ggml_backend_device_deleter
+    // 描述: ggml_backend_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_deleter相关的操作
+    // 结构体: ggml_backend_device_deleter
+    // 描述: ggml_backend_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_deleter相关的操作
+    // 结构体: ggml_backend_device_deleter
+    // 描述: ggml_backend_device_deleter结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_deleter相关的操作
 struct ggml_backend_device_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(ggml_backend_dev_t ctx) {
         ggml_backend_metal_device_free(ctx);
     }
@@ -896,6 +1641,14 @@ struct ggml_backend_device_deleter {
 
 typedef std::unique_ptr<ggml_backend_device, ggml_backend_device_deleter> ggml_backend_device_ptr;
 
+// 函数: ggml_backend_metal_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_metal_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_metal_reg(void) {
     static ggml_backend_reg reg;
     static bool initialized = false;

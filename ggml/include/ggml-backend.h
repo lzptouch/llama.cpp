@@ -139,6 +139,24 @@ extern "C" {
     };
 
     // functionality supported by the device
+    // 类: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps类提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 类: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps类提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
     struct ggml_backend_dev_caps {
         // asynchronous operations
         bool async;
@@ -151,6 +169,24 @@ extern "C" {
     };
 
     // all the device properties
+    // 类: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props类提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
+    // 类: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props类提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
+    // 结构体: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
+    // 结构体: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
+    // 结构体: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
+    // 结构体: ggml_backend_dev_props
+    // 描述: ggml_backend_dev_props结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_props相关的操作
     struct ggml_backend_dev_props {
         // device name
         const char * name;
@@ -167,6 +203,24 @@ extern "C" {
         //   if the id is unknown, this should be NULL
         const char * device_id;
         // device capabilities
+        // 类: ggml_backend_dev_caps
+        // 描述: ggml_backend_dev_caps类提供相关功能
+        // 用途: 用于处理ggml_backend_dev_caps相关的操作
+        // 类: ggml_backend_dev_caps
+        // 描述: ggml_backend_dev_caps类提供相关功能
+        // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
+    // 结构体: ggml_backend_dev_caps
+    // 描述: ggml_backend_dev_caps结构体提供相关功能
+    // 用途: 用于处理ggml_backend_dev_caps相关的操作
         struct ggml_backend_dev_caps caps;
     };
 
@@ -197,14 +251,56 @@ extern "C" {
     // Common functions that may be obtained using ggml_backend_reg_get_proc_address
 
     // Split buffer type for tensor parallelism
+    // 函数: ggml_backend_buffer_type_t
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_buffer_type_t
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef ggml_backend_buffer_type_t   (*ggml_backend_split_buffer_type_t)(int main_device, const float * tensor_split);
     // Set the number of threads for the backend
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef void                         (*ggml_backend_set_n_threads_t)(ggml_backend_t backend, int n_threads);
     // Get additional buffer types provided by the device (returns a NULL-terminated array)
     typedef ggml_backend_buffer_type_t * (*ggml_backend_dev_get_extra_bufts_t)(ggml_backend_dev_t device);
     // Set the abort callback for the backend
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef void                         (*ggml_backend_set_abort_callback_t)(ggml_backend_t backend, ggml_abort_callback abort_callback, void * abort_callback_data);
     // Get a list of feature flags supported by the backend (returns a NULL-terminated array)
+    // 类: ggml_backend_feature
+    // 描述: ggml_backend_feature类提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
+    // 类: ggml_backend_feature
+    // 描述: ggml_backend_feature类提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
+    // 结构体: ggml_backend_feature
+    // 描述: ggml_backend_feature结构体提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
+    // 结构体: ggml_backend_feature
+    // 描述: ggml_backend_feature结构体提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
+    // 结构体: ggml_backend_feature
+    // 描述: ggml_backend_feature结构体提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
+    // 结构体: ggml_backend_feature
+    // 描述: ggml_backend_feature结构体提供相关功能
+    // 用途: 用于处理ggml_backend_feature相关的操作
     struct ggml_backend_feature {
         const char * name;
         const char * value;
@@ -268,6 +364,24 @@ extern "C" {
         reserve_graph = build_graph(sched, max_batch_size);
 
         // manually assign nodes to a backend (optional, should not be needed in most cases)
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = ggml_mul_mat(ctx, ...);
         ggml_backend_sched_set_tensor_backend(sched, node, backend_gpu);
 
@@ -300,6 +414,14 @@ extern "C" {
     // when ask == false, the scheduler is passing the node tensor to the user for observation
     // if the user returns false, the scheduler will cancel the graph compute
     //
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef bool (*ggml_backend_sched_eval_callback)(struct ggml_tensor * t, bool ask, void * user_data);
 
     // Initialize a backend scheduler, backends with low index are given priority over backends with high index
@@ -344,10 +466,82 @@ extern "C" {
     // Utils
     //
 
+    // 类: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy类提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 类: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy类提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
     struct ggml_backend_graph_copy {
         ggml_backend_buffer_t buffer;
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_allocated;
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_unallocated;
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph * graph;
     };
 
@@ -355,6 +549,14 @@ extern "C" {
     GGML_API struct ggml_backend_graph_copy ggml_backend_graph_copy(ggml_backend_t backend, struct ggml_cgraph * graph);
     GGML_API void                           ggml_backend_graph_copy_free(struct ggml_backend_graph_copy copy);
 
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bool
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef bool (*ggml_backend_eval_callback)(int node_index, struct ggml_tensor * t1, struct ggml_tensor * t2, void * user_data);
 
     // Compare the output of two backends

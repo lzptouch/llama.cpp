@@ -1,57 +1,176 @@
+// ============================================================================
+// 文件: unary-ops.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/unary-ops.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "unary-ops.h"
 
+// 函数: op_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_abs(float x) {
     return fabsf(x);
 }
 
+// 函数: op_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sgn(float x) {
     return (x > 0.f) ? 1.f : ((x < 0.f) ? -1.f : 0.f);
 }
 
+// 函数: op_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_neg(float x) {
     return -x;
 }
 
+// 函数: op_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_step(float x) {
     return (x > 0.f) ? 1.f : 0.f;
 }
 
+// 函数: op_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_tanh(float x) {
     return tanhf(x);
 }
 
+// 函数: op_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_elu(float x) {
     return (x > 0.f) ? x : expm1f(x);
 }
 
+// 函数: op_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_relu(float x) {
     return (x > 0.f) ? x : 0.f;
 }
 
+// 函数: op_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sigmoid(float x) {
     return 1.f / (1.f + expf(-x));
 }
 
+// 函数: op_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_hardsigmoid(float x) {
     return fminf(1.0f, fmaxf(0.0f, (x + 3.0f) / 6.0f));
 }
 
+// 函数: op_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_exp(float x) {
     return expf(x);
 }
 
+// 函数: op_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_hardswish(float x) {
     return x * fminf(1.0f, fmaxf(0.0f, (x + 3.0f) / 6.0f));
 }
 
+// 函数: op_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sqr(float x) {
     return x * x;
 }
 
+// 函数: op_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sqrt(float x) {
     return sqrtf(x);
 }
 
+// 函数: op_xielu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_xielu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_xielu(float x, float alpha_n, float alpha_p, float beta, float eps) {
     if (x > 0.0f) {
         return alpha_p * x * x + beta * x;
@@ -61,43 +180,123 @@ static inline float op_xielu(float x, float alpha_n, float alpha_p, float beta, 
     }
 }
 
+// 函数: op_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_sin(float x) {
     return sinf(x);
 }
 
+// 函数: op_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_cos(float x) {
     return cosf(x);
 }
 
+// 函数: op_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_log(float x) {
     return logf(x);
 }
 
+// 函数: op_expm1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_expm1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_expm1(float x) {
     return expf(x) - 1.0f;
 }
 
+// 函数: op_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_softplus(float x) {
     return (x > 20.0f) ? x : logf(1.0f + expf(x));
 }
 
+// 函数: op_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_floor(float x) {
     return floorf(x);
 }
 
+// 函数: op_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_ceil(float x) {
     return ceilf(x);
 }
 
+// 函数: op_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_round(float x) {
     return roundf(x);
 }
 
+// 函数: op_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float op_trunc(float x) {
     return truncf(x);
 }
 
 template <float (*op)(float), typename src0_t, typename dst_t>
+// 函数: vec_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void vec_unary_op(int64_t n, dst_t * y, const src0_t * x) {
     constexpr auto src0_to_f32 = type_conversion_table<src0_t>::to_f32;
     constexpr auto f32_to_dst  = type_conversion_table<dst_t >::from_f32;
@@ -108,6 +307,14 @@ static inline void vec_unary_op(int64_t n, dst_t * y, const src0_t * x) {
 }
 
 template <float (*op)(float), typename src0_t, typename dst_t>
+// 函数: apply_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apply_unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void apply_unary_op(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -134,6 +341,14 @@ static void apply_unary_op(const ggml_compute_params * params, ggml_tensor * dst
 
 // TODO: Use the 'traits' lookup table (for type conversion fns), instead of a mass of 'if' conditions with long templates
 template <float (*op)(float)>
+// 函数: unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -155,6 +370,14 @@ static void unary_op(const ggml_compute_params * params, ggml_tensor * dst) {
 }
 
 template <float (*op)(float, ggml_tensor *)>
+// 函数: unary_op_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_params(const ggml_compute_params * params, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -177,6 +400,14 @@ static void unary_op_params(const ggml_compute_params * params, ggml_tensor * ds
 
 // Extend vec_unary_op to support functors
 template <typename Op, typename src0_t, typename dst_t>
+// 函数: vec_unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: vec_unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void vec_unary_op_functor(int64_t n, dst_t * y, const src0_t * x, Op op) {
     constexpr auto src0_to_f32 = type_conversion_table<src0_t>::to_f32;
     constexpr auto f32_to_dst  = type_conversion_table<dst_t >::from_f32;
@@ -188,6 +419,14 @@ static inline void vec_unary_op_functor(int64_t n, dst_t * y, const src0_t * x, 
 
 // Extend apply_unary_op to support functors
 template <typename Op, typename src0_t, typename dst_t>
+// 函数: apply_unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apply_unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void apply_unary_op_functor(const ggml_compute_params * params, ggml_tensor * dst, Op op) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -214,6 +453,14 @@ static void apply_unary_op_functor(const ggml_compute_params * params, ggml_tens
 
 // Generic dispatcher for functors
 template <typename Op>
+// 函数: unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_functor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_functor(const ggml_compute_params * params, ggml_tensor * dst, Op op) {
     const ggml_tensor * src0 = dst->src[0];
 
@@ -234,94 +481,278 @@ static void unary_op_functor(const ggml_compute_params * params, ggml_tensor * d
     }
 }
 
+// 函数: ggml_compute_forward_abs
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_abs
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_abs(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_abs>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sgn
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sgn
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sgn(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_sgn>(params, dst);
 }
 
+// 函数: ggml_compute_forward_neg
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_neg
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_neg(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_neg>(params, dst);
 }
 
+// 函数: ggml_compute_forward_step
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_step
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_step(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_step>(params, dst);
 }
 
+// 函数: ggml_compute_forward_tanh
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_tanh
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_tanh(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_tanh>(params, dst);
 }
 
+// 函数: ggml_compute_forward_elu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_elu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_elu(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_elu>(params, dst);
 }
 
+// 函数: ggml_compute_forward_relu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_relu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_relu(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_relu>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sigmoid
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sigmoid
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sigmoid(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_sigmoid>(params, dst);
 }
 
+// 函数: ggml_compute_forward_hardsigmoid
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_hardsigmoid
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_hardsigmoid(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_hardsigmoid>(params, dst);
 }
 
+// 函数: ggml_compute_forward_exp
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_exp
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_exp(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_exp>(params, dst);
 }
 
+// 函数: ggml_compute_forward_hardswish
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_hardswish
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_hardswish(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_hardswish>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sqr
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sqr
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sqr(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_sqr>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sqrt
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sqrt
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sqrt(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_sqrt>(params, dst);
 }
 
+// 函数: ggml_compute_forward_sin
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_sin
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_sin(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_sin>(params, dst);
 }
 
+// 函数: ggml_compute_forward_cos
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_cos
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_cos(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_cos>(params, dst);
 }
 
+// 函数: ggml_compute_forward_log
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_log
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_log(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_log>(params, dst);
 }
 
+// 函数: ggml_compute_forward_expm1
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_expm1
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_expm1(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_expm1>(params, dst);
 }
 
+// 函数: ggml_compute_forward_softplus
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_softplus
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_softplus(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_softplus>(params, dst);
 }
 
+// 函数: ggml_compute_forward_floor
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_floor
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_floor(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_floor>(params, dst);
 }
 
+// 函数: ggml_compute_forward_ceil
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_ceil
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_ceil(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_ceil>(params, dst);
 }
 
+// 函数: ggml_compute_forward_round
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_round
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_round(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_round>(params, dst);
 }
 
+// 函数: ggml_compute_forward_trunc
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_trunc
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_trunc(const ggml_compute_params * params, ggml_tensor * dst) {
     unary_op<op_trunc>(params, dst);
 }
 
+// 函数: ggml_compute_forward_xielu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_compute_forward_xielu
+// 描述: 前向传播: 执行神经网络的前向传播
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_compute_forward_xielu(const ggml_compute_params * params, ggml_tensor * dst) {
     const float alpha_n = ggml_get_op_params_f32(dst, 1);
     const float alpha_p = ggml_get_op_params_f32(dst, 2);

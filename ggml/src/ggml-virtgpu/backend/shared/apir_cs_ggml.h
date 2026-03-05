@@ -1,26 +1,73 @@
+// ============================================================================
+// 文件: apir_cs_ggml.h
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/shared/apir_cs_ggml.h
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "apir_cs.h"
 #include "apir_cs_rpc.h"
 #include "ggml-impl.h"
 
 // ggml_buffer_to_apir_host_handle(ggml_backend_buffer_t buffer);
 
+// 函数: apir_encode_ggml_buffer_host_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_buffer_host_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_buffer_host_handle(apir_encoder * enc, const apir_buffer_host_handle_t * handle);
 
+// 函数: apir_decode_ggml_buffer
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_buffer
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_backend_buffer_t apir_decode_ggml_buffer(apir_decoder * dec);
 
 /* apir_rpc_tensor */
 
+// 函数: apir_encode_rcp_tensor
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_rcp_tensor
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_rcp_tensor(apir_encoder * enc, const apir_rpc_tensor * apir_rpc_tensor) {
     size_t apir_rpc_tensor_size = sizeof(*apir_rpc_tensor);
     apir_encode(enc, apir_rpc_tensor_size, apir_rpc_tensor, apir_rpc_tensor_size);
 }
 
+// 函数: apir_decode_apir_rpc_tensor_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_apir_rpc_tensor_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline apir_rpc_tensor * apir_decode_apir_rpc_tensor_inplace(apir_decoder * dec) {
     size_t apir_rpc_tensor_size = sizeof(apir_rpc_tensor);
 
     return (apir_rpc_tensor *) (uintptr_t) apir_decoder_use_inplace(dec, apir_rpc_tensor_size);
 }
 
+// 函数: apir_decode_apir_rpc_tensor_array_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_apir_rpc_tensor_array_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline apir_rpc_tensor * apir_decode_apir_rpc_tensor_array_inplace(apir_decoder * dec, uint32_t n_tensors) {
     size_t apir_rpc_tensor_size = sizeof(apir_rpc_tensor) * n_tensors;
 
@@ -29,12 +76,28 @@ static inline apir_rpc_tensor * apir_decode_apir_rpc_tensor_array_inplace(apir_d
 
 /* ggml_tensor */
 
+// 函数: apir_encode_ggml_tensor
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_tensor
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_tensor(apir_encoder * enc, const ggml_tensor * tensor) {
     apir_rpc_tensor serialized = apir_serialize_tensor(tensor);
 
     apir_encode_rcp_tensor(enc, &serialized);
 }
 
+// 函数: apir_decode_ggml_tensor
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_tensor
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline const ggml_tensor * apir_decode_ggml_tensor(apir_decoder * dec) {
     const apir_rpc_tensor * apir_rpc_tensor = apir_decode_apir_rpc_tensor_inplace(dec);
 
@@ -62,11 +125,27 @@ static inline const ggml_tensor * apir_decode_ggml_tensor(apir_decoder * dec) {
 // The guest stores it in `buft->context`.
 // The host simply writes the pointer address in the buffer variable.
 
+// 函数: apir_encode_ggml_buffer_type
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_buffer_type
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_buffer_type(apir_encoder * enc, ggml_backend_buffer_type_t buft) {
     apir_buffer_type_host_handle_t handle = ggml_buffer_type_to_apir_handle(buft);
     apir_encoder_write(enc, sizeof(handle), &handle, sizeof(handle));
 }
 
+// 函数: apir_decode_ggml_buffer_type
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_buffer_type
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_backend_buffer_type_t apir_decode_ggml_buffer_type(apir_decoder * dec) {
     apir_buffer_type_host_handle_t handle;
 
@@ -75,10 +154,26 @@ static inline ggml_backend_buffer_type_t apir_decode_ggml_buffer_type(apir_decod
     return (ggml_backend_buffer_type_t) handle;
 }
 
+// 函数: apir_encode_apir_buffer_type_host_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_apir_buffer_type_host_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_apir_buffer_type_host_handle(apir_encoder * enc, apir_buffer_type_host_handle_t handle) {
     apir_encoder_write(enc, sizeof(handle), &handle, sizeof(handle));
 }
 
+// 函数: apir_decode_apir_buffer_type_host_handle
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_apir_buffer_type_host_handle
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline apir_buffer_type_host_handle_t apir_decode_apir_buffer_type_host_handle(apir_decoder * dec) {
     apir_buffer_type_host_handle_t handle;
 
@@ -92,11 +187,27 @@ static inline apir_buffer_type_host_handle_t apir_decode_apir_buffer_type_host_h
 // ggml_backend_buffer_t is a POINTER.
 // same logic as for ggml_backend_buffer_type_t
 
+// 函数: apir_encode_ggml_buffer
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_buffer
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_buffer(apir_encoder * enc, const ggml_backend_buffer_t buffer) {
     apir_buffer_host_handle_t handle = BUFFER_TO_HOST_HANDLE(buffer);
     apir_encoder_write(enc, sizeof(handle), &handle, sizeof(handle));
 }
 
+// 函数: apir_decode_ggml_buffer
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_buffer
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_backend_buffer_t apir_decode_ggml_buffer(apir_decoder * dec) {
     ggml_backend_buffer_t buffer;
     size_t                buffer_ptr_size = sizeof(buffer);
@@ -121,38 +232,94 @@ static inline ggml_backend_buffer_t apir_decode_ggml_buffer(apir_decoder * dec) 
 
 /* enum ggml_status */
 
+// 函数: apir_encode_ggml_status
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_status
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_status(apir_encoder * enc, const ggml_status * status) {
     apir_encoder_write(enc, sizeof(*status), status, sizeof(*status));
 }
 
+// 函数: apir_decode_ggml_status
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_status
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_decode_ggml_status(apir_decoder * dec, ggml_status * status) {
     apir_decoder_read(dec, sizeof(*status), status, sizeof(*status));
 }
 
 /* virtgpu_shmem */
 
+// 函数: apir_encode_virtgpu_shmem_res_id
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_virtgpu_shmem_res_id
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_virtgpu_shmem_res_id(apir_encoder * enc, uint32_t shmem_res_id) {
     apir_encode_uint32_t(enc, &shmem_res_id);
 }
 
+// 函数: apir_decode_virtgpu_shmem_res_id
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_virtgpu_shmem_res_id
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_decode_virtgpu_shmem_res_id(apir_decoder * dec, uint32_t * shmem_res_id) {
     apir_decode_uint32_t(dec, shmem_res_id);
 }
 
 /* ggml_cgraph */
 
+// 函数: apir_serialize_ggml_cgraph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_serialize_ggml_cgraph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t apir_serialize_ggml_cgraph(ggml_cgraph * cgraph, std::vector<uint8_t> & cgraph_data) {
     apir_serialize_graph(cgraph, cgraph_data);
 
     return cgraph_data.size();
 }
 
+// 函数: apir_encode_cgraph_data
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_cgraph_data
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_cgraph_data(apir_encoder * enc, std::vector<uint8_t> & cgraph_data) {
     size_t cgraph_size = cgraph_data.size();
 
     apir_encode(enc, cgraph_size, cgraph_data.data(), cgraph_size);
 }
 
+// 函数: apir_decode_ggml_cgraph
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_cgraph
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline ggml_cgraph * apir_decode_ggml_cgraph(apir_decoder * dec, size_t cgraph_size) {
     GGML_UNUSED(cgraph_size);
 
@@ -167,10 +334,26 @@ static inline ggml_cgraph * apir_decode_ggml_cgraph(apir_decoder * dec, size_t c
     return apir_deserialize_graph(n_nodes, n_tensors, tensors, nodes);
 }
 
+// 函数: apir_encode_ggml_buffer_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_buffer_handle
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_buffer_handle(apir_encoder * enc, const apir_buffer_host_handle_t * handle) {
     apir_encoder_write(enc, sizeof(*handle), &handle, sizeof(*handle));
 }
 
+// 函数: apir_encode_ggml_tensor_inline
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_encode_ggml_tensor_inline
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static inline void apir_encode_ggml_tensor_inline(apir_encoder * enc, const ggml_tensor * tensor) {
     size_t tensor_size = sizeof(*tensor);
 
@@ -207,6 +390,14 @@ static inline void apir_encode_ggml_tensor_inline(apir_encoder * enc, const ggml
     }
 }
 
+// 函数: apir_decode_ggml_tensor_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_decode_ggml_tensor_inplace
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static inline const ggml_tensor * apir_decode_ggml_tensor_inplace(apir_decoder * dec) {
     // it safe to remove the `const` qualifier here, we *do* want to
     // modify the shared memory data to fix the `src` pointers.

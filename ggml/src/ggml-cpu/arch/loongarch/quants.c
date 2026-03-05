@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: quants.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/arch/loongarch/quants.c
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define GGML_COMMON_IMPL_C
 #include "ggml-common.h"
 #include "ggml-quants.h"
@@ -25,6 +32,14 @@
 
 #if defined(__loongarch_sx)
 
+// 函数: lsx_packs_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_packs_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_packs_w(__m128i a, __m128i b) {
     __m128i tmp, tmp1;
     tmp = __lsx_vsat_w(a, 15);
@@ -32,6 +47,14 @@ static __m128i lsx_packs_w(__m128i a, __m128i b) {
     return __lsx_vpickev_h(tmp1, tmp);
 }
 
+// 函数: lsx_packs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_packs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_packs_h(__m128i a, __m128i b) {
     __m128i tmp, tmp1;
     tmp = __lsx_vsat_h(a, 7);
@@ -39,6 +62,14 @@ static __m128i lsx_packs_h(__m128i a, __m128i b) {
     return __lsx_vpickev_b(tmp1, tmp);
 }
 
+// 函数: lsx_packus_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_packus_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_packus_h(__m128i a, __m128i b) {
     __m128i tmp, tmp1;
     tmp = __lsx_vsat_hu(a, 7);
@@ -46,6 +77,14 @@ static __m128i lsx_packus_h(__m128i a, __m128i b) {
     return __lsx_vpickev_b(tmp1, tmp);
 }
 
+// 函数: lsx_maddubs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_maddubs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_maddubs_h(__m128i a, __m128i b) {
     __m128i tmp1, tmp2;
     tmp1 = __lsx_vmulwev_h_b(a, b);
@@ -53,6 +92,14 @@ static __m128i lsx_maddubs_h(__m128i a, __m128i b) {
     return __lsx_vsadd_h(tmp1, tmp2);
 }
 
+// 函数: lsx_madd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_madd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_madd_h(__m128i a, __m128i b) {
     __m128i tmp1, tmp2;
     tmp1 = __lsx_vmulwev_w_h(a, b);
@@ -60,11 +107,27 @@ static __m128i lsx_madd_h(__m128i a, __m128i b) {
     return __lsx_vadd_w(tmp1, tmp2);
 }
 
+// 函数: lsx_set_w
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_set_w
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_set_w(int32_t a, int32_t b, int32_t c, int32_t d) {
     v4i32 __ret = {d, c, b, a};
     return (__m128i)__ret;
 }
 
+// 函数: lsx_shuffle_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_shuffle_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_shuffle_b(__m128i a, __m128i b) {
     __m128i mask_f, zero, tmp0, tmp2, mask;
     int f = 0x8f;
@@ -77,18 +140,42 @@ static __m128i lsx_shuffle_b(__m128i a, __m128i b) {
     return __lsx_vshuf_b(a, zero, tmp2);
 }
 
+// 函数: lsx_hadd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_hadd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_hadd_h(__m128i a, __m128i b) {
     __m128i tmp1 = __lsx_vpickev_h(b, a);
     __m128i tmp2 = __lsx_vpickod_h(b, a);
     return __lsx_vadd_h(tmp1, tmp2);
 }
 
+// 函数: lsx_hadd_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_hadd_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lsx_hadd_w(__m128i a, __m128i b) {
     __m128i tmp1 = __lsx_vpickev_w(b, a);
     __m128i tmp2 = __lsx_vpickod_w(b, a);
     return __lsx_vadd_w(tmp1, tmp2);
 }
 
+// 函数: lsx_hadd_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lsx_hadd_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128 lsx_hadd_s(__m128 a, __m128 b) {
     __m128 tmp1 = (__m128)__lsx_vpickev_w((__m128i)b, (__m128i)a);
     __m128 tmp2 = (__m128)__lsx_vpickod_w((__m128i)b, (__m128i)a);
@@ -96,6 +183,14 @@ static __m128 lsx_hadd_s(__m128 a, __m128 b) {
     return __lsx_vfadd_s(tmp1, tmp2);
 }
 
+// 函数: hsum_float_4x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum_float_4x4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hsum_float_4x4(const __m128 a, const __m128 b, const __m128 c, const __m128 d) {
     __m128 res_0 =lsx_hadd_s(a, b);
     __m128 res_1 =lsx_hadd_s(c, d);
@@ -107,6 +202,14 @@ static inline float hsum_float_4x4(const __m128 a, const __m128 b, const __m128 
 }
 
 // multiply int8_t, add results pairwise twice
+// 函数: mul_sum_i8_pairs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_i8_pairs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128i mul_sum_i8_pairs(const __m128i x, const __m128i y) {
     // Get absolute values of x vectors
     const __m128i ax = __lsx_vsigncov_b(x, x);
@@ -130,6 +233,14 @@ static inline __m128i mul_sum_i8_pairs(const __m128i x, const __m128i y) {
 #endif
 #define __ALL_REGS "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31"
 // Convert __m128i to __m256i
+// 函数: ____m256i
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ____m256i
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i ____m256i(__m128i in) {
     __m256i out = __lasx_xvldi(0);
     __asm__ volatile (
@@ -147,6 +258,14 @@ static inline __m256i ____m256i(__m128i in) {
     return out;
 }
 // Convert two __m128i to __m256i
+// 函数: lasx_set_q
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_set_q
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i lasx_set_q(__m128i inhi, __m128i inlo) {
     __m256i out;
     __asm__ volatile (
@@ -176,6 +295,14 @@ static inline __m256i lasx_set_q(__m128i inhi, __m128i inlo) {
     return out;
 }
 // Convert __m256i low part to __m128i
+// 函数: lasx_extracti128_lo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_extracti128_lo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128i lasx_extracti128_lo(__m256i in) {
     __m128i out;
     __asm__ volatile (
@@ -195,6 +322,14 @@ static inline __m128i lasx_extracti128_lo(__m256i in) {
     return out;
 }
 // Convert __m256i high part to __m128i
+// 函数: lasx_extracti128_hi
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_extracti128_hi
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128i lasx_extracti128_hi(__m256i in) {
     __m128i out;
     __asm__ volatile (
@@ -212,20 +347,52 @@ static inline __m128i lasx_extracti128_hi(__m256i in) {
     return out;
 }
 
+// 函数: lasx_set_w
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_set_w
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_set_w(int e7, int e6, int e5, int e4, int e3, int e2, int e1, int e0) {
     v8i32 __ret = {e0, e1, e2, e3, e4, e5, e6, e7};
     return (__m256i)__ret;
 }
 
+// 函数: lasx_set_d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_set_d
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_set_d(int64_t a, int64_t b, int64_t c, int64_t d) {
     v4i64 __ret = {d, c, b, a};
     return (__m256i)__ret;
 }
 
+// 函数: lasx_insertf128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_insertf128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_insertf128( __m128i x, __m128i y) {
     return lasx_set_q(x, y);
 }
 
+// 函数: lasx_shuffle_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_shuffle_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_shuffle_b(__m256i a, __m256i b) {
     __m256i mask_f, zero, tmp0, tmp2, mask;
     int f = 0x8f;
@@ -238,18 +405,50 @@ static __m256i lasx_shuffle_b(__m256i a, __m256i b) {
     return __lasx_xvshuf_b(a, zero, tmp2);
 }
 
+// 函数: lasx_extu8_16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_extu8_16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_extu8_16(__m128i a) {
     return __lasx_vext2xv_hu_bu(____m256i(a));
 }
 
+// 函数: lasx_ext8_16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_ext8_16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_ext8_16(__m128i a) {
     return __lasx_vext2xv_h_b(____m256i(a));
 }
 
+// 函数: lasx_ext16_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_ext16_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_ext16_32(__m128i a) {
     return __lasx_vext2xv_w_h(____m256i(a));
 }
 
+// 函数: lasx_extracti128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_extracti128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128i lasx_extracti128( __m256i a, int pos) {
     __m128i ret;
     if( pos == 0)
@@ -261,6 +460,14 @@ static __m128i lasx_extracti128( __m256i a, int pos) {
     return ret;
 }
 
+// 函数: lasx_extractf128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_extractf128
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128 lasx_extractf128( __m256 a, int pos) {
     __m128 ret;
     if( pos == 0)
@@ -272,6 +479,14 @@ static __m128 lasx_extractf128( __m256 a, int pos) {
     return ret;
 }
 
+// 函数: lasx_maddubs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_maddubs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_maddubs_h(__m256i a, __m256i b) {
     __m256i tmp1, tmp2;
     tmp1 = __lasx_xvmulwev_h_b(a, b);
@@ -279,6 +494,14 @@ static __m256i lasx_maddubs_h(__m256i a, __m256i b) {
     return __lasx_xvsadd_h(tmp1, tmp2);
 }
 
+// 函数: lasx_madd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_madd_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_madd_h(__m256i a, __m256i b) {
     __m256i tmp1, tmp2;
     tmp1 = __lasx_xvmulwev_w_h(a, b);
@@ -286,6 +509,14 @@ static __m256i lasx_madd_h(__m256i a, __m256i b) {
     return __lasx_xvadd_w(tmp1, tmp2);
 }
 
+// 函数: lasx_packs_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_packs_w
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_packs_w(__m256i a, __m256i b) {
     __m256i tmp, tmp1;
     tmp = __lasx_xvsat_w(a, 15);
@@ -293,6 +524,14 @@ static __m256i lasx_packs_w(__m256i a, __m256i b) {
     return __lasx_xvpickev_h(tmp1, tmp);
 }
 
+// 函数: lasx_packs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_packs_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256i lasx_packs_h(__m256i a, __m256i b) {
     __m256i tmp, tmp1;
     tmp = __lasx_xvsat_h(a, 7);
@@ -300,6 +539,14 @@ static __m256i lasx_packs_h(__m256i a, __m256i b) {
     return __lasx_xvpickev_b(tmp1, tmp);
 }
 
+// 函数: lasx_madd_h_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_madd_h_b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i lasx_madd_h_b(__m256i a, __m256i b) {
     __m256i tmp1, tmp2;
     tmp1 = __lasx_xvmulwev_h_b(a, b);
@@ -307,6 +554,14 @@ static inline __m256i lasx_madd_h_b(__m256i a, __m256i b) {
     return __lasx_xvadd_h(tmp1, tmp2);
 }
 
+// 函数: lasx_xvrepl128vei_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_xvrepl128vei_h
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i lasx_xvrepl128vei_h(__m256i a, const unsigned int b) {
     switch (b) {
         case 0: return __lasx_xvrepl128vei_h(a, 0);
@@ -321,6 +576,14 @@ static inline __m256i lasx_xvrepl128vei_h(__m256i a, const unsigned int b) {
     }
 }
 
+// 函数: lasx_xvandi_b_bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lasx_xvandi_b_bit
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i lasx_xvandi_b_bit(__m256i a, const unsigned int b) {
     switch (b) {
         case 0: return __lasx_xvandi_b(a, 1 << 0);
@@ -336,6 +599,14 @@ static inline __m256i lasx_xvandi_b_bit(__m256i a, const unsigned int b) {
 }
 
 // horizontally add 8 floats
+// 函数: hsum_float_8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum_float_8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hsum_float_8(const __m256 x) {
     __m128 res = lasx_extractf128(x, 1);
     res = __lsx_vfadd_s(res, lasx_extractf128(x, 0));
@@ -345,6 +616,14 @@ static inline float hsum_float_8(const __m256 x) {
 }
 
 // horizontally add 8 int32_t
+// 函数: hsum_i32_8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum_i32_8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int hsum_i32_8(const __m256i a) {
 
     __m256i tmp1 = __lasx_xvpermi_q(a, a, 0x11);
@@ -367,6 +646,14 @@ static inline int hsum_i32_8(const __m256i a) {
 }
 
 // horizontally add 4 int32_t
+// 函数: hsum_i32_4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum_i32_4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int hsum_i32_4(const __m128i a) {
     __m128i ev = __lsx_vpickev_w(a, a);
     __m128i od = __lsx_vpickod_w(a, a);
@@ -380,6 +667,14 @@ static inline int hsum_i32_4(const __m128i a) {
 }
 
 // spread 32 bits to 32 bytes { 0x00, 0xFF }
+// 函数: bytes_from_bits_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_bits_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i bytes_from_bits_32(const uint8_t * x) {
 
     uint32_t x32;
@@ -396,6 +691,14 @@ static inline __m256i bytes_from_bits_32(const uint8_t * x) {
 
 // Unpack 32 4-bit fields into 32 bytes
 // The output vector contains 32 bytes, each one in [ 0 .. 15 ] interval
+// 函数: bytes_from_nibbles_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: bytes_from_nibbles_32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i bytes_from_nibbles_32(const uint8_t * rsi) {
     const __m128i lo = __lsx_vld((const __m128i *)rsi, 0);
     __m128i hi = __lsx_vsrli_h(lo, 4);
@@ -403,12 +706,28 @@ static inline __m256i bytes_from_nibbles_32(const uint8_t * rsi) {
 }
 
 // add int16_t pairwise and return as float vector
+// 函数: sum_i16_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sum_i16_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 sum_i16_pairs_float(const __m256i x) {
     __m256i v = __lasx_xvpackod_h(x, x);
     __m256i summed_pairs = __lasx_xvaddwev_w_h(x, v);
     return __lasx_xvffint_s_w(summed_pairs);
 }
 
+// 函数: mul_sum_us8_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_us8_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 mul_sum_us8_pairs_float(const __m256i ax, const __m256i sy) {
     // Perform multiplication and create 16-bit values
     const __m256i dot = lasx_maddubs_h(ax, sy);
@@ -416,11 +735,27 @@ static inline __m256 mul_sum_us8_pairs_float(const __m256i ax, const __m256i sy)
 }
 
 // multiply int8_t, add results pairwise twice and return as float vector
+// 函数: mul_sum_i8_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_i8_pairs_float
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 mul_sum_i8_pairs_float(const __m256i x, const __m256i y) {
     const __m256i dot = lasx_madd_h_b(x, y);
     return sum_i16_pairs_float(dot);
 }
 
+// 函数: packNibbles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: packNibbles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m128i packNibbles( __m256i bytes ) {
     // Move bits within 16-bit lanes from 0000_abcd_0000_efgh into 0000_0000_abcd_efgh
     const __m256i lowByte = __lasx_xvreplgr2vr_h(0xFF);
@@ -445,6 +780,14 @@ static inline __m128i packNibbles( __m256i bytes ) {
 }
 #endif  //__loongarch_asx
 
+// 函数: quantize_row_q8_0
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_row_q8_0
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void quantize_row_q8_0(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK8_0 == 32);
     assert(k % QK8_0 == 0);
@@ -520,6 +863,14 @@ void quantize_row_q8_0(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, i
 #endif
 }
 
+// 函数: quantize_row_q8_1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: quantize_row_q8_1
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void quantize_row_q8_1(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(k % QK8_1 == 0);
     const int nb = k / QK8_1;
@@ -607,6 +958,14 @@ void quantize_row_q8_1(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, i
 
 #if defined(__loongarch_asx)
 // shuffles to pick the required scales in dot products
+// 函数: get_scale_shuffle_q3k
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_scale_shuffle_q3k
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static inline __m256i get_scale_shuffle_q3k(int i) {
     static const uint8_t k_shuffle[128] = {
          0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,     2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3,
@@ -616,6 +975,14 @@ static inline __m256i get_scale_shuffle_q3k(int i) {
     };
     return __lasx_xvld((const __m256i*)k_shuffle + i, 0);
 }
+// 函数: get_scale_shuffle_k4
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_scale_shuffle_k4
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static inline __m256i get_scale_shuffle_k4(int i) {
     static const uint8_t k_shuffle[256] = {
          0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
@@ -629,6 +996,14 @@ static inline __m256i get_scale_shuffle_k4(int i) {
     };
     return __lasx_xvld((const __m256i*)k_shuffle + i, 0);
 }
+// 函数: get_scale_shuffle
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_scale_shuffle
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static inline __m128i get_scale_shuffle(int i) {
     static const uint8_t k_shuffle[128] = {
          0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -644,6 +1019,14 @@ static inline __m128i get_scale_shuffle(int i) {
 }
 #endif
 
+// 函数: ggml_vec_dot_q4_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q4_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q4_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -772,6 +1155,14 @@ void ggml_vec_dot_q4_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
     *s = sumf;
 }
 
+// 函数: ggml_vec_dot_q4_1_q8_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q4_1_q8_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q4_1_q8_1(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     const int qk = QK8_1;
     const int nb = n / qk;
@@ -831,6 +1222,14 @@ void ggml_vec_dot_q4_1_q8_1(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q5_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q5_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q5_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -884,6 +1283,14 @@ void ggml_vec_dot_q5_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q5_1_q8_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q5_1_q8_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q5_1_q8_1(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     const int qk = QK8_1;
     const int nb = n / qk;
@@ -940,6 +1347,14 @@ void ggml_vec_dot_q5_1_q8_1(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q8_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q8_0_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q8_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     const int qk = QK8_0;
     const int nb = n / qk;
@@ -987,6 +1402,14 @@ void ggml_vec_dot_q8_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q2_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q2_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q2_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(nrc == 1);
     UNUSED(nrc);
@@ -1067,6 +1490,14 @@ void ggml_vec_dot_q2_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q3_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q3_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q3_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1170,6 +1601,14 @@ void ggml_vec_dot_q3_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q4_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q4_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q4_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1267,6 +1706,14 @@ void ggml_vec_dot_q4_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q5_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q5_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q5_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy,  size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1370,6 +1817,14 @@ void ggml_vec_dot_q5_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const voi
 #endif
 }
 
+// 函数: ggml_vec_dot_q6_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_q6_K_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_q6_K_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1488,6 +1943,14 @@ static const int8_t keven_signs_q2xs[1024] = {
 };
 #endif
 
+// 函数: ggml_vec_dot_iq2_xxs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq2_xxs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq2_xxs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1551,6 +2014,14 @@ void ggml_vec_dot_iq2_xxs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const 
 #endif
 }
 
+// 函数: ggml_vec_dot_iq2_xs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq2_xs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq2_xs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1690,6 +2161,14 @@ void ggml_vec_dot_iq2_xs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const v
 #endif
 }
 
+// 函数: ggml_vec_dot_iq2_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq2_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq2_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1785,6 +2264,14 @@ void ggml_vec_dot_iq2_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 #endif
 }
 
+// 函数: ggml_vec_dot_iq3_xxs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq3_xxs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq3_xxs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1853,6 +2340,14 @@ void ggml_vec_dot_iq3_xxs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const 
 #endif
 }
 
+// 函数: ggml_vec_dot_iq3_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq3_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq3_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -1957,6 +2452,14 @@ void ggml_vec_dot_iq3_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 }
 
 #if defined(__loongarch_asx)
+// 函数: mul_add_epi8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_add_epi8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i mul_add_epi8(const __m256i x, const __m256i y) {
     const __m256i a = __lasx_xvmulwev_h_b(x, y);
     const __m256i b = __lasx_xvmulwod_h_b(x, y);
@@ -1964,6 +2467,14 @@ static inline __m256i mul_add_epi8(const __m256i x, const __m256i y) {
 }
 #endif
 
+// 函数: ggml_vec_dot_iq1_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq1_s_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq1_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(n % QK_K == 0);
     assert(nrc == 1);
@@ -2040,6 +2551,14 @@ void ggml_vec_dot_iq1_s_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 #endif
 }
 
+// 函数: ggml_vec_dot_iq4_nl_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq4_nl_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq4_nl_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(nrc == 1);
     UNUSED(nrc);
@@ -2099,6 +2618,14 @@ void ggml_vec_dot_iq4_nl_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const v
     *s = sumf;
 }
 
+// 函数: ggml_vec_dot_iq4_xs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_iq4_xs_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_iq4_xs_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
     assert(nrc == 1);
     UNUSED(nrc);

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-models.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-models.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "server-common.h"
 #include "server-models.h"
 
@@ -45,6 +52,14 @@ extern char **environ;
 // ref: https://github.com/ggml-org/llama.cpp/issues/17862
 #define CHILD_ADDR "127.0.0.1"
 
+// 函数: get_server_exec_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_server_exec_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::filesystem::path get_server_exec_path() {
 #if defined(_WIN32)
     wchar_t buf[32768] = { 0 };  // Large buffer to handle long paths
@@ -86,6 +101,14 @@ static std::filesystem::path get_server_exec_path() {
 #endif
 }
 
+// 函数: unset_reserved_args
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unset_reserved_args
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void unset_reserved_args(common_preset & preset, bool unset_model_args) {
     preset.unset_option("LLAMA_ARG_SSL_KEY_FILE");
     preset.unset_option("LLAMA_ARG_SSL_CERT_FILE");
@@ -102,6 +125,14 @@ static void unset_reserved_args(common_preset & preset, bool unset_model_args) {
 }
 
 #ifdef _WIN32
+// 函数: wide_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: wide_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string wide_to_utf8(const wchar_t * ws) {
     if (!ws || !*ws) {
         return {};
@@ -410,6 +441,14 @@ std::optional<server_model_meta> server_models::get_meta(const std::string & nam
     return std::nullopt;
 }
 
+// 函数: get_free_port
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_free_port
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static int get_free_port() {
 #ifdef _WIN32
     WSADATA wsaData;
@@ -433,6 +472,30 @@ static int get_free_port() {
         return -1;
     }
 
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 类: sockaddr_in
+    // 描述: sockaddr_in类提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
+    // 结构体: sockaddr_in
+    // 描述: sockaddr_in结构体提供相关功能
+    // 用途: 用于处理sockaddr_in相关的操作
     struct sockaddr_in serv_addr;
     std::memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
@@ -586,6 +649,14 @@ void server_models::load(const std::string & name) {
         FILE * stdin_file = subprocess_stdin(child_proc.get());
         FILE * stdout_file = subprocess_stdout(child_proc.get()); // combined stdout/stderr
 
+        // 函数: log_thread
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: log_thread
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::thread log_thread([&]() {
             // read stdout/stderr and forward to main server log
             // also handle status report from child process
@@ -605,6 +676,14 @@ void server_models::load(const std::string & name) {
             }
         });
 
+        // 函数: stopping_thread
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: stopping_thread
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::thread stopping_thread([&]() {
             // thread to monitor stopping signal
             auto is_stopping = [this, &name]() {
@@ -834,16 +913,40 @@ std::thread server_models::setup_child_server(const std::function<void(int)> & s
 // server_models_routes
 //
 
+// 函数: res_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: res_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void res_ok(std::unique_ptr<server_http_res> & res, const json & response_data) {
     res->status = 200;
     res->data = safe_json_to_str(response_data);
 }
 
+// 函数: res_err
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: res_err
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void res_err(std::unique_ptr<server_http_res> & res, const json & error_data) {
     res->status = json_value(error_data, "code", 500);
     res->data = safe_json_to_str({{ "error", error_data }});
 }
 
+// 函数: router_validate_model
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: router_validate_model
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool router_validate_model(std::string & name, server_models & models, bool models_autoload, std::unique_ptr<server_http_res> & res) {
     if (name.empty()) {
         res_err(res, format_error_response("model name is missing from the request", ERROR_TYPE_INVALID_REQUEST));
@@ -867,6 +970,14 @@ static bool router_validate_model(std::string & name, server_models & models, bo
     return true;
 }
 
+// 函数: is_autoload
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_autoload
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_autoload(const common_params & params, const server_http_req & req) {
     std::string autoload = req.get_param("autoload");
     if (autoload.empty()) {
@@ -897,6 +1008,14 @@ void server_models_routes::init_routes() {
             });
             return res;
         }
+        // 函数: proxy_get
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: proxy_get
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return proxy_get(req);
     };
 
@@ -1010,20 +1129,68 @@ void server_models_routes::init_routes() {
 // simple implementation of a pipe
 // used for streaming data between threads
 template<typename T>
+// 类: pipe_t
+// 描述: pipe_t类提供相关功能
+// 用途: 用于处理pipe_t相关的操作
+// 类: pipe_t
+// 描述: pipe_t类提供相关功能
+// 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
+    // 结构体: pipe_t
+    // 描述: pipe_t结构体提供相关功能
+    // 用途: 用于处理pipe_t相关的操作
 struct pipe_t {
     std::mutex mutex;
     std::condition_variable cv;
     std::queue<T> queue;
     std::atomic<bool> writer_closed{false};
     std::atomic<bool> reader_closed{false};
+    // 函数: close_write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: close_write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void close_write() {
         writer_closed.store(true, std::memory_order_relaxed);
         cv.notify_all();
     }
+    // 函数: close_read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: close_read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void close_read() {
         reader_closed.store(true, std::memory_order_relaxed);
         cv.notify_all();
     }
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool read(T & output, const std::function<bool()> & should_stop) {
         std::unique_lock<std::mutex> lk(mutex);
         constexpr auto poll_interval = std::chrono::milliseconds(500);
@@ -1043,6 +1210,14 @@ struct pipe_t {
             cv.wait_for(lk, poll_interval);
         }
     }
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool write(T && data) {
         std::lock_guard<std::mutex> lk(mutex);
         if (reader_closed.load()) {
@@ -1054,12 +1229,28 @@ struct pipe_t {
     }
 };
 
+// 函数: to_lower_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: to_lower_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string to_lower_copy(const std::string & value) {
     std::string lowered(value.size(), '\0');
     std::transform(value.begin(), value.end(), lowered.begin(), [](unsigned char c) { return std::tolower(c); });
     return lowered;
 }
 
+// 函数: should_strip_proxy_header
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: should_strip_proxy_header
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool should_strip_proxy_header(const std::string & header_name) {
     // Headers that get duplicated when router forwards child responses
     if (header_name == "server" ||

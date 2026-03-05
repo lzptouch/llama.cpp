@@ -47,6 +47,14 @@
 #   define N_THREADS std::thread::hardware_concurrency()
 #endif
 
+// 函数: init_tensor_uniform
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_tensor_uniform
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_tensor_uniform(ggml_tensor * tensor, float min = -1.0f, float max = 1.0f) {
     size_t nels = ggml_nelements(tensor);
     std::vector<float> data(nels);
@@ -149,6 +157,14 @@ static void init_tensor_uniform(ggml_tensor * tensor, float min = -1.0f, float m
 }
 
 // generate an F16 mask where certain blocks are randomly masked with -INF value
+// 函数: init_tensor_kq_mask
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_tensor_kq_mask
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_tensor_kq_mask(ggml_tensor * tensor, float min = -1.0f, float max = 1.0f) {
     GGML_ASSERT(tensor->type == GGML_TYPE_F16);
 
@@ -195,6 +211,14 @@ static void init_tensor_kq_mask(ggml_tensor * tensor, float min = -1.0f, float m
 }
 
 // generate a lower triangular matrix
+// 函数: init_tensor_tril
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_tensor_tril
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_tensor_tril(ggml_tensor * tensor, float min = -1.0f, float max = 1.0f) {
     GGML_ASSERT(tensor->type == GGML_TYPE_F32);
     GGML_ASSERT(tensor->ne[0] == tensor->ne[1]);
@@ -273,6 +297,14 @@ static std::vector<float> tensor_to_float(const ggml_tensor * t) {
 }
 
 // normalized mean squared error = mse(a, b) / mse(a, 0)
+// 函数: nmse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: nmse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static double nmse(const float * a, const float * b, size_t n) {
     double mse_a_b = 0.0;
     double mse_a_0 = 0.0;
@@ -290,6 +322,14 @@ static double nmse(const float * a, const float * b, size_t n) {
 
 // difference between 2 sets (Jaccard distance, 0 - no difference, 1 - no overlap)
 template <typename T>
+// 函数: jdst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: jdst
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static double jdst(const T * a, const T * b, size_t n) {
     std::unordered_map<T, size_t> set_a;
     std::unordered_map<T, size_t> set_b;
@@ -323,6 +363,14 @@ static double jdst(const T * a, const T * b, size_t n) {
 // n: number of values to compare.
 // expected_vals: optional vector of expected values for a. If expected_vals is not empty, filter out all comparisons where
 //     a does not match any of the expected values. Needed for noncontinuous gradients where the numerical calculation can fail.
+// 函数: mean_abs_asymm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mean_abs_asymm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static double mean_abs_asymm(const float * a, const float * b, const size_t n, const std::vector<float> & expected_vals) {
     double sum = 0.0f;
 
@@ -352,16 +400,40 @@ static double mean_abs_asymm(const float * a, const float * b, const size_t n, c
 
 // utils for printing the variables of the test cases
 
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(const std::string & x) {
     return x;
 }
 
 template<typename T>
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(const T & x) {
     return std::to_string(x);
 }
 
 template<typename T, size_t N>
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(const T (&x)[N]) {
     std::string s = "[";
     for (size_t i = 0; i < N; i++) {
@@ -375,6 +447,14 @@ static std::string var_to_str(const T (&x)[N]) {
 }
 
 template<typename T, size_t N>
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(const std::array<T, N> & x) {
     std::string s = "[";
     for (size_t i = 0; i < N; i++) {
@@ -387,14 +467,38 @@ static std::string var_to_str(const std::array<T, N> & x) {
     return s;
 }
 
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(ggml_type type) {
     return ggml_type_name(type);
 }
 
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(ggml_prec prec) {
     return prec == GGML_PREC_F32 ? "f32" : "def";
 }
 
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(ggml_op_pool pool) {
     switch (pool) {
         case GGML_OP_POOL_AVG:  return "avg";
@@ -403,6 +507,14 @@ static std::string var_to_str(ggml_op_pool pool) {
     }
 }
 
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: var_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string var_to_str(ggml_scale_mode mode) {
     std::string str;
     switch (mode & 0xFF) {
@@ -448,14 +560,38 @@ static bool inline _isinf(float f) { return std::isinf(f); }
 #endif
 
 // accept FLT_MAX as infinity
+// 函数: isinf_or_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: isinf_or_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool isinf_or_max(float f) {
     return _isinf(f) || f == FLT_MAX || f == -FLT_MAX;
 }
 
+// 函数: ggml_is_view_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_is_view_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_is_view_op(enum ggml_op op) {
     return op == GGML_OP_VIEW || op == GGML_OP_RESHAPE || op == GGML_OP_PERMUTE || op == GGML_OP_TRANSPOSE;
 }
 
+// 函数: backend_has_feature
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_has_feature
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool backend_has_feature(ggml_backend_t backend, const char * feature_name) {
     ggml_backend_dev_t dev = ggml_backend_get_device(backend);
     ggml_backend_reg_t reg = ggml_backend_dev_backend_reg(dev);
@@ -488,6 +624,14 @@ enum test_mode {
 // Output format support similar to llama-bench
 enum output_formats { CONSOLE, SQL, CSV };
 
+// 函数: output_format_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: output_format_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * output_format_str(output_formats format) {
     switch (format) {
         case CONSOLE:
@@ -501,6 +645,14 @@ static const char * output_format_str(output_formats format) {
     }
 }
 
+// 函数: output_format_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: output_format_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool output_format_from_str(const std::string & s, output_formats & format) {
     if (s == "console") {
         format = CONSOLE;
@@ -515,6 +667,24 @@ static bool output_format_from_str(const std::string & s, output_formats & forma
 }
 
 // Test result structure for SQL output
+// 类: test_result
+// 描述: test_result类提供相关功能
+// 用途: 用于处理test_result相关的操作
+// 类: test_result
+// 描述: test_result类提供相关功能
+// 用途: 用于处理test_result相关的操作
+    // 结构体: test_result
+    // 描述: test_result结构体提供相关功能
+    // 用途: 用于处理test_result相关的操作
+    // 结构体: test_result
+    // 描述: test_result结构体提供相关功能
+    // 用途: 用于处理test_result相关的操作
+    // 结构体: test_result
+    // 描述: test_result结构体提供相关功能
+    // 用途: 用于处理test_result相关的操作
+    // 结构体: test_result
+    // 描述: test_result结构体提供相关功能
+    // 用途: 用于处理test_result相关的操作
 struct test_result {
     std::string test_time;
     std::string build_commit;
@@ -592,6 +762,14 @@ struct test_result {
 
     enum field_type { STRING, BOOL, INT, FLOAT };
 
+    // 函数: get_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static field_type get_field_type(const std::string & field) {
         if (field == "supported" || field == "passed") {
             return BOOL;
@@ -628,6 +806,24 @@ struct test_result {
 // Printer classes for different output formats
 enum class test_status_t { NOT_SUPPORTED, OK, FAIL, SKIPPED };
 
+// 类: test_operation_info
+// 描述: test_operation_info类提供相关功能
+// 用途: 用于处理test_operation_info相关的操作
+// 类: test_operation_info
+// 描述: test_operation_info类提供相关功能
+// 用途: 用于处理test_operation_info相关的操作
+    // 结构体: test_operation_info
+    // 描述: test_operation_info结构体提供相关功能
+    // 用途: 用于处理test_operation_info相关的操作
+    // 结构体: test_operation_info
+    // 描述: test_operation_info结构体提供相关功能
+    // 用途: 用于处理test_operation_info相关的操作
+    // 结构体: test_operation_info
+    // 描述: test_operation_info结构体提供相关功能
+    // 用途: 用于处理test_operation_info相关的操作
+    // 结构体: test_operation_info
+    // 描述: test_operation_info结构体提供相关功能
+    // 用途: 用于处理test_operation_info相关的操作
 struct test_operation_info {
     std::string   op_name;
     std::string   op_params;
@@ -666,6 +862,14 @@ struct test_operation_info {
         failure_reason(failure_reason) {}
 
     // Set error information
+    // 函数: set_error
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_error
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_error(const std::string & component, const std::string & details) {
         has_error       = true;
         error_component = component;
@@ -676,6 +880,14 @@ struct test_operation_info {
     }
 
     // Set gradient information
+    // 函数: set_gradient_info
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_gradient_info
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_gradient_info(int64_t index, const std::string & param_name, float value) {
         has_gradient_info   = true;
         gradient_index      = index;
@@ -687,6 +899,14 @@ struct test_operation_info {
     }
 
     // Set MAA error information
+    // 函数: set_maa_error
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_maa_error
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_maa_error(double error, double threshold) {
         has_maa_error = true;
         maa_error     = error;
@@ -697,6 +917,14 @@ struct test_operation_info {
     }
 
     // Set compare failure
+    // 函数: set_compare_failure
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_compare_failure
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_compare_failure() {
         is_compare_failure = true;
         if (status == test_status_t::OK) {
@@ -705,9 +933,35 @@ struct test_operation_info {
     }
 
     // Set large tensor skip
+    // 函数: set_large_tensor_skip
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_large_tensor_skip
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_large_tensor_skip() { is_large_tensor_skip = true; }
 };
 
+// 类: test_summary_info
+// 描述: test_summary_info类提供相关功能
+// 用途: 用于处理test_summary_info相关的操作
+// 类: test_summary_info
+// 描述: test_summary_info类提供相关功能
+// 用途: 用于处理test_summary_info相关的操作
+    // 结构体: test_summary_info
+    // 描述: test_summary_info结构体提供相关功能
+    // 用途: 用于处理test_summary_info相关的操作
+    // 结构体: test_summary_info
+    // 描述: test_summary_info结构体提供相关功能
+    // 用途: 用于处理test_summary_info相关的操作
+    // 结构体: test_summary_info
+    // 描述: test_summary_info结构体提供相关功能
+    // 用途: 用于处理test_summary_info相关的操作
+    // 结构体: test_summary_info
+    // 描述: test_summary_info结构体提供相关功能
+    // 用途: 用于处理test_summary_info相关的操作
 struct test_summary_info {
     size_t tests_passed;
     size_t tests_total;
@@ -721,6 +975,24 @@ struct test_summary_info {
         is_backend_summary(is_backend_summary) {}
 };
 
+// 类: testing_start_info
+// 描述: testing_start_info类提供相关功能
+// 用途: 用于处理testing_start_info相关的操作
+// 类: testing_start_info
+// 描述: testing_start_info类提供相关功能
+// 用途: 用于处理testing_start_info相关的操作
+    // 结构体: testing_start_info
+    // 描述: testing_start_info结构体提供相关功能
+    // 用途: 用于处理testing_start_info相关的操作
+    // 结构体: testing_start_info
+    // 描述: testing_start_info结构体提供相关功能
+    // 用途: 用于处理testing_start_info相关的操作
+    // 结构体: testing_start_info
+    // 描述: testing_start_info结构体提供相关功能
+    // 用途: 用于处理testing_start_info相关的操作
+    // 结构体: testing_start_info
+    // 描述: testing_start_info结构体提供相关功能
+    // 用途: 用于处理testing_start_info相关的操作
 struct testing_start_info {
     size_t device_count;
 
@@ -729,6 +1001,24 @@ struct testing_start_info {
     testing_start_info(size_t device_count) : device_count(device_count) {}
 };
 
+// 类: backend_init_info
+// 描述: backend_init_info类提供相关功能
+// 用途: 用于处理backend_init_info相关的操作
+// 类: backend_init_info
+// 描述: backend_init_info类提供相关功能
+// 用途: 用于处理backend_init_info相关的操作
+    // 结构体: backend_init_info
+    // 描述: backend_init_info结构体提供相关功能
+    // 用途: 用于处理backend_init_info相关的操作
+    // 结构体: backend_init_info
+    // 描述: backend_init_info结构体提供相关功能
+    // 用途: 用于处理backend_init_info相关的操作
+    // 结构体: backend_init_info
+    // 描述: backend_init_info结构体提供相关功能
+    // 用途: 用于处理backend_init_info相关的操作
+    // 结构体: backend_init_info
+    // 描述: backend_init_info结构体提供相关功能
+    // 用途: 用于处理backend_init_info相关的操作
 struct backend_init_info {
     size_t      device_index;
     size_t      total_devices;
@@ -756,6 +1046,24 @@ struct backend_init_info {
         has_memory_info(has_memory_info) {}
 };
 
+// 类: backend_status_info
+// 描述: backend_status_info类提供相关功能
+// 用途: 用于处理backend_status_info相关的操作
+// 类: backend_status_info
+// 描述: backend_status_info类提供相关功能
+// 用途: 用于处理backend_status_info相关的操作
+    // 结构体: backend_status_info
+    // 描述: backend_status_info结构体提供相关功能
+    // 用途: 用于处理backend_status_info相关的操作
+    // 结构体: backend_status_info
+    // 描述: backend_status_info结构体提供相关功能
+    // 用途: 用于处理backend_status_info相关的操作
+    // 结构体: backend_status_info
+    // 描述: backend_status_info结构体提供相关功能
+    // 用途: 用于处理backend_status_info相关的操作
+    // 结构体: backend_status_info
+    // 描述: backend_status_info结构体提供相关功能
+    // 用途: 用于处理backend_status_info相关的操作
 struct backend_status_info {
     std::string   backend_name;
     test_status_t status;
@@ -767,6 +1075,24 @@ struct backend_status_info {
         status(status) {}
 };
 
+// 类: overall_summary_info
+// 描述: overall_summary_info类提供相关功能
+// 用途: 用于处理overall_summary_info相关的操作
+// 类: overall_summary_info
+// 描述: overall_summary_info类提供相关功能
+// 用途: 用于处理overall_summary_info相关的操作
+    // 结构体: overall_summary_info
+    // 描述: overall_summary_info结构体提供相关功能
+    // 用途: 用于处理overall_summary_info相关的操作
+    // 结构体: overall_summary_info
+    // 描述: overall_summary_info结构体提供相关功能
+    // 用途: 用于处理overall_summary_info相关的操作
+    // 结构体: overall_summary_info
+    // 描述: overall_summary_info结构体提供相关功能
+    // 用途: 用于处理overall_summary_info相关的操作
+    // 结构体: overall_summary_info
+    // 描述: overall_summary_info结构体提供相关功能
+    // 用途: 用于处理overall_summary_info相关的操作
 struct overall_summary_info {
     size_t backends_passed;
     size_t backends_total;
@@ -780,33 +1106,157 @@ struct overall_summary_info {
         all_passed(all_passed) {}
 };
 
+// 类: printer
+// 描述: printer类提供相关功能
+// 用途: 用于处理printer相关的操作
+// 类: printer
+// 描述: printer类提供相关功能
+// 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
+    // 结构体: printer
+    // 描述: printer结构体提供相关功能
+    // 用途: 用于处理printer相关的操作
 struct printer {
     virtual ~printer() {}
 
     FILE * fout = stdout;
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_header() {}
 
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_test_result(const test_result & result) = 0;
 
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_footer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_footer() {}
 
+    // 函数: print_operation
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_operation
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_operation(const test_operation_info & info) { (void) info; }
 
+    // 函数: print_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_summary(const test_summary_info & info) { (void) info; }
 
+    // 函数: print_testing_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_testing_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_testing_start(const testing_start_info & info) { (void) info; }
 
+    // 函数: print_backend_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_backend_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_backend_init(const backend_init_info & info) { (void) info; }
 
+    // 函数: print_backend_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_backend_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_backend_status(const backend_status_info & info) { (void) info; }
 
+    // 函数: print_overall_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_overall_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_overall_summary(const overall_summary_info & info) { (void) info; }
 
+    // 函数: print_failed_tests
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_failed_tests
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void print_failed_tests(const std::vector<std::string> & failed_tests) { (void) failed_tests; }
 };
 
+// 类: console_printer
+// 描述: console_printer类提供相关功能
+// 用途: 用于处理console_printer相关的操作
+// 类: console_printer
+// 描述: console_printer类提供相关功能
+// 用途: 用于处理console_printer相关的操作
+    // 结构体: console_printer
+    // 描述: console_printer结构体提供相关功能
+    // 用途: 用于处理console_printer相关的操作
+    // 结构体: console_printer
+    // 描述: console_printer结构体提供相关功能
+    // 用途: 用于处理console_printer相关的操作
+    // 结构体: console_printer
+    // 描述: console_printer结构体提供相关功能
+    // 用途: 用于处理console_printer相关的操作
+    // 结构体: console_printer
+    // 描述: console_printer结构体提供相关功能
+    // 用途: 用于处理console_printer相关的操作
 struct console_printer : public printer {
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test_result(const test_result & result) override {
         if (result.test_mode == "test") {
             print_test_console(result);
@@ -817,6 +1267,14 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_operation
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_operation
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_operation(const test_operation_info & info) override {
         printf("  %s(%s): ", info.op_name.c_str(), info.op_params.c_str());
         fflush(stdout);
@@ -872,6 +1330,14 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_summary(const test_summary_info & info) override {
         if (info.is_backend_summary) {
             printf("%zu/%zu backends passed\n", info.tests_passed, info.tests_total);
@@ -880,6 +1346,14 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_backend_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_backend_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_backend_status(const backend_status_info & info) override {
         printf("  Backend %s: ", info.backend_name.c_str());
         if (info.status == test_status_t::OK) {
@@ -889,10 +1363,26 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_testing_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_testing_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_testing_start(const testing_start_info & info) override {
         printf("Testing %zu devices\n\n", info.device_count);
     }
 
+    // 函数: print_backend_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_backend_init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_backend_init(const backend_init_info & info) override {
         printf("Backend %zu/%zu: %s\n", info.device_index + 1, info.total_devices, info.device_name.c_str());
 
@@ -912,6 +1402,14 @@ struct console_printer : public printer {
         printf("\n");
     }
 
+    // 函数: print_overall_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_overall_summary
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_overall_summary(const overall_summary_info & info) override {
         printf("%zu/%zu backends passed\n", info.backends_passed, info.backends_total);
         if (info.all_passed) {
@@ -921,6 +1419,14 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_failed_tests
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_failed_tests
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_failed_tests(const std::vector<std::string> & failed_tests) override {
         if (failed_tests.empty()) {
             return;
@@ -933,6 +1439,14 @@ struct console_printer : public printer {
     }
 
   private:
+    // 函数: print_test_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test_console(const test_result & result) {
         printf("  %s(%s): ", result.op_name.c_str(), result.op_params.c_str());
         fflush(stdout);
@@ -950,6 +1464,14 @@ struct console_printer : public printer {
         }
     }
 
+    // 函数: print_perf_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_perf_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_perf_console(const test_result & result) {
         int len = printf("  %s(%s): ", result.op_name.c_str(), result.op_params.c_str());
         fflush(stdout);
@@ -992,6 +1514,14 @@ struct console_printer : public printer {
         printf("\n");
     }
 
+    // 函数: print_support_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_support_console
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_support_console(const test_result & result) {
         printf("  %s(%s): ", result.op_name.c_str(), result.op_params.c_str());
         fflush(stdout);
@@ -1004,7 +1534,33 @@ struct console_printer : public printer {
     }
 };
 
+// 类: sql_printer
+// 描述: sql_printer类提供相关功能
+// 用途: 用于处理sql_printer相关的操作
+// 类: sql_printer
+// 描述: sql_printer类提供相关功能
+// 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
+    // 结构体: sql_printer
+    // 描述: sql_printer结构体提供相关功能
+    // 用途: 用于处理sql_printer相关的操作
 struct sql_printer : public printer {
+    // 函数: get_sql_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_sql_field_type
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static std::string get_sql_field_type(const std::string & field) {
         switch (test_result::get_field_type(field)) {
             case test_result::STRING:
@@ -1019,6 +1575,14 @@ struct sql_printer : public printer {
         }
     }
 
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header() override {
         std::vector<std::string> fields = test_result::get_fields();
         fprintf(fout, "CREATE TABLE IF NOT EXISTS test_backend_ops (\n");
@@ -1029,6 +1593,14 @@ struct sql_printer : public printer {
         fprintf(fout, ");\n\n");
     }
 
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test_result(const test_result & result) override {
         fprintf(fout, "INSERT INTO test_backend_ops (");
         std::vector<std::string> fields = test_result::get_fields();
@@ -1044,7 +1616,33 @@ struct sql_printer : public printer {
     }
 };
 
+// 类: csv_printer
+// 描述: csv_printer类提供相关功能
+// 用途: 用于处理csv_printer相关的操作
+// 类: csv_printer
+// 描述: csv_printer类提供相关功能
+// 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
+    // 结构体: csv_printer
+    // 描述: csv_printer结构体提供相关功能
+    // 用途: 用于处理csv_printer相关的操作
 struct csv_printer : public printer {
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_header() override {
 
         std::vector<std::string> fields     = test_result::get_fields();
@@ -1058,6 +1656,14 @@ struct csv_printer : public printer {
         printf("\n");
     }
 
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_test_result
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_test_result(const test_result & result) override {
 
         std::vector<std::string> values     = result.get_values();
@@ -1108,55 +1714,169 @@ static std::unique_ptr<printer> create_printer(output_formats format) {
     GGML_ABORT("invalid output format");
 }
 
+// 类: test_case
+// 描述: test_case类提供相关功能
+// 用途: 用于处理test_case相关的操作
+// 类: test_case
+// 描述: test_case类提供相关功能
+// 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
+    // 结构体: test_case
+    // 描述: test_case结构体提供相关功能
+    // 用途: 用于处理test_case相关的操作
 struct test_case {
     virtual ~test_case() {}
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual std::string op_desc(ggml_tensor * t) {
         return ggml_op_desc(t);
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual std::string vars() {
         return "";
     }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual ggml_tensor * build_graph(ggml_context * ctx) = 0;
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_nmse_err() {
         return 1e-7;
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_nmse_err(ggml_backend_t backend) {
         GGML_UNUSED(backend);
         return max_nmse_err();
     }
 
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_maa_err() {
         return 1e-4;
     }
 
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_err() {
         return max_nmse_err();
     }
 
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_err(ggml_backend_t backend) {
         return max_nmse_err(backend);
     }
 
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double err(const float * a, const float * b, size_t n) {
         return nmse(a, b, n);
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual float grad_eps() {
         return 1e-1f;
     }
 
     // If false, estimate gradient with 2 points, neglects 3rd order derivative and higher.
     // If true,  estimate gradient with 4 points, neglects 5th order derivative and higher.
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool grad_precise() {
         return false;
     }
 
     // Skip gradient checks if total number of gradients to be checked is larger than this (to speed up the tests).
+    // 函数: grad_nmax
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_nmax
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual int64_t grad_nmax() {
         return 10000;
     }
@@ -1168,12 +1888,28 @@ struct test_case {
         return {};
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     virtual void initialize_tensors(ggml_context * ctx) {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != nullptr; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t);
         }
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual size_t op_size(ggml_tensor * t) {
         size_t size = ggml_nbytes(t);
         // add source tensors
@@ -1185,11 +1921,27 @@ struct test_case {
         return size;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual uint64_t op_flops(ggml_tensor * t) {
         GGML_UNUSED(t);
         return 0;
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual bool run_whole_graph() { return false; }
     virtual std::vector<ggml_tensor *> fusion_test_nodes() { return {}; }
 
@@ -1204,6 +1956,14 @@ struct test_case {
 
     std::string current_op_name;
 
+    // 函数: add_sentinel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_sentinel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_sentinel(ggml_context * ctx) {
         if (mode == MODE_PERF || mode == MODE_GRAD || mode == MODE_SUPPORT) {
             return;
@@ -1215,30 +1975,70 @@ struct test_case {
 
     // hijack ggml_new_tensor to add sentinels after each tensor to check for overflows in the backend
 
+    // 函数: ggml_new_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * ggml_new_tensor(ggml_context * ctx, ggml_type type, int n_dims, const int64_t * ne) {
         ggml_tensor * t = ::ggml_new_tensor(ctx, type, n_dims, ne);
         add_sentinel(ctx);
         return t;
     }
 
+    // 函数: ggml_new_tensor_1d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor_1d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * ggml_new_tensor_1d(ggml_context * ctx, ggml_type type, int64_t ne0) {
         ggml_tensor * t = ::ggml_new_tensor_1d(ctx, type, ne0);
         add_sentinel(ctx);
         return t;
     }
 
+    // 函数: ggml_new_tensor_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor_2d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * ggml_new_tensor_2d(ggml_context * ctx, ggml_type type, int64_t ne0, int64_t ne1) {
         ggml_tensor * t = ::ggml_new_tensor_2d(ctx, type, ne0, ne1);
         add_sentinel(ctx);
         return t;
     }
 
+    // 函数: ggml_new_tensor_3d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor_3d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * ggml_new_tensor_3d(ggml_context * ctx, ggml_type type, int64_t ne0, int64_t ne1, int64_t ne2) {
         ggml_tensor * t = ::ggml_new_tensor_3d(ctx, type, ne0, ne1, ne2);
         add_sentinel(ctx);
         return t;
     }
 
+    // 函数: ggml_new_tensor_4d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_new_tensor_4d
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * ggml_new_tensor_4d(ggml_context * ctx, ggml_type type, int64_t ne0, int64_t ne1, int64_t ne2, int64_t ne3) {
         ggml_tensor * t = ::ggml_new_tensor_4d(ctx, type, ne0, ne1, ne2, ne3);
         add_sentinel(ctx);
@@ -1246,6 +2046,14 @@ struct test_case {
     }
 
     // Checks an op against the test filter, which is a comma separated list of OP names or specific variations
+    // 函数: matches_filter
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matches_filter
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool matches_filter(ggml_tensor * op, const char * op_names_filter) {
         if (op_names_filter) {
             const auto op_name = op_desc(op);
@@ -1316,6 +2124,14 @@ struct test_case {
 
         if (!supported) {
             // Create test result for unsupported operation
+            // 函数: result
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: result
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             test_result result(ggml_backend_name(backend1), current_op_name, vars(), "test",
                              false, false, "not supported");
 
@@ -1351,6 +2167,24 @@ struct test_case {
         initialize_tensors(ctx);
 
         // compare
+        // 类: callback_userdata
+        // 描述: callback_userdata类提供相关功能
+        // 用途: 用于处理callback_userdata相关的操作
+        // 类: callback_userdata
+        // 描述: callback_userdata类提供相关功能
+        // 用途: 用于处理callback_userdata相关的操作
+    // 结构体: callback_userdata
+    // 描述: callback_userdata结构体提供相关功能
+    // 用途: 用于处理callback_userdata相关的操作
+    // 结构体: callback_userdata
+    // 描述: callback_userdata结构体提供相关功能
+    // 用途: 用于处理callback_userdata相关的操作
+    // 结构体: callback_userdata
+    // 描述: callback_userdata结构体提供相关功能
+    // 用途: 用于处理callback_userdata相关的操作
+    // 结构体: callback_userdata
+    // 描述: callback_userdata结构体提供相关功能
+    // 用途: 用于处理callback_userdata相关的操作
         struct callback_userdata {
             bool   ok;
             test_case * tc;
@@ -1440,6 +2274,14 @@ struct test_case {
         // Create test result
         bool        test_passed = ud.ok && cmp_ok;
         std::string error_msg   = test_passed ? "" : (!cmp_ok ? "compare failed" : "test failed");
+        // 函数: result
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: result
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         test_result result(ggml_backend_name(backend1), current_op_name, vars(), "test", supported, test_passed,
                            error_msg);
 
@@ -1450,6 +2292,14 @@ struct test_case {
         return test_passed ? test_status_t::OK : test_status_t::FAIL;
     }
 
+    // 函数: eval_perf
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: eval_perf
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool eval_perf(ggml_backend_t backend, const char * op_names_filter, printer * output_printer) {
         mode = MODE_PERF;
 
@@ -1580,6 +2430,14 @@ struct test_case {
         return true;
     }
 
+    // 函数: eval_support
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: eval_support
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool eval_support(ggml_backend_t backend, const char * op_names_filter, printer * output_printer) {
         mode = MODE_SUPPORT;
 
@@ -1615,6 +2473,14 @@ struct test_case {
         return true;
     }
 
+    // 函数: eval_grad
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: eval_grad
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool eval_grad(ggml_backend_t backend, const char * op_names_filter, printer * output_printer) {
         mode = MODE_GRAD;
         const std::vector<float> expect = grad_expect();
@@ -1760,6 +2626,24 @@ struct test_case {
             const int64_t ne = ggml_nelements(t);
 
             std::vector<float> ga;
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * grad = ggml_graph_get_grad(gb, t);
             if (grad) {
                 ga = tensor_to_float(grad);
@@ -1876,6 +2760,24 @@ struct test_case {
 // The following is an example showing the bare minimum for creating a test for a GGML op.
 
 // GGML_OP_EXAMPLE
+// 类: test_example
+// 描述: test_example类提供相关功能
+// 用途: 用于处理test_example相关的操作
+// 类: test_example
+// 描述: test_example类提供相关功能
+// 用途: 用于处理test_example相关的操作
+    // 结构体: test_example
+    // 描述: test_example结构体提供相关功能
+    // 用途: 用于处理test_example相关的操作
+    // 结构体: test_example
+    // 描述: test_example结构体提供相关功能
+    // 用途: 用于处理test_example相关的操作
+    // 结构体: test_example
+    // 描述: test_example结构体提供相关功能
+    // 用途: 用于处理test_example相关的操作
+    // 结构体: test_example
+    // 描述: test_example结构体提供相关功能
+    // 用途: 用于处理test_example相关的操作
 struct test_example : public test_case {
     // Always define these 2 or variants thereof:
     const ggml_type type; // The type of the input tensors.
@@ -1886,6 +2788,14 @@ struct test_example : public test_case {
     // Put all parameters needed to fully define the test into one of the VARS_TO_STR macros.
     // In most cases these are just the properties of the struct that you defined above.
     // This is needed for info prints.
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -1898,6 +2808,14 @@ struct test_example : public test_case {
         : type(type), ne(ne) {}
 
     // Define how a simple GGML compute graph can be constructed for the new GGML op.
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         // Step 1: create input tensors that don't depend on any other tensors:
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
@@ -1920,12 +2838,38 @@ struct test_example : public test_case {
 
 
 // GGML_OP_UNARY
+// 类: test_unary
+// 描述: test_unary类提供相关功能
+// 用途: 用于处理test_unary相关的操作
+// 类: test_unary
+// 描述: test_unary类提供相关功能
+// 用途: 用于处理test_unary相关的操作
+    // 结构体: test_unary
+    // 描述: test_unary结构体提供相关功能
+    // 用途: 用于处理test_unary相关的操作
+    // 结构体: test_unary
+    // 描述: test_unary结构体提供相关功能
+    // 用途: 用于处理test_unary相关的操作
+    // 结构体: test_unary
+    // 描述: test_unary结构体提供相关功能
+    // 用途: 用于处理test_unary相关的操作
+    // 结构体: test_unary
+    // 描述: test_unary结构体提供相关功能
+    // 用途: 用于处理test_unary相关的操作
 struct test_unary : public test_case {
     const ggml_unary_op op;
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     int v; // view (1 : non-contiguous a)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne_a, v);
     }
@@ -1936,6 +2880,14 @@ struct test_unary : public test_case {
             int v = 0)
         : op(op), type(type), ne_a(ne_a), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const bool grad_supported = op == GGML_UNARY_OP_ABS || op == GGML_UNARY_OP_SGN || op == GGML_UNARY_OP_NEG ||
             op == GGML_UNARY_OP_STEP || op == GGML_UNARY_OP_RELU || op == GGML_UNARY_OP_SILU ||
@@ -1970,6 +2922,14 @@ struct test_unary : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // test extended range of values to check for NaNs in GELU
@@ -1977,6 +2937,14 @@ struct test_unary : public test_case {
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 15.0f;
     }
@@ -1997,6 +2965,24 @@ struct test_unary : public test_case {
 };
 
 // GGML_OP_GLU
+// 类: test_glu
+// 描述: test_glu类提供相关功能
+// 用途: 用于处理test_glu相关的操作
+// 类: test_glu
+// 描述: test_glu类提供相关功能
+// 用途: 用于处理test_glu相关的操作
+    // 结构体: test_glu
+    // 描述: test_glu结构体提供相关功能
+    // 用途: 用于处理test_glu相关的操作
+    // 结构体: test_glu
+    // 描述: test_glu结构体提供相关功能
+    // 用途: 用于处理test_glu相关的操作
+    // 结构体: test_glu
+    // 描述: test_glu结构体提供相关功能
+    // 用途: 用于处理test_glu相关的操作
+    // 结构体: test_glu
+    // 描述: test_glu结构体提供相关功能
+    // 用途: 用于处理test_glu相关的操作
 struct test_glu : public test_case {
     const ggml_glu_op op;
     const ggml_type type;
@@ -2004,6 +2990,14 @@ struct test_glu : public test_case {
     int v; // view (1 : non-contiguous a)
     bool swapped;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne_a, v, swapped);
     }
@@ -2015,6 +3009,14 @@ struct test_glu : public test_case {
             bool swapped = false)
         : op(op), type(type), ne_a(ne_a), v(v), swapped(swapped) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a;
         if (v & 1) {
@@ -2035,6 +3037,14 @@ struct test_glu : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // test extended range of values to check for NaNs in GELU
@@ -2043,12 +3053,38 @@ struct test_glu : public test_case {
     }
 };
 
+// 类: test_glu_split
+// 描述: test_glu_split类提供相关功能
+// 用途: 用于处理test_glu_split相关的操作
+// 类: test_glu_split
+// 描述: test_glu_split类提供相关功能
+// 用途: 用于处理test_glu_split相关的操作
+    // 结构体: test_glu_split
+    // 描述: test_glu_split结构体提供相关功能
+    // 用途: 用于处理test_glu_split相关的操作
+    // 结构体: test_glu_split
+    // 描述: test_glu_split结构体提供相关功能
+    // 用途: 用于处理test_glu_split相关的操作
+    // 结构体: test_glu_split
+    // 描述: test_glu_split结构体提供相关功能
+    // 用途: 用于处理test_glu_split相关的操作
+    // 结构体: test_glu_split
+    // 描述: test_glu_split结构体提供相关功能
+    // 用途: 用于处理test_glu_split相关的操作
 struct test_glu_split : public test_case {
     const ggml_glu_op op;
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     int v; // view (1 : non-contiguous a)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne_a, v) + ",split";
     }
@@ -2059,6 +3095,14 @@ struct test_glu_split : public test_case {
             int v = 0)
         : op(op), type(type), ne_a(ne_a), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a;
         ggml_tensor * b;
@@ -2093,6 +3137,14 @@ struct test_glu_split : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // test extended range of values to check for NaNs in GELU
@@ -2101,6 +3153,24 @@ struct test_glu_split : public test_case {
     }
 };
 
+// 类: test_swiglu_oai
+// 描述: test_swiglu_oai类提供相关功能
+// 用途: 用于处理test_swiglu_oai相关的操作
+// 类: test_swiglu_oai
+// 描述: test_swiglu_oai类提供相关功能
+// 用途: 用于处理test_swiglu_oai相关的操作
+    // 结构体: test_swiglu_oai
+    // 描述: test_swiglu_oai结构体提供相关功能
+    // 用途: 用于处理test_swiglu_oai相关的操作
+    // 结构体: test_swiglu_oai
+    // 描述: test_swiglu_oai结构体提供相关功能
+    // 用途: 用于处理test_swiglu_oai相关的操作
+    // 结构体: test_swiglu_oai
+    // 描述: test_swiglu_oai结构体提供相关功能
+    // 用途: 用于处理test_swiglu_oai相关的操作
+    // 结构体: test_swiglu_oai
+    // 描述: test_swiglu_oai结构体提供相关功能
+    // 用途: 用于处理test_swiglu_oai相关的操作
 struct test_swiglu_oai : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
@@ -2108,6 +3178,14 @@ struct test_swiglu_oai : public test_case {
     float alpha;
     float limit;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne_a, v, alpha, limit);
     }
@@ -2119,6 +3197,14 @@ struct test_swiglu_oai : public test_case {
                     float limit = 7.0f)
         : type(type), ne_a(ne_a), v(v), alpha(alpha), limit(limit) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a;
         ggml_tensor * b;
@@ -2153,6 +3239,14 @@ struct test_swiglu_oai : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // test extended range of values to check for NaNs in GELU
@@ -2162,6 +3256,24 @@ struct test_swiglu_oai : public test_case {
 };
 
 // GGML_OP_GET_ROWS
+// 类: test_get_rows
+// 描述: test_get_rows类提供相关功能
+// 用途: 用于处理test_get_rows相关的操作
+// 类: test_get_rows
+// 描述: test_get_rows类提供相关功能
+// 用途: 用于处理test_get_rows相关的操作
+    // 结构体: test_get_rows
+    // 描述: test_get_rows结构体提供相关功能
+    // 用途: 用于处理test_get_rows相关的操作
+    // 结构体: test_get_rows
+    // 描述: test_get_rows结构体提供相关功能
+    // 用途: 用于处理test_get_rows相关的操作
+    // 结构体: test_get_rows
+    // 描述: test_get_rows结构体提供相关功能
+    // 用途: 用于处理test_get_rows相关的操作
+    // 结构体: test_get_rows
+    // 描述: test_get_rows结构体提供相关功能
+    // 用途: 用于处理test_get_rows相关的操作
 struct test_get_rows : public test_case {
     const ggml_type type;
     const int n; // cols
@@ -2171,6 +3283,14 @@ struct test_get_rows : public test_case {
     const int be2; // batch size
     const bool v; // view (non-contiguous src1)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR7(type, n, m, r, be1, be2, v);
     }
@@ -2178,6 +3298,14 @@ struct test_get_rows : public test_case {
     test_get_rows(ggml_type type = GGML_TYPE_F32, int n = 10, int m = 5, int r = 3, int be1 = 1, int be2 = 1, bool v = false)
         : type(type), n(n), m(m), r(r), be1(be1), be2(be2), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * in = ggml_new_tensor_4d(ctx, type, n, m, be1, be2);
         ggml_set_name(in, "in");
@@ -2201,6 +3329,14 @@ struct test_get_rows : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I32) {
@@ -2219,6 +3355,24 @@ struct test_get_rows : public test_case {
 };
 
 // GGML_OP_GET_ROWS_BACK
+// 类: test_get_rows_back
+// 描述: test_get_rows_back类提供相关功能
+// 用途: 用于处理test_get_rows_back相关的操作
+// 类: test_get_rows_back
+// 描述: test_get_rows_back类提供相关功能
+// 用途: 用于处理test_get_rows_back相关的操作
+    // 结构体: test_get_rows_back
+    // 描述: test_get_rows_back结构体提供相关功能
+    // 用途: 用于处理test_get_rows_back相关的操作
+    // 结构体: test_get_rows_back
+    // 描述: test_get_rows_back结构体提供相关功能
+    // 用途: 用于处理test_get_rows_back相关的操作
+    // 结构体: test_get_rows_back
+    // 描述: test_get_rows_back结构体提供相关功能
+    // 用途: 用于处理test_get_rows_back相关的操作
+    // 结构体: test_get_rows_back
+    // 描述: test_get_rows_back结构体提供相关功能
+    // 用途: 用于处理test_get_rows_back相关的操作
 struct test_get_rows_back : public test_case {
     const ggml_type type;
     const int n; // cols
@@ -2227,6 +3381,14 @@ struct test_get_rows_back : public test_case {
     const int b; // batch size
     const bool v; // view (non-contiguous src1)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(type, n, m, r, b, v);
     }
@@ -2234,6 +3396,14 @@ struct test_get_rows_back : public test_case {
     test_get_rows_back(ggml_type type = GGML_TYPE_F32, int n = 10, int m = 5, int r = 3, int b = 1, bool v = false)
         : type(type), n(n), m(m), r(r), b(b), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * in_forward = ggml_new_tensor_3d(ctx, type, n, m, b);
         ggml_set_name(in_forward, "in_forward");
@@ -2254,6 +3424,14 @@ struct test_get_rows_back : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I32) {
@@ -2271,6 +3449,14 @@ struct test_get_rows_back : public test_case {
     }
 };
 
+// 函数: init_set_rows_row_ids
+// 描述: 设置: 设置某个属性或配置
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_set_rows_row_ids
+// 描述: 设置: 设置某个属性或配置
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_set_rows_row_ids(ggml_tensor * t, int num_rows) {
     std::random_device rd;
     std::default_random_engine rng(rd());
@@ -2300,6 +3486,24 @@ static void init_set_rows_row_ids(ggml_tensor * t, int num_rows) {
 }
 
 // GGML_OP_SET_ROWS
+// 类: test_set_rows
+// 描述: test_set_rows类提供相关功能
+// 用途: 用于处理test_set_rows相关的操作
+// 类: test_set_rows
+// 描述: test_set_rows类提供相关功能
+// 用途: 用于处理test_set_rows相关的操作
+    // 结构体: test_set_rows
+    // 描述: test_set_rows结构体提供相关功能
+    // 用途: 用于处理test_set_rows相关的操作
+    // 结构体: test_set_rows
+    // 描述: test_set_rows结构体提供相关功能
+    // 用途: 用于处理test_set_rows相关的操作
+    // 结构体: test_set_rows
+    // 描述: test_set_rows结构体提供相关功能
+    // 用途: 用于处理test_set_rows相关的操作
+    // 结构体: test_set_rows
+    // 描述: test_set_rows结构体提供相关功能
+    // 用途: 用于处理test_set_rows相关的操作
 struct test_set_rows : public test_case {
     const ggml_type type;
     const ggml_type type_idx;
@@ -2308,6 +3512,14 @@ struct test_set_rows : public test_case {
     const int r; // rows to set
     const bool v; // view (non-contiguous src1)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(type, type_idx, ne, nr23, r, v);
     }
@@ -2319,6 +3531,14 @@ struct test_set_rows : public test_case {
             int r, bool v = false)
         : type(type), type_idx(type_idx), ne(ne), nr23(nr23), r(r), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * dst = ggml_new_tensor_4d(ctx, type,          ne[0], ne[1], ne[2]*nr23[0], ne[3]*nr23[1]);
         ggml_set_name(dst, "dst");
@@ -2341,6 +3561,14 @@ struct test_set_rows : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I64 || t->type == GGML_TYPE_I32) {
@@ -2355,6 +3583,14 @@ struct test_set_rows : public test_case {
         }
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         if (type == GGML_TYPE_Q4_0 || type == GGML_TYPE_Q4_1 || type == GGML_TYPE_IQ4_NL ||
             type == GGML_TYPE_Q5_0 || type == GGML_TYPE_Q5_1 || type == GGML_TYPE_Q8_0) {
@@ -2378,6 +3614,24 @@ struct test_set_rows : public test_case {
 };
 
 // GGML_OP_ROPE + GGML_OP_VIEW + GGML_OP_SET_ROWS
+// 类: test_rope_set_rows
+// 描述: test_rope_set_rows类提供相关功能
+// 用途: 用于处理test_rope_set_rows相关的操作
+// 类: test_rope_set_rows
+// 描述: test_rope_set_rows类提供相关功能
+// 用途: 用于处理test_rope_set_rows相关的操作
+    // 结构体: test_rope_set_rows
+    // 描述: test_rope_set_rows结构体提供相关功能
+    // 用途: 用于处理test_rope_set_rows相关的操作
+    // 结构体: test_rope_set_rows
+    // 描述: test_rope_set_rows结构体提供相关功能
+    // 用途: 用于处理test_rope_set_rows相关的操作
+    // 结构体: test_rope_set_rows
+    // 描述: test_rope_set_rows结构体提供相关功能
+    // 用途: 用于处理test_rope_set_rows相关的操作
+    // 结构体: test_rope_set_rows
+    // 描述: test_rope_set_rows结构体提供相关功能
+    // 用途: 用于处理test_rope_set_rows相关的操作
 struct test_rope_set_rows : public test_case {
     const ggml_type type;
     const ggml_type type_idx;
@@ -2386,15 +3640,39 @@ struct test_rope_set_rows : public test_case {
     const int n_ctx{512};
     const int n_dims{128};
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, type_idx, ne_a, mode);
     }
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "ROPE_SET_ROWS";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
     test_rope_set_rows(ggml_type type,
@@ -2403,6 +3681,14 @@ struct test_rope_set_rows : public test_case {
             int mode)
         : type(type), type_idx(type_idx), ne_a(ne_a), mode(mode) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, GGML_TYPE_F32, ne_a[0], ne_a[1], ne_a[2], 1);
         ggml_set_name(a, "a");
@@ -2452,6 +3738,14 @@ struct test_rope_set_rows : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (strcmp(t->name, "row_idxs") == 0) {
@@ -2480,6 +3774,24 @@ struct test_rope_set_rows : public test_case {
 };
 
 // GGML_OP_RMS_NORM + GGML_OP_MUL + GGML_OP_ROPE (+ GGML_OP_VIEW + GGML_OP_SET_ROWS)
+// 类: test_rms_norm_mul_rope
+// 描述: test_rms_norm_mul_rope类提供相关功能
+// 用途: 用于处理test_rms_norm_mul_rope相关的操作
+// 类: test_rms_norm_mul_rope
+// 描述: test_rms_norm_mul_rope类提供相关功能
+// 用途: 用于处理test_rms_norm_mul_rope相关的操作
+    // 结构体: test_rms_norm_mul_rope
+    // 描述: test_rms_norm_mul_rope结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_rope相关的操作
+    // 结构体: test_rms_norm_mul_rope
+    // 描述: test_rms_norm_mul_rope结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_rope相关的操作
+    // 结构体: test_rms_norm_mul_rope
+    // 描述: test_rms_norm_mul_rope结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_rope相关的操作
+    // 结构体: test_rms_norm_mul_rope
+    // 描述: test_rms_norm_mul_rope结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_rope相关的操作
 struct test_rms_norm_mul_rope : public test_case {
     const std::array<int64_t, 4> ne;
     const float eps;
@@ -2487,13 +3799,37 @@ struct test_rms_norm_mul_rope : public test_case {
     const bool set_rows;
     int mode;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "RMS_NORM_MUL_ROPE";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(ne, eps, multi_add, set_rows, mode);
     }
@@ -2502,6 +3838,14 @@ struct test_rms_norm_mul_rope : public test_case {
                            bool set_rows = false, int mode = GGML_ROPE_TYPE_NORMAL)
         : ne(ne), eps(eps), multi_add(multi_add), set_rows(set_rows), mode(mode) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, GGML_TYPE_F32, ne[0], ne[1], ne[2], 1);
         ggml_tensor * b = ggml_new_tensor_4d(ctx, GGML_TYPE_F32, ne[0], ne[1], ne[2], 1);
@@ -2537,6 +3881,14 @@ struct test_rms_norm_mul_rope : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I64 || t->type == GGML_TYPE_I32) {
@@ -2553,10 +3905,36 @@ struct test_rms_norm_mul_rope : public test_case {
 };
 
 // GGML_OP_ARGMAX
+// 类: test_argmax
+// 描述: test_argmax类提供相关功能
+// 用途: 用于处理test_argmax相关的操作
+// 类: test_argmax
+// 描述: test_argmax类提供相关功能
+// 用途: 用于处理test_argmax相关的操作
+    // 结构体: test_argmax
+    // 描述: test_argmax结构体提供相关功能
+    // 用途: 用于处理test_argmax相关的操作
+    // 结构体: test_argmax
+    // 描述: test_argmax结构体提供相关功能
+    // 用途: 用于处理test_argmax相关的操作
+    // 结构体: test_argmax
+    // 描述: test_argmax结构体提供相关功能
+    // 用途: 用于处理test_argmax相关的操作
+    // 结构体: test_argmax
+    // 描述: test_argmax结构体提供相关功能
+    // 用途: 用于处理test_argmax相关的操作
 struct test_argmax : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -2565,6 +3943,14 @@ struct test_argmax : public test_case {
             std::array<int64_t, 4> ne = {10, 100, 1, 1})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -2575,6 +3961,14 @@ struct test_argmax : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         std::random_device rd;
         std::default_random_engine rng(rd());
@@ -2595,16 +3989,50 @@ struct test_argmax : public test_case {
         }
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 0.0;
     }
 };
 
 // GGML_OP_COUNT_EQUAL
+// 类: test_count_equal
+// 描述: test_count_equal类提供相关功能
+// 用途: 用于处理test_count_equal相关的操作
+// 类: test_count_equal
+// 描述: test_count_equal类提供相关功能
+// 用途: 用于处理test_count_equal相关的操作
+    // 结构体: test_count_equal
+    // 描述: test_count_equal结构体提供相关功能
+    // 用途: 用于处理test_count_equal相关的操作
+    // 结构体: test_count_equal
+    // 描述: test_count_equal结构体提供相关功能
+    // 用途: 用于处理test_count_equal相关的操作
+    // 结构体: test_count_equal
+    // 描述: test_count_equal结构体提供相关功能
+    // 用途: 用于处理test_count_equal相关的操作
+    // 结构体: test_count_equal
+    // 描述: test_count_equal结构体提供相关功能
+    // 用途: 用于处理test_count_equal相关的操作
 struct test_count_equal : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -2613,6 +4041,14 @@ struct test_count_equal : public test_case {
             std::array<int64_t, 4> ne = {4, 500, 1, 1})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -2632,10 +4068,26 @@ struct test_count_equal : public test_case {
         return out;
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 0.0;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         std::random_device rd;
         std::default_random_engine rng(rd());
@@ -2658,15 +4110,49 @@ struct test_count_equal : public test_case {
 };
 
 // GGML_OP_REPEAT
+// 类: test_repeat
+// 描述: test_repeat类提供相关功能
+// 用途: 用于处理test_repeat相关的操作
+// 类: test_repeat
+// 描述: test_repeat类提供相关功能
+// 用途: 用于处理test_repeat相关的操作
+    // 结构体: test_repeat
+    // 描述: test_repeat结构体提供相关功能
+    // 用途: 用于处理test_repeat相关的操作
+    // 结构体: test_repeat
+    // 描述: test_repeat结构体提供相关功能
+    // 用途: 用于处理test_repeat相关的操作
+    // 结构体: test_repeat
+    // 描述: test_repeat结构体提供相关功能
+    // 用途: 用于处理test_repeat相关的操作
+    // 结构体: test_repeat
+    // 描述: test_repeat结构体提供相关功能
+    // 用途: 用于处理test_repeat相关的操作
 struct test_repeat : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const std::array<int, 4> nr;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, nr);
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) * 2;
     }
@@ -2676,6 +4162,14 @@ struct test_repeat : public test_case {
             std::array<int, 4> nr = {2, 2, 2, 2})
         : type(type), ne(ne), nr(nr) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * target = ggml_new_tensor_4d(ctx, type, ne[0]*nr[0], ne[1]*nr[1], ne[2]*nr[2], ne[3]*nr[3]);
         ggml_set_name(target, "target");
@@ -2692,16 +4186,50 @@ struct test_repeat : public test_case {
 };
 
 // GGML_OP_REPEAT_BACK
+// 类: test_repeat_back
+// 描述: test_repeat_back类提供相关功能
+// 用途: 用于处理test_repeat_back相关的操作
+// 类: test_repeat_back
+// 描述: test_repeat_back类提供相关功能
+// 用途: 用于处理test_repeat_back相关的操作
+    // 结构体: test_repeat_back
+    // 描述: test_repeat_back结构体提供相关功能
+    // 用途: 用于处理test_repeat_back相关的操作
+    // 结构体: test_repeat_back
+    // 描述: test_repeat_back结构体提供相关功能
+    // 用途: 用于处理test_repeat_back相关的操作
+    // 结构体: test_repeat_back
+    // 描述: test_repeat_back结构体提供相关功能
+    // 用途: 用于处理test_repeat_back相关的操作
+    // 结构体: test_repeat_back
+    // 描述: test_repeat_back结构体提供相关功能
+    // 用途: 用于处理test_repeat_back相关的操作
 struct test_repeat_back : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const std::array<int, 4> nr;
     const bool v; // whether src is a noncontiguous view
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, nr, v);
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) * 2;
     }
@@ -2712,6 +4240,14 @@ struct test_repeat_back : public test_case {
             bool v = false)
         : type(type), ne(ne), nr(nr), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * src = ggml_new_tensor_4d(ctx, type, ne[0]*nr[0], ne[1]*nr[1], ne[2]*nr[2], ne[3]*nr[3]);
         ggml_set_name(src, "src");
@@ -2745,12 +4281,38 @@ struct test_repeat_back : public test_case {
 };
 
 // GGML_OP_DUP
+// 类: test_dup
+// 描述: test_dup类提供相关功能
+// 用途: 用于处理test_dup相关的操作
+// 类: test_dup
+// 描述: test_dup类提供相关功能
+// 用途: 用于处理test_dup相关的操作
+    // 结构体: test_dup
+    // 描述: test_dup结构体提供相关功能
+    // 用途: 用于处理test_dup相关的操作
+    // 结构体: test_dup
+    // 描述: test_dup结构体提供相关功能
+    // 用途: 用于处理test_dup相关的操作
+    // 结构体: test_dup
+    // 描述: test_dup结构体提供相关功能
+    // 用途: 用于处理test_dup相关的操作
+    // 结构体: test_dup
+    // 描述: test_dup结构体提供相关功能
+    // 用途: 用于处理test_dup相关的操作
 struct test_dup : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const std::array<int64_t, 4> permute;
     bool _use_permute;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         std::string v = VARS_TO_STR2(type, ne);
         if (_use_permute) v += "," + VAR_TO_STR(permute);
@@ -2763,6 +4325,14 @@ struct test_dup : public test_case {
         : type(type), ne(ne), permute(permute),
             _use_permute(permute[0] + permute[1] + permute[2] + permute[3] > 0) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * src = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(src);
@@ -2781,6 +4351,24 @@ struct test_dup : public test_case {
 };
 
 // GGML_OP_SET
+// 类: test_set
+// 描述: test_set类提供相关功能
+// 用途: 用于处理test_set相关的操作
+// 类: test_set
+// 描述: test_set类提供相关功能
+// 用途: 用于处理test_set相关的操作
+    // 结构体: test_set
+    // 描述: test_set结构体提供相关功能
+    // 用途: 用于处理test_set相关的操作
+    // 结构体: test_set
+    // 描述: test_set结构体提供相关功能
+    // 用途: 用于处理test_set相关的操作
+    // 结构体: test_set
+    // 描述: test_set结构体提供相关功能
+    // 用途: 用于处理test_set相关的操作
+    // 结构体: test_set
+    // 描述: test_set结构体提供相关功能
+    // 用途: 用于处理test_set相关的操作
 struct test_set : public test_case {
     const ggml_type type_src;
     const ggml_type type_dst;
@@ -2788,10 +4376,26 @@ struct test_set : public test_case {
     const int dim;
     const bool inplace;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type_src, type_dst, ne, dim, inplace);
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) + ggml_nbytes(t->src[0]);
     }
@@ -2800,6 +4404,14 @@ struct test_set : public test_case {
             std::array<int64_t, 4> ne = {6, 5, 4, 3}, int dim = 1, bool inplace = false)
         : type_src(type_src), type_dst(type_dst), ne(ne), dim(dim), inplace(inplace) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * src = ggml_new_tensor(ctx, type_src, 4, ne.data());
         ggml_set_param(src);
@@ -2834,6 +4446,24 @@ struct test_set : public test_case {
 };
 
 // GGML_OP_CPY
+// 类: test_cpy
+// 描述: test_cpy类提供相关功能
+// 用途: 用于处理test_cpy相关的操作
+// 类: test_cpy
+// 描述: test_cpy类提供相关功能
+// 用途: 用于处理test_cpy相关的操作
+    // 结构体: test_cpy
+    // 描述: test_cpy结构体提供相关功能
+    // 用途: 用于处理test_cpy相关的操作
+    // 结构体: test_cpy
+    // 描述: test_cpy结构体提供相关功能
+    // 用途: 用于处理test_cpy相关的操作
+    // 结构体: test_cpy
+    // 描述: test_cpy结构体提供相关功能
+    // 用途: 用于处理test_cpy相关的操作
+    // 结构体: test_cpy
+    // 描述: test_cpy结构体提供相关功能
+    // 用途: 用于处理test_cpy相关的操作
 struct test_cpy : public test_case {
     const ggml_type type_src;
     const ggml_type type_dst;
@@ -2844,10 +4474,26 @@ struct test_cpy : public test_case {
     bool _dst_use_permute;
     bool _src_transpose;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(type_src, type_dst, ne, permute_src, permute_dst, _src_transpose);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         if (type_src == type_dst) {
             return 0.0;
@@ -2876,6 +4522,14 @@ struct test_cpy : public test_case {
         return 1e-6;
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) + ggml_nbytes(t->src[0]);
     }
@@ -2890,6 +4544,14 @@ struct test_cpy : public test_case {
           _dst_use_permute(permute_dst[0] + permute_dst[1] + permute_dst[2] + permute_dst[3] > 0),
           _src_transpose(transpose_src){}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * src = ggml_new_tensor(ctx, type_src, 4, ne.data());
         ggml_set_param(src);
@@ -2919,6 +4581,14 @@ struct test_cpy : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // test extended range of values to check if casting between f32 and i32 is consistent
@@ -2928,11 +4598,37 @@ struct test_cpy : public test_case {
 };
 
 // GGML_OP_CONT
+// 类: test_cont
+// 描述: test_cont类提供相关功能
+// 用途: 用于处理test_cont相关的操作
+// 类: test_cont
+// 描述: test_cont类提供相关功能
+// 用途: 用于处理test_cont相关的操作
+    // 结构体: test_cont
+    // 描述: test_cont结构体提供相关功能
+    // 用途: 用于处理test_cont相关的操作
+    // 结构体: test_cont
+    // 描述: test_cont结构体提供相关功能
+    // 用途: 用于处理test_cont相关的操作
+    // 结构体: test_cont
+    // 描述: test_cont结构体提供相关功能
+    // 用途: 用于处理test_cont相关的操作
+    // 结构体: test_cont
+    // 描述: test_cont结构体提供相关功能
+    // 用途: 用于处理test_cont相关的操作
 struct test_cont : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     bool use_view_slice;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, use_view_slice);
     }
@@ -2942,6 +4638,14 @@ struct test_cont : public test_case {
             bool use_view_slice = false)
         : type(type), ne(ne), use_view_slice(use_view_slice) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * src = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(src);
@@ -2969,6 +4673,24 @@ struct test_cont : public test_case {
 // GGML_OP_SUB
 // GGML_OP_MUL
 // GGML_OP_DIV
+// 类: test_bin_bcast
+// 描述: test_bin_bcast类提供相关功能
+// 用途: 用于处理test_bin_bcast相关的操作
+// 类: test_bin_bcast
+// 描述: test_bin_bcast类提供相关功能
+// 用途: 用于处理test_bin_bcast相关的操作
+    // 结构体: test_bin_bcast
+    // 描述: test_bin_bcast结构体提供相关功能
+    // 用途: 用于处理test_bin_bcast相关的操作
+    // 结构体: test_bin_bcast
+    // 描述: test_bin_bcast结构体提供相关功能
+    // 用途: 用于处理test_bin_bcast相关的操作
+    // 结构体: test_bin_bcast
+    // 描述: test_bin_bcast结构体提供相关功能
+    // 用途: 用于处理test_bin_bcast相关的操作
+    // 结构体: test_bin_bcast
+    // 描述: test_bin_bcast结构体提供相关功能
+    // 用途: 用于处理test_bin_bcast相关的操作
 struct test_bin_bcast : public test_case {
     using op_t = ggml_tensor * (*) (ggml_context *, ggml_tensor *, ggml_tensor *);
     op_t op;
@@ -2978,12 +4700,36 @@ struct test_bin_bcast : public test_case {
     int nf; // number of fused ops, nf == 1 -> single op (no fusion)
     bool perm1; // permute src1?
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return nf > 1; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne, nr, nf, perm1);
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) * 3;
     }
@@ -2995,6 +4741,14 @@ struct test_bin_bcast : public test_case {
             bool perm1 = false)
         : op(op), type(type), ne(ne), nr(nr), nf(nf), perm1(perm1) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         GGML_ASSERT(nf <= 16);
 
@@ -3032,6 +4786,14 @@ struct test_bin_bcast : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (op == ggml_mul || op == ggml_div) {
@@ -3043,20 +4805,62 @@ struct test_bin_bcast : public test_case {
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.1f * (op == ggml_mul ? ne[0]*ne[1]*ne[2]*ne[3] : 1);
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return op == ggml_div;
     }
 
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_maa_err() override {
         return op == ggml_add ? 1e-4 : 1e-3;
     }
 };
 
 // GGML_OP_ADD_ID
+// 类: test_add_id
+// 描述: test_add_id类提供相关功能
+// 用途: 用于处理test_add_id相关的操作
+// 类: test_add_id
+// 描述: test_add_id类提供相关功能
+// 用途: 用于处理test_add_id相关的操作
+    // 结构体: test_add_id
+    // 描述: test_add_id结构体提供相关功能
+    // 用途: 用于处理test_add_id相关的操作
+    // 结构体: test_add_id
+    // 描述: test_add_id结构体提供相关功能
+    // 用途: 用于处理test_add_id相关的操作
+    // 结构体: test_add_id
+    // 描述: test_add_id结构体提供相关功能
+    // 用途: 用于处理test_add_id相关的操作
+    // 结构体: test_add_id
+    // 描述: test_add_id结构体提供相关功能
+    // 用途: 用于处理test_add_id相关的操作
 struct test_add_id : public test_case {
     const ggml_type type_a;
     const ggml_type type_b;
@@ -3065,10 +4869,26 @@ struct test_add_id : public test_case {
     const int64_t n_experts_used;
     const int64_t n_token;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(type_a, type_b, n_embd, n_experts, n_experts_used, n_token);
     }
 
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t op_size(ggml_tensor * t) override {
         return ggml_nbytes(t) + ggml_nbytes(t->src[0]) + ggml_nbytes(t->src[2]);
     }
@@ -3082,6 +4902,14 @@ struct test_add_id : public test_case {
         : type_a(type_a), type_b(type_b), n_embd(n_embd),
           n_experts(n_experts), n_experts_used(n_experts_used), n_token(n_token) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_3d(ctx, type_a, n_embd, n_experts_used, n_token);
         ggml_tensor * b = ggml_new_tensor_2d(ctx, type_b, n_embd, n_experts);
@@ -3096,6 +4924,14 @@ struct test_add_id : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I32) {
@@ -3119,10 +4955,36 @@ struct test_add_id : public test_case {
 };
 
 // GGML_OP_ADD1
+// 类: test_add1
+// 描述: test_add1类提供相关功能
+// 用途: 用于处理test_add1相关的操作
+// 类: test_add1
+// 描述: test_add1类提供相关功能
+// 用途: 用于处理test_add1相关的操作
+    // 结构体: test_add1
+    // 描述: test_add1结构体提供相关功能
+    // 用途: 用于处理test_add1相关的操作
+    // 结构体: test_add1
+    // 描述: test_add1结构体提供相关功能
+    // 用途: 用于处理test_add1相关的操作
+    // 结构体: test_add1
+    // 描述: test_add1结构体提供相关功能
+    // 用途: 用于处理test_add1相关的操作
+    // 结构体: test_add1
+    // 描述: test_add1结构体提供相关功能
+    // 用途: 用于处理test_add1相关的操作
 struct test_add1 : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -3131,6 +4993,14 @@ struct test_add1 : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -3146,12 +5016,38 @@ struct test_add1 : public test_case {
         return out;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.1f * ne[0]*ne[1]*ne[2]*ne[3];
     }
 };
 
 // GGML_OP_SCALE
+// 类: test_scale
+// 描述: test_scale类提供相关功能
+// 用途: 用于处理test_scale相关的操作
+// 类: test_scale
+// 描述: test_scale类提供相关功能
+// 用途: 用于处理test_scale相关的操作
+    // 结构体: test_scale
+    // 描述: test_scale结构体提供相关功能
+    // 用途: 用于处理test_scale相关的操作
+    // 结构体: test_scale
+    // 描述: test_scale结构体提供相关功能
+    // 用途: 用于处理test_scale相关的操作
+    // 结构体: test_scale
+    // 描述: test_scale结构体提供相关功能
+    // 用途: 用于处理test_scale相关的操作
+    // 结构体: test_scale
+    // 描述: test_scale结构体提供相关功能
+    // 用途: 用于处理test_scale相关的操作
 struct test_scale : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -3159,6 +5055,14 @@ struct test_scale : public test_case {
     float bias;
     bool inplace;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne, scale, bias, inplace);
     }
@@ -3170,6 +5074,14 @@ struct test_scale : public test_case {
             bool inplace = false)
         : type(type), ne(ne), scale(scale), bias(bias), inplace(inplace) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -3188,18 +5100,60 @@ struct test_scale : public test_case {
 };
 
 // GGML_OP_SCALE + GGML_UNARY_OP_TANH + GGML_OP_SCALE
+// 类: test_softcap
+// 描述: test_softcap类提供相关功能
+// 用途: 用于处理test_softcap相关的操作
+// 类: test_softcap
+// 描述: test_softcap类提供相关功能
+// 用途: 用于处理test_softcap相关的操作
+    // 结构体: test_softcap
+    // 描述: test_softcap结构体提供相关功能
+    // 用途: 用于处理test_softcap相关的操作
+    // 结构体: test_softcap
+    // 描述: test_softcap结构体提供相关功能
+    // 用途: 用于处理test_softcap相关的操作
+    // 结构体: test_softcap
+    // 描述: test_softcap结构体提供相关功能
+    // 用途: 用于处理test_softcap相关的操作
+    // 结构体: test_softcap
+    // 描述: test_softcap结构体提供相关功能
+    // 用途: 用于处理test_softcap相关的操作
 struct test_softcap : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     float softcap;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "SOFTCAP";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, softcap);
     }
@@ -3209,6 +5163,14 @@ struct test_softcap : public test_case {
             float softcap = 30.0f)
         : type(type), ne(ne), softcap(softcap) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
 
@@ -3223,11 +5185,37 @@ struct test_softcap : public test_case {
 };
 
 // GGML_OP_SILU_BACK
+// 类: test_silu_back
+// 描述: test_silu_back类提供相关功能
+// 用途: 用于处理test_silu_back相关的操作
+// 类: test_silu_back
+// 描述: test_silu_back类提供相关功能
+// 用途: 用于处理test_silu_back相关的操作
+    // 结构体: test_silu_back
+    // 描述: test_silu_back结构体提供相关功能
+    // 用途: 用于处理test_silu_back相关的操作
+    // 结构体: test_silu_back
+    // 描述: test_silu_back结构体提供相关功能
+    // 用途: 用于处理test_silu_back相关的操作
+    // 结构体: test_silu_back
+    // 描述: test_silu_back结构体提供相关功能
+    // 用途: 用于处理test_silu_back相关的操作
+    // 结构体: test_silu_back
+    // 描述: test_silu_back结构体提供相关功能
+    // 用途: 用于处理test_silu_back相关的操作
 struct test_silu_back : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     float eps;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, eps);
     }
@@ -3237,6 +5225,14 @@ struct test_silu_back : public test_case {
             float eps = 1e-6f)
         : type(type), ne(ne), eps(eps) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -3250,18 +5246,52 @@ struct test_silu_back : public test_case {
         return out;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_NORM
+// 类: test_norm
+// 描述: test_norm类提供相关功能
+// 用途: 用于处理test_norm相关的操作
+// 类: test_norm
+// 描述: test_norm类提供相关功能
+// 用途: 用于处理test_norm相关的操作
+    // 结构体: test_norm
+    // 描述: test_norm结构体提供相关功能
+    // 用途: 用于处理test_norm相关的操作
+    // 结构体: test_norm
+    // 描述: test_norm结构体提供相关功能
+    // 用途: 用于处理test_norm相关的操作
+    // 结构体: test_norm
+    // 描述: test_norm结构体提供相关功能
+    // 用途: 用于处理test_norm相关的操作
+    // 结构体: test_norm
+    // 描述: test_norm结构体提供相关功能
+    // 用途: 用于处理test_norm相关的操作
 struct test_norm : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const bool v; // whether a is a non-contiguous view
     const float eps;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, v, eps);
     }
@@ -3272,6 +5302,14 @@ struct test_norm : public test_case {
             float eps = 1e-6f)
         : type(type), ne(ne), v(v), eps(eps) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -3289,19 +5327,61 @@ struct test_norm : public test_case {
 };
 
 // GGML_OP_NORM + GGML_OP_MUL + GGML_OP_ADD
+// 类: test_norm_mul_add
+// 描述: test_norm_mul_add类提供相关功能
+// 用途: 用于处理test_norm_mul_add相关的操作
+// 类: test_norm_mul_add
+// 描述: test_norm_mul_add类提供相关功能
+// 用途: 用于处理test_norm_mul_add相关的操作
+    // 结构体: test_norm_mul_add
+    // 描述: test_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_norm_mul_add相关的操作
+    // 结构体: test_norm_mul_add
+    // 描述: test_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_norm_mul_add相关的操作
+    // 结构体: test_norm_mul_add
+    // 描述: test_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_norm_mul_add相关的操作
+    // 结构体: test_norm_mul_add
+    // 描述: test_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_norm_mul_add相关的操作
 struct test_norm_mul_add : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     float eps;
     const bool broadcast;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "NORM_MUL_ADD";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, eps, broadcast);
     }
@@ -3312,6 +5392,14 @@ struct test_norm_mul_add : public test_case {
             bool broadcast = false)
         : type(type), ne(ne), eps(eps), broadcast(broadcast) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         std::array<int64_t, 4> broadcast_dims = {ne[0], ne[1] * 2, ne[2] * 2, ne[3] * 2};
 
@@ -3332,6 +5420,24 @@ struct test_norm_mul_add : public test_case {
     }
 };
 // GGML_OP_RMS_NORM
+// 类: test_rms_norm
+// 描述: test_rms_norm类提供相关功能
+// 用途: 用于处理test_rms_norm相关的操作
+// 类: test_rms_norm
+// 描述: test_rms_norm类提供相关功能
+// 用途: 用于处理test_rms_norm相关的操作
+    // 结构体: test_rms_norm
+    // 描述: test_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_rms_norm相关的操作
+    // 结构体: test_rms_norm
+    // 描述: test_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_rms_norm相关的操作
+    // 结构体: test_rms_norm
+    // 描述: test_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_rms_norm相关的操作
+    // 结构体: test_rms_norm
+    // 描述: test_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_rms_norm相关的操作
 struct test_rms_norm : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -3339,6 +5445,14 @@ struct test_rms_norm : public test_case {
     const float eps;
     const bool inplace; // whether to do the operation inplace
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne, v, eps, inplace);
     }
@@ -3350,6 +5464,14 @@ struct test_rms_norm : public test_case {
             bool inplace = false)
         : type(type), ne(ne), v(v), eps(eps), inplace(inplace) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -3371,27 +5493,77 @@ struct test_rms_norm : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.f, 10.f);
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 1.0f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_RMS_NORM_BACK
+// 类: test_rms_norm_back
+// 描述: test_rms_norm_back类提供相关功能
+// 用途: 用于处理test_rms_norm_back相关的操作
+// 类: test_rms_norm_back
+// 描述: test_rms_norm_back类提供相关功能
+// 用途: 用于处理test_rms_norm_back相关的操作
+    // 结构体: test_rms_norm_back
+    // 描述: test_rms_norm_back结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_back相关的操作
+    // 结构体: test_rms_norm_back
+    // 描述: test_rms_norm_back结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_back相关的操作
+    // 结构体: test_rms_norm_back
+    // 描述: test_rms_norm_back结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_back相关的操作
+    // 结构体: test_rms_norm_back
+    // 描述: test_rms_norm_back结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_back相关的操作
 struct test_rms_norm_back : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const float eps;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, eps);
     }
@@ -3401,6 +5573,14 @@ struct test_rms_norm_back : public test_case {
             float eps = 1e-6f)
         : type(type), ne(ne), eps(eps) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -3414,6 +5594,14 @@ struct test_rms_norm_back : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.f, 10.f);
@@ -3422,6 +5610,24 @@ struct test_rms_norm_back : public test_case {
 };
 
 // GGML_OP_RMS_NORM + GGML_OP_MUL + GGML_OP_ADD
+// 类: test_rms_norm_mul_add
+// 描述: test_rms_norm_mul_add类提供相关功能
+// 用途: 用于处理test_rms_norm_mul_add相关的操作
+// 类: test_rms_norm_mul_add
+// 描述: test_rms_norm_mul_add类提供相关功能
+// 用途: 用于处理test_rms_norm_mul_add相关的操作
+    // 结构体: test_rms_norm_mul_add
+    // 描述: test_rms_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_add相关的操作
+    // 结构体: test_rms_norm_mul_add
+    // 描述: test_rms_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_add相关的操作
+    // 结构体: test_rms_norm_mul_add
+    // 描述: test_rms_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_add相关的操作
+    // 结构体: test_rms_norm_mul_add
+    // 描述: test_rms_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_rms_norm_mul_add相关的操作
 struct test_rms_norm_mul_add : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -3429,13 +5635,37 @@ struct test_rms_norm_mul_add : public test_case {
     const bool broadcast;
     const bool multi_add; // test a sequence of adds feeding into rms_norm
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "RMS_NORM_MUL_ADD";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne, eps, broadcast, multi_add);
     }
@@ -3445,6 +5675,14 @@ struct test_rms_norm_mul_add : public test_case {
             float eps = 1e-6f, bool broadcast = false, bool multi_add = false)
         : type(type), ne(ne), eps(eps), broadcast(broadcast), multi_add(multi_add) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         std::array<int64_t, 4> broadcast_dims = {ne[0]*2, ne[1]*3, ne[2]*3, ne[3]*4};
 
@@ -3470,35 +5708,101 @@ struct test_rms_norm_mul_add : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.f, 10.f);
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 1.0f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_ADD + GGML_OP_RMS_NORM (fused operation)
+// 类: test_add_rms_norm
+// 描述: test_add_rms_norm类提供相关功能
+// 用途: 用于处理test_add_rms_norm相关的操作
+// 类: test_add_rms_norm
+// 描述: test_add_rms_norm类提供相关功能
+// 用途: 用于处理test_add_rms_norm相关的操作
+    // 结构体: test_add_rms_norm
+    // 描述: test_add_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_add_rms_norm相关的操作
+    // 结构体: test_add_rms_norm
+    // 描述: test_add_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_add_rms_norm相关的操作
+    // 结构体: test_add_rms_norm
+    // 描述: test_add_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_add_rms_norm相关的操作
+    // 结构体: test_add_rms_norm
+    // 描述: test_add_rms_norm结构体提供相关功能
+    // 用途: 用于处理test_add_rms_norm相关的操作
 struct test_add_rms_norm : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const float eps;
     const bool broadcast;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "ADD_RMS_NORM";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, eps, broadcast);
     }
@@ -3508,6 +5812,14 @@ struct test_add_rms_norm : public test_case {
             float eps = 1e-6f, bool broadcast = false)
         : type(type), ne(ne), eps(eps), broadcast(broadcast) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         std::array<int64_t, 4> broadcast_dims = {ne[0]*2, ne[1]*3, ne[2]*3, ne[3]*4};
 
@@ -3529,27 +5841,77 @@ struct test_add_rms_norm : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.f, 10.f);
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 1.0f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_SSM_CONV
+// 类: test_ssm_conv
+// 描述: test_ssm_conv类提供相关功能
+// 用途: 用于处理test_ssm_conv相关的操作
+// 类: test_ssm_conv
+// 描述: test_ssm_conv类提供相关功能
+// 用途: 用于处理test_ssm_conv相关的操作
+    // 结构体: test_ssm_conv
+    // 描述: test_ssm_conv结构体提供相关功能
+    // 用途: 用于处理test_ssm_conv相关的操作
+    // 结构体: test_ssm_conv
+    // 描述: test_ssm_conv结构体提供相关功能
+    // 用途: 用于处理test_ssm_conv相关的操作
+    // 结构体: test_ssm_conv
+    // 描述: test_ssm_conv结构体提供相关功能
+    // 用途: 用于处理test_ssm_conv相关的操作
+    // 结构体: test_ssm_conv
+    // 描述: test_ssm_conv结构体提供相关功能
+    // 用途: 用于处理test_ssm_conv相关的操作
 struct test_ssm_conv : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     const std::array<int64_t, 4> ne_b;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne_a, ne_b);
     }
@@ -3559,6 +5921,14 @@ struct test_ssm_conv : public test_case {
             std::array<int64_t, 4> ne_b = {3, 3, 1, 1})
         : type(type), ne_a(ne_a), ne_b(ne_b) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a   = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_tensor * b   = ggml_new_tensor(ctx, type, 4, ne_b.data());
@@ -3568,6 +5938,24 @@ struct test_ssm_conv : public test_case {
 };
 
 // GGML_OP_SSM_SCAN
+// 类: test_ssm_scan
+// 描述: test_ssm_scan类提供相关功能
+// 用途: 用于处理test_ssm_scan相关的操作
+// 类: test_ssm_scan
+// 描述: test_ssm_scan类提供相关功能
+// 用途: 用于处理test_ssm_scan相关的操作
+    // 结构体: test_ssm_scan
+    // 描述: test_ssm_scan结构体提供相关功能
+    // 用途: 用于处理test_ssm_scan相关的操作
+    // 结构体: test_ssm_scan
+    // 描述: test_ssm_scan结构体提供相关功能
+    // 用途: 用于处理test_ssm_scan相关的操作
+    // 结构体: test_ssm_scan
+    // 描述: test_ssm_scan结构体提供相关功能
+    // 用途: 用于处理test_ssm_scan相关的操作
+    // 结构体: test_ssm_scan
+    // 描述: test_ssm_scan结构体提供相关功能
+    // 用途: 用于处理test_ssm_scan相关的操作
 struct test_ssm_scan : public test_case {
     const ggml_type type;
 
@@ -3578,6 +5966,14 @@ struct test_ssm_scan : public test_case {
     const int64_t n_seq_tokens;
     const int64_t n_seqs;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR7(type, d_state, head_dim, n_head, n_group, n_seq_tokens, n_seqs);
     }
@@ -3591,6 +5987,14 @@ struct test_ssm_scan : public test_case {
             int64_t n_seqs = 32)
         : type(type), d_state(d_state), head_dim(head_dim), n_head(n_head), n_group(n_group), n_seq_tokens(n_seq_tokens), n_seqs(n_seqs) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * s   = ggml_new_tensor_4d(ctx, type, d_state,  head_dim,     n_head,       n_seqs);
         ggml_tensor * x   = ggml_new_tensor_4d(ctx, type, head_dim, n_head,       n_seq_tokens, n_seqs);
@@ -3604,6 +6008,14 @@ struct test_ssm_scan : public test_case {
     }
 
     // similar to test_mul_mat_id
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         std::random_device rd;
         std::default_random_engine rng(rd());
@@ -3627,6 +6039,24 @@ struct test_ssm_scan : public test_case {
 };
 
 // GGML_OP_RWKV_WKV6
+// 类: test_rwkv_wkv6
+// 描述: test_rwkv_wkv6类提供相关功能
+// 用途: 用于处理test_rwkv_wkv6相关的操作
+// 类: test_rwkv_wkv6
+// 描述: test_rwkv_wkv6类提供相关功能
+// 用途: 用于处理test_rwkv_wkv6相关的操作
+    // 结构体: test_rwkv_wkv6
+    // 描述: test_rwkv_wkv6结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv6相关的操作
+    // 结构体: test_rwkv_wkv6
+    // 描述: test_rwkv_wkv6结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv6相关的操作
+    // 结构体: test_rwkv_wkv6
+    // 描述: test_rwkv_wkv6结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv6相关的操作
+    // 结构体: test_rwkv_wkv6
+    // 描述: test_rwkv_wkv6结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv6相关的操作
 struct test_rwkv_wkv6 : public test_case {
     const ggml_type type;
 
@@ -3635,6 +6065,14 @@ struct test_rwkv_wkv6 : public test_case {
     const int64_t n_seq_tokens;
     const int64_t n_seqs;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, head_count, head_size, n_seq_tokens, n_seqs);
     }
@@ -3643,6 +6081,14 @@ struct test_rwkv_wkv6 : public test_case {
             int64_t head_count = 32, int64_t head_size = 64, int64_t n_seq_tokens = 32, int64_t n_seqs = 32)
         : type(type), head_count(head_count), head_size(head_size), n_seq_tokens(n_seq_tokens), n_seqs(n_seqs) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const int64_t n_tokens = n_seq_tokens * n_seqs;
         ggml_tensor * r   = ggml_new_tensor(ctx, type, 3, std::vector<int64_t>{ head_size, head_count, n_tokens }.data());
@@ -3657,6 +6103,24 @@ struct test_rwkv_wkv6 : public test_case {
 };
 
 // GGML_OP_GATED_LINEAR_ATTN
+// 类: test_gla
+// 描述: test_gla类提供相关功能
+// 用途: 用于处理test_gla相关的操作
+// 类: test_gla
+// 描述: test_gla类提供相关功能
+// 用途: 用于处理test_gla相关的操作
+    // 结构体: test_gla
+    // 描述: test_gla结构体提供相关功能
+    // 用途: 用于处理test_gla相关的操作
+    // 结构体: test_gla
+    // 描述: test_gla结构体提供相关功能
+    // 用途: 用于处理test_gla相关的操作
+    // 结构体: test_gla
+    // 描述: test_gla结构体提供相关功能
+    // 用途: 用于处理test_gla相关的操作
+    // 结构体: test_gla
+    // 描述: test_gla结构体提供相关功能
+    // 用途: 用于处理test_gla相关的操作
 struct test_gla : public test_case {
     const ggml_type type;
 
@@ -3665,6 +6129,14 @@ struct test_gla : public test_case {
     const int64_t n_seq_tokens;
     const int64_t n_seqs;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, head_count, head_size, n_seq_tokens, n_seqs);
     }
@@ -3673,6 +6145,14 @@ struct test_gla : public test_case {
             int64_t head_count = 32, int64_t head_size = 64, int64_t n_seq_tokens = 32, int64_t n_seqs = 32)
         : type(type), head_count(head_count), head_size(head_size), n_seq_tokens(n_seq_tokens), n_seqs(n_seqs) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const int64_t n_tokens = n_seq_tokens * n_seqs;
         ggml_tensor * q   = ggml_new_tensor(ctx, type, 3, std::vector<int64_t>{ head_size, head_count, n_tokens }.data());
@@ -3686,6 +6166,24 @@ struct test_gla : public test_case {
 };
 
 // GGML_OP_RWKV_WKV7
+// 类: test_rwkv_wkv7
+// 描述: test_rwkv_wkv7类提供相关功能
+// 用途: 用于处理test_rwkv_wkv7相关的操作
+// 类: test_rwkv_wkv7
+// 描述: test_rwkv_wkv7类提供相关功能
+// 用途: 用于处理test_rwkv_wkv7相关的操作
+    // 结构体: test_rwkv_wkv7
+    // 描述: test_rwkv_wkv7结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv7相关的操作
+    // 结构体: test_rwkv_wkv7
+    // 描述: test_rwkv_wkv7结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv7相关的操作
+    // 结构体: test_rwkv_wkv7
+    // 描述: test_rwkv_wkv7结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv7相关的操作
+    // 结构体: test_rwkv_wkv7
+    // 描述: test_rwkv_wkv7结构体提供相关功能
+    // 用途: 用于处理test_rwkv_wkv7相关的操作
 struct test_rwkv_wkv7 : public test_case {
     const ggml_type type;
 
@@ -3694,6 +6192,14 @@ struct test_rwkv_wkv7 : public test_case {
     const int64_t n_seq_tokens;
     const int64_t n_seqs;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, head_count, head_size, n_seq_tokens, n_seqs);
     }
@@ -3702,6 +6208,14 @@ struct test_rwkv_wkv7 : public test_case {
             int64_t head_count = 32, int64_t head_size = 64, int64_t n_seq_tokens = 32, int64_t n_seqs = 32)
         : type(type), head_count(head_count), head_size(head_size), n_seq_tokens(n_seq_tokens), n_seqs(n_seqs) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const int64_t n_tokens = n_seq_tokens * n_seqs;
         ggml_tensor * r   = ggml_new_tensor(ctx, type, 3, std::vector<int64_t>{ head_size, head_count, n_tokens }.data());
@@ -3720,6 +6234,24 @@ struct test_rwkv_wkv7 : public test_case {
 };
 
 // GGML_OP_MUL_MAT
+// 类: test_mul_mat
+// 描述: test_mul_mat类提供相关功能
+// 用途: 用于处理test_mul_mat相关的操作
+// 类: test_mul_mat
+// 描述: test_mul_mat类提供相关功能
+// 用途: 用于处理test_mul_mat相关的操作
+    // 结构体: test_mul_mat
+    // 描述: test_mul_mat结构体提供相关功能
+    // 用途: 用于处理test_mul_mat相关的操作
+    // 结构体: test_mul_mat
+    // 描述: test_mul_mat结构体提供相关功能
+    // 用途: 用于处理test_mul_mat相关的操作
+    // 结构体: test_mul_mat
+    // 描述: test_mul_mat结构体提供相关功能
+    // 用途: 用于处理test_mul_mat相关的操作
+    // 结构体: test_mul_mat
+    // 描述: test_mul_mat结构体提供相关功能
+    // 用途: 用于处理test_mul_mat相关的操作
 struct test_mul_mat : public test_case {
     const ggml_type type_a;
     const ggml_type type_b;
@@ -3732,14 +6264,38 @@ struct test_mul_mat : public test_case {
     const int64_t k_v; // size of k in memory, resulting in a non-contiguous view for k_v > k, no view for k_v == 0
     const uint32_t o; // number of outputs
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR10(type_a, type_b, m, n, k, bs, nr, per, k_v, o);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err(ggml_backend_t backend) override {
         // for blackwell we quantize activations to mxfp4 instead of q8_1 so we add higher tolerance
         if (type_a == GGML_TYPE_MXFP4 && backend_has_feature(backend, "BLACKWELL_NATIVE_FP4")) {
@@ -3748,10 +6304,26 @@ struct test_mul_mat : public test_case {
         return max_nmse_err();
     }
 
+    // 函数: grad_nmax
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_nmax
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int64_t grad_nmax() override {
         return 20000;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return 2 * m * n * k * bs[0] * nr[0] * bs[1] * nr[1];
@@ -3765,6 +6337,14 @@ struct test_mul_mat : public test_case {
             int64_t k_v = 0, uint32_t o = 1)
         : type_a(type_a), type_b(type_b), m(m), n(n), k(k), bs(bs), nr(nr), per(per), k_v(k_v), o(o) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         // C^T = A * B^T: (k, m) * (k, n) => (m, n)
         ggml_tensor * a;
@@ -3828,14 +6408,38 @@ struct test_mul_mat : public test_case {
         return out;
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return o > 1; }
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return ggml_op_name(GGML_OP_MUL_MAT);
     }
 };
 
+// 函数: init_mul_mat_id_tensors
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_mul_mat_id_tensors
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_mul_mat_id_tensors(ggml_context * ctx, int n_mats) {
     std::random_device rd;
     std::default_random_engine rng(rd());
@@ -3858,6 +6462,24 @@ static void init_mul_mat_id_tensors(ggml_context * ctx, int n_mats) {
 }
 
 // GGML_OP_MUL_MAT_ID
+// 类: test_mul_mat_id
+// 描述: test_mul_mat_id类提供相关功能
+// 用途: 用于处理test_mul_mat_id相关的操作
+// 类: test_mul_mat_id
+// 描述: test_mul_mat_id类提供相关功能
+// 用途: 用于处理test_mul_mat_id相关的操作
+    // 结构体: test_mul_mat_id
+    // 描述: test_mul_mat_id结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id相关的操作
+    // 结构体: test_mul_mat_id
+    // 描述: test_mul_mat_id结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id相关的操作
+    // 结构体: test_mul_mat_id
+    // 描述: test_mul_mat_id结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id相关的操作
+    // 结构体: test_mul_mat_id
+    // 描述: test_mul_mat_id结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id相关的操作
 struct test_mul_mat_id : public test_case {
     const ggml_type type_a;
     const ggml_type type_b;
@@ -3868,14 +6490,38 @@ struct test_mul_mat_id : public test_case {
     const int64_t n;
     const int64_t k;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR8(type_a, type_b, n_mats, n_used, b, m, n, k);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err(ggml_backend_t backend) override {
         // for blackwell we quantize activations to mxfp4 instead of q8_1 so we add higher tolerance
         if (type_a == GGML_TYPE_MXFP4 && backend_has_feature(backend, "BLACKWELL_NATIVE_FP4")) {
@@ -3884,6 +6530,14 @@ struct test_mul_mat_id : public test_case {
         return max_nmse_err();
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return 2 * m * k * n * n_used;
@@ -3897,6 +6551,14 @@ struct test_mul_mat_id : public test_case {
             GGML_ASSERT(n_used <= n_mats);
         }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         // C^T = A * B^T: (k, m) * (k, n) => (m, n)
         ggml_tensor * as = ggml_new_tensor_3d(ctx, type_a, k, m, n_mats);
@@ -3918,12 +6580,38 @@ struct test_mul_mat_id : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         init_mul_mat_id_tensors(ctx, n_mats);
     }
 };
 
 // GGML_OP_MUL_MAT_ID + GGML_OP_ADD or GGML_OP_MUL
+// 类: test_mul_mat_id_fusion
+// 描述: test_mul_mat_id_fusion类提供相关功能
+// 用途: 用于处理test_mul_mat_id_fusion相关的操作
+// 类: test_mul_mat_id_fusion
+// 描述: test_mul_mat_id_fusion类提供相关功能
+// 用途: 用于处理test_mul_mat_id_fusion相关的操作
+    // 结构体: test_mul_mat_id_fusion
+    // 描述: test_mul_mat_id_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id_fusion相关的操作
+    // 结构体: test_mul_mat_id_fusion
+    // 描述: test_mul_mat_id_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id_fusion相关的操作
+    // 结构体: test_mul_mat_id_fusion
+    // 描述: test_mul_mat_id_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id_fusion相关的操作
+    // 结构体: test_mul_mat_id_fusion
+    // 描述: test_mul_mat_id_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_id_fusion相关的操作
 struct test_mul_mat_id_fusion : public test_case {
     const ggml_type type_a;
     const ggml_type type_b;
@@ -3936,14 +6624,38 @@ struct test_mul_mat_id_fusion : public test_case {
     const uint32_t o; // number of outputs
     const bool mul;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR10(type_a, type_b, n_mats, n_used, b, m, n, k, o, mul);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return 2 * m * k * n * n_used;
@@ -3957,6 +6669,14 @@ struct test_mul_mat_id_fusion : public test_case {
             GGML_ASSERT(n_used <= n_mats);
         }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         // C^T = A * B^T: (k, m) * (k, n) => (m, n)
         ggml_tensor * as = ggml_new_tensor_3d(ctx, type_a, k, m, n_mats);
@@ -3992,12 +6712,36 @@ struct test_mul_mat_id_fusion : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         init_mul_mat_id_tensors(ctx, n_mats);
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "MUL_MAT_ID_FUSION";
@@ -4005,6 +6749,24 @@ struct test_mul_mat_id_fusion : public test_case {
 };
 
 // GGML_OP_OUT_PROD
+// 类: test_out_prod
+// 描述: test_out_prod类提供相关功能
+// 用途: 用于处理test_out_prod相关的操作
+// 类: test_out_prod
+// 描述: test_out_prod类提供相关功能
+// 用途: 用于处理test_out_prod相关的操作
+    // 结构体: test_out_prod
+    // 描述: test_out_prod结构体提供相关功能
+    // 用途: 用于处理test_out_prod相关的操作
+    // 结构体: test_out_prod
+    // 描述: test_out_prod结构体提供相关功能
+    // 用途: 用于处理test_out_prod相关的操作
+    // 结构体: test_out_prod
+    // 描述: test_out_prod结构体提供相关功能
+    // 用途: 用于处理test_out_prod相关的操作
+    // 结构体: test_out_prod
+    // 描述: test_out_prod结构体提供相关功能
+    // 用途: 用于处理test_out_prod相关的操作
 struct test_out_prod : public test_case {
     const ggml_type type_a;
     const ggml_type type_b;
@@ -4015,10 +6777,26 @@ struct test_out_prod : public test_case {
     const std::array<int64_t, 2> nr; // repeat in dims 3 and 4
     const bool trans_b;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR8(type_a, type_b, m, n, k, bs, nr, trans_b);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
@@ -4030,6 +6808,14 @@ struct test_out_prod : public test_case {
             bool trans_b = false)
         : type_a(type_a), type_b(type_b), m(m), n(n), k(k), bs(bs), nr(nr), trans_b(trans_b) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type_a, m, k, bs[0], bs[1]);
         ggml_set_name(a, "a");
@@ -4051,10 +6837,36 @@ struct test_out_prod : public test_case {
 };
 
 // GGML_OP_SQR
+// 类: test_sqr
+// 描述: test_sqr类提供相关功能
+// 用途: 用于处理test_sqr相关的操作
+// 类: test_sqr
+// 描述: test_sqr类提供相关功能
+// 用途: 用于处理test_sqr相关的操作
+    // 结构体: test_sqr
+    // 描述: test_sqr结构体提供相关功能
+    // 用途: 用于处理test_sqr相关的操作
+    // 结构体: test_sqr
+    // 描述: test_sqr结构体提供相关功能
+    // 用途: 用于处理test_sqr相关的操作
+    // 结构体: test_sqr
+    // 描述: test_sqr结构体提供相关功能
+    // 用途: 用于处理test_sqr相关的操作
+    // 结构体: test_sqr
+    // 描述: test_sqr结构体提供相关功能
+    // 用途: 用于处理test_sqr相关的操作
 struct test_sqr : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4063,6 +6875,14 @@ struct test_sqr : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4074,16 +6894,50 @@ struct test_sqr : public test_case {
         return out;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.1f * 0.25f*ne[0]*ne[1]*ne[2]*ne[3]; // 10% of expected value of sum.
     }
 };
 
 // GGML_OP_SQRT
+// 类: test_sqrt
+// 描述: test_sqrt类提供相关功能
+// 用途: 用于处理test_sqrt相关的操作
+// 类: test_sqrt
+// 描述: test_sqrt类提供相关功能
+// 用途: 用于处理test_sqrt相关的操作
+    // 结构体: test_sqrt
+    // 描述: test_sqrt结构体提供相关功能
+    // 用途: 用于处理test_sqrt相关的操作
+    // 结构体: test_sqrt
+    // 描述: test_sqrt结构体提供相关功能
+    // 用途: 用于处理test_sqrt相关的操作
+    // 结构体: test_sqrt
+    // 描述: test_sqrt结构体提供相关功能
+    // 用途: 用于处理test_sqrt相关的操作
+    // 结构体: test_sqrt
+    // 描述: test_sqrt结构体提供相关功能
+    // 用途: 用于处理test_sqrt相关的操作
 struct test_sqrt : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4092,6 +6946,14 @@ struct test_sqrt : public test_case {
             std::array<int64_t, 4> ne = {10, 3, 3, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4103,6 +6965,14 @@ struct test_sqrt : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         // fill with positive values
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
@@ -4110,20 +6980,62 @@ struct test_sqrt : public test_case {
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 20.0f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_LOG
+// 类: test_log
+// 描述: test_log类提供相关功能
+// 用途: 用于处理test_log相关的操作
+// 类: test_log
+// 描述: test_log类提供相关功能
+// 用途: 用于处理test_log相关的操作
+    // 结构体: test_log
+    // 描述: test_log结构体提供相关功能
+    // 用途: 用于处理test_log相关的操作
+    // 结构体: test_log
+    // 描述: test_log结构体提供相关功能
+    // 用途: 用于处理test_log相关的操作
+    // 结构体: test_log
+    // 描述: test_log结构体提供相关功能
+    // 用途: 用于处理test_log相关的操作
+    // 结构体: test_log
+    // 描述: test_log结构体提供相关功能
+    // 用途: 用于处理test_log相关的操作
 struct test_log : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4132,6 +7044,14 @@ struct test_log : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4143,6 +7063,14 @@ struct test_log : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             // log(1) == 0, cluster values there to keep the sum low for better precision in the backward pass:
@@ -4150,16 +7078,50 @@ struct test_log : public test_case {
         }
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_SIN
+// 类: test_sin
+// 描述: test_sin类提供相关功能
+// 用途: 用于处理test_sin相关的操作
+// 类: test_sin
+// 描述: test_sin类提供相关功能
+// 用途: 用于处理test_sin相关的操作
+    // 结构体: test_sin
+    // 描述: test_sin结构体提供相关功能
+    // 用途: 用于处理test_sin相关的操作
+    // 结构体: test_sin
+    // 描述: test_sin结构体提供相关功能
+    // 用途: 用于处理test_sin相关的操作
+    // 结构体: test_sin
+    // 描述: test_sin结构体提供相关功能
+    // 用途: 用于处理test_sin相关的操作
+    // 结构体: test_sin
+    // 描述: test_sin结构体提供相关功能
+    // 用途: 用于处理test_sin相关的操作
 struct test_sin : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4168,6 +7130,14 @@ struct test_sin : public test_case {
             std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4179,30 +7149,88 @@ struct test_sin : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -6.5f, 6.5f); // Covers interval [-2*pi, 2*pi].
         }
     }
 
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_maa_err() override {
         return 1e-3;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.2f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_COS
+// 类: test_cos
+// 描述: test_cos类提供相关功能
+// 用途: 用于处理test_cos相关的操作
+// 类: test_cos
+// 描述: test_cos类提供相关功能
+// 用途: 用于处理test_cos相关的操作
+    // 结构体: test_cos
+    // 描述: test_cos结构体提供相关功能
+    // 用途: 用于处理test_cos相关的操作
+    // 结构体: test_cos
+    // 描述: test_cos结构体提供相关功能
+    // 用途: 用于处理test_cos相关的操作
+    // 结构体: test_cos
+    // 描述: test_cos结构体提供相关功能
+    // 用途: 用于处理test_cos相关的操作
+    // 结构体: test_cos
+    // 描述: test_cos结构体提供相关功能
+    // 用途: 用于处理test_cos相关的操作
 struct test_cos : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4211,6 +7239,14 @@ struct test_cos : public test_case {
             std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4222,32 +7258,90 @@ struct test_cos : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -6.5f, 6.5f); // Covers interval [-2*pi, 2*pi].
         }
     }
 
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_maa_err() override {
         return 1e-3;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.2f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_CLAMP
+// 类: test_clamp
+// 描述: test_clamp类提供相关功能
+// 用途: 用于处理test_clamp相关的操作
+// 类: test_clamp
+// 描述: test_clamp类提供相关功能
+// 用途: 用于处理test_clamp相关的操作
+    // 结构体: test_clamp
+    // 描述: test_clamp结构体提供相关功能
+    // 用途: 用于处理test_clamp相关的操作
+    // 结构体: test_clamp
+    // 描述: test_clamp结构体提供相关功能
+    // 用途: 用于处理test_clamp相关的操作
+    // 结构体: test_clamp
+    // 描述: test_clamp结构体提供相关功能
+    // 用途: 用于处理test_clamp相关的操作
+    // 结构体: test_clamp
+    // 描述: test_clamp结构体提供相关功能
+    // 用途: 用于处理test_clamp相关的操作
 struct test_clamp : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     float min;
     float max;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, min, max);
     }
@@ -4257,6 +7351,14 @@ struct test_clamp : public test_case {
             float min = -0.5f, float max = 0.5f)
         : type(type), ne(ne), min(min), max(max) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -4267,6 +7369,14 @@ struct test_clamp : public test_case {
         return out;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 1e-2f;
     }
@@ -4277,10 +7387,36 @@ struct test_clamp : public test_case {
 };
 
 // GGML_OP_FLOOR
+// 类: test_floor
+// 描述: test_floor类提供相关功能
+// 用途: 用于处理test_floor相关的操作
+// 类: test_floor
+// 描述: test_floor类提供相关功能
+// 用途: 用于处理test_floor相关的操作
+    // 结构体: test_floor
+    // 描述: test_floor结构体提供相关功能
+    // 用途: 用于处理test_floor相关的操作
+    // 结构体: test_floor
+    // 描述: test_floor结构体提供相关功能
+    // 用途: 用于处理test_floor相关的操作
+    // 结构体: test_floor
+    // 描述: test_floor结构体提供相关功能
+    // 用途: 用于处理test_floor相关的操作
+    // 结构体: test_floor
+    // 描述: test_floor结构体提供相关功能
+    // 用途: 用于处理test_floor相关的操作
 struct test_floor : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4289,6 +7425,14 @@ struct test_floor : public test_case {
                std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4300,6 +7444,14 @@ struct test_floor : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.0f, 10.0f);
@@ -4308,10 +7460,36 @@ struct test_floor : public test_case {
 };
 
 // GGML_OP_CEIL
+// 类: test_ceil
+// 描述: test_ceil类提供相关功能
+// 用途: 用于处理test_ceil相关的操作
+// 类: test_ceil
+// 描述: test_ceil类提供相关功能
+// 用途: 用于处理test_ceil相关的操作
+    // 结构体: test_ceil
+    // 描述: test_ceil结构体提供相关功能
+    // 用途: 用于处理test_ceil相关的操作
+    // 结构体: test_ceil
+    // 描述: test_ceil结构体提供相关功能
+    // 用途: 用于处理test_ceil相关的操作
+    // 结构体: test_ceil
+    // 描述: test_ceil结构体提供相关功能
+    // 用途: 用于处理test_ceil相关的操作
+    // 结构体: test_ceil
+    // 描述: test_ceil结构体提供相关功能
+    // 用途: 用于处理test_ceil相关的操作
 struct test_ceil : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4320,6 +7498,14 @@ struct test_ceil : public test_case {
               std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4331,6 +7517,14 @@ struct test_ceil : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.0f, 10.0f);
@@ -4339,10 +7533,36 @@ struct test_ceil : public test_case {
 };
 
 // GGML_OP_ROUND
+// 类: test_round
+// 描述: test_round类提供相关功能
+// 用途: 用于处理test_round相关的操作
+// 类: test_round
+// 描述: test_round类提供相关功能
+// 用途: 用于处理test_round相关的操作
+    // 结构体: test_round
+    // 描述: test_round结构体提供相关功能
+    // 用途: 用于处理test_round相关的操作
+    // 结构体: test_round
+    // 描述: test_round结构体提供相关功能
+    // 用途: 用于处理test_round相关的操作
+    // 结构体: test_round
+    // 描述: test_round结构体提供相关功能
+    // 用途: 用于处理test_round相关的操作
+    // 结构体: test_round
+    // 描述: test_round结构体提供相关功能
+    // 用途: 用于处理test_round相关的操作
 struct test_round : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4351,6 +7571,14 @@ struct test_round : public test_case {
                std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4362,6 +7590,14 @@ struct test_round : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.0f, 10.0f);
@@ -4370,10 +7606,36 @@ struct test_round : public test_case {
 };
 
 // GGML_OP_TRUNC
+// 类: test_trunc
+// 描述: test_trunc类提供相关功能
+// 用途: 用于处理test_trunc相关的操作
+// 类: test_trunc
+// 描述: test_trunc类提供相关功能
+// 用途: 用于处理test_trunc相关的操作
+    // 结构体: test_trunc
+    // 描述: test_trunc结构体提供相关功能
+    // 用途: 用于处理test_trunc相关的操作
+    // 结构体: test_trunc
+    // 描述: test_trunc结构体提供相关功能
+    // 用途: 用于处理test_trunc相关的操作
+    // 结构体: test_trunc
+    // 描述: test_trunc结构体提供相关功能
+    // 用途: 用于处理test_trunc相关的操作
+    // 结构体: test_trunc
+    // 描述: test_trunc结构体提供相关功能
+    // 用途: 用于处理test_trunc相关的操作
 struct test_trunc : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -4382,6 +7644,14 @@ struct test_trunc : public test_case {
                std::array<int64_t, 4> ne = {10, 2, 2, 2})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4393,6 +7663,14 @@ struct test_trunc : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -10.0f, 10.0f);
@@ -4401,11 +7679,37 @@ struct test_trunc : public test_case {
 };
 
 // GGML_OP_DIAG_MASK_INF
+// 类: test_diag_mask_inf
+// 描述: test_diag_mask_inf类提供相关功能
+// 用途: 用于处理test_diag_mask_inf相关的操作
+// 类: test_diag_mask_inf
+// 描述: test_diag_mask_inf类提供相关功能
+// 用途: 用于处理test_diag_mask_inf相关的操作
+    // 结构体: test_diag_mask_inf
+    // 描述: test_diag_mask_inf结构体提供相关功能
+    // 用途: 用于处理test_diag_mask_inf相关的操作
+    // 结构体: test_diag_mask_inf
+    // 描述: test_diag_mask_inf结构体提供相关功能
+    // 用途: 用于处理test_diag_mask_inf相关的操作
+    // 结构体: test_diag_mask_inf
+    // 描述: test_diag_mask_inf结构体提供相关功能
+    // 用途: 用于处理test_diag_mask_inf相关的操作
+    // 结构体: test_diag_mask_inf
+    // 描述: test_diag_mask_inf结构体提供相关功能
+    // 用途: 用于处理test_diag_mask_inf相关的操作
 struct test_diag_mask_inf : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const int n_past;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, n_past);
     }
@@ -4415,6 +7719,14 @@ struct test_diag_mask_inf : public test_case {
             int n_past = 5)
         : type(type), ne(ne), n_past(n_past) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -4428,6 +7740,24 @@ struct test_diag_mask_inf : public test_case {
 };
 
 // GGML_OP_SOFT_MAX
+// 类: test_soft_max
+// 描述: test_soft_max类提供相关功能
+// 用途: 用于处理test_soft_max相关的操作
+// 类: test_soft_max
+// 描述: test_soft_max类提供相关功能
+// 用途: 用于处理test_soft_max相关的操作
+    // 结构体: test_soft_max
+    // 描述: test_soft_max结构体提供相关功能
+    // 用途: 用于处理test_soft_max相关的操作
+    // 结构体: test_soft_max
+    // 描述: test_soft_max结构体提供相关功能
+    // 用途: 用于处理test_soft_max相关的操作
+    // 结构体: test_soft_max
+    // 描述: test_soft_max结构体提供相关功能
+    // 用途: 用于处理test_soft_max相关的操作
+    // 结构体: test_soft_max
+    // 描述: test_soft_max结构体提供相关功能
+    // 用途: 用于处理test_soft_max相关的操作
 struct test_soft_max : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -4439,12 +7769,28 @@ struct test_soft_max : public test_case {
     const float max_bias;
     const bool inplace;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR9(type, ne, mask, sinks, m_prec, nr23, scale, max_bias, inplace);
     }
 
     // the 1024 test with bias occasionally fails:
     // SOFT_MAX(type=f32,ne=[1024,16,1,1],mask=1,scale=1.000000,max_bias=8.000000): [SOFT_MAX] NMSE = 0.000000103 > 0.000000100 FAIL
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual double max_nmse_err() override {
         return 1e-6;
     }
@@ -4460,6 +7806,14 @@ struct test_soft_max : public test_case {
             bool inplace = false)
         : type(type), ne(ne), mask(mask), sinks(sinks), m_prec(m_prec), nr23(nr23), scale(scale), max_bias(max_bias), inplace(inplace) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2]*nr23[0], ne[3]*nr23[1]);
         ggml_set_param(a);
@@ -4489,18 +7843,52 @@ struct test_soft_max : public test_case {
         return out;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_SOFT_MAX_BACK
+// 类: test_soft_max_back
+// 描述: test_soft_max_back类提供相关功能
+// 用途: 用于处理test_soft_max_back相关的操作
+// 类: test_soft_max_back
+// 描述: test_soft_max_back类提供相关功能
+// 用途: 用于处理test_soft_max_back相关的操作
+    // 结构体: test_soft_max_back
+    // 描述: test_soft_max_back结构体提供相关功能
+    // 用途: 用于处理test_soft_max_back相关的操作
+    // 结构体: test_soft_max_back
+    // 描述: test_soft_max_back结构体提供相关功能
+    // 用途: 用于处理test_soft_max_back相关的操作
+    // 结构体: test_soft_max_back
+    // 描述: test_soft_max_back结构体提供相关功能
+    // 用途: 用于处理test_soft_max_back相关的操作
+    // 结构体: test_soft_max_back
+    // 描述: test_soft_max_back结构体提供相关功能
+    // 用途: 用于处理test_soft_max_back相关的操作
 struct test_soft_max_back : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const float scale;
     const float max_bias;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, scale, max_bias);
     }
@@ -4511,6 +7899,14 @@ struct test_soft_max_back : public test_case {
             float max_bias = 0.0f)
         : type(type), ne(ne), scale(scale), max_bias(max_bias) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -4526,6 +7922,24 @@ struct test_soft_max_back : public test_case {
 };
 
 // GGML_OP_ROPE + GGML_OP_ROPE_BACK
+// 类: test_rope
+// 描述: test_rope类提供相关功能
+// 用途: 用于处理test_rope相关的操作
+// 类: test_rope
+// 描述: test_rope类提供相关功能
+// 用途: 用于处理test_rope相关的操作
+    // 结构体: test_rope
+    // 描述: test_rope结构体提供相关功能
+    // 用途: 用于处理test_rope相关的操作
+    // 结构体: test_rope
+    // 描述: test_rope结构体提供相关功能
+    // 用途: 用于处理test_rope相关的操作
+    // 结构体: test_rope
+    // 描述: test_rope结构体提供相关功能
+    // 用途: 用于处理test_rope相关的操作
+    // 结构体: test_rope
+    // 描述: test_rope结构体提供相关功能
+    // 用途: 用于处理test_rope相关的操作
 struct test_rope : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
@@ -4540,6 +7954,14 @@ struct test_rope : public test_case {
     bool forward;
     bool inplace;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         // forward can be inferred from the op, does not need to be printed
         return VARS_TO_STR11(type, ne_a, n_dims, mode, n_ctx, fs, ef, af, ff, v, inplace);
@@ -4551,6 +7973,14 @@ struct test_rope : public test_case {
             float ef = 0.0f, float af = 0.0f, bool ff = false, int v = 0, bool forward = true, bool inplace = false)
         : type(type), ne_a(ne_a), n_dims(n_dims), mode(mode), n_ctx(n_ctx), fs(fs), ef(ef), af(af), ff(ff), v(v), forward(forward), inplace(inplace) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a;
         if (v & 1) {
@@ -4633,6 +8063,14 @@ struct test_rope : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I32) {
@@ -4654,16 +8092,50 @@ struct test_rope : public test_case {
         }
     }
 
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_maa_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_maa_err() override {
         return 1e-3;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_POOL2D
+// 类: test_pool2d
+// 描述: test_pool2d类提供相关功能
+// 用途: 用于处理test_pool2d相关的操作
+// 类: test_pool2d
+// 描述: test_pool2d类提供相关功能
+// 用途: 用于处理test_pool2d相关的操作
+    // 结构体: test_pool2d
+    // 描述: test_pool2d结构体提供相关功能
+    // 用途: 用于处理test_pool2d相关的操作
+    // 结构体: test_pool2d
+    // 描述: test_pool2d结构体提供相关功能
+    // 用途: 用于处理test_pool2d相关的操作
+    // 结构体: test_pool2d
+    // 描述: test_pool2d结构体提供相关功能
+    // 用途: 用于处理test_pool2d相关的操作
+    // 结构体: test_pool2d
+    // 描述: test_pool2d结构体提供相关功能
+    // 用途: 用于处理test_pool2d相关的操作
 struct test_pool2d : public test_case {
     enum ggml_op_pool pool_type;
     const ggml_type type_input;
@@ -4678,6 +8150,14 @@ struct test_pool2d : public test_case {
     const int p0;
     const int p1;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR9(pool_type, type_input, ne_input, k0, k1, s0, s1, p0, p1);
     }
@@ -4690,6 +8170,14 @@ struct test_pool2d : public test_case {
             int p0 = 1, int p1 = 1)
         : pool_type(pool_type), type_input(type_input), ne_input(ne_input), k0(k0), k1(k1), s0(s0), s1(s1), p0(p0), p1(p1) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, type_input, 4, ne_input.data());
         ggml_set_param(input);
@@ -4703,6 +8191,24 @@ struct test_pool2d : public test_case {
 };
 
 // GGML_OP_POOL1D
+// 类: test_pool1d
+// 描述: test_pool1d类提供相关功能
+// 用途: 用于处理test_pool1d相关的操作
+// 类: test_pool1d
+// 描述: test_pool1d类提供相关功能
+// 用途: 用于处理test_pool1d相关的操作
+    // 结构体: test_pool1d
+    // 描述: test_pool1d结构体提供相关功能
+    // 用途: 用于处理test_pool1d相关的操作
+    // 结构体: test_pool1d
+    // 描述: test_pool1d结构体提供相关功能
+    // 用途: 用于处理test_pool1d相关的操作
+    // 结构体: test_pool1d
+    // 描述: test_pool1d结构体提供相关功能
+    // 用途: 用于处理test_pool1d相关的操作
+    // 结构体: test_pool1d
+    // 描述: test_pool1d结构体提供相关功能
+    // 用途: 用于处理test_pool1d相关的操作
 struct test_pool1d : public test_case {
     enum ggml_op_pool pool_type;
     const ggml_type type_input;
@@ -4711,6 +8217,14 @@ struct test_pool1d : public test_case {
     const int s0;
     const int p0;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(pool_type, type_input, ne_input, k0, s0, p0);
     }
@@ -4721,6 +8235,14 @@ struct test_pool1d : public test_case {
                 int k0 = 3, int s0 = 3, int p0 = 0)
         : pool_type(pool_type), type_input(type_input), ne_input(ne_input), k0(k0), s0(s0), p0(p0) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, type_input, 4, ne_input.data());
         ggml_set_param(input);
@@ -4734,6 +8256,24 @@ struct test_pool1d : public test_case {
 };
 
 // GGML_OP_CONV_TRANSPOSE_1D
+// 类: test_conv_transpose_1d
+// 描述: test_conv_transpose_1d类提供相关功能
+// 用途: 用于处理test_conv_transpose_1d相关的操作
+// 类: test_conv_transpose_1d
+// 描述: test_conv_transpose_1d类提供相关功能
+// 用途: 用于处理test_conv_transpose_1d相关的操作
+    // 结构体: test_conv_transpose_1d
+    // 描述: test_conv_transpose_1d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_1d相关的操作
+    // 结构体: test_conv_transpose_1d
+    // 描述: test_conv_transpose_1d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_1d相关的操作
+    // 结构体: test_conv_transpose_1d
+    // 描述: test_conv_transpose_1d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_1d相关的操作
+    // 结构体: test_conv_transpose_1d
+    // 描述: test_conv_transpose_1d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_1d相关的操作
 struct test_conv_transpose_1d : public test_case {
     const std::array<int64_t, 4> ne_input;
     const std::array<int64_t, 4> ne_kernel;
@@ -4742,6 +8282,14 @@ struct test_conv_transpose_1d : public test_case {
     const int p0; // padding
     const int d0; // dilation
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(ne_input, ne_kernel, s0, p0, d0);
     }
@@ -4751,6 +8299,14 @@ struct test_conv_transpose_1d : public test_case {
                            int s0 = 1, int p0 = 0, int d0 = 1)
         : ne_input(ne_input), ne_kernel(ne_kernel), s0(s0), p0(p0), d0(d0) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, GGML_TYPE_F32, 4, ne_input.data());
         ggml_set_name(input, "input");
@@ -4766,15 +8322,49 @@ struct test_conv_transpose_1d : public test_case {
 };
 
 // GGML_OP_CONV_TRANSPOSE_2D
+// 类: test_conv_transpose_2d
+// 描述: test_conv_transpose_2d类提供相关功能
+// 用途: 用于处理test_conv_transpose_2d相关的操作
+// 类: test_conv_transpose_2d
+// 描述: test_conv_transpose_2d类提供相关功能
+// 用途: 用于处理test_conv_transpose_2d相关的操作
+    // 结构体: test_conv_transpose_2d
+    // 描述: test_conv_transpose_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_2d相关的操作
+    // 结构体: test_conv_transpose_2d
+    // 描述: test_conv_transpose_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_2d相关的操作
+    // 结构体: test_conv_transpose_2d
+    // 描述: test_conv_transpose_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_2d相关的操作
+    // 结构体: test_conv_transpose_2d
+    // 描述: test_conv_transpose_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_transpose_2d相关的操作
 struct test_conv_transpose_2d : public test_case {
     const std::array<int64_t, 4> ne_input;
     const std::array<int64_t, 4> ne_kernel;
     const int stride;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(ne_input, ne_kernel, stride);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4; // The default 1e-7 is too small for Vulkan.
     }
@@ -4784,6 +8374,14 @@ struct test_conv_transpose_2d : public test_case {
                            int stride = 1)
         : ne_input(ne_input), ne_kernel(ne_kernel), stride(stride){}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, GGML_TYPE_F32, 4, ne_input.data());
         ggml_set_name(input, "input");
@@ -4799,6 +8397,24 @@ struct test_conv_transpose_2d : public test_case {
 };
 
 // GGML_OP_IM2COL
+// 类: test_im2col
+// 描述: test_im2col类提供相关功能
+// 用途: 用于处理test_im2col相关的操作
+// 类: test_im2col
+// 描述: test_im2col类提供相关功能
+// 用途: 用于处理test_im2col相关的操作
+    // 结构体: test_im2col
+    // 描述: test_im2col结构体提供相关功能
+    // 用途: 用于处理test_im2col相关的操作
+    // 结构体: test_im2col
+    // 描述: test_im2col结构体提供相关功能
+    // 用途: 用于处理test_im2col相关的操作
+    // 结构体: test_im2col
+    // 描述: test_im2col结构体提供相关功能
+    // 用途: 用于处理test_im2col相关的操作
+    // 结构体: test_im2col
+    // 描述: test_im2col结构体提供相关功能
+    // 用途: 用于处理test_im2col相关的操作
 struct test_im2col : public test_case {
     const ggml_type type_input;
     const ggml_type type_kernel;
@@ -4817,6 +8433,14 @@ struct test_im2col : public test_case {
     // mode
     const bool is_2D;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR12(type_input, type_kernel, dst_type, ne_input, ne_kernel, s0, s1, p0, p1, d0, d1, is_2D);
     }
@@ -4830,6 +8454,14 @@ struct test_im2col : public test_case {
             bool is_2D = true)
         : type_input(type_input), type_kernel(type_kernel), dst_type(dst_type), ne_input(ne_input), ne_kernel(ne_kernel), s0(s0), s1(s1), p0(p0), p1(p1), d0(d0), d1(d1), is_2D(is_2D) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, type_input, 4, ne_input.data());
         ggml_set_param(input);
@@ -4846,6 +8478,24 @@ struct test_im2col : public test_case {
 };
 
 // GGML_OP_IM2COL_3D
+// 类: test_im2col_3d
+// 描述: test_im2col_3d类提供相关功能
+// 用途: 用于处理test_im2col_3d相关的操作
+// 类: test_im2col_3d
+// 描述: test_im2col_3d类提供相关功能
+// 用途: 用于处理test_im2col_3d相关的操作
+    // 结构体: test_im2col_3d
+    // 描述: test_im2col_3d结构体提供相关功能
+    // 用途: 用于处理test_im2col_3d相关的操作
+    // 结构体: test_im2col_3d
+    // 描述: test_im2col_3d结构体提供相关功能
+    // 用途: 用于处理test_im2col_3d相关的操作
+    // 结构体: test_im2col_3d
+    // 描述: test_im2col_3d结构体提供相关功能
+    // 用途: 用于处理test_im2col_3d相关的操作
+    // 结构体: test_im2col_3d
+    // 描述: test_im2col_3d结构体提供相关功能
+    // 用途: 用于处理test_im2col_3d相关的操作
 struct test_im2col_3d : public test_case {
     const ggml_type type_input;
     const ggml_type type_kernel;
@@ -4868,6 +8518,14 @@ struct test_im2col_3d : public test_case {
     const int64_t IC;
     const bool v;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR16(type_input, type_kernel, dst_type, ne_input, ne_kernel, IC, s0, s1, s2, p0, p1, p2, d0, d1, d2, v);
     }
@@ -4882,6 +8540,14 @@ struct test_im2col_3d : public test_case {
                 bool v = false)
         : type_input(type_input), type_kernel(type_kernel), dst_type(dst_type), ne_input(ne_input), ne_kernel(ne_kernel), s0(s0), s1(s1), s2(s2), p0(p0), p1(p1), p2(p2), d0(d0), d1(d1), d2(d2), IC(IC), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, type_input, 4, ne_input.data());
         ggml_set_param(input);
@@ -4903,6 +8569,24 @@ struct test_im2col_3d : public test_case {
 };
 
 // CONV_2D
+// 类: test_conv_2d
+// 描述: test_conv_2d类提供相关功能
+// 用途: 用于处理test_conv_2d相关的操作
+// 类: test_conv_2d
+// 描述: test_conv_2d类提供相关功能
+// 用途: 用于处理test_conv_2d相关的操作
+    // 结构体: test_conv_2d
+    // 描述: test_conv_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_2d相关的操作
+    // 结构体: test_conv_2d
+    // 描述: test_conv_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_2d相关的操作
+    // 结构体: test_conv_2d
+    // 描述: test_conv_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_2d相关的操作
+    // 结构体: test_conv_2d
+    // 描述: test_conv_2d结构体提供相关功能
+    // 用途: 用于处理test_conv_2d相关的操作
 struct test_conv_2d : public test_case {
     const std::array<int64_t, 4> ne_input;
     const std::array<int64_t, 4> ne_kernel;
@@ -4923,14 +8607,38 @@ struct test_conv_2d : public test_case {
     // * if the program is called with -o CONV_2D_INDIRECT_IMPL, the
     // IM2COL -> MUL_MM graph will be built.
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR10(ne_input, ne_kernel, type_kernel, stride0, stride1, padding0, padding1, dilation0, dilation1, cwhn);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         // Just counting matmul costs:
@@ -4972,6 +8680,14 @@ struct test_conv_2d : public test_case {
         dilation1(dilation1),
         cwhn(cwhn) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, GGML_TYPE_F32, 4, ne_input.data());
         ggml_set_name(input, "input");
@@ -4996,6 +8712,24 @@ struct test_conv_2d : public test_case {
 };
 
 // GGML_OP_CONV_2D_DW
+// 类: test_conv_2d_dw
+// 描述: test_conv_2d_dw类提供相关功能
+// 用途: 用于处理test_conv_2d_dw相关的操作
+// 类: test_conv_2d_dw
+// 描述: test_conv_2d_dw类提供相关功能
+// 用途: 用于处理test_conv_2d_dw相关的操作
+    // 结构体: test_conv_2d_dw
+    // 描述: test_conv_2d_dw结构体提供相关功能
+    // 用途: 用于处理test_conv_2d_dw相关的操作
+    // 结构体: test_conv_2d_dw
+    // 描述: test_conv_2d_dw结构体提供相关功能
+    // 用途: 用于处理test_conv_2d_dw相关的操作
+    // 结构体: test_conv_2d_dw
+    // 描述: test_conv_2d_dw结构体提供相关功能
+    // 用途: 用于处理test_conv_2d_dw相关的操作
+    // 结构体: test_conv_2d_dw
+    // 描述: test_conv_2d_dw结构体提供相关功能
+    // 用途: 用于处理test_conv_2d_dw相关的操作
 struct test_conv_2d_dw : public test_case {
     const std::array<int64_t, 4> ne_input;
     const std::array<int64_t, 4> ne_kernel;
@@ -5004,6 +8738,14 @@ struct test_conv_2d_dw : public test_case {
     const int dilation;
     const bool cwhn;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR6(ne_input, ne_kernel, stride, padding, dilation, cwhn);
     }
@@ -5013,6 +8755,14 @@ struct test_conv_2d_dw : public test_case {
             int stride = 1, int padding = 0, int dilation = 1, bool cwhn = false)
         : ne_input(ne_input), ne_kernel(ne_kernel), stride(stride), padding(padding), dilation(dilation), cwhn(cwhn) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * input = ggml_new_tensor(ctx, GGML_TYPE_F32, 4, ne_input.data());
         ggml_set_name(input, "input");
@@ -5038,6 +8788,24 @@ struct test_conv_2d_dw : public test_case {
 };
 
 // GGML_OP_CONV_3D
+// 类: test_conv_3d
+// 描述: test_conv_3d类提供相关功能
+// 用途: 用于处理test_conv_3d相关的操作
+// 类: test_conv_3d
+// 描述: test_conv_3d类提供相关功能
+// 用途: 用于处理test_conv_3d相关的操作
+    // 结构体: test_conv_3d
+    // 描述: test_conv_3d结构体提供相关功能
+    // 用途: 用于处理test_conv_3d相关的操作
+    // 结构体: test_conv_3d
+    // 描述: test_conv_3d结构体提供相关功能
+    // 用途: 用于处理test_conv_3d相关的操作
+    // 结构体: test_conv_3d
+    // 描述: test_conv_3d结构体提供相关功能
+    // 用途: 用于处理test_conv_3d相关的操作
+    // 结构体: test_conv_3d
+    // 描述: test_conv_3d结构体提供相关功能
+    // 用途: 用于处理test_conv_3d相关的操作
 struct test_conv_3d : public test_case {
     // Logical 5D dimensions
     const int64_t N, IC, ID, IH, IW;
@@ -5049,20 +8817,52 @@ struct test_conv_3d : public test_case {
     // Types
     const ggml_type type_kernel;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "CONV_3D";
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR11(N, IC, ID, IH, IW, OC, KD, KH, KW, s0, s1) + "," +
                VARS_TO_STR8(s2, p0, p1, p2, d0, d1, d2, type_kernel);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         auto calc_conv_output_size = [](int64_t ins, int64_t ks, int s, int p, int d) -> int64_t {
@@ -5089,6 +8889,14 @@ struct test_conv_3d : public test_case {
         d0(d0), d1(d1), d2(d2),
         type_kernel(type_kernel) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         // GGML input tensor is packed as [W, H, D, C*N]
         const int64_t ne_input[] = {IW, IH, ID, IC * N};
@@ -5107,6 +8915,24 @@ struct test_conv_3d : public test_case {
 };
 
 // GGML_OP_CONCAT
+// 类: test_concat
+// 描述: test_concat类提供相关功能
+// 用途: 用于处理test_concat相关的操作
+// 类: test_concat
+// 描述: test_concat类提供相关功能
+// 用途: 用于处理test_concat相关的操作
+    // 结构体: test_concat
+    // 描述: test_concat结构体提供相关功能
+    // 用途: 用于处理test_concat相关的操作
+    // 结构体: test_concat
+    // 描述: test_concat结构体提供相关功能
+    // 用途: 用于处理test_concat相关的操作
+    // 结构体: test_concat
+    // 描述: test_concat结构体提供相关功能
+    // 用途: 用于处理test_concat相关的操作
+    // 结构体: test_concat
+    // 描述: test_concat结构体提供相关功能
+    // 用途: 用于处理test_concat相关的操作
 struct test_concat : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
@@ -5114,6 +8940,14 @@ struct test_concat : public test_case {
     const int dim;
     const int v; // view (1 << 0: non-cont a, 1 << 1: non-cont b)
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne_a, ne_b_d, dim, v);
     }
@@ -5124,6 +8958,14 @@ struct test_concat : public test_case {
             int dim = 2, int v = 0)
         : type(type), ne_a(ne_a), ne_b_d(ne_b_d), dim(dim), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         auto ne_b = ne_a;
         ne_b[dim] = ne_b_d;
@@ -5160,11 +9002,37 @@ struct test_concat : public test_case {
 };
 
 // GGML_OP_ARGSORT
+// 类: test_argsort
+// 描述: test_argsort类提供相关功能
+// 用途: 用于处理test_argsort相关的操作
+// 类: test_argsort
+// 描述: test_argsort类提供相关功能
+// 用途: 用于处理test_argsort相关的操作
+    // 结构体: test_argsort
+    // 描述: test_argsort结构体提供相关功能
+    // 用途: 用于处理test_argsort相关的操作
+    // 结构体: test_argsort
+    // 描述: test_argsort结构体提供相关功能
+    // 用途: 用于处理test_argsort相关的操作
+    // 结构体: test_argsort
+    // 描述: test_argsort结构体提供相关功能
+    // 用途: 用于处理test_argsort相关的操作
+    // 结构体: test_argsort
+    // 描述: test_argsort结构体提供相关功能
+    // 用途: 用于处理test_argsort相关的操作
 struct test_argsort : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     ggml_sort_order order;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne, order);
     }
@@ -5174,6 +9042,14 @@ struct test_argsort : public test_case {
             ggml_sort_order order = GGML_SORT_ORDER_ASC)
         : type(type), ne(ne), order(order) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5184,6 +9060,14 @@ struct test_argsort : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         std::random_device rd;
         std::default_random_engine rng(rd());
@@ -5214,6 +9098,24 @@ struct test_argsort : public test_case {
 };
 
 // GGML_OP_TOP_K
+// 类: test_top_k
+// 描述: test_top_k类提供相关功能
+// 用途: 用于处理test_top_k相关的操作
+// 类: test_top_k
+// 描述: test_top_k类提供相关功能
+// 用途: 用于处理test_top_k相关的操作
+    // 结构体: test_top_k
+    // 描述: test_top_k结构体提供相关功能
+    // 用途: 用于处理test_top_k相关的操作
+    // 结构体: test_top_k
+    // 描述: test_top_k结构体提供相关功能
+    // 用途: 用于处理test_top_k相关的操作
+    // 结构体: test_top_k
+    // 描述: test_top_k结构体提供相关功能
+    // 用途: 用于处理test_top_k相关的操作
+    // 结构体: test_top_k
+    // 描述: test_top_k结构体提供相关功能
+    // 用途: 用于处理test_top_k相关的操作
 struct test_top_k : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -5221,6 +9123,14 @@ struct test_top_k : public test_case {
     const bool ties;
     ggml_tensor * input {};
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, k, ties);
     }
@@ -5230,14 +9140,38 @@ struct test_top_k : public test_case {
             int k = 4, bool ties = false)
         : type(type), ne(ne), k(k), ties(ties) {}
 
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_err() override {
         return 0.0;
     }
 
     // When there are ties, only validate the final result.
     // The logic in err can't handle the sentinel tensors.
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return ties; }
 
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double err(const float * a, const float * b, size_t n) override {
         // When there are no ties, we expect the exact same set of indices,
         // but possibly in a different order. When there are ties, the indices
@@ -5299,6 +9233,14 @@ struct test_top_k : public test_case {
         }
     }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5312,6 +9254,14 @@ struct test_top_k : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         std::random_device rd;
         std::default_random_engine rng(rd());
@@ -5340,6 +9290,24 @@ enum MoeGatingFunc {
     GATING_FUNC_SOFTMAX_WEIGHT,
 };
 
+// 类: test_topk_moe
+// 描述: test_topk_moe类提供相关功能
+// 用途: 用于处理test_topk_moe相关的操作
+// 类: test_topk_moe
+// 描述: test_topk_moe类提供相关功能
+// 用途: 用于处理test_topk_moe相关的操作
+    // 结构体: test_topk_moe
+    // 描述: test_topk_moe结构体提供相关功能
+    // 用途: 用于处理test_topk_moe相关的操作
+    // 结构体: test_topk_moe
+    // 描述: test_topk_moe结构体提供相关功能
+    // 用途: 用于处理test_topk_moe相关的操作
+    // 结构体: test_topk_moe
+    // 描述: test_topk_moe结构体提供相关功能
+    // 用途: 用于处理test_topk_moe相关的操作
+    // 结构体: test_topk_moe
+    // 描述: test_topk_moe结构体提供相关功能
+    // 用途: 用于处理test_topk_moe相关的操作
 struct test_topk_moe : public test_case {
     const std::array<int64_t, 4> ne;
     const int n_expert_used;
@@ -5365,15 +9333,47 @@ struct test_topk_moe : public test_case {
         GGML_ASSERT(n_expert_used <= ne[0]);
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR6(ne, n_expert_used, with_norm, bias_probs, gating_func, scale_w); }
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "TOPK_MOE";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const int n_expert = ne[0];
         const int n_tokens = ne[1];
@@ -5425,6 +9425,14 @@ struct test_topk_moe : public test_case {
     std::vector<ggml_tensor *> fusion_test_nodes() override { return { selected_experts, weights }; }
 
     // allow output in arbitrary order
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double err(const float * a, const float * b, size_t n) override {
         std::vector<float> a2(n);
         std::vector<float> b2(n);
@@ -5438,6 +9446,24 @@ struct test_topk_moe : public test_case {
     }
 };
 
+// 类: test_mul_mat_vec_fusion
+// 描述: test_mul_mat_vec_fusion类提供相关功能
+// 用途: 用于处理test_mul_mat_vec_fusion相关的操作
+// 类: test_mul_mat_vec_fusion
+// 描述: test_mul_mat_vec_fusion类提供相关功能
+// 用途: 用于处理test_mul_mat_vec_fusion相关的操作
+    // 结构体: test_mul_mat_vec_fusion
+    // 描述: test_mul_mat_vec_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_vec_fusion相关的操作
+    // 结构体: test_mul_mat_vec_fusion
+    // 描述: test_mul_mat_vec_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_vec_fusion相关的操作
+    // 结构体: test_mul_mat_vec_fusion
+    // 描述: test_mul_mat_vec_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_vec_fusion相关的操作
+    // 结构体: test_mul_mat_vec_fusion
+    // 描述: test_mul_mat_vec_fusion结构体提供相关功能
+    // 用途: 用于处理test_mul_mat_vec_fusion相关的操作
 struct test_mul_mat_vec_fusion : public test_case {
     const ggml_type type;
     const ggml_glu_op glu_op;
@@ -5461,17 +9487,49 @@ struct test_mul_mat_vec_fusion : public test_case {
         }
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR12(type, glu_op, m, n, k, use_id, n_mats, n_used, b, with_bias, with_gate, batch_dims);
     }
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "MUL_MAT_VEC_FUSION";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: build_gate
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_gate
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_gate(ggml_context * ctx, ggml_tensor * ffn_gate, ggml_tensor * ffn_up) {
         ggml_tensor * out = nullptr;
         if (with_gate) {
@@ -5486,6 +9544,14 @@ struct test_mul_mat_vec_fusion : public test_case {
         return out;
     }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         if (!use_id) {
             const int              channels = batch_dims[0];
@@ -5554,6 +9620,14 @@ struct test_mul_mat_vec_fusion : public test_case {
         }
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         if (!use_id) {
             for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
@@ -5564,18 +9638,52 @@ struct test_mul_mat_vec_fusion : public test_case {
         }
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-3;
     }
 };
 
 // GGML_OP_SUM
+// 类: test_sum
+// 描述: test_sum类提供相关功能
+// 用途: 用于处理test_sum相关的操作
+// 类: test_sum
+// 描述: test_sum类提供相关功能
+// 用途: 用于处理test_sum相关的操作
+    // 结构体: test_sum
+    // 描述: test_sum结构体提供相关功能
+    // 用途: 用于处理test_sum相关的操作
+    // 结构体: test_sum
+    // 描述: test_sum结构体提供相关功能
+    // 用途: 用于处理test_sum相关的操作
+    // 结构体: test_sum
+    // 描述: test_sum结构体提供相关功能
+    // 用途: 用于处理test_sum相关的操作
+    // 结构体: test_sum
+    // 描述: test_sum结构体提供相关功能
+    // 用途: 用于处理test_sum相关的操作
 struct test_sum : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const std::array<int64_t, 4> permute;
     bool _use_permute;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         std::string v = VARS_TO_STR2(type, ne);
         if (_use_permute) v += "," + VAR_TO_STR(permute);
@@ -5588,6 +9696,14 @@ struct test_sum : public test_case {
         : type(type), ne(ne), permute(permute),
             _use_permute(permute[0] + permute[1] + permute[2] + permute[3] > 0) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -5604,11 +9720,27 @@ struct test_sum : public test_case {
         return out;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.1f * sqrtf(ne[0]*ne[1]*ne[2]*ne[3]);
     }
 
     // Don't center the distribution around zero. Helps to avoid catastrophic cancellation.
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != nullptr; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -0.9f, 1.1f);
@@ -5617,12 +9749,38 @@ struct test_sum : public test_case {
 };
 
 // GGML_OP_SUM_ROWS
+// 类: test_sum_rows
+// 描述: test_sum_rows类提供相关功能
+// 用途: 用于处理test_sum_rows相关的操作
+// 类: test_sum_rows
+// 描述: test_sum_rows类提供相关功能
+// 用途: 用于处理test_sum_rows相关的操作
+    // 结构体: test_sum_rows
+    // 描述: test_sum_rows结构体提供相关功能
+    // 用途: 用于处理test_sum_rows相关的操作
+    // 结构体: test_sum_rows
+    // 描述: test_sum_rows结构体提供相关功能
+    // 用途: 用于处理test_sum_rows相关的操作
+    // 结构体: test_sum_rows
+    // 描述: test_sum_rows结构体提供相关功能
+    // 用途: 用于处理test_sum_rows相关的操作
+    // 结构体: test_sum_rows
+    // 描述: test_sum_rows结构体提供相关功能
+    // 用途: 用于处理test_sum_rows相关的操作
 struct test_sum_rows : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const bool permute;
     const bool slice;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, permute, slice);
     }
@@ -5632,6 +9790,14 @@ struct test_sum_rows : public test_case {
             bool permute = false, bool slice = false)
         : type(type), ne(ne), permute(permute), slice(slice) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -5654,10 +9820,36 @@ struct test_sum_rows : public test_case {
 };
 
 // GGML_OP_MEAN
+// 类: test_mean
+// 描述: test_mean类提供相关功能
+// 用途: 用于处理test_mean相关的操作
+// 类: test_mean
+// 描述: test_mean类提供相关功能
+// 用途: 用于处理test_mean相关的操作
+    // 结构体: test_mean
+    // 描述: test_mean结构体提供相关功能
+    // 用途: 用于处理test_mean相关的操作
+    // 结构体: test_mean
+    // 描述: test_mean结构体提供相关功能
+    // 用途: 用于处理test_mean相关的操作
+    // 结构体: test_mean
+    // 描述: test_mean结构体提供相关功能
+    // 用途: 用于处理test_mean相关的操作
+    // 结构体: test_mean
+    // 描述: test_mean结构体提供相关功能
+    // 用途: 用于处理test_mean相关的操作
 struct test_mean : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -5666,6 +9858,14 @@ struct test_mean : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(a);
@@ -5677,11 +9877,27 @@ struct test_mean : public test_case {
         return out;
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 0.1f * ne[0]*ne[1]*ne[2]*ne[3];
     }
 
     // Don't center the distribution around zero. Helps to avoid catastrophic cancellation.
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != nullptr; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -0.9f, 1.1f);
@@ -5690,6 +9906,24 @@ struct test_mean : public test_case {
 };
 
 // GGML_OP_UPSCALE
+// 类: test_upscale
+// 描述: test_upscale类提供相关功能
+// 用途: 用于处理test_upscale相关的操作
+// 类: test_upscale
+// 描述: test_upscale类提供相关功能
+// 用途: 用于处理test_upscale相关的操作
+    // 结构体: test_upscale
+    // 描述: test_upscale结构体提供相关功能
+    // 用途: 用于处理test_upscale相关的操作
+    // 结构体: test_upscale
+    // 描述: test_upscale结构体提供相关功能
+    // 用途: 用于处理test_upscale相关的操作
+    // 结构体: test_upscale
+    // 描述: test_upscale结构体提供相关功能
+    // 用途: 用于处理test_upscale相关的操作
+    // 结构体: test_upscale
+    // 描述: test_upscale结构体提供相关功能
+    // 用途: 用于处理test_upscale相关的操作
 struct test_upscale : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
@@ -5697,6 +9931,14 @@ struct test_upscale : public test_case {
     const bool transpose;
     const ggml_scale_mode mode;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne, scale_factor, mode, transpose);
     }
@@ -5706,6 +9948,14 @@ struct test_upscale : public test_case {
             int32_t scale_factor = 2, ggml_scale_mode mode = GGML_SCALE_MODE_NEAREST, bool transpose = false)
         : type(type), ne(ne), scale_factor(scale_factor), transpose(transpose), mode(mode) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5723,12 +9973,38 @@ struct test_upscale : public test_case {
 };
 
 // GGML_OP_UPSCALE (via ggml_interpolate)
+// 类: test_interpolate
+// 描述: test_interpolate类提供相关功能
+// 用途: 用于处理test_interpolate相关的操作
+// 类: test_interpolate
+// 描述: test_interpolate类提供相关功能
+// 用途: 用于处理test_interpolate相关的操作
+    // 结构体: test_interpolate
+    // 描述: test_interpolate结构体提供相关功能
+    // 用途: 用于处理test_interpolate相关的操作
+    // 结构体: test_interpolate
+    // 描述: test_interpolate结构体提供相关功能
+    // 用途: 用于处理test_interpolate相关的操作
+    // 结构体: test_interpolate
+    // 描述: test_interpolate结构体提供相关功能
+    // 用途: 用于处理test_interpolate相关的操作
+    // 结构体: test_interpolate
+    // 描述: test_interpolate结构体提供相关功能
+    // 用途: 用于处理test_interpolate相关的操作
 struct test_interpolate : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const std::array<int64_t, 4> ne_tgt;
     const ggml_scale_mode mode = GGML_SCALE_MODE_NEAREST;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, ne_tgt, mode);
     }
@@ -5739,6 +10015,14 @@ struct test_interpolate : public test_case {
             ggml_scale_mode mode = GGML_SCALE_MODE_NEAREST)
         : type(type), ne(ne), ne_tgt(ne_tgt), mode(mode) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5751,12 +10035,38 @@ struct test_interpolate : public test_case {
 };
 
 // GGML_OP_GROUP_NORM
+// 类: test_group_norm
+// 描述: test_group_norm类提供相关功能
+// 用途: 用于处理test_group_norm相关的操作
+// 类: test_group_norm
+// 描述: test_group_norm类提供相关功能
+// 用途: 用于处理test_group_norm相关的操作
+    // 结构体: test_group_norm
+    // 描述: test_group_norm结构体提供相关功能
+    // 用途: 用于处理test_group_norm相关的操作
+    // 结构体: test_group_norm
+    // 描述: test_group_norm结构体提供相关功能
+    // 用途: 用于处理test_group_norm相关的操作
+    // 结构体: test_group_norm
+    // 描述: test_group_norm结构体提供相关功能
+    // 用途: 用于处理test_group_norm相关的操作
+    // 结构体: test_group_norm
+    // 描述: test_group_norm结构体提供相关功能
+    // 用途: 用于处理test_group_norm相关的操作
 struct test_group_norm : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const int32_t num_groups;
     const float eps;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, num_groups, eps);
     }
@@ -5767,6 +10077,14 @@ struct test_group_norm : public test_case {
             float eps = 1e-6f)
         : type(type), ne(ne), num_groups(num_groups), eps(eps) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5779,19 +10097,61 @@ struct test_group_norm : public test_case {
 };
 
 // GGML_OP_GROUP_NORM + GGML_OP_MUL + GGML_OP_ADD
+// 类: test_group_norm_mul_add
+// 描述: test_group_norm_mul_add类提供相关功能
+// 用途: 用于处理test_group_norm_mul_add相关的操作
+// 类: test_group_norm_mul_add
+// 描述: test_group_norm_mul_add类提供相关功能
+// 用途: 用于处理test_group_norm_mul_add相关的操作
+    // 结构体: test_group_norm_mul_add
+    // 描述: test_group_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_group_norm_mul_add相关的操作
+    // 结构体: test_group_norm_mul_add
+    // 描述: test_group_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_group_norm_mul_add相关的操作
+    // 结构体: test_group_norm_mul_add
+    // 描述: test_group_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_group_norm_mul_add相关的操作
+    // 结构体: test_group_norm_mul_add
+    // 描述: test_group_norm_mul_add结构体提供相关功能
+    // 用途: 用于处理test_group_norm_mul_add相关的操作
 struct test_group_norm_mul_add : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     int num_groups;
     float eps;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "GROUP_NORM_MUL_ADD";
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return true; }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, num_groups, eps);
     }
@@ -5802,6 +10162,14 @@ struct test_group_norm_mul_add : public test_case {
             float eps = 1e-5f)
         : type(type), ne(ne), num_groups(num_groups), eps(eps) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_tensor * w = ggml_new_tensor(ctx, type, 4, ne.data());
@@ -5817,12 +10185,38 @@ struct test_group_norm_mul_add : public test_case {
 };
 
 // GGML_OP_L2_NORM
+// 类: test_l2_norm
+// 描述: test_l2_norm类提供相关功能
+// 用途: 用于处理test_l2_norm相关的操作
+// 类: test_l2_norm
+// 描述: test_l2_norm类提供相关功能
+// 用途: 用于处理test_l2_norm相关的操作
+    // 结构体: test_l2_norm
+    // 描述: test_l2_norm结构体提供相关功能
+    // 用途: 用于处理test_l2_norm相关的操作
+    // 结构体: test_l2_norm
+    // 描述: test_l2_norm结构体提供相关功能
+    // 用途: 用于处理test_l2_norm相关的操作
+    // 结构体: test_l2_norm
+    // 描述: test_l2_norm结构体提供相关功能
+    // 用途: 用于处理test_l2_norm相关的操作
+    // 结构体: test_l2_norm
+    // 描述: test_l2_norm结构体提供相关功能
+    // 用途: 用于处理test_l2_norm相关的操作
 struct test_l2_norm : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
     const float eps;
     bool v;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne, eps, v);
     }
@@ -5833,6 +10227,14 @@ struct test_l2_norm : public test_case {
             bool v = false)
         : type(type), ne(ne), eps(eps), v(v) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_name(a, "a");
@@ -5850,12 +10252,38 @@ struct test_l2_norm : public test_case {
 };
 
 // GGML_OP_ACC
+// 类: test_acc
+// 描述: test_acc类提供相关功能
+// 用途: 用于处理test_acc相关的操作
+// 类: test_acc
+// 描述: test_acc类提供相关功能
+// 用途: 用于处理test_acc相关的操作
+    // 结构体: test_acc
+    // 描述: test_acc结构体提供相关功能
+    // 用途: 用于处理test_acc相关的操作
+    // 结构体: test_acc
+    // 描述: test_acc结构体提供相关功能
+    // 用途: 用于处理test_acc相关的操作
+    // 结构体: test_acc
+    // 描述: test_acc结构体提供相关功能
+    // 用途: 用于处理test_acc相关的操作
+    // 结构体: test_acc
+    // 描述: test_acc结构体提供相关功能
+    // 用途: 用于处理test_acc相关的操作
 struct test_acc : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     const std::array<int64_t, 4> ne_b;
     const int64_t stride_dim;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne_a, ne_b, stride_dim);
     }
@@ -5866,6 +10294,14 @@ struct test_acc : public test_case {
             uint64_t stride_dim = -1)
         : type(type), ne_a(ne_a), ne_b(ne_b), stride_dim(stride_dim) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_set_param(a);
@@ -5901,6 +10337,24 @@ struct test_acc : public test_case {
 };
 
 // GGML_OP_PAD
+// 类: test_pad
+// 描述: test_pad类提供相关功能
+// 用途: 用于处理test_pad相关的操作
+// 类: test_pad
+// 描述: test_pad类提供相关功能
+// 用途: 用于处理test_pad相关的操作
+    // 结构体: test_pad
+    // 描述: test_pad结构体提供相关功能
+    // 用途: 用于处理test_pad相关的操作
+    // 结构体: test_pad
+    // 描述: test_pad结构体提供相关功能
+    // 用途: 用于处理test_pad相关的操作
+    // 结构体: test_pad
+    // 描述: test_pad结构体提供相关功能
+    // 用途: 用于处理test_pad相关的操作
+    // 结构体: test_pad
+    // 描述: test_pad结构体提供相关功能
+    // 用途: 用于处理test_pad相关的操作
 struct test_pad : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
@@ -5908,6 +10362,14 @@ struct test_pad : public test_case {
     const int pad_1;
     const bool circular;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR5(type, ne_a, pad_0, pad_1, circular);
     }
@@ -5917,6 +10379,14 @@ struct test_pad : public test_case {
             int pad_0 = 1, int pad_1 = 1, bool circular = false)
         : type(type), ne_a(ne_a), pad_0(pad_0), pad_1(pad_1), circular(circular) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_set_name(a, "a");
@@ -5931,6 +10401,24 @@ struct test_pad : public test_case {
 };
 
 // GGML_OP_PAD (with extension)
+// 类: test_pad_ext
+// 描述: test_pad_ext类提供相关功能
+// 用途: 用于处理test_pad_ext相关的操作
+// 类: test_pad_ext
+// 描述: test_pad_ext类提供相关功能
+// 用途: 用于处理test_pad_ext相关的操作
+    // 结构体: test_pad_ext
+    // 描述: test_pad_ext结构体提供相关功能
+    // 用途: 用于处理test_pad_ext相关的操作
+    // 结构体: test_pad_ext
+    // 描述: test_pad_ext结构体提供相关功能
+    // 用途: 用于处理test_pad_ext相关的操作
+    // 结构体: test_pad_ext
+    // 描述: test_pad_ext结构体提供相关功能
+    // 用途: 用于处理test_pad_ext相关的操作
+    // 结构体: test_pad_ext
+    // 描述: test_pad_ext结构体提供相关功能
+    // 用途: 用于处理test_pad_ext相关的操作
 struct test_pad_ext : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
@@ -5945,6 +10433,14 @@ struct test_pad_ext : public test_case {
     const int tfrm; // 0 - none, 1 - non-cont, 2 - perm
     const bool circular;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR12(type, ne_a, lp0, rp0, lp1, rp1, lp2, rp2, lp3, rp3, tfrm, circular);
     }
@@ -5957,6 +10453,14 @@ struct test_pad_ext : public test_case {
         : type(type), ne_a(ne_a), lp0(lp0), rp0(rp0), lp1(lp1), rp1(rp1), lp2(lp2), rp2(rp2), lp3(lp3), rp3(rp3),
           tfrm(tfrm), circular(circular) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_set_name(a, "a");
@@ -5979,12 +10483,38 @@ struct test_pad_ext : public test_case {
 };
 
 // GGML_OP_PAD_REFLECT_1D
+// 类: test_pad_reflect_1d
+// 描述: test_pad_reflect_1d类提供相关功能
+// 用途: 用于处理test_pad_reflect_1d相关的操作
+// 类: test_pad_reflect_1d
+// 描述: test_pad_reflect_1d类提供相关功能
+// 用途: 用于处理test_pad_reflect_1d相关的操作
+    // 结构体: test_pad_reflect_1d
+    // 描述: test_pad_reflect_1d结构体提供相关功能
+    // 用途: 用于处理test_pad_reflect_1d相关的操作
+    // 结构体: test_pad_reflect_1d
+    // 描述: test_pad_reflect_1d结构体提供相关功能
+    // 用途: 用于处理test_pad_reflect_1d相关的操作
+    // 结构体: test_pad_reflect_1d
+    // 描述: test_pad_reflect_1d结构体提供相关功能
+    // 用途: 用于处理test_pad_reflect_1d相关的操作
+    // 结构体: test_pad_reflect_1d
+    // 描述: test_pad_reflect_1d结构体提供相关功能
+    // 用途: 用于处理test_pad_reflect_1d相关的操作
 struct test_pad_reflect_1d : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     const int pad_0;
     const int pad_1;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne_a, pad_0, pad_1);
     }
@@ -5994,6 +10524,14 @@ struct test_pad_reflect_1d : public test_case {
             int pad_0 = 10, int pad_1 = 9)
         : type(type), ne_a(ne_a), pad_0(pad_0), pad_1(pad_1)  {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 2, ne_a.data());
         ggml_set_name(a, "a");
@@ -6006,12 +10544,38 @@ struct test_pad_reflect_1d : public test_case {
 };
 
 // GGML_OP_ROLL
+// 类: test_roll
+// 描述: test_roll类提供相关功能
+// 用途: 用于处理test_roll相关的操作
+// 类: test_roll
+// 描述: test_roll类提供相关功能
+// 用途: 用于处理test_roll相关的操作
+    // 结构体: test_roll
+    // 描述: test_roll结构体提供相关功能
+    // 用途: 用于处理test_roll相关的操作
+    // 结构体: test_roll
+    // 描述: test_roll结构体提供相关功能
+    // 用途: 用于处理test_roll相关的操作
+    // 结构体: test_roll
+    // 描述: test_roll结构体提供相关功能
+    // 用途: 用于处理test_roll相关的操作
+    // 结构体: test_roll
+    // 描述: test_roll结构体提供相关功能
+    // 用途: 用于处理test_roll相关的操作
 struct test_roll : public test_case {
     const int shift0;
     const int shift1;
     const int shift3;
     const int shift4;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(shift0, shift1, shift3, shift4);
     }
@@ -6019,6 +10583,14 @@ struct test_roll : public test_case {
     test_roll(int shift0 = 3, int shift1 = -2, int shift3 = 1, int shift4 = -1)
         : shift0(shift0), shift1(shift1), shift3(shift3), shift4(shift4) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         int64_t ne[4] = {10, 5, 4, 3};
         ggml_tensor * a = ggml_new_tensor(ctx, GGML_TYPE_F32, 4, ne);
@@ -6032,12 +10604,38 @@ struct test_roll : public test_case {
 };
 
 // GGML_OP_ARANGE
+// 类: test_arange
+// 描述: test_arange类提供相关功能
+// 用途: 用于处理test_arange相关的操作
+// 类: test_arange
+// 描述: test_arange类提供相关功能
+// 用途: 用于处理test_arange相关的操作
+    // 结构体: test_arange
+    // 描述: test_arange结构体提供相关功能
+    // 用途: 用于处理test_arange相关的操作
+    // 结构体: test_arange
+    // 描述: test_arange结构体提供相关功能
+    // 用途: 用于处理test_arange相关的操作
+    // 结构体: test_arange
+    // 描述: test_arange结构体提供相关功能
+    // 用途: 用于处理test_arange相关的操作
+    // 结构体: test_arange
+    // 描述: test_arange结构体提供相关功能
+    // 用途: 用于处理test_arange相关的操作
 struct test_arange : public test_case {
     const ggml_type type;
     const float start;
     const float stop;
     const float step;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, start, stop, step);
     }
@@ -6046,6 +10644,14 @@ struct test_arange : public test_case {
             float start = 0.f, float stop = 10.f, float step = 1.f)
         : type(type), start(start), stop(stop), step(step)  {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * out = ggml_arange(ctx, start, stop, step);
         ggml_set_name(out, "out");
@@ -6055,12 +10661,38 @@ struct test_arange : public test_case {
 };
 
 // GGML_OP_TIMESTEP_EMBEDDING
+// 类: test_timestep_embedding
+// 描述: test_timestep_embedding类提供相关功能
+// 用途: 用于处理test_timestep_embedding相关的操作
+// 类: test_timestep_embedding
+// 描述: test_timestep_embedding类提供相关功能
+// 用途: 用于处理test_timestep_embedding相关的操作
+    // 结构体: test_timestep_embedding
+    // 描述: test_timestep_embedding结构体提供相关功能
+    // 用途: 用于处理test_timestep_embedding相关的操作
+    // 结构体: test_timestep_embedding
+    // 描述: test_timestep_embedding结构体提供相关功能
+    // 用途: 用于处理test_timestep_embedding相关的操作
+    // 结构体: test_timestep_embedding
+    // 描述: test_timestep_embedding结构体提供相关功能
+    // 用途: 用于处理test_timestep_embedding相关的操作
+    // 结构体: test_timestep_embedding
+    // 描述: test_timestep_embedding结构体提供相关功能
+    // 用途: 用于处理test_timestep_embedding相关的操作
 struct test_timestep_embedding : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     const int dim;
     const int max_period;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR4(type, ne_a, dim, max_period);
     }
@@ -6070,6 +10702,14 @@ struct test_timestep_embedding : public test_case {
             int dim = 320, int max_period=10000)
         : type(type), ne_a(ne_a), dim(dim), max_period(max_period)  {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_set_name(a, "a");
@@ -6082,11 +10722,37 @@ struct test_timestep_embedding : public test_case {
 };
 
 // GGML_OP_LEAKY_RELU
+// 类: test_leaky_relu
+// 描述: test_leaky_relu类提供相关功能
+// 用途: 用于处理test_leaky_relu相关的操作
+// 类: test_leaky_relu
+// 描述: test_leaky_relu类提供相关功能
+// 用途: 用于处理test_leaky_relu相关的操作
+    // 结构体: test_leaky_relu
+    // 描述: test_leaky_relu结构体提供相关功能
+    // 用途: 用于处理test_leaky_relu相关的操作
+    // 结构体: test_leaky_relu
+    // 描述: test_leaky_relu结构体提供相关功能
+    // 用途: 用于处理test_leaky_relu相关的操作
+    // 结构体: test_leaky_relu
+    // 描述: test_leaky_relu结构体提供相关功能
+    // 用途: 用于处理test_leaky_relu相关的操作
+    // 结构体: test_leaky_relu
+    // 描述: test_leaky_relu结构体提供相关功能
+    // 用途: 用于处理test_leaky_relu相关的操作
 struct test_leaky_relu : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne_a;
     const float negative_slope;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR3(type, ne_a, negative_slope);
     }
@@ -6096,6 +10762,14 @@ struct test_leaky_relu : public test_case {
             float negative_slope = 0.1f)
         : type(type), ne_a(ne_a), negative_slope(negative_slope)  {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor(ctx, type, 4, ne_a.data());
         ggml_set_name(a, "a");
@@ -6108,6 +10782,24 @@ struct test_leaky_relu : public test_case {
 };
 
 // GGML_OP_FLASH_ATTN_EXT
+// 类: test_flash_attn_ext
+// 描述: test_flash_attn_ext类提供相关功能
+// 用途: 用于处理test_flash_attn_ext相关的操作
+// 类: test_flash_attn_ext
+// 描述: test_flash_attn_ext类提供相关功能
+// 用途: 用于处理test_flash_attn_ext相关的操作
+    // 结构体: test_flash_attn_ext
+    // 描述: test_flash_attn_ext结构体提供相关功能
+    // 用途: 用于处理test_flash_attn_ext相关的操作
+    // 结构体: test_flash_attn_ext
+    // 描述: test_flash_attn_ext结构体提供相关功能
+    // 用途: 用于处理test_flash_attn_ext相关的操作
+    // 结构体: test_flash_attn_ext
+    // 描述: test_flash_attn_ext结构体提供相关功能
+    // 用途: 用于处理test_flash_attn_ext相关的操作
+    // 结构体: test_flash_attn_ext
+    // 描述: test_flash_attn_ext结构体提供相关功能
+    // 用途: 用于处理test_flash_attn_ext相关的操作
 struct test_flash_attn_ext : public test_case {
     const int64_t hsk; // K head size
     const int64_t hsv; // V head size
@@ -6126,14 +10818,38 @@ struct test_flash_attn_ext : public test_case {
     const ggml_type type_KV;
     std::array<int32_t, 4> permute;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR13(hsk, hsv, nh, nr23, kv, nb, mask, sinks, max_bias, logit_softcap, prec, type_KV, permute);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 5e-4;
     }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         // Just counting matmul costs:
@@ -6146,6 +10862,14 @@ struct test_flash_attn_ext : public test_case {
                         ggml_type type_KV = GGML_TYPE_F16, std::array<int32_t, 4> permute = {0, 1, 2, 3})
         : hsk(hsk), hsv(hsv), nh(nh), nr23(nr23), kv(kv), nb(nb), mask(mask), sinks(sinks), max_bias(max_bias), logit_softcap(logit_softcap), prec(prec), type_KV(type_KV), permute(permute) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         const int64_t hsk_padded = GGML_PAD(hsk, ggml_blck_size(type_KV));
         const int64_t hsv_padded = GGML_PAD(hsv, ggml_blck_size(type_KV));
@@ -6210,6 +10934,14 @@ struct test_flash_attn_ext : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (strcmp(t->name, "s") == 0) {
@@ -6223,16 +10955,50 @@ struct test_flash_attn_ext : public test_case {
         }
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_CROSS_ENTROPY_LOSS
+// 类: test_cross_entropy_loss
+// 描述: test_cross_entropy_loss类提供相关功能
+// 用途: 用于处理test_cross_entropy_loss相关的操作
+// 类: test_cross_entropy_loss
+// 描述: test_cross_entropy_loss类提供相关功能
+// 用途: 用于处理test_cross_entropy_loss相关的操作
+    // 结构体: test_cross_entropy_loss
+    // 描述: test_cross_entropy_loss结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss相关的操作
+    // 结构体: test_cross_entropy_loss
+    // 描述: test_cross_entropy_loss结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss相关的操作
+    // 结构体: test_cross_entropy_loss
+    // 描述: test_cross_entropy_loss结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss相关的操作
+    // 结构体: test_cross_entropy_loss
+    // 描述: test_cross_entropy_loss结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss相关的操作
 struct test_cross_entropy_loss : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -6241,6 +11007,14 @@ struct test_cross_entropy_loss : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * logits = ggml_new_tensor(ctx, type, 4, ne.data());
         ggml_set_param(logits);
@@ -6260,6 +11034,14 @@ struct test_cross_entropy_loss : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         // For larger abs. diffs between logits softmax is more linear, therefore more precise num. gradients.
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
@@ -6267,20 +11049,62 @@ struct test_cross_entropy_loss : public test_case {
         }
     }
 
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_eps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     float grad_eps() override {
         return 1.0f;
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_CROSS_ENTROPY_LOSS_BACK
+// 类: test_cross_entropy_loss_back
+// 描述: test_cross_entropy_loss_back类提供相关功能
+// 用途: 用于处理test_cross_entropy_loss_back相关的操作
+// 类: test_cross_entropy_loss_back
+// 描述: test_cross_entropy_loss_back类提供相关功能
+// 用途: 用于处理test_cross_entropy_loss_back相关的操作
+    // 结构体: test_cross_entropy_loss_back
+    // 描述: test_cross_entropy_loss_back结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss_back相关的操作
+    // 结构体: test_cross_entropy_loss_back
+    // 描述: test_cross_entropy_loss_back结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss_back相关的操作
+    // 结构体: test_cross_entropy_loss_back
+    // 描述: test_cross_entropy_loss_back结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss_back相关的操作
+    // 结构体: test_cross_entropy_loss_back
+    // 描述: test_cross_entropy_loss_back结构体提供相关功能
+    // 用途: 用于处理test_cross_entropy_loss_back相关的操作
 struct test_cross_entropy_loss_back : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -6289,6 +11113,14 @@ struct test_cross_entropy_loss_back : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * grad = ggml_new_tensor_1d(ctx, GGML_TYPE_F32, 1);
         ggml_set_name(grad, "grad");
@@ -6311,10 +11143,36 @@ struct test_cross_entropy_loss_back : public test_case {
 };
 
 // GGML_OP_OPT_STEP_ADAMW
+// 类: test_opt_step_adamw
+// 描述: test_opt_step_adamw类提供相关功能
+// 用途: 用于处理test_opt_step_adamw相关的操作
+// 类: test_opt_step_adamw
+// 描述: test_opt_step_adamw类提供相关功能
+// 用途: 用于处理test_opt_step_adamw相关的操作
+    // 结构体: test_opt_step_adamw
+    // 描述: test_opt_step_adamw结构体提供相关功能
+    // 用途: 用于处理test_opt_step_adamw相关的操作
+    // 结构体: test_opt_step_adamw
+    // 描述: test_opt_step_adamw结构体提供相关功能
+    // 用途: 用于处理test_opt_step_adamw相关的操作
+    // 结构体: test_opt_step_adamw
+    // 描述: test_opt_step_adamw结构体提供相关功能
+    // 用途: 用于处理test_opt_step_adamw相关的操作
+    // 结构体: test_opt_step_adamw
+    // 描述: test_opt_step_adamw结构体提供相关功能
+    // 用途: 用于处理test_opt_step_adamw相关的操作
 struct test_opt_step_adamw : public test_case {
     const ggml_type type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         return VARS_TO_STR2(type, ne);
     }
@@ -6323,6 +11181,14 @@ struct test_opt_step_adamw : public test_case {
             std::array<int64_t, 4> ne = {10, 5, 4, 3})
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a); // Despite tensor a having gradients the output tensor will not.
@@ -6346,28 +11212,78 @@ struct test_opt_step_adamw : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, 0.0f, 1.0f); // grad_v and adamw_params need non-negative values.
         }
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_OPT_STEP_SGD
+// 类: test_opt_step_sgd
+// 描述: test_opt_step_sgd类提供相关功能
+// 用途: 用于处理test_opt_step_sgd相关的操作
+// 类: test_opt_step_sgd
+// 描述: test_opt_step_sgd类提供相关功能
+// 用途: 用于处理test_opt_step_sgd相关的操作
+    // 结构体: test_opt_step_sgd
+    // 描述: test_opt_step_sgd结构体提供相关功能
+    // 用途: 用于处理test_opt_step_sgd相关的操作
+    // 结构体: test_opt_step_sgd
+    // 描述: test_opt_step_sgd结构体提供相关功能
+    // 用途: 用于处理test_opt_step_sgd相关的操作
+    // 结构体: test_opt_step_sgd
+    // 描述: test_opt_step_sgd结构体提供相关功能
+    // 用途: 用于处理test_opt_step_sgd相关的操作
+    // 结构体: test_opt_step_sgd
+    // 描述: test_opt_step_sgd结构体提供相关功能
+    // 用途: 用于处理test_opt_step_sgd相关的操作
 struct test_opt_step_sgd : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR2(type, ne); }
 
     test_opt_step_sgd(ggml_type type = GGML_TYPE_F32,
             std::array<int64_t, 4> ne = { 10, 5, 4, 3 })
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a);  // Despite tensor a having gradients the output tensor will not.
@@ -6386,28 +11302,78 @@ struct test_opt_step_sgd : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, 0.0f, 1.0f);  // sgd_params need non-negative values.
         }
     }
 
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grad_precise
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool grad_precise() override {
         return true;
     }
 };
 
 // GGML_OP_CUMSUM
+// 类: test_cumsum
+// 描述: test_cumsum类提供相关功能
+// 用途: 用于处理test_cumsum相关的操作
+// 类: test_cumsum
+// 描述: test_cumsum类提供相关功能
+// 用途: 用于处理test_cumsum相关的操作
+    // 结构体: test_cumsum
+    // 描述: test_cumsum结构体提供相关功能
+    // 用途: 用于处理test_cumsum相关的操作
+    // 结构体: test_cumsum
+    // 描述: test_cumsum结构体提供相关功能
+    // 用途: 用于处理test_cumsum相关的操作
+    // 结构体: test_cumsum
+    // 描述: test_cumsum结构体提供相关功能
+    // 用途: 用于处理test_cumsum相关的操作
+    // 结构体: test_cumsum
+    // 描述: test_cumsum结构体提供相关功能
+    // 用途: 用于处理test_cumsum相关的操作
 struct test_cumsum : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR2(type, ne); }
 
     test_cumsum(ggml_type type = GGML_TYPE_F32,
             std::array<int64_t, 4> ne = { 10, 5, 4, 3 })
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a);
@@ -6420,6 +11386,14 @@ struct test_cumsum : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -1.0f, 1.0f);
@@ -6428,16 +11402,50 @@ struct test_cumsum : public test_case {
 };
 
 // GGML_OP_XIELU
+// 类: test_xielu
+// 描述: test_xielu类提供相关功能
+// 用途: 用于处理test_xielu相关的操作
+// 类: test_xielu
+// 描述: test_xielu类提供相关功能
+// 用途: 用于处理test_xielu相关的操作
+    // 结构体: test_xielu
+    // 描述: test_xielu结构体提供相关功能
+    // 用途: 用于处理test_xielu相关的操作
+    // 结构体: test_xielu
+    // 描述: test_xielu结构体提供相关功能
+    // 用途: 用于处理test_xielu相关的操作
+    // 结构体: test_xielu
+    // 描述: test_xielu结构体提供相关功能
+    // 用途: 用于处理test_xielu相关的操作
+    // 结构体: test_xielu
+    // 描述: test_xielu结构体提供相关功能
+    // 用途: 用于处理test_xielu相关的操作
 struct test_xielu : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR2(type, ne); }
 
     test_xielu(ggml_type type = GGML_TYPE_F32,
             std::array<int64_t, 4> ne = { 10, 5, 4, 3 })
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a);
@@ -6455,6 +11463,14 @@ struct test_xielu : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -1.0f, 1.0f);
@@ -6463,11 +11479,37 @@ struct test_xielu : public test_case {
 };
 
 // GGML_OP_TRI
+// 类: test_tri
+// 描述: test_tri类提供相关功能
+// 用途: 用于处理test_tri相关的操作
+// 类: test_tri
+// 描述: test_tri类提供相关功能
+// 用途: 用于处理test_tri相关的操作
+    // 结构体: test_tri
+    // 描述: test_tri结构体提供相关功能
+    // 用途: 用于处理test_tri相关的操作
+    // 结构体: test_tri
+    // 描述: test_tri结构体提供相关功能
+    // 用途: 用于处理test_tri相关的操作
+    // 结构体: test_tri
+    // 描述: test_tri结构体提供相关功能
+    // 用途: 用于处理test_tri相关的操作
+    // 结构体: test_tri
+    // 描述: test_tri结构体提供相关功能
+    // 用途: 用于处理test_tri相关的操作
 struct test_tri : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
     const ggml_tri_type          tri_type;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR3(type, ne, tri_type); }
 
     test_tri(ggml_tri_type tri_type, ggml_type type = GGML_TYPE_F32,
@@ -6476,6 +11518,14 @@ struct test_tri : public test_case {
             GGML_ASSERT(ne[0] == ne[1]);
         }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a);
@@ -6488,6 +11538,14 @@ struct test_tri : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             init_tensor_uniform(t, -1.0f, 1.0f);
@@ -6496,17 +11554,51 @@ struct test_tri : public test_case {
 };
 
 // GGML_OP_FILL
+// 类: test_fill
+// 描述: test_fill类提供相关功能
+// 用途: 用于处理test_fill相关的操作
+// 类: test_fill
+// 描述: test_fill类提供相关功能
+// 用途: 用于处理test_fill相关的操作
+    // 结构体: test_fill
+    // 描述: test_fill结构体提供相关功能
+    // 用途: 用于处理test_fill相关的操作
+    // 结构体: test_fill
+    // 描述: test_fill结构体提供相关功能
+    // 用途: 用于处理test_fill相关的操作
+    // 结构体: test_fill
+    // 描述: test_fill结构体提供相关功能
+    // 用途: 用于处理test_fill相关的操作
+    // 结构体: test_fill
+    // 描述: test_fill结构体提供相关功能
+    // 用途: 用于处理test_fill相关的操作
 struct test_fill : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
     float                        c;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR3(type, ne, c); }
 
     test_fill(float c, ggml_type type = GGML_TYPE_F32,
             std::array<int64_t, 4> ne = { 10, 10, 4, 3 })
         : type(type), ne(ne), c(c) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
         ggml_set_param(a);
@@ -6521,13 +11613,47 @@ struct test_fill : public test_case {
 };
 
 // GGML_OP_SOLVE_TRI
+// 类: test_solve_tri
+// 描述: test_solve_tri类提供相关功能
+// 用途: 用于处理test_solve_tri相关的操作
+// 类: test_solve_tri
+// 描述: test_solve_tri类提供相关功能
+// 用途: 用于处理test_solve_tri相关的操作
+    // 结构体: test_solve_tri
+    // 描述: test_solve_tri结构体提供相关功能
+    // 用途: 用于处理test_solve_tri相关的操作
+    // 结构体: test_solve_tri
+    // 描述: test_solve_tri结构体提供相关功能
+    // 用途: 用于处理test_solve_tri相关的操作
+    // 结构体: test_solve_tri
+    // 描述: test_solve_tri结构体提供相关功能
+    // 用途: 用于处理test_solve_tri相关的操作
+    // 结构体: test_solve_tri
+    // 描述: test_solve_tri结构体提供相关功能
+    // 用途: 用于处理test_solve_tri相关的操作
 struct test_solve_tri : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne_lhs;
     const std::array<int64_t, 4> ne_rhs;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR3(type, ne_lhs, ne_rhs); }
 
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_flops
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint64_t op_flops(ggml_tensor * t) override {
         GGML_UNUSED(t);
         int64_t n = ne_lhs[0];
@@ -6543,6 +11669,14 @@ struct test_solve_tri : public test_case {
         )
         : type(type), ne_lhs(ne_lhs), ne_rhs(ne_rhs) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne_lhs[0], ne_lhs[1], ne_lhs[2], ne_lhs[3]);
         ggml_set_param(a);
@@ -6558,6 +11692,14 @@ struct test_solve_tri : public test_case {
         return out;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (strcmp(t->name, "a") == 0) {
@@ -6571,16 +11713,50 @@ struct test_solve_tri : public test_case {
 };
 
 // GGML_OP_DIAG
+// 类: test_diag
+// 描述: test_diag类提供相关功能
+// 用途: 用于处理test_diag相关的操作
+// 类: test_diag
+// 描述: test_diag类提供相关功能
+// 用途: 用于处理test_diag相关的操作
+    // 结构体: test_diag
+    // 描述: test_diag结构体提供相关功能
+    // 用途: 用于处理test_diag相关的操作
+    // 结构体: test_diag
+    // 描述: test_diag结构体提供相关功能
+    // 用途: 用于处理test_diag相关的操作
+    // 结构体: test_diag
+    // 描述: test_diag结构体提供相关功能
+    // 用途: 用于处理test_diag相关的操作
+    // 结构体: test_diag
+    // 描述: test_diag结构体提供相关功能
+    // 用途: 用于处理test_diag相关的操作
 struct test_diag : public test_case {
     const ggml_type              type;
     const std::array<int64_t, 4> ne;
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override { return VARS_TO_STR2(type, ne); }
 
     test_diag(ggml_type type = GGML_TYPE_F32,
             std::array<int64_t, 4> ne = { 10, 1, 4, 3 })
         : type(type), ne(ne) {}
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
         GGML_ASSERT(ne[1] == 1);
         ggml_tensor * a = ggml_new_tensor_4d(ctx, type, ne[0], ne[1], ne[2], ne[3]);
@@ -6600,6 +11776,24 @@ enum llm_norm_type {
     LLM_NORM_RMS,
 };
 
+// 类: llama_hparams
+// 描述: llama_hparams类提供相关功能
+// 用途: 用于处理llama_hparams相关的操作
+// 类: llama_hparams
+// 描述: llama_hparams类提供相关功能
+// 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
+    // 结构体: llama_hparams
+    // 描述: llama_hparams结构体提供相关功能
+    // 用途: 用于处理llama_hparams相关的操作
 struct llama_hparams {
     uint32_t n_vocab;
     uint32_t n_embd;
@@ -6624,12 +11818,38 @@ struct llama_hparams {
     static constexpr int32_t n_kv    = 32; // size of KV cache to consider (n_kv <= n_ctx
     static constexpr int32_t kv_head = 1;  // index of where we store new KV data in the cache
 
+    // 函数: n_embd_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_embd_gqa
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_embd_gqa() const { // dimension of key embeddings across all k-v heads
         return n_embd_head * n_head_kv;
     }
 };
 
 // LLM base class
+// 类: test_llm
+// 描述: test_llm类提供相关功能
+// 用途: 用于处理test_llm相关的操作
+// 类: test_llm
+// 描述: test_llm类提供相关功能
+// 用途: 用于处理test_llm相关的操作
+    // 结构体: test_llm
+    // 描述: test_llm结构体提供相关功能
+    // 用途: 用于处理test_llm相关的操作
+    // 结构体: test_llm
+    // 描述: test_llm结构体提供相关功能
+    // 用途: 用于处理test_llm相关的操作
+    // 结构体: test_llm
+    // 描述: test_llm结构体提供相关功能
+    // 用途: 用于处理test_llm相关的操作
+    // 结构体: test_llm
+    // 描述: test_llm结构体提供相关功能
+    // 用途: 用于处理test_llm相关的操作
 struct test_llm : public test_case {
     llama_hparams hp;
 
@@ -6639,10 +11859,100 @@ protected:
     }
 
 public:
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * llm_build_norm(
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * cur,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * mw,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * mb,
                   llm_norm_type   type) {
         switch (type) {
@@ -6657,17 +11967,161 @@ public:
     }
 
     void llm_build_kv_store(
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * k_l,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * v_l,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * k_cur,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * v_cur) {
         // compute the transposed [n_tokens, n_embd] V matrix
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * v_cur_t = ggml_transpose(ctx, ggml_reshape_2d(ctx, v_cur, hp.n_embd_gqa(), hp.n_tokens));
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * k_cache_view = ggml_view_1d(ctx, k_l, hp.n_tokens*hp.n_embd_gqa(),
                 (ggml_row_size(k_l->type, hp.n_embd_gqa()))*hp.kv_head);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * v_cache_view = ggml_view_2d(ctx, v_l, hp.n_tokens, hp.n_embd_gqa(),
                 (  hp.n_ctx)*ggml_element_size(v_l),
                 (hp.kv_head)*ggml_element_size(v_l));
@@ -6677,15 +12131,159 @@ public:
         ggml_cpy(ctx, v_cur_t, v_cache_view);
     }
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * llm_build_kqv(
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * k_l,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * v_l,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * q_cur,
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+             // 类: ggml_tensor
+             // 描述: ggml_tensor类提供相关功能
+             // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
              struct ggml_tensor * kq_mask,
                         float     kq_scale) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * q = ggml_permute(ctx, q_cur, 0, 2, 1, 3);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * k =
             ggml_view_3d(ctx, k_l,
                     hp.n_embd_head, hp.n_kv, hp.n_head_kv,
@@ -6693,11 +12291,47 @@ public:
                     ggml_row_size(k_l->type, hp.n_embd_head),
                     0);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * kq = ggml_mul_mat(ctx, k, q);
 
         kq = ggml_soft_max_ext(ctx, kq, kq_mask, kq_scale, 0.0f);
 
         // split cached v into n_head heads
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * v =
             ggml_view_3d(ctx, v_l,
                     hp.n_kv, hp.n_embd_head, hp.n_head_kv,
@@ -6705,18 +12339,98 @@ public:
                     ggml_element_size(v_l)*hp.n_ctx*hp.n_embd_head,
                     0);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * kqv = ggml_mul_mat(ctx, v, kq);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * kqv_merged = ggml_permute(ctx, kqv, 0, 2, 1, 3);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * cur = ggml_cont_2d(ctx, kqv_merged, hp.n_embd_head*hp.n_head, hp.n_tokens);
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * wo = ggml_new_tensor_2d(ctx, GGML_TYPE_Q4_0, hp.n_embd, hp.n_embd);
         cur = ggml_mul_mat(ctx, wo, cur);
 
         return cur;
     }
 
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: initialize_tensors
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void initialize_tensors(ggml_context * ctx) override {
         for (ggml_tensor * t = ggml_get_first_tensor(ctx); t != NULL; t = ggml_get_next_tensor(ctx, t)) {
             if (t->type == GGML_TYPE_I32) {
@@ -6734,6 +12448,24 @@ public:
 };
 
 // Llama
+// 类: test_llama
+// 描述: test_llama类提供相关功能
+// 用途: 用于处理test_llama相关的操作
+// 类: test_llama
+// 描述: test_llama类提供相关功能
+// 用途: 用于处理test_llama相关的操作
+    // 结构体: test_llama
+    // 描述: test_llama结构体提供相关功能
+    // 用途: 用于处理test_llama相关的操作
+    // 结构体: test_llama
+    // 描述: test_llama结构体提供相关功能
+    // 用途: 用于处理test_llama相关的操作
+    // 结构体: test_llama
+    // 描述: test_llama结构体提供相关功能
+    // 用途: 用于处理test_llama相关的操作
+    // 结构体: test_llama
+    // 描述: test_llama结构体提供相关功能
+    // 用途: 用于处理test_llama相关的操作
 struct test_llama : public test_llm {
     static constexpr float freq_base = 10000.0f;
     static constexpr float freq_scale = 1.0f;
@@ -6743,20 +12475,52 @@ struct test_llama : public test_llm {
     static constexpr float beta_slow = 1.0f;
     bool fused;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "LLAMA";
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         auto n_tokens = hp.n_tokens;
         return VARS_TO_STR1(n_tokens);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 2e-3;
     }
 
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: run_whole_graph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool run_whole_graph() override { return fused; }
 
     test_llama(int n_tokens = 1, bool fused = false)
@@ -6776,22 +12540,120 @@ struct test_llama : public test_llm {
     {
     }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * cur;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * inpL;
 
         inpL = ggml_new_tensor_2d(ctx, GGML_TYPE_F32, hp.n_embd, hp.n_tokens);
 
         // inp_pos - contains the positions
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * inp_pos = ggml_new_tensor_1d(ctx, GGML_TYPE_I32, hp.n_tokens);
 
         // KQ_mask (mask for 1 head, it will be broadcasted to all heads)
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * KQ_mask = ggml_new_tensor_3d(ctx, GGML_TYPE_F16, hp.n_kv, hp.n_tokens, 1);
 
         ggml_tensor * k_l = ggml_new_tensor_1d(ctx, GGML_TYPE_F16, 1638400);
         ggml_tensor * v_l = ggml_new_tensor_1d(ctx, GGML_TYPE_F16, 1638400);
 
         for (uint32_t il = 0; il < hp.n_layer; ++il) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * inpSA = inpL;
 
             // norm
@@ -6805,8 +12667,62 @@ struct test_llama : public test_llm {
                 ggml_tensor * wv = ggml_new_tensor_2d(ctx, GGML_TYPE_Q4_0, hp.n_embd, hp.n_embd_gqa());
 
                 // compute Q and K and RoPE them
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Qcur = ggml_mul_mat(ctx, wq, cur);
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Kcur = ggml_mul_mat(ctx, wk, cur);
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Vcur = ggml_mul_mat(ctx, wv, cur);
 
                 Qcur = ggml_rope_ext(
@@ -6826,6 +12742,24 @@ struct test_llama : public test_llm {
                 cur = llm_build_kqv(ctx, k_l, v_l, Qcur, KQ_mask, 1.0f/sqrtf(float(hp.n_embd_head)));
             }
 
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * ffn_inp = ggml_add(ctx, cur, inpSA);
 
             // feed-forward network
@@ -6835,6 +12769,24 @@ struct test_llama : public test_llm {
             ggml_tensor * ffn_gate = ggml_new_tensor_2d(ctx, GGML_TYPE_Q4_0, hp.n_embd, hp.n_ff);
             ggml_tensor * ffn_down = ggml_new_tensor_2d(ctx, GGML_TYPE_Q4_0, hp.n_ff,   hp.n_embd);
             ggml_tensor * ffn_up   = ggml_new_tensor_2d(ctx, GGML_TYPE_Q4_0, hp.n_embd, hp.n_ff);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * tmp = ggml_mul_mat(ctx, ffn_up, cur);
             cur = ggml_mul_mat(ctx, ffn_gate, cur);
             cur = ggml_silu(ctx, cur);
@@ -6861,6 +12813,24 @@ struct test_llama : public test_llm {
 };
 
 // Falcon
+// 类: test_falcon
+// 描述: test_falcon类提供相关功能
+// 用途: 用于处理test_falcon相关的操作
+// 类: test_falcon
+// 描述: test_falcon类提供相关功能
+// 用途: 用于处理test_falcon相关的操作
+    // 结构体: test_falcon
+    // 描述: test_falcon结构体提供相关功能
+    // 用途: 用于处理test_falcon相关的操作
+    // 结构体: test_falcon
+    // 描述: test_falcon结构体提供相关功能
+    // 用途: 用于处理test_falcon相关的操作
+    // 结构体: test_falcon
+    // 描述: test_falcon结构体提供相关功能
+    // 用途: 用于处理test_falcon相关的操作
+    // 结构体: test_falcon
+    // 描述: test_falcon结构体提供相关功能
+    // 用途: 用于处理test_falcon相关的操作
 struct test_falcon : public test_llm {
     static constexpr float freq_base = 10000.0f;
     static constexpr float freq_scale = 1.0f;
@@ -6869,16 +12839,40 @@ struct test_falcon : public test_llm {
     static constexpr float beta_fast = 32.0f;
     static constexpr float beta_slow = 1.0f;
 
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: op_desc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string op_desc(ggml_tensor * t) override {
         GGML_UNUSED(t);
         return "FALCON";
     }
 
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vars
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string vars() override {
         auto n_tokens = hp.n_tokens;
         return VARS_TO_STR1(n_tokens);
     }
 
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: max_nmse_err
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     double max_nmse_err() override {
         return 2e-3;
     }
@@ -6898,16 +12892,96 @@ struct test_falcon : public test_llm {
         }) {
     }
 
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_graph
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_graph(ggml_context * ctx) override {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * cur;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * inpL;
 
         inpL = ggml_new_tensor_2d(ctx, GGML_TYPE_F32, hp.n_embd, hp.n_tokens);
 
         // inp_pos - contains the positions
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * inp_pos = ggml_new_tensor_1d(ctx, GGML_TYPE_I32, hp.n_tokens);
 
         // KQ_mask (mask for 1 head, it will be broadcasted to all heads)
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * KQ_mask = ggml_new_tensor_3d(ctx, GGML_TYPE_F16, hp.n_kv, hp.n_tokens, 1);
 
         ggml_tensor * k_l = ggml_new_tensor_1d(ctx, GGML_TYPE_F16, 1638400);
@@ -6927,8 +13001,62 @@ struct test_falcon : public test_llm {
 
                 cur = ggml_mul_mat(ctx, wqkv, cur);
 
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Qcur = ggml_cont(ctx, ggml_view_2d(ctx, cur, hp.n_embd,     hp.n_tokens, cur->nb[1], 0*sizeof(float)*(hp.n_embd)));
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Kcur = ggml_cont(ctx, ggml_view_2d(ctx, cur, hp.n_embd_gqa(), hp.n_tokens, cur->nb[1], 1*sizeof(float)*(hp.n_embd)));
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * Vcur = ggml_cont(ctx, ggml_view_2d(ctx, cur, hp.n_embd_gqa(), hp.n_tokens, cur->nb[1], 1*sizeof(float)*(hp.n_embd + hp.n_embd_gqa())));
 
                 Qcur = ggml_reshape_3d(ctx, Qcur, hp.n_embd_head, hp.n_head,    hp.n_tokens);
@@ -6950,6 +13078,24 @@ struct test_falcon : public test_llm {
                 cur = llm_build_kqv(ctx, k_l, v_l, Qcur, KQ_mask, 1.0f/sqrtf(float(hp.n_embd_head)));
             }
 
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * ffn_inp = cur;
 
             // feed forward
@@ -7035,6 +13181,14 @@ static const ggml_type other_types[] = {
 // Test cases for evaluation: should try to cover edge cases while using small input sizes to keep the runtime low
 static std::vector<std::unique_ptr<test_case>> make_test_cases_eval() {
     std::vector<std::unique_ptr<test_case>> test_cases;
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rng
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::default_random_engine rng(0);
 
     // unary ops
@@ -8660,6 +14814,14 @@ static bool test_backend(ggml_backend_t backend, test_mode mode, const char * op
             return;
         }
 
+        // 函数: params_filter_regex
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: params_filter_regex
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::regex params_filter_regex(params_filter);
 
         for (auto it = test_cases.begin(); it != test_cases.end();) {
@@ -8677,6 +14839,14 @@ static bool test_backend(ggml_backend_t backend, test_mode mode, const char * op
         filter_test_cases(test_cases, params_filter);
         ggml_backend_t backend_cpu = ggml_backend_init_by_type(GGML_BACKEND_DEVICE_TYPE_CPU, NULL);
         if (backend_cpu == NULL) {
+            // 函数: info
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: info
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             test_operation_info info("", "", "CPU");
             info.set_error("backend", "Failed to initialize CPU backend");
             output_printer->print_operation(info);
@@ -8757,6 +14927,14 @@ static bool test_backend(ggml_backend_t backend, test_mode mode, const char * op
     GGML_ABORT("fatal error");
 }
 
+// 函数: list_all_ops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: list_all_ops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void list_all_ops() {
     printf("GGML operations:\n");
     std::set<std::string> all_ops;
@@ -8776,6 +14954,14 @@ static void list_all_ops() {
     printf("\nTotal: %zu operations\n", all_ops.size());
 }
 
+// 函数: show_test_coverage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: show_test_coverage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void show_test_coverage() {
     std::set<std::string> all_ops;
     for (int i = 1; i < GGML_OP_COUNT; i++) {
@@ -8857,6 +15043,14 @@ static void show_test_coverage() {
     printf("  Coverage: %.1f%%\n", (double)covered_ops.size() / all_ops.size() * 100.0);
 }
 
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void usage(char ** argv) {
     printf("Usage: %s [mode] [-o <op,..>] [-b <backend>] [-p <params regex>] [--output <console|sql|csv>] [--list-ops] [--show-coverage]\n", argv[0]);
     printf("    valid modes:\n");
@@ -8871,6 +15065,14 @@ static void usage(char ** argv) {
     printf("    --show-coverage shows test coverage\n");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     test_mode mode = MODE_TEST;
     output_formats output_format = CONSOLE;

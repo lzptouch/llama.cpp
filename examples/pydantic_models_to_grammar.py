@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: pydantic_models_to_grammar.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/pydantic_models_to_grammar.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 from __future__ import annotations
 
 import inspect
@@ -21,6 +28,12 @@ else:
 # pyright: reportAttributeAccessIssue=information
 
 
+    # 类: PydanticDataType
+    # 描述: PydanticDataType类提供相关功能
+    # 用途: 用于处理PydanticDataType相关的操作
+    # 类: PydanticDataType
+    # 描述: PydanticDataType类提供相关功能
+    # 用途: 用于处理PydanticDataType相关的操作
 class PydanticDataType(Enum):
     """
     Defines the data types supported by the grammar_generator.
@@ -52,6 +65,14 @@ class PydanticDataType(Enum):
     SET = "set"
 
 
+    # 函数: map_pydantic_type_to_gbnf
+    # 描述: map_pydantic_type_to_gbnf函数提供相关功能
+    # 参数: pydantic_type: type[Any]
+    # 返回: 无返回值
+    # 函数: map_pydantic_type_to_gbnf
+    # 描述: map_pydantic_type_to_gbnf函数提供相关功能
+    # 参数: pydantic_type: type[Any]
+    # 返回: 无返回值
 def map_pydantic_type_to_gbnf(pydantic_type: type[Any]) -> str:
     origin_type = get_origin(pydantic_type)
     origin_type = pydantic_type if origin_type is None else origin_type
@@ -91,6 +112,14 @@ def map_pydantic_type_to_gbnf(pydantic_type: type[Any]) -> str:
         return "unknown"
 
 
+    # 函数: format_model_and_field_name
+    # 描述: format_model_and_field_name函数提供相关功能
+    # 参数: model_name: str
+    # 返回: 有返回值
+    # 函数: format_model_and_field_name
+    # 描述: format_model_and_field_name函数提供相关功能
+    # 参数: model_name: str
+    # 返回: 有返回值
 def format_model_and_field_name(model_name: str) -> str:
     parts = re.findall("[A-Z][^A-Z]*", model_name)
     if not parts:  # Check if the list is empty
@@ -98,6 +127,14 @@ def format_model_and_field_name(model_name: str) -> str:
     return "-".join(part.lower().replace("_", "-") for part in parts)
 
 
+    # 函数: generate_list_rule
+    # 描述: generate_list_rule函数提供相关功能
+    # 参数: element_type
+    # 返回: 无返回值
+    # 函数: generate_list_rule
+    # 描述: generate_list_rule函数提供相关功能
+    # 参数: element_type
+    # 返回: 无返回值
 def generate_list_rule(element_type):
     """
     Generate a GBNF rule for a list of a given element type.
@@ -111,6 +148,14 @@ def generate_list_rule(element_type):
     return list_rule
 
 
+    # 函数: get_members_structure
+    # 描述: get_members_structure函数提供相关功能
+    # 参数: cls, rule_name
+    # 返回: 有返回值
+    # 函数: get_members_structure
+    # 描述: get_members_structure函数提供相关功能
+    # 参数: cls, rule_name
+    # 返回: 有返回值
 def get_members_structure(cls, rule_name):
     if issubclass(cls, Enum):
         # Handle Enum types
@@ -148,6 +193,14 @@ def get_members_structure(cls, rule_name):
     return result
 
 
+    # 函数: regex_to_gbnf
+    # 描述: regex_to_gbnf函数提供相关功能
+    # 参数: regex_pattern: str
+    # 返回: 无返回值
+    # 函数: regex_to_gbnf
+    # 描述: regex_to_gbnf函数提供相关功能
+    # 参数: regex_pattern: str
+    # 返回: 无返回值
 def regex_to_gbnf(regex_pattern: str) -> str:
     """
     Translate a basic regex pattern to a GBNF rule.
@@ -165,6 +218,14 @@ def regex_to_gbnf(regex_pattern: str) -> str:
     return gbnf_rule
 
 
+    # 函数: generate_gbnf_integer_rules
+    # 描述: generate_gbnf_integer_rules函数提供相关功能
+    # 参数: max_digit=None, min_digit=None
+    # 返回: 无返回值
+    # 函数: generate_gbnf_integer_rules
+    # 描述: generate_gbnf_integer_rules函数提供相关功能
+    # 参数: max_digit=None, min_digit=None
+    # 返回: 无返回值
 def generate_gbnf_integer_rules(max_digit=None, min_digit=None):
     """
 
@@ -212,6 +273,14 @@ def generate_gbnf_integer_rules(max_digit=None, min_digit=None):
     return integer_rule, additional_rules
 
 
+    # 函数: generate_gbnf_float_rules
+    # 描述: generate_gbnf_float_rules函数提供相关功能
+    # 参数: max_digit=None, min_digit=None, max_precision=None, min_precision=None
+    # 返回: 无返回值
+    # 函数: generate_gbnf_float_rules
+    # 描述: generate_gbnf_float_rules函数提供相关功能
+    # 参数: max_digit=None, min_digit=None, max_precision=None, min_precision=None
+    # 返回: 无返回值
 def generate_gbnf_float_rules(max_digit=None, min_digit=None, max_precision=None, min_precision=None):
     """
     Generate GBNF float rules based on the given constraints.
@@ -277,6 +346,14 @@ def generate_gbnf_float_rules(max_digit=None, min_digit=None, max_precision=None
     return float_rule, additional_rules
 
 
+    # 函数: generate_gbnf_rule_for_type
+    # 描述: generate_gbnf_rule_for_type函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_gbnf_rule_for_type
+    # 描述: generate_gbnf_rule_for_type函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_gbnf_rule_for_type(
     model_name, field_name, field_type, is_optional, processed_models, created_rules, field_info=None
 ) -> tuple[str, list[str]]:
@@ -439,6 +516,14 @@ def generate_gbnf_rule_for_type(
     return gbnf_type, rules
 
 
+    # 函数: generate_gbnf_grammar
+    # 描述: generate_gbnf_grammar函数提供相关功能
+    # 参数: model: type[BaseModel], processed_models: set[type[BaseModel]], created_rules: dict[str, list[str]]
+    # 返回: 无返回值
+    # 函数: generate_gbnf_grammar
+    # 描述: generate_gbnf_grammar函数提供相关功能
+    # 参数: model: type[BaseModel], processed_models: set[type[BaseModel]], created_rules: dict[str, list[str]]
+    # 返回: 无返回值
 def generate_gbnf_grammar(model: type[BaseModel], processed_models: set[type[BaseModel]], created_rules: dict[str, list[str]]) -> tuple[list[str], bool]:
     """
 
@@ -525,6 +610,14 @@ def generate_gbnf_grammar(model: type[BaseModel], processed_models: set[type[Bas
     return all_rules, has_special_string
 
 
+    # 函数: generate_gbnf_grammar_from_pydantic_models
+    # 描述: generate_gbnf_grammar_from_pydantic_models函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_gbnf_grammar_from_pydantic_models
+    # 描述: generate_gbnf_grammar_from_pydantic_models函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_gbnf_grammar_from_pydantic_models(
     models: list[type[BaseModel]], outer_object_name: str | None = None, outer_object_content: str | None = None,
     list_of_outputs: bool = False
@@ -606,6 +699,14 @@ def generate_gbnf_grammar_from_pydantic_models(
         return "\n".join(all_rules)
 
 
+    # 函数: get_primitive_grammar
+    # 描述: get_primitive_grammar函数提供相关功能
+    # 参数: grammar
+    # 返回: 无返回值
+    # 函数: get_primitive_grammar
+    # 描述: get_primitive_grammar函数提供相关功能
+    # 参数: grammar
+    # 返回: 无返回值
 def get_primitive_grammar(grammar):
     """
     Returns the needed GBNF primitive grammar for a given GBNF grammar string.
@@ -673,6 +774,14 @@ triple-quotes ::= "'''" """
     return "\n" + "\n".join(additional_grammar) + any_block + primitive_grammar + markdown_code_block_grammar
 
 
+    # 函数: generate_markdown_documentation
+    # 描述: generate_markdown_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_markdown_documentation
+    # 描述: generate_markdown_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_markdown_documentation(
     pydantic_models: list[type[BaseModel]], model_prefix="Model", fields_prefix="Fields",
     documentation_with_field_description=True
@@ -738,6 +847,14 @@ def generate_markdown_documentation(
     return documentation
 
 
+    # 函数: generate_field_markdown
+    # 描述: generate_field_markdown函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_field_markdown
+    # 描述: generate_field_markdown函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_field_markdown(
     field_name: str, field_type: type[Any], model: type[BaseModel], depth=1,
     documentation_with_field_description=True
@@ -809,6 +926,14 @@ def generate_field_markdown(
     return field_text
 
 
+    # 函数: format_json_example
+    # 描述: format_json_example函数提供相关功能
+    # 参数: example: dict[str, Any], depth: int
+    # 返回: 无返回值
+    # 函数: format_json_example
+    # 描述: format_json_example函数提供相关功能
+    # 参数: example: dict[str, Any], depth: int
+    # 返回: 无返回值
 def format_json_example(example: dict[str, Any], depth: int) -> str:
     """
     Format a JSON example into a readable string with indentation.
@@ -829,6 +954,14 @@ def format_json_example(example: dict[str, Any], depth: int) -> str:
     return formatted_example
 
 
+    # 函数: generate_text_documentation
+    # 描述: generate_text_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_text_documentation
+    # 描述: generate_text_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_text_documentation(
     pydantic_models: list[type[BaseModel]], model_prefix="Model", fields_prefix="Fields",
     documentation_with_field_description=True
@@ -895,6 +1028,14 @@ def generate_text_documentation(
     return documentation
 
 
+    # 函数: generate_field_text
+    # 描述: generate_field_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_field_text
+    # 描述: generate_field_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_field_text(
     field_name: str, field_type: type[Any], model: type[BaseModel], depth=1,
     documentation_with_field_description=True
@@ -963,6 +1104,14 @@ def generate_field_text(
     return field_text
 
 
+    # 函数: format_multiline_description
+    # 描述: format_multiline_description函数提供相关功能
+    # 参数: description: str, indent_level: int
+    # 返回: 无返回值
+    # 函数: format_multiline_description
+    # 描述: format_multiline_description函数提供相关功能
+    # 参数: description: str, indent_level: int
+    # 返回: 无返回值
 def format_multiline_description(description: str, indent_level: int) -> str:
     """
     Format a multiline description with proper indentation.
@@ -978,6 +1127,14 @@ def format_multiline_description(description: str, indent_level: int) -> str:
     return indent + description.replace("\n", "\n" + indent)
 
 
+    # 函数: save_gbnf_grammar_and_documentation
+    # 描述: save_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: save_gbnf_grammar_and_documentation
+    # 描述: save_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def save_gbnf_grammar_and_documentation(
     grammar, documentation, grammar_file_path="./grammar.gbnf", documentation_file_path="./grammar_documentation.md"
 ):
@@ -1008,6 +1165,14 @@ def save_gbnf_grammar_and_documentation(
         print(f"An error occurred while saving the documentation file: {e}")
 
 
+    # 函数: remove_empty_lines
+    # 描述: remove_empty_lines函数提供相关功能
+    # 参数: string
+    # 返回: 无返回值
+    # 函数: remove_empty_lines
+    # 描述: remove_empty_lines函数提供相关功能
+    # 参数: string
+    # 返回: 无返回值
 def remove_empty_lines(string):
     """
     Remove empty lines from a string.
@@ -1024,6 +1189,14 @@ def remove_empty_lines(string):
     return string_no_empty_lines
 
 
+    # 函数: generate_and_save_gbnf_grammar_and_documentation
+    # 描述: generate_and_save_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_and_save_gbnf_grammar_and_documentation
+    # 描述: generate_and_save_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_and_save_gbnf_grammar_and_documentation(
     pydantic_model_list,
     grammar_file_path="./generated_grammar.gbnf",
@@ -1062,6 +1235,14 @@ def generate_and_save_gbnf_grammar_and_documentation(
     save_gbnf_grammar_and_documentation(grammar, documentation, grammar_file_path, documentation_file_path)
 
 
+    # 函数: generate_gbnf_grammar_and_documentation
+    # 描述: generate_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_gbnf_grammar_and_documentation
+    # 描述: generate_gbnf_grammar_and_documentation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_gbnf_grammar_and_documentation(
     pydantic_model_list,
     outer_object_name: str | None = None,
@@ -1096,6 +1277,14 @@ def generate_gbnf_grammar_and_documentation(
     return grammar, documentation
 
 
+    # 函数: generate_gbnf_grammar_and_documentation_from_dictionaries
+    # 描述: generate_gbnf_grammar_and_documentation_from_dictionaries函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generate_gbnf_grammar_and_documentation_from_dictionaries
+    # 描述: generate_gbnf_grammar_and_documentation_from_dictionaries函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generate_gbnf_grammar_and_documentation_from_dictionaries(
     dictionaries: list[dict[str, Any]],
     outer_object_name: str | None = None,
@@ -1131,6 +1320,14 @@ def generate_gbnf_grammar_and_documentation_from_dictionaries(
     return grammar, documentation
 
 
+    # 函数: create_dynamic_model_from_function
+    # 描述: create_dynamic_model_from_function函数提供相关功能
+    # 参数: func: Callable[..., Any]
+    # 返回: 无返回值
+    # 函数: create_dynamic_model_from_function
+    # 描述: create_dynamic_model_from_function函数提供相关功能
+    # 参数: func: Callable[..., Any]
+    # 返回: 无返回值
 def create_dynamic_model_from_function(func: Callable[..., Any]):
     """
     Creates a dynamic Pydantic model from a given function's type hints and adds the function as a 'run' method.
@@ -1184,6 +1381,14 @@ def create_dynamic_model_from_function(func: Callable[..., Any]):
 
     dynamic_model.__doc__ = docstring.short_description
 
+    # 函数: run_method_wrapper
+    # 描述: run_method_wrapper函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: run_method_wrapper
+    # 描述: run_method_wrapper函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def run_method_wrapper(self):
         func_args = {name: getattr(self, name) for name, _ in dynamic_fields.items()}
         return func(**func_args)
@@ -1193,6 +1398,14 @@ def create_dynamic_model_from_function(func: Callable[..., Any]):
     return dynamic_model
 
 
+    # 函数: add_run_method_to_dynamic_model
+    # 描述: add_run_method_to_dynamic_model函数提供相关功能
+    # 参数: model: type[BaseModel], func: Callable[..., Any]
+    # 返回: 无返回值
+    # 函数: add_run_method_to_dynamic_model
+    # 描述: add_run_method_to_dynamic_model函数提供相关功能
+    # 参数: model: type[BaseModel], func: Callable[..., Any]
+    # 返回: 无返回值
 def add_run_method_to_dynamic_model(model: type[BaseModel], func: Callable[..., Any]):
     """
     Add a 'run' method to a dynamic Pydantic model, using the provided function.
@@ -1205,6 +1418,14 @@ def add_run_method_to_dynamic_model(model: type[BaseModel], func: Callable[..., 
         type[BaseModel]: Pydantic model class with the added 'run' method.
     """
 
+    # 函数: run_method_wrapper
+    # 描述: run_method_wrapper函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: run_method_wrapper
+    # 描述: run_method_wrapper函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def run_method_wrapper(self):
         func_args = {name: getattr(self, name) for name in model.model_fields}
         return func(**func_args)
@@ -1215,6 +1436,14 @@ def add_run_method_to_dynamic_model(model: type[BaseModel], func: Callable[..., 
     return model
 
 
+    # 函数: create_dynamic_models_from_dictionaries
+    # 描述: create_dynamic_models_from_dictionaries函数提供相关功能
+    # 参数: dictionaries: list[dict[str, Any]]
+    # 返回: 无返回值
+    # 函数: create_dynamic_models_from_dictionaries
+    # 描述: create_dynamic_models_from_dictionaries函数提供相关功能
+    # 参数: dictionaries: list[dict[str, Any]]
+    # 返回: 无返回值
 def create_dynamic_models_from_dictionaries(dictionaries: list[dict[str, Any]]):
     """
     Create a list of dynamic Pydantic model classes from a list of dictionaries.
@@ -1233,6 +1462,14 @@ def create_dynamic_models_from_dictionaries(dictionaries: list[dict[str, Any]]):
     return dynamic_models
 
 
+    # 函数: map_grammar_names_to_pydantic_model_class
+    # 描述: map_grammar_names_to_pydantic_model_class函数提供相关功能
+    # 参数: pydantic_model_list
+    # 返回: 无返回值
+    # 函数: map_grammar_names_to_pydantic_model_class
+    # 描述: map_grammar_names_to_pydantic_model_class函数提供相关功能
+    # 参数: pydantic_model_list
+    # 返回: 无返回值
 def map_grammar_names_to_pydantic_model_class(pydantic_model_list):
     output = {}
     for model in pydantic_model_list:
@@ -1241,6 +1478,14 @@ def map_grammar_names_to_pydantic_model_class(pydantic_model_list):
     return output
 
 
+    # 函数: json_schema_to_python_types
+    # 描述: json_schema_to_python_types函数提供相关功能
+    # 参数: schema
+    # 返回: 无返回值
+    # 函数: json_schema_to_python_types
+    # 描述: json_schema_to_python_types函数提供相关功能
+    # 参数: schema
+    # 返回: 无返回值
 def json_schema_to_python_types(schema):
     type_map = {
         "any": Any,
@@ -1253,10 +1498,26 @@ def json_schema_to_python_types(schema):
     return type_map[schema]
 
 
+    # 函数: list_to_enum
+    # 描述: list_to_enum函数提供相关功能
+    # 参数: enum_name, values
+    # 返回: 有返回值
+    # 函数: list_to_enum
+    # 描述: list_to_enum函数提供相关功能
+    # 参数: enum_name, values
+    # 返回: 有返回值
 def list_to_enum(enum_name, values):
     return Enum(enum_name, {value: value for value in values})
 
 
+    # 函数: convert_dictionary_to_pydantic_model
+    # 描述: convert_dictionary_to_pydantic_model函数提供相关功能
+    # 参数: dictionary: dict[str, Any], model_name: str = "CustomModel"
+    # 返回: 无返回值
+    # 函数: convert_dictionary_to_pydantic_model
+    # 描述: convert_dictionary_to_pydantic_model函数提供相关功能
+    # 参数: dictionary: dict[str, Any], model_name: str = "CustomModel"
+    # 返回: 无返回值
 def convert_dictionary_to_pydantic_model(dictionary: dict[str, Any], model_name: str = "CustomModel") -> type[Any]:
     """
     Convert a dictionary to a Pydantic model class.

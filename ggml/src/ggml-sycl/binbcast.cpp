@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: binbcast.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/binbcast.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "binbcast.hpp"
 
 #include <cstddef>
@@ -87,8 +94,34 @@ static void k_bin_bcast_unravel(const src0_t * src0, const src1_t * src1, dst_t 
 
 
 template<float (*bin_op)(const float, const float)>
+// 类: bin_bcast_sycl
+// 描述: bin_bcast_sycl类提供相关功能
+// 用途: 用于处理bin_bcast_sycl相关的操作
+// 类: bin_bcast_sycl
+// 描述: bin_bcast_sycl类提供相关功能
+// 用途: 用于处理bin_bcast_sycl相关的操作
+    // 结构体: bin_bcast_sycl
+    // 描述: bin_bcast_sycl结构体提供相关功能
+    // 用途: 用于处理bin_bcast_sycl相关的操作
+    // 结构体: bin_bcast_sycl
+    // 描述: bin_bcast_sycl结构体提供相关功能
+    // 用途: 用于处理bin_bcast_sycl相关的操作
+    // 结构体: bin_bcast_sycl
+    // 描述: bin_bcast_sycl结构体提供相关功能
+    // 用途: 用于处理bin_bcast_sycl相关的操作
+    // 结构体: bin_bcast_sycl
+    // 描述: bin_bcast_sycl结构体提供相关功能
+    // 用途: 用于处理bin_bcast_sycl相关的操作
 struct bin_bcast_sycl {
     template <typename src0_t, typename src1_t, typename dst_t>
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(const src0_t * src0_dd, const src1_t * src1_dd, dst_t * dst_dd, const int64_t ne00,
                     const int64_t ne01, const int64_t ne02, const int64_t ne03, const int64_t ne10, const int64_t ne11,
                     const int64_t ne12, const int64_t ne13, const int64_t ne0, const int64_t ne1, const int64_t ne2,
@@ -294,51 +327,131 @@ inline void ggml_sycl_op_bin_bcast(ggml_backend_sycl_context & ctx, const ggml_t
     }
 }
 
+// 函数: ggml_sycl_op_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_add(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     ggml_sycl_op_bin_bcast<bin_bcast_sycl<op_add>>(ctx, dst->src[0], dst->src[1], dst);
 }
 
+// 函数: ggml_sycl_op_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_sub(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     ggml_sycl_op_bin_bcast<bin_bcast_sycl<op_sub>>(ctx, dst->src[0], dst->src[1], dst);
 }
 
+// 函数: ggml_sycl_op_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_mul(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     ggml_sycl_op_bin_bcast<bin_bcast_sycl<op_mul>>(ctx, dst->src[0], dst->src[1], dst);
 }
 
+// 函数: ggml_sycl_op_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_div(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     ggml_sycl_op_bin_bcast<bin_bcast_sycl<op_div>>(ctx, dst->src[0], dst->src[1], dst);
 }
 
+// 函数: ggml_sycl_op_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline void ggml_sycl_op_repeat(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     ggml_sycl_op_bin_bcast<bin_bcast_sycl<op_repeat>>(ctx, dst, dst->src[0], dst);
 }
 
 
+// 函数: ggml_sycl_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_add(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_add(ctx, dst);
 }
 
+// 函数: ggml_sycl_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sub(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_sub(ctx, dst);
 }
 
+// 函数: ggml_sycl_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_mul(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_mul(ctx, dst);
 }
 
+// 函数: ggml_sycl_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_div
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_div(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_div(ctx, dst);
 }
 
+// 函数: ggml_sycl_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_repeat(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_repeat(ctx, dst);

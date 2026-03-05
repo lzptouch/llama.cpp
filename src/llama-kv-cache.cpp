@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-kv-cache.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-kv-cache.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-kv-cache.h"
 
 #include "llama-impl.h"
@@ -39,7 +46,33 @@ llama_kv_cache::llama_kv_cache(
     const uint32_t n_layer_kv = hparams.n_layer_kv();
 
     // define a comparator for the buft -> ctx map to ensure that the order is well-defined:
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
     struct ggml_backend_buft_comparator {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(const ggml_backend_buffer_type_t & lhs, const ggml_backend_buffer_type_t & rhs) const {
             return strcmp(ggml_backend_buft_name(lhs), ggml_backend_buft_name(rhs)) < 0;
         }
@@ -562,6 +595,24 @@ llama_memory_context_ptr llama_kv_cache::init_update(llama_context * lctx, bool 
 llama_kv_cache::slot_info_vec_t llama_kv_cache::prepare(const std::vector<llama_ubatch> & ubatches) {
     llama_kv_cache::slot_info_vec_t res;
 
+    // 类: state_t
+    // 描述: state_t类提供相关功能
+    // 用途: 用于处理state_t相关的操作
+    // 类: state_t
+    // 描述: state_t类提供相关功能
+    // 用途: 用于处理state_t相关的操作
+    // 结构体: state_t
+    // 描述: state_t结构体提供相关功能
+    // 用途: 用于处理state_t相关的操作
+    // 结构体: state_t
+    // 描述: state_t结构体提供相关功能
+    // 用途: 用于处理state_t相关的操作
+    // 结构体: state_t
+    // 描述: state_t结构体提供相关功能
+    // 用途: 用于处理state_t相关的操作
+    // 结构体: state_t
+    // 描述: state_t结构体提供相关功能
+    // 用途: 用于处理state_t相关的操作
     struct state_t {
         slot_info sinfo; // slot info for the ubatch
 
@@ -1104,6 +1155,14 @@ ggml_tensor * llama_kv_cache::cpy_k(ggml_context * ctx, ggml_tensor * k_cur, ggm
     }
 
     // store the current K values into the cache
+    // 函数: ggml_set_rows
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_set_rows
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_set_rows(ctx, k, k_cur, k_idxs);
 }
 
@@ -1139,6 +1198,14 @@ ggml_tensor * llama_kv_cache::cpy_v(ggml_context * ctx, ggml_tensor * v_cur, ggm
             v = ggml_reshape_2d(ctx, v, n_embd_gqa, kv_size*n_stream);
         }
 
+        // 函数: ggml_set_rows
+        // 描述: 设置: 设置某个属性或配置
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_set_rows
+        // 描述: 设置: 设置某个属性或配置
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_set_rows(ctx, v, v_cur, v_idxs);
     }
 
@@ -1160,6 +1227,14 @@ ggml_tensor * llama_kv_cache::cpy_v(ggml_context * ctx, ggml_tensor * v_cur, ggm
 
     v_cur = ggml_reshape_2d(ctx, v_cur, 1, ggml_nelements(v_cur));
 
+    // 函数: ggml_set_rows
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_set_rows
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_set_rows(ctx, v_view, v_cur, v_idxs);
 }
 
@@ -1252,6 +1327,24 @@ void llama_kv_cache::set_input_k_shift(ggml_tensor * dst) const {
     }
 }
 
+// 类: args_set_input_kq_mask
+// 描述: args_set_input_kq_mask类提供相关功能
+// 用途: 用于处理args_set_input_kq_mask相关的操作
+// 类: args_set_input_kq_mask
+// 描述: args_set_input_kq_mask类提供相关功能
+// 用途: 用于处理args_set_input_kq_mask相关的操作
+    // 结构体: args_set_input_kq_mask
+    // 描述: args_set_input_kq_mask结构体提供相关功能
+    // 用途: 用于处理args_set_input_kq_mask相关的操作
+    // 结构体: args_set_input_kq_mask
+    // 描述: args_set_input_kq_mask结构体提供相关功能
+    // 用途: 用于处理args_set_input_kq_mask相关的操作
+    // 结构体: args_set_input_kq_mask
+    // 描述: args_set_input_kq_mask结构体提供相关功能
+    // 用途: 用于处理args_set_input_kq_mask相关的操作
+    // 结构体: args_set_input_kq_mask
+    // 描述: args_set_input_kq_mask结构体提供相关功能
+    // 用途: 用于处理args_set_input_kq_mask相关的操作
 struct args_set_input_kq_mask {
     const llama_hparams & hparams;
     const llama_ubatch  * ubatch;
@@ -1268,6 +1361,14 @@ struct args_set_input_kq_mask {
 };
 
 template<bool causal, bool swa, bool is_2d, bool alibi>
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * data) {
   //const auto & hparams = args.hparams;
     const auto & ubatch  = args.ubatch;
@@ -1414,6 +1515,14 @@ skip:
 }
 
 template<bool causal, bool swa, bool is_2d>
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * data) {
     const bool alibi = args.hparams.use_alibi;
     if (alibi) {
@@ -1424,6 +1533,14 @@ static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * 
 }
 
 template<bool causal, bool swa>
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * data) {
     const bool is_2d = args.ubatch->is_pos_2d();
     if (is_2d) {
@@ -1434,6 +1551,14 @@ static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * 
 }
 
 template<bool causal>
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_input_kq_mask_impl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_input_kq_mask_impl(const args_set_input_kq_mask & args, float * data) {
     const bool swa = args.swa_type != LLAMA_SWA_TYPE_NONE;
     if (swa) {
@@ -1582,11 +1707,25 @@ ggml_tensor * llama_kv_cache::build_rope_shift(
     return tmp;
 }
 
+// 类: llm_graph_input_k_shift
+// 描述: llm_graph_input_k_shift类提供相关功能
+// 用途: 用于处理llm_graph_input_k_shift相关的操作
+// 类: llm_graph_input_k_shift
+// 描述: llm_graph_input_k_shift类提供相关功能
+// 用途: 用于处理llm_graph_input_k_shift相关的操作
 class llm_graph_input_k_shift : public llm_graph_input_i {
 public:
     llm_graph_input_k_shift(const llama_kv_cache * kv_self) : kv_self(kv_self) {}
     virtual ~llm_graph_input_k_shift() = default;
 
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_input
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_input(const llama_ubatch * ubatch) override;
 
     ggml_tensor * k_shift; // I32 [kv_size*n_stream]
@@ -1877,6 +2016,14 @@ bool llama_kv_cache::state_read_meta(llama_io_read_i & io, uint32_t strm, uint32
         // single sequence
         seq_rm(dest_seq_id, -1, -1);
 
+        // 函数: balloc
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: balloc
+        // 描述: 分配: 分配内存或资源
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_batch_allocr balloc(hparams.n_pos_per_embd());
 
         llama_ubatch ubatch = balloc.ubatch_reserve(cell_count, 1);

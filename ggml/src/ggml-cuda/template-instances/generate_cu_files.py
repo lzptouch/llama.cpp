@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: generate_cu_files.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cuda/template-instances/generate_cu_files.py
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #!/usr/bin/env python3
 
 from glob import glob
@@ -53,6 +60,10 @@ DECL_MMF_CASE({type});
 """
 
 
+    # 函数: get_short_name
+    # 描述: get_short_name函数提供相关功能
+    # 参数: long_quant_name
+    # 返回: 有返回值
 def get_short_name(long_quant_name):
     return long_quant_name.replace("GGML_TYPE_", "").lower()
 

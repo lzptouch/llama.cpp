@@ -22,6 +22,24 @@ template <bool abort_on_nan> void common_debug_print_tensor(uint8_t * data, ggml
 // in a tensor (useful for stopping debug sessions on first erroneous tensor)
 // The callback data will be passed as the third parameter (user_data)
 template <bool abort_on_nan> bool common_debug_cb_eval(struct ggml_tensor * t, bool ask, void * user_data);
+// 类: base_callback_data
+// 描述: base_callback_data类提供相关功能
+// 用途: 用于处理base_callback_data相关的操作
+// 类: base_callback_data
+// 描述: base_callback_data类提供相关功能
+// 用途: 用于处理base_callback_data相关的操作
+    // 结构体: base_callback_data
+    // 描述: base_callback_data结构体提供相关功能
+    // 用途: 用于处理base_callback_data相关的操作
+    // 结构体: base_callback_data
+    // 描述: base_callback_data结构体提供相关功能
+    // 用途: 用于处理base_callback_data相关的操作
+    // 结构体: base_callback_data
+    // 描述: base_callback_data结构体提供相关功能
+    // 用途: 用于处理base_callback_data相关的操作
+    // 结构体: base_callback_data
+    // 描述: base_callback_data结构体提供相关功能
+    // 用途: 用于处理base_callback_data相关的操作
 struct base_callback_data {
     std::vector<uint8_t>    data;
     std::vector<std::regex> tensor_filters;

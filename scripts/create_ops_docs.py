@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: create_ops_docs.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/create_ops_docs.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 
 """
@@ -10,7 +17,14 @@ from pathlib import Path
 from collections import defaultdict
 
 
+    # 类: DocsGenerator
+    # 描述: DocsGenerator类提供相关功能
+    # 用途: 用于处理DocsGenerator相关的操作
 class DocsGenerator:
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, ggml_root: str, output_filename: str = "ops.md"
+    # 返回: 无返回值
     def __init__(self, ggml_root: str, output_filename: str = "ops.md"):
         self.ggml_root = Path(ggml_root)
         self.ops_dir = self.ggml_root / "docs" / "ops"
@@ -22,6 +36,10 @@ class DocsGenerator:
         self.all_backends: set[str] = set()
         self.logger = logging.getLogger(__name__)
 
+    # 函数: parse_support_files
+    # 描述: parse_support_files函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def parse_support_files(self) -> None:
         if not self.ops_dir.exists():
             self.logger.warning(f"ops directory not found: {self.ops_dir}")
@@ -33,6 +51,10 @@ class DocsGenerator:
             self.logger.info(f"  Reading: {support_file.name}")
             self._parse_support_file(support_file)
 
+    # 函数: _parse_support_file
+    # 描述: _parse_support_file函数提供相关功能
+    # 参数: self, file_path: Path
+    # 返回: 无返回值
     def _parse_support_file(self, file_path: Path) -> None:
         try:
             with open(file_path, "r", newline='') as f:
@@ -67,6 +89,10 @@ class DocsGenerator:
         except Exception as e:
             self.logger.error(f"    Error parsing {file_path}: {e}")
 
+    # 函数: get_backend_support_status
+    # 描述: get_backend_support_status函数提供相关功能
+    # 参数: self, backend: str, operation: str
+    # 返回: 有返回值
     def get_backend_support_status(self, backend: str, operation: str) -> str:
         support_list = self.backend_support[backend].get(operation, [])
 
@@ -83,6 +109,10 @@ class DocsGenerator:
         else:
             return "unsupported"
 
+    # 函数: get_support_status
+    # 描述: get_support_status函数提供相关功能
+    # 参数: self, operation: str
+    # 返回: 有返回值
     def get_support_status(self, operation: str) -> str:
         if operation not in self.all_operations:
             return "unsupported"
@@ -101,10 +131,18 @@ class DocsGenerator:
         else:
             return "partially supported"
 
+    # 函数: get_support_symbol
+    # 描述: get_support_symbol函数提供相关功能
+    # 参数: self, status: str
+    # 返回: 有返回值
     def get_support_symbol(self, status: str) -> str:
         symbols = {"supported": "✅", "partially supported": "🟡", "unsupported": "❌"}
         return symbols.get(status, "❓")
 
+    # 函数: generate_markdown
+    # 描述: generate_markdown函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def generate_markdown(self) -> str:
         lines = []
 
@@ -156,6 +194,10 @@ class DocsGenerator:
 
         return "\n".join(lines)
 
+    # 函数: run
+    # 描述: run函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def run(self) -> None:
         self.logger.info("Parsing GGML operation support files...")
         self.parse_support_files()
@@ -185,6 +227,10 @@ class DocsGenerator:
         self.logger.info(f"Backends: {len(self.all_backends)}")
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     logging.basicConfig(level=logging.INFO)
 

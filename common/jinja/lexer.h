@@ -10,6 +10,24 @@
 
 namespace jinja {
 
+// 类: token
+// 描述: token类提供相关功能
+// 用途: 用于处理token相关的操作
+// 类: token
+// 描述: token类提供相关功能
+// 用途: 用于处理token相关的操作
+    // 结构体: token
+    // 描述: token结构体提供相关功能
+    // 用途: 用于处理token相关的操作
+    // 结构体: token
+    // 描述: token结构体提供相关功能
+    // 用途: 用于处理token相关的操作
+    // 结构体: token
+    // 描述: token结构体提供相关功能
+    // 用途: 用于处理token相关的操作
+    // 结构体: token
+    // 描述: token结构体提供相关功能
+    // 用途: 用于处理token相关的操作
 struct token {
     enum type {
         eof, // end of source
@@ -46,6 +64,14 @@ struct token {
     size_t pos;
 };
 
+// 函数: type_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: type_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string type_to_string(token::type t) {
     switch (t) {
         case token::eof: return "eof";
@@ -78,11 +104,47 @@ static std::string type_to_string(token::type t) {
     }
 }
 
+// 类: lexer_result
+// 描述: lexer_result类提供相关功能
+// 用途: 用于处理lexer_result相关的操作
+// 类: lexer_result
+// 描述: lexer_result类提供相关功能
+// 用途: 用于处理lexer_result相关的操作
+    // 结构体: lexer_result
+    // 描述: lexer_result结构体提供相关功能
+    // 用途: 用于处理lexer_result相关的操作
+    // 结构体: lexer_result
+    // 描述: lexer_result结构体提供相关功能
+    // 用途: 用于处理lexer_result相关的操作
+    // 结构体: lexer_result
+    // 描述: lexer_result结构体提供相关功能
+    // 用途: 用于处理lexer_result相关的操作
+    // 结构体: lexer_result
+    // 描述: lexer_result结构体提供相关功能
+    // 用途: 用于处理lexer_result相关的操作
 struct lexer_result {
     std::vector<token> tokens;
     std::string source;
 };
 
+// 类: lexer
+// 描述: lexer类提供相关功能
+// 用途: 用于处理lexer相关的操作
+// 类: lexer
+// 描述: lexer类提供相关功能
+// 用途: 用于处理lexer相关的操作
+    // 结构体: lexer
+    // 描述: lexer结构体提供相关功能
+    // 用途: 用于处理lexer相关的操作
+    // 结构体: lexer
+    // 描述: lexer结构体提供相关功能
+    // 用途: 用于处理lexer相关的操作
+    // 结构体: lexer
+    // 描述: lexer结构体提供相关功能
+    // 用途: 用于处理lexer相关的操作
+    // 结构体: lexer
+    // 描述: lexer结构体提供相关功能
+    // 用途: 用于处理lexer相关的操作
 struct lexer {
     const std::map<char, char> escape_chars = {
         {'n', '\n'},
@@ -96,10 +158,26 @@ struct lexer {
         {'\"', '\"'},
     };
 
+    // 函数: is_word
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_word
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_word(char c) {
         return std::isalnum(static_cast<unsigned char>(c)) || c == '_';
     }
 
+    // 函数: is_integer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_integer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_integer(char c) {
         return std::isdigit(static_cast<unsigned char>(c));
     }
@@ -146,9 +224,35 @@ struct lexer {
 
     // tokenize the source string into a list of tokens
     // may throw lexer_exception on error
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     lexer_result tokenize(const std::string & source);
 };
 
+// 类: lexer_exception
+// 描述: lexer_exception类提供相关功能
+// 用途: 用于处理lexer_exception相关的操作
+// 类: lexer_exception
+// 描述: lexer_exception类提供相关功能
+// 用途: 用于处理lexer_exception相关的操作
+    // 结构体: lexer_exception
+    // 描述: lexer_exception结构体提供相关功能
+    // 用途: 用于处理lexer_exception相关的操作
+    // 结构体: lexer_exception
+    // 描述: lexer_exception结构体提供相关功能
+    // 用途: 用于处理lexer_exception相关的操作
+    // 结构体: lexer_exception
+    // 描述: lexer_exception结构体提供相关功能
+    // 用途: 用于处理lexer_exception相关的操作
+    // 结构体: lexer_exception
+    // 描述: lexer_exception结构体提供相关功能
+    // 用途: 用于处理lexer_exception相关的操作
 struct lexer_exception : public std::runtime_error {
     lexer_exception(const std::string & msg, const std::string & source, size_t pos)
         : std::runtime_error(fmt_error_with_source("lexer", msg, source, pos)) {}

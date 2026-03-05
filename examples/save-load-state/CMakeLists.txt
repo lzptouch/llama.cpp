@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/save-load-state/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 set(TARGET llama-save-load-state)
 add_executable(${TARGET} save-load-state.cpp)
 install(TARGETS ${TARGET} RUNTIME)

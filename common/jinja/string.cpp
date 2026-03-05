@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: string.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/string.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "jinja/string.h"
 #include "jinja/value.h"
 
@@ -113,6 +120,14 @@ string string::append(const string & other) {
 // in-place transformation
 
 using transform_fn = std::function<std::string(const std::string&)>;
+// 函数: apply_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apply_transform
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static string apply_transform(string & self, const transform_fn & fn) {
     for (auto & part : self.parts) {
         part.val = fn(part.val);
@@ -121,6 +136,14 @@ static string apply_transform(string & self, const transform_fn & fn) {
 }
 
 string string::uppercase() {
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return apply_transform(*this, [](const std::string & s) {
         std::string res = s;
         std::transform(res.begin(), res.end(), res.begin(), ::toupper);
@@ -128,6 +151,14 @@ string string::uppercase() {
     });
 }
 string string::lowercase() {
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return apply_transform(*this, [](const std::string & s) {
         std::string res = s;
         std::transform(res.begin(), res.end(), res.begin(), ::tolower);
@@ -135,6 +166,14 @@ string string::lowercase() {
     });
 }
 string string::capitalize() {
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return apply_transform(*this, [](const std::string & s) {
         if (s.empty()) return s;
         std::string res = s;
@@ -144,6 +183,14 @@ string string::capitalize() {
     });
 }
 string string::titlecase() {
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: apply_transform
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return apply_transform(*this, [](const std::string & s) {
         std::string res = s;
         bool capitalize_next = true;

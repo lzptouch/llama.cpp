@@ -54,6 +54,30 @@ MTMD_API llama_pos mtmd_helper_get_n_pos(const mtmd_input_chunks * chunks);
 // otherwise, returns 0 on success
 // this function is NOT thread-safe
 MTMD_API int32_t mtmd_helper_eval_chunks(mtmd_context * ctx,
+                                         // 类: llama_context
+                                         // 描述: llama_context类提供相关功能
+                                         // 用途: 用于处理llama_context相关的操作
+                                         // 类: llama_context
+                                         // 描述: llama_context类提供相关功能
+                                         // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
                                          struct llama_context * lctx,
                                          const mtmd_input_chunks * chunks,
                                          llama_pos n_past,
@@ -65,6 +89,30 @@ MTMD_API int32_t mtmd_helper_eval_chunks(mtmd_context * ctx,
 // works like mtmd_helper_eval_chunks(), but only for a single chunk
 // this function is NOT thread-safe
 MTMD_API int32_t mtmd_helper_eval_chunk_single(mtmd_context * ctx,
+                                               // 类: llama_context
+                                               // 描述: llama_context类提供相关功能
+                                               // 用途: 用于处理llama_context相关的操作
+                                               // 类: llama_context
+                                               // 描述: llama_context类提供相关功能
+                                               // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
                                                struct llama_context * lctx,
                                                const mtmd_input_chunk * chunk,
                                                llama_pos n_past,
@@ -77,6 +125,30 @@ MTMD_API int32_t mtmd_helper_eval_chunk_single(mtmd_context * ctx,
 // this helper will handle batching and pre/post decoding setup (for ex. gemma 3 requires non-causal attention)
 // ret 0 on success, -1 on chunk not being a valid image chunk, 1 on decode failure
 MTMD_API int32_t mtmd_helper_decode_image_chunk(mtmd_context * ctx,
+                                                // 类: llama_context
+                                                // 描述: llama_context类提供相关功能
+                                                // 用途: 用于处理llama_context相关的操作
+                                                // 类: llama_context
+                                                // 描述: llama_context类提供相关功能
+                                                // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
                                                 struct llama_context * lctx,
                                                 const mtmd_input_chunk * chunk,
                                                 float * encoded_embd,

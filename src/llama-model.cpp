@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-model.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-model.cpp
+// 描述: llama_model 类的实现文件，负责模型加载、管理和推理
+// 作用: 实现了模型的加载、权重管理、设备分配、内存管理等核心功能
+// ============================================================================
+
 #include "llama-model.h"
 
 #include "llama-impl.h"
@@ -26,6 +33,11 @@
 #include <sstream>
 #include <stdexcept>
 
+// 函数: llm_type_name
+// 描述: 获取模型类型的字符串表示
+// 参数:
+//   - type: 模型类型枚举值
+// 返回: 模型类型的字符串表示
 const char * llm_type_name(llm_type type) {
     switch (type) {
         case LLM_TYPE_14M:           return "14M";
@@ -145,6 +157,11 @@ const char * llm_type_name(llm_type type) {
     }
 }
 
+// 函数: llama_expert_gating_func_name
+// 描述: 获取专家门控函数类型的字符串表示
+// 参数:
+//   - type: 专家门控函数类型枚举值
+// 返回: 专家门控函数类型的字符串表示
 static const char * llama_expert_gating_func_name(llama_expert_gating_func_type type) {
     switch (type) {
         case LLAMA_EXPERT_GATING_FUNC_TYPE_SOFTMAX: return "softmax";
@@ -160,10 +177,20 @@ static const std::map<llama_rope_scaling_type, const char *> LLAMA_ROPE_SCALING_
     { LLAMA_ROPE_SCALING_TYPE_LONGROPE,   "longrope"   },
 };
 
+// 函数: llama_rope_scaling_type_name
+// 描述: 获取RoPE缩放类型的字符串表示
+// 参数:
+//   - rope_scaling_type: RoPE缩放类型枚举值
+// 返回: RoPE缩放类型的字符串表示
 std::string llama_rope_scaling_type_name(llama_rope_scaling_type rope_scaling_type) {
     return LLAMA_ROPE_SCALING_TYPES.at(rope_scaling_type);
 }
 
+// 函数: llama_rope_scaling_type_from_string
+// 描述: 从字符串解析RoPE缩放类型
+// 参数:
+//   - name: 字符串表示的RoPE缩放类型
+// 返回: 对应的RoPE缩放类型枚举值
 static llama_rope_scaling_type llama_rope_scaling_type_from_string(const std::string & name) {
     for (const auto & kv : LLAMA_ROPE_SCALING_TYPES) {
         if (kv.second == name) {
@@ -174,7 +201,15 @@ static llama_rope_scaling_type llama_rope_scaling_type_from_string(const std::st
     return LLAMA_ROPE_SCALING_TYPE_UNSPECIFIED;
 }
 
-// checks if the weight tensor can be used with the specified buffer type and device
+// 函数: weight_buft_supported
+// 描述: 检查权重张量是否可以与指定的缓冲区类型和设备一起使用
+// 参数:
+//   - hparams: 模型超参数
+//   - w: 权重张量
+//   - op: 操作类型
+//   - buft: 缓冲区类型
+//   - dev: 设备
+// 返回: 布尔值，表示是否支持
 static bool weight_buft_supported(const llama_hparams & hparams, ggml_tensor * w, ggml_op op, ggml_backend_buffer_type_t buft, ggml_backend_dev_t dev) {
     GGML_ASSERT(w != nullptr);
 
@@ -315,6 +350,14 @@ static bool weight_buft_supported(const llama_hparams & hparams, ggml_tensor * w
 using buft_list_t = std::vector<std::pair<ggml_backend_dev_t, ggml_backend_buffer_type_t>>;
 
 // find the first buffer type in the list that can use the tensor
+// 函数: select_weight_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: select_weight_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t select_weight_buft(const llama_hparams & hparams, ggml_tensor * tensor, ggml_op op, const buft_list_t & buft_list) {
     GGML_ASSERT(!buft_list.empty());
     for (const auto & cur : buft_list) {
@@ -329,6 +372,14 @@ static ggml_backend_buffer_type_t select_weight_buft(const llama_hparams & hpara
 }
 
 // CPU: ACCEL -> GPU host -> CPU extra -> CPU
+// 函数: make_cpu_buft_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_cpu_buft_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static buft_list_t make_cpu_buft_list(const std::vector<ggml_backend_dev_t> & devices, bool use_extra_bufts, bool no_host) {
     buft_list_t buft_list;
 
@@ -391,6 +442,14 @@ static buft_list_t make_cpu_buft_list(const std::vector<ggml_backend_dev_t> & de
 }
 
 // GPU: split if LLAMA_SPLIT_MODE_ROW -> GPU
+// 函数: make_gpu_buft_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: make_gpu_buft_list
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static buft_list_t make_gpu_buft_list(ggml_backend_dev_t dev, llama_split_mode split_mode, const float * tensor_split) {
     buft_list_t buft_list;
 
@@ -435,6 +494,24 @@ static buft_list_t make_gpu_buft_list(ggml_backend_dev_t dev, llama_split_mode s
     return buft_list;
 }
 
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
 struct llama_model::impl {
     impl() = default;
     ~impl() = default;
@@ -458,6 +535,24 @@ struct llama_model::impl {
     buft_list_t cpu_buft_list;
     std::map<ggml_backend_dev_t, buft_list_t> gpu_buft_list;
 
+    // 类: layer_dev
+    // 描述: layer_dev类提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
+    // 类: layer_dev
+    // 描述: layer_dev类提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
+    // 结构体: layer_dev
+    // 描述: layer_dev结构体提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
+    // 结构体: layer_dev
+    // 描述: layer_dev结构体提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
+    // 结构体: layer_dev
+    // 描述: layer_dev结构体提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
+    // 结构体: layer_dev
+    // 描述: layer_dev结构体提供相关功能
+    // 用途: 用于处理layer_dev相关的操作
     struct layer_dev {
         ggml_backend_dev_t dev;
         buft_list_t * buft_list;
@@ -470,21 +565,39 @@ struct llama_model::impl {
     bool has_tensor_overrides;
 };
 
+// 构造函数: llama_model
+// 描述: 初始化llama_model对象
+// 参数:
+//   - params: 模型参数，包含模型加载和管理的各种配置
+// 作用: 创建模型对象并初始化内部实现
 llama_model::llama_model(const llama_model_params & params) : params(params), pimpl(std::make_unique<impl>()) {
     pimpl->has_tensor_overrides = params.tensor_buft_overrides && params.tensor_buft_overrides[0].pattern;
 }
 
+// 析构函数: ~llama_model
+// 描述: 清理llama_model对象的资源
+// 作用: 释放分配的资源，包括LoRA适配器
 llama_model::~llama_model() {
     for (auto * lora : loras) {
         delete lora;
     }
 }
 
+// 方法: load_stats
+// 描述: 加载模型统计信息
+// 参数:
+//   - ml: 模型加载器对象
+// 作用: 从模型加载器中获取模型的元素数量和字节大小
 void llama_model::load_stats(llama_model_loader & ml) {
     pimpl->n_elements = ml.n_elements;
     pimpl->n_bytes = ml.n_bytes;
 }
 
+// 方法: load_arch
+// 描述: 加载模型架构
+// 参数:
+//   - ml: 模型加载器对象
+// 作用: 从模型加载器中获取模型架构，如果架构未知则抛出异常
 void llama_model::load_arch(llama_model_loader & ml) {
     arch = ml.get_arch();
     if (arch == LLM_ARCH_UNKNOWN) {
@@ -492,6 +605,11 @@ void llama_model::load_arch(llama_model_loader & ml) {
     }
 }
 
+// 方法: load_hparams
+// 描述: 加载模型超参数
+// 参数:
+//   - ml: 模型加载器对象
+// 作用: 从模型加载器中获取模型的各种超参数，包括上下文长度、嵌入维度、层数等
 void llama_model::load_hparams(llama_model_loader & ml) {
     const gguf_context * ctx = ml.meta.get();
 
@@ -587,6 +705,14 @@ void llama_model::load_hparams(llama_model_loader & ml) {
     hparams.rope_freq_base_train = 10000.0f;
     ml.get_key(LLM_KV_ROPE_FREQ_BASE, hparams.rope_freq_base_train, false);
 
+    // 函数: rope_scaling
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: rope_scaling
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string rope_scaling("linear");
     ml.get_key(LLM_KV_ROPE_SCALING_TYPE, rope_scaling, false);
     hparams.rope_scaling_type_train = llama_rope_scaling_type_from_string(rope_scaling);
@@ -2778,7 +2904,33 @@ bool llama_model::load_tensors(llama_model_loader & ml) {
     const size_t ctx_size = ggml_tensor_overhead()*max_n_tensors;
 
     // define a comparator for the buft -> ctx map to ensure that the order is well-defined:
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 类: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator类提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
+    // 结构体: ggml_backend_buft_comparator
+    // 描述: ggml_backend_buft_comparator结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buft_comparator相关的操作
     struct ggml_backend_buft_comparator {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(const ggml_backend_buffer_type_t & lhs, const ggml_backend_buffer_type_t & rhs) const {
             return strcmp(ggml_backend_buft_name(lhs), ggml_backend_buft_name(rhs)) < 0;
         }
@@ -2920,6 +3072,14 @@ bool llama_model::load_tensors(llama_model_loader & ml) {
             if (ml.tensor_buft_overrides) {
                 std::string tensor_name = tn.str();
                 for (const auto * overrides = ml.tensor_buft_overrides; overrides->pattern != nullptr; ++overrides) {
+                    // 函数: pattern
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: pattern
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     std::regex pattern(overrides->pattern);
                     if (std::regex_search(tensor_name, pattern)) {
                         if (overrides->buft == ggml_backend_cpu_buffer_type()) {
@@ -3216,6 +3376,14 @@ bool llama_model::load_tensors(llama_model_loader & ml) {
                             layer.attn_norm = create_tensor(tn(LLM_TENSOR_ATTN_NORM, "weight", i), {n_embd}, 0);
                             layer.wo = create_tensor(tn(LLM_TENSOR_ATTN_OUT, "weight", i), {n_embd, n_embd}, 0);
                         }
+                        // 函数: if
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: if
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         else if (n_head_kv > 0) {
                             layer.attn_norm = create_tensor(tn(LLM_TENSOR_ATTN_NORM, "weight", i), {n_embd}, 0);
 
@@ -7860,10 +8028,26 @@ bool llama_model::load_tensors(llama_model_loader & ml) {
 }
 
 std::string llama_model::arch_name() const {
+    // 函数: llm_arch_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llm_arch_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return llm_arch_name(arch);
 }
 
 std::string llama_model::type_name() const {
+    // 函数: llm_type_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llm_type_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return llm_type_name(type);
 }
 
@@ -8120,6 +8304,14 @@ ggml_backend_dev_t llama_model::dev_output() const {
 }
 
 template<typename F>
+// 函数: buft_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: buft_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool buft_supported(ggml_backend_buffer_type_t buft, ggml_backend_dev_t dev, F & fn) {
     ggml_init_params params = {
         /*.mem_size   =*/ ggml_tensor_overhead()*8,
@@ -8147,6 +8339,14 @@ static bool buft_supported(ggml_backend_buffer_type_t buft, ggml_backend_dev_t d
 }
 
 template<typename F>
+// 函数: select_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: select_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t select_buft(const buft_list_t & buft_list, const F & fn) {
     for (const auto & cur : buft_list) {
         ggml_backend_dev_t cur_dev = cur.first;
@@ -8165,6 +8365,14 @@ ggml_backend_buffer_type_t llama_model::select_buft(int il) const {
             [&](ggml_context * ctx) {
                 ggml_tensor * cur = ggml_new_tensor_1d(ctx, GGML_TYPE_F32, hparams.n_embd);
                 ggml_tensor * layer_dir = ggml_new_tensor_1d(ctx, GGML_TYPE_F32, hparams.n_embd);
+                // 函数: ggml_add
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: ggml_add
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return ggml_add(ctx, cur, layer_dir);
             });
 }
@@ -8878,6 +9086,14 @@ ggml_cgraph * llama_model::build_graph(const llm_graph_params & params) const {
 // interface implementation
 //
 
+// 函数: llama_model_default_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_default_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_model_params llama_model_default_params() {
     llama_model_params result = {
         /*.devices                     =*/ nullptr,
@@ -8902,54 +9118,158 @@ llama_model_params llama_model_default_params() {
     return result;
 }
 
+// 函数: llama_model_get_vocab
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_get_vocab
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const llama_vocab * llama_model_get_vocab(const llama_model * model) {
     return &model->vocab;
 }
 
+// 函数: llama_free_model
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_free_model
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_free_model(llama_model * model) {
     llama_model_free(model);
 }
 
+// 函数: llama_model_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_model_free(llama_model * model) {
     delete model;
 }
 
+// 函数: llama_model_n_ctx_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_ctx_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_ctx_train(const llama_model * model) {
     return model->hparams.n_ctx_train;
 }
 
+// 函数: llama_model_n_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_embd(const llama_model * model) {
     return model->hparams.n_embd;
 }
 
+// 函数: llama_model_n_embd_inp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_embd_inp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_embd_inp(const llama_model * model) {
     return model->hparams.n_embd_inp();
 }
 
+// 函数: llama_model_n_embd_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_embd_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_embd_out(const llama_model * model) {
     return model->hparams.n_embd_out();
 }
 
+// 函数: llama_model_n_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_layer(const llama_model * model) {
     return model->hparams.n_layer;
 }
 
+// 函数: llama_model_n_head
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_head
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_head(const llama_model * model) {
     return model->hparams.n_head();
 }
 
+// 函数: llama_model_n_head_kv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_head_kv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_head_kv(const llama_model * model) {
     return model->hparams.n_head_kv();
 }
 
+// 函数: llama_model_n_swa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_swa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_n_swa(const llama_model * model) {
     return model->hparams.n_swa;
 }
 
+// 函数: llama_model_n_cls_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_cls_out
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_model_n_cls_out(const struct llama_model * model) {
     return model->hparams.n_cls_out;
 }
 
+// 函数: llama_model_cls_label
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_cls_label
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_model_cls_label(const struct llama_model * model, uint32_t i) {
     if (i < model->classifier_labels.size()) {
         return model->classifier_labels[i].c_str();
@@ -8959,25 +9279,65 @@ const char * llama_model_cls_label(const struct llama_model * model, uint32_t i)
 }
 
 // deprecated
+// 函数: llama_n_ctx_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_ctx_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_ctx_train(const llama_model * model) {
     return llama_model_n_ctx_train(model);
 }
 
 // deprecated
+// 函数: llama_n_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_embd(const llama_model * model) {
     return llama_model_n_embd(model);
 }
 
 // deprecated
+// 函数: llama_n_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_layer(const llama_model * model) {
     return llama_model_n_layer(model);
 }
 
 // deprecated
+// 函数: llama_n_head
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_head
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_head(const llama_model * model) {
     return llama_model_n_head(model);
 }
 
+// 函数: llama_model_rope_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_rope_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_rope_type llama_model_rope_type(const llama_model * model) {
     switch (model->arch) {
         // these models do not use RoPE
@@ -9125,10 +9485,26 @@ llama_rope_type llama_model_rope_type(const llama_model * model) {
     return LLAMA_ROPE_TYPE_NONE;
 }
 
+// 函数: llama_model_rope_freq_scale_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_rope_freq_scale_train
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 float llama_model_rope_freq_scale_train(const llama_model * model) {
     return model->hparams.rope_freq_scale_train;
 }
 
+// 函数: llama_model_meta_val_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_meta_val_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_meta_val_str(const llama_model * model, const char * key, char * buf, size_t buf_size) {
     const auto & it = model->gguf_kv.find(key);
     if (it == model->gguf_kv.end()) {
@@ -9140,10 +9516,26 @@ int32_t llama_model_meta_val_str(const llama_model * model, const char * key, ch
     return snprintf(buf, buf_size, "%s", it->second.c_str());
 }
 
+// 函数: llama_model_meta_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_meta_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_meta_count(const llama_model * model) {
     return (int)model->gguf_kv.size();
 }
 
+// 函数: llama_model_meta_key_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_meta_key_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_model_meta_key_str(llama_model_meta_key key) {
     switch (key) {
         case LLAMA_MODEL_META_KEY_SAMPLING_SEQUENCE:        return "general.sampling.sequence";
@@ -9162,6 +9554,14 @@ const char * llama_model_meta_key_str(llama_model_meta_key key) {
     }
 }
 
+// 函数: llama_model_meta_key_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_meta_key_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_meta_key_by_index(const llama_model * model, int i, char * buf, size_t buf_size) {
     if (i < 0 || i >= (int)model->gguf_kv.size()) {
         if (buf_size > 0) {
@@ -9174,6 +9574,14 @@ int32_t llama_model_meta_key_by_index(const llama_model * model, int i, char * b
     return snprintf(buf, buf_size, "%s", it->first.c_str());
 }
 
+// 函数: llama_model_meta_val_str_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_meta_val_str_by_index
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_meta_val_str_by_index(const llama_model * model, int32_t i, char * buf, size_t buf_size) {
     if (i < 0 || i >= (int)model->gguf_kv.size()) {
         if (buf_size > 0) {
@@ -9186,14 +9594,38 @@ int32_t llama_model_meta_val_str_by_index(const llama_model * model, int32_t i, 
     return snprintf(buf, buf_size, "%s", it->second.c_str());
 }
 
+// 函数: llama_model_desc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_desc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_model_desc(const llama_model * model, char * buf, size_t buf_size) {
     return snprintf(buf, buf_size, "%s", model->desc().c_str());
 }
 
+// 函数: llama_model_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint64_t llama_model_size(const llama_model * model) {
     return model->size();
 }
 
+// 函数: llama_model_chat_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_chat_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_model_chat_template(const llama_model * model, const char * name) {
     const auto key = name ? LLM_KV(model->arch, name)(LLM_KV_TOKENIZER_CHAT_TEMPLATE)
         : LLM_KV(model->arch)(LLM_KV_TOKENIZER_CHAT_TEMPLATE);
@@ -9213,10 +9645,26 @@ const char * llama_model_chat_template(const llama_model * model, const char * n
     return it->second.c_str();
 }
 
+// 函数: llama_model_n_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_n_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint64_t llama_model_n_params(const llama_model * model) {
     return model->n_elements();
 }
 
+// 函数: llama_model_has_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_has_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_model_has_encoder(const llama_model * model) {
     switch (model->arch) {
         case LLM_ARCH_T5:        return true;
@@ -9225,6 +9673,14 @@ bool llama_model_has_encoder(const llama_model * model) {
     }
 }
 
+// 函数: llama_model_has_decoder
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_has_decoder
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_model_has_decoder(const llama_model * model) {
     switch (model->arch) {
         case LLM_ARCH_T5ENCODER: return false;
@@ -9232,18 +9688,50 @@ bool llama_model_has_decoder(const llama_model * model) {
     }
 }
 
+// 函数: llama_model_decoder_start_token
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_decoder_start_token
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_model_decoder_start_token(const llama_model * model) {
     return model->hparams.dec_start_token_id;
 }
 
+// 函数: llama_model_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_model_is_recurrent(const llama_model * model) {
     return llm_arch_is_recurrent(model->arch);
 }
 
+// 函数: llama_model_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_model_is_hybrid(const llama_model * model) {
     return llm_arch_is_hybrid(model->arch);
 }
 
+// 函数: llama_model_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_model_is_diffusion(const llama_model * model) {
     return llm_arch_is_diffusion(model->arch);
 }

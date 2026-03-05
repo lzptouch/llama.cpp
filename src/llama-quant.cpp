@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-quant.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-quant.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-quant.h"
 #include "llama-impl.h"
 #include "llama-model.h"
@@ -14,11 +21,37 @@
 #include <unordered_map>
 
 // Quantization types. Changes to this struct must be replicated in quantize.cpp
+// 类: tensor_quantization
+// 描述: tensor_quantization类提供相关功能
+// 用途: 用于处理tensor_quantization相关的操作
+// 类: tensor_quantization
+// 描述: tensor_quantization类提供相关功能
+// 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
 struct tensor_quantization {
     std::string name;
     ggml_type quant = GGML_TYPE_COUNT;
 };
 
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void zeros(std::ofstream & file, size_t n) {
     char zero = 0;
     for (size_t i = 0; i < n; ++i) {
@@ -26,6 +59,14 @@ static void zeros(std::ofstream & file, size_t n) {
     }
 }
 
+// 函数: remap_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remap_layer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string remap_layer(const std::string & orig_name, const std::vector<int> & prune, std::map<int, std::string> & mapped, int & next_id) {
     if (prune.empty()) {
         return orig_name;
@@ -54,6 +95,14 @@ static std::string remap_layer(const std::string & orig_name, const std::vector<
     return orig_name;
 }
 
+// 函数: remap_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: remap_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string remap_imatrix (const std::string & orig_name, const std::map<int, std::string> & mapped) {
     if (mapped.empty()) {
         return orig_name;
@@ -76,6 +125,24 @@ static std::string remap_imatrix (const std::string & orig_name, const std::map<
     return orig_name;
 }
 
+// 类: quantize_state_impl
+// 描述: quantize_state_impl类提供相关功能
+// 用途: 用于处理quantize_state_impl相关的操作
+// 类: quantize_state_impl
+// 描述: quantize_state_impl类提供相关功能
+// 用途: 用于处理quantize_state_impl相关的操作
+    // 结构体: quantize_state_impl
+    // 描述: quantize_state_impl结构体提供相关功能
+    // 用途: 用于处理quantize_state_impl相关的操作
+    // 结构体: quantize_state_impl
+    // 描述: quantize_state_impl结构体提供相关功能
+    // 用途: 用于处理quantize_state_impl相关的操作
+    // 结构体: quantize_state_impl
+    // 描述: quantize_state_impl结构体提供相关功能
+    // 用途: 用于处理quantize_state_impl相关的操作
+    // 结构体: quantize_state_impl
+    // 描述: quantize_state_impl结构体提供相关功能
+    // 用途: 用于处理quantize_state_impl相关的操作
 struct quantize_state_impl {
     const llama_model                 & model;
     const llama_model_quantize_params * params;
@@ -175,6 +242,14 @@ static void llama_tensor_dequantize_impl(
     workers.clear();
 }
 
+// 函数: llama_tensor_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_tensor_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_type llama_tensor_get_type(quantize_state_impl & qs, ggml_type new_type, const ggml_tensor * tensor, llama_ftype ftype) {
     const std::string name = ggml_get_name(tensor);
 
@@ -425,6 +500,14 @@ static ggml_type llama_tensor_get_type(quantize_state_impl & qs, ggml_type new_t
     return new_type;
 }
 
+// 函数: llama_tensor_quantize_impl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_tensor_quantize_impl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static size_t llama_tensor_quantize_impl(enum ggml_type new_type, const float * f32_data, void * new_data, const int64_t chunk_size, int64_t nrows, int64_t n_per_row, const float * imatrix, std::vector<std::thread> & workers, const int nthread) {
     if (nthread < 2) {
         // single-thread
@@ -479,6 +562,14 @@ static size_t llama_tensor_quantize_impl(enum ggml_type new_type, const float * 
     return new_size;
 }
 
+// 函数: tensor_type_requires_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tensor_type_requires_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool tensor_type_requires_imatrix(const ggml_tensor * t, const ggml_type dst_type, const llama_ftype ftype) {
     return (
         dst_type == GGML_TYPE_IQ2_XXS || dst_type == GGML_TYPE_IQ2_XS ||
@@ -490,6 +581,14 @@ static bool tensor_type_requires_imatrix(const ggml_tensor * t, const ggml_type 
     );
 }
 
+// 函数: llama_model_quantize_impl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_quantize_impl
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_model_quantize_impl(const std::string & fname_inp, const std::string & fname_out, const llama_model_quantize_params * params) {
     ggml_type default_type;
     llama_ftype ftype = params->ftype;

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: tokenize.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/tokenize/tokenize.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "common.h"
 //#include "log.h" // TODO: start using log.h
 #include "llama.h"
@@ -15,6 +22,14 @@
 #include <shellapi.h>   // For CommandLineToArgvW
 #endif
 
+// 函数: print_usage_information
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage_information
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage_information(const char * argv0) {
     printf("usage: %s [options]\n\n", argv0);
     printf("The tokenize program tokenizes a prompt using a given model,\n");
@@ -37,12 +52,28 @@ static void print_usage_information(const char * argv0) {
     printf("    --show-count                         print the total number of tokens.\n");
 }
 
+// 函数: llama_log_callback_null
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_callback_null
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_log_callback_null(ggml_log_level level, const char * text, void * user_data) {
     (void) level;
     (void) text;
     (void) user_data;
 }
 
+// 函数: read_prompt_from_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_prompt_from_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read_prompt_from_file(const char * filepath, bool & success) {
     success = false;
 
@@ -129,6 +160,14 @@ static std::vector<std::string> ingest_args(int raw_argc, char ** raw_argv) {
 // a human-readable is written instead.
 //
 // On non-Windows systems, simply printfs() the string.
+// 函数: write_utf8_cstr_to_stdout
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_utf8_cstr_to_stdout
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void write_utf8_cstr_to_stdout(const char * str, bool & invalid_utf8) {
         invalid_utf8 = false;
 
@@ -183,6 +222,14 @@ static void write_utf8_cstr_to_stdout(const char * str, bool & invalid_utf8) {
 #endif
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int raw_argc, char ** raw_argv) {
     const std::vector<std::string> argv = ingest_args(raw_argc, raw_argv);
     const int argc = argv.size();

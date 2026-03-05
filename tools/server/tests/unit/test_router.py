@@ -1,9 +1,24 @@
+// ============================================================================
+// 文件: test_router.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_router.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
 server: ServerProcess
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.router()
@@ -16,6 +31,14 @@ def create_server():
         ("non-existent/model", False),
     ]
 )
+    # 函数: test_router_chat_completion_stream
+    # 描述: test_router_chat_completion_stream函数提供相关功能
+    # 参数: model: str, success: bool
+    # 返回: 无返回值
+    # 函数: test_router_chat_completion_stream
+    # 描述: test_router_chat_completion_stream函数提供相关功能
+    # 参数: model: str, success: bool
+    # 返回: 无返回值
 def test_router_chat_completion_stream(model: str, success: bool):
     global server
     server.start()
@@ -49,6 +72,14 @@ def test_router_chat_completion_stream(model: str, success: bool):
         assert content == ""
 
 
+    # 函数: _get_model_status
+    # 描述: _get_model_status函数提供相关功能
+    # 参数: model_id: str
+    # 返回: 无返回值
+    # 函数: _get_model_status
+    # 描述: _get_model_status函数提供相关功能
+    # 参数: model_id: str
+    # 返回: 无返回值
 def _get_model_status(model_id: str) -> str:
     res = server.make_request("GET", "/models")
     assert res.status_code == 200
@@ -58,6 +89,14 @@ def _get_model_status(model_id: str) -> str:
     raise AssertionError(f"Model {model_id} not found in /models response")
 
 
+    # 函数: _wait_for_model_status
+    # 描述: _wait_for_model_status函数提供相关功能
+    # 参数: model_id: str, desired: set[str], timeout: int = 60
+    # 返回: 无返回值
+    # 函数: _wait_for_model_status
+    # 描述: _wait_for_model_status函数提供相关功能
+    # 参数: model_id: str, desired: set[str], timeout: int = 60
+    # 返回: 无返回值
 def _wait_for_model_status(model_id: str, desired: set[str], timeout: int = 60) -> str:
     deadline = time.time() + timeout
     last_status = None
@@ -71,6 +110,14 @@ def _wait_for_model_status(model_id: str, desired: set[str], timeout: int = 60) 
     )
 
 
+    # 函数: _load_model_and_wait
+    # 描述: _load_model_and_wait函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: _load_model_and_wait
+    # 描述: _load_model_and_wait函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def _load_model_and_wait(
     model_id: str, timeout: int = 60, headers: dict | None = None
 ) -> None:
@@ -83,6 +130,14 @@ def _load_model_and_wait(
     _wait_for_model_status(model_id, {"loaded"}, timeout=timeout)
 
 
+    # 函数: test_router_unload_model
+    # 描述: test_router_unload_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_router_unload_model
+    # 描述: test_router_unload_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_router_unload_model():
     global server
     server.start()
@@ -96,6 +151,14 @@ def test_router_unload_model():
     _wait_for_model_status(model_id, {"unloaded"})
 
 
+    # 函数: test_router_models_max_evicts_lru
+    # 描述: test_router_models_max_evicts_lru函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_router_models_max_evicts_lru
+    # 描述: test_router_models_max_evicts_lru函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_router_models_max_evicts_lru():
     global server
     server.models_max = 2
@@ -125,6 +188,14 @@ def test_router_models_max_evicts_lru():
     assert _get_model_status(first) == "unloaded"
 
 
+    # 函数: test_router_no_models_autoload
+    # 描述: test_router_no_models_autoload函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_router_no_models_autoload
+    # 描述: test_router_no_models_autoload函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_router_no_models_autoload():
     global server
     server.no_models_autoload = True
@@ -158,6 +229,14 @@ def test_router_no_models_autoload():
     assert "error" not in success_res.body
 
 
+    # 函数: test_router_api_key_required
+    # 描述: test_router_api_key_required函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_router_api_key_required
+    # 描述: test_router_api_key_required函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_router_api_key_required():
     global server
     server.api_key = "sk-router-secret"

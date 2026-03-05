@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: hf-create-collection.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/hf-create-collection.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 from huggingface_hub import HfApi
@@ -6,6 +13,10 @@ import os
 import sys
 
 
+    # 函数: create_collection
+    # 描述: create_collection函数提供相关功能
+    # 参数: title, description, private=False, namespace=None, return_slug=False
+    # 返回: 无返回值
 def create_collection(title, description, private=False, namespace=None, return_slug=False):
     """
     Create a new collection on Hugging Face
@@ -57,6 +68,10 @@ def create_collection(title, description, private=False, namespace=None, return_
         print(f"❌ Error creating collection: {e}")
         return None
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     # This script requires that the environment variable HF_TOKEN is set with your
     # Hugging Face API token.

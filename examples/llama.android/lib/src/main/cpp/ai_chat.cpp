@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ai_chat.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/llama.android/lib/src/main/cpp/ai_chat.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <android/log.h>
 #include <jni.h>
 #include <iomanip>
@@ -12,6 +19,14 @@
 #include "llama.h"
 
 template<class T>
+// 函数: join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string join(const std::vector<T> &values, const std::string &delim) {
     std::ostringstream str;
     for (size_t i = 0; i < values.size(); i++) {
@@ -73,6 +88,14 @@ Java_com_arm_aichat_internal_InferenceEngineImpl_load(JNIEnv *env, jobject, jstr
     return 0;
 }
 
+// 函数: init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_context
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static llama_context *init_context(llama_model *model, const int n_ctx = DEFAULT_CONTEXT_SIZE) {
     if (!model) {
         LOGe("%s: model cannot be null", __func__);
@@ -104,6 +127,14 @@ static llama_context *init_context(llama_model *model, const int n_ctx = DEFAULT
     return context;
 }
 
+// 函数: new_sampler
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: new_sampler
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static common_sampler *new_sampler(float temp) {
     common_params_sampling sparams;
     sparams.temp = temp;
@@ -122,6 +153,14 @@ Java_com_arm_aichat_internal_InferenceEngineImpl_prepare(JNIEnv * /*env*/, jobje
     return 0;
 }
 
+// 函数: get_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_backend() {
     std::vector<std::string> backends;
     for (size_t i = 0; i < ggml_backend_reg_count(); i++) {
@@ -260,6 +299,14 @@ static std::vector<common_chat_msg> chat_msgs;
 static llama_pos system_prompt_position;
 static llama_pos current_position;
 
+// 函数: reset_long_term_states
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reset_long_term_states
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void reset_long_term_states(const bool clear_kv_cache = true) {
     chat_msgs.clear();
     system_prompt_position = 0;
@@ -277,6 +324,14 @@ static void reset_long_term_states(const bool clear_kv_cache = true) {
  * - take half of the last (system_prompt_position - system_prompt_position) tokens
  * - recompute the logits in batches
  */
+// 函数: shift_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: shift_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void shift_context() {
     const int n_discard = (current_position - system_prompt_position) / 2;
     LOGi("%s: Discarding %d tokens", __func__, n_discard);
@@ -286,6 +341,14 @@ static void shift_context() {
     LOGi("%s: Context shifting done! Current position: %d", __func__, current_position);
 }
 
+// 函数: chat_add_and_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: chat_add_and_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string chat_add_and_format(const std::string &role, const std::string &content) {
     common_chat_msg new_msg;
     new_msg.role = role;
@@ -307,6 +370,14 @@ static llama_pos stop_generation_position;
 static std::string cached_token_chars;
 static std::ostringstream assistant_ss;
 
+// 函数: reset_short_term_states
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reset_short_term_states
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void reset_short_term_states() {
     stop_generation_position = 0;
     cached_token_chars.clear();
@@ -364,6 +435,14 @@ Java_com_arm_aichat_internal_InferenceEngineImpl_processSystemPrompt(
     // Obtain system prompt from JEnv
     const auto *system_prompt = env->GetStringUTFChars(jsystem_prompt, nullptr);
     LOGd("%s: System prompt received: \n%s", __func__, system_prompt);
+    // 函数: formatted_system_prompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: formatted_system_prompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string formatted_system_prompt(system_prompt);
     env->ReleaseStringUTFChars(jsystem_prompt, system_prompt);
 
@@ -413,6 +492,14 @@ Java_com_arm_aichat_internal_InferenceEngineImpl_processUserPrompt(
     // Obtain and tokenize user prompt
     const auto *const user_prompt = env->GetStringUTFChars(juser_prompt, nullptr);
     LOGd("%s: User prompt received: \n%s", __func__, user_prompt);
+    // 函数: formatted_user_prompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: formatted_user_prompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string formatted_user_prompt(user_prompt);
     env->ReleaseStringUTFChars(juser_prompt, user_prompt);
 
@@ -449,6 +536,14 @@ Java_com_arm_aichat_internal_InferenceEngineImpl_processUserPrompt(
     return 0;
 }
 
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_valid_utf8(const char *string) {
     if (!string) { return true; }
 

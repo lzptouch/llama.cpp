@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: preset.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/preset.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "arg.h"
 #include "preset.h"
 #include "peg-parser.h"
@@ -8,6 +15,14 @@
 #include <sstream>
 #include <filesystem>
 
+// 函数: rm_leading_dashes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rm_leading_dashes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string rm_leading_dashes(const std::string & str) {
     size_t pos = 0;
     while (pos < str.size() && str[pos] == '-') {
@@ -193,11 +208,27 @@ static std::map<std::string, std::map<std::string, std::string>> parse_ini_from_
         throw std::runtime_error("preset file does not exist: " + path);
     }
 
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ifstream file(path);
     if (!file.good()) {
         throw std::runtime_error("failed to open server preset file: " + path);
     }
 
+    // 函数: contents
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: contents
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string contents((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 
     static const auto parser = build_peg_parser([](auto & p) {
@@ -241,6 +272,14 @@ static std::map<std::string, std::map<std::string, std::string>> parse_ini_from_
         return ini;
     });
 
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     common_peg_parse_context ctx(contents);
     const auto result = parser.parse(ctx);
     if (!result.success()) {
@@ -280,10 +319,26 @@ static std::map<std::string, common_arg> get_map_key_opt(common_params_context &
     return mapping;
 }
 
+// 函数: is_bool_arg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_bool_arg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_bool_arg(const common_arg & arg) {
     return !arg.args_neg.empty();
 }
 
+// 函数: parse_bool_arg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_bool_arg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string parse_bool_arg(const common_arg & arg, const std::string & key, const std::string & value) {
     // if this is a negated arg, we need to reverse the value
     for (const auto & neg_arg : arg.args_neg) {
@@ -373,6 +428,24 @@ common_presets common_preset_context::load_from_cache() const {
     return out;
 }
 
+// 类: local_model
+// 描述: local_model类提供相关功能
+// 用途: 用于处理local_model相关的操作
+// 类: local_model
+// 描述: local_model类提供相关功能
+// 用途: 用于处理local_model相关的操作
+    // 结构体: local_model
+    // 描述: local_model结构体提供相关功能
+    // 用途: 用于处理local_model相关的操作
+    // 结构体: local_model
+    // 描述: local_model结构体提供相关功能
+    // 用途: 用于处理local_model相关的操作
+    // 结构体: local_model
+    // 描述: local_model结构体提供相关功能
+    // 用途: 用于处理local_model相关的操作
+    // 结构体: local_model
+    // 描述: local_model结构体提供相关功能
+    // 用途: 用于处理local_model相关的操作
 struct local_model {
     std::string name;
     std::string path;

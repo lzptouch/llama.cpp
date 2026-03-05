@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend-dispatched-buffer.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend-dispatched-buffer.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 #include "backend-virgl-apir.h"
 #include "ggml-backend-impl.h"
@@ -6,6 +13,14 @@
 
 #include <cstdint>
 
+// 函数: validate_buffer_operation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: validate_buffer_operation
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t validate_buffer_operation(size_t offset, size_t size, const char * operation) {
     // Only check for critical integer overflow - no arbitrary size limits
     if (offset > SIZE_MAX - size) {
@@ -16,6 +31,14 @@ static uint32_t validate_buffer_operation(size_t offset, size_t size, const char
     return 0;  // Valid
 }
 
+// 函数: backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_get_base(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     ggml_backend_buffer_t buffer;
@@ -32,6 +55,14 @@ uint32_t backend_buffer_get_base(apir_encoder * enc, apir_decoder * dec, virgl_a
     return 0;
 }
 
+// 函数: backend_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_set_tensor(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(enc);
@@ -73,6 +104,14 @@ uint32_t backend_buffer_set_tensor(apir_encoder * enc, apir_decoder * dec, virgl
     return 0;
 }
 
+// 函数: backend_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_get_tensor(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(enc);
@@ -113,6 +152,14 @@ uint32_t backend_buffer_get_tensor(apir_encoder * enc, apir_decoder * dec, virgl
     return 0;
 }
 
+// 函数: backend_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_cpy_tensor(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
 
@@ -136,6 +183,14 @@ uint32_t backend_buffer_cpy_tensor(apir_encoder * enc, apir_decoder * dec, virgl
     return 0;
 }
 
+// 函数: backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_clear(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(enc);
@@ -156,6 +211,14 @@ uint32_t backend_buffer_clear(apir_encoder * enc, apir_decoder * dec, virgl_apir
     return 0;
 }
 
+// 函数: backend_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_buffer_free_buffer(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(enc);

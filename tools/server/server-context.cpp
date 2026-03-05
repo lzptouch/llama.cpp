@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-context.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-context.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "server-context.h"
 #include "server-common.h"
 #include "server-http.h"
@@ -45,6 +52,30 @@ enum server_state {
     SERVER_STATE_READY,          // Server is ready and model is loaded
 };
 
+// 类: server_slot
+// 描述: server_slot类提供相关功能
+// 用途: 用于处理server_slot相关的操作
+// 类: server_slot
+// 描述: server_slot类提供相关功能
+// 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
+    // 结构体: server_slot
+    // 描述: server_slot结构体提供相关功能
+    // 用途: 用于处理server_slot相关的操作
 struct server_slot {
     int id;
 
@@ -100,6 +131,14 @@ struct server_slot {
 
     server_prompt prompt;
 
+    // 函数: prompt_save
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: prompt_save
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     void prompt_save(server_prompt_cache & prompt_cache) const {
         GGML_ASSERT(prompt.data.size() == 0);
 
@@ -116,6 +155,14 @@ struct server_slot {
         llama_state_seq_get_data_ext(ctx, cur->data.data(), cur_size, id, 0);
     }
 
+    // 函数: prompt_load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: prompt_load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool prompt_load(server_prompt_cache & prompt_cache, const server_tokens & tokens) {
         bool res = prompt_cache.load(prompt, tokens, ctx, id);
         if (!res) {
@@ -125,6 +172,14 @@ struct server_slot {
         return res;
     }
 
+    // 函数: prompt_clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: prompt_clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void prompt_clear(bool allow_processing) {
         if (!allow_processing) {
             GGML_ASSERT(!is_processing());
@@ -162,6 +217,14 @@ struct server_slot {
     int32_t n_draft_total = 0;      // Total draft tokens generated
     int32_t n_draft_accepted = 0;   // Draft tokens actually accepted
 
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         SLT_DBG(*this, "%s", "\n");
 
@@ -194,6 +257,14 @@ struct server_slot {
         alora_invocation_start = -1;
     }
 
+    // 函数: init_sampler
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_sampler
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_sampler() const {
         common_sampler_reset(smpl.get());
 
@@ -220,6 +291,14 @@ struct server_slot {
 
     // if the context does not have a memory module then all embeddings have to be computed within a single ubatch
     // also we cannot split if the pooling would require any past tokens
+    // 函数: can_split
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_split
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_split() const {
         GGML_ASSERT(task);
 
@@ -228,12 +307,28 @@ struct server_slot {
             (llama_get_memory(ctx) && llama_pooling_type(ctx) == LLAMA_POOLING_TYPE_LAST);
     }
 
+    // 函数: can_batch_with
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_batch_with
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_batch_with(server_slot & other_slot) const {
         GGML_ASSERT(task);
 
         return task->type == other_slot.task->type && are_lora_equal(lora, other_slot.lora);
     }
 
+    // 函数: has_budget
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_budget
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_budget(const common_params & global_params) {
         GGML_ASSERT(task);
 
@@ -252,14 +347,38 @@ struct server_slot {
         return n_remaining > 0; // no budget
     }
 
+    // 函数: is_processing
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_processing
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_processing() const {
         return state != SLOT_STATE_IDLE;
     }
 
+    // 函数: can_speculate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_speculate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_speculate() const {
         return !!spec;
     }
 
+    // 函数: add_token
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_token
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_token(const completion_token_output & token) {
         if (!is_processing()) {
             SLT_WRN(*this, "%s", "slot is not processing\n");
@@ -269,6 +388,14 @@ struct server_slot {
         generated_token_probs.push_back(token);
     }
 
+    // 函数: get_n_draft_max
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_n_draft_max
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     int get_n_draft_max() const {
         GGML_ASSERT(task);
 
@@ -297,6 +424,14 @@ struct server_slot {
         return n_draft_max;
     }
 
+    // 函数: release
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: release
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void release() {
         if (is_processing()) {
             GGML_ASSERT(task);
@@ -319,6 +454,14 @@ struct server_slot {
         }
     }
 
+    // 函数: get_timings
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_timings
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     result_timings get_timings() const {
         result_timings timings;
         timings.cache_n = n_prompt_tokens_cache;
@@ -342,6 +485,14 @@ struct server_slot {
         return timings;
     }
 
+    // 函数: find_stopping_strings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: find_stopping_strings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t find_stopping_strings(const std::string & text, const size_t last_token_size, bool is_full_stop) {
         GGML_ASSERT(task);
 
@@ -373,6 +524,14 @@ struct server_slot {
         return stop_pos;
     }
 
+    // 函数: print_timings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_timings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_timings() const {
         const double t_prompt        =       t_prompt_processing / n_prompt_tokens_processed;
         const double n_prompt_second = 1e3 / t_prompt_processing * n_prompt_tokens_processed;
@@ -400,6 +559,14 @@ struct server_slot {
         common_speculative_print_stats(spec);
     }
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json(bool only_metrics = false) const {
         json res;
 
@@ -433,6 +600,14 @@ struct server_slot {
         return res;
     }
 
+    // 函数: copy_state_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: copy_state_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void copy_state_to(server_slot & other) const {
         GGML_ASSERT(state == SLOT_STATE_DONE_PROMPT);
 
@@ -459,6 +634,30 @@ struct server_slot {
 // server_metrics
 //
 
+// 类: server_metrics
+// 描述: server_metrics类提供相关功能
+// 用途: 用于处理server_metrics相关的操作
+// 类: server_metrics
+// 描述: server_metrics类提供相关功能
+// 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
+    // 结构体: server_metrics
+    // 描述: server_metrics结构体提供相关功能
+    // 用途: 用于处理server_metrics相关的操作
 struct server_metrics {
     int64_t t_start = 0;
 
@@ -478,10 +677,26 @@ struct server_metrics {
     uint64_t n_decode_total     = 0;
     uint64_t n_busy_slots_total = 0;
 
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init() {
         t_start = ggml_time_us();
     }
 
+    // 函数: on_prompt_eval
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: on_prompt_eval
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void on_prompt_eval(const server_slot & slot) {
         n_prompt_tokens_processed_total += slot.n_prompt_tokens_processed;
         n_prompt_tokens_processed       += slot.n_prompt_tokens_processed;
@@ -491,6 +706,14 @@ struct server_metrics {
         n_tokens_max = std::max(n_tokens_max, (uint64_t) slot.prompt.n_tokens());
     }
 
+    // 函数: on_prediction
+    // 描述: 预测: 进行预测计算
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: on_prediction
+    // 描述: 预测: 进行预测计算
+    // 参数: 无参数
+    // 返回: 无返回值
     void on_prediction(const server_slot & slot) {
         n_tokens_predicted_total   += slot.n_decoded;
         n_tokens_predicted         += slot.n_decoded;
@@ -498,6 +721,14 @@ struct server_metrics {
         t_tokens_generation_total  += slot.t_token_generation;
     }
 
+    // 函数: on_decoded
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: on_decoded
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
     void on_decoded(const std::vector<server_slot> & slots) {
         n_decode_total++;
         for (const auto & slot : slots) {
@@ -508,6 +739,14 @@ struct server_metrics {
         }
     }
 
+    // 函数: reset_bucket
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset_bucket
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset_bucket() {
         n_prompt_tokens_processed = 0;
         t_prompt_processing       = 0;
@@ -521,6 +760,30 @@ struct server_metrics {
 // server_context_impl (private implementation)
 //
 
+// 类: server_context_impl
+// 描述: server_context_impl类提供相关功能
+// 用途: 用于处理server_context_impl相关的操作
+// 类: server_context_impl
+// 描述: server_context_impl类提供相关功能
+// 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
+    // 结构体: server_context_impl
+    // 描述: server_context_impl结构体提供相关功能
+    // 用途: 用于处理server_context_impl相关的操作
 struct server_context_impl {
     friend struct server_context;
 
@@ -585,6 +848,14 @@ private:
 
     bool sleeping = false;
 
+    // 函数: destroy
+    // 描述: 销毁: 完全销毁对象或资源
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: destroy
+    // 描述: 销毁: 完全销毁对象或资源
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     void destroy() {
         llama_init.reset();
         ctx = nullptr;
@@ -602,6 +873,14 @@ private:
         llama_batch_free(batch);
     }
 
+    // 函数: handle_sleeping_state
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: handle_sleeping_state
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void handle_sleeping_state(bool new_state) {
         GGML_ASSERT(sleeping != new_state);
         if (new_state) {
@@ -618,6 +897,14 @@ private:
 
     // load the model and initialize llama_context
     // this may also be called to resume from sleeping state
+    // 函数: load_model
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_model
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load_model(const common_params & params) {
         bool is_resume = sleeping;
 
@@ -836,6 +1123,14 @@ private:
     }
 
     // unlike load_model(), this is only called once during initialization
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     bool init() {
         GGML_ASSERT(ctx != nullptr);
         GGML_ASSERT(model != nullptr);
@@ -905,6 +1200,14 @@ private:
         return true;
     }
 
+    // 函数: get_slot_by_id
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_slot_by_id
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     server_slot * get_slot_by_id(int id_slot) {
         // note: allow id_slot to be out of bounds (wrap around)
         id_slot = id_slot % slots.size();
@@ -918,6 +1221,14 @@ private:
         return nullptr;
     }
 
+    // 函数: get_available_slot
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_available_slot
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     server_slot * get_available_slot(const server_task & task) {
         server_slot * ret = nullptr;
 
@@ -1024,6 +1335,14 @@ private:
     //       - smarter decision which slot to clear (LRU or longest prompt?)
     //       - move slot to level 2 cache instead of removing?
     //       - instead of purging, try to store and resume later?
+    // 函数: try_clear_idle_slots
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: try_clear_idle_slots
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     bool try_clear_idle_slots() {
         bool res = false;
 
@@ -1064,6 +1383,14 @@ private:
         return output;
     }
 
+    // 函数: launch_slot_with_task
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: launch_slot_with_task
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool launch_slot_with_task(server_slot & slot, server_task && task) {
         // process per-request lora adapters
         if (!task.params.lora.empty()) {
@@ -1181,6 +1508,14 @@ private:
         return true;
     }
 
+    // 函数: process_token
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: process_token
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     bool process_token(completion_token_output & result, server_slot & slot) {
         // remember which tokens were sampled - used for repetition penalties during sampling
         const std::string token_str = result.text_to_send;
@@ -1312,6 +1647,14 @@ private:
         return slot.has_next_token; // continue
     }
 
+    // 函数: populate_token_probs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: populate_token_probs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void populate_token_probs(const server_slot & slot, completion_token_output & result, bool post_sampling, bool special, int idx) const {
         const size_t n_probs_request = slot.task->params.sampling.n_probs;
 
@@ -1364,14 +1707,38 @@ private:
         }
     }
 
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_error(const server_task & task, const std::string & error, const enum error_type type = ERROR_TYPE_SERVER) {
         send_error(task.id, error, type);
     }
 
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_error(const server_slot & slot, const std::string & error, const enum error_type type = ERROR_TYPE_SERVER) {
         send_error(slot.task->id, error, type, slot.task->n_tokens(), slot.n_ctx);
     }
 
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_error(const int id_task, const std::string & error, const enum error_type type = ERROR_TYPE_SERVER, const int32_t n_prompt_tokens = 0, const int32_t n_ctx = 0) {
         SRV_ERR("task id = %d, error: %s\n", id_task, error.c_str());
 
@@ -1390,6 +1757,14 @@ private:
     }
 
     // if multimodal is enabled, send an error and return false
+    // 函数: check_no_mtmd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_no_mtmd
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool check_no_mtmd(const int id_task) {
         if (mctx) {
             send_error(id_task, "This feature is not supported by multimodal", ERROR_TYPE_NOT_SUPPORTED);
@@ -1398,6 +1773,14 @@ private:
         return true;
     }
 
+    // 函数: send_partial_response
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_partial_response
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_partial_response(server_slot & slot, const completion_token_output & tkn, bool is_progress) {
         auto res = std::make_unique<server_task_result_cmpl_partial>();
 
@@ -1437,6 +1820,14 @@ private:
         queue_results.send(std::move(res));
     }
 
+    // 函数: send_final_response
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_final_response
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_final_response(server_slot & slot) {
         auto res = std::make_unique<server_task_result_cmpl_final>();
 
@@ -1499,6 +1890,14 @@ private:
         queue_results.send(std::move(res));
     }
 
+    // 函数: send_embedding
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_embedding
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_embedding(const server_slot & slot, const llama_batch & batch) {
         auto res = std::make_unique<server_task_result_embd>();
         res->id        = slot.task->id;
@@ -1544,6 +1943,14 @@ private:
         queue_results.send(std::move(res));
     }
 
+    // 函数: send_rerank
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: send_rerank
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void send_rerank(const server_slot & slot, const llama_batch & batch) {
         auto res = std::make_unique<server_task_result_rerank>();
         res->id       = slot.task->id;
@@ -1580,6 +1987,14 @@ private:
     //
 
     // tokenize the input if it's set by CLI, return false on error
+    // 函数: tokenize_cli_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize_cli_input
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool tokenize_cli_input(server_task & task) {
         try {
             auto & prompt = task.cli_prompt;
@@ -1611,6 +2026,14 @@ private:
     }
 
     // launch multiple slots for parent + child tasks
+    // 函数: launch_slots_with_parent_task
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: launch_slots_with_parent_task
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool launch_slots_with_parent_task(server_slot & parent_slot, std::vector<server_slot *> & child_slots, server_task && parent_task) {
         GGML_ASSERT(!parent_slot.is_processing());
         GGML_ASSERT(parent_task.is_parent());
@@ -1655,6 +2078,14 @@ private:
         return true;
     }
 
+    // 函数: process_single_task
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: process_single_task
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     void process_single_task(server_task && task) {
         switch (task.type) {
             case SERVER_TASK_TYPE_COMPLETION:
@@ -1934,6 +2365,14 @@ private:
         }
     }
 
+    // 函数: update_slots
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update_slots
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update_slots() {
         // check if all slots are idle
         {
@@ -2850,10 +3289,26 @@ private:
         SRV_DBG("%s", "run slots completed\n");
     }
 
+    // 函数: get_slot_n_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_slot_n_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     int get_slot_n_ctx() {
         return slots.back().n_ctx;
     }
 
+    // 函数: get_response_reader
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_response_reader
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     server_response_reader get_response_reader() {
         return server_response_reader(queue_tasks, queue_results, HTTP_POLLING_SECONDS);
     }
@@ -2931,6 +3386,30 @@ server_context_meta server_context::get_meta() const {
 
 // generator-like API for HTTP response generation
 // may have bypass_sleep = true if the task does not use ctx_server
+// 类: server_res_generator
+// 描述: server_res_generator类提供相关功能
+// 用途: 用于处理server_res_generator相关的操作
+// 类: server_res_generator
+// 描述: server_res_generator类提供相关功能
+// 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
+    // 结构体: server_res_generator
+    // 描述: server_res_generator结构体提供相关功能
+    // 用途: 用于处理server_res_generator相关的操作
 struct server_res_generator : server_http_res {
     server_response_reader rd;
     server_res_generator(server_queue & queue_tasks, server_response & queue_results, int sleep_idle_seconds, bool bypass_sleep = false)
@@ -2941,10 +3420,26 @@ struct server_res_generator : server_http_res {
             queue_tasks.wait_until_no_sleep();
         }
     }
+    // 函数: ok
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ok
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void ok(const json & response_data) {
         status = 200;
         data = safe_json_to_str(response_data);
     }
+    // 函数: error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void error(const json & error_data) {
         status = json_value(error_data, "code", 500);
         data = safe_json_to_str({{ "error", error_data }});
@@ -3096,6 +3591,14 @@ std::unique_ptr<server_res_generator> server_routes::handle_completions_impl(
                         {"data", res_json},
                     });
                 } else {
+                    // 函数: format_oai_sse
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: format_oai_sse
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return format_oai_sse(json {{ "error", res_json }});
                 }
             };
@@ -3215,6 +3718,14 @@ void server_routes::init_routes() {
 
         // request slots data using task queue
         {
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             server_task task(SERVER_TASK_TYPE_METRICS);
             task.id = res->rd.get_new_id();
             res->rd.post_task(std::move(task), true); // high-priority task
@@ -3320,6 +3831,14 @@ void server_routes::init_routes() {
 
         // request slots data using task queue
         {
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             server_task task(SERVER_TASK_TYPE_METRICS);
             task.id = res->rd.get_new_id();
             res->rd.post_task(std::move(task), true); // high-priority task
@@ -3374,12 +3893,36 @@ void server_routes::init_routes() {
         std::string action = req.get_param("action");
 
         if (action == "save") {
+            // 函数: handle_slots_save
+            // 描述: 保存: 保存数据到文件或内存
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: handle_slots_save
+            // 描述: 保存: 保存数据到文件或内存
+            // 参数: 无参数
+            // 返回: 无返回值
             return handle_slots_save(req, id_slot);
         }
         if (action == "restore") {
+            // 函数: handle_slots_restore
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: handle_slots_restore
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return handle_slots_restore(req, id_slot);
         }
         if (action == "erase") {
+            // 函数: handle_slots_erase
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: handle_slots_erase
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return handle_slots_erase(req, id_slot);
         }
 
@@ -3771,10 +4314,26 @@ void server_routes::init_routes() {
     };
 
     this->post_embeddings = [this](const server_http_req & req) {
+        // 函数: handle_embeddings_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: handle_embeddings_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return handle_embeddings_impl(req, TASK_RESPONSE_TYPE_NONE);
     };
 
     this->post_embeddings_oai = [this](const server_http_req & req) {
+        // 函数: handle_embeddings_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: handle_embeddings_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return handle_embeddings_impl(req, TASK_RESPONSE_TYPE_OAI_EMBD);
     };
 
@@ -3863,6 +4422,14 @@ void server_routes::init_routes() {
 
         auto & rd = res->rd;
         {
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             server_task task(SERVER_TASK_TYPE_GET_LORA);
             task.id = rd.get_new_id();
             rd.post_task(std::move(task));
@@ -3896,6 +4463,14 @@ void server_routes::init_routes() {
 
         auto & rd = res->rd;
         {
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: task
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             server_task task(SERVER_TASK_TYPE_SET_LORA);
             task.id = rd.get_new_id();
             task.set_lora = parse_lora_request(body);
@@ -3933,6 +4508,14 @@ std::unique_ptr<server_res_generator> server_routes::handle_slots_save(const ser
 
     auto & rd = res->rd;
     {
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         server_task task(SERVER_TASK_TYPE_SLOT_SAVE);
         task.id = rd.get_new_id();
         task.slot_action.id_slot  = id_slot;
@@ -3969,6 +4552,14 @@ std::unique_ptr<server_res_generator> server_routes::handle_slots_restore(const 
 
     auto & rd = res->rd;
     {
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         server_task task(SERVER_TASK_TYPE_SLOT_RESTORE);
         task.id = rd.get_new_id();
         task.slot_action.id_slot  = id_slot;
@@ -3998,6 +4589,14 @@ std::unique_ptr<server_res_generator> server_routes::handle_slots_erase(const se
     auto res = create_response();
     auto & rd = res->rd;
     {
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: task
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         server_task task(SERVER_TASK_TYPE_SLOT_ERASE);
         task.id = rd.get_new_id();
         task.slot_action.id_slot = id_slot;

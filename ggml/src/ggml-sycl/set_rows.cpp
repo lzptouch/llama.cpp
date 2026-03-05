@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: set_rows.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/set_rows.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "set_rows.hpp"
 #include "cpy.hpp"
 
@@ -148,6 +155,14 @@ static void set_rows_sycl(
 }
 
 template<typename TIn, typename TIdx>
+// 函数: set_rows_sycl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_rows_sycl
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_rows_sycl(ggml_backend_sycl_context & ctx, const ggml_tensor * src0, const ggml_tensor * src1, ggml_tensor * dst) {
     const char * src0_d = (const char *)src0->data;
     const TIdx * src1_d = (const TIdx *)src1->data;
@@ -218,6 +233,14 @@ static void set_rows_sycl(ggml_backend_sycl_context & ctx, const ggml_tensor * s
     }
 }
 
+// 函数: ggml_sycl_op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_set_rows(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     const ggml_tensor * src0 = dst->src[0];

@@ -21,6 +21,24 @@
 //
 
 // config of n-gram simple.
+// 类: common_ngram_simple_config
+// 描述: common_ngram_simple_config类提供相关功能
+// 用途: 用于处理common_ngram_simple_config相关的操作
+// 类: common_ngram_simple_config
+// 描述: common_ngram_simple_config类提供相关功能
+// 用途: 用于处理common_ngram_simple_config相关的操作
+    // 结构体: common_ngram_simple_config
+    // 描述: common_ngram_simple_config结构体提供相关功能
+    // 用途: 用于处理common_ngram_simple_config相关的操作
+    // 结构体: common_ngram_simple_config
+    // 描述: common_ngram_simple_config结构体提供相关功能
+    // 用途: 用于处理common_ngram_simple_config相关的操作
+    // 结构体: common_ngram_simple_config
+    // 描述: common_ngram_simple_config结构体提供相关功能
+    // 用途: 用于处理common_ngram_simple_config相关的操作
+    // 结构体: common_ngram_simple_config
+    // 描述: common_ngram_simple_config结构体提供相关功能
+    // 用途: 用于处理common_ngram_simple_config相关的操作
 struct common_ngram_simple_config {
     uint16_t   size_ngram;      // size of n-grams to lookup in self-mode
     uint16_t   size_mgram;      // size of m-grams to draft in self-mode
@@ -42,6 +60,24 @@ llama_tokens common_ngram_simple_draft(
 #define COMMON_NGRAM_HASH_MAP_SIZE 262144
 
 // statistics of a m-gram after a known n-gram
+// 类: common_ngram_map_value
+// 描述: common_ngram_map_value类提供相关功能
+// 用途: 用于处理common_ngram_map_value相关的操作
+// 类: common_ngram_map_value
+// 描述: common_ngram_map_value类提供相关功能
+// 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
 struct common_ngram_map_value {
     size_t   value_idx =  0;  // index of value m-gram in token-history (0 if unused)
     uint16_t value_num =  0;  // number of occurrences of this value m-gram after the key n-gram (0 in an unused values-slot)
@@ -49,6 +85,24 @@ struct common_ngram_map_value {
 };
 
 // statistics of a n-gram
+// 类: common_ngram_map_key
+// 描述: common_ngram_map_key类提供相关功能
+// 用途: 用于处理common_ngram_map_key相关的操作
+// 类: common_ngram_map_key
+// 描述: common_ngram_map_key类提供相关功能
+// 用途: 用于处理common_ngram_map_key相关的操作
+    // 结构体: common_ngram_map_key
+    // 描述: common_ngram_map_key结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_key相关的操作
+    // 结构体: common_ngram_map_key
+    // 描述: common_ngram_map_key结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_key相关的操作
+    // 结构体: common_ngram_map_key
+    // 描述: common_ngram_map_key结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_key相关的操作
+    // 结构体: common_ngram_map_key
+    // 描述: common_ngram_map_key结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_key相关的操作
 struct common_ngram_map_key {
     size_t   key_idx;   // index of key n-gram in token-history
     size_t   stat_idx;  // index of last token of stastistics computation (key_num, values)
@@ -58,6 +112,24 @@ struct common_ngram_map_key {
 };
 
 // map from n-grams to following m-grams in token-history
+// 类: common_ngram_map
+// 描述: common_ngram_map类提供相关功能
+// 用途: 用于处理common_ngram_map相关的操作
+// 类: common_ngram_map
+// 描述: common_ngram_map类提供相关功能
+// 用途: 用于处理common_ngram_map相关的操作
+    // 结构体: common_ngram_map
+    // 描述: common_ngram_map结构体提供相关功能
+    // 用途: 用于处理common_ngram_map相关的操作
+    // 结构体: common_ngram_map
+    // 描述: common_ngram_map结构体提供相关功能
+    // 用途: 用于处理common_ngram_map相关的操作
+    // 结构体: common_ngram_map
+    // 描述: common_ngram_map结构体提供相关功能
+    // 用途: 用于处理common_ngram_map相关的操作
+    // 结构体: common_ngram_map
+    // 描述: common_ngram_map结构体提供相关功能
+    // 用途: 用于处理common_ngram_map相关的操作
 struct common_ngram_map {
     uint16_t size_key;   // size of key n-grams
     uint16_t size_value; // size of value m-grams
@@ -112,4 +184,12 @@ void common_ngram_map_draft(
     llama_tokens & draft);
 
 // Update the statistics of a value after a draft was processed.
+// 函数: common_ngram_map_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_map_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_ngram_map_accept(common_ngram_map & map, uint16_t n_accepted);

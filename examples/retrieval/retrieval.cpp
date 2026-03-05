@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: retrieval.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/retrieval/retrieval.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "log.h"
@@ -7,12 +14,38 @@
 #include <fstream>
 #include <iostream> // TODO: remove me
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int, char ** argv) {
     LOG("\nexample usage:\n");
     LOG("\n    %s --model ./models/bge-base-en-v1.5-f16.gguf --top-k 3 --context-file README.md --context-file License --chunk-size 100 --chunk-separator .\n", argv[0]);
     LOG("\n");
 }
 
+// 类: chunk
+// 描述: chunk类提供相关功能
+// 用途: 用于处理chunk相关的操作
+// 类: chunk
+// 描述: chunk类提供相关功能
+// 用途: 用于处理chunk相关的操作
+    // 结构体: chunk
+    // 描述: chunk结构体提供相关功能
+    // 用途: 用于处理chunk相关的操作
+    // 结构体: chunk
+    // 描述: chunk结构体提供相关功能
+    // 用途: 用于处理chunk相关的操作
+    // 结构体: chunk
+    // 描述: chunk结构体提供相关功能
+    // 用途: 用于处理chunk相关的操作
+    // 结构体: chunk
+    // 描述: chunk结构体提供相关功能
+    // 用途: 用于处理chunk相关的操作
 struct chunk {
     // filename
     std::string filename;
@@ -30,6 +63,14 @@ struct chunk {
 // chunk_separator is the separator between chunks
 static std::vector<chunk> chunk_file(const std::string & filename, int chunk_size, const std::string & chunk_separator) {
     std::vector<chunk> chunks;
+    // 函数: f
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: f
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ifstream f(filename.c_str());
 
     if (!f.is_open()) {
@@ -74,6 +115,14 @@ static std::vector<chunk> chunk_file(const std::string & filename, int chunk_siz
     return chunks;
 }
 
+// 函数: batch_add_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: batch_add_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void batch_add_seq(llama_batch & batch, const std::vector<int32_t> & tokens, llama_seq_id seq_id) {
     size_t n_tokens = tokens.size();
     for (size_t i = 0; i < n_tokens; i++) {
@@ -81,6 +130,14 @@ static void batch_add_seq(llama_batch & batch, const std::vector<int32_t> & toke
     }
 }
 
+// 函数: batch_process
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: batch_process
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void batch_process(llama_context * ctx, llama_batch & batch, float * output, int n_seq, int n_embd) {
     // clear previous kv_cache values (irrelevant for embeddings)
     llama_memory_clear(llama_get_memory(ctx), false);
@@ -111,6 +168,14 @@ static void batch_process(llama_context * ctx, llama_batch & batch, float * outp
     }
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -214,6 +279,24 @@ int main(int argc, char ** argv) {
 
     // initialize batch
     const int n_chunks = chunks.size();
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
     struct llama_batch batch = llama_batch_init(n_batch, 0, 1);
 
     // allocate output
@@ -255,6 +338,24 @@ int main(int argc, char ** argv) {
         chunks[i].tokens.clear();
     }
 
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
     struct llama_batch query_batch = llama_batch_init(n_batch, 0, 1);
 
     // start loop, receive query and return top k similar chunks based on cosine similarity

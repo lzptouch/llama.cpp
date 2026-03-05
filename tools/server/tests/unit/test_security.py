@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_security.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_security.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from openai import OpenAI
 from utils import *
@@ -7,6 +14,14 @@ server = ServerPreset.tinyllama2()
 TEST_API_KEY = "sk-this-is-the-secret-key"
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -14,6 +29,14 @@ def create_server():
 
 
 @pytest.mark.parametrize("endpoint", ["/health", "/models"])
+    # 函数: test_access_public_endpoint
+    # 描述: test_access_public_endpoint函数提供相关功能
+    # 参数: endpoint: str
+    # 返回: 无返回值
+    # 函数: test_access_public_endpoint
+    # 描述: test_access_public_endpoint函数提供相关功能
+    # 参数: endpoint: str
+    # 返回: 无返回值
 def test_access_public_endpoint(endpoint: str):
     global server
     server.start()
@@ -23,6 +46,14 @@ def test_access_public_endpoint(endpoint: str):
 
 
 @pytest.mark.parametrize("api_key", [None, "invalid-key"])
+    # 函数: test_incorrect_api_key
+    # 描述: test_incorrect_api_key函数提供相关功能
+    # 参数: api_key: str
+    # 返回: 无返回值
+    # 函数: test_incorrect_api_key
+    # 描述: test_incorrect_api_key函数提供相关功能
+    # 参数: api_key: str
+    # 返回: 无返回值
 def test_incorrect_api_key(api_key: str):
     global server
     server.start()
@@ -36,6 +67,14 @@ def test_incorrect_api_key(api_key: str):
     assert res.body["error"]["type"] == "authentication_error"
 
 
+    # 函数: test_correct_api_key
+    # 描述: test_correct_api_key函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_correct_api_key
+    # 描述: test_correct_api_key函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_correct_api_key():
     global server
     server.start()
@@ -49,6 +88,14 @@ def test_correct_api_key():
     assert "content" in res.body
 
 
+    # 函数: test_correct_api_key_anthropic_header
+    # 描述: test_correct_api_key_anthropic_header函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_correct_api_key_anthropic_header
+    # 描述: test_correct_api_key_anthropic_header函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_correct_api_key_anthropic_header():
     global server
     server.start()
@@ -62,6 +109,14 @@ def test_correct_api_key_anthropic_header():
     assert "content" in res.body
 
 
+    # 函数: test_openai_library_correct_api_key
+    # 描述: test_openai_library_correct_api_key函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_openai_library_correct_api_key
+    # 描述: test_openai_library_correct_api_key函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_openai_library_correct_api_key():
     global server
     server.start()
@@ -83,6 +138,14 @@ def test_openai_library_correct_api_key():
     ("web.mydomain.fr", "Access-Control-Allow-Methods", "GET, POST"),
     ("web.mydomain.fr", "Access-Control-Allow-Headers", "*"),
 ])
+    # 函数: test_cors_options
+    # 描述: test_cors_options函数提供相关功能
+    # 参数: origin: str, cors_header: str, cors_header_value: str
+    # 返回: 无返回值
+    # 函数: test_cors_options
+    # 描述: test_cors_options函数提供相关功能
+    # 参数: origin: str, cors_header: str, cors_header_value: str
+    # 返回: 无返回值
 def test_cors_options(origin: str, cors_header: str, cors_header_value: str):
     global server
     server.start()
@@ -106,6 +169,14 @@ def test_cors_options(origin: str, cors_header: str, cors_header_value: str):
         ("../../../tools", "file://../mtmd/test-1.jpeg", False), # no directory traversal
     ]
 )
+    # 函数: test_local_media_file
+    # 描述: test_local_media_file函数提供相关功能
+    # 参数: media_path, image_url, success,
+    # 返回: 无返回值
+    # 函数: test_local_media_file
+    # 描述: test_local_media_file函数提供相关功能
+    # 参数: media_path, image_url, success,
+    # 返回: 无返回值
 def test_local_media_file(media_path, image_url, success,):
     server = ServerPreset.tinygemma3()
     server.media_path = media_path

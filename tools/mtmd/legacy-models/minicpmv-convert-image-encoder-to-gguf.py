@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: minicpmv-convert-image-encoder-to-gguf.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/legacy-models/minicpmv-convert-image-encoder-to-gguf.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 # coding=utf-8
 # Copyright 2024 Google AI and The HuggingFace Team. All rights reserved.
 #
@@ -36,6 +43,12 @@ from transformers.utils import logging
 
 logger = logging.get_logger(__name__)
 
+    # 类: SiglipVisionConfig
+    # 描述: SiglipVisionConfig类提供相关功能
+    # 用途: 用于处理SiglipVisionConfig相关的操作
+    # 类: SiglipVisionConfig
+    # 描述: SiglipVisionConfig类提供相关功能
+    # 用途: 用于处理SiglipVisionConfig相关的操作
 class SiglipVisionConfig(PretrainedConfig):
     r"""
     This is the configuration class to store the configuration of a [`SiglipVisionModel`]. It is used to instantiate a
@@ -79,6 +92,14 @@ class SiglipVisionConfig(PretrainedConfig):
 
     model_type = "siglip_vision_model"
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(
         self,
         hidden_size=768,
@@ -114,6 +135,14 @@ SIGLIP_PRETRAINED_MODEL_ARCHIVE_LIST = [
 ]
 
 # Copied from transformers.models.llama.modeling_llama._get_unpad_data
+    # 函数: _get_unpad_data
+    # 描述: _get_unpad_data函数提供相关功能
+    # 参数: attention_mask
+    # 返回: 无返回值
+    # 函数: _get_unpad_data
+    # 描述: _get_unpad_data函数提供相关功能
+    # 参数: attention_mask
+    # 返回: 无返回值
 def _get_unpad_data(attention_mask):
     seqlens_in_batch = attention_mask.sum(dim=-1, dtype=torch.int32)
     indices = torch.nonzero(attention_mask.flatten(), as_tuple=False).flatten()
@@ -126,9 +155,25 @@ def _get_unpad_data(attention_mask):
     )
 
 
+    # 函数: _trunc_normal_
+    # 描述: _trunc_normal_函数提供相关功能
+    # 参数: tensor, mean, std, a, b
+    # 返回: 无返回值
+    # 函数: _trunc_normal_
+    # 描述: _trunc_normal_函数提供相关功能
+    # 参数: tensor, mean, std, a, b
+    # 返回: 无返回值
 def _trunc_normal_(tensor, mean, std, a, b):
     # Cut & paste from PyTorch official master until it's in a few official releases - RW
     # Method based on https://people.sc.fsu.edu/~jburkardt/presentations/truncated_normal.pdf
+    # 函数: norm_cdf
+    # 描述: norm_cdf函数提供相关功能
+    # 参数: x
+    # 返回: 有返回值
+    # 函数: norm_cdf
+    # 描述: norm_cdf函数提供相关功能
+    # 参数: x
+    # 返回: 有返回值
     def norm_cdf(x):
         # Computes standard normal cumulative distribution function
         return (1.0 + math.erf(x / math.sqrt(2.0))) / 2.0
@@ -175,6 +220,14 @@ def _trunc_normal_(tensor, mean, std, a, b):
         tensor.clamp_(min=a, max=b)
 
 
+    # 函数: trunc_normal_tf_
+    # 描述: trunc_normal_tf_函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: trunc_normal_tf_
+    # 描述: trunc_normal_tf_函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def trunc_normal_tf_(
     tensor: torch.Tensor, mean: float = 0.0, std: float = 1.0, a: float = -2.0, b: float = 2.0
 ):
@@ -199,6 +252,14 @@ def trunc_normal_tf_(
         tensor.mul_(std).add_(mean)
 
 
+    # 函数: variance_scaling_
+    # 描述: variance_scaling_函数提供相关功能
+    # 参数: tensor, scale=1.0, mode="fan_in", distribution="normal"
+    # 返回: 无返回值
+    # 函数: variance_scaling_
+    # 描述: variance_scaling_函数提供相关功能
+    # 参数: tensor, scale=1.0, mode="fan_in", distribution="normal"
+    # 返回: 无返回值
 def variance_scaling_(tensor, scale=1.0, mode="fan_in", distribution="normal"):
     fan_in, fan_out = _calculate_fan_in_and_fan_out(tensor)
     denom = fan_in
@@ -225,14 +286,44 @@ def variance_scaling_(tensor, scale=1.0, mode="fan_in", distribution="normal"):
         raise ValueError(f"invalid distribution {distribution}")
 
 
+    # 函数: lecun_normal_
+    # 描述: lecun_normal_函数提供相关功能
+    # 参数: tensor
+    # 返回: 无返回值
+    # 函数: lecun_normal_
+    # 描述: lecun_normal_函数提供相关功能
+    # 参数: tensor
+    # 返回: 无返回值
 def lecun_normal_(tensor):
     variance_scaling_(tensor, mode="fan_in", distribution="truncated_normal")
 
 
+    # 函数: default_flax_embed_init
+    # 描述: default_flax_embed_init函数提供相关功能
+    # 参数: tensor
+    # 返回: 无返回值
+    # 函数: default_flax_embed_init
+    # 描述: default_flax_embed_init函数提供相关功能
+    # 参数: tensor
+    # 返回: 无返回值
 def default_flax_embed_init(tensor):
     variance_scaling_(tensor, mode="fan_in", distribution="normal")
 
+    # 类: SiglipVisionEmbeddings
+    # 描述: SiglipVisionEmbeddings类提供相关功能
+    # 用途: 用于处理SiglipVisionEmbeddings相关的操作
+    # 类: SiglipVisionEmbeddings
+    # 描述: SiglipVisionEmbeddings类提供相关功能
+    # 用途: 用于处理SiglipVisionEmbeddings相关的操作
 class SiglipVisionEmbeddings(nn.Module):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
     def __init__(self, config: SiglipVisionConfig):
         super().__init__()
         self.config = config
@@ -253,10 +344,24 @@ class SiglipVisionEmbeddings(nn.Module):
         self.num_positions = self.num_patches
         self.position_embedding = nn.Embedding(self.num_positions, self.embed_dim)
 
+    # 类: SiglipAttention
+    # 描述: SiglipAttention类提供相关功能
+    # 用途: 用于处理SiglipAttention相关的操作
+    # 类: SiglipAttention
+    # 描述: SiglipAttention类提供相关功能
+    # 用途: 用于处理SiglipAttention相关的操作
 class SiglipAttention(nn.Module):
     """Multi-headed attention from 'Attention Is All You Need' paper"""
 
     # Copied from transformers.models.clip.modeling_clip.CLIPAttention.__init__
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config
+    # 返回: 无返回值
     def __init__(self, config):
         super().__init__()
         self.config = config
@@ -277,7 +382,21 @@ class SiglipAttention(nn.Module):
         self.out_proj = nn.Linear(self.embed_dim, self.embed_dim)
 
 # Copied from transformers.models.clip.modeling_clip.CLIPMLP with CLIP->Siglip
+    # 类: SiglipMLP
+    # 描述: SiglipMLP类提供相关功能
+    # 用途: 用于处理SiglipMLP相关的操作
+    # 类: SiglipMLP
+    # 描述: SiglipMLP类提供相关功能
+    # 用途: 用于处理SiglipMLP相关的操作
 class SiglipMLP(nn.Module):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config
+    # 返回: 无返回值
     def __init__(self, config):
         super().__init__()
         self.config = config
@@ -287,7 +406,21 @@ class SiglipMLP(nn.Module):
 
 
 # Copied from transformers.models.clip.modeling_clip.CLIPEncoderLayer with CLIP->Siglip
+    # 类: SiglipEncoderLayer
+    # 描述: SiglipEncoderLayer类提供相关功能
+    # 用途: 用于处理SiglipEncoderLayer相关的操作
+    # 类: SiglipEncoderLayer
+    # 描述: SiglipEncoderLayer类提供相关功能
+    # 用途: 用于处理SiglipEncoderLayer相关的操作
 class SiglipEncoderLayer(nn.Module):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
     def __init__(self, config: SiglipVisionConfig):
         super().__init__()
         self.embed_dim = config.hidden_size
@@ -299,6 +432,12 @@ class SiglipEncoderLayer(nn.Module):
         self.mlp = SiglipMLP(config)
         self.layer_norm2 = nn.LayerNorm(self.embed_dim, eps=config.layer_norm_eps)
 
+    # 类: SiglipPreTrainedModel
+    # 描述: SiglipPreTrainedModel类提供相关功能
+    # 用途: 用于处理SiglipPreTrainedModel相关的操作
+    # 类: SiglipPreTrainedModel
+    # 描述: SiglipPreTrainedModel类提供相关功能
+    # 用途: 用于处理SiglipPreTrainedModel相关的操作
 class SiglipPreTrainedModel(PreTrainedModel):
     """
     An abstract class to handle weights initialization and a simple interface for downloading and loading pretrained
@@ -309,6 +448,14 @@ class SiglipPreTrainedModel(PreTrainedModel):
     base_model_prefix = "siglip"
     supports_gradient_checkpointing = True
 
+    # 函数: _init_weights
+    # 描述: _init_weights函数提供相关功能
+    # 参数: self, module
+    # 返回: 无返回值
+    # 函数: _init_weights
+    # 描述: _init_weights函数提供相关功能
+    # 参数: self, module
+    # 返回: 无返回值
     def _init_weights(self, module):
         """Initialize the weights"""
 
@@ -371,6 +518,12 @@ SIGLIP_VISION_INPUTS_DOCSTRING = r"""
 
 
 # Copied from transformers.models.clip.modeling_clip.CLIPEncoder with CLIP->Siglip
+    # 类: SiglipEncoder
+    # 描述: SiglipEncoder类提供相关功能
+    # 用途: 用于处理SiglipEncoder相关的操作
+    # 类: SiglipEncoder
+    # 描述: SiglipEncoder类提供相关功能
+    # 用途: 用于处理SiglipEncoder相关的操作
 class SiglipEncoder(nn.Module):
     """
     Transformer encoder consisting of `config.num_hidden_layers` self attention layers. Each layer is a
@@ -379,17 +532,39 @@ class SiglipEncoder(nn.Module):
         config: SiglipConfig
     """
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
     def __init__(self, config: SiglipVisionConfig):
         super().__init__()
         self.config = config
         self.layers = nn.ModuleList([SiglipEncoderLayer(config) for _ in range(config.num_hidden_layers)])
         self.gradient_checkpointing = False
 
+    # 类: SiglipVisionTransformer
+    # 描述: SiglipVisionTransformer类提供相关功能
+    # 用途: 用于处理SiglipVisionTransformer相关的操作
+    # 类: SiglipVisionTransformer
+    # 描述: SiglipVisionTransformer类提供相关功能
+    # 用途: 用于处理SiglipVisionTransformer相关的操作
 class SiglipVisionTransformer(SiglipPreTrainedModel):
     config_class = SiglipVisionConfig
     main_input_name = "pixel_values"
     _supports_flash_attn_2 = True
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, config: SiglipVisionConfig
+    # 返回: 无返回值
     def __init__(self, config: SiglipVisionConfig):
         super().__init__(config)
         self.config = config
@@ -403,6 +578,14 @@ class SiglipVisionTransformer(SiglipPreTrainedModel):
         # Initialize weights and apply final processing
         self.post_init()
 
+    # 函数: get_input_embeddings
+    # 描述: get_input_embeddings函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: get_input_embeddings
+    # 描述: get_input_embeddings函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def get_input_embeddings(self) -> nn.Module:
         return self.embeddings.patch_embedding
 
@@ -419,10 +602,26 @@ TEXT = "clip.text"
 VISION = "clip.vision"
 
 
+    # 函数: add_key_str
+    # 描述: add_key_str函数提供相关功能
+    # 参数: raw_key: str, arch: str
+    # 返回: 有返回值
+    # 函数: add_key_str
+    # 描述: add_key_str函数提供相关功能
+    # 参数: raw_key: str, arch: str
+    # 返回: 有返回值
 def add_key_str(raw_key: str, arch: str) -> str:
     return raw_key.format(arch=arch)
 
 
+    # 函数: should_skip_tensor
+    # 描述: should_skip_tensor函数提供相关功能
+    # 参数: name: str, has_text: bool, has_vision: bool, has_minicpmv: bool
+    # 返回: 无返回值
+    # 函数: should_skip_tensor
+    # 描述: should_skip_tensor函数提供相关功能
+    # 参数: name: str, has_text: bool, has_vision: bool, has_minicpmv: bool
+    # 返回: 无返回值
 def should_skip_tensor(name: str, has_text: bool, has_vision: bool, has_minicpmv: bool) -> bool:
     if name in (
         "logit_scale",
@@ -443,6 +642,14 @@ def should_skip_tensor(name: str, has_text: bool, has_vision: bool, has_minicpmv
     return False
 
 
+    # 函数: get_tensor_name
+    # 描述: get_tensor_name函数提供相关功能
+    # 参数: name: str
+    # 返回: 有返回值
+    # 函数: get_tensor_name
+    # 描述: get_tensor_name函数提供相关功能
+    # 参数: name: str
+    # 返回: 有返回值
 def get_tensor_name(name: str) -> str:
     if "projection" in name:
         return name
@@ -455,6 +662,14 @@ def get_tensor_name(name: str) -> str:
     return name.replace("text_model", "t").replace("vision_model", "v").replace("encoder.layers", "blk").replace("embeddings.", "").replace("_proj", "").replace("self_attn.", "attn_").replace("layer_norm", "ln").replace("layernorm", "ln").replace("mlp.fc1", "ffn_down").replace("mlp.fc2", "ffn_up").replace("embedding", "embd").replace("final", "post").replace("layrnorm", "ln")
 
 
+    # 函数: bytes_to_unicode
+    # 描述: bytes_to_unicode函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: bytes_to_unicode
+    # 描述: bytes_to_unicode函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def bytes_to_unicode():
     """
     Returns list of utf-8 byte and a corresponding list of unicode strings.
@@ -726,6 +941,14 @@ if has_vision_encoder:
 use_gelu = True
 fout.add_bool("clip.use_gelu", use_gelu)
 
+    # 函数: get_1d_sincos_pos_embed_from_grid
+    # 描述: get_1d_sincos_pos_embed_from_grid函数提供相关功能
+    # 参数: embed_dim, pos
+    # 返回: 无返回值
+    # 函数: get_1d_sincos_pos_embed_from_grid
+    # 描述: get_1d_sincos_pos_embed_from_grid函数提供相关功能
+    # 参数: embed_dim, pos
+    # 返回: 无返回值
 def get_1d_sincos_pos_embed_from_grid(embed_dim, pos):
     """
     embed_dim: output dimension for each position
@@ -746,6 +969,14 @@ def get_1d_sincos_pos_embed_from_grid(embed_dim, pos):
     emb = np.concatenate([emb_sin, emb_cos], axis=1)  # (M, D)
     return emb
 
+    # 函数: get_2d_sincos_pos_embed_from_grid
+    # 描述: get_2d_sincos_pos_embed_from_grid函数提供相关功能
+    # 参数: embed_dim, grid
+    # 返回: 无返回值
+    # 函数: get_2d_sincos_pos_embed_from_grid
+    # 描述: get_2d_sincos_pos_embed_from_grid函数提供相关功能
+    # 参数: embed_dim, grid
+    # 返回: 无返回值
 def get_2d_sincos_pos_embed_from_grid(embed_dim, grid):
     assert embed_dim % 2 == 0
 
@@ -758,6 +989,14 @@ def get_2d_sincos_pos_embed_from_grid(embed_dim, grid):
 
 
 # https://github.com/facebookresearch/mae/blob/efb2a8062c206524e35e47d04501ed4f544c0ae8/util/pos_embed.py#L20
+    # 函数: get_2d_sincos_pos_embed
+    # 描述: get_2d_sincos_pos_embed函数提供相关功能
+    # 参数: embed_dim, grid_size, cls_token=False
+    # 返回: 有返回值
+    # 函数: get_2d_sincos_pos_embed
+    # 描述: get_2d_sincos_pos_embed函数提供相关功能
+    # 参数: embed_dim, grid_size, cls_token=False
+    # 返回: 有返回值
 def get_2d_sincos_pos_embed(embed_dim, grid_size, cls_token=False):
     """
     grid_size: int of the grid height and width
@@ -780,6 +1019,14 @@ def get_2d_sincos_pos_embed(embed_dim, grid_size, cls_token=False):
         pos_embed = np.concatenate([np.zeros([1, embed_dim]), pos_embed], axis=0)
     return pos_embed
 
+    # 函数: _replace_name_resampler
+    # 描述: _replace_name_resampler函数提供相关功能
+    # 参数: s, v
+    # 返回: 有返回值
+    # 函数: _replace_name_resampler
+    # 描述: _replace_name_resampler函数提供相关功能
+    # 参数: s, v
+    # 返回: 有返回值
 def _replace_name_resampler(s, v):
     if re.match("resampler.pos_embed", s):
         return {
@@ -833,6 +1080,14 @@ if has_minicpmv_projector:
 
     print("Projector tensors added\n")
 
+    # 函数: _replace_name
+    # 描述: _replace_name函数提供相关功能
+    # 参数: s, v
+    # 返回: 有返回值
+    # 函数: _replace_name
+    # 描述: _replace_name函数提供相关功能
+    # 参数: s, v
+    # 返回: 有返回值
 def _replace_name(s, v):
     s = "vision_model." + s
     if re.match("vision_model.embeddings.position_embedding", s):

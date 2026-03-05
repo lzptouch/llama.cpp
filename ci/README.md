@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: README.md
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ci/README.md
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 # CI
 
 This CI implements heavy-duty workflows that run on self-hosted runners. Typically the purpose of these workflows is to

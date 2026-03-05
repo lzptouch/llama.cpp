@@ -5,6 +5,24 @@
 #include <vector>
 
 // TODO: reimplement this structure in endian-independent way
+// 类: unicode_cpt_flags
+// 描述: unicode_cpt_flags类提供相关功能
+// 用途: 用于处理unicode_cpt_flags相关的操作
+// 类: unicode_cpt_flags
+// 描述: unicode_cpt_flags类提供相关功能
+// 用途: 用于处理unicode_cpt_flags相关的操作
+    // 结构体: unicode_cpt_flags
+    // 描述: unicode_cpt_flags结构体提供相关功能
+    // 用途: 用于处理unicode_cpt_flags相关的操作
+    // 结构体: unicode_cpt_flags
+    // 描述: unicode_cpt_flags结构体提供相关功能
+    // 用途: 用于处理unicode_cpt_flags相关的操作
+    // 结构体: unicode_cpt_flags
+    // 描述: unicode_cpt_flags结构体提供相关功能
+    // 用途: 用于处理unicode_cpt_flags相关的操作
+    // 结构体: unicode_cpt_flags
+    // 描述: unicode_cpt_flags结构体提供相关功能
+    // 用途: 用于处理unicode_cpt_flags相关的操作
 struct unicode_cpt_flags {
     enum {
         UNDEFINED       = 0x0001,
@@ -38,6 +56,14 @@ struct unicode_cpt_flags {
     uint16_t is_nfd         : 1;
 
     // decode from uint16
+    // 函数: unicode_cpt_flags
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unicode_cpt_flags
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline unicode_cpt_flags(const uint16_t flags = 0) {
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
         *reinterpret_cast<uint16_t*>(this) = flags;
@@ -59,6 +85,14 @@ struct unicode_cpt_flags {
 #endif
     }
 
+    // 函数: as_uint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: as_uint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline uint16_t as_uint() const {
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
         return *reinterpret_cast<const uint16_t*>(this);
@@ -84,28 +118,108 @@ struct unicode_cpt_flags {
 #endif
     }
 
+    // 函数: category_flag
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: category_flag
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline uint16_t category_flag() const {
         return this->as_uint() & MASK_CATEGORIES;
     }
 };
 
+// 函数: unicode_len_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_len_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t unicode_len_utf8(char src);
 
+// 函数: unicode_cpt_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string unicode_cpt_to_utf8  (uint32_t cpt);
+// 函数: unicode_cpt_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t    unicode_cpt_from_utf8(const std::string & utf8, size_t & offset);
 
 std::vector<uint32_t> unicode_cpts_from_utf8(const std::string & utf8);
 
 std::vector<uint32_t> unicode_cpts_normalize_nfd(const std::vector<uint32_t> & cpts);
 
+// 函数: unicode_cpt_flags_from_cpt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_flags_from_cpt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 unicode_cpt_flags unicode_cpt_flags_from_cpt (uint32_t cpt);
+// 函数: unicode_cpt_flags_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_flags_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 unicode_cpt_flags unicode_cpt_flags_from_utf8(const std::string & utf8);
 
+// 函数: unicode_byte_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_byte_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string unicode_byte_to_utf8(uint8_t byte);
+// 函数: unicode_utf8_to_byte
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_utf8_to_byte
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint8_t     unicode_utf8_to_byte(const std::string & utf8);
 
+// 函数: unicode_tolower
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_tolower
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t unicode_tolower(uint32_t cpt);
 
+// 函数: unicode_cpt_is_han
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_is_han
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool unicode_cpt_is_han(uint32_t cpt);
 
 std::vector<std::string> unicode_regex_split(const std::string & text, const std::vector<std::string> & regex_exprs);

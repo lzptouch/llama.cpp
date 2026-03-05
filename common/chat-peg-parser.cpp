@@ -1,9 +1,24 @@
+// ============================================================================
+// 文件: chat-peg-parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/chat-peg-parser.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "chat-peg-parser.h"
 
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
+// 函数: trim_trailing_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: trim_trailing_space
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string_view trim_trailing_space(std::string_view sv, int max = -1) {
     int count = 0;
     while (!sv.empty() && std::isspace(static_cast<unsigned char>(sv.back()))) {

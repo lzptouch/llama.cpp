@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mtmd-cli.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/mtmd-cli.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "arg.h"
 #include "debug.h"
 #include "log.h"
@@ -36,6 +43,14 @@ static volatile bool g_is_interrupted = false;
  * For contributors: please keep this code simple and easy to understand.
  */
 
+// 函数: show_additional_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: show_additional_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void show_additional_info(int /*argc*/, char ** argv) {
     LOG(
         "Experimental CLI for multimodal\n\n"
@@ -49,6 +64,14 @@ static void show_additional_info(int /*argc*/, char ** argv) {
 }
 
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
+// 函数: sigint_handler
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sigint_handler
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void sigint_handler(int signo) {
     if (signo == SIGINT) {
         if (g_is_generating) {
@@ -64,6 +87,30 @@ static void sigint_handler(int signo) {
 }
 #endif
 
+// 类: mtmd_cli_context
+// 描述: mtmd_cli_context类提供相关功能
+// 用途: 用于处理mtmd_cli_context相关的操作
+// 类: mtmd_cli_context
+// 描述: mtmd_cli_context类提供相关功能
+// 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
+    // 结构体: mtmd_cli_context
+    // 描述: mtmd_cli_context结构体提供相关功能
+    // 用途: 用于处理mtmd_cli_context相关的操作
 struct mtmd_cli_context {
     mtmd::context_ptr ctx_vision;
     common_init_result_ptr llama_init;
@@ -132,6 +179,14 @@ struct mtmd_cli_context {
         common_sampler_free(smpl);
     }
 
+    // 函数: init_vision_context
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_vision_context
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_vision_context(common_params & params) {
         const char * clip_path = params.mmproj.path.c_str();
         mtmd_context_params mparams = mtmd_context_params_default();
@@ -153,6 +208,14 @@ struct mtmd_cli_context {
         }
     }
 
+    // 函数: check_antiprompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_antiprompt
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool check_antiprompt(const llama_tokens & generated_tokens) {
         if (antiprompt_tokens.empty() || generated_tokens.size() < antiprompt_tokens.size()) {
             return false;
@@ -164,6 +227,14 @@ struct mtmd_cli_context {
         );
     }
 
+    // 函数: load_media
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_media
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load_media(const std::string & fname) {
         mtmd::bitmap bmp(mtmd_helper_bitmap_init_from_file(ctx_vision.get(), fname.c_str()));
         if (!bmp.ptr) {
@@ -174,6 +245,14 @@ struct mtmd_cli_context {
     }
 };
 
+// 函数: generate_response
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: generate_response
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
 static int generate_response(mtmd_cli_context & ctx, int n_predict) {
     llama_tokens generated_tokens;
     for (int i = 0; i < n_predict; i++) {
@@ -217,6 +296,14 @@ static int generate_response(mtmd_cli_context & ctx, int n_predict) {
     return 0;
 }
 
+// 函数: chat_add_and_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: chat_add_and_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string chat_add_and_format(mtmd_cli_context & ctx, common_chat_msg & new_msg) {
     LOG_DBG("chat_add_and_format: new_msg.role='%s', new_msg.content='%s'\n",
         new_msg.role.c_str(), new_msg.content.c_str());
@@ -227,6 +314,14 @@ static std::string chat_add_and_format(mtmd_cli_context & ctx, common_chat_msg &
     return formatted;
 }
 
+// 函数: eval_message
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: eval_message
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int eval_message(mtmd_cli_context & ctx, common_chat_msg & msg) {
     bool add_bos = ctx.chat_history.empty();
     auto formatted_chat = chat_add_and_format(ctx, msg);
@@ -273,6 +368,14 @@ static int eval_message(mtmd_cli_context & ctx, common_chat_msg & msg) {
     return 0;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     ggml_time_init();
 
@@ -301,6 +404,30 @@ int main(int argc, char ** argv) {
     // Ctrl+C handling
     {
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+        // 类: sigaction
+        // 描述: sigaction类提供相关功能
+        // 用途: 用于处理sigaction相关的操作
+        // 类: sigaction
+        // 描述: sigaction类提供相关功能
+        // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
         struct sigaction sigint_action;
         sigint_action.sa_handler = sigint_handler;
         sigemptyset (&sigint_action.sa_mask);

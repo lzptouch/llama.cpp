@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: pad_reflect_1d.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/pad_reflect_1d.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "pad_reflect_1d.hpp"
 
 static void pad_reflect_1d_kernel_f32(
@@ -71,8 +78,24 @@ void ggml_sycl_op_pad_reflect_1d(ggml_backend_sycl_context &ctx,
 
     constexpr int64_t bx = SYCL_PAD_REFLECT_1D_BLOCK_SIZE;
     const int64_t tiles0 = (ne0 + bx - 1) / bx;
+    // 函数: grid_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: grid_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const dpct::dim3 grid_dims((unsigned)(ne01 * tiles0), (unsigned)ne02,
                                (unsigned)ne03);
+    // 函数: block_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: block_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const dpct::dim3 block_dims((unsigned)bx, 1, 1);
 
     stream->submit([&](sycl::handler &cgh) {

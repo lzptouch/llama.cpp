@@ -1,5 +1,20 @@
+// ============================================================================
+// 文件: ggml-backend-device.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/ggml-backend-device.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-remoting.h"
 
+// 函数: ggml_backend_remoting_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_remoting_device_get_name(ggml_backend_dev_t dev) {
     virtgpu * gpu = DEV_TO_GPU(dev);
 
@@ -7,6 +22,14 @@ static const char * ggml_backend_remoting_device_get_name(ggml_backend_dev_t dev
     return gpu->cached_device_info.name;
 }
 
+// 函数: ggml_backend_remoting_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_remoting_device_get_description(ggml_backend_dev_t dev) {
     virtgpu * gpu = DEV_TO_GPU(dev);
 
@@ -20,6 +43,14 @@ static enum ggml_backend_dev_type ggml_backend_remoting_device_get_type(ggml_bac
     return (enum ggml_backend_dev_type) gpu->cached_device_info.type;
 }
 
+// 函数: ggml_backend_remoting_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_remoting_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     virtgpu * gpu = DEV_TO_GPU(dev);
 
@@ -27,6 +58,14 @@ static void ggml_backend_remoting_device_get_memory(ggml_backend_dev_t dev, size
     *total = gpu->cached_device_info.memory_total;
 }
 
+// 函数: ggml_backend_remoting_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_remoting_device_supports_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
 #if USE_ALWAYS_TRUE_SUPPORTS_OP == 1
     /* ggml-rpc cheats it like this */
@@ -42,12 +81,28 @@ static bool ggml_backend_remoting_device_supports_op(ggml_backend_dev_t dev, con
 #endif
 }
 
+// 函数: ggml_backend_remoting_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_remoting_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     bool supported = buft->device == dev;
 
     return supported;
 }
 
+// 函数: ggml_backend_remoting_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_remoting_device_offload_op(ggml_backend_dev_t dev, const ggml_tensor * op) {
     UNUSED(dev);
     UNUSED(op);
@@ -55,6 +110,14 @@ static bool ggml_backend_remoting_device_offload_op(ggml_backend_dev_t dev, cons
     return false;
 }
 
+// 函数: ggml_backend_remoting_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_remoting_device_get_props(ggml_backend_dev_t dev, ggml_backend_dev_props * props) {
     props->name        = ggml_backend_remoting_device_get_name(dev);
     props->description = ggml_backend_remoting_device_get_description(dev);
@@ -70,6 +133,14 @@ static void ggml_backend_remoting_device_get_props(ggml_backend_dev_t dev, ggml_
     props->caps.events               = false;
 }
 
+// 函数: ggml_backend_remoting_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_remoting_device_get_buffer_type(ggml_backend_dev_t dev) {
     virtgpu * gpu = DEV_TO_GPU(dev);
 
@@ -93,6 +164,14 @@ ggml_backend_buffer_type_t ggml_backend_remoting_device_get_buffer_type(ggml_bac
     return &buft;
 }
 
+// 函数: ggml_backend_remoting_device_get_buffer_from_ptr_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_remoting_device_get_buffer_from_ptr_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_remoting_device_get_buffer_from_ptr_type(ggml_backend_dev_t dev) {
     virtgpu * gpu = DEV_TO_GPU(dev);
 

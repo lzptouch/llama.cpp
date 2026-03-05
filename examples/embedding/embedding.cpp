@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: embedding.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/embedding/embedding.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "log.h"
@@ -26,6 +33,14 @@ static std::vector<std::string> split_lines(const std::string & s, const std::st
     return lines;
 }
 
+// 函数: batch_add_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: batch_add_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void batch_add_seq(llama_batch & batch, const std::vector<int32_t> & tokens, llama_seq_id seq_id) {
     size_t n_tokens = tokens.size();
     for (size_t i = 0; i < n_tokens; i++) {
@@ -33,6 +48,14 @@ static void batch_add_seq(llama_batch & batch, const std::vector<int32_t> & toke
     }
 }
 
+// 函数: batch_decode
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: batch_decode
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static void batch_decode(llama_context * ctx, llama_batch & batch, float * output, int n_seq, int n_embd_out, int embd_norm) {
     const enum llama_pooling_type pooling_type = llama_pooling_type(ctx);
 
@@ -93,6 +116,14 @@ static void print_raw_embeddings(const float * emb,
     }
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -239,6 +270,24 @@ int main(int argc, char ** argv) {
 
     // initialize batch
     const int n_prompts = prompts.size();
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
     struct llama_batch batch = llama_batch_init(n_batch, 0, 1);
 
     // count number of embeddings

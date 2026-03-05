@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: quantize.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/quantize/quantize.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "common.h"
 #include "llama.h"
 #include "gguf.h"
@@ -14,6 +21,30 @@
 #include <algorithm>
 #include <filesystem>
 
+// 类: quant_option
+// 描述: quant_option类提供相关功能
+// 用途: 用于处理quant_option相关的操作
+// 类: quant_option
+// 描述: quant_option类提供相关功能
+// 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
+    // 结构体: quant_option
+    // 描述: quant_option结构体提供相关功能
+    // 用途: 用于处理quant_option相关的操作
 struct quant_option {
     std::string name;
     llama_ftype ftype;
@@ -62,6 +93,30 @@ static const std::vector<quant_option> QUANT_OPTIONS = {
 };
 
 // Quantization types. Changes to this struct must be replicated in llama-quantize.cpp
+// 类: tensor_quantization
+// 描述: tensor_quantization类提供相关功能
+// 用途: 用于处理tensor_quantization相关的操作
+// 类: tensor_quantization
+// 描述: tensor_quantization类提供相关功能
+// 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
+    // 结构体: tensor_quantization
+    // 描述: tensor_quantization结构体提供相关功能
+    // 用途: 用于处理tensor_quantization相关的操作
 struct tensor_quantization {
     std::string name;
     ggml_type quant = GGML_TYPE_COUNT;
@@ -77,6 +132,14 @@ static const char * const LLM_KV_IMATRIX_DATASETS    = "imatrix.datasets";
 static const char * const LLM_KV_IMATRIX_CHUNK_COUNT = "imatrix.chunk_count";
 static const char * const LLM_KV_IMATRIX_CHUNK_SIZE  = "imatrix.chunk_size";
 
+// 函数: striequals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: striequals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool striequals(const char * a, const char * b) {
     while (*a && *b) {
         if (std::tolower(*a) != std::tolower(*b)) {
@@ -87,6 +150,14 @@ static bool striequals(const char * a, const char * b) {
     return *a == *b;
 }
 
+// 函数: try_parse_ftype
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: try_parse_ftype
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool try_parse_ftype(const std::string & ftype_str_in, llama_ftype & ftype, std::string & ftype_str_out) {
     std::string ftype_str;
 
@@ -117,6 +188,14 @@ static bool try_parse_ftype(const std::string & ftype_str_in, llama_ftype & ftyp
 }
 
 [[noreturn]]
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void usage(const char * executable) {
     printf("usage: %s [--help] [--allow-requantize] [--leave-output-tensor] [--pure] [--imatrix] [--include-weights]\n", executable);
     printf("       [--exclude-weights] [--output-tensor-type] [--token-embedding-type] [--tensor-type] [--tensor-type-file]\n");
@@ -175,6 +254,14 @@ static void usage(const char * executable) {
     exit(1);
 }
 
+// 函数: load_legacy_imatrix
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: load_legacy_imatrix
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static int load_legacy_imatrix(const std::string & imatrix_file, std::vector<std::string> & imatrix_datasets, std::unordered_map<std::string, std::vector<float>> & imatrix_data) {
     std::ifstream in(imatrix_file.c_str(), std::ios::binary);
     if (!in) {
@@ -241,13 +328,93 @@ static int load_legacy_imatrix(const std::string & imatrix_file, std::vector<std
     return m_last_call;
 }
 
+// 函数: load_imatrix
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: load_imatrix
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static int load_imatrix(const std::string & imatrix_file, std::vector<std::string> & imatrix_datasets, std::unordered_map<std::string, std::vector<float>> & imatrix_data) {
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = nullptr;
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params meta_gguf_params = {
         /* .no_alloc = */ false, // the data is needed
         /* .ctx      = */ &ctx,
     };
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = gguf_init_from_file(imatrix_file.c_str(), meta_gguf_params);
     if (!ctx_gguf) {
         fprintf(stderr, "%s: imatrix file '%s' is using old format\n", __func__, imatrix_file.c_str());
@@ -397,6 +564,14 @@ static int prepare_imatrix(const std::string & imatrix_file,
     return m_last_call;
 }
 
+// 函数: parse_ggml_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_ggml_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_type parse_ggml_type(const char * arg) {
     for (int i = 0; i < GGML_TYPE_COUNT; ++i) {
         auto type = (ggml_type)i;
@@ -409,6 +584,14 @@ static ggml_type parse_ggml_type(const char * arg) {
     return GGML_TYPE_COUNT;
 }
 
+// 函数: parse_tensor_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_tensor_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool parse_tensor_type(const char * data, std::vector<tensor_quantization> & tensor_type) {
     const char * sep = strchr(data, '=');
     if (sep == nullptr) {
@@ -441,6 +624,14 @@ static bool parse_tensor_type(const char * data, std::vector<tensor_quantization
     return true;
 }
 
+// 函数: parse_tensor_type_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_tensor_type_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool parse_tensor_type_file(const char * filename, std::vector<tensor_quantization> & tensor_type) {
     std::ifstream file(filename);
     if (!file) {
@@ -458,6 +649,14 @@ static bool parse_tensor_type_file(const char * filename, std::vector<tensor_qua
     return true;
 }
 
+// 函数: parse_layer_prune
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_layer_prune
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool parse_layer_prune(const char * data, std::vector<int> & prune_layers) {
     if (!data) {
         printf("\n%s: no layer pruning ids provided\n\n", __func__);
@@ -484,6 +683,14 @@ static bool parse_layer_prune(const char * data, std::vector<int> & prune_layers
     return true;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     if (argc < 3) {
         usage(argv[0]);

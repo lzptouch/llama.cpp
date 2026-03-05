@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: hf-create-model.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/hf-create-model.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 from huggingface_hub import HfApi
@@ -7,6 +14,10 @@ import argparse
 # Hugging Face API token.
 api = HfApi()
 
+    # 函数: load_template_and_substitute
+    # 描述: load_template_and_substitute函数提供相关功能
+    # 参数: template_path, **kwargs
+    # 返回: 无返回值
 def load_template_and_substitute(template_path, **kwargs):
     try:
         with open(template_path, 'r', encoding='utf-8') as f:

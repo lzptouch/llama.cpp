@@ -1,3 +1,11 @@
+// ============================================================================
+// 文件: server.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server.cpp
+// 描述: HTTP服务器实现
+// 作用: 提供RESTful API接口，支持模型推理、聊天完成、嵌入生成等功能
+// 包含: 服务器初始化、路由注册、信号处理、异常包装等核心功能
+// ============================================================================
+
 #include "server-context.h"
 #include "server-http.h"
 #include "server-models.h"
@@ -19,6 +27,11 @@
 static std::function<void(int)> shutdown_handler;
 static std::atomic_flag is_terminating = ATOMIC_FLAG_INIT;
 
+// 函数: signal_handler
+// 描述: 信号处理函数，处理中断信号
+// 参数:
+//   - signal: 信号类型
+// 返回: 无
 static inline void signal_handler(int signal) {
     if (is_terminating.test_and_set()) {
         // in case it hangs, we can force terminate the server by hitting Ctrl+C twice
@@ -30,8 +43,12 @@ static inline void signal_handler(int signal) {
     shutdown_handler(signal);
 }
 
-// wrapper function that handles exceptions and logs errors
-// this is to make sure handler_t never throws exceptions; instead, it returns an error response
+// 函数: ex_wrapper
+// 描述: 异常包装函数，处理异常并记录错误
+// 作用: 确保handler_t永远不会抛出异常，而是返回错误响应
+// 参数:
+//   - func: 原始处理函数
+// 返回: 包装后的处理函数
 static server_http_context::handler_t ex_wrapper(server_http_context::handler_t func) {
     return [func = std::move(func)](const server_http_req & req) -> server_http_res_ptr {
         std::string message;
@@ -66,6 +83,13 @@ static server_http_context::handler_t ex_wrapper(server_http_context::handler_t 
     };
 }
 
+// 函数: main
+// 描述: 服务器主函数
+// 作用: 初始化服务器、加载模型、注册路由、启动HTTP服务
+// 参数:
+//   - argc: 命令行参数数量
+//   - argv: 命令行参数数组
+// 返回: 0表示成功，非0表示失败
 int main(int argc, char ** argv) {
     // own arguments required by this example
     common_params params;
@@ -268,6 +292,30 @@ int main(int argc, char ** argv) {
 
     // TODO: refactor in common/console
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+    // 类: sigaction
+    // 描述: sigaction类提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 类: sigaction
+    // 描述: sigaction类提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
     struct sigaction sigint_action;
     sigint_action.sa_handler = signal_handler;
     sigemptyset (&sigint_action.sa_mask);

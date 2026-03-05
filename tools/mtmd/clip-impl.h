@@ -202,6 +202,30 @@
 
 // forward declaration
 // TODO: improve this later
+// 类: clip_ctx
+// 描述: clip_ctx类提供相关功能
+// 用途: 用于处理clip_ctx相关的操作
+// 类: clip_ctx
+// 描述: clip_ctx类提供相关功能
+// 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
 struct clip_ctx;
 
 enum projector_type {
@@ -276,6 +300,14 @@ static std::map<projector_type, std::string> PROJECTOR_TYPE_NAMES = {
     { PROJECTOR_TYPE_NEMOTRON_V2_VL, "nemotron_v2_vl"},
 };
 
+// 函数: clip_projector_type_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_projector_type_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static projector_type clip_projector_type_from_string(const std::string & str) {
     for (const auto & pair : PROJECTOR_TYPE_NAMES) {
         if (pair.second == str) {
@@ -286,6 +318,30 @@ static projector_type clip_projector_type_from_string(const std::string & str) {
 }
 
 // RGB uint8 image
+// 类: clip_image_u8
+// 描述: clip_image_u8类提供相关功能
+// 用途: 用于处理clip_image_u8相关的操作
+// 类: clip_image_u8
+// 描述: clip_image_u8类提供相关功能
+// 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
 struct clip_image_u8 {
     int nx;
     int ny;
@@ -297,6 +353,30 @@ struct clip_image_u8 {
 //     Memory layout: RGBRGBRGB...
 // For audio, only one channel is used, buf.size() == nx*ny
 //     nx will be n_frames and ny will be n_mel
+// 类: clip_image_f32
+// 描述: clip_image_f32类提供相关功能
+// 用途: 用于处理clip_image_f32相关的操作
+// 类: clip_image_f32
+// 描述: clip_image_f32类提供相关功能
+// 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
 struct clip_image_f32 {
     int nx;
     int ny;
@@ -308,6 +388,14 @@ struct clip_image_f32 {
 // logging
 //
 
+// 函数: clip_log_callback_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_log_callback_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_log_callback_default(enum ggml_log_level level, const char * text, void * user_data) {
     (void) level;
     (void) user_data;
@@ -315,6 +403,30 @@ static void clip_log_callback_default(enum ggml_log_level level, const char * te
     fflush(stderr);
 }
 
+// 类: clip_logger_state
+// 描述: clip_logger_state类提供相关功能
+// 用途: 用于处理clip_logger_state相关的操作
+// 类: clip_logger_state
+// 描述: clip_logger_state类提供相关功能
+// 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
 struct clip_logger_state {
     ggml_log_callback log_callback;
     void * log_callback_user_data;
@@ -322,6 +434,14 @@ struct clip_logger_state {
 
 extern struct clip_logger_state g_logger_state;
 
+// 函数: clip_log_internal_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_log_internal_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_log_internal_v(enum ggml_log_level level, const char * format, va_list args) {
     if (format == NULL) {
         return;
@@ -342,6 +462,14 @@ static void clip_log_internal_v(enum ggml_log_level level, const char * format, 
     va_end(args_copy);
 }
 
+// 函数: clip_log_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_log_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_log_internal(enum ggml_log_level level, const char * format, ...) {
     va_list args;
     va_start(args, format);
@@ -360,27 +488,171 @@ static void clip_log_internal(enum ggml_log_level level, const char * format, ..
 //
 
 // wrapper for clip_image_size
+// 类: clip_image_size_deleter
+// 描述: clip_image_size_deleter类提供相关功能
+// 用途: 用于处理clip_image_size_deleter相关的操作
+// 类: clip_image_size_deleter
+// 描述: clip_image_size_deleter类提供相关功能
+// 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
+    // 结构体: clip_image_size_deleter
+    // 描述: clip_image_size_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_size_deleter相关的操作
 struct clip_image_size_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(clip_image_size * val) { clip_image_size_free(val); }
 };
 typedef std::unique_ptr<clip_image_size, clip_image_size_deleter> clip_image_size_ptr;
 
 // wrapper for clip_image_u8
+// 类: clip_image_u8_deleter
+// 描述: clip_image_u8_deleter类提供相关功能
+// 用途: 用于处理clip_image_u8_deleter相关的操作
+// 类: clip_image_u8_deleter
+// 描述: clip_image_u8_deleter类提供相关功能
+// 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
+    // 结构体: clip_image_u8_deleter
+    // 描述: clip_image_u8_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_deleter相关的操作
 struct clip_image_u8_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(clip_image_u8 * val) { clip_image_u8_free(val); }
 };
 typedef std::unique_ptr<clip_image_u8, clip_image_u8_deleter> clip_image_u8_ptr;
 
 // wrapper for clip_image_f32
+// 类: clip_image_f32_deleter
+// 描述: clip_image_f32_deleter类提供相关功能
+// 用途: 用于处理clip_image_f32_deleter相关的操作
+// 类: clip_image_f32_deleter
+// 描述: clip_image_f32_deleter类提供相关功能
+// 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
+    // 结构体: clip_image_f32_deleter
+    // 描述: clip_image_f32_deleter结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_deleter相关的操作
 struct clip_image_f32_deleter {
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void operator()(clip_image_f32 * val) { clip_image_f32_free(val); }
 };
 typedef std::unique_ptr<clip_image_f32, clip_image_f32_deleter> clip_image_f32_ptr;
 
+// 类: clip_image_u8_batch
+// 描述: clip_image_u8_batch类提供相关功能
+// 用途: 用于处理clip_image_u8_batch相关的操作
+// 类: clip_image_u8_batch
+// 描述: clip_image_u8_batch类提供相关功能
+// 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
+    // 结构体: clip_image_u8_batch
+    // 描述: clip_image_u8_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_u8_batch相关的操作
 struct clip_image_u8_batch {
     std::vector<clip_image_u8_ptr> entries;
 };
 
+// 类: clip_image_f32_batch
+// 描述: clip_image_f32_batch类提供相关功能
+// 用途: 用于处理clip_image_f32_batch相关的操作
+// 类: clip_image_f32_batch
+// 描述: clip_image_f32_batch类提供相关功能
+// 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
 struct clip_image_f32_batch {
     std::vector<clip_image_f32_ptr> entries;
     bool is_audio = false;
@@ -390,6 +662,14 @@ struct clip_image_f32_batch {
     int grid_x = 0;
     int grid_y = 0;
 
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     clip_image_f32_batch clone() const {
         clip_image_f32_batch new_batch{
             /* entries  */ {},
@@ -409,6 +689,14 @@ struct clip_image_f32_batch {
 // common utils
 //
 
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string string_format(const char * fmt, ...) {
     va_list ap;
     va_list ap2;
@@ -424,6 +712,14 @@ static std::string string_format(const char * fmt, ...) {
     return std::string(buf.data(), buf.size());
 }
 
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void string_replace_all(std::string & s, const std::string & search, const std::string & replace) {
     if (search.empty()) {
         return;
@@ -459,6 +755,14 @@ static std::vector<std::string> string_split_str(std::string s, const std::strin
 // gguf utils
 //
 
+// 函数: gguf_data_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_data_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string gguf_data_to_str(enum gguf_type type, const void * data, int i) {
     switch (type) {
         case GGUF_TYPE_UINT8:   return std::to_string(((const uint8_t  *)data)[i]);
@@ -476,6 +780,14 @@ static std::string gguf_data_to_str(enum gguf_type type, const void * data, int 
     }
 }
 
+// 函数: gguf_kv_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_kv_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string gguf_kv_to_str(const struct gguf_context * ctx_gguf, int i) {
     const enum gguf_type type = gguf_get_kv_type(ctx_gguf, i);
 
@@ -517,6 +829,14 @@ static std::string gguf_kv_to_str(const struct gguf_context * ctx_gguf, int i) {
 // debugging
 //
 
+// 函数: print_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_tensor_shape(ggml_tensor * t) {
     printf("%s.shape = [", t->name);
     for (int i = 0; i < ggml_n_dims(t); ++i) {
@@ -528,6 +848,14 @@ static void print_tensor_shape(ggml_tensor * t) {
     printf("]\n");
 }
 
+// 函数: print_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_tensor_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_tensor_data(ggml_tensor * t, uint8_t * data, int64_t n) {
     ggml_type type = t->type;
     int64_t * ne = t->ne;
@@ -577,10 +905,26 @@ static void print_tensor_data(ggml_tensor * t, uint8_t * data, int64_t n) {
     }
 }
 
+// 函数: clip_debug_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_debug_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 void clip_debug_encode(clip_ctx * ctx, int h, int w, float fill_value);
 
 //
 // API used internally with mtmd
 //
 
+// 函数: clip_get_projector_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_projector_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 projector_type clip_get_projector_type(const struct clip_ctx * ctx);

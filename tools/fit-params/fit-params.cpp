@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: fit-params.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/fit-params/fit-params.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "llama.h"
 
 #include "arg.h"
@@ -14,6 +21,14 @@ using namespace std::chrono_literals;
 #pragma warning(disable: 4244 4267) // possible loss of data
 #endif
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 

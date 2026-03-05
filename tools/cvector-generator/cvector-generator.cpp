@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: cvector-generator.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/cvector-generator/cvector-generator.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "ggml.h"
 #include "gguf.h"
 
@@ -30,6 +37,14 @@
 // utils
 
 template <class Iter>
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string tokens_to_str(llama_context * ctx, Iter begin, Iter end) {
     std::string ret;
     for (; begin != end; ++begin) {
@@ -39,6 +54,14 @@ static std::string tokens_to_str(llama_context * ctx, Iter begin, Iter end) {
     return ret;
 }
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int, char ** argv) {
     printf("\nexample usage:\n");
     printf("\n    CPU only:   %s -m ./llama-3.Q4_K_M.gguf\n", argv[0]);
@@ -52,6 +75,30 @@ static void print_usage(int, char ** argv) {
 
 
 // cb_eval is reused for each pair of positive - negative prompt
+// 类: callback_data
+// 描述: callback_data类提供相关功能
+// 用途: 用于处理callback_data相关的操作
+// 类: callback_data
+// 描述: callback_data类提供相关功能
+// 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
+    // 结构体: callback_data
+    // 描述: callback_data结构体提供相关功能
+    // 用途: 用于处理callback_data相关的操作
 struct callback_data {
     ggml_context * ctx_ggml = nullptr;   // holds v_pos, v_neg, v_diff_filtered
 
@@ -65,11 +112,43 @@ struct callback_data {
     std::vector<struct ggml_tensor *> v_diff_filtered;   // vector of matrices of size [n_embd, n_nonzero_rows]. NOTE: n_nonzero_rows maybe different for each layer
 
     // save a tensor into either v_pos or v_neg (decided by is_eval_pos)
+    // 函数: save_tensor_for_layer
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_tensor_for_layer
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     void save_tensor_for_layer(struct ggml_tensor * t) {
         GGML_ASSERT(t->type == GGML_TYPE_F32);
 
         if (ctx_ggml == nullptr) {
             // alloc a new ctx_ggml if needed
+            // 类: ggml_init_params
+            // 描述: ggml_init_params类提供相关功能
+            // 用途: 用于处理ggml_init_params相关的操作
+            // 类: ggml_init_params
+            // 描述: ggml_init_params类提供相关功能
+            // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
             struct ggml_init_params params_ggml = {
                 /*.mem_size   =*/ ggml_tensor_overhead() * n_layers * 3u,
                 /*.mem_buffer =*/ NULL,
@@ -80,6 +159,30 @@ struct callback_data {
 
         // copy tensor data
         auto n_bytes = ggml_nbytes(t);
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * t_layer = ggml_new_tensor_2d(ctx_ggml, t->type, t->ne[0], t->ne[1]);
         t_layer->data = malloc(n_bytes); // TODO @ngxson : get rid of this malloc somehow
         ggml_backend_tensor_get(t, t_layer->data, 0, n_bytes);
@@ -112,6 +215,30 @@ struct callback_data {
     }
 
     // delete zero rows from a given 2D tensor
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * filter_nonzero_rows(struct ggml_tensor * a) {
         //printf("filter_nonzero_rows\n");
         auto is_row_all_zeros = [](struct ggml_tensor * t, int row, float eps) -> bool {
@@ -138,6 +265,30 @@ struct callback_data {
         GGML_ASSERT(n_nonzero_rows > 0);
 
         // diff_filtered: [n_embd, n_nonzero_rows]
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * diff_filtered = ggml_new_tensor_2d(
             ctx_ggml, GGML_TYPE_F32, n_embd, n_nonzero_rows);
         ggml_format_name(diff_filtered, "diff_filtered_%s", a->name);
@@ -158,6 +309,14 @@ struct callback_data {
     }
 
     // we don't implement destructor, because we want to reuse callback_data. we just want to free the tensors
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset() {
         for (auto ptr : v_pos) free(ptr->data);
         for (auto ptr : v_neg) free(ptr->data);
@@ -176,6 +335,30 @@ struct callback_data {
  * process_ctx is used to store the ggml context for pre-post processing the diff vectors
  * in short, input => v_diff and output => v_final
  */
+// 类: train_context
+// 描述: train_context类提供相关功能
+// 用途: 用于处理train_context相关的操作
+// 类: train_context
+// 描述: train_context类提供相关功能
+// 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
+    // 结构体: train_context
+    // 描述: train_context结构体提供相关功能
+    // 用途: 用于处理train_context相关的操作
 struct train_context {
     ggml_context * ctx_ggml;
     int n_embd;
@@ -198,6 +381,30 @@ struct train_context {
     train_context(int n_embd_, int n_layers_) {
         n_embd = n_embd_;
         n_layers = n_layers_;
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params_ggml = {
             /*.mem_size   =*/ ggml_tensor_overhead() * (n_layers - 1) * 2u,
             /*.mem_buffer =*/ NULL,
@@ -214,6 +421,14 @@ struct train_context {
     }
 
     // add new rows into existing tensor in v_diff_tmp
+    // 函数: concat_diff_tmp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: concat_diff_tmp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void concat_diff_tmp(const std::vector<struct ggml_tensor *> & diff_filtered) {
         GGML_ASSERT((int) diff_filtered.size() == n_layers - 1);
         for (int il = 0; il < n_layers - 1; il++) {
@@ -227,6 +442,14 @@ struct train_context {
 
     // build the v_diff tensors from v_diff_tmp (v_diff need to be transposed)
     // TODO @ngxson : maybe add option NOT to transpose v_diff; will be useful for "mean" method
+    // 函数: build_v_diff
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_v_diff
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     void build_v_diff(bool transpose) {
         printf("build_v_diff\n");
         for (int il = 0; il < n_layers - 1; il++) {
@@ -234,6 +457,30 @@ struct train_context {
             int n_elem = diff_tmp.size() / sizeof(float);
             GGML_ASSERT(n_elem % n_embd == 0);
             int n_rows = n_elem / n_embd;
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * diff = transpose
                 ? ggml_new_tensor_2d(ctx_ggml, GGML_TYPE_F32, n_rows, n_embd)
                 : ggml_new_tensor_2d(ctx_ggml, GGML_TYPE_F32, n_embd, n_rows);
@@ -267,6 +514,30 @@ struct train_context {
     }
 };
 
+// 类: tokenized_prompt
+// 描述: tokenized_prompt类提供相关功能
+// 用途: 用于处理tokenized_prompt相关的操作
+// 类: tokenized_prompt
+// 描述: tokenized_prompt类提供相关功能
+// 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
+    // 结构体: tokenized_prompt
+    // 描述: tokenized_prompt结构体提供相关功能
+    // 用途: 用于处理tokenized_prompt相关的操作
 struct tokenized_prompt {
     std::vector<llama_token> tokens_pos;
     std::vector<llama_token> tokens_neg;
@@ -283,6 +554,14 @@ struct tokenized_prompt {
         padding_seq(ctx, tokens_neg, max_seq_len);
     }
 
+    // 函数: padding_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: padding_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void padding_seq(llama_context * ctx, std::vector<llama_token> & tokens, size_t len) {
         // TODO: customize padding token
         std::vector<llama_token> pad_tokens = common_tokenize(ctx, " ", false);
@@ -296,6 +575,14 @@ struct tokenized_prompt {
 //////////////////////////////////////////////////
 
 template <typename T>
+// 函数: to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string to_string(const T & val) {
     std::stringstream ss;
     ss << val;
@@ -304,6 +591,14 @@ static std::string to_string(const T & val) {
 
 static std::vector<std::string> ctrlvec_load_prompt_file(std::string path, bool skip_empty_lines) {
     std::vector<std::string> output;
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ifstream file(path);
     if (!file.is_open()) {
         fprintf(stderr, "error: unable to open file: %s\n", path.c_str());
@@ -323,6 +618,14 @@ static std::vector<std::string> ctrlvec_load_prompt_file(std::string path, bool 
 
 //////////////////////////////////////////////////
 
+// 函数: cb_eval
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cb_eval
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
     auto * cb_data = (callback_data *) user_data;
     static const char * l_out_name = "l_out";
@@ -341,6 +644,14 @@ static bool cb_eval(struct ggml_tensor * t, bool ask, void * user_data) {
     return true;
 }
 
+// 函数: get_hidden_layers
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_hidden_layers
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static bool get_hidden_layers(llama_context * ctx, std::vector<llama_token> & tokens) {
     llama_memory_clear(llama_get_memory(ctx), true);
     if (llama_decode(ctx, llama_batch_get_one(tokens.data(), tokens.size()))) {
@@ -350,7 +661,39 @@ static bool get_hidden_layers(llama_context * ctx, std::vector<llama_token> & to
     return true;
 }
 
+// 函数: export_gguf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: export_gguf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void export_gguf(const std::vector<struct ggml_tensor *> & v_ctrl, const std::string fname, const std::string model_hint) {
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx = gguf_init_empty();
 
     const std::string arch = "controlvector";
@@ -374,6 +717,14 @@ static void export_gguf(const std::vector<struct ggml_tensor *> & v_ctrl, const 
  * Load prompt files and completion file.
  * Then format each pair of prompt + completion to make an entry.
  */
+// 函数: prepare_entries
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: prepare_entries
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int prepare_entries(common_params & params, train_context & ctx_train) {
     // load prompts
     std::vector<std::string> positive_prompts = ctrlvec_load_prompt_file(params.cvector_positive_file, true);
@@ -391,6 +742,14 @@ static int prepare_entries(common_params & params, train_context & ctx_train) {
     return 0;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: console.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/console.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "console.h"
 #include "log.h"
 #include <vector>
@@ -84,6 +91,14 @@ namespace console {
     // Init and cleanup
     //
 
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init(bool use_simple_io, bool use_advanced_display) {
         advanced_display = use_advanced_display;
         simple_io = use_simple_io;
@@ -128,6 +143,24 @@ namespace console {
 #else
         // POSIX-specific console initialization
         if (!simple_io) {
+            // 类: termios
+            // 描述: termios类提供相关功能
+            // 用途: 用于处理termios相关的操作
+            // 类: termios
+            // 描述: termios类提供相关功能
+            // 用途: 用于处理termios相关的操作
+    // 结构体: termios
+    // 描述: termios结构体提供相关功能
+    // 用途: 用于处理termios相关的操作
+    // 结构体: termios
+    // 描述: termios结构体提供相关功能
+    // 用途: 用于处理termios相关的操作
+    // 结构体: termios
+    // 描述: termios结构体提供相关功能
+    // 用途: 用于处理termios相关的操作
+    // 结构体: termios
+    // 描述: termios结构体提供相关功能
+    // 用途: 用于处理termios相关的操作
             struct termios new_termios;
             tcgetattr(STDIN_FILENO, &initial_state);
             new_termios = initial_state;
@@ -146,6 +179,14 @@ namespace console {
 #endif
     }
 
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cleanup() {
         // Reset console display
         set_display(DISPLAY_TYPE_RESET);
@@ -168,6 +209,14 @@ namespace console {
     //
 
     // Keep track of current display and only emit ANSI code if it changes
+    // 函数: set_display
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_display
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_display(display_type display) {
         if (advanced_display && current_display != display) {
             common_log_flush(common_log_main());
@@ -195,6 +244,14 @@ namespace console {
         }
     }
 
+    // 函数: getchar32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: getchar32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static char32_t getchar32() {
 #if defined(_WIN32)
         HANDLE hConsole = GetStdHandle(STD_INPUT_HANDLE);
@@ -260,6 +317,14 @@ namespace console {
 #endif
     }
 
+    // 函数: pop_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pop_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void pop_cursor() {
 #if defined(_WIN32)
         if (hConsole != NULL) {
@@ -281,6 +346,14 @@ namespace console {
         putc('\b', out);
     }
 
+    // 函数: estimateWidth
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: estimateWidth
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static int estimateWidth(char32_t codepoint) {
 #if defined(_WIN32)
         (void)codepoint;
@@ -290,6 +363,14 @@ namespace console {
 #endif
     }
 
+    // 函数: put_codepoint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: put_codepoint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static int put_codepoint(const char* utf8_codepoint, size_t length, int expectedWidth) {
 #if defined(_WIN32)
         CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
@@ -343,6 +424,24 @@ namespace console {
         int width = x2 - x1;
         if (width < 0) {
             // Calculate the width considering text wrapping
+            // 类: winsize
+            // 描述: winsize类提供相关功能
+            // 用途: 用于处理winsize相关的操作
+            // 类: winsize
+            // 描述: winsize类提供相关功能
+            // 用途: 用于处理winsize相关的操作
+    // 结构体: winsize
+    // 描述: winsize结构体提供相关功能
+    // 用途: 用于处理winsize相关的操作
+    // 结构体: winsize
+    // 描述: winsize结构体提供相关功能
+    // 用途: 用于处理winsize相关的操作
+    // 结构体: winsize
+    // 描述: winsize结构体提供相关功能
+    // 用途: 用于处理winsize相关的操作
+    // 结构体: winsize
+    // 描述: winsize结构体提供相关功能
+    // 用途: 用于处理winsize相关的操作
             struct winsize w;
             ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
             width += w.ws_col;
@@ -351,6 +450,14 @@ namespace console {
 #endif
     }
 
+    // 函数: replace_last
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: replace_last
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void replace_last(char ch) {
 #if defined(_WIN32)
         pop_cursor();
@@ -360,6 +467,14 @@ namespace console {
 #endif
     }
 
+    // 函数: decode_utf8
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: decode_utf8
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
     static char32_t decode_utf8(const std::string & input, size_t pos, size_t & advance) {
         unsigned char c = static_cast<unsigned char>(input[pos]);
         if ((c & 0x80u) == 0u) {
@@ -406,6 +521,14 @@ namespace console {
         return 0xFFFD; // replacement character for invalid input
     }
 
+    // 函数: append_utf8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: append_utf8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void append_utf8(char32_t ch, std::string & out) {
         if (ch <= 0x7F) {
             out.push_back(static_cast<unsigned char>(ch));
@@ -427,6 +550,14 @@ namespace console {
     }
 
     // Helper function to remove the last UTF-8 character from a string
+    // 函数: prev_utf8_char_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: prev_utf8_char_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static size_t prev_utf8_char_pos(const std::string & line, size_t pos) {
         if (pos == 0) return 0;
         pos--;
@@ -436,6 +567,14 @@ namespace console {
         return pos;
     }
 
+    // 函数: next_utf8_char_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: next_utf8_char_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static size_t next_utf8_char_pos(const std::string & line, size_t pos) {
         if (pos >= line.length()) return line.length();
         pos++;
@@ -445,12 +584,60 @@ namespace console {
         return pos;
     }
 
+    // 函数: move_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_cursor(int delta);
+    // 函数: move_word_left
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_word_left
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_word_left(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line);
+    // 函数: move_word_right
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_word_right
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_word_right(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line);
+    // 函数: move_to_line_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_to_line_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_to_line_start(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths);
+    // 函数: move_to_line_end
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_to_line_end
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_to_line_end(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line);
 
+    // 函数: delete_at_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: delete_at_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void delete_at_cursor(std::string & line, std::vector<int> & widths, size_t & char_pos, size_t & byte_pos) {
         if (char_pos >= widths.size()) {
             return;
@@ -479,6 +666,14 @@ namespace console {
         move_cursor(-(tail_width + w));
     }
 
+    // 函数: clear_current_line
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear_current_line
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     static void clear_current_line(const std::vector<int> & widths) {
         int total_width = 0;
         for (int w : widths) {
@@ -516,6 +711,14 @@ namespace console {
         }
     }
 
+    // 函数: move_to_line_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_to_line_start
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_to_line_start(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths) {
         int back_width = 0;
         for (size_t i = 0; i < char_pos; ++i) {
@@ -526,6 +729,14 @@ namespace console {
         byte_pos = 0;
     }
 
+    // 函数: move_to_line_end
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_to_line_end
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_to_line_end(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line) {
         int forward_width = 0;
         for (size_t i = char_pos; i < widths.size(); ++i) {
@@ -536,6 +747,14 @@ namespace console {
         byte_pos = line.length();
     }
 
+    // 函数: has_ctrl_modifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_ctrl_modifier
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool has_ctrl_modifier(const std::string & params) {
         size_t start = 0;
         while (start < params.size()) {
@@ -564,10 +783,26 @@ namespace console {
         return false;
     }
 
+    // 函数: is_space_codepoint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_space_codepoint
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_space_codepoint(char32_t cp) {
         return std::iswspace(static_cast<wint_t>(cp)) != 0;
     }
 
+    // 函数: move_word_left
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_word_left
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_word_left(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line) {
         if (char_pos == 0) {
             return;
@@ -606,6 +841,14 @@ namespace console {
         byte_pos = new_byte_pos;
     }
 
+    // 函数: move_word_right
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_word_right
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_word_right(size_t & char_pos, size_t & byte_pos, const std::vector<int> & widths, const std::string & line) {
         if (char_pos >= widths.size()) {
             return;
@@ -653,6 +896,14 @@ namespace console {
         byte_pos = new_byte_pos;
     }
 
+    // 函数: move_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: move_cursor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void move_cursor(int delta) {
         if (delta == 0) return;
 #if defined(_WIN32)
@@ -686,10 +937,36 @@ namespace console {
 #endif
     }
 
+    // 类: history_t
+    // 描述: history_t类提供相关功能
+    // 用途: 用于处理history_t相关的操作
+    // 类: history_t
+    // 描述: history_t类提供相关功能
+    // 用途: 用于处理history_t相关的操作
+    // 结构体: history_t
+    // 描述: history_t结构体提供相关功能
+    // 用途: 用于处理history_t相关的操作
+    // 结构体: history_t
+    // 描述: history_t结构体提供相关功能
+    // 用途: 用于处理history_t相关的操作
+    // 结构体: history_t
+    // 描述: history_t结构体提供相关功能
+    // 用途: 用于处理history_t相关的操作
+    // 结构体: history_t
+    // 描述: history_t结构体提供相关功能
+    // 用途: 用于处理history_t相关的操作
     struct history_t {
         std::vector<std::string> entries;
         size_t viewing_idx = SIZE_MAX;
         std::string backup_line; // current line before viewing history
+        // 函数: add
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: add
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void add(const std::string & line) {
             if (line.empty()) {
                 return;
@@ -701,6 +978,14 @@ namespace console {
             // also clear viewing state
             end_viewing();
         }
+        // 函数: prev
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: prev
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool prev(std::string & cur_line) {
             if (entries.empty()) {
                 return false;
@@ -714,6 +999,14 @@ namespace console {
             cur_line = entries[viewing_idx];
             return true;
         }
+        // 函数: next
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: next
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool next(std::string & cur_line) {
             if (entries.empty() || viewing_idx == SIZE_MAX) {
                 return false;
@@ -727,19 +1020,51 @@ namespace console {
             }
             return true;
         }
+        // 函数: begin_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: begin_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void begin_viewing(const std::string & line) {
             backup_line = line;
             viewing_idx = entries.size();
         }
+        // 函数: end_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: end_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void end_viewing() {
             viewing_idx = SIZE_MAX;
             backup_line.clear();
         }
+        // 函数: is_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: is_viewing
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool is_viewing() const {
             return viewing_idx != SIZE_MAX;
         }
     } history;
 
+    // 函数: readline_advanced
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: readline_advanced
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool readline_advanced(std::string & line, bool multiline_input) {
         if (out != stdout) {
             fflush(stdout);
@@ -1018,6 +1343,14 @@ namespace console {
         return has_more;
     }
 
+    // 函数: readline_simple
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: readline_simple
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool readline_simple(std::string & line, bool multiline_input) {
 #if defined(_WIN32)
         std::wstring wline;
@@ -1055,6 +1388,14 @@ namespace console {
         return multiline_input;
     }
 
+    // 函数: readline
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: readline
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool readline(std::string & line, bool multiline_input) {
         if (simple_io) {
             return readline_simple(line, multiline_input);
@@ -1070,12 +1411,28 @@ namespace console {
         static bool running = false;
         static std::mutex mtx;
         static auto wait_time = std::chrono::milliseconds(100);
+        // 函数: draw_next_frame
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: draw_next_frame
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         static void draw_next_frame() {
             // don't need lock because only one thread modifies running
             frame = (frame + 1) % sizeof(LOADING_CHARS);
             replace_last(LOADING_CHARS[frame]);
             fflush(out);
         }
+        // 函数: start
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: start
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void start() {
             std::unique_lock<std::mutex> lock(mtx);
             if (simple_io || running) {
@@ -1096,6 +1453,14 @@ namespace console {
                 }
             });
         }
+        // 函数: stop
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: stop
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         void stop() {
             {
                 std::unique_lock<std::mutex> lock(mtx);
@@ -1114,6 +1479,14 @@ namespace console {
         }
     }
 
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: log
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void log(const char * fmt, ...) {
         va_list args;
         va_start(args, fmt);
@@ -1121,6 +1494,14 @@ namespace console {
         va_end(args);
     }
 
+    // 函数: error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: error
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void error(const char * fmt, ...) {
         va_list args;
         va_start(args, fmt);
@@ -1131,6 +1512,14 @@ namespace console {
         va_end(args);
     }
 
+    // 函数: flush
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: flush
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void flush() {
         fflush(out);
     }

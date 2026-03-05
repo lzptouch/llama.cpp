@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: virtgpu-forward-backend.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-forward-backend.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-forward-impl.h"
 
 static long long current_time_ms() {
@@ -6,6 +13,14 @@ static long long current_time_ms() {
     return (long long) ts.tv_sec * 1000000000LL + ts.tv_nsec;
 }
 
+// 函数: apir_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_backend_graph_compute
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 ggml_status apir_backend_graph_compute(virtgpu * gpu, ggml_cgraph * cgraph) {
     apir_encoder *        encoder;
     apir_decoder *        decoder;

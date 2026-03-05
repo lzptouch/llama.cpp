@@ -25,17 +25,57 @@ typedef struct {
     uint32_t                          idx_mask;
 } dma_queue;
 
+// 函数: dma_queue_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 dma_queue * dma_queue_create(size_t capacity);
+// 函数: dma_queue_delete
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_delete
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void        dma_queue_delete(dma_queue * q);
+// 函数: dma_queue_flush
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_flush
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void        dma_queue_flush(dma_queue * q);
 
 // TODO: technically we don't need these and could use Q6_dmstart/wait/etc instead
 // but those do not seem to always compiler properly.
+// 函数: dmstart
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dmstart
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void dmstart(void * next) {
     asm volatile(" release(%0):at" : : "r"(next));
     asm volatile(" dmstart(%0)" : : "r"(next));
 }
 
+// 函数: dmlink
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dmlink
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void dmlink(void * cur, void * next) {
     asm volatile(" release(%0):at" : : "r"(next));
     asm volatile(" dmlink(%0, %1)" : : "r"(cur), "r"(next));
@@ -43,16 +83,40 @@ static inline void dmlink(void * cur, void * next) {
 
 static inline unsigned int dmpoll(void) {
     unsigned int ret = 0;
+    // 函数: volatile
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: volatile
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     asm volatile(" %0 = dmpoll" : "=r"(ret) : : "memory");
     return ret;
 }
 
 static inline unsigned int dmwait(void) {
     unsigned int ret = 0;
+    // 函数: volatile
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: volatile
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     asm volatile(" %0 = dmwait" : "=r"(ret) : : "memory");
     return ret;
 }
 
+// 函数: dma_make_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_make_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline dma_ptr dma_make_ptr(void *dst, const void *src)
 {
     dma_ptr p = { dst, src };
@@ -112,6 +176,14 @@ static inline bool dma_queue_push_ddr_to_vtcm(dma_queue * q,
                                               size_t      dst_row_size,
                                               size_t      src_row_size,
                                               size_t      nrows) {
+    // 函数: dma_queue_push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dma_queue_push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return dma_queue_push(q, dptr, dst_row_size, src_row_size, src_row_size, nrows);
 }
 
@@ -121,9 +193,25 @@ static inline bool dma_queue_push_vtcm_to_ddr(dma_queue * q,
                                               size_t      dst_row_size,
                                               size_t      src_row_size,
                                               size_t      nrows) {
+    // 函数: dma_queue_push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dma_queue_push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return dma_queue_push(q, dptr, dst_row_size, src_row_size, dst_row_size, nrows);
 }
 
+// 函数: dma_queue_pop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_pop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline dma_ptr dma_queue_pop(dma_queue * q) {
     dma_ptr dptr  = { NULL };
 
@@ -149,6 +237,14 @@ static inline dma_ptr dma_queue_pop(dma_queue * q) {
     return dptr;
 }
 
+// 函数: dma_queue_pop_nowait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_pop_nowait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline dma_ptr dma_queue_pop_nowait(dma_queue * q) {
     dma_ptr dptr  = { NULL };
 
@@ -163,14 +259,38 @@ static inline dma_ptr dma_queue_pop_nowait(dma_queue * q) {
     return dptr;
 }
 
+// 函数: dma_queue_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_empty
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool dma_queue_empty(dma_queue * q) {
     return q->push_idx == q->pop_idx;
 }
 
+// 函数: dma_queue_depth
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_depth
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uint32_t dma_queue_depth(dma_queue * q) {
     return (q->push_idx - q->pop_idx) & q->idx_mask;
 }
 
+// 函数: dma_queue_capacity
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dma_queue_capacity
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uint32_t dma_queue_capacity(dma_queue * q) {
     return q->capacity;
 }

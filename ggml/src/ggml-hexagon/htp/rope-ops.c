@@ -46,6 +46,24 @@
     const uint32_t nb2 = dst->nb[2];   \
     const uint32_t nb3 = dst->nb[3];
 
+// 类: htp_rope_context
+// 描述: htp_rope_context类提供相关功能
+// 用途: 用于处理htp_rope_context相关的操作
+// 类: htp_rope_context
+// 描述: htp_rope_context类提供相关功能
+// 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
 struct htp_rope_context {
     int32_t n_dims;
     int32_t mode;
@@ -64,6 +82,24 @@ struct htp_rope_context {
     uint32_t src0_nrows_per_thread;
     size_t spad_stride;
 
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
 
     size_t src0_row_size;
@@ -76,6 +112,14 @@ struct htp_rope_context {
     uint64_t t_start;
 };
 
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rope_yarn_ramp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float rope_yarn_ramp(const float low, const float high, const int i0) {
     const float y = (i0 / 2 - low) / MAX(0.001f, high - low);
 
@@ -133,6 +177,14 @@ static void rope_corr_dims(int     n_dims,
     dims[1]     = MIN(n_dims - 1, end);
 }
 
+// 函数: hvx_rope_neox_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_rope_neox_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_rope_neox_f32_aa(float * restrict dst, const float * restrict src0, uint32_t ne, const float * restrict theta_cache) {
     const HVX_Vector * restrict vsrc   = (const HVX_Vector *) src0;
     const HVX_Vector * restrict vtheta = (const HVX_Vector *) theta_cache;
@@ -175,6 +227,14 @@ static inline void hvx_rope_neox_f32_aa(float * restrict dst, const float * rest
     }
 }
 
+// 函数: hvx_rope_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_rope_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_rope_f32_aa(float * restrict dst, const float * restrict src0, uint32_t ne, const float * restrict theta_cache) {
     const HVX_Vector * restrict vsrc   = (const HVX_Vector *) src0;
     const HVX_Vector * restrict vtheta = (const HVX_Vector *) theta_cache;
@@ -249,13 +309,75 @@ static void inline rope_neox_f32(struct htp_rope_context * rctx, uint8_t * restr
     }
 }
 
+// 函数: rope_job_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rope_job_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void rope_job_f32(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_rope_context
+    // 描述: htp_rope_context类提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 类: htp_rope_context
+    // 描述: htp_rope_context类提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
     struct htp_rope_context * rctx = (struct htp_rope_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = rctx->octx;
 
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
     const struct htp_tensor * src2 = &octx->src2;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     htp_rope_preamble;
@@ -381,12 +503,38 @@ done:
     FARF(HIGH, "rope-f32: %d/%d: (%u:%u) usec %u\n", ith, nth, src0_start_row, src0_end_row, (unsigned) HAP_perf_qtimer_count_to_us(tt));
 }
 
+// 函数: execute_op_rope_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_op_rope_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int execute_op_rope_f32(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
     const struct htp_tensor * src2 = &octx->src2;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     const char * op_type = "rope-f32";
@@ -435,6 +583,24 @@ static int execute_op_rope_f32(struct htp_ops_context * octx) {
     octx->dst_spad.data  = octx->src0_spad.data + octx->src0_spad.size;
 
     // Fill context
+    // 类: htp_rope_context
+    // 描述: htp_rope_context类提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 类: htp_rope_context
+    // 描述: htp_rope_context类提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
+    // 结构体: htp_rope_context
+    // 描述: htp_rope_context结构体提供相关功能
+    // 用途: 用于处理htp_rope_context相关的操作
     struct htp_rope_context rctx;
     memset(&rctx, 0, sizeof(struct htp_rope_context));
 
@@ -481,6 +647,14 @@ static int execute_op_rope_f32(struct htp_ops_context * octx) {
     return err;
 }
 
+// 函数: op_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_rope(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 

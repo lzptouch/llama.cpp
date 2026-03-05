@@ -4,6 +4,24 @@
 #include <nlohmann/json.hpp>
 
 // Healing marker (empty if the JSON was fully parsed / wasn't healed).
+// 类: common_healing_marker
+// 描述: common_healing_marker类提供相关功能
+// 用途: 用于处理common_healing_marker相关的操作
+// 类: common_healing_marker
+// 描述: common_healing_marker类提供相关功能
+// 用途: 用于处理common_healing_marker相关的操作
+    // 结构体: common_healing_marker
+    // 描述: common_healing_marker结构体提供相关功能
+    // 用途: 用于处理common_healing_marker相关的操作
+    // 结构体: common_healing_marker
+    // 描述: common_healing_marker结构体提供相关功能
+    // 用途: 用于处理common_healing_marker相关的操作
+    // 结构体: common_healing_marker
+    // 描述: common_healing_marker结构体提供相关功能
+    // 用途: 用于处理common_healing_marker相关的操作
+    // 结构体: common_healing_marker
+    // 描述: common_healing_marker结构体提供相关功能
+    // 用途: 用于处理common_healing_marker相关的操作
 struct common_healing_marker {
     // Raw marker.
     std::string marker;
@@ -13,6 +31,24 @@ struct common_healing_marker {
 };
 
 // Represents a parsed JSON object, with its optional healing marker (a JSON dump fragment that can be used to find the position of healing in the JSON dump string)
+// 类: common_json
+// 描述: common_json类提供相关功能
+// 用途: 用于处理common_json相关的操作
+// 类: common_json
+// 描述: common_json类提供相关功能
+// 用途: 用于处理common_json相关的操作
+    // 结构体: common_json
+    // 描述: common_json结构体提供相关功能
+    // 用途: 用于处理common_json相关的操作
+    // 结构体: common_json
+    // 描述: common_json结构体提供相关功能
+    // 用途: 用于处理common_json相关的操作
+    // 结构体: common_json
+    // 描述: common_json结构体提供相关功能
+    // 用途: 用于处理common_json相关的操作
+    // 结构体: common_json
+    // 描述: common_json结构体提供相关功能
+    // 用途: 用于处理common_json相关的操作
 struct common_json {
     nlohmann::ordered_json json;
 

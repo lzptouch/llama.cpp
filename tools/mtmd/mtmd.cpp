@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mtmd.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/mtmd.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "clip.h"
 #include "clip-impl.h"
 #include "mtmd.h"
@@ -23,6 +30,30 @@
 
 // represents raw image data, layout is RGBRGBRGB...
 // length of data must be nx * ny * 3
+// 类: mtmd_bitmap
+// 描述: mtmd_bitmap类提供相关功能
+// 用途: 用于处理mtmd_bitmap相关的操作
+// 类: mtmd_bitmap
+// 描述: mtmd_bitmap类提供相关功能
+// 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
+    // 结构体: mtmd_bitmap
+    // 描述: mtmd_bitmap结构体提供相关功能
+    // 用途: 用于处理mtmd_bitmap相关的操作
 struct mtmd_bitmap {
     uint32_t nx;
     uint32_t ny;
@@ -31,14 +62,54 @@ struct mtmd_bitmap {
     bool is_audio = false; // true if the bitmap is audio
 };
 
+// 类: mtmd_image_tokens
+// 描述: mtmd_image_tokens类提供相关功能
+// 用途: 用于处理mtmd_image_tokens相关的操作
+// 类: mtmd_image_tokens
+// 描述: mtmd_image_tokens类提供相关功能
+// 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
+    // 结构体: mtmd_image_tokens
+    // 描述: mtmd_image_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_image_tokens相关的操作
 struct mtmd_image_tokens {
     uint32_t nx; // number of tokens in x direction
     uint32_t ny; // number of tokens in y direction
     bool use_mrope_pos = false; // use M-RoPE position counting (the whole image is 1 temporal position)
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_tokens
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint32_t n_tokens() const { return nx * ny; }
     clip_image_f32_batch batch_f32; // preprocessed image patches
     std::string id; // optional user-defined ID, useful for KV cache tracking
 
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     mtmd_image_tokens clone() {
         return mtmd_image_tokens{
             nx,
@@ -51,11 +122,43 @@ struct mtmd_image_tokens {
 };
 using mtmd_image_tokens_ptr = std::unique_ptr<mtmd_image_tokens>;
 
+// 类: mtmd_audio_tokens
+// 描述: mtmd_audio_tokens类提供相关功能
+// 用途: 用于处理mtmd_audio_tokens相关的操作
+// 类: mtmd_audio_tokens
+// 描述: mtmd_audio_tokens类提供相关功能
+// 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
+    // 结构体: mtmd_audio_tokens
+    // 描述: mtmd_audio_tokens结构体提供相关功能
+    // 用途: 用于处理mtmd_audio_tokens相关的操作
 struct mtmd_audio_tokens {
     uint32_t n_tokens; // number of tokens
     clip_image_f32_batch batch_f32; // preprocessed image patches
     std::string id; // optional user-defined ID, useful for KV cache tracking
 
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     mtmd_audio_tokens clone() {
         return mtmd_audio_tokens{
             n_tokens,
@@ -66,6 +169,30 @@ struct mtmd_audio_tokens {
 };
 using mtmd_audio_tokens_ptr = std::unique_ptr<mtmd_audio_tokens>;
 
+// 类: mtmd_input_chunk
+// 描述: mtmd_input_chunk类提供相关功能
+// 用途: 用于处理mtmd_input_chunk相关的操作
+// 类: mtmd_input_chunk
+// 描述: mtmd_input_chunk类提供相关功能
+// 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
+    // 结构体: mtmd_input_chunk
+    // 描述: mtmd_input_chunk结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunk相关的操作
 struct mtmd_input_chunk {
     mtmd_input_chunk_type type;
     std::vector<llama_token> tokens_text;
@@ -73,6 +200,30 @@ struct mtmd_input_chunk {
     mtmd_audio_tokens_ptr tokens_audio;
 };
 
+// 类: mtmd_input_chunks
+// 描述: mtmd_input_chunks类提供相关功能
+// 用途: 用于处理mtmd_input_chunks相关的操作
+// 类: mtmd_input_chunks
+// 描述: mtmd_input_chunks类提供相关功能
+// 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
+    // 结构体: mtmd_input_chunks
+    // 描述: mtmd_input_chunks结构体提供相关功能
+    // 用途: 用于处理mtmd_input_chunks相关的操作
 struct mtmd_input_chunks {
     std::vector<mtmd_input_chunk> entries;
 };
@@ -88,10 +239,26 @@ enum mtmd_slice_tmpl {
     MTMD_SLICE_TMPL_LFM2,
 };
 
+// 函数: mtmd_default_marker
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_default_marker
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * mtmd_default_marker() {
     return "<__media__>";
 }
 
+// 函数: mtmd_get_clip_flash_attn_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_get_clip_flash_attn_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static clip_flash_attn_type mtmd_get_clip_flash_attn_type(enum llama_flash_attn_type flash_attn_type) {
     switch (flash_attn_type) {
         case LLAMA_FLASH_ATTN_TYPE_AUTO:     return CLIP_FLASH_ATTN_TYPE_AUTO;
@@ -101,6 +268,14 @@ static clip_flash_attn_type mtmd_get_clip_flash_attn_type(enum llama_flash_attn_
     return CLIP_FLASH_ATTN_TYPE_AUTO;
 }
 
+// 函数: mtmd_context_params_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_context_params_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_context_params mtmd_context_params_default() {
     mtmd_context_params params {
         /* use_gpu           */ true,
@@ -118,8 +293,80 @@ mtmd_context_params mtmd_context_params_default() {
     return params;
 }
 
+// 类: mtmd_context
+// 描述: mtmd_context类提供相关功能
+// 用途: 用于处理mtmd_context相关的操作
+// 类: mtmd_context
+// 描述: mtmd_context类提供相关功能
+// 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
+    // 结构体: mtmd_context
+    // 描述: mtmd_context结构体提供相关功能
+    // 用途: 用于处理mtmd_context相关的操作
 struct mtmd_context {
+    // 类: clip_ctx
+    // 描述: clip_ctx类提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 类: clip_ctx
+    // 描述: clip_ctx类提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
     struct clip_ctx * ctx_v; // vision
+    // 类: clip_ctx
+    // 描述: clip_ctx类提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 类: clip_ctx
+    // 描述: clip_ctx类提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
     struct clip_ctx * ctx_a; // audio
     const struct llama_model * text_model;
     std::vector<float> image_embd_v; // image embedding vector
@@ -218,6 +465,14 @@ struct mtmd_context {
         }
     }
 
+    // 函数: init_vision
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_vision
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_vision() {
         GGML_ASSERT(ctx_v != nullptr);
 
@@ -332,6 +587,14 @@ struct mtmd_context {
         }
     }
 
+    // 函数: init_audio
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_audio
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_audio() {
         GGML_ASSERT(ctx_a != nullptr);
         projector_type proj = clip_get_projector_type(ctx_a);
@@ -376,6 +639,14 @@ struct mtmd_context {
     }
 
     // get clip ctx based on chunk type
+    // 函数: get_clip_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_clip_ctx
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     clip_ctx * get_clip_ctx(const mtmd_input_chunk * chunk) const {
         if (chunk->type == MTMD_INPUT_CHUNK_TYPE_IMAGE) {
             return ctx_v;
@@ -385,10 +656,26 @@ struct mtmd_context {
         GGML_ABORT("unknown chunk type");
     }
 
+    // 函数: proj_type_v
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: proj_type_v
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     projector_type proj_type_v() const {
         return ctx_v ? clip_get_projector_type(ctx_v) : PROJECTOR_TYPE_UNKNOWN;
     }
 
+    // 函数: proj_type_a
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: proj_type_a
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     projector_type proj_type_a() const {
         return ctx_a ? clip_get_projector_type(ctx_a) : PROJECTOR_TYPE_UNKNOWN;
     }
@@ -399,6 +686,14 @@ struct mtmd_context {
     }
 
 private:
+    // 函数: lookup_token
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: lookup_token
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_token lookup_token(const std::string & token_text) {
         const llama_vocab * vocab = llama_model_get_vocab(text_model);
         const int n_vocab = llama_vocab_n_tokens(vocab);
@@ -410,6 +705,14 @@ private:
         return LLAMA_TOKEN_NULL;
     }
 
+    // 函数: token_to_piece
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: token_to_piece
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string token_to_piece(const llama_vocab * vocab, llama_token token, bool special) {
         std::string piece;
         piece.resize(piece.capacity());  // using string internal cache, 15 bytes + '\n'
@@ -436,10 +739,42 @@ mtmd_context * mtmd_init_from_file(const char * mmproj_fname,
     }
 }
 
+// 函数: mtmd_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_free(mtmd_context * ctx) {
     delete ctx;
 }
 
+// 类: mtmd_tokenizer
+// 描述: mtmd_tokenizer类提供相关功能
+// 用途: 用于处理mtmd_tokenizer相关的操作
+// 类: mtmd_tokenizer
+// 描述: mtmd_tokenizer类提供相关功能
+// 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
+    // 结构体: mtmd_tokenizer
+    // 描述: mtmd_tokenizer结构体提供相关功能
+    // 用途: 用于处理mtmd_tokenizer相关的操作
 struct mtmd_tokenizer {
     mtmd_context * ctx;
     std::vector<const mtmd_bitmap *> bitmaps;
@@ -464,6 +799,14 @@ struct mtmd_tokenizer {
         string_replace_all(input_text, MTMD_DEFAULT_IMAGE_MARKER, ctx->media_marker);
     }
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int32_t tokenize(mtmd_input_chunks * output) {
         cur.entries.clear();
         std::vector<std::string> parts = split_text(input_text, ctx->media_marker);
@@ -521,12 +864,28 @@ struct mtmd_tokenizer {
         return 0;
     }
 
+    // 函数: add_text
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_text
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_text(const std::string & txt, bool parse_special) {
         LOG_DBG("%s: %s\n", __func__, txt.c_str());
         auto tokens = mtmd_tokenize_text_internal(vocab, txt, /* add_special */ false, parse_special);
         add_text(tokens);
     }
 
+    // 函数: add_text
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_text
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add_text(const std::vector<llama_token> & tokens) {
         if (tokens.empty()) {
             return;
@@ -548,6 +907,14 @@ struct mtmd_tokenizer {
         }
     }
 
+    // 函数: add_media
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_media
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int32_t add_media(const mtmd_bitmap * bitmap) {
         if (!bitmap->is_audio) {
             // handle image
@@ -743,6 +1110,14 @@ struct mtmd_tokenizer {
         std::vector<mtmd_input_chunk> chunks;
 
         for (auto & entry : batch_f32.entries) {
+            // 函数: image_tokens
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: image_tokens
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             mtmd_image_tokens_ptr image_tokens(new mtmd_image_tokens);
             image_tokens->nx = clip_n_output_tokens(ctx->ctx_v, entry.get());
             image_tokens->ny = 1;
@@ -808,10 +1183,26 @@ int32_t mtmd_tokenize(mtmd_context * ctx,
             const mtmd_input_text * text,
             const mtmd_bitmap ** bitmaps,
             size_t n_bitmaps) {
+    // 函数: tokenizer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenizer
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     mtmd_tokenizer tokenizer(ctx, text, bitmaps, n_bitmaps);
     return tokenizer.tokenize(output);
 }
 
+// 函数: mtmd_encode_chunk
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_encode_chunk
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 int32_t mtmd_encode_chunk(mtmd_context * ctx, const mtmd_input_chunk * chunk) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_TEXT) {
         LOG_WRN("mtmd_encode_chunk has no effect for text chunks\n");
@@ -841,6 +1232,14 @@ int32_t mtmd_encode_chunk(mtmd_context * ctx, const mtmd_input_chunk * chunk) {
     return 1;
 }
 
+// 函数: mtmd_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 int32_t mtmd_encode(mtmd_context * ctx, const mtmd_image_tokens * image_tokens) {
     clip_ctx * ctx_clip = ctx->ctx_v;
     if (!ctx_clip) {
@@ -875,10 +1274,26 @@ int32_t mtmd_encode(mtmd_context * ctx, const mtmd_image_tokens * image_tokens) 
     return ok ? 0 : 1;
 }
 
+// 函数: mtmd_get_output_embd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_get_output_embd
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * mtmd_get_output_embd(mtmd_context * ctx) {
     return ctx->image_embd_v.data();
 }
 
+// 函数: mtmd_decode_use_non_causal
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_decode_use_non_causal
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 bool mtmd_decode_use_non_causal(mtmd_context * ctx) {
     switch (ctx->proj_type_v()) {
         case PROJECTOR_TYPE_GEMMA3:
@@ -888,6 +1303,14 @@ bool mtmd_decode_use_non_causal(mtmd_context * ctx) {
     }
 }
 
+// 函数: mtmd_decode_use_mrope
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_decode_use_mrope
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 bool mtmd_decode_use_mrope(mtmd_context * ctx) {
     switch (ctx->proj_type_v()) {
         case PROJECTOR_TYPE_QWEN2VL:
@@ -901,14 +1324,38 @@ bool mtmd_decode_use_mrope(mtmd_context * ctx) {
     }
 }
 
+// 函数: mtmd_support_vision
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_support_vision
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool mtmd_support_vision(mtmd_context * ctx) {
     return ctx->ctx_v != nullptr;
 }
 
+// 函数: mtmd_support_audio
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_support_audio
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool mtmd_support_audio(mtmd_context * ctx) {
     return ctx->ctx_a != nullptr;
 }
 
+// 函数: mtmd_get_audio_bitrate
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_get_audio_bitrate
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int mtmd_get_audio_bitrate(mtmd_context * ctx) {
     if (!ctx->ctx_a) {
         return -1;
@@ -946,10 +1393,26 @@ mtmd_bitmap * mtmd_bitmap_init_from_audio(size_t n_samples,
     return bitmap;
 }
 
+// 函数: mtmd_bitmap_get_nx
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_get_nx
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t mtmd_bitmap_get_nx(const mtmd_bitmap * bitmap) {
     return bitmap->nx;
 }
 
+// 函数: mtmd_bitmap_get_ny
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_get_ny
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t mtmd_bitmap_get_ny(const mtmd_bitmap * bitmap) {
     return bitmap->ny;
 }
@@ -958,18 +1421,50 @@ const unsigned char * mtmd_bitmap_get_data(const mtmd_bitmap * bitmap) {
     return bitmap->data.data();
 }
 
+// 函数: mtmd_bitmap_get_n_bytes
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_get_n_bytes
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_bitmap_get_n_bytes(const mtmd_bitmap * bitmap) {
     return bitmap->data.size();
 }
 
+// 函数: mtmd_bitmap_is_audio
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_is_audio
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool mtmd_bitmap_is_audio(const mtmd_bitmap * bitmap) {
     return bitmap->is_audio;
 }
 
+// 函数: mtmd_bitmap_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * mtmd_bitmap_get_id(const mtmd_bitmap * bitmap) {
     return bitmap->id.c_str();
 }
 
+// 函数: mtmd_bitmap_set_id
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_set_id
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_bitmap_set_id(mtmd_bitmap * bitmap, const char * id) {
     if (id) {
         bitmap->id = std::string(id);
@@ -978,6 +1473,14 @@ void mtmd_bitmap_set_id(mtmd_bitmap * bitmap, const char * id) {
     }
 }
 
+// 函数: mtmd_bitmap_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_bitmap_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_bitmap_free(mtmd_bitmap * bitmap) {
     if (bitmap) {
         delete bitmap;
@@ -986,14 +1489,38 @@ void mtmd_bitmap_free(mtmd_bitmap * bitmap) {
 
 // mtmd_input_chunks
 
+// 函数: mtmd_input_chunks_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunks_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_input_chunks * mtmd_input_chunks_init() {
     return new mtmd_input_chunks;
 }
 
+// 函数: mtmd_input_chunks_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunks_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_input_chunks_size(const mtmd_input_chunks * chunks) {
     return chunks->entries.size();
 }
 
+// 函数: mtmd_input_chunks_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunks_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const mtmd_input_chunk * mtmd_input_chunks_get(const mtmd_input_chunks * chunks, size_t idx) {
     if (idx >= chunks->entries.size()) {
         return nullptr;
@@ -1001,6 +1528,14 @@ const mtmd_input_chunk * mtmd_input_chunks_get(const mtmd_input_chunks * chunks,
     return &chunks->entries[idx];
 }
 
+// 函数: mtmd_input_chunks_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunks_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_input_chunks_free(mtmd_input_chunks * chunks) {
     if (chunks) {
         delete chunks;
@@ -1013,6 +1548,14 @@ enum mtmd_input_chunk_type mtmd_input_chunk_get_type(const mtmd_input_chunk * ch
     return chunk->type;
 }
 
+// 函数: mtmd_input_chunk_get_tokens_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_get_tokens_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const llama_token * mtmd_input_chunk_get_tokens_text(const mtmd_input_chunk * chunk, size_t * n_tokens_output) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_TEXT) {
         *n_tokens_output = chunk->tokens_text.size();
@@ -1022,6 +1565,14 @@ const llama_token * mtmd_input_chunk_get_tokens_text(const mtmd_input_chunk * ch
     return nullptr;
 }
 
+// 函数: mtmd_input_chunk_get_tokens_image
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_get_tokens_image
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const mtmd_image_tokens * mtmd_input_chunk_get_tokens_image(const mtmd_input_chunk * chunk) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_IMAGE) {
         return chunk->tokens_image.get();
@@ -1029,6 +1580,14 @@ const mtmd_image_tokens * mtmd_input_chunk_get_tokens_image(const mtmd_input_chu
     return nullptr;
 }
 
+// 函数: mtmd_input_chunk_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_input_chunk_get_n_tokens(const mtmd_input_chunk * chunk) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_TEXT) {
         return chunk->tokens_text.size();
@@ -1041,6 +1600,14 @@ size_t mtmd_input_chunk_get_n_tokens(const mtmd_input_chunk * chunk) {
     }
 }
 
+// 函数: mtmd_input_chunk_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_pos mtmd_input_chunk_get_n_pos(const mtmd_input_chunk * chunk) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_TEXT) {
         return chunk->tokens_text.size();
@@ -1053,6 +1620,14 @@ llama_pos mtmd_input_chunk_get_n_pos(const mtmd_input_chunk * chunk) {
     }
 }
 
+// 函数: mtmd_input_chunk_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * mtmd_input_chunk_get_id(const mtmd_input_chunk * chunk) {
     if (chunk->type == MTMD_INPUT_CHUNK_TYPE_IMAGE) {
         return chunk->tokens_image->id.c_str();
@@ -1062,6 +1637,14 @@ const char * mtmd_input_chunk_get_id(const mtmd_input_chunk * chunk) {
     return nullptr;
 }
 
+// 函数: mtmd_input_chunk_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_input_chunk * mtmd_input_chunk_copy(const mtmd_input_chunk * chunk) {
     mtmd_input_chunk * copy = new mtmd_input_chunk{
         chunk->type,
@@ -1082,6 +1665,14 @@ mtmd_input_chunk * mtmd_input_chunk_copy(const mtmd_input_chunk * chunk) {
     return copy;
 }
 
+// 函数: mtmd_input_chunk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_input_chunk_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_input_chunk_free(mtmd_input_chunk * chunk) {
     if (chunk) {
         delete chunk;
@@ -1090,22 +1681,62 @@ void mtmd_input_chunk_free(mtmd_input_chunk * chunk) {
 
 // mtmd_image_tokens
 
+// 函数: mtmd_image_tokens_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_image_tokens_get_n_tokens
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_image_tokens_get_n_tokens(const mtmd_image_tokens * image_tokens) {
     return image_tokens->n_tokens();
 }
 
+// 函数: mtmd_image_tokens_get_nx
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_image_tokens_get_nx
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_image_tokens_get_nx(const mtmd_image_tokens * image_tokens) {
     return image_tokens->nx;
 }
 
+// 函数: mtmd_image_tokens_get_ny
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_image_tokens_get_ny
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t mtmd_image_tokens_get_ny(const mtmd_image_tokens * image_tokens) {
     return image_tokens->ny;
 }
 
+// 函数: mtmd_image_tokens_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_image_tokens_get_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * mtmd_image_tokens_get_id(const mtmd_image_tokens * image_tokens) {
     return image_tokens->id.c_str();
 }
 
+// 函数: mtmd_image_tokens_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_image_tokens_get_n_pos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_pos mtmd_image_tokens_get_n_pos(const mtmd_image_tokens * image_tokens) {
     if (image_tokens->use_mrope_pos) {
         // for M-RoPE, temporal dimension = max(t,h,w)
@@ -1117,6 +1748,14 @@ llama_pos mtmd_image_tokens_get_n_pos(const mtmd_image_tokens * image_tokens) {
 
 // test function
 
+// 函数: mtmd_test_create_input_chunks
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_test_create_input_chunks
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 mtmd_input_chunks * mtmd_test_create_input_chunks() {
     mtmd_input_chunks * chunks = mtmd_input_chunks_init();
     if (!chunks) {
@@ -1150,6 +1789,14 @@ mtmd_input_chunks * mtmd_test_create_input_chunks() {
     return chunks;
 }
 
+// 函数: mtmd_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mtmd_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void mtmd_log_set(ggml_log_callback log_callback, void * user_data) {
     g_logger_state.log_callback = log_callback ? log_callback : clip_log_callback_default;
     g_logger_state.log_callback_user_data = user_data;

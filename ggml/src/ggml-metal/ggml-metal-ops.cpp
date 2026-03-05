@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-metal-ops.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-metal-ops.h"
 
 #include "ggml.h"
@@ -13,6 +20,14 @@
 #include <limits>
 #include <cmath>
 
+// 函数: ggml_metal_get_buffer_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_get_buffer_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_metal_buffer_id ggml_metal_get_buffer_id(const ggml_tensor * t) {
     if (!t) {
         return { nullptr, 0 };
@@ -25,6 +40,24 @@ static ggml_metal_buffer_id ggml_metal_get_buffer_id(const ggml_tensor * t) {
     return ggml_metal_buffer_get_id(ctx, t);
 }
 
+// 类: ggml_metal_op
+// 描述: ggml_metal_op类提供相关功能
+// 用途: 用于处理ggml_metal_op相关的操作
+// 类: ggml_metal_op
+// 描述: ggml_metal_op类提供相关功能
+// 用途: 用于处理ggml_metal_op相关的操作
+    // 结构体: ggml_metal_op
+    // 描述: ggml_metal_op结构体提供相关功能
+    // 用途: 用于处理ggml_metal_op相关的操作
+    // 结构体: ggml_metal_op
+    // 描述: ggml_metal_op结构体提供相关功能
+    // 用途: 用于处理ggml_metal_op相关的操作
+    // 结构体: ggml_metal_op
+    // 描述: ggml_metal_op结构体提供相关功能
+    // 用途: 用于处理ggml_metal_op相关的操作
+    // 结构体: ggml_metal_op
+    // 描述: ggml_metal_op结构体提供相关功能
+    // 用途: 用于处理ggml_metal_op相关的操作
 struct ggml_metal_op {
     ggml_metal_op(
         ggml_metal_device_t dev,
@@ -68,15 +101,39 @@ struct ggml_metal_op {
         ggml_mem_ranges_free(this->mem_ranges);
     }
 
+    // 函数: n_nodes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_nodes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int n_nodes() const {
         return idxs.size();
     }
 
+    // 函数: node
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: node
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * node(int i) const {
         assert(i >= 0 && i < (int) idxs.size());
         return ggml_graph_node(gf, idxs[i]);
     }
 
+    // 函数: can_fuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: can_fuse
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool can_fuse(int i0, const ggml_op * ops, int n_ops) const {
         assert(use_fusion);
         assert(i0 >= 0 && i0 < n_nodes());
@@ -136,14 +193,38 @@ ggml_metal_op_t ggml_metal_op_init(
     return res;
 }
 
+// 函数: ggml_metal_op_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_metal_op_free(ggml_metal_op_t ctx) {
     delete ctx;
 }
 
+// 函数: ggml_metal_op_n_nodes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_n_nodes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_n_nodes(ggml_metal_op_t ctx) {
     return ctx->n_nodes();
 }
 
+// 函数: ggml_metal_op_concurrency_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_concurrency_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_metal_op_concurrency_reset(ggml_metal_op_t ctx) {
     if (!ctx->mem_ranges) {
         return true;
@@ -156,6 +237,14 @@ static bool ggml_metal_op_concurrency_reset(ggml_metal_op_t ctx) {
     return true;
 }
 
+// 函数: ggml_metal_op_concurrency_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_concurrency_check
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_metal_op_concurrency_check(ggml_metal_op_t ctx, const ggml_tensor * node) {
     if (!ctx->mem_ranges) {
         return false;
@@ -164,6 +253,14 @@ static bool ggml_metal_op_concurrency_check(ggml_metal_op_t ctx, const ggml_tens
     return ggml_mem_ranges_check(ctx->mem_ranges, node);
 }
 
+// 函数: ggml_metal_op_concurrency_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_concurrency_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_metal_op_concurrency_add(ggml_metal_op_t ctx, const ggml_tensor * node) {
     if (!ctx->mem_ranges) {
         return true;
@@ -172,7 +269,33 @@ static bool ggml_metal_op_concurrency_add(ggml_metal_op_t ctx, const ggml_tensor
     return ggml_mem_ranges_add(ctx->mem_ranges, node);
 }
 
+// 函数: ggml_metal_op_encode_impl
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_encode_impl
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_metal_op_encode_impl(ggml_metal_op_t ctx, int idx) {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * node = ctx->node(idx);
 
     //GGML_LOG_INFO("%s: encoding node %3d, op = %8s\n", __func__, idx, ggml_op_name(node->op));
@@ -483,6 +606,14 @@ static int ggml_metal_op_encode_impl(ggml_metal_op_t ctx, int idx) {
     return n_fuse;
 }
 
+// 函数: ggml_metal_op_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_encode(ggml_metal_op_t ctx, int idx) {
     if (ctx->use_capture) {
         ggml_metal_encoder_debug_group_push(ctx->enc, ggml_op_desc(ctx->node(idx)));
@@ -501,6 +632,14 @@ int ggml_metal_op_encode(ggml_metal_op_t ctx, int idx) {
     return res;
 }
 
+// 函数: ggml_metal_op_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_concat(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -559,6 +698,14 @@ int ggml_metal_op_concat(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_repeat(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -603,6 +750,14 @@ int ggml_metal_op_repeat(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_acc(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -720,6 +875,14 @@ int ggml_metal_op_acc(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_unary(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -808,6 +971,14 @@ int ggml_metal_op_unary(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_glu(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -866,6 +1037,14 @@ int ggml_metal_op_glu(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_sum(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op  = ctx->node(idx);
 
@@ -903,6 +1082,14 @@ int ggml_metal_op_sum(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_sum_rows(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -968,6 +1155,14 @@ int ggml_metal_op_sum_rows(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_cumsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_cumsum(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1111,6 +1306,14 @@ int ggml_metal_op_cumsum(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_get_rows(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1156,6 +1359,14 @@ int ggml_metal_op_get_rows(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_set_rows(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1218,6 +1429,14 @@ int ggml_metal_op_set_rows(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_diag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_diag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_diag(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1260,6 +1479,14 @@ int ggml_metal_op_diag(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_soft_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_soft_max(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1350,6 +1577,14 @@ int ggml_metal_op_soft_max(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_ssm_conv(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1423,6 +1658,14 @@ int ggml_metal_op_ssm_conv(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_ssm_scan
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_ssm_scan
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_ssm_scan(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1521,6 +1764,14 @@ int ggml_metal_op_ssm_scan(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_rwkv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_rwkv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_rwkv(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1562,6 +1813,14 @@ int ggml_metal_op_rwkv(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_solve_tri
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_solve_tri(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1619,6 +1878,14 @@ int ggml_metal_op_solve_tri(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_set(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1747,6 +2014,14 @@ int ggml_metal_op_set(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_cpy(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1820,6 +2095,14 @@ int ggml_metal_op_cpy(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_pool_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_pool_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_pool_1d(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1868,6 +2151,14 @@ int ggml_metal_op_pool_1d(ggml_metal_op_t ctx, int idx) {
 }
 
 
+// 函数: ggml_metal_op_pool_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_pool_2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_pool_2d(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -1928,6 +2219,14 @@ int ggml_metal_op_pool_2d(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_mul_mat(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -2150,6 +2449,14 @@ int ggml_metal_op_mul_mat(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_mul_mat_id_extra_tpe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_mul_mat_id_extra_tpe
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_metal_op_mul_mat_id_extra_tpe(const ggml_tensor * op) {
     assert(op->op == GGML_OP_MUL_MAT_ID);
 
@@ -2158,6 +2465,14 @@ size_t ggml_metal_op_mul_mat_id_extra_tpe(const ggml_tensor * op) {
     return ggml_type_size(GGML_TYPE_I32)*ne02;
 }
 
+// 函数: ggml_metal_op_mul_mat_id_extra_ids
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_mul_mat_id_extra_ids
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_metal_op_mul_mat_id_extra_ids(const ggml_tensor * op) {
     assert(op->op == GGML_OP_MUL_MAT_ID);
 
@@ -2167,6 +2482,14 @@ size_t ggml_metal_op_mul_mat_id_extra_ids(const ggml_tensor * op) {
     return ggml_type_size(GGML_TYPE_I32)*ne02*ne21;
 }
 
+// 函数: ggml_metal_op_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_mul_mat_id(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -2355,6 +2678,14 @@ int ggml_metal_op_mul_mat_id(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_metal_op_add_id(ggml_metal_op_t ctx, int idx) {
     ggml_tensor * op = ctx->node(idx);
 
@@ -2401,6 +2732,14 @@ int ggml_metal_op_add_id(ggml_metal_op_t ctx, int idx) {
     return 1;
 }
 
+// 函数: ggml_metal_op_flash_attn_ext_use_vec
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_flash_attn_ext_use_vec
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_metal_op_flash_attn_ext_use_vec(const ggml_tensor * op) {
     assert(op->op == GGML_OP_FLASH_ATTN_EXT);
 
@@ -2411,6 +2750,14 @@ bool ggml_metal_op_flash_attn_ext_use_vec(const ggml_tensor * op) {
     return (ne01 < 20) && (ne00 % 32 == 0);
 }
 
+// 函数: ggml_metal_op_flash_attn_ext_extra_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_metal_op_flash_attn_ext_extra_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_metal_op_flash_attn_ext_extra_pad(const ggml_tensor * op) {
     assert(op->op == GGML_OP_FLASH_ATTN_EXT);
 
@@ -3069,6 +3416,24 @@ int ggml_metal_op_bin(ggml_metal_op_t ctx, int idx) {
     // the offsets of src1 and all fused buffers are relative to the start of the src1 buffer
     bid_src1.offs = 0;
 
+    // 类: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params类提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 类: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params类提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
+    // 结构体: ggml_metal_pipeline_with_params
+    // 描述: ggml_metal_pipeline_with_params结构体提供相关功能
+    // 用途: 用于处理ggml_metal_pipeline_with_params相关的操作
     struct ggml_metal_pipeline_with_params pipeline;
 
     pipeline = ggml_metal_library_get_pipeline_bin(lib, op, n_fuse);

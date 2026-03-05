@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: log.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/log.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "common.h"
 #include "log.h"
 
@@ -23,10 +30,26 @@
 
 int common_log_verbosity_thold = LOG_DEFAULT_LLAMA;
 
+// 函数: common_log_set_verbosity_thold
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_set_verbosity_thold
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_set_verbosity_thold(int verbosity) {
     common_log_verbosity_thold = verbosity;
 }
 
+// 函数: t_us
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: t_us
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int64_t t_us() {
     return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
@@ -57,6 +80,24 @@ static std::vector<const char *> g_col = {
     "",
 };
 
+// 类: common_log_entry
+// 描述: common_log_entry类提供相关功能
+// 用途: 用于处理common_log_entry相关的操作
+// 类: common_log_entry
+// 描述: common_log_entry类提供相关功能
+// 用途: 用于处理common_log_entry相关的操作
+    // 结构体: common_log_entry
+    // 描述: common_log_entry结构体提供相关功能
+    // 用途: 用于处理common_log_entry相关的操作
+    // 结构体: common_log_entry
+    // 描述: common_log_entry结构体提供相关功能
+    // 用途: 用于处理common_log_entry相关的操作
+    // 结构体: common_log_entry
+    // 描述: common_log_entry结构体提供相关功能
+    // 用途: 用于处理common_log_entry相关的操作
+    // 结构体: common_log_entry
+    // 描述: common_log_entry结构体提供相关功能
+    // 用途: 用于处理common_log_entry相关的操作
 struct common_log_entry {
     enum ggml_log_level level;
 
@@ -69,6 +110,14 @@ struct common_log_entry {
     // signals the worker thread to stop
     bool is_end;
 
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print(FILE * file = nullptr) const {
         FILE * fcur = file;
         if (!fcur) {
@@ -117,6 +166,24 @@ struct common_log_entry {
     }
 };
 
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
 struct common_log {
     // default capacity - will be expanded if needed
     common_log() : common_log(256) {}
@@ -169,6 +236,14 @@ private:
     common_log_entry cur;
 
 public:
+    // 函数: add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void add(enum ggml_log_level level, const char * fmt, va_list args) {
         std::lock_guard<std::mutex> lock(mtx);
 
@@ -247,6 +322,14 @@ public:
         cv.notify_one();
     }
 
+    // 函数: resume
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resume
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void resume() {
         std::lock_guard<std::mutex> lock(mtx);
 
@@ -280,6 +363,14 @@ public:
         });
     }
 
+    // 函数: pause
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pause
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void pause() {
         {
             std::lock_guard<std::mutex> lock(mtx);
@@ -304,6 +395,14 @@ public:
         thrd.join();
     }
 
+    // 函数: set_file
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_file
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_file(const char * path) {
         pause();
 
@@ -320,6 +419,14 @@ public:
         resume();
     }
 
+    // 函数: set_colors
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_colors
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_colors(bool colors) {
         pause();
 
@@ -342,12 +449,28 @@ public:
         resume();
     }
 
+    // 函数: set_prefix
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_prefix
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_prefix(bool prefix) {
         std::lock_guard<std::mutex> lock(mtx);
 
         this->prefix = prefix;
     }
 
+    // 函数: set_timestamps
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_timestamps
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_timestamps(bool timestamps) {
         std::lock_guard<std::mutex> lock(mtx);
 
@@ -359,10 +482,46 @@ public:
 // public API
 //
 
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
 struct common_log * common_log_init() {
     return new common_log;
 }
 
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+// 类: common_log
+// 描述: common_log类提供相关功能
+// 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
+    // 结构体: common_log
+    // 描述: common_log结构体提供相关功能
+    // 用途: 用于处理common_log相关的操作
 struct common_log * common_log_main() {
     static struct common_log log;
     static std::once_flag    init_flag;
@@ -374,18 +533,50 @@ struct common_log * common_log_main() {
     return &log;
 }
 
+// 函数: common_log_pause
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_pause
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_pause(struct common_log * log) {
     log->pause();
 }
 
+// 函数: common_log_resume
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_resume
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_resume(struct common_log * log) {
     log->resume();
 }
 
+// 函数: common_log_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_free(struct common_log * log) {
     delete log;
 }
 
+// 函数: common_log_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_add(struct common_log * log, enum ggml_log_level level, const char * fmt, ...) {
     va_list args;
     va_start(args, fmt);
@@ -393,10 +584,26 @@ void common_log_add(struct common_log * log, enum ggml_log_level level, const ch
     va_end(args);
 }
 
+// 函数: common_log_set_file
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_set_file
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_set_file(struct common_log * log, const char * file) {
     log->set_file(file);
 }
 
+// 函数: common_log_set_colors
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_set_colors
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_set_colors(struct common_log * log, log_colors colors) {
     if (colors == LOG_COLORS_AUTO) {
         log->set_colors(tty_can_use_colors());
@@ -412,19 +619,51 @@ void common_log_set_colors(struct common_log * log, log_colors colors) {
     log->set_colors(true);
 }
 
+// 函数: common_log_set_prefix
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_set_prefix
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_set_prefix(struct common_log * log, bool prefix) {
     log->set_prefix(prefix);
 }
 
+// 函数: common_log_set_timestamps
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_set_timestamps
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_set_timestamps(struct common_log * log, bool timestamps) {
     log->set_timestamps(timestamps);
 }
 
+// 函数: common_log_flush
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_flush
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_flush(struct common_log * log) {
     log->pause();
     log->resume();
 }
 
+// 函数: common_get_verbosity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_get_verbosity
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static int common_get_verbosity(enum ggml_log_level level) {
     switch (level) {
         case GGML_LOG_LEVEL_DEBUG: return LOG_LEVEL_DEBUG;
@@ -438,6 +677,14 @@ static int common_get_verbosity(enum ggml_log_level level) {
     }
 }
 
+// 函数: common_log_default_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_log_default_callback
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_log_default_callback(enum ggml_log_level level, const char * text, void * /*user_data*/) {
     auto verbosity = common_get_verbosity(level);
     if (verbosity <= common_log_verbosity_thold) {

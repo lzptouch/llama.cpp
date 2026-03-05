@@ -67,6 +67,14 @@
  * @param   dst The ggml tensor representing the destination, which op is
  *              GGML_OP_REPEAT and specifies the desired dimensions.
  */
+// 函数: ggml_cann_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_repeat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -87,6 +95,14 @@ void ggml_cann_repeat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the result of the Leaky ReLU
  *            activation is stored, which op is `GGML_OP_LEAKY_RELU`
  */
+// 函数: ggml_cann_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_leaky_relu(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -102,6 +118,14 @@ void ggml_cann_leaky_relu(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @attention tensorList length should be 2 and the dimension using for concat
  *            default to 1.
  */
+// 函数: ggml_cann_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_concat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -118,6 +142,14 @@ void ggml_cann_concat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *            `start`, 'stop' and 'step' are in dst->op_params and dst->op is
  *            `GGML_OP_ARANGE`.
  */
+// 函数: ggml_cann_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_arange(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -136,6 +168,14 @@ void ggml_cann_arange(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the clamped values will be stored.
  *            dst->op is `GGML_OP_CLAMP`, `min` and `max` value is in dst->params.
  */
+// 函数: ggml_cann_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_clamp(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -153,6 +193,14 @@ void ggml_cann_clamp(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the scaled values will be stored.
  *            dst->op is `GGML_OP_SCALE` and `scale` value is in dst->params.
  */
+// 函数: ggml_cann_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_scale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_scale(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -168,6 +216,14 @@ void ggml_cann_scale(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the sorted indices will be stored.
  *            dst->op is `GGML_OP_ARGSORT`.
  */
+// 函数: ggml_cann_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_argsort
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_argsort(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -190,6 +246,14 @@ void ggml_cann_argsort(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the normalized values will be stored.
  * @attention `Var` defaults to dst->ne[0].
  */
+// 函数: ggml_cann_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -213,6 +277,14 @@ void ggml_cann_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @attention The normalization is performed along the last dimension of the
  *            input tensor by default.
  */
+// 函数: ggml_cann_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_l2_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_l2_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -250,6 +322,14 @@ void ggml_cann_l2_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @note The computation is performed using CANN backend operators including
  *       LogSoftmax, Mul, ReduceSum, and Muls for the final scaling.
  */
+// 函数: ggml_cann_cross_entropy_loss
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_cross_entropy_loss
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_cross_entropy_loss(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -274,6 +354,14 @@ void ggml_cann_cross_entropy_loss(ggml_backend_cann_context & ctx, ggml_tensor *
  *
  * @attention eps defaults to 1e-6f.
  */
+// 函数: ggml_cann_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_group_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_group_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -293,6 +381,14 @@ void ggml_cann_group_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the accumulated values will be stored.
  *            `inplace` is in dst->params, and dst->op is `GGML_OP_ACC`.
  */
+// 函数: ggml_cann_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_acc(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -309,6 +405,14 @@ void ggml_cann_acc(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *
  * @attention `reduce_dims` defaults to 3, which means the last dimension.
  */
+// 函数: ggml_cann_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_sum_rows
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_sum_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -323,6 +427,14 @@ void ggml_cann_sum_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *
  */
 
+// 函数: ggml_cann_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_sum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_sum(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -339,6 +451,14 @@ void ggml_cann_sum(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the upsampled values will be stored.
  *            dst->op is `GGML_OP_UPSCALE`.
  */
+// 函数: ggml_cann_upsample_nearest2d
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_upsample_nearest2d
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_upsample_nearest2d(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -354,6 +474,14 @@ void ggml_cann_upsample_nearest2d(ggml_backend_cann_context & ctx, ggml_tensor *
  * @param dst The destination tensor, which specifies the target dimensions for
  *            padding. dst->op is `GGML_OP_PAD`.
  */
+// 函数: ggml_cann_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_pad(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -371,6 +499,14 @@ void ggml_cann_pad(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor on which the pooling operation is to be
  *            performed. dst->op is `GGML_OP_POOL_2D`.
  */
+// 函数: ggml_cann_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_pool2d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_pool2d(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -390,6 +526,14 @@ void ggml_cann_pool2d(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *            different shape and dst is no-contiguous.
  * @note:     This func need to simplify.
  */
+// 函数: ggml_cann_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_dup
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_dup(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -412,6 +556,14 @@ void ggml_cann_dup(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the normalized values will be stored.
  *            dst->op is `GGML_OP_RMS_NORM`.
  */
+// 函数: ggml_cann_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_rms_norm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_rms_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -427,6 +579,14 @@ void ggml_cann_rms_norm(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *            `GGML_OP_DIAG_MASK`
  * @param value The value to use for masking.
  */
+// 函数: ggml_cann_diag_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_diag_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_diag_mask(ggml_backend_cann_context & ctx, ggml_tensor * dst, float value);
 
 /**
@@ -442,6 +602,14 @@ void ggml_cann_diag_mask(ggml_backend_cann_context & ctx, ggml_tensor * dst, flo
  * @param dst The destination tensor that stores the result of the operation.
  *            dst->op is `GGML_OP_IM2COL`.
  */
+// 函数: ggml_cann_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_im2col
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_im2col(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -456,9 +624,25 @@ void ggml_cann_im2col(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the result of the embedding operation
  *            will be stored. dst->op is `GGML_OP_TIMESTEP_EMBEDDING`.
  */
+// 函数: ggml_cann_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_timestep_embedding
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_timestep_embedding(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 // @see ggml_cann_dup.
+// 函数: ggml_cann_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_cpy(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -481,6 +665,14 @@ void ggml_cann_cpy(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the result will be stored. dst->op is
  *            `GGML_OP_SOFTMAX`.
  */
+// 函数: ggml_cann_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_softmax(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -493,6 +685,14 @@ void ggml_cann_softmax(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param ctx The backend CANN context for executing operations.
  * @param dst The destination tensor where the extracted rows will be stored.
  */
+// 函数: ggml_cann_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_get_rows
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_get_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -505,6 +705,14 @@ void ggml_cann_get_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param ctx The backend CANN context for executing operations.
  * @param dst The destination tensor where the specified rows will be updated.
  */
+// 函数: ggml_cann_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_set_rows
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_set_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -518,6 +726,14 @@ void ggml_cann_set_rows(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor for storing the result of the matrix
  *            multiplication. dst->op is `GGML_OP_MUL_MAT`.
  */
+// 函数: ggml_cann_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_mul_mat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -541,6 +757,14 @@ void ggml_cann_mul_mat(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @note The function currently does not support cases where the freq_scale is
  *       not equal 1.
  */
+// 函数: ggml_cann_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_rope
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_rope(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -556,6 +780,14 @@ void ggml_cann_rope(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the indices of the maximum values will
  *            be stored. dst->op is `GGML_OP_ARGMAX`.
  */
+// 函数: ggml_cann_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_argmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_argmax(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -656,6 +888,14 @@ void aclnn_div(ggml_backend_cann_context & ctx,
  * @param acl_dst The destination tensor where the cosine results will be
  * stored.
  */
+// 函数: aclnn_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: aclnn_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void aclnn_cos(ggml_backend_cann_context & ctx, aclTensor * acl_src, aclTensor * acl_dst);
 
 /**
@@ -673,6 +913,14 @@ void aclnn_cos(ggml_backend_cann_context & ctx, aclTensor * acl_src, aclTensor *
  * @param acl_src The source tensor on which the sine function will be applied.
  * @param acl_dst The destination tensor where the sine results will be stored.
  */
+// 函数: aclnn_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: aclnn_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void aclnn_sin(ggml_backend_cann_context & ctx, aclTensor * acl_src, aclTensor * acl_dst);
 
 /**
@@ -711,6 +959,14 @@ void bcast_shape(ggml_tensor *    src0,
  * @param dst The destination tensor where the transposed convolution result
  * will be stored. dst->op is `GGML_OP_CONV_TRANSPOSE_1D`.
  */
+// 函数: ggml_cann_conv_transpose_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_conv_transpose_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_conv_transpose_1d(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -736,6 +992,14 @@ void ggml_cann_conv_transpose_1d(ggml_backend_cann_context & ctx, ggml_tensor * 
  * @param dst The destination tensor where the ELU-activated result will be stored.
  *            dst->op is expected to be `GGML_OP_ELU`.
  */
+// 函数: ggml_cann_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_elu(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -751,6 +1015,14 @@ void ggml_cann_elu(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the mean result will be stored.
  *            dst->op is expected to be `GGML_OP_MEAN`.
  */
+// 函数: ggml_cann_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_mean
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_mean(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -766,6 +1038,14 @@ void ggml_cann_mean(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the padded result will be stored.
  *            dst->op is expected to be `GGML_OP_PAD_REFLECT_1D`.
  */
+// 函数: ggml_cann_pad_reflect_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_pad_reflect_1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_pad_reflect_1d(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -782,6 +1062,14 @@ void ggml_cann_pad_reflect_1d(ggml_backend_cann_context & ctx, ggml_tensor * dst
  * @param dst The destination tensor where the result will be stored.
  *            dst->op is expected to be `GGML_OP_COUNT_EQUAL`.
  */
+// 函数: ggml_cann_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_count_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_count_equal(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -797,6 +1085,14 @@ void ggml_cann_count_equal(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the result will be stored.
  *            dst->op is expected to be `GGML_OP_STEP`.
  */
+// 函数: ggml_cann_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_step(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -812,6 +1108,14 @@ void ggml_cann_step(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  * @param dst The destination tensor where the result will be stored.
  *            dst->op is expected to be `GGML_OP_FLASH_ATTN_EXT`.
  */
+// 函数: ggml_cann_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_flash_attn_ext
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_flash_attn_ext(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -827,6 +1131,14 @@ void ggml_cann_flash_attn_ext(ggml_backend_cann_context & ctx, ggml_tensor * dst
  * @param ctx Backend context providing stream/allocator utilities.
  * @param dst Output tensor; src deps are k, v, q, g, s as above.
  */
+// 函数: ggml_cann_gated_linear_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_gated_linear_attn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_gated_linear_attn(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -855,6 +1167,14 @@ void ggml_cann_gated_linear_attn(ggml_backend_cann_context & ctx, ggml_tensor * 
             ACL_CHECK(aclnn##OP_NAME##GetWorkspaceSize(__VA_ARGS__, &workspaceSize, &executor)); \
             /* workspace should alloced in main thread to keep malloc order when using vmm. */   \
             if (workspaceSize > 0) {                                                             \
+                // 函数: workspace_allocator
+                // 描述: 分配: 分配内存或资源
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: workspace_allocator
+                // 描述: 分配: 分配内存或资源
+                // 参数: 无参数
+                // 返回: 无返回值
                 ggml_cann_pool_alloc workspace_allocator(CTX.pool(), workspaceSize);             \
                 workspaceAddr = workspace_allocator.get();                                       \
             }                                                                                    \
@@ -886,6 +1206,14 @@ void ggml_cann_gated_linear_attn(ggml_backend_cann_context & ctx, ggml_tensor * 
  * @param dst The destination tensor where the expert-weighted token outputs are stored.
  *            Expected to be of shape [M, K, N, 1].
  */
+// 函数: ggml_cann_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_mul_mat_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_mul_mat_id(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -914,6 +1242,14 @@ void ggml_cann_op_add_rms_norm_fused(ggml_backend_cann_context & ctx,
  *
  * @param tensor Pointer to the target ggml_tensor object (const-qualified).
  */
+// 函数: is_matmul_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_matmul_weight
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_matmul_weight(const ggml_tensor * tensor) {
     std::string                                  name = ggml_get_name(tensor);
     static const std::unordered_set<std::string> weight_suffixes{ "output.weight",      "attn_q.weight",
@@ -969,6 +1305,14 @@ template <auto binary_op> void ggml_cann_binary_op(ggml_backend_cann_context & c
  * @param dst The destination tensor. Its src[0] is treated as the input tensor.
  */
 template <void unary_op(ggml_backend_cann_context &, aclTensor *, aclTensor *)>
+// 函数: ggml_cann_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_op_unary(ggml_backend_cann_context & ctx, ggml_tensor * dst) {
     ggml_tensor * src = dst->src[0];
 
@@ -998,10 +1342,26 @@ void ggml_cann_op_unary(ggml_backend_cann_context & ctx, ggml_tensor * dst) {
  *
  * @see GGML_CANN_CALL_OP_UNARY
  */
+// 函数: ggml_cann_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_op_unary(std::function<void(ggml_backend_cann_context &, aclTensor *, aclTensor *)> unary_op,
                         ggml_backend_cann_context &                                                ctx,
                         ggml_tensor *                                                              dst);
 
+// 函数: ggml_cann_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_ssm_conv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_ssm_conv(ggml_backend_cann_context & ctx, ggml_tensor * dst);
 
 /**
@@ -1034,6 +1394,14 @@ void ggml_cann_ssm_conv(ggml_backend_cann_context & ctx, ggml_tensor * dst);
  *
  * @see GGML_CANN_CALL_OP_UNARY_GATED
  */
+// 函数: ggml_cann_op_unary_gated
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_op_unary_gated
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_op_unary_gated(std::function<void(ggml_backend_cann_context &, aclTensor *, aclTensor *)> unary_op,
                               ggml_backend_cann_context &                                                ctx,
                               ggml_tensor *                                                              dst);
@@ -1116,4 +1484,12 @@ void ggml_cann_op_unary_gated(std::function<void(ggml_backend_cann_context &, ac
  *
  * @see GGML_CANN_CALL_ACLNN_OP for CANN operator invocation
  */
+// 函数: ggml_cann_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_cann_out_prod(ggml_backend_cann_context & ctx, ggml_tensor * dst);

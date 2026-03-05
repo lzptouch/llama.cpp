@@ -1,14 +1,37 @@
+// ============================================================================
+// 文件: test_infill.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_infill.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
 server = ServerPreset.tinyllama_infill()
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama_infill()
 
 
+    # 函数: test_infill_without_input_extra
+    # 描述: test_infill_without_input_extra函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_infill_without_input_extra
+    # 描述: test_infill_without_input_extra函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_infill_without_input_extra():
     global server
     server.start()
@@ -21,6 +44,14 @@ def test_infill_without_input_extra():
     assert match_regex("(Ann|small|shiny|Daddy|Jimmy)+", res.body["content"])
 
 
+    # 函数: test_infill_with_input_extra
+    # 描述: test_infill_with_input_extra函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_infill_with_input_extra
+    # 描述: test_infill_with_input_extra函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_infill_with_input_extra():
     global server
     server.start()
@@ -44,6 +75,14 @@ def test_infill_with_input_extra():
     {"filename": 123, "text": "abc"},
     {"filename": 123, "text": 456},
 ])
+    # 函数: test_invalid_input_extra_req
+    # 描述: test_invalid_input_extra_req函数提供相关功能
+    # 参数: input_extra
+    # 返回: 无返回值
+    # 函数: test_invalid_input_extra_req
+    # 描述: test_invalid_input_extra_req函数提供相关功能
+    # 参数: input_extra
+    # 返回: 无返回值
 def test_invalid_input_extra_req(input_extra):
     global server
     server.start()
@@ -58,6 +97,14 @@ def test_invalid_input_extra_req(input_extra):
 
 
 @pytest.mark.skipif(not is_slow_test_allowed(), reason="skipping slow test")
+    # 函数: test_with_qwen_model
+    # 描述: test_with_qwen_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_with_qwen_model
+    # 描述: test_with_qwen_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_with_qwen_model():
     global server
     server.model_file = None

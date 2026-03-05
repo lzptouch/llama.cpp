@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llguidance.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/llguidance.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "sampling.h"
 #include "log.h"
 
@@ -6,6 +13,24 @@
 #    include "llguidance.h"
 #    include <cmath>
 
+// 类: llama_sampler_llg
+// 描述: llama_sampler_llg类提供相关功能
+// 用途: 用于处理llama_sampler_llg相关的操作
+// 类: llama_sampler_llg
+// 描述: llama_sampler_llg类提供相关功能
+// 用途: 用于处理llama_sampler_llg相关的操作
+    // 结构体: llama_sampler_llg
+    // 描述: llama_sampler_llg结构体提供相关功能
+    // 用途: 用于处理llama_sampler_llg相关的操作
+    // 结构体: llama_sampler_llg
+    // 描述: llama_sampler_llg结构体提供相关功能
+    // 用途: 用于处理llama_sampler_llg相关的操作
+    // 结构体: llama_sampler_llg
+    // 描述: llama_sampler_llg结构体提供相关功能
+    // 用途: 用于处理llama_sampler_llg相关的操作
+    // 结构体: llama_sampler_llg
+    // 描述: llama_sampler_llg结构体提供相关功能
+    // 用途: 用于处理llama_sampler_llg相关的操作
 struct llama_sampler_llg {
     const llama_vocab * vocab;
     std::string         grammar_kind;
@@ -32,10 +57,26 @@ static LlgMatcher * llama_sampler_llg_new(LlgTokenizer * tokenizer, const char *
     return c;
 }
 
+// 函数: llama_sampler_llg_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_name
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static const char * llama_sampler_llg_name(const llama_sampler * /*smpl*/) {
     return "llguidance";
 }
 
+// 函数: llama_sampler_llg_accept_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_accept_impl
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_llg_accept_impl(llama_sampler * smpl, llama_token token) {
     auto * ctx = (llama_sampler_llg *) smpl->ctx;
     if (ctx->grammar) {
@@ -43,6 +84,14 @@ static void llama_sampler_llg_accept_impl(llama_sampler * smpl, llama_token toke
     }
 }
 
+// 函数: llama_sampler_llg_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_apply
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_llg_apply(llama_sampler * smpl, llama_token_data_array * cur_p) {
     auto * ctx = (llama_sampler_llg *) smpl->ctx;
     if (ctx->grammar) {
@@ -67,6 +116,14 @@ static void llama_sampler_llg_apply(llama_sampler * smpl, llama_token_data_array
     }
 }
 
+// 函数: llama_sampler_llg_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_llg_reset(llama_sampler * smpl) {
     auto * ctx = (llama_sampler_llg *) smpl->ctx;
     if (ctx->grammar) {
@@ -74,6 +131,14 @@ static void llama_sampler_llg_reset(llama_sampler * smpl) {
     }
 }
 
+// 函数: llama_sampler_llg_clone
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_clone
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static llama_sampler * llama_sampler_llg_clone(const llama_sampler * smpl) {
     const auto * ctx = (const llama_sampler_llg *) smpl->ctx;
 
@@ -94,6 +159,14 @@ static llama_sampler * llama_sampler_llg_clone(const llama_sampler * smpl) {
     return result;
 }
 
+// 函数: llama_sampler_llg_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_sampler_llg_free(llama_sampler * smpl) {
     const auto * ctx = (llama_sampler_llg *) smpl->ctx;
 
@@ -134,6 +207,14 @@ static size_t llama_sampler_llg_tokenize_fn(const void * user_data, const uint8_
     return r;
 }
 
+// 函数: llama_sampler_llg_new_tokenizer
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_llg_new_tokenizer
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static LlgTokenizer * llama_sampler_llg_new_tokenizer(const llama_vocab * vocab) {
     // TODO store the tokenizer in the vocab somehow
     static const llama_vocab * vocab_cache;
@@ -250,6 +331,14 @@ llama_sampler * llama_sampler_init_llg(const llama_vocab * vocab, const char * g
 
 #else
 
+// 函数: llama_sampler_init_llg
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_sampler_init_llg
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 llama_sampler * llama_sampler_init_llg(const llama_vocab *, const char *, const char *) {
     LOG_WRN("llguidance (cmake -DLLAMA_LLGUIDANCE=ON) is not enabled");
     return nullptr;

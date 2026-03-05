@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ngram-map.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/ngram-map.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "common.h"
 #include "log.h"
 #include "ngram-map.h"
@@ -11,6 +18,14 @@
 #define LCG_FACTOR 2654435761UL
 
 // Compute the LCG hash of a n-gram of size len at offset start.
+// 函数: common_ngram_map_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_map_hash
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static uint32_t common_ngram_map_hash(const llama_tokens & tokens, size_t start, size_t len) {
     uint32_t hash = 0;
     for (size_t i = 0; i < len; ++i) {
@@ -20,6 +35,14 @@ static uint32_t common_ngram_map_hash(const llama_tokens & tokens, size_t start,
 }
 
 // Print the values of a sublist of `llama_tokens & inp` to a string in the form [v0, v1, v2, ...].
+// 函数: common_tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string common_tokens_to_str(const llama_tokens & inp, size_t start, size_t length) {
     std::ostringstream oss;
     oss << '[';
@@ -509,6 +532,14 @@ void common_ngram_map_draft(common_ngram_map & map,
     map.last_draft_value_idx = slot_max; // value used for draft generation.
 }
 
+// 函数: common_ngram_map_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_map_accept
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_ngram_map_accept(common_ngram_map & map, uint16_t n_accepted) {
     if (!map.last_draft_created) {
         return;
@@ -521,6 +552,24 @@ void common_ngram_map_accept(common_ngram_map & map, uint16_t n_accepted) {
     // find key corresponding to key_idx.
     common_ngram_map_key & curr_key = map.keys[key_idx];
     // find value corresponding to val_idx.
+    // 类: common_ngram_map_value
+    // 描述: common_ngram_map_value类提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 类: common_ngram_map_value
+    // 描述: common_ngram_map_value类提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
+    // 结构体: common_ngram_map_value
+    // 描述: common_ngram_map_value结构体提供相关功能
+    // 用途: 用于处理common_ngram_map_value相关的操作
     struct common_ngram_map_value & curr_value = curr_key.values[val_idx]; // value used for draft generation.
 
     // update the value statistics

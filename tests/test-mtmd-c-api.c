@@ -1,12 +1,51 @@
+// ============================================================================
+// 文件: test-mtmd-c-api.c
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-mtmd-c-api.c
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include <stdio.h>
 #include <assert.h>
 
 #include "mtmd.h"
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(void) {
     printf("\n\nTesting libmtmd C API...\n");
     printf("--------\n\n");
 
+    // 类: mtmd_context_params
+    // 描述: mtmd_context_params类提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 类: mtmd_context_params
+    // 描述: mtmd_context_params类提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
+    // 结构体: mtmd_context_params
+    // 描述: mtmd_context_params结构体提供相关功能
+    // 用途: 用于处理mtmd_context_params相关的操作
     struct mtmd_context_params params = mtmd_context_params_default();
     printf("Default image marker: %s\n", params.image_marker);
 

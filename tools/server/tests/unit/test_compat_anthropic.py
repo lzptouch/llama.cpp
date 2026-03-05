@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_compat_anthropic.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_compat_anthropic.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #!/usr/bin/env python3
 import pytest
 import base64
@@ -8,6 +15,14 @@ from utils import *
 server: ServerProcess
 
 
+    # 函数: get_test_image_base64
+    # 描述: get_test_image_base64函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: get_test_image_base64
+    # 描述: get_test_image_base64函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def get_test_image_base64() -> str:
     """Get a test image in base64 format"""
     # Use the same test image as test_vision_api.py
@@ -17,6 +32,14 @@ def get_test_image_base64() -> str:
     return base64.b64encode(response.content).decode("utf-8")
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -28,6 +51,14 @@ def create_server():
 
 
 @pytest.fixture
+    # 函数: vision_server
+    # 描述: vision_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: vision_server
+    # 描述: vision_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def vision_server():
     """Separate fixture for vision tests that require multimodal support"""
     global server
@@ -41,6 +72,14 @@ def vision_server():
 
 # Basic message tests
 
+    # 函数: test_anthropic_messages_basic
+    # 描述: test_anthropic_messages_basic函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_messages_basic
+    # 描述: test_anthropic_messages_basic函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_messages_basic():
     """Test basic Anthropic messages endpoint"""
     server.start()
@@ -72,6 +111,14 @@ def test_anthropic_messages_basic():
     assert "timings" not in res.body, "Anthropic API should not include timings field"
 
 
+    # 函数: test_anthropic_messages_with_system
+    # 描述: test_anthropic_messages_with_system函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_messages_with_system
+    # 描述: test_anthropic_messages_with_system函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_messages_with_system():
     """Test messages with system prompt"""
     server.start()
@@ -90,6 +137,14 @@ def test_anthropic_messages_with_system():
     assert len(res.body["content"]) > 0
 
 
+    # 函数: test_anthropic_messages_multipart_content
+    # 描述: test_anthropic_messages_multipart_content函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_messages_multipart_content
+    # 描述: test_anthropic_messages_multipart_content函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_messages_multipart_content():
     """Test messages with multipart content blocks"""
     server.start()
@@ -112,6 +167,14 @@ def test_anthropic_messages_multipart_content():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_messages_conversation
+    # 描述: test_anthropic_messages_conversation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_messages_conversation
+    # 描述: test_anthropic_messages_conversation函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_messages_conversation():
     """Test multi-turn conversation"""
     server.start()
@@ -132,6 +195,14 @@ def test_anthropic_messages_conversation():
 
 # Streaming tests
 
+    # 函数: test_anthropic_messages_streaming
+    # 描述: test_anthropic_messages_streaming函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_messages_streaming
+    # 描述: test_anthropic_messages_streaming函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_messages_streaming():
     """Test streaming messages"""
     server.start()
@@ -206,6 +277,14 @@ def test_anthropic_messages_streaming():
 
 # Token counting tests
 
+    # 函数: test_anthropic_count_tokens
+    # 描述: test_anthropic_count_tokens函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_count_tokens
+    # 描述: test_anthropic_count_tokens函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_count_tokens():
     """Test token counting endpoint"""
     server.start()
@@ -225,6 +304,14 @@ def test_anthropic_count_tokens():
     assert "output_tokens" not in res.body
 
 
+    # 函数: test_anthropic_count_tokens_with_system
+    # 描述: test_anthropic_count_tokens_with_system函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_count_tokens_with_system
+    # 描述: test_anthropic_count_tokens_with_system函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_count_tokens_with_system():
     """Test token counting with system prompt"""
     server.start()
@@ -241,6 +328,14 @@ def test_anthropic_count_tokens_with_system():
     assert res.body["input_tokens"] > 0
 
 
+    # 函数: test_anthropic_count_tokens_no_max_tokens
+    # 描述: test_anthropic_count_tokens_no_max_tokens函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_count_tokens_no_max_tokens
+    # 描述: test_anthropic_count_tokens_no_max_tokens函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_count_tokens_no_max_tokens():
     """Test that count_tokens doesn't require max_tokens"""
     server.start()
@@ -259,6 +354,14 @@ def test_anthropic_count_tokens_no_max_tokens():
 
 # Tool use tests
 
+    # 函数: test_anthropic_tool_use_basic
+    # 描述: test_anthropic_tool_use_basic函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_tool_use_basic
+    # 描述: test_anthropic_tool_use_basic函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_tool_use_basic():
     """Test basic tool use"""
     server.jinja = True
@@ -306,6 +409,14 @@ def test_anthropic_tool_use_basic():
         assert isinstance(tool_block["input"], dict)
 
 
+    # 函数: test_anthropic_tool_result
+    # 描述: test_anthropic_tool_result函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_tool_result
+    # 描述: test_anthropic_tool_result函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_tool_result():
     """Test sending tool results back
 
@@ -354,6 +465,14 @@ def test_anthropic_tool_result():
     assert res.body["content"][0]["type"] == "text"
 
 
+    # 函数: test_anthropic_tool_result_with_text
+    # 描述: test_anthropic_tool_result_with_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_tool_result_with_text
+    # 描述: test_anthropic_tool_result_with_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_tool_result_with_text():
     """Test tool result mixed with text content
 
@@ -400,6 +519,14 @@ def test_anthropic_tool_result_with_text():
     assert len(res.body["content"]) > 0
 
 
+    # 函数: test_anthropic_tool_result_error
+    # 描述: test_anthropic_tool_result_error函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_tool_result_error
+    # 描述: test_anthropic_tool_result_error函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_tool_result_error():
     """Test tool result with error flag"""
     server.jinja = True
@@ -439,6 +566,14 @@ def test_anthropic_tool_result_error():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_tool_streaming
+    # 描述: test_anthropic_tool_streaming函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_tool_streaming
+    # 描述: test_anthropic_tool_streaming函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_tool_streaming():
     """Test streaming with tool use"""
     server.jinja = True
@@ -494,6 +629,14 @@ def test_anthropic_tool_streaming():
 
 # Vision/multimodal tests
 
+    # 函数: test_anthropic_vision_format_accepted
+    # 描述: test_anthropic_vision_format_accepted函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_vision_format_accepted
+    # 描述: test_anthropic_vision_format_accepted函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_vision_format_accepted():
     """Test that Anthropic vision format is accepted (format validation only)"""
     server.start()
@@ -531,6 +674,14 @@ def test_anthropic_vision_format_accepted():
     assert "image input is not supported" in res.body.get("error", {}).get("message", "").lower()
 
 
+    # 函数: test_anthropic_vision_base64_with_multimodal_model
+    # 描述: test_anthropic_vision_base64_with_multimodal_model函数提供相关功能
+    # 参数: vision_server
+    # 返回: 无返回值
+    # 函数: test_anthropic_vision_base64_with_multimodal_model
+    # 描述: test_anthropic_vision_base64_with_multimodal_model函数提供相关功能
+    # 参数: vision_server
+    # 返回: 无返回值
 def test_anthropic_vision_base64_with_multimodal_model(vision_server):
     """Test vision with base64 image using Anthropic format with multimodal model"""
     global server
@@ -574,6 +725,14 @@ def test_anthropic_vision_base64_with_multimodal_model(vision_server):
 
 # Parameter tests
 
+    # 函数: test_anthropic_stop_sequences
+    # 描述: test_anthropic_stop_sequences函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_stop_sequences
+    # 描述: test_anthropic_stop_sequences函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_stop_sequences():
     """Test stop_sequences parameter"""
     server.start()
@@ -591,6 +750,14 @@ def test_anthropic_stop_sequences():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_temperature
+    # 描述: test_anthropic_temperature函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_temperature
+    # 描述: test_anthropic_temperature函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_temperature():
     """Test temperature parameter"""
     server.start()
@@ -608,6 +775,14 @@ def test_anthropic_temperature():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_top_p
+    # 描述: test_anthropic_top_p函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_top_p
+    # 描述: test_anthropic_top_p函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_top_p():
     """Test top_p parameter"""
     server.start()
@@ -625,6 +800,14 @@ def test_anthropic_top_p():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_top_k
+    # 描述: test_anthropic_top_k函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_top_k
+    # 描述: test_anthropic_top_k函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_top_k():
     """Test top_k parameter (llama.cpp specific)"""
     server.start()
@@ -644,6 +827,14 @@ def test_anthropic_top_k():
 
 # Error handling tests
 
+    # 函数: test_anthropic_missing_messages
+    # 描述: test_anthropic_missing_messages函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_missing_messages
+    # 描述: test_anthropic_missing_messages函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_missing_messages():
     """Test error when messages are missing"""
     server.start()
@@ -658,6 +849,14 @@ def test_anthropic_missing_messages():
     assert res.status_code >= 400
 
 
+    # 函数: test_anthropic_empty_messages
+    # 描述: test_anthropic_empty_messages函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_empty_messages
+    # 描述: test_anthropic_empty_messages函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_empty_messages():
     """Test permissive handling of empty messages array"""
     server.start()
@@ -676,6 +875,14 @@ def test_anthropic_empty_messages():
 
 # Content block index tests
 
+    # 函数: test_anthropic_streaming_content_block_indices
+    # 描述: test_anthropic_streaming_content_block_indices函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_streaming_content_block_indices
+    # 描述: test_anthropic_streaming_content_block_indices函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_streaming_content_block_indices():
     """Test that content block indices are correct in streaming"""
     server.jinja = True
@@ -723,6 +930,14 @@ def test_anthropic_streaming_content_block_indices():
 
 # Extended features tests
 
+    # 函数: test_anthropic_thinking
+    # 描述: test_anthropic_thinking函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_thinking
+    # 描述: test_anthropic_thinking函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_thinking():
     """Test extended thinking parameter"""
     server.jinja = True
@@ -744,6 +959,14 @@ def test_anthropic_thinking():
     assert res.body["type"] == "message"
 
 
+    # 函数: test_anthropic_metadata
+    # 描述: test_anthropic_metadata函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_metadata
+    # 描述: test_anthropic_metadata函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_metadata():
     """Test metadata parameter"""
     server.start()
@@ -765,6 +988,14 @@ def test_anthropic_metadata():
 
 # Compatibility tests
 
+    # 函数: test_anthropic_vs_openai_different_response_format
+    # 描述: test_anthropic_vs_openai_different_response_format函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_anthropic_vs_openai_different_response_format
+    # 描述: test_anthropic_vs_openai_different_response_format函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_anthropic_vs_openai_different_response_format():
     """Verify Anthropic format is different from OpenAI format"""
     server.start()
@@ -811,6 +1042,14 @@ def test_anthropic_vs_openai_different_response_format():
 
 @pytest.mark.slow
 @pytest.mark.parametrize("stream", [False, True])
+    # 函数: test_anthropic_thinking_with_reasoning_model
+    # 描述: test_anthropic_thinking_with_reasoning_model函数提供相关功能
+    # 参数: stream
+    # 返回: 有返回值
+    # 函数: test_anthropic_thinking_with_reasoning_model
+    # 描述: test_anthropic_thinking_with_reasoning_model函数提供相关功能
+    # 参数: stream
+    # 返回: 有返回值
 def test_anthropic_thinking_with_reasoning_model(stream):
     """Test that thinking content blocks are properly returned for reasoning models"""
     global server

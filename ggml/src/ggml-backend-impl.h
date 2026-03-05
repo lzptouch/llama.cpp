@@ -14,6 +14,24 @@ extern "C" {
     // Backend buffer type
     //
 
+    // 类: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 类: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
     struct ggml_backend_buffer_type_i {
         const char *          (*get_name)      (ggml_backend_buffer_type_t buft);
         // allocate a buffer of this type
@@ -28,7 +46,43 @@ extern "C" {
         bool                  (*is_host)       (ggml_backend_buffer_type_t buft);
     };
 
+    // 类: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 类: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
+    // 结构体: ggml_backend_buffer_type
+    // 描述: ggml_backend_buffer_type结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type相关的操作
     struct ggml_backend_buffer_type {
+        // 类: ggml_backend_buffer_type_i
+        // 描述: ggml_backend_buffer_type_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+        // 类: ggml_backend_buffer_type_i
+        // 描述: ggml_backend_buffer_type_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
+    // 结构体: ggml_backend_buffer_type_i
+    // 描述: ggml_backend_buffer_type_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_type_i相关的操作
         struct ggml_backend_buffer_type_i  iface;
         ggml_backend_dev_t device;
         void * context;
@@ -38,12 +92,38 @@ extern "C" {
     // Backend buffer
     //
 
+    // 类: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 类: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
     struct ggml_backend_buffer_i {
         // (optional) free the buffer
         void         (*free_buffer)  (ggml_backend_buffer_t buffer);
         // base address of the buffer
         void *       (*get_base)     (ggml_backend_buffer_t buffer);
         // (optional) initialize a tensor in the buffer (eg. add tensor extras)
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         enum ggml_status (*init_tensor)(ggml_backend_buffer_t buffer, struct ggml_tensor * tensor);
         // tensor data access
         void         (*memset_tensor)(ggml_backend_buffer_t buffer,       struct ggml_tensor * tensor,     uint8_t value, size_t offset, size_t size);
@@ -57,7 +137,43 @@ extern "C" {
         void         (*reset)        (ggml_backend_buffer_t buffer);
     };
 
+    // 类: ggml_backend_buffer
+    // 描述: ggml_backend_buffer类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
+    // 类: ggml_backend_buffer
+    // 描述: ggml_backend_buffer类提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
+    // 结构体: ggml_backend_buffer
+    // 描述: ggml_backend_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
+    // 结构体: ggml_backend_buffer
+    // 描述: ggml_backend_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
+    // 结构体: ggml_backend_buffer
+    // 描述: ggml_backend_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
+    // 结构体: ggml_backend_buffer
+    // 描述: ggml_backend_buffer结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer相关的操作
     struct ggml_backend_buffer {
+        // 类: ggml_backend_buffer_i
+        // 描述: ggml_backend_buffer_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_i相关的操作
+        // 类: ggml_backend_buffer_i
+        // 描述: ggml_backend_buffer_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
         struct ggml_backend_buffer_i  iface;
         ggml_backend_buffer_type_t    buft;
         void * context;
@@ -67,6 +183,24 @@ extern "C" {
 
     GGML_API ggml_backend_buffer_t ggml_backend_buffer_init(
                    ggml_backend_buffer_type_t buft,
+            // 类: ggml_backend_buffer_i
+            // 描述: ggml_backend_buffer_i类提供相关功能
+            // 用途: 用于处理ggml_backend_buffer_i相关的操作
+            // 类: ggml_backend_buffer_i
+            // 描述: ggml_backend_buffer_i类提供相关功能
+            // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
             struct ggml_backend_buffer_i      iface,
                    void *                     context,
                    size_t                     size);
@@ -84,6 +218,24 @@ extern "C" {
     // Backend (stream)
     //
 
+    // 类: ggml_backend_i
+    // 描述: ggml_backend_i类提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 类: ggml_backend_i
+    // 描述: ggml_backend_i类提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
     struct ggml_backend_i {
         const char * (*get_name)(ggml_backend_t backend);
 
@@ -104,9 +256,25 @@ extern "C" {
         // update the plan with a new graph - this should be faster than creating a new plan when the graph has the same topology
         void                      (*graph_plan_update) (ggml_backend_t backend, ggml_backend_graph_plan_t plan, const struct ggml_cgraph * cgraph);
         // compute the graph with the plan
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         enum ggml_status          (*graph_plan_compute)(ggml_backend_t backend, ggml_backend_graph_plan_t plan);
 
         // compute graph (always async if supported by the backend)
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_status
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         enum ggml_status          (*graph_compute)     (ggml_backend_t backend, struct ggml_cgraph * cgraph);
 
         // (optional) event synchronization
@@ -119,14 +287,86 @@ extern "C" {
         void                      (*graph_optimize)    (ggml_backend_t backend, struct ggml_cgraph * cgraph);
     };
 
+    // 类: ggml_backend
+    // 描述: ggml_backend类提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
+    // 类: ggml_backend
+    // 描述: ggml_backend类提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
+    // 结构体: ggml_backend
+    // 描述: ggml_backend结构体提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
+    // 结构体: ggml_backend
+    // 描述: ggml_backend结构体提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
+    // 结构体: ggml_backend
+    // 描述: ggml_backend结构体提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
+    // 结构体: ggml_backend
+    // 描述: ggml_backend结构体提供相关功能
+    // 用途: 用于处理ggml_backend相关的操作
     struct ggml_backend {
         ggml_guid_t guid;
+        // 类: ggml_backend_i
+        // 描述: ggml_backend_i类提供相关功能
+        // 用途: 用于处理ggml_backend_i相关的操作
+        // 类: ggml_backend_i
+        // 描述: ggml_backend_i类提供相关功能
+        // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
+    // 结构体: ggml_backend_i
+    // 描述: ggml_backend_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_i相关的操作
         struct ggml_backend_i iface;
         ggml_backend_dev_t device;
         void * context;
     };
 
+    // 类: ggml_backend_event
+    // 描述: ggml_backend_event类提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
+    // 类: ggml_backend_event
+    // 描述: ggml_backend_event类提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
+    // 结构体: ggml_backend_event
+    // 描述: ggml_backend_event结构体提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
+    // 结构体: ggml_backend_event
+    // 描述: ggml_backend_event结构体提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
+    // 结构体: ggml_backend_event
+    // 描述: ggml_backend_event结构体提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
+    // 结构体: ggml_backend_event
+    // 描述: ggml_backend_event结构体提供相关功能
+    // 用途: 用于处理ggml_backend_event相关的操作
     struct ggml_backend_event {
+        // 类: ggml_backend_device
+        // 描述: ggml_backend_device类提供相关功能
+        // 用途: 用于处理ggml_backend_device相关的操作
+        // 类: ggml_backend_device
+        // 描述: ggml_backend_device类提供相关功能
+        // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
         struct ggml_backend_device * device;
         void * context;
     };
@@ -137,6 +377,24 @@ extern "C" {
 
     // Note: if additional properties are needed, we should add a struct with all of them
     //       the current functions to obtain the properties can remain, since they are more convenient for often used properties
+    // 类: ggml_backend_device_i
+    // 描述: ggml_backend_device_i类提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 类: ggml_backend_device_i
+    // 描述: ggml_backend_device_i类提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
     struct ggml_backend_device_i {
         // device name: short identifier for this device, such as "CPU" or "CUDA0"
         const char * (*get_name)(ggml_backend_dev_t dev);
@@ -148,6 +406,14 @@ extern "C" {
         void         (*get_memory)(ggml_backend_dev_t dev, size_t * free, size_t * total);
 
         // device type
+        // 函数: ggml_backend_dev_type
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_backend_dev_type
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         enum ggml_backend_dev_type (*get_type)(ggml_backend_dev_t dev);
 
         // device properties
@@ -181,7 +447,43 @@ extern "C" {
         void                 (*event_synchronize) (ggml_backend_dev_t dev, ggml_backend_event_t event);
     };
 
+    // 类: ggml_backend_device
+    // 描述: ggml_backend_device类提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 类: ggml_backend_device
+    // 描述: ggml_backend_device类提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
+    // 结构体: ggml_backend_device
+    // 描述: ggml_backend_device结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device相关的操作
     struct ggml_backend_device {
+        // 类: ggml_backend_device_i
+        // 描述: ggml_backend_device_i类提供相关功能
+        // 用途: 用于处理ggml_backend_device_i相关的操作
+        // 类: ggml_backend_device_i
+        // 描述: ggml_backend_device_i类提供相关功能
+        // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
+    // 结构体: ggml_backend_device_i
+    // 描述: ggml_backend_device_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_device_i相关的操作
         struct ggml_backend_device_i iface;
         ggml_backend_reg_t reg;
         void * context;
@@ -191,6 +493,24 @@ extern "C" {
     // Backend (reg)
     //
 
+    // 类: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i类提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 类: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i类提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
     struct ggml_backend_reg_i {
         const char * (*get_name)(ggml_backend_reg_t reg);
 
@@ -203,8 +523,44 @@ extern "C" {
         void * (*get_proc_address)(ggml_backend_reg_t reg, const char * name);
     };
 
+    // 类: ggml_backend_reg
+    // 描述: ggml_backend_reg类提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
+    // 类: ggml_backend_reg
+    // 描述: ggml_backend_reg类提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
+    // 结构体: ggml_backend_reg
+    // 描述: ggml_backend_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
+    // 结构体: ggml_backend_reg
+    // 描述: ggml_backend_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
+    // 结构体: ggml_backend_reg
+    // 描述: ggml_backend_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
+    // 结构体: ggml_backend_reg
+    // 描述: ggml_backend_reg结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg相关的操作
     struct ggml_backend_reg {
         int api_version; // initialize to GGML_BACKEND_API_VERSION
+        // 类: ggml_backend_reg_i
+        // 描述: ggml_backend_reg_i类提供相关功能
+        // 用途: 用于处理ggml_backend_reg_i相关的操作
+        // 类: ggml_backend_reg_i
+        // 描述: ggml_backend_reg_i类提供相关功能
+        // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
+    // 结构体: ggml_backend_reg_i
+    // 描述: ggml_backend_reg_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_reg_i相关的操作
         struct ggml_backend_reg_i iface;
         void * context;
     };
@@ -212,9 +568,25 @@ extern "C" {
     // Add backend dynamic loading support to the backend
 
     // Initialize the backend
+    // 函数: ggml_backend_reg_t
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_reg_t
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef ggml_backend_reg_t (*ggml_backend_init_t)(void);
     // Optional: obtain a score for the backend based on the system configuration
     // Higher scores are preferred, 0 means the backend is not supported in the current system
+    // 函数: int
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: int
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef int                (*ggml_backend_score_t)(void);
 
 #ifdef GGML_BACKEND_DL
@@ -223,6 +595,14 @@ extern "C" {
             extern "C" {                                                 \
             GGML_BACKEND_API ggml_backend_reg_t ggml_backend_init(void); \
             }                                                            \
+            // 函数: ggml_backend_init
+            // 描述: 初始化: 初始化对象、资源或环境
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_backend_init
+            // 描述: 初始化: 初始化对象、资源或环境
+            // 参数: 无参数
+            // 返回: 无返回值
             ggml_backend_reg_t ggml_backend_init(void) {                 \
                 return reg_fn();                                         \
             }
@@ -230,17 +610,41 @@ extern "C" {
             extern "C" {                                   \
             GGML_BACKEND_API int ggml_backend_score(void); \
             }                                              \
+            // 函数: ggml_backend_score
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_backend_score
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             int ggml_backend_score(void) {                 \
                 return score_fn();                         \
             }
 #    else
 #        define GGML_BACKEND_DL_IMPL(reg_fn)                              \
             GGML_BACKEND_API ggml_backend_reg_t ggml_backend_init(void);  \
+            // 函数: ggml_backend_init
+            // 描述: 初始化: 初始化对象、资源或环境
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_backend_init
+            // 描述: 初始化: 初始化对象、资源或环境
+            // 参数: 无参数
+            // 返回: 无返回值
             ggml_backend_reg_t                  ggml_backend_init(void) { \
                 return reg_fn();                                          \
             }
 #        define GGML_BACKEND_DL_SCORE_IMPL(score_fn)        \
             GGML_BACKEND_API int ggml_backend_score(void);  \
+            // 函数: ggml_backend_score
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_backend_score
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             int                  ggml_backend_score(void) { \
                 return score_fn();                          \
             }

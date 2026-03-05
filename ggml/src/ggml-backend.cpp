@@ -30,11 +30,27 @@
 
 // backend buffer type
 
+// 函数: ggml_backend_buft_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_buft_name(ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(buft);
     return buft->iface.get_name(buft);
 }
 
+// 函数: ggml_backend_buft_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_buft_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     GGML_ASSERT(buft);
     if (size == 0) {
@@ -44,11 +60,27 @@ ggml_backend_buffer_t ggml_backend_buft_alloc_buffer(ggml_backend_buffer_type_t 
     return buft->iface.alloc_buffer(buft, size);
 }
 
+// 函数: ggml_backend_buft_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buft_get_alignment(ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(buft);
     return buft->iface.get_alignment(buft);
 }
 
+// 函数: ggml_backend_buft_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buft_get_max_size(ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(buft);
     // get_max_size is optional, defaults to SIZE_MAX
@@ -58,6 +90,14 @@ size_t ggml_backend_buft_get_max_size(ggml_backend_buffer_type_t buft) {
     return SIZE_MAX;
 }
 
+// 函数: ggml_backend_buft_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buft_get_alloc_size(ggml_backend_buffer_type_t buft, const struct ggml_tensor * tensor) {
     GGML_ASSERT(buft);
     // get_alloc_size is optional, defaults to ggml_nbytes
@@ -69,6 +109,14 @@ size_t ggml_backend_buft_get_alloc_size(ggml_backend_buffer_type_t buft, const s
     return ggml_nbytes(tensor);
 }
 
+// 函数: ggml_backend_buft_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_buft_is_host(ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(buft);
     if (buft->iface.is_host) {
@@ -77,6 +125,14 @@ bool ggml_backend_buft_is_host(ggml_backend_buffer_type_t buft) {
     return false;
 }
 
+// 函数: ggml_backend_buft_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buft_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_dev_t ggml_backend_buft_get_device(ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(buft);
     return buft->device;
@@ -86,6 +142,24 @@ ggml_backend_dev_t ggml_backend_buft_get_device(ggml_backend_buffer_type_t buft)
 
 ggml_backend_buffer_t ggml_backend_buffer_init(
                ggml_backend_buffer_type_t buft,
+        // 类: ggml_backend_buffer_i
+        // 描述: ggml_backend_buffer_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_i相关的操作
+        // 类: ggml_backend_buffer_i
+        // 描述: ggml_backend_buffer_i类提供相关功能
+        // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
+    // 结构体: ggml_backend_buffer_i
+    // 描述: ggml_backend_buffer_i结构体提供相关功能
+    // 用途: 用于处理ggml_backend_buffer_i相关的操作
         struct ggml_backend_buffer_i      iface,
                void *                     context,
                size_t                     size) {
@@ -100,10 +174,26 @@ ggml_backend_buffer_t ggml_backend_buffer_init(
     return buffer;
 }
 
+// 函数: ggml_backend_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_buffer_name(ggml_backend_buffer_t buffer) {
     return ggml_backend_buft_name(ggml_backend_buffer_get_type(buffer));
 }
 
+// 函数: ggml_backend_buffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_buffer_free(ggml_backend_buffer_t buffer) {
     if (buffer == NULL) {
         return;
@@ -115,11 +205,27 @@ void ggml_backend_buffer_free(ggml_backend_buffer_t buffer) {
     delete buffer;
 }
 
+// 函数: ggml_backend_buffer_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buffer_get_size(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     return buffer->size;
 }
 
+// 函数: ggml_backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * ggml_backend_buffer_get_base(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     // get_base is optional if the buffer is zero-sized
@@ -149,6 +255,14 @@ enum ggml_status ggml_backend_buffer_init_tensor(ggml_backend_buffer_t buffer, s
     return GGML_STATUS_SUCCESS;
 }
 
+// 函数: ggml_backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     GGML_ASSERT(buffer);
     // clear is optional if the buffer is zero-sized
@@ -159,22 +273,62 @@ void ggml_backend_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     buffer->iface.clear(buffer, value);
 }
 
+// 函数: ggml_backend_buffer_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buffer_get_alignment(ggml_backend_buffer_t buffer) {
     return ggml_backend_buft_get_alignment(ggml_backend_buffer_get_type(buffer));
 }
 
+// 函数: ggml_backend_buffer_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buffer_get_max_size(ggml_backend_buffer_t buffer) {
     return ggml_backend_buft_get_max_size(ggml_backend_buffer_get_type(buffer));
 }
 
+// 函数: ggml_backend_buffer_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_alloc_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_buffer_get_alloc_size(ggml_backend_buffer_t buffer, const struct ggml_tensor * tensor) {
     return ggml_backend_buft_get_alloc_size(ggml_backend_buffer_get_type(buffer), tensor);
 }
 
+// 函数: ggml_backend_buffer_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_buffer_is_host(ggml_backend_buffer_t buffer) {
     return ggml_backend_buft_is_host(ggml_backend_buffer_get_type(buffer));
 }
 
+// 函数: ggml_backend_buffer_set_usage
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_set_usage
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_buffer_set_usage(ggml_backend_buffer_t buffer, enum ggml_backend_buffer_usage usage) {
     GGML_ASSERT(buffer);
     buffer->usage = usage;
@@ -190,11 +344,27 @@ enum ggml_backend_buffer_usage ggml_backend_buffer_get_usage(ggml_backend_buffer
     return buffer->usage;
 }
 
+// 函数: ggml_backend_buffer_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_buffer_get_type(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     return buffer->buft;
 }
 
+// 函数: ggml_backend_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_buffer_reset(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     if (buffer->iface.reset) {
@@ -202,6 +372,14 @@ void ggml_backend_buffer_reset(ggml_backend_buffer_t buffer) {
     }
 }
 
+// 函数: ggml_backend_buffer_copy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_copy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_buffer_copy_tensor(const struct ggml_tensor * src, struct ggml_tensor * dst) {
     ggml_backend_buffer_t dst_buf = dst->view_src ? dst->view_src->buffer : dst->buffer;
     if (dst_buf->iface.cpy_tensor) {
@@ -212,6 +390,14 @@ bool ggml_backend_buffer_copy_tensor(const struct ggml_tensor * src, struct ggml
 
 // backend
 
+// 函数: ggml_backend_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_guid_t ggml_backend_guid(ggml_backend_t backend) {
     if (backend == NULL) {
         return NULL;
@@ -219,6 +405,14 @@ ggml_guid_t ggml_backend_guid(ggml_backend_t backend) {
     return backend->guid;
 }
 
+// 函数: ggml_backend_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_name(ggml_backend_t backend) {
     if (backend == NULL) {
         return "NULL";
@@ -226,6 +420,14 @@ const char * ggml_backend_name(ggml_backend_t backend) {
     return backend->iface.get_name(backend);
 }
 
+// 函数: ggml_backend_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_free(ggml_backend_t backend) {
     if (backend == NULL) {
         return;
@@ -234,23 +436,63 @@ void ggml_backend_free(ggml_backend_t backend) {
     backend->iface.free(backend);
 }
 
+// 函数: ggml_backend_get_default_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_get_default_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_get_default_buffer_type(ggml_backend_t backend) {
     GGML_ASSERT(backend);
     return ggml_backend_dev_buffer_type(backend->device);
 }
 
+// 函数: ggml_backend_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_alloc_buffer(ggml_backend_t backend, size_t size) {
     return ggml_backend_buft_alloc_buffer(ggml_backend_get_default_buffer_type(backend), size);
 }
 
+// 函数: ggml_backend_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_get_alignment(ggml_backend_t backend) {
     return ggml_backend_buft_get_alignment(ggml_backend_get_default_buffer_type(backend));
 }
 
+// 函数: ggml_backend_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_get_max_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_get_max_size(ggml_backend_t backend) {
     return ggml_backend_buft_get_max_size(ggml_backend_get_default_buffer_type(backend));
 }
 
+// 函数: ggml_backend_tensor_set_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_set_async
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_set_async(ggml_backend_t backend, struct ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     GGML_ASSERT(backend);
     GGML_ASSERT(tensor);
@@ -265,6 +507,14 @@ void ggml_backend_tensor_set_async(ggml_backend_t backend, struct ggml_tensor * 
     }
 }
 
+// 函数: ggml_backend_tensor_get_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_get_async
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_get_async(ggml_backend_t backend, const struct ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_ASSERT(backend);
     GGML_ASSERT(tensor);
@@ -279,6 +529,14 @@ void ggml_backend_tensor_get_async(ggml_backend_t backend, const struct ggml_ten
     }
 }
 
+// 函数: ggml_backend_tensor_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_set(struct ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     ggml_backend_buffer_t buf = tensor->view_src ? tensor->view_src->buffer : tensor->buffer;
@@ -294,6 +552,14 @@ void ggml_backend_tensor_set(struct ggml_tensor * tensor, const void * data, siz
     buf->iface.set_tensor(buf, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_tensor_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_get(const struct ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     ggml_backend_buffer_t buf = tensor->view_src ? tensor->view_src->buffer : tensor->buffer;
@@ -309,6 +575,14 @@ void ggml_backend_tensor_get(const struct ggml_tensor * tensor, void * data, siz
     buf->iface.get_tensor(buf, tensor, data, offset, size);
 }
 
+// 函数: ggml_backend_tensor_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_memset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_memset(struct ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     ggml_backend_buffer_t buf = tensor->view_src ? tensor->view_src->buffer : tensor->buffer;
@@ -325,6 +599,14 @@ void ggml_backend_tensor_memset(struct ggml_tensor * tensor, uint8_t value, size
     buf->iface.memset_tensor(buf, tensor, value, offset, size);
 }
 
+// 函数: ggml_backend_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_synchronize(ggml_backend_t backend) {
     GGML_ASSERT(backend);
     if (backend->iface.synchronize == NULL) {
@@ -334,6 +616,14 @@ void ggml_backend_synchronize(ggml_backend_t backend) {
     backend->iface.synchronize(backend);
 }
 
+// 函数: ggml_backend_graph_plan_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_graph_plan_create
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_graph_plan_t ggml_backend_graph_plan_create(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
     GGML_ASSERT(backend);
     GGML_ASSERT(backend->iface.graph_plan_create != NULL);
@@ -341,6 +631,14 @@ ggml_backend_graph_plan_t ggml_backend_graph_plan_create(ggml_backend_t backend,
     return backend->iface.graph_plan_create(backend, cgraph);
 }
 
+// 函数: ggml_backend_graph_plan_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_graph_plan_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_graph_plan_free(ggml_backend_t backend, ggml_backend_graph_plan_t plan) {
     GGML_ASSERT(backend);
     GGML_ASSERT(backend->iface.graph_plan_free != NULL);
@@ -366,21 +664,53 @@ enum ggml_status ggml_backend_graph_compute_async(ggml_backend_t backend, struct
     return backend->iface.graph_compute(backend, cgraph);
 }
 
+// 函数: ggml_backend_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_supports_op(ggml_backend_t backend, const struct ggml_tensor * op) {
     GGML_ASSERT(backend);
     return ggml_backend_dev_supports_op(backend->device, op);
 }
 
+// 函数: ggml_backend_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_supports_buft(ggml_backend_t backend, ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(backend);
     return ggml_backend_dev_supports_buft(backend->device, buft);
 }
 
+// 函数: ggml_backend_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_offload_op(ggml_backend_t backend, const struct ggml_tensor * op) {
     GGML_ASSERT(backend);
     return ggml_backend_dev_offload_op(backend->device, op);
 }
 
+// 函数: ggml_backend_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_dev_t ggml_backend_get_device(ggml_backend_t backend) {
     GGML_ASSERT(backend);
     return backend->device;
@@ -388,6 +718,14 @@ ggml_backend_dev_t ggml_backend_get_device(ggml_backend_t backend) {
 
 // backend copy
 
+// 函数: ggml_backend_tensor_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_copy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_copy(struct ggml_tensor * src, struct ggml_tensor * dst) {
     GGML_ASSERT(ggml_are_same_layout(src, dst) && "cannot copy tensors with different layouts");
 
@@ -411,6 +749,14 @@ void ggml_backend_tensor_copy(struct ggml_tensor * src, struct ggml_tensor * dst
     }
 }
 
+// 函数: ggml_backend_tensor_copy_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_tensor_copy_async
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_tensor_copy_async(ggml_backend_t backend_src, ggml_backend_t backend_dst, struct ggml_tensor * src, struct ggml_tensor * dst) {
     GGML_ASSERT(ggml_are_same_layout(src, dst) && "cannot copy tensors with different layouts");
 
@@ -434,6 +780,14 @@ void ggml_backend_tensor_copy_async(ggml_backend_t backend_src, ggml_backend_t b
 
 // events
 
+// 函数: ggml_backend_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_event_new
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_event_t ggml_backend_event_new(ggml_backend_dev_t device) {
     // null device is allowed for the transition period to the device interface
     if (device == NULL || device->iface.event_new == NULL) {
@@ -442,6 +796,14 @@ ggml_backend_event_t ggml_backend_event_new(ggml_backend_dev_t device) {
     return device->iface.event_new(device);
 }
 
+// 函数: ggml_backend_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_event_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_event_free(ggml_backend_event_t event) {
     if (event == NULL) {
         return;
@@ -449,6 +811,14 @@ void ggml_backend_event_free(ggml_backend_event_t event) {
     event->device->iface.event_free(event->device, event);
 }
 
+// 函数: ggml_backend_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_event_record
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_event_record(ggml_backend_event_t event, ggml_backend_t backend) {
     GGML_ASSERT(backend);
     GGML_ASSERT(backend->iface.event_record != NULL);
@@ -456,6 +826,14 @@ void ggml_backend_event_record(ggml_backend_event_t event, ggml_backend_t backen
     backend->iface.event_record(backend, event);
 }
 
+// 函数: ggml_backend_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_event_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_event_synchronize(ggml_backend_event_t event) {
     GGML_ASSERT(event);
     GGML_ASSERT(event->device->iface.event_synchronize);
@@ -463,6 +841,14 @@ void ggml_backend_event_synchronize(ggml_backend_event_t event) {
     event->device->iface.event_synchronize(event->device, event);
 }
 
+// 函数: ggml_backend_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_event_wait
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_event_wait(ggml_backend_t backend, ggml_backend_event_t event) {
     GGML_ASSERT(backend);
     GGML_ASSERT(backend->iface.event_wait != NULL);
@@ -470,6 +856,14 @@ void ggml_backend_event_wait(ggml_backend_t backend, ggml_backend_event_t event)
     backend->iface.event_wait(backend, event);
 }
 
+// 函数: ggml_backend_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_graph_optimize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_graph_optimize(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
     GGML_ASSERT(backend);
     if (backend->iface.graph_optimize != NULL) {
@@ -479,16 +873,40 @@ static void ggml_backend_graph_optimize(ggml_backend_t backend, struct ggml_cgra
 
 // Backend device
 
+// 函数: ggml_backend_dev_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_dev_name(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     return device->iface.get_name(device);
 }
 
+// 函数: ggml_backend_dev_description
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_description
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_dev_description(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     return device->iface.get_description(device);
 }
 
+// 函数: ggml_backend_dev_memory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_memory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_dev_memory(ggml_backend_dev_t device, size_t * free, size_t * total) {
     GGML_ASSERT(device);
     device->iface.get_memory(device, free, total);
@@ -499,26 +917,66 @@ enum ggml_backend_dev_type ggml_backend_dev_type(ggml_backend_dev_t device) {
     return device->iface.get_type(device);
 }
 
+// 函数: ggml_backend_dev_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_dev_get_props(ggml_backend_dev_t device, struct ggml_backend_dev_props * props) {
     memset(props, 0, sizeof(*props));
     device->iface.get_props(device, props);
 }
 
+// 函数: ggml_backend_dev_backend_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_backend_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_dev_backend_reg(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     return device->reg;
 }
 
+// 函数: ggml_backend_dev_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_dev_init(ggml_backend_dev_t device, const char * params) {
     GGML_ASSERT(device);
     return device->iface.init_backend(device, params);
 }
 
+// 函数: ggml_backend_dev_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_dev_buffer_type(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     return device->iface.get_buffer_type(device);
 }
 
+// 函数: ggml_backend_dev_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_host_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_dev_host_buffer_type(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     if (device->iface.get_host_buffer_type == NULL) {
@@ -528,21 +986,53 @@ ggml_backend_buffer_type_t ggml_backend_dev_host_buffer_type(ggml_backend_dev_t 
     return device->iface.get_host_buffer_type(device);
 }
 
+// 函数: ggml_backend_dev_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_dev_buffer_from_host_ptr(ggml_backend_dev_t device, void * ptr, size_t size, size_t max_tensor_size) {
     GGML_ASSERT(device);
     return device->iface.buffer_from_host_ptr(device, ptr, size, max_tensor_size);
 }
 
+// 函数: ggml_backend_dev_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_dev_supports_op(ggml_backend_dev_t device, const struct ggml_tensor * op) {
     GGML_ASSERT(device);
     return device->iface.supports_op(device, op);
 }
 
+// 函数: ggml_backend_dev_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_dev_supports_buft(ggml_backend_dev_t device, ggml_backend_buffer_type_t buft) {
     GGML_ASSERT(device);
     return device->iface.supports_buft(device, buft);
 }
 
+// 函数: ggml_backend_dev_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_dev_offload_op
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_dev_offload_op(ggml_backend_dev_t device, const struct ggml_tensor * op) {
     GGML_ASSERT(device);
     if (device->iface.offload_op != NULL) {
@@ -554,21 +1044,53 @@ bool ggml_backend_dev_offload_op(ggml_backend_dev_t device, const struct ggml_te
 
 // Backend (reg)
 
+// 函数: ggml_backend_reg_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_reg_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * ggml_backend_reg_name(ggml_backend_reg_t reg) {
     GGML_ASSERT(reg);
     return reg->iface.get_name(reg);
 }
 
+// 函数: ggml_backend_reg_dev_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_reg_dev_count
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_reg_dev_count(ggml_backend_reg_t reg) {
     GGML_ASSERT(reg);
     return reg->iface.get_device_count(reg);
 }
 
+// 函数: ggml_backend_reg_dev_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_reg_dev_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_dev_t ggml_backend_reg_dev_get(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(reg);
     return reg->iface.get_device(reg, index);
 }
 
+// 函数: ggml_backend_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_reg_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 void * ggml_backend_reg_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     GGML_ASSERT(reg);
     if (!reg->iface.get_proc_address) {
@@ -579,11 +1101,37 @@ void * ggml_backend_reg_get_proc_address(ggml_backend_reg_t reg, const char * na
 
 // multi-buffer buffer
 
+// 类: ggml_backend_multi_buffer_context
+// 描述: ggml_backend_multi_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
+// 类: ggml_backend_multi_buffer_context
+// 描述: ggml_backend_multi_buffer_context类提供相关功能
+// 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
+    // 结构体: ggml_backend_multi_buffer_context
+    // 描述: ggml_backend_multi_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
+    // 结构体: ggml_backend_multi_buffer_context
+    // 描述: ggml_backend_multi_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
+    // 结构体: ggml_backend_multi_buffer_context
+    // 描述: ggml_backend_multi_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
+    // 结构体: ggml_backend_multi_buffer_context
+    // 描述: ggml_backend_multi_buffer_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_multi_buffer_context相关的操作
 struct ggml_backend_multi_buffer_context {
     ggml_backend_buffer_t * buffers;
     size_t n_buffers;
 };
 
+// 函数: ggml_backend_multi_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_multi_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_multi_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     ggml_backend_multi_buffer_context * ctx = (ggml_backend_multi_buffer_context *) buffer->context;
@@ -595,6 +1143,14 @@ static void ggml_backend_multi_buffer_free_buffer(ggml_backend_buffer_t buffer) 
     free(ctx);
 }
 
+// 函数: ggml_backend_multi_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_multi_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_multi_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     GGML_ASSERT(buffer);
     ggml_backend_multi_buffer_context * ctx = (ggml_backend_multi_buffer_context *) buffer->context;
@@ -615,6 +1171,14 @@ static const struct ggml_backend_buffer_i ggml_backend_multi_buffer_i = {
     /* .reset           = */ NULL,
 };
 
+// 函数: ggml_backend_multi_buffer_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_multi_buffer_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_multi_buffer_alloc_buffer(ggml_backend_buffer_t * buffers, size_t n_buffers) {
     ggml_backend_multi_buffer_context * ctx = (ggml_backend_multi_buffer_context *) malloc(sizeof(struct ggml_backend_multi_buffer_context));
     ctx->n_buffers = n_buffers;
@@ -631,11 +1195,27 @@ ggml_backend_buffer_t ggml_backend_multi_buffer_alloc_buffer(ggml_backend_buffer
     return ggml_backend_buffer_init(buffers[0]->buft, ggml_backend_multi_buffer_i, ctx, total_size);
 }
 
+// 函数: ggml_backend_buffer_is_multi_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_buffer_is_multi_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_buffer_is_multi_buffer(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     return buffer->iface.free_buffer == ggml_backend_multi_buffer_free_buffer;
 }
 
+// 函数: ggml_backend_multi_buffer_set_usage
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_multi_buffer_set_usage
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_multi_buffer_set_usage(ggml_backend_buffer_t buffer, enum ggml_backend_buffer_usage usage) {
     GGML_ASSERT(buffer);
     GGML_ASSERT(ggml_backend_buffer_is_multi_buffer(buffer));
@@ -647,6 +1227,24 @@ void ggml_backend_multi_buffer_set_usage(ggml_backend_buffer_t buffer, enum ggml
 
 // creates a copy of the tensor with the same memory layout
 static struct ggml_tensor * ggml_dup_tensor_layout(struct ggml_context * ctx, const struct ggml_tensor * tensor) {
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dup = ggml_dup_tensor(ctx, tensor);
     for (int i = 0; i < GGML_MAX_DIMS; i++) {
         dup->nb[i] = tensor->nb[i];
@@ -654,6 +1252,14 @@ static struct ggml_tensor * ggml_dup_tensor_layout(struct ggml_context * ctx, co
     return dup;
 }
 
+// 函数: ggml_is_view_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_is_view_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_is_view_op(enum ggml_op op) {
     return op == GGML_OP_VIEW || op == GGML_OP_RESHAPE || op == GGML_OP_PERMUTE || op == GGML_OP_TRANSPOSE;
 }
@@ -672,16 +1278,88 @@ static bool ggml_is_view_op(enum ggml_op op) {
 #define GGML_SCHED_MAX_COPIES 4
 #endif
 
+// 类: ggml_backend_sched_split
+// 描述: ggml_backend_sched_split类提供相关功能
+// 用途: 用于处理ggml_backend_sched_split相关的操作
+// 类: ggml_backend_sched_split
+// 描述: ggml_backend_sched_split类提供相关功能
+// 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
 struct ggml_backend_sched_split {
     int backend_id;
     int i_start;
     int i_end;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * inputs[GGML_SCHED_MAX_SPLIT_INPUTS];
     int n_inputs;
     // graph view of this split
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph graph;
 };
 
+// 类: ggml_backend_sched
+// 描述: ggml_backend_sched类提供相关功能
+// 用途: 用于处理ggml_backend_sched相关的操作
+// 类: ggml_backend_sched
+// 描述: ggml_backend_sched类提供相关功能
+// 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
 struct ggml_backend_sched {
     bool is_reset; // true if the scheduler has been reset since the last graph split
     bool is_alloc;
@@ -693,8 +1371,44 @@ struct ggml_backend_sched {
     ggml_gallocr_t galloc;
 
     // hash map of the nodes in the graph
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
     struct ggml_hash_set  hash_set;
     int                 * hv_tensor_backend_ids; // [hash_set.size]
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** hv_tensor_copies;      // [hash_set.size][n_backends][n_copies]
 
     int * node_backend_ids; // [graph_size]
@@ -704,9 +1418,45 @@ struct ggml_backend_sched {
     int * prev_leaf_backend_ids; // [graph_size]
 
     // copy of the graph with modified inputs
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph graph;
 
     // graph splits
+    // 类: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split类提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 类: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split类提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
     struct ggml_backend_sched_split * splits;
     int n_splits;
     int splits_capacity;
@@ -716,9 +1466,45 @@ struct ggml_backend_sched {
     int cur_copy;
     int next_copy;
     ggml_backend_event_t events[GGML_SCHED_MAX_BACKENDS][GGML_SCHED_MAX_COPIES];
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * graph_inputs[GGML_SCHED_MAX_SPLIT_INPUTS];
     int n_graph_inputs;
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx;
 
     ggml_backend_sched_eval_callback callback_eval;
@@ -744,6 +1530,14 @@ struct ggml_backend_sched {
 #define tensor_copy(tensor, backend_id, copy_id) tensor_id_copy(hash_id(tensor), backend_id, copy_id)
 
 // returns the priority of the backend, lower id is higher priority
+// 函数: ggml_backend_sched_backend_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_backend_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_sched_backend_id(ggml_backend_sched_t sched, ggml_backend_t backend) {
     for (int i = 0; i < sched->n_backends; i++) {
         if (sched->backends[i] == backend) {
@@ -753,6 +1547,14 @@ static int ggml_backend_sched_backend_id(ggml_backend_sched_t sched, ggml_backen
     return -1;
 }
 
+// 函数: ggml_backend_sched_backend_from_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_backend_from_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_sched_backend_from_buffer(ggml_backend_sched_t sched, const struct ggml_tensor * tensor, const struct ggml_tensor * op) {
     ggml_backend_buffer_t buffer = tensor->view_src ? tensor->view_src->buffer : tensor->buffer;
     if (buffer == NULL) {
@@ -786,6 +1588,14 @@ static char causes[GGML_DEFAULT_GRAPH_SIZE*16 + GGML_SCHED_MAX_SPLITS_DEBUG*GGML
 #endif
 
 // returns the backend that should be used for the node based on the current locations
+// 函数: ggml_backend_sched_backend_id_from_cur
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_backend_id_from_cur
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, struct ggml_tensor * tensor) {
     // assign pre-allocated nodes to their backend
     int cur_backend_id = ggml_backend_sched_backend_from_buffer(sched, tensor, tensor);
@@ -843,6 +1653,14 @@ static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, st
     return -1;
 }
 
+// 函数: fmt_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fmt_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static char * fmt_size(size_t size) {
     static char buffer[128];
     if (size >= 1024*1024) {
@@ -853,6 +1671,14 @@ static char * fmt_size(size_t size) {
     return buffer;
 }
 
+// 函数: ggml_backend_sched_print_assignments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_print_assignments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, struct ggml_cgraph * graph) {
     int cur_split = 0;
     for (int i = 0; i < graph->n_nodes; i++) {
@@ -870,6 +1696,24 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
             GGML_LOG_DEBUG("\n");
             cur_split++;
         }
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         if (ggml_is_view_op(node->op)) {
             continue;
@@ -880,6 +1724,24 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
                 fmt_size(ggml_nbytes(node)), tensor_backend ? ggml_backend_name(tensor_backend) : "NULL", GET_CAUSE(node),
                 graph->use_counts[ggml_hash_find(&graph->visited_hash_set, node)], node->flags & GGML_TENSOR_FLAG_COMPUTE ? 1 : 0);
             for (int j = 0; j < GGML_MAX_SRC; j++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * src = node->src[j];
                 if (src == NULL) {
                     continue;
@@ -893,6 +1755,14 @@ static void ggml_backend_sched_print_assignments(ggml_backend_sched_t sched, str
     }
 }
 
+// 函数: ggml_backend_sched_buffer_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_buffer_supported
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sched_buffer_supported(ggml_backend_sched_t sched, struct ggml_tensor * t, int backend_id) {
     ggml_backend_buffer_t buf = t->view_src ? t->view_src->buffer : t->buffer;
     ggml_backend_buffer_type_t buft = NULL;
@@ -914,6 +1784,14 @@ static bool ggml_backend_sched_buffer_supported(ggml_backend_sched_t sched, stru
     return buft != NULL && ggml_backend_supports_buft(sched->backends[backend_id], buft);
 }
 
+// 函数: ggml_backend_sched_set_if_supported
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_set_if_supported
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_sched_set_if_supported(ggml_backend_sched_t sched, struct ggml_tensor * node, int cur_backend_id, int * node_backend_id) {
     if (ggml_backend_supports_op(sched->backends[cur_backend_id], node)) {
         *node_backend_id = cur_backend_id;
@@ -922,12 +1800,38 @@ static void ggml_backend_sched_set_if_supported(ggml_backend_sched_t sched, stru
 }
 
 // assigns backends to ops and splits the graph into subgraphs that can be computed on the same backend
+// 函数: ggml_backend_sched_split_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_split_graph
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgraph * graph) {
     // reset splits
     sched->n_splits = 0;
     sched->n_graph_inputs = 0;
     sched->is_reset = false;
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /* .mem_size =   */ sched->context_buffer_size,
         /* .mem_buffer = */ sched->context_buffer,
@@ -943,6 +1847,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
 
     // pass 1: assign backends to ops with pre-allocated inputs
     for (int i = 0; i < graph->n_leafs; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * leaf = graph->leafs[i];
         int * leaf_backend_id = &tensor_backend_id(leaf);
         // do not overwrite user assignments
@@ -952,6 +1874,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     }
 
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         int * node_backend_id = &tensor_backend_id(node);
         // do not overwrite user assignments
@@ -965,6 +1905,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
             }
 
             for (int j = 0; j < GGML_MAX_SRC; j++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * src = node->src[j];
                 if (src == NULL) {
                     continue;
@@ -987,6 +1945,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     {
         int cur_backend_id = -1;
         for (int i = 0; i < graph->n_nodes; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
             if (ggml_is_view_op(node->op)) {
                 continue;
@@ -1008,6 +1984,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     {
         int cur_backend_id = -1;
         for (int i = graph->n_nodes - 1; i >= 0; i--) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
             if (ggml_is_view_op(node->op)) {
                 continue;
@@ -1029,6 +2023,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     {
         int cur_backend_id = -1;
         for (int i = 0; i < graph->n_nodes; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
             if (ggml_is_view_op(node->op)) {
                 continue;
@@ -1045,6 +2057,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     {
         int cur_backend_id = -1;
         for (int i = graph->n_nodes - 1; i >= 0; i--) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
             if (ggml_is_view_op(node->op)) {
                 continue;
@@ -1067,6 +2097,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     // additionally, set remaining unassigned nodes to the backend with the most supported inputs
     // only nodes that could not be assigned during expansion due to the backend not supporting the op should be unassigned at this point
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         if (ggml_is_view_op(node->op)) {
             continue;
@@ -1079,6 +2127,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
                 if (ggml_backend_supports_op(sched->backends[b], node)) {
                     int n_supported = 0;
                     for (int j = 0; j < GGML_MAX_SRC; j++) {
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                         struct ggml_tensor * src = node->src[j];
                         if (src == NULL) {
                             continue;
@@ -1100,6 +2166,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
                 if (sched->bufts[b] == sched->bufts[*node_backend_id] && ggml_backend_supports_op(sched->backends[b], node)) {
                     bool supported = true;
                     for (int j = 0; j < GGML_MAX_SRC; j++) {
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+                        // 类: ggml_tensor
+                        // 描述: ggml_tensor类提供相关功能
+                        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                         struct ggml_tensor * src = node->src[j];
                         if (src == NULL) {
                             continue;
@@ -1121,6 +2205,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
 
     // pass 4: assign backends to remaining src from dst and view_src
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         int * cur_backend_id = &tensor_backend_id(node);
         if (node->view_src != NULL && *cur_backend_id == -1) {
@@ -1128,6 +2230,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
             SET_CAUSE(node, "4.vsrc");
         }
         for (int j = 0; j < GGML_MAX_SRC; j++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * src = node->src[j];
             if (src == NULL) {
                 continue;
@@ -1154,10 +2274,46 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     // pass 5: split graph, find tensors that need to be copied
     {
         int i_split = 0;
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
         struct ggml_backend_sched_split * split = &sched->splits[0];
         // find the backend of the first split, skipping view ops
         int i = 0;
         for (; i < graph->n_nodes; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
             if (!ggml_is_view_op(node->op)) {
                 split->backend_id = tensor_backend_id(node);
@@ -1168,6 +2324,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
         split->n_inputs = 0;
         int cur_backend_id = split->backend_id;
         for (; i < graph->n_nodes; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * node = graph->nodes[i];
 
             if (ggml_is_view_op(node->op)) {
@@ -1182,6 +2356,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
             bool need_new_split = false;
             if (node_backend_id == cur_backend_id && split->n_inputs > 0) {
                 for (int j = 0; j < GGML_MAX_SRC; j++) {
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                     struct ggml_tensor * src = node->src[j];
                     if (src == NULL) {
                         continue;
@@ -1227,6 +2419,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
 
             // find inputs that are not on the same backend
             for (int j = 0; j < GGML_MAX_SRC; j++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * src = node->src[j];
                 if (src == NULL) {
                     continue;
@@ -1240,6 +2450,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
                     if (tensor_id_copy(src_id, src_backend_id, 0) == NULL) {
                         ggml_backend_t backend = sched->backends[src_backend_id];
                         for (int c = 0; c < sched->n_copies; c++) {
+                            // 类: ggml_tensor
+                            // 描述: ggml_tensor类提供相关功能
+                            // 用途: 用于处理ggml_tensor相关的操作
+                            // 类: ggml_tensor
+                            // 描述: ggml_tensor类提供相关功能
+                            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                             struct ggml_tensor * tensor_copy;
                             if (c == sched->cur_copy) {
                                 tensor_copy = src; // use the original tensor as the current copy
@@ -1263,6 +2491,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
                     if (tensor_id_copy(src_id, cur_backend_id, 0) == NULL) {
                         ggml_backend_t backend = sched->backends[cur_backend_id];
                         for (int c = 0; c < sched->n_copies; c++) {
+                            // 类: ggml_tensor
+                            // 描述: ggml_tensor类提供相关功能
+                            // 用途: 用于处理ggml_tensor相关的操作
+                            // 类: ggml_tensor
+                            // 描述: ggml_tensor类提供相关功能
+                            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                             struct ggml_tensor * tensor_copy = ggml_dup_tensor_layout(sched->ctx, src);
                             ggml_format_name(tensor_copy, "%s#%s#%d", ggml_backend_name(backend), src->name, c);
                             if (sched->n_copies > 1) {
@@ -1315,9 +2561,45 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     sched->graph.n_nodes = 0;
     sched->graph.n_leafs = 0;
 
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph_copy = &sched->graph;
 
     for (int i = 0; i < sched->n_splits; i++) {
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
         struct ggml_backend_sched_split * split = &sched->splits[i];
         split->graph = ggml_graph_view(graph, split->i_start, split->i_end);
 
@@ -1329,11 +2611,65 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
         for (int j = 0; j < split->n_inputs; j++) {
             assert(graph_copy->size > (graph_copy->n_nodes + 1));
 
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input = split->inputs[j];
             const size_t input_id = hash_id(input);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input_cpy = tensor_id_copy(input_id, split->backend_id, sched->cur_copy);
 
             // add a dependency to the input source so that it is not freed before the copy is done
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input_dep = ggml_view_tensor(sched->ctx, input);
             input_dep->src[0] = input;
             sched->node_backend_ids[graph_copy->n_nodes] = sched->hv_tensor_backend_ids[input_id];
@@ -1354,10 +2690,46 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     if (sched->n_copies > 1) {
         // add input copies as leafs so that they are allocated first
         for (int i = 0; i < sched->n_graph_inputs; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input = sched->graph_inputs[i];
             size_t id = hash_id(input);
             int backend_id = tensor_backend_id(input);
             for (int c = 0; c < sched->n_copies; c++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * input_cpy = tensor_id_copy(id, backend_id, c);
                 sched->leaf_backend_ids[graph_copy->n_leafs] = backend_id;
                 assert(graph_copy->size > graph_copy->n_leafs);
@@ -1366,12 +2738,66 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
         }
 
         for (int i = 0; i < sched->n_splits; i++) {
+            // 类: ggml_backend_sched_split
+            // 描述: ggml_backend_sched_split类提供相关功能
+            // 用途: 用于处理ggml_backend_sched_split相关的操作
+            // 类: ggml_backend_sched_split
+            // 描述: ggml_backend_sched_split类提供相关功能
+            // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
             struct ggml_backend_sched_split * split = &sched->splits[i];
             int backend_id = split->backend_id;
             for (int j = 0; j < split->n_inputs; j++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * input = split->inputs[j];
                 size_t id = hash_id(input);
                 for (int c = 0; c < sched->n_copies; c++) {
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+                    // 类: ggml_tensor
+                    // 描述: ggml_tensor类提供相关功能
+                    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                     struct ggml_tensor * input_cpy = tensor_id_copy(id, backend_id, c);
                     sched->leaf_backend_ids[graph_copy->n_leafs] = backend_id;
                     assert(graph_copy->size > graph_copy->n_leafs);
@@ -1383,6 +2809,24 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
 
     // add leafs from the original graph
     for (int i = 0; i < graph->n_leafs; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * leaf = graph->leafs[i];
         sched->leaf_backend_ids[graph_copy->n_leafs] = tensor_backend_id(leaf);
         assert(graph_copy->size > graph_copy->n_leafs);
@@ -1390,6 +2834,14 @@ void ggml_backend_sched_split_graph(ggml_backend_sched_t sched, struct ggml_cgra
     }
 }
 
+// 函数: ggml_backend_sched_alloc_splits
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_alloc_splits
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_sched_alloc_splits(ggml_backend_sched_t sched) {
     bool backend_ids_changed = false;
     for (int i = 0; i < sched->graph.n_nodes; i++) {
@@ -1444,6 +2896,24 @@ static bool ggml_backend_sched_alloc_splits(ggml_backend_sched_t sched) {
 
 static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
+    // 类: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split类提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 类: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split类提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
     struct ggml_backend_sched_split * splits = sched->splits;
 
     ggml_tensor * prev_ids_tensor = nullptr;
@@ -1451,6 +2921,24 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
     std::vector<ggml_bitset_t> used_ids;
 
     for (int split_id = 0; split_id < sched->n_splits; split_id++) {
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+        // 类: ggml_backend_sched_split
+        // 描述: ggml_backend_sched_split类提供相关功能
+        // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
+    // 结构体: ggml_backend_sched_split
+    // 描述: ggml_backend_sched_split结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched_split相关的操作
         struct ggml_backend_sched_split * split = &splits[split_id];
         int split_backend_id = split->backend_id;
         ggml_backend_t split_backend = sched->backends[split_backend_id];
@@ -1458,7 +2946,43 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
         // copy the input tensors to the split backend
         for (int input_id = 0; input_id < split->n_inputs; input_id++) {
             ggml_backend_t input_backend = ggml_backend_sched_get_tensor_backend(sched, split->inputs[input_id]);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input = split->inputs[input_id];
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * input_cpy = tensor_copy(input, split_backend_id, sched->cur_copy);
 
             if (input->flags & GGML_TENSOR_FLAG_INPUT) {
@@ -1586,6 +3110,24 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
         } else {
             // similar to ggml_backend_compare_graph_backend
             for (int j0 = 0; j0 < split->graph.n_nodes; j0++) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * t = split->graph.nodes[j0];
 
                 // check if the user needs data from this node
@@ -1599,6 +3141,24 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                     need = sched->callback_eval(t, true, sched->callback_eval_user_data);
                 }
 
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+                // 类: ggml_cgraph
+                // 描述: ggml_cgraph类提供相关功能
+                // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
                 struct ggml_cgraph gv = ggml_graph_view(&split->graph, j0, j1 + 1);
 
                 enum ggml_status ec = ggml_backend_graph_compute_async(split_backend, &gv);
@@ -1639,6 +3199,24 @@ ggml_backend_sched_t ggml_backend_sched_new(
     GGML_ASSERT(n_backends <= GGML_SCHED_MAX_BACKENDS);
     GGML_ASSERT(ggml_backend_dev_type(ggml_backend_get_device(backends[n_backends - 1])) == GGML_BACKEND_DEVICE_TYPE_CPU);
 
+    // 类: ggml_backend_sched
+    // 描述: ggml_backend_sched类提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 类: ggml_backend_sched
+    // 描述: ggml_backend_sched类提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
+    // 结构体: ggml_backend_sched
+    // 描述: ggml_backend_sched结构体提供相关功能
+    // 用途: 用于处理ggml_backend_sched相关的操作
     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
 
     const char * GGML_SCHED_DEBUG = getenv("GGML_SCHED_DEBUG");
@@ -1697,6 +3275,14 @@ ggml_backend_sched_t ggml_backend_sched_new(
     return sched;
 }
 
+// 函数: ggml_backend_sched_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_free(ggml_backend_sched_t sched) {
     if (sched == NULL) {
         return;
@@ -1722,6 +3308,14 @@ void ggml_backend_sched_free(ggml_backend_sched_t sched) {
     free(sched);
 }
 
+// 函数: ggml_backend_sched_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_reset(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
     // reset state for the next run
@@ -1734,6 +3328,14 @@ void ggml_backend_sched_reset(ggml_backend_sched_t sched) {
     sched->is_alloc = false;
 }
 
+// 函数: ggml_backend_sched_reserve_size
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_reserve_size
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_reserve_size(ggml_backend_sched_t sched, struct ggml_cgraph * measure_graph, size_t * sizes) {
     GGML_ASSERT(sched);
     GGML_ASSERT((int)sched->hash_set.size >= measure_graph->n_nodes + measure_graph->n_leafs);
@@ -1748,6 +3350,14 @@ void ggml_backend_sched_reserve_size(ggml_backend_sched_t sched, struct ggml_cgr
     ggml_gallocr_reserve_n_size(sched->galloc, &sched->graph, sched->node_backend_ids, sched->leaf_backend_ids, sizes);
 }
 
+// 函数: ggml_backend_sched_reserve
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_reserve
+// 描述: 预留: 预留资源或空间
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_sched_reserve(ggml_backend_sched_t sched, struct ggml_cgraph * measure_graph) {
     GGML_ASSERT(sched);
     GGML_ASSERT((int)sched->hash_set.size >= measure_graph->n_nodes + measure_graph->n_leafs);
@@ -1765,6 +3375,14 @@ bool ggml_backend_sched_reserve(ggml_backend_sched_t sched, struct ggml_cgraph *
     return true;
 }
 
+// 函数: ggml_backend_sched_alloc_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_alloc_graph
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_sched_alloc_graph(ggml_backend_sched_t sched, struct ggml_cgraph * graph) {
     GGML_ASSERT(sched);
     GGML_ASSERT((int)sched->hash_set.size >= graph->n_nodes + graph->n_leafs);
@@ -1802,9 +3420,25 @@ enum ggml_status ggml_backend_sched_graph_compute_async(ggml_backend_sched_t sch
         }
     }
 
+    // 函数: ggml_backend_sched_compute_splits
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_sched_compute_splits
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_sched_compute_splits(sched);
 }
 
+// 函数: ggml_backend_sched_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_synchronize(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
     for (int i = 0; i < sched->n_backends; i++) {
@@ -1818,33 +3452,81 @@ void ggml_backend_sched_synchronize(ggml_backend_sched_t sched) {
     }
 }
 
+// 函数: ggml_backend_sched_set_eval_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_set_eval_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_set_eval_callback(ggml_backend_sched_t sched, ggml_backend_sched_eval_callback callback, void * user_data) {
     GGML_ASSERT(sched);
     sched->callback_eval = callback;
     sched->callback_eval_user_data = user_data;
 }
 
+// 函数: ggml_backend_sched_get_n_splits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_n_splits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_backend_sched_get_n_splits(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
     return sched->n_splits;
 }
 
+// 函数: ggml_backend_sched_get_n_copies
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_n_copies
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_backend_sched_get_n_copies(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
     return sched->n_copies;
 }
 
+// 函数: ggml_backend_sched_get_n_backends
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_n_backends
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int ggml_backend_sched_get_n_backends(ggml_backend_sched_t sched) {
     GGML_ASSERT(sched);
     return sched->n_backends;
 }
 
+// 函数: ggml_backend_sched_get_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_sched_get_backend(ggml_backend_sched_t sched, int i) {
     GGML_ASSERT(sched);
     GGML_ASSERT(i >= 0 && i < sched->n_backends);
     return sched->backends[i];
 }
 
+// 函数: ggml_backend_sched_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_sched_get_buffer_type(ggml_backend_sched_t sched, ggml_backend_t backend) {
     GGML_ASSERT(sched);
     int backend_index = ggml_backend_sched_backend_id(sched, backend);
@@ -1853,6 +3535,14 @@ ggml_backend_buffer_type_t ggml_backend_sched_get_buffer_type(ggml_backend_sched
     return sched->bufts[backend_index];
 }
 
+// 函数: ggml_backend_sched_get_buffer_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_buffer_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t ggml_backend_sched_get_buffer_size(ggml_backend_sched_t sched, ggml_backend_t backend) {
     GGML_ASSERT(sched);
     int backend_index = ggml_backend_sched_backend_id(sched, backend);
@@ -1861,6 +3551,14 @@ size_t ggml_backend_sched_get_buffer_size(ggml_backend_sched_t sched, ggml_backe
     return ggml_gallocr_get_buffer_size(sched->galloc, backend_index);
 }
 
+// 函数: ggml_backend_sched_set_tensor_backend
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_set_tensor_backend
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_sched_set_tensor_backend(ggml_backend_sched_t sched, struct ggml_tensor * node, ggml_backend_t backend) {
     GGML_ASSERT(sched);
     int backend_index = ggml_backend_sched_backend_id(sched, backend);
@@ -1870,6 +3568,14 @@ void ggml_backend_sched_set_tensor_backend(ggml_backend_sched_t sched, struct gg
     sched->is_reset = false;
 }
 
+// 函数: ggml_backend_sched_get_tensor_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_sched_get_tensor_backend
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_sched_get_tensor_backend(ggml_backend_sched_t sched, struct ggml_tensor * node) {
     GGML_ASSERT(sched);
     int backend_index = tensor_backend_id(node);
@@ -1890,6 +3596,14 @@ enum ggml_status ggml_backend_view_init(struct ggml_tensor * tensor) {
 
     tensor->buffer = tensor->view_src->buffer;
     tensor->data = (char *)tensor->view_src->data + tensor->view_offs;
+    // 函数: ggml_backend_buffer_init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_buffer_init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_buffer_init_tensor(tensor->buffer, tensor);
 }
 
@@ -1904,10 +3618,36 @@ enum ggml_status ggml_backend_tensor_alloc(ggml_backend_buffer_t buffer, struct 
 
     tensor->buffer = buffer;
     tensor->data = addr;
+    // 函数: ggml_backend_buffer_init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_buffer_init_tensor
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return ggml_backend_buffer_init_tensor(buffer, tensor);
 }
 
 static struct ggml_tensor * graph_copy_dup_tensor(struct ggml_hash_set hash_set, struct ggml_tensor ** node_copies,
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_allocated, struct ggml_context * ctx_unallocated, struct ggml_tensor * src) {
 
     GGML_ASSERT(src != NULL);
@@ -1918,6 +3658,24 @@ static struct ggml_tensor * graph_copy_dup_tensor(struct ggml_hash_set hash_set,
         return node_copies[ggml_hash_find(&hash_set, src)];
     }
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dst = ggml_dup_tensor_layout(src->data && !src->view_src ? ctx_allocated : ctx_unallocated, src);
     if (src->view_src != NULL) {
         dst->view_src = graph_copy_dup_tensor(hash_set, node_copies, ctx_allocated, ctx_unallocated, src->view_src);
@@ -1930,6 +3688,24 @@ static struct ggml_tensor * graph_copy_dup_tensor(struct ggml_hash_set hash_set,
 
     // copy src
     for (int i = 0; i < GGML_MAX_SRC; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * s = src->src[i];
         if (s == NULL) {
             continue;
@@ -1941,6 +3717,14 @@ static struct ggml_tensor * graph_copy_dup_tensor(struct ggml_hash_set hash_set,
     return dst;
 }
 
+// 函数: graph_copy_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: graph_copy_init_tensor
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static void graph_copy_init_tensor(struct ggml_hash_set * hash_set, struct ggml_tensor ** node_copies, bool * node_init, struct ggml_tensor * src) {
     size_t id = ggml_hash_find(hash_set, src);
     if (node_init[id]) {
@@ -1948,6 +3732,24 @@ static void graph_copy_init_tensor(struct ggml_hash_set * hash_set, struct ggml_
     }
     node_init[id] = true;
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * dst = node_copies[id];
     if (dst->view_src != NULL) {
         graph_copy_init_tensor(hash_set, node_copies, node_init, src->view_src);
@@ -1960,6 +3762,24 @@ static void graph_copy_init_tensor(struct ggml_hash_set * hash_set, struct ggml_
 
     // init src
     for (int i = 0; i < GGML_MAX_SRC; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * s = src->src[i];
         if (s == NULL) {
             continue;
@@ -1968,19 +3788,127 @@ static void graph_copy_init_tensor(struct ggml_hash_set * hash_set, struct ggml_
     }
 }
 
+// 类: ggml_backend_graph_copy
+// 描述: ggml_backend_graph_copy类提供相关功能
+// 用途: 用于处理ggml_backend_graph_copy相关的操作
+// 类: ggml_backend_graph_copy
+// 描述: ggml_backend_graph_copy类提供相关功能
+// 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
 struct ggml_backend_graph_copy ggml_backend_graph_copy(ggml_backend_t backend, struct ggml_cgraph * graph) {
     GGML_ASSERT(graph);
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 类: ggml_hash_set
+    // 描述: ggml_hash_set类提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
+    // 结构体: ggml_hash_set
+    // 描述: ggml_hash_set结构体提供相关功能
+    // 用途: 用于处理ggml_hash_set相关的操作
     struct ggml_hash_set hash_set = ggml_hash_set_new(graph->visited_hash_set.size);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor ** node_copies = (ggml_tensor **) calloc(hash_set.size, sizeof(node_copies[0])); // NOLINT
     bool * node_init = (bool *) calloc(hash_set.size, sizeof(node_init[0]));
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /* .mem_size   = */ ggml_tensor_overhead()*hash_set.size + ggml_graph_overhead_custom(graph->size, false),
         /* .mem_buffer = */ NULL,
         /* .no_alloc   = */ true
     };
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_allocated = ggml_init(params);
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_unallocated = ggml_init(params);
 
     if (ctx_allocated == NULL || ctx_unallocated == NULL) {
@@ -2000,6 +3928,24 @@ struct ggml_backend_graph_copy ggml_backend_graph_copy(ggml_backend_t backend, s
 
     // dup nodes
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         graph_copy_dup_tensor(hash_set, node_copies, ctx_allocated, ctx_unallocated, node);
     }
@@ -2025,14 +3971,86 @@ struct ggml_backend_graph_copy ggml_backend_graph_copy(ggml_backend_t backend, s
 
     // copy data and init views
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
         graph_copy_init_tensor(&hash_set, node_copies, node_init, node);
     }
 
     // build graph copy
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph_copy = ggml_new_graph_custom(ctx_allocated, graph->size, false);
     for (int i = 0; i < graph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = graph->nodes[i];
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node_copy = node_copies[ggml_hash_find(&hash_set, node)];
         graph_copy->nodes[i] = node_copy;
     }
@@ -2050,19 +4068,89 @@ struct ggml_backend_graph_copy ggml_backend_graph_copy(ggml_backend_t backend, s
     };
 }
 
+// 函数: ggml_backend_graph_copy_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_graph_copy_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_graph_copy_free(struct ggml_backend_graph_copy copy) {
     ggml_backend_buffer_free(copy.buffer);
     ggml_free(copy.ctx_allocated);
     ggml_free(copy.ctx_unallocated);
 }
 
+// 函数: ggml_backend_compare_graph_backend
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_compare_graph_backend
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_compare_graph_backend(ggml_backend_t backend1, ggml_backend_t backend2, struct ggml_cgraph * graph, ggml_backend_eval_callback callback, void * user_data, struct ggml_tensor const * const * test_nodes, size_t num_test_nodes) {
+    // 类: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy类提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 类: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy类提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
+    // 结构体: ggml_backend_graph_copy
+    // 描述: ggml_backend_graph_copy结构体提供相关功能
+    // 用途: 用于处理ggml_backend_graph_copy相关的操作
     struct ggml_backend_graph_copy copy = ggml_backend_graph_copy(backend2, graph);
     if (copy.buffer == NULL) {
         return false;
     }
 
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * g1 = graph;
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * g2 = copy.graph;
 
     assert(g1->n_nodes == g2->n_nodes);
@@ -2085,12 +4173,84 @@ bool ggml_backend_compare_graph_backend(ggml_backend_t backend1, ggml_backend_t 
         GGML_ASSERT(verified);
     } else {
         for (int i = 0; i < g1->n_nodes; i++) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * t1 = g1->nodes[i];
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * t2 = g2->nodes[i];
 
             assert(t1->op == t2->op && ggml_are_same_layout(t1, t2));
 
+            // 类: ggml_cgraph
+            // 描述: ggml_cgraph类提供相关功能
+            // 用途: 用于处理ggml_cgraph相关的操作
+            // 类: ggml_cgraph
+            // 描述: ggml_cgraph类提供相关功能
+            // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
             struct ggml_cgraph g1v = ggml_graph_view(g1, i, i + 1);
+            // 类: ggml_cgraph
+            // 描述: ggml_cgraph类提供相关功能
+            // 用途: 用于处理ggml_cgraph相关的操作
+            // 类: ggml_cgraph
+            // 描述: ggml_cgraph类提供相关功能
+            // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
             struct ggml_cgraph g2v = ggml_graph_view(g2, i, i + 1);
 
             ggml_backend_graph_compute(backend1, &g1v);
@@ -2113,6 +4273,14 @@ bool ggml_backend_compare_graph_backend(ggml_backend_t backend1, ggml_backend_t 
 
 // CPU backend - buffer
 
+// 函数: ggml_backend_cpu_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_get_base
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_cpu_buffer_get_base(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     uintptr_t data = (uintptr_t)buffer->context;
@@ -2125,11 +4293,27 @@ static void * ggml_backend_cpu_buffer_get_base(ggml_backend_buffer_t buffer) {
     return (void *)data;
 }
 
+// 函数: ggml_backend_cpu_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_free_buffer
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_buffer_free_buffer(ggml_backend_buffer_t buffer) {
     GGML_ASSERT(buffer);
     ggml_aligned_free(buffer->context, buffer->size);
 }
 
+// 函数: ggml_backend_cpu_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_memset_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_buffer_memset_tensor(ggml_backend_buffer_t buffer, struct ggml_tensor * tensor, uint8_t value, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     memset((char *)tensor->data + offset, value, size);
@@ -2137,6 +4321,14 @@ static void ggml_backend_cpu_buffer_memset_tensor(ggml_backend_buffer_t buffer, 
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_set_tensor
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_buffer_set_tensor(ggml_backend_buffer_t buffer, struct ggml_tensor * tensor, const void * data, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     memcpy((char *)tensor->data + offset, data, size);
@@ -2144,6 +4336,14 @@ static void ggml_backend_cpu_buffer_set_tensor(ggml_backend_buffer_t buffer, str
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_get_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_buffer_get_tensor(ggml_backend_buffer_t buffer, const struct ggml_tensor * tensor, void * data, size_t offset, size_t size) {
     GGML_ASSERT(tensor);
     memcpy(data, (const char *)tensor->data + offset, size);
@@ -2151,6 +4351,14 @@ static void ggml_backend_cpu_buffer_get_tensor(ggml_backend_buffer_t buffer, con
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_cpy_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cpu_buffer_cpy_tensor(ggml_backend_buffer_t buffer, const struct ggml_tensor * src, struct ggml_tensor * dst) {
     GGML_ASSERT(src);
     if (ggml_backend_buffer_is_host(src->buffer)) {
@@ -2162,6 +4370,14 @@ static bool ggml_backend_cpu_buffer_cpy_tensor(ggml_backend_buffer_t buffer, con
     GGML_UNUSED(buffer);
 }
 
+// 函数: ggml_backend_cpu_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_cpu_buffer_clear(ggml_backend_buffer_t buffer, uint8_t value) {
     GGML_ASSERT(buffer);
     memset(buffer->context, value, buffer->size);
@@ -2195,12 +4411,28 @@ static const struct ggml_backend_buffer_i ggml_backend_cpu_buffer_from_ptr_i = {
 
 // this buffer type is defined here to make it available to all backends
 
+// 函数: ggml_backend_cpu_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_buffer_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_type_alloc_buffer
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_cpu_buffer_type_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
     void * data = ggml_aligned_malloc(size);
 
@@ -2212,18 +4444,42 @@ static ggml_backend_buffer_t ggml_backend_cpu_buffer_type_alloc_buffer(ggml_back
     return ggml_backend_buffer_init(buft, ggml_backend_cpu_buffer_i, data, size);
 }
 
+// 函数: ggml_backend_cpu_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_type_get_alignment
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_cpu_buffer_type_get_alignment(ggml_backend_buffer_type_t buft) {
     return TENSOR_ALIGNMENT;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_type_is_host
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_cpu_buffer_type_is_host(ggml_backend_buffer_type_t buft) {
     return true;
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_buffer_type(void) {
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type = {
         /* .iface   = */ {
@@ -2241,12 +4497,28 @@ ggml_backend_buffer_type_t ggml_backend_cpu_buffer_type(void) {
     return &ggml_backend_cpu_buffer_type;
 }
 
+// 函数: ggml_backend_cpu_buffer_from_ptr_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_from_ptr_type_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_cpu_buffer_from_ptr_type_get_name(ggml_backend_buffer_type_t buft) {
     return "CPU_Mapped";
 
     GGML_UNUSED(buft);
 }
 
+// 函数: ggml_backend_cpu_buffer_from_ptr_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_from_ptr_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_cpu_buffer_from_ptr_type(void) {
     static struct ggml_backend_buffer_type ggml_backend_cpu_buffer_type = {
         /* .iface   = */ {
@@ -2264,6 +4536,14 @@ static ggml_backend_buffer_type_t ggml_backend_cpu_buffer_from_ptr_type(void) {
     return &ggml_backend_cpu_buffer_type;
 }
 
+// 函数: ggml_backend_cpu_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_t ggml_backend_cpu_buffer_from_ptr(void * ptr, size_t size) {
     GGML_ASSERT((uintptr_t)ptr % TENSOR_ALIGNMENT == 0 && "buffer pointer must be aligned");
     return ggml_backend_buffer_init(ggml_backend_cpu_buffer_from_ptr_type(), ggml_backend_cpu_buffer_from_ptr_i, ptr, size);

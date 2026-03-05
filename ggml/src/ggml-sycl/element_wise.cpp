@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: element_wise.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/element_wise.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "common.hpp"
 #include "ggml-sycl/presets.hpp"
 #include "ggml.h"
@@ -208,6 +215,14 @@ static void unary_op_generic_kernel(
 }
 
 template<typename T>
+// 函数: unary_op_sqrt_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_sqrt_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_sqrt_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_sqrt(x[i]);
@@ -215,6 +230,14 @@ static void unary_op_sqrt_kernel(const T * x, T * dst, const int k, const sycl::
 }
 
 template<typename T>
+// 函数: unary_op_sin_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_sin_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_sin_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_sin(x[i]);
@@ -222,6 +245,14 @@ static void unary_op_sin_kernel(const T * x, T * dst, const int k, const sycl::n
 }
 
 template<typename T>
+// 函数: unary_op_cos_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_cos_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_cos_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_cos(x[i]);
@@ -229,6 +260,14 @@ static void unary_op_cos_kernel(const T * x, T * dst, const int k, const sycl::n
 }
 
 template<typename T>
+// 函数: unary_op_log_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_log_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_log_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_log(x[i]);
@@ -237,6 +276,14 @@ static void unary_op_log_kernel(const T * x, T * dst, const int k, const sycl::n
 
 
 template<typename T>
+// 函数: unary_op_leaky_relu_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_leaky_relu_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_leaky_relu_kernel(const T * x, T * dst, const int k, float negative_slope, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_leaky_relu(x[i], negative_slope);
@@ -244,6 +291,14 @@ static void unary_op_leaky_relu_kernel(const T * x, T * dst, const int k, float 
 }
 
 template<typename T>
+// 函数: unary_op_sqr_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_sqr_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_sqr_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_sqr(x[i]);
@@ -251,6 +306,14 @@ static void unary_op_sqr_kernel(const T * x, T * dst, const int k, const sycl::n
 }
 
 template<typename T>
+// 函数: unary_op_clamp_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_clamp_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_clamp_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1, float min_val, float max_val) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_clamp(x[i], min_val, max_val);
@@ -258,6 +321,14 @@ static void unary_op_clamp_kernel(const T * x, T * dst, const int k, const sycl:
 }
 
 template<typename T>
+// 函数: unary_op_floor_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_floor_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_floor_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_floor(x[i]);
@@ -265,6 +336,14 @@ static void unary_op_floor_kernel(const T * x, T * dst, const int k, const sycl:
 }
 
 template<typename T>
+// 函数: unary_op_ceil_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_ceil_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_ceil_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_ceil(x[i]);
@@ -272,6 +351,14 @@ static void unary_op_ceil_kernel(const T * x, T * dst, const int k, const sycl::
 }
 
 template<typename T>
+// 函数: unary_op_round_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_round_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_round_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_round(x[i]);
@@ -279,6 +366,14 @@ static void unary_op_round_kernel(const T * x, T * dst, const int k, const sycl:
 }
 
 template<typename T>
+// 函数: unary_op_trunc_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unary_op_trunc_kernel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void unary_op_trunc_kernel(const T * x, T * dst, const int k, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         dst[i] = op_trunc(x[i]);
@@ -318,6 +413,14 @@ static void clamp(const T * x, T * dst, const float min, const float max, const 
 }
 
 template<typename T>
+// 函数: gated_op_fused_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gated_op_fused_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gated_op_fused_geglu(const T * x, const T * g, T * dst, const uint64_t k, const uint64_t n, const uint64_t o0, const uint64_t o1, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         const int64_t j0 = (i / n) * o0 + (i % n);
@@ -327,6 +430,14 @@ static void gated_op_fused_geglu(const T * x, const T * g, T * dst, const uint64
 }
 
 template<typename T>
+// 函数: gated_op_fused_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gated_op_fused_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gated_op_fused_reglu(const T * x, const T * g, T * dst, const uint64_t k, const uint64_t n, const uint64_t o0, const uint64_t o1, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         const int64_t j0 = (i / n) * o0 + (i % n);
@@ -336,6 +447,14 @@ static void gated_op_fused_reglu(const T * x, const T * g, T * dst, const uint64
 }
 
 template<typename T>
+// 函数: gated_op_fused_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gated_op_fused_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gated_op_fused_swiglu(const T * x, const T * g, T * dst, const uint64_t k, const uint64_t n, const uint64_t o0, const uint64_t o1, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1)  {
         const int64_t j0 = (i / n) * o0 + (i % n);
@@ -345,6 +464,14 @@ static void gated_op_fused_swiglu(const T * x, const T * g, T * dst, const uint6
 }
 
 template<typename T>
+// 函数: gated_op_fused_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gated_op_fused_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gated_op_fused_geglu_erf(const T * x, const T * g, T * dst, const uint64_t k, const uint64_t n, const uint64_t o0, const uint64_t o1, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         const int64_t j0 = (i / n) * o0 + (i % n);
@@ -354,6 +481,14 @@ static void gated_op_fused_geglu_erf(const T * x, const T * g, T * dst, const ui
 }
 
 template<typename T>
+// 函数: gated_op_fused_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gated_op_fused_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gated_op_fused_geglu_quick(const T * x, const T * g, T * dst, const uint64_t k, const uint64_t n, const uint64_t o0, const uint64_t o1, const sycl::nd_item<1> &item_ct1) {
     SYCL_GLOBAL_ID_LOOP(k, item_ct1) {
         const int64_t j0 = (i / n) * o0 + (i % n);
@@ -401,6 +536,14 @@ static void upscale_sycl(const T *x, T *dst, const int nb00, const int nb01,
 }
 
 template<typename KernelInvoker, typename... Args>
+// 函数: dispatch_ggml_sycl_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dispatch_ggml_sycl_op_unary
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void dispatch_ggml_sycl_op_unary(ggml_backend_sycl_context & ctx, ggml_tensor * dst, KernelInvoker kernel_invoker, Args&&... args) {
 #if defined (GGML_SYCL_F16)
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32 || dst->src[0]->type == GGML_TYPE_F16);
@@ -433,6 +576,14 @@ static inline void dispatch_ggml_sycl_op_unary(ggml_backend_sycl_context & ctx, 
 }
 
 template<typename KernelInvoker, typename... Args>
+// 函数: dispatch_ggml_sycl_op_fused_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dispatch_ggml_sycl_op_fused_glu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void dispatch_ggml_sycl_op_fused_glu(ggml_backend_sycl_context & ctx, ggml_tensor * dst, KernelInvoker kernel_invoker, Args&&... args) {
 #if defined (GGML_SYCL_F16)
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32 || dst->src[0]->type == GGML_TYPE_F16);
@@ -512,6 +663,14 @@ static inline void dispatch_ggml_sycl_op_fused_glu(ggml_backend_sycl_context & c
 }
 
 template<typename KernelInvoker, typename... Args>
+// 函数: dispatch_ggml_sycl_op_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dispatch_ggml_sycl_op_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void dispatch_ggml_sycl_op_upscale(ggml_backend_sycl_context & ctx, ggml_tensor * dst, KernelInvoker kernel_invoker, Args&&... args) {
 #if defined (GGML_SYCL_F16)
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32 || dst->src[0]->type == GGML_TYPE_F16);
@@ -596,6 +755,14 @@ static inline void ggml_sycl_op_unary(
 }
 
 
+// 函数: ggml_sycl_op_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_arange(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     GGML_ASSERT(dst->type == GGML_TYPE_F32);
     float start, stop, step;
@@ -619,6 +786,14 @@ static inline void ggml_sycl_op_arange(ggml_backend_sycl_context & ctx, ggml_ten
 
 
 
+// 函数: ggml_sycl_op_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_sgn(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_sgn(x);
@@ -626,71 +801,167 @@ static inline void ggml_sycl_op_sgn(ggml_backend_sycl_context & ctx, ggml_tensor
 }
 
 
+// 函数: ggml_sycl_op_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_abs(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_abs(x);
     });
 }
 
+// 函数: ggml_sycl_op_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_elu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_elu(x);
     });
 }
+// 函数: ggml_sycl_op_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_silu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_silu(x);
     });
 }
 
+// 函数: ggml_sycl_op_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_gelu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_gelu(x);
     });
 }
 
+// 函数: ggml_sycl_op_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_gelu_quick(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_gelu_quick(x);
     });
 }
 
+// 函数: ggml_sycl_op_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_gelu_erf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_gelu_erf(x);
     });
 }
 
+// 函数: ggml_sycl_op_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_tanh(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_tanh(x);
     });
 }
 
+// 函数: ggml_sycl_op_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_relu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_relu(x);
     });
 }
 
+// 函数: ggml_sycl_op_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_hardsigmoid(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_hardsigmoid(x);
     });
 }
 
+// 函数: ggml_sycl_op_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_hardswish(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_hardswish(x);
     });
 }
 
+// 函数: ggml_sycl_op_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_exp(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_exp(x);
     });
 }
 
+// 函数: ggml_sycl_op_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_log(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -704,12 +975,28 @@ static inline void ggml_sycl_op_log(ggml_backend_sycl_context & ctx, ggml_tensor
         });
 }
 
+// 函数: ggml_sycl_op_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_softplus(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_softplus(x);
     });
 }
 
+// 函数: ggml_sycl_op_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_neg(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_neg(x);
@@ -717,18 +1004,42 @@ static inline void ggml_sycl_op_neg(ggml_backend_sycl_context & ctx, ggml_tensor
 }
 
 
+// 函数: ggml_sycl_op_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_step(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_step(x);
     });
 }
 
+// 函数: ggml_sycl_op_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_sigmoid(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_sigmoid(x);
     });
 }
 
+// 函数: ggml_sycl_op_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_sqrt(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -742,6 +1053,14 @@ static inline void ggml_sycl_op_sqrt(ggml_backend_sycl_context & ctx, ggml_tenso
         });
 }
 
+// 函数: ggml_sycl_op_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_sin(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -755,6 +1074,14 @@ static inline void ggml_sycl_op_sin(ggml_backend_sycl_context & ctx, ggml_tensor
         });
 }
 
+// 函数: ggml_sycl_op_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_cos(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -768,6 +1095,14 @@ static inline void ggml_sycl_op_cos(ggml_backend_sycl_context & ctx, ggml_tensor
         });
 }
 
+// 函数: ggml_sycl_op_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_leaky_relu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     float negative_slope;
     memcpy(&negative_slope, dst->op_params, sizeof(float));
@@ -783,6 +1118,14 @@ static inline void ggml_sycl_op_leaky_relu(ggml_backend_sycl_context & ctx, ggml
         }, negative_slope);
 }
 
+// 函数: ggml_sycl_op_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_sqr(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -796,6 +1139,14 @@ static inline void ggml_sycl_op_sqr(ggml_backend_sycl_context & ctx, ggml_tensor
         });
 }
 
+// 函数: ggml_sycl_op_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_upscale(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_upscale(ctx, dst,
         [](const auto* src, auto* dst_ptr, int nb00, int nb01, int nb02, int nb03,
@@ -805,6 +1156,14 @@ static inline void ggml_sycl_op_upscale(ggml_backend_sycl_context & ctx, ggml_te
         });
 }
 
+// 函数: ggml_sycl_op_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_clamp(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     float min_val;
     float max_val;
@@ -822,6 +1181,14 @@ static inline void ggml_sycl_op_clamp(ggml_backend_sycl_context & ctx, ggml_tens
         }, min_val, max_val);
 }
 
+// 函数: ggml_sycl_op_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_floor(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -835,12 +1202,28 @@ static inline void ggml_sycl_op_floor(ggml_backend_sycl_context & ctx, ggml_tens
         });
 }
 
+// 函数: ggml_sycl_op_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_ceil(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::ggml_sycl_op_unary(ctx, dst, [](auto x) {
         return op_ceil(x);
     });
 }
 
+// 函数: ggml_sycl_op_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_round(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -854,6 +1237,14 @@ static inline void ggml_sycl_op_round(ggml_backend_sycl_context & ctx, ggml_tens
         });
 }
 
+// 函数: ggml_sycl_op_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_trunc(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_unary(ctx, dst,
         [](const auto* src, auto* dst_ptr, int k_elements, queue_ptr stream) {
@@ -867,6 +1258,14 @@ static inline void ggml_sycl_op_trunc(ggml_backend_sycl_context & ctx, ggml_tens
         });
 }
 
+// 函数: ggml_sycl_op_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_acc(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     GGML_ASSERT(dst->src[0]->type == GGML_TYPE_F32);
     GGML_ASSERT(dst->src[1]->type == GGML_TYPE_F32);
@@ -886,6 +1285,14 @@ static inline void ggml_sycl_op_acc(ggml_backend_sycl_context & ctx, ggml_tensor
     ggml_sycl_detail::acc_f32_sycl(src0_dd, src1_dd, dst_dd, (int)ggml_nelements(dst), (int)dst->src[1]->ne[0], (int)dst->src[1]->ne[1], (int)dst->src[1]->ne[2], nb1, nb2, offset, main_stream);
 }
 
+// 函数: ggml_sycl_op_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_geglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_fused_glu(ctx, dst,
         [](const auto* x_ptr, const auto* g_ptr, auto* dst_ptr, uint64_t k, uint64_t n, uint64_t o0, uint64_t o1, queue_ptr main_stream) {
@@ -897,6 +1304,14 @@ static inline void ggml_sycl_op_geglu(ggml_backend_sycl_context & ctx, ggml_tens
         });
 }
 
+// 函数: ggml_sycl_op_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_reglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_fused_glu(ctx, dst,
         [](const auto* x_ptr, const auto* g_ptr, auto* dst_ptr, uint64_t k, uint64_t n, uint64_t o0, uint64_t o1, queue_ptr main_stream) {
@@ -908,6 +1323,14 @@ static inline void ggml_sycl_op_reglu(ggml_backend_sycl_context & ctx, ggml_tens
         });
 }
 
+// 函数: ggml_sycl_op_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_swiglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_fused_glu(ctx, dst,
         [](const auto* x_ptr, const auto* g_ptr, auto* dst_ptr, uint64_t k, uint64_t n, uint64_t o0, uint64_t o1, queue_ptr main_stream) {
@@ -967,6 +1390,14 @@ static void swiglu_oai_sycl(const T *       x,
                          });
 }
 
+// 函数: ggml_sycl_op_swiglu_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_swiglu_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_swiglu_oai(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     const ggml_tensor * src0 = dst->src[0];
     const ggml_tensor * src1 = dst->src[1];
@@ -1011,6 +1442,14 @@ void ggml_sycl_op_swiglu_oai(ggml_backend_sycl_context & ctx, ggml_tensor * dst)
     swiglu_oai_sycl(src0_p, src1_p, (float *)dst_d, ggml_nelements(dst), nc, src0_o / sizeof(float), src1_o / sizeof(float), alpha, limit, stream);
 }
 
+// 函数: ggml_sycl_op_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_geglu_erf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_fused_glu(ctx, dst,
         [](const auto* x_ptr, const auto* g_ptr, auto* dst_ptr, uint64_t k, uint64_t n, uint64_t o0, uint64_t o1, queue_ptr main_stream) {
@@ -1022,6 +1461,14 @@ static inline void ggml_sycl_op_geglu_erf(ggml_backend_sycl_context & ctx, ggml_
         });
 }
 
+// 函数: ggml_sycl_op_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void ggml_sycl_op_geglu_quick(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     ggml_sycl_detail::dispatch_ggml_sycl_op_fused_glu(ctx, dst,
         [](const auto* x_ptr, const auto* g_ptr, auto* dst_ptr, uint64_t k, uint64_t n, uint64_t o0, uint64_t o1, queue_ptr main_stream) {
@@ -1034,182 +1481,470 @@ static inline void ggml_sycl_op_geglu_quick(ggml_backend_sycl_context & ctx, ggm
 }
 
 
+// 函数: ggml_sycl_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sqrt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sqrt(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_sqrt(ctx, dst);
 }
 
+// 函数: ggml_sycl_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sin
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sin(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_sin(ctx, dst);
 }
 
+// 函数: ggml_sycl_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_cos(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_cos(ctx, dst);
 }
 
+// 函数: ggml_sycl_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_acc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_acc(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     ggml_sycl_op_acc(ctx, dst);
 }
 
+// 函数: ggml_sycl_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_gelu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_gelu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_gelu(ctx, dst);
 }
 
+// 函数: ggml_sycl_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_silu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_silu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_silu(ctx, dst);
 }
 
+// 函数: ggml_sycl_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_gelu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_gelu_quick(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_gelu_quick(ctx, dst);
 }
 
+// 函数: ggml_sycl_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_gelu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_gelu_erf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_gelu_erf(ctx, dst);
 }
 
+// 函数: ggml_sycl_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_tanh
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_tanh(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_tanh(ctx, dst);
 }
 
+// 函数: ggml_sycl_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_relu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_relu(ctx, dst);
 }
 
+// 函数: ggml_sycl_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sigmoid(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_sigmoid(ctx, dst);
 }
 
+// 函数: ggml_sycl_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_hardsigmoid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_hardsigmoid(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_hardsigmoid(ctx, dst);
 }
 
+// 函数: ggml_sycl_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_hardswish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_hardswish(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_hardswish(ctx, dst);
 }
 
+// 函数: ggml_sycl_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_exp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_exp(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_exp(ctx, dst);
 }
 
+// 函数: ggml_sycl_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_log
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_log(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_log(ctx, dst);
 }
 
+// 函数: ggml_sycl_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_softplus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_softplus(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_softplus(ctx, dst);
 }
 
+// 函数: ggml_sycl_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_neg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_neg(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_neg(ctx, dst);
 }
 
+// 函数: ggml_sycl_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_step
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_step(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_step(ctx, dst);
 }
 
+// 函数: ggml_sycl_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_leaky_relu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_leaky_relu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_leaky_relu(ctx, dst);
 }
 
+// 函数: ggml_sycl_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sqr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sqr(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_sqr(ctx, dst);
 }
 
+// 函数: ggml_sycl_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_upscale
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_upscale(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_upscale(ctx, dst);
 }
 
 
+// 函数: ggml_sycl_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_clamp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_clamp(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_clamp(ctx, dst);
 }
 
+// 函数: ggml_sycl_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_sgn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_sgn(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_sgn(ctx, dst);
 }
 
+// 函数: ggml_sycl_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_abs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_abs(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_abs(ctx, dst);
 }
 
+// 函数: ggml_sycl_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_elu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_elu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_elu(ctx, dst);
 }
 
+// 函数: ggml_sycl_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_geglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_geglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_geglu(ctx, dst);
 }
 
+// 函数: ggml_sycl_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_reglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_reglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_reglu(ctx, dst);
 }
 
+// 函数: ggml_sycl_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_swiglu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_swiglu(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_swiglu(ctx, dst);
 }
 
+// 函数: ggml_sycl_swiglu_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_swiglu_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_swiglu_oai(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_swiglu_oai(ctx, dst);
 }
 
+// 函数: ggml_sycl_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_geglu_erf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_geglu_erf(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_geglu_erf(ctx, dst);
 }
 
+// 函数: ggml_sycl_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_geglu_quick
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_geglu_quick(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_geglu_quick(ctx, dst);
 }
 
+// 函数: ggml_sycl_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_arange
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_arange(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/0);
     ggml_sycl_detail::ggml_sycl_op_arange(ctx, dst);
 }
 
+// 函数: ggml_sycl_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_floor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_floor(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_floor(ctx, dst);
 }
 
+// 函数: ggml_sycl_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_ceil
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_ceil(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_ceil(ctx, dst);
 }
 
+// 函数: ggml_sycl_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_round(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_round(ctx, dst);
 }
 
+// 函数: ggml_sycl_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_trunc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_trunc(ggml_backend_sycl_context & ctx, ggml_tensor * dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/1);
     ggml_sycl_op_trunc(ctx, dst);

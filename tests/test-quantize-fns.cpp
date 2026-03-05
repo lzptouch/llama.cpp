@@ -28,6 +28,14 @@ static const char* RESULT_STR[] = {"ok", "FAILED"};
 
 
 // Generate synthetic data
+// 函数: generate_data
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: generate_data
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
 static void generate_data(float offset, size_t n, float * dst) {
     for (size_t i = 0; i < n; i++) {
         dst[i] = 0.1 + 2*cosf(i + offset);
@@ -35,6 +43,14 @@ static void generate_data(float offset, size_t n, float * dst) {
 }
 
 // Calculate RMSE between two float arrays
+// 函数: array_rmse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: array_rmse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float array_rmse(const float * a1, const float * a2, size_t n) {
     double sum = 0;
     for (size_t i = 0; i < n; i++) {
@@ -45,6 +61,14 @@ static float array_rmse(const float * a1, const float * a2, size_t n) {
 }
 
 // Total quantization error on test data
+// 函数: total_quantization_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: total_quantization_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float total_quantization_error(const ggml_type_traits * qfns, const ggml_type_traits_cpu * qfns_cpu, size_t test_size, const float * test_data) {
     std::vector<uint8_t> tmp_q(2*test_size);
     std::vector<float> tmp_out(test_size);
@@ -55,6 +79,14 @@ static float total_quantization_error(const ggml_type_traits * qfns, const ggml_
 }
 
 // Total quantization error on test data
+// 函数: reference_quantization_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: reference_quantization_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float reference_quantization_error(const ggml_type_traits * qfns, const ggml_type_traits_cpu * qfns_cpu, size_t test_size, const float * test_data) {
     std::vector<uint8_t> tmp_q(2*test_size);
     std::vector<float> tmp_out(test_size);
@@ -70,6 +102,14 @@ static float reference_quantization_error(const ggml_type_traits * qfns, const g
     return array_rmse(tmp_out.data(), tmp_out_ref.data(), test_size);
 }
 
+// 函数: dot_product
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dot_product
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float dot_product(const float * a1, const float * a2, size_t test_size) {
     double sum = 0;
     for (size_t i = 0; i < test_size; i++) {
@@ -79,6 +119,14 @@ static float dot_product(const float * a1, const float * a2, size_t test_size) {
 }
 
 // Total dot product error
+// 函数: dot_product_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: dot_product_error
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float dot_product_error(const ggml_type_traits * qfns, const ggml_type_traits_cpu * qfns_cpu, size_t test_size, const float * test_data1, const float * test_data2) {
     GGML_UNUSED(qfns);
 
@@ -98,6 +146,14 @@ static float dot_product_error(const ggml_type_traits * qfns, const ggml_type_tr
     return fabsf(result - dot_ref) / test_size;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char * argv[]) {
     bool verbose = false;
     const size_t test_size = 32 * 128;

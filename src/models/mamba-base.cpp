@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: mamba-base.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/mamba-base.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 #include "llama-memory-recurrent.h"
@@ -117,6 +124,14 @@ ggml_tensor * llm_build_mamba_base::build_mamba_layer(llm_graph_input_rs * inp,
             // Custom operator to optimize the parallel associative scan
             // as described in the Annex D of the Mamba paper.
             // => {d_inner, n_seq_tokens, n_seqs} and {d_state, d_inner, n_seqs}
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_ssm_scan(ctx, ssm, x, dt, A, B, C, ids);
         };
 
@@ -245,6 +260,14 @@ ggml_tensor * llm_build_mamba_base::build_mamba2_layer(llm_graph_input_rs * inp,
 
             // TODO: use semistructured matrices to implement state-space duality
             // => {d_inner, n_seq_tokens, n_seqs} and {d_state, d_inner, n_seqs}
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ggml_ssm_scan
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return ggml_ssm_scan(ctx, ssm, x, dt, A, B, C, ids);
         };
 

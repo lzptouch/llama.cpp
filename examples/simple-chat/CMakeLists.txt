@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: CMakeLists.txt
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/simple-chat/CMakeLists.txt
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 set(TARGET llama-simple-chat)
 add_executable(${TARGET} simple-chat.cpp)
 install(TARGETS ${TARGET} RUNTIME)

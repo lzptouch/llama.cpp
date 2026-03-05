@@ -91,6 +91,14 @@ DEFINE_HVX_BINARY_OP_VARIANTS(hvx_mul_f32, HVX_OP_MUL)
 
 // Dispatcher logic
 #define HVX_BINARY_DISPATCHER(OP_NAME) \
+// 函数: OP_NAME
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: OP_NAME
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void OP_NAME(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, const uint32_t num_elems) { \
     if (hex_is_aligned((void *) dst, 128)) { \
         if (hex_is_aligned((void *) src0, 128)) { \
@@ -116,6 +124,14 @@ HVX_BINARY_DISPATCHER(hvx_sub_f32)
 HVX_BINARY_DISPATCHER(hvx_mul_f32)
 
 // Mul-Mul Optimized
+// 函数: hvx_mul_mul_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_mul_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_mul_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src0, const uint8_t * restrict src1, const uint8_t * restrict src2, const uint32_t num_elems) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src0 % 128 == 0);
@@ -185,6 +201,14 @@ static inline void hvx_mul_mul_f32_aa(uint8_t * restrict dst, const uint8_t * re
 
 // Add Scalar Variants
 
+// 函数: hvx_add_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_add_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_add_scalar_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     const HVX_Vector inf = hvx_vec_splat_f32(INFINITY);
@@ -193,6 +217,14 @@ static inline void hvx_add_scalar_f32_aa(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a, HVX_OP_ADD_SCALAR);
 }
 
+// 函数: hvx_add_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_add_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_add_scalar_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     const HVX_Vector inf = hvx_vec_splat_f32(INFINITY);
@@ -200,6 +232,14 @@ static inline void hvx_add_scalar_f32_au(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a, HVX_OP_ADD_SCALAR);
 }
 
+// 函数: hvx_add_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_add_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_add_scalar_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     const HVX_Vector inf = hvx_vec_splat_f32(INFINITY);
@@ -207,6 +247,14 @@ static inline void hvx_add_scalar_f32_ua(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u, HVX_OP_ADD_SCALAR);
 }
 
+// 函数: hvx_add_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_add_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_add_scalar_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     static const float kInf = INFINITY;
@@ -216,6 +264,14 @@ static inline void hvx_add_scalar_f32_uu(uint8_t * restrict dst, const uint8_t *
 
 // Sub Scalar Variants
 
+// 函数: hvx_sub_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sub_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sub_scalar_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
@@ -223,18 +279,42 @@ static inline void hvx_sub_scalar_f32_aa(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a, HVX_OP_SUB_SCALAR);
 }
 
+// 函数: hvx_sub_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sub_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sub_scalar_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
     hvx_scalar_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a, HVX_OP_SUB_SCALAR);
 }
 
+// 函数: hvx_sub_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sub_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sub_scalar_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) src % 128 == 0);
     hvx_scalar_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u, HVX_OP_SUB_SCALAR);
 }
 
+// 函数: hvx_sub_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sub_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sub_scalar_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     hvx_scalar_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u, HVX_OP_SUB_SCALAR);
@@ -242,6 +322,14 @@ static inline void hvx_sub_scalar_f32_uu(uint8_t * restrict dst, const uint8_t *
 
 // Mul Scalar Variants
 
+// 函数: hvx_mul_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_scalar_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
@@ -249,23 +337,55 @@ static inline void hvx_mul_scalar_f32_aa(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a, HVX_OP_MUL_SCALAR);
 }
 
+// 函数: hvx_mul_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_scalar_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
     hvx_scalar_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a, HVX_OP_MUL_SCALAR);
 }
 
+// 函数: hvx_mul_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_scalar_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) src % 128 == 0);
     hvx_scalar_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u, HVX_OP_MUL_SCALAR);
 }
 
+// 函数: hvx_mul_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_scalar_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     hvx_scalar_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u, HVX_OP_MUL_SCALAR);
 }
 
+// 函数: hvx_add_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_add_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_add_scalar_f32(uint8_t * restrict dst, const uint8_t * restrict src, const float val, const int num_elems) {
     if (hex_is_aligned((void *) dst, 128) && hex_is_aligned((void *) src, 128)) {
         hvx_add_scalar_f32_aa(dst, src, val, num_elems);
@@ -278,6 +398,14 @@ static inline void hvx_add_scalar_f32(uint8_t * restrict dst, const uint8_t * re
     }
 }
 
+// 函数: hvx_mul_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_mul_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_mul_scalar_f32(uint8_t * restrict dst, const uint8_t * restrict src, const float val, const int num_elems) {
     if (hex_is_aligned((void *) dst, 128) && hex_is_aligned((void *) src, 128)) {
         hvx_mul_scalar_f32_aa(dst, src, val, num_elems);
@@ -290,6 +418,14 @@ static inline void hvx_mul_scalar_f32(uint8_t * restrict dst, const uint8_t * re
     }
 }
 
+// 函数: hvx_sub_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sub_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sub_scalar_f32(uint8_t * restrict dst, const uint8_t * restrict src, const float val, const int num_elems) {
     if (hex_is_aligned((void *) dst, 128) && hex_is_aligned((void *) src, 128)) {
         hvx_sub_scalar_f32_aa(dst, src, val, num_elems);
@@ -306,6 +442,14 @@ static inline void hvx_sub_scalar_f32(uint8_t * restrict dst, const uint8_t * re
 
 #define HVX_OP_MIN_SCALAR(v) Q6_Vsf_vmin_VsfVsf(val_vec, v)
 
+// 函数: hvx_min_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_min_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_min_scalar_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
@@ -313,23 +457,55 @@ static inline void hvx_min_scalar_f32_aa(uint8_t * restrict dst, const uint8_t *
     hvx_scalar_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a, HVX_OP_MIN_SCALAR);
 }
 
+// 函数: hvx_min_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_min_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_min_scalar_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) dst % 128 == 0);
     hvx_scalar_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a, HVX_OP_MIN_SCALAR);
 }
 
+// 函数: hvx_min_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_min_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_min_scalar_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     assert((unsigned long) src % 128 == 0);
     hvx_scalar_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u, HVX_OP_MIN_SCALAR);
 }
 
+// 函数: hvx_min_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_min_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_min_scalar_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const float val, uint32_t n) {
     const HVX_Vector val_vec = hvx_vec_splat_f32(val);
     hvx_scalar_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u, HVX_OP_MIN_SCALAR);
 }
 
+// 函数: hvx_min_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_min_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_min_scalar_f32(uint8_t * restrict dst, const uint8_t * restrict src, const float val, const int num_elems) {
     if (hex_is_aligned((void *) dst, 128) && hex_is_aligned((void *) src, 128)) {
         hvx_min_scalar_f32_aa(dst, src, val, num_elems);
@@ -352,6 +528,14 @@ static inline void hvx_min_scalar_f32(uint8_t * restrict dst, const uint8_t * re
         Q6_V_vmux_QVV(pred_cap_left, min_vec, tmp); \
     })
 
+// 函数: hvx_clamp_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_clamp_scalar_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_clamp_scalar_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const float min, const float max, uint32_t n) {
     const HVX_Vector min_vec = hvx_vec_splat_f32(min);
     const HVX_Vector max_vec = hvx_vec_splat_f32(max);
@@ -360,6 +544,14 @@ static inline void hvx_clamp_scalar_f32_aa(uint8_t * restrict dst, const uint8_t
     hvx_scalar_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a, HVX_OP_CLAMP_SCALAR);
 }
 
+// 函数: hvx_clamp_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_clamp_scalar_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_clamp_scalar_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const float min, const float max, uint32_t n) {
     const HVX_Vector min_vec = hvx_vec_splat_f32(min);
     const HVX_Vector max_vec = hvx_vec_splat_f32(max);
@@ -367,6 +559,14 @@ static inline void hvx_clamp_scalar_f32_au(uint8_t * restrict dst, const uint8_t
     hvx_scalar_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a, HVX_OP_CLAMP_SCALAR);
 }
 
+// 函数: hvx_clamp_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_clamp_scalar_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_clamp_scalar_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const float min, const float max, uint32_t n) {
     const HVX_Vector min_vec = hvx_vec_splat_f32(min);
     const HVX_Vector max_vec = hvx_vec_splat_f32(max);
@@ -374,12 +574,28 @@ static inline void hvx_clamp_scalar_f32_ua(uint8_t * restrict dst, const uint8_t
     hvx_scalar_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u, HVX_OP_CLAMP_SCALAR);
 }
 
+// 函数: hvx_clamp_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_clamp_scalar_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_clamp_scalar_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const float min, const float max, uint32_t n) {
     const HVX_Vector min_vec = hvx_vec_splat_f32(min);
     const HVX_Vector max_vec = hvx_vec_splat_f32(max);
     hvx_scalar_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u, HVX_OP_CLAMP_SCALAR);
 }
 
+// 函数: hvx_clamp_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_clamp_scalar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_clamp_scalar_f32(uint8_t * restrict dst, const uint8_t * restrict src, const float min, const float max, const int num_elems) {
     if (hex_is_aligned((void *) dst, 128) && hex_is_aligned((void *) src, 128)) {
         hvx_clamp_scalar_f32_aa(dst, src, min, max, num_elems);
@@ -418,26 +634,66 @@ static inline void hvx_clamp_scalar_f32(uint8_t * restrict dst, const uint8_t * 
         }                                                                  \
     } while(0)
 
+// 函数: hvx_sqr_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqr_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqr_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
     hvx_sqr_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sqr_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqr_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqr_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_sqr_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_sqr_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqr_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqr_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_sqr_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_sqr_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqr_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqr_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_sqr_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_sqr_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sqr_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_sqr_f32(uint8_t * restrict dst, const uint8_t * restrict src, const uint32_t num_elems) {
     if (hex_is_aligned((void *) dst, 128)) {
         if (hex_is_aligned((void *) src, 128)) {

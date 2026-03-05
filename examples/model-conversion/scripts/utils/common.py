@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: common.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/common.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import os
@@ -10,6 +17,10 @@ import numpy as np
 from pathlib import Path
 
 
+    # 函数: get_model_name_from_env_path
+    # 描述: get_model_name_from_env_path函数提供相关功能
+    # 参数: env_path_name
+    # 返回: 无返回值
 def get_model_name_from_env_path(env_path_name):
     model_path = os.getenv(env_path_name)
     if not model_path:
@@ -27,6 +38,10 @@ def get_model_name_from_env_path(env_path_name):
     return name
 
 
+    # 函数: summarize
+    # 描述: summarize函数提供相关功能
+    # 参数: tensor: torch.Tensor, name: str, max_seq: int = 3, max_vals: int = 3
+    # 返回: 无返回值
 def summarize(tensor: torch.Tensor, name: str, max_seq: int = 3, max_vals: int = 3):
     """
     Print a tensor in llama.cpp debug style.
@@ -100,7 +115,15 @@ def summarize(tensor: torch.Tensor, name: str, max_seq: int = 3, max_vals: int =
     print(f"                                     sum = {t.sum().item():.6f}\n")
 
 
+    # 函数: debug_hook
+    # 描述: debug_hook函数提供相关功能
+    # 参数: name
+    # 返回: 无返回值
 def debug_hook(name):
+    # 函数: fn
+    # 描述: fn函数提供相关功能
+    # 参数: _m, input, output
+    # 返回: 无返回值
     def fn(_m, input, output):
         if isinstance(input, torch.Tensor):
             summarize(input, name + "_in")
@@ -114,6 +137,10 @@ def debug_hook(name):
     return fn
 
 
+    # 函数: setup_rope_debug
+    # 描述: setup_rope_debug函数提供相关功能
+    # 参数: model_module_path: str, function_name: str = "apply_rotary_pos_emb"
+    # 返回: 无返回值
 def setup_rope_debug(model_module_path: str, function_name: str = "apply_rotary_pos_emb"):
     """
     Apply monkey patch to dump RoPE activations for debugging.
@@ -136,6 +163,10 @@ def setup_rope_debug(model_module_path: str, function_name: str = "apply_rotary_
     torch.set_printoptions(threshold=float('inf'))
     torch.set_printoptions(precision=6, sci_mode=False)
 
+    # 函数: debug_rope
+    # 描述: debug_rope函数提供相关功能
+    # 参数: q, k, cos, sin, position_ids=None, unsqueeze_dim=1
+    # 返回: 无返回值
     def debug_rope(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):
         # log inputs
         summarize(q, "RoPE.q_in")
@@ -155,6 +186,10 @@ def setup_rope_debug(model_module_path: str, function_name: str = "apply_rotary_
     print(f"RoPE debug patching applied to {model_module_path}.{function_name}")
 
 
+    # 函数: save_output_data
+    # 描述: save_output_data函数提供相关功能
+    # 参数: data, tokens, prompt, model_name, type_suffix="", output_dir="data"
+    # 返回: 无返回值
 def save_output_data(data, tokens, prompt, model_name, type_suffix="", output_dir="data"):
     """
     Save output data (logits/embeddings), tokens, and prompt to files.
@@ -205,6 +240,10 @@ def save_output_data(data, tokens, prompt, model_name, type_suffix="", output_di
     print(f"Prompt saved to {base_path}-prompt.txt")
 
 
+    # 函数: compare_tokens
+    # 描述: compare_tokens函数提供相关功能
+    # 参数: original, converted, type_suffix="", output_dir="data"
+    # 返回: 无返回值
 def compare_tokens(original, converted, type_suffix="", output_dir="data"):
     data_dir = Path(output_dir)
 
@@ -248,6 +287,10 @@ def compare_tokens(original, converted, type_suffix="", output_dir="data"):
     return False
 
 
+    # 函数: show_version_warning
+    # 描述: show_version_warning函数提供相关功能
+    # 参数: current_version, model_version
+    # 返回: 有返回值
 def show_version_warning(current_version, model_version):
     if not model_version:
         return False
@@ -261,6 +304,10 @@ def show_version_warning(current_version, model_version):
     except ImportError:
         return current_version != model_version
 
+    # 函数: get_model_transformers_version
+    # 描述: get_model_transformers_version函数提供相关功能
+    # 参数: model_path
+    # 返回: 有返回值
 def get_model_transformers_version(model_path):
     if not model_path:
         return None
@@ -277,6 +324,10 @@ def get_model_transformers_version(model_path):
         print(f"Warning: Could not read or parse {config_path}: {e}", file=sys.stderr)
         return None
 
+    # 函数: exit_with_warning
+    # 描述: exit_with_warning函数提供相关功能
+    # 参数: message, model_path
+    # 返回: 无返回值
 def exit_with_warning(message, model_path):
     print(message)
 

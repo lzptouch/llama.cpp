@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: download.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/download.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "arg.h"
 
 #include "common.h"
@@ -51,11 +58,27 @@ using json = nlohmann::ordered_json;
 //
 
 // validate repo name format: owner/repo
+// 函数: validate_repo_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: validate_repo_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool validate_repo_name(const std::string & repo) {
     static const std::regex repo_regex(R"(^[A-Za-z0-9_.\-]+\/[A-Za-z0-9_.\-]+$)");
     return std::regex_match(repo, repo_regex);
 }
 
+// 函数: get_manifest_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_manifest_path
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_manifest_path(const std::string & repo, const std::string & tag) {
     // we use "=" to avoid clashing with other component, while still being allowed on windows
     std::string fname = "manifest=" + repo + "=" + tag + ".json";
@@ -66,6 +89,14 @@ static std::string get_manifest_path(const std::string & repo, const std::string
     return fs_get_cache_file(fname);
 }
 
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read_file(const std::string & fname) {
     std::ifstream file(fname);
     if (!file) {
@@ -76,6 +107,14 @@ static std::string read_file(const std::string & fname) {
     return content;
 }
 
+// 函数: write_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_file
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void write_file(const std::string & fname, const std::string & content) {
     const std::string fname_tmp = fname + ".tmp";
     std::ofstream     file(fname_tmp);
@@ -105,12 +144,28 @@ static void write_file(const std::string & fname, const std::string & content) {
     }
 }
 
+// 函数: write_etag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write_etag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void write_etag(const std::string & path, const std::string & etag) {
     const std::string etag_path = path + ".etag";
     write_file(etag_path, etag);
     LOG_DBG("%s: file etag saved: %s\n", __func__, etag_path.c_str());
 }
 
+// 函数: read_etag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read_etag
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read_etag(const std::string & path) {
     const std::string etag_path = path + ".etag";
     if (!std::filesystem::exists(etag_path)) {
@@ -126,6 +181,14 @@ static std::string read_etag(const std::string & path) {
     return etag;
 }
 
+// 函数: is_http_status_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_http_status_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_http_status_ok(int status) {
     return status >= 200 && status < 400;
 }
@@ -140,11 +203,25 @@ std::pair<std::string, std::string> common_download_split_repo_tag(const std::st
     return {hf_repo, tag};
 }
 
+// 类: ProgressBar
+// 描述: ProgressBar类提供相关功能
+// 用途: 用于处理progressbar相关的操作
+// 类: ProgressBar
+// 描述: ProgressBar类提供相关功能
+// 用途: 用于处理progressbar相关的操作
 class ProgressBar {
     static inline std::mutex mutex;
     static inline std::map<const ProgressBar *, int> lines;
     static inline int max_line = 0;
 
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cleanup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void cleanup(const ProgressBar * line) {
         lines.erase(line);
         if (lines.empty()) {
@@ -152,6 +229,14 @@ class ProgressBar {
         }
     }
 
+    // 函数: is_output_a_tty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_output_a_tty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_output_a_tty() {
 #if defined(_WIN32)
         return _isatty(_fileno(stdout));
@@ -168,6 +253,14 @@ public:
         cleanup(this);
     }
 
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update(size_t current, size_t total) {
         if (!is_output_a_tty()) {
             return;
@@ -220,6 +313,14 @@ static bool common_pull_file(httplib::Client & cli,
                              bool supports_ranges,
                              size_t existing_size,
                              size_t & total_size) {
+    // 函数: ofs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ofs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ofstream ofs(path_tmp, std::ios::binary | std::ios::app);
     if (!ofs.is_open()) {
         LOG_ERR("%s: error opening local file for writing: %s\n", __func__, path_tmp.c_str());
@@ -442,6 +543,14 @@ int common_download_file_single(const std::string & url,
                                 bool offline,
                                 const common_header_list & headers) {
     if (!offline) {
+        // 函数: common_download_file_single_online
+        // 描述: 加载: 从文件或内存加载数据
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: common_download_file_single_online
+        // 描述: 加载: 从文件或内存加载数据
+        // 参数: 无参数
+        // 返回: 无返回值
         return common_download_file_single_online(url, path, bearer_token, headers);
     }
 
@@ -470,6 +579,14 @@ static bool common_download_file_multiple(const std::vector<std::pair<std::strin
                 std::launch::async,
                 [&bearer_token, offline, &headers](const std::pair<std::string, std::string> & it) -> bool {
                     const int http_status = common_download_file_single(it.first, it.second, bearer_token, offline, headers);
+                    // 函数: is_http_status_ok
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: is_http_status_ok
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return is_http_status_ok(http_status);
                 },
                 item
@@ -505,6 +622,24 @@ bool common_download_model(const common_params_model & model,
     // check for additional GGUFs split to download
     int n_split = 0;
     {
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
         struct gguf_init_params gguf_params = {
             /*.no_alloc = */ true,
             /*.ctx      = */ NULL,
@@ -647,6 +782,14 @@ common_hf_file_res common_get_hf_file(const std::string & hf_repo_with_tag,
 // Docker registry functions
 //
 
+// 函数: common_docker_get_token
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_docker_get_token
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static std::string common_docker_get_token(const std::string & repo) {
     std::string url = "https://auth.docker.io/token?service=registry.docker.io&scope=repository:" + repo + ":pull";
 
@@ -667,6 +810,14 @@ static std::string common_docker_get_token(const std::string & repo) {
     return response["token"].get<std::string>();
 }
 
+// 函数: common_docker_resolve_model
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_docker_resolve_model
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_docker_resolve_model(const std::string & docker) {
     // Parse ai/smollm2:135M-Q4_0
     size_t      colon_pos = docker.find(':');

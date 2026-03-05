@@ -32,6 +32,14 @@ inline static float silu_float(float x) {
     return x/(1.0f + expf(-x));
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(void) {
     uint32_t x = UINT32_MAX;
     do {

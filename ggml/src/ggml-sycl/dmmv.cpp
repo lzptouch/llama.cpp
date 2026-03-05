@@ -1,8 +1,23 @@
+// ============================================================================
+// 文件: dmmv.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/dmmv.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "convert.hpp"
 #include "dmmv.hpp"
 #include "dequantize.hpp"
 #include "presets.hpp"
 
+// 函数: convert_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void convert_f16(const void * vx, const int64_t ib, const int iqs, dfloat2 & v){
     const sycl::half *x = (const sycl::half *)vx;
 
@@ -11,6 +26,14 @@ static void convert_f16(const void * vx, const int64_t ib, const int iqs, dfloat
     v.y() = x[ib + iqs + 1];
 }
 
+// 函数: convert_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void convert_f32(const void * vx, const int64_t ib, const int iqs, dfloat2 & v){
     const float * x = (const float *) vx;
 

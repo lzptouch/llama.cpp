@@ -10,6 +10,14 @@
 #include "hvx-base.h"
 #include "hvx-types.h"
 
+// 函数: hvx_vec_reduce_sum_n_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_n_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_n_i32(HVX_Vector in, unsigned int n) {
     unsigned int total = n * 4;  // total vec nbytes
     unsigned int width = 4;      // int32
@@ -23,10 +31,26 @@ static inline HVX_Vector hvx_vec_reduce_sum_n_i32(HVX_Vector in, unsigned int n)
     return sum;
 }
 
+// 函数: hvx_vec_reduce_sum_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_i32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_i32(HVX_Vector in) {
     return hvx_vec_reduce_sum_n_i32(in, 32);
 }
 
+// 函数: hvx_vec_reduce_sum_n_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_n_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_n_qf32(HVX_Vector in, unsigned int n) {
     unsigned int total = n * 4;  // total vec nbytes
     unsigned int width = 4;      // fp32 nbytes
@@ -40,12 +64,28 @@ static inline HVX_Vector hvx_vec_reduce_sum_n_qf32(HVX_Vector in, unsigned int n
     return sum;
 }
 
+// 函数: hvx_vec_reduce_sum_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_qf32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_qf32(HVX_Vector in) {
     return hvx_vec_reduce_sum_n_qf32(in, 32);
 }
 
 #if __HVX_ARCH__ > 75
 
+// 函数: hvx_vec_reduce_sum_f32x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_f32x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_f32x2(HVX_Vector in0, HVX_Vector in1) {
     HVX_VectorPair sump = Q6_W_vshuff_VVR(in1, in0, 4);
     HVX_Vector  sum_sf  = Q6_Vsf_vadd_VsfVsf(Q6_V_lo_W(sump), Q6_V_hi_W(sump));
@@ -57,6 +97,14 @@ static inline HVX_Vector hvx_vec_reduce_sum_f32x2(HVX_Vector in0, HVX_Vector in1
     return sum_sf;
 }
 
+// 函数: hvx_vec_reduce_sum_n_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_n_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_n_f32(HVX_Vector in, unsigned int n) {
     unsigned int total = n * 4;  // total vec nbytes
     unsigned int width = 4;      // fp32 nbytes
@@ -72,6 +120,14 @@ static inline HVX_Vector hvx_vec_reduce_sum_n_f32(HVX_Vector in, unsigned int n)
 
 #else
 
+// 函数: hvx_vec_reduce_sum_f32x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_f32x2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_f32x2(HVX_Vector in0, HVX_Vector in1) {
     HVX_VectorPair sump = Q6_W_vshuff_VVR(in1, in0, 4);
     HVX_Vector  sum_qf  = Q6_Vqf32_vadd_VsfVsf(Q6_V_lo_W(sump), Q6_V_hi_W(sump));
@@ -83,6 +139,14 @@ static inline HVX_Vector hvx_vec_reduce_sum_f32x2(HVX_Vector in0, HVX_Vector in1
     return Q6_Vsf_equals_Vqf32(sum_qf);
 }
 
+// 函数: hvx_vec_reduce_sum_n_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_n_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_n_f32(HVX_Vector in, unsigned int n) {
     unsigned int total = n * 4;  // total vec nbytes
     unsigned int width = 4;      // fp32 nbytes
@@ -98,10 +162,26 @@ static inline HVX_Vector hvx_vec_reduce_sum_n_f32(HVX_Vector in, unsigned int n)
 
 #endif
 
+// 函数: hvx_vec_reduce_sum_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_sum_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_sum_f32(HVX_Vector in) {
     return hvx_vec_reduce_sum_n_f32(in, 32);
 }
 
+// 函数: hvx_vec_reduce_max_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_max_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_max_f16(HVX_Vector in) {
     unsigned total = 128;  // total vec nbytes
     unsigned width = 2;    // fp16 nbytes
@@ -116,6 +196,14 @@ static inline HVX_Vector hvx_vec_reduce_max_f16(HVX_Vector in) {
     return _max;
 }
 
+// 函数: hvx_vec_reduce_max2_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_max2_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_max2_f16(HVX_Vector in, HVX_Vector _max) {
     unsigned total = 128;  // total vec nbytes
     unsigned width = 2;    // fp32 nbytes
@@ -132,6 +220,14 @@ static inline HVX_Vector hvx_vec_reduce_max2_f16(HVX_Vector in, HVX_Vector _max)
     return _max;
 }
 
+// 函数: hvx_vec_reduce_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_max_f32(HVX_Vector in) {
     unsigned total = 128;  // total vec nbytes
     unsigned width = 4;    // fp32 nbytes
@@ -146,6 +242,14 @@ static inline HVX_Vector hvx_vec_reduce_max_f32(HVX_Vector in) {
     return _max;
 }
 
+// 函数: hvx_vec_reduce_max2_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_reduce_max2_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_reduce_max2_f32(HVX_Vector in, HVX_Vector _max) {
     unsigned total = 128;  // total vec nbytes
     unsigned width = 4;    // fp32 nbytes
@@ -184,6 +288,14 @@ static inline HVX_Vector hvx_vec_reduce_max2_f32(HVX_Vector in, HVX_Vector _max)
             acc = vec_op(acc, temp);                                                        \
         }                                                                                   \
         HVX_Vector v = reduce_op(acc);                                                      \
+        // 函数: scalar_reduce
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: scalar_reduce
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return scalar_reduce(v);                                                            \
     } while(0)
 
@@ -195,17 +307,41 @@ static inline HVX_Vector hvx_vec_reduce_max2_f32(HVX_Vector in, HVX_Vector _max)
 
 // Max variants
 
+// 函数: hvx_reduce_max_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_max_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_max_f32_a(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = hvx_vec_splat_f32(((const float *) src)[0]);
     assert((unsigned long) src % 128 == 0);
     hvx_reduce_loop_body(HVX_Vector, init_vec, init_vec, HVX_REDUCE_MAX_OP, hvx_vec_reduce_max_f32, HVX_REDUCE_MAX_SCALAR);
 }
 
+// 函数: hvx_reduce_max_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_max_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_max_f32_u(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = hvx_vec_splat_f32(((const float *) src)[0]);
     hvx_reduce_loop_body(HVX_UVector, init_vec, init_vec, HVX_REDUCE_MAX_OP, hvx_vec_reduce_max_f32, HVX_REDUCE_MAX_SCALAR);
 }
 
+// 函数: hvx_reduce_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_max_f32(const uint8_t * restrict src, const int num_elems) {
     if (hex_is_aligned((void *) src, 128)) {
         return hvx_reduce_max_f32_a(src, num_elems);
@@ -216,17 +352,41 @@ static inline float hvx_reduce_max_f32(const uint8_t * restrict src, const int n
 
 // Sum variants
 
+// 函数: hvx_reduce_sum_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_sum_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_sum_f32_a(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = Q6_V_vsplat_R(0);
     assert((unsigned long) src % 128 == 0);
     hvx_reduce_loop_body(HVX_Vector, init_vec, init_vec, HVX_REDUCE_SUM_OP, hvx_vec_reduce_sum_qf32, HVX_REDUCE_SUM_SCALAR);
 }
 
+// 函数: hvx_reduce_sum_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_sum_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_sum_f32_u(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = Q6_V_vsplat_R(0);
     hvx_reduce_loop_body(HVX_UVector, init_vec, init_vec, HVX_REDUCE_SUM_OP, hvx_vec_reduce_sum_qf32, HVX_REDUCE_SUM_SCALAR);
 }
 
+// 函数: hvx_reduce_sum_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_reduce_sum_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_reduce_sum_f32(const uint8_t * restrict src, const int num_elems) {
     if (hex_is_aligned((void *) src, 128)) {
         return hvx_reduce_sum_f32_a(src, num_elems);
@@ -237,17 +397,41 @@ static inline float hvx_reduce_sum_f32(const uint8_t * restrict src, const int n
 
 // Sum of squares variants
 
+// 函数: hvx_sum_of_squares_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sum_of_squares_f32_a
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_sum_of_squares_f32_a(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = Q6_V_vsplat_R(0);
     assert((uintptr_t) src % 128 == 0);
     hvx_reduce_loop_body(HVX_Vector, init_vec, init_vec, HVX_SUM_SQ_OP, hvx_vec_reduce_sum_qf32, HVX_REDUCE_SUM_SCALAR);
 }
 
+// 函数: hvx_sum_of_squares_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sum_of_squares_f32_u
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_sum_of_squares_f32_u(const uint8_t * restrict src, const int num_elems) {
     HVX_Vector init_vec = Q6_V_vsplat_R(0);
     hvx_reduce_loop_body(HVX_UVector, init_vec, init_vec, HVX_SUM_SQ_OP, hvx_vec_reduce_sum_qf32, HVX_REDUCE_SUM_SCALAR);
 }
 
+// 函数: hvx_sum_of_squares_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_sum_of_squares_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline float hvx_sum_of_squares_f32(const uint8_t * restrict src, const int num_elems) {
     if (hex_is_aligned((void *) src, 128)) {
         return hvx_sum_of_squares_f32_a(src, num_elems);

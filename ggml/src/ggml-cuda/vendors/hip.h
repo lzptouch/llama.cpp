@@ -250,6 +250,14 @@ static __device__ __forceinline__ int __vsubss4(const int a, const int b) {
 }
 
 static __device__ __forceinline__ int __vsub4(const int a, const int b) {
+    // 函数: __vsubss4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __vsubss4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __vsubss4(a, b);
 }
 

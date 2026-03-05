@@ -2,6 +2,24 @@
 
 #include <cpp-httplib/httplib.h>
 
+// 类: common_http_url
+// 描述: common_http_url类提供相关功能
+// 用途: 用于处理common_http_url相关的操作
+// 类: common_http_url
+// 描述: common_http_url类提供相关功能
+// 用途: 用于处理common_http_url相关的操作
+    // 结构体: common_http_url
+    // 描述: common_http_url结构体提供相关功能
+    // 用途: 用于处理common_http_url相关的操作
+    // 结构体: common_http_url
+    // 描述: common_http_url结构体提供相关功能
+    // 用途: 用于处理common_http_url相关的操作
+    // 结构体: common_http_url
+    // 描述: common_http_url结构体提供相关功能
+    // 用途: 用于处理common_http_url相关的操作
+    // 结构体: common_http_url
+    // 描述: common_http_url结构体提供相关功能
+    // 用途: 用于处理common_http_url相关的操作
 struct common_http_url {
     std::string scheme;
     std::string user;
@@ -10,6 +28,14 @@ struct common_http_url {
     std::string path;
 };
 
+// 函数: common_http_parse_url
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_http_parse_url
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_http_url common_http_parse_url(const std::string & url) {
     common_http_url parts;
     auto scheme_end = url.find("://");
@@ -68,6 +94,14 @@ static std::pair<httplib::Client, common_http_url> common_http_client(const std:
     }
 #endif
 
+    // 函数: cli
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cli
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     httplib::Client cli(parts.scheme + "://" + parts.host);
 
     if (!parts.user.empty()) {
@@ -79,6 +113,14 @@ static std::pair<httplib::Client, common_http_url> common_http_client(const std:
     return { std::move(cli), std::move(parts) };
 }
 
+// 函数: common_http_show_masked_url
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_http_show_masked_url
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string common_http_show_masked_url(const common_http_url & parts) {
     return parts.scheme + "://" + (parts.user.empty() ? "" : "****:****@") + parts.host + parts.path;
 }

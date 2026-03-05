@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_sleep.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_sleep.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 import time
 from utils import *
@@ -6,11 +13,27 @@ server = ServerPreset.tinyllama2()
 
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
 
 
+    # 函数: test_server_sleep
+    # 描述: test_server_sleep函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_server_sleep
+    # 描述: test_server_sleep函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_server_sleep():
     global server
     server.sleep_idle_seconds = 1

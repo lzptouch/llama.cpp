@@ -15,6 +15,14 @@
 #include <algorithm>
 
 // trim whitespace from the beginning and end of a string
+// 函数: trim
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: trim
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string trim(const std::string & str) {
     size_t start = 0;
     size_t end = str.size();
@@ -102,6 +110,24 @@ static std::vector<std::string> k_prompts = {
     "I want to learn how to play the piano. What would be the best way to do it?",
 };
 
+// 类: client
+// 描述: client类提供相关功能
+// 用途: 用于处理client相关的操作
+// 类: client
+// 描述: client类提供相关功能
+// 用途: 用于处理client相关的操作
+    // 结构体: client
+    // 描述: client结构体提供相关功能
+    // 用途: 用于处理client相关的操作
+    // 结构体: client
+    // 描述: client结构体提供相关功能
+    // 用途: 用于处理client相关的操作
+    // 结构体: client
+    // 描述: client结构体提供相关功能
+    // 用途: 用于处理client相关的操作
+    // 结构体: client
+    // 描述: client结构体提供相关功能
+    // 用途: 用于处理client相关的操作
 struct client {
     ~client() {
         if (smpl) {
@@ -127,9 +153,35 @@ struct client {
     std::string prompt;
     std::string response;
 
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = nullptr;
 };
 
+// 函数: print_date_time
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_date_time
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_date_time() {
     std::time_t current_time = std::time(nullptr);
     std::tm* local_time = std::localtime(&current_time);
@@ -144,6 +196,14 @@ static void print_date_time() {
 // Define a split string function to ...
 static std::vector<std::string> split_string(const std::string& input, char delimiter) {
     std::vector<std::string> tokens;
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::istringstream stream(input);
     std::string token;
     while (std::getline(stream, token, delimiter)) {
@@ -152,6 +212,14 @@ static std::vector<std::string> split_string(const std::string& input, char deli
     return tokens;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     srand(1234);
 

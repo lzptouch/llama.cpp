@@ -77,6 +77,14 @@
 
 namespace {
 
+// 函数: unhalf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unhalf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float unhalf(ggml_fp16_t d) {
     return GGML_CPU_FP16_TO_FP32(d);
 }
@@ -85,38 +93,182 @@ inline float unhalf(ggml_fp16_t d) {
 // VECTORIZED ARITHMETIC OPERATIONS
 
 #if defined(__SSE__) || defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m128 add(__m128 x, __m128 y) { return _mm_add_ps(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m128 sub(__m128 x, __m128 y) { return _mm_sub_ps(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m128 mul(__m128 x, __m128 y) { return _mm_mul_ps(x, y); }
 #endif  // __SSE__
 
 #if defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256 add(__m256 x, __m256 y) { return _mm256_add_ps(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256 sub(__m256 x, __m256 y) { return _mm256_sub_ps(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256 mul(__m256 x, __m256 y) { return _mm256_mul_ps(x, y); }
 #endif // __AVX__
 
 #if defined(__AVX512F__)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512 add(__m512 x, __m512 y) { return _mm512_add_ps(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512 sub(__m512 x, __m512 y) { return _mm512_sub_ps(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512 mul(__m512 x, __m512 y) { return _mm512_mul_ps(x, y); }
 #endif // __AVX512F__
 
 #if defined(__ARM_NEON)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t add(float32x4_t x, float32x4_t y) { return vaddq_f32(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t sub(float32x4_t x, float32x4_t y) { return vsubq_f32(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t mul(float32x4_t x, float32x4_t y) { return vmulq_f32(x, y); }
 #endif // __ARM_NEON
 
 #if defined(__ARM_FEATURE_FP16_VECTOR_ARITHMETIC)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float16x8_t add(float16x8_t x, float16x8_t y) { return vaddq_f16(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float16x8_t sub(float16x8_t x, float16x8_t y) { return vsubq_f16(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float16x8_t mul(float16x8_t x, float16x8_t y) { return vmulq_f16(x, y); }
 #endif // __ARM_FEATURE_FP16_VECTOR_ARITHMETIC
 
 #if defined(__VXE__) || defined(__VXE2__)
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t add(float32x4_t x, float32x4_t y) { return vec_add(x, y); }
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sub
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t sub(float32x4_t x, float32x4_t y) { return vec_sub(x, y); }
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t mul(float32x4_t x, float32x4_t y) { return vec_mul(x, y); }
 #endif
 
@@ -131,6 +283,14 @@ typedef __vector_quad acc_t;
  * Computes a * b + c.
  */
 template <typename T, typename U>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline U madd(T a, T b, U c) {
     return add(mul(a, b), c);
 }
@@ -138,22 +298,54 @@ inline U madd(T a, T b, U c) {
 #if defined(__FMA__)
 #if defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256 madd(__m256 a, __m256 b, __m256 c) {
     return _mm256_fmadd_ps(a, b, c);
 }
 #endif
 #if defined(__AVX512F__)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512 madd(__m512 a, __m512 b, __m512 c) {
     return _mm512_fmadd_ps(a, b, c);
 }
 #endif
 #if defined(__AVX512BF16__)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m512 madd(__m512bh a, __m512bh b, __m512 c) {
     return _mm512_dpbf16_ps(c, a, b);
 }
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline __m256 madd(__m256bh a, __m256bh b, __m256 c) {
     return _mm256_dpbf16_ps(c, a, b);
 }
@@ -162,11 +354,27 @@ inline __m256 madd(__m256bh a, __m256bh b, __m256 c) {
 
 #if defined(__ARM_FEATURE_FMA)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t madd(float32x4_t a, float32x4_t b, float32x4_t c) {
     return vfmaq_f32(c, b, a);
 }
 #if defined(__ARM_FEATURE_FP16_VECTOR_ARITHMETIC) && !defined(_MSC_VER)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float16x8_t madd(float16x8_t a, float16x8_t b, float16x8_t c) {
     return vfmaq_f16(c, b, a);
 }
@@ -175,6 +383,14 @@ inline float16x8_t madd(float16x8_t a, float16x8_t b, float16x8_t c) {
 
 #if defined(__VXE__) || defined(__VXE2__)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float32x4_t madd(float32x4_t a, float32x4_t b, float32x4_t c) {
     return vec_madd(a, b, c);
 }
@@ -182,39 +398,127 @@ inline float32x4_t madd(float32x4_t a, float32x4_t b, float32x4_t c) {
 
 #if defined(__riscv_zvfh)
 template <>
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m1_t madd(vfloat16mf2_t a, vfloat16mf2_t b, vfloat32m1_t c) {
     return __riscv_vfwmacc_vv_f32m1(c, a, b, __riscv_vsetvlmax_e32m1());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m2_t madd(vfloat16m1_t a, vfloat16m1_t b, vfloat32m2_t c) {
     return __riscv_vfwmacc_vv_f32m2(c, a, b, __riscv_vsetvlmax_e32m2());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m4_t madd(vfloat16m2_t a, vfloat16m2_t b, vfloat32m4_t c) {
     return __riscv_vfwmacc_vv_f32m4(c, a, b, __riscv_vsetvlmax_e32m4());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m8_t madd(vfloat16m4_t a, vfloat16m4_t b, vfloat32m8_t c) {
     return __riscv_vfwmacc_vv_f32m8(c, a, b, __riscv_vsetvlmax_e32m8());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m1_t madd(vfloat32m1_t a, vfloat32m1_t b, vfloat32m1_t c) {
     return __riscv_vfmacc_vv_f32m1(c, a, b, __riscv_vsetvlmax_e32m1());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m2_t madd(vfloat32m2_t a, vfloat32m2_t b, vfloat32m2_t c) {
     return __riscv_vfmacc_vv_f32m2(c, a, b, __riscv_vsetvlmax_e32m2());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m4_t madd(vfloat32m4_t a, vfloat32m4_t b, vfloat32m4_t c) {
     return __riscv_vfmacc_vv_f32m4(c, a, b, __riscv_vsetvlmax_e32m4());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m8_t madd(vfloat32m8_t a, vfloat32m8_t b, vfloat32m8_t c) {
     return __riscv_vfmacc_vv_f32m8(c, a, b, __riscv_vsetvlmax_e32m8());
 }
 #endif
 
 #if defined(__riscv_zvfbfwma)
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m1_t madd(vbfloat16mf2_t a, vbfloat16mf2_t b, vfloat32m1_t c) {
     return __riscv_vfwmaccbf16_vv_f32m1(c, a, b, __riscv_vsetvlmax_e32m1());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m2_t madd(vbfloat16m1_t a, vbfloat16m1_t b, vfloat32m2_t c) {
     return __riscv_vfwmaccbf16_vv_f32m2(c, a, b, __riscv_vsetvlmax_e32m2());
 }
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: madd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline vfloat32m4_t madd(vbfloat16m2_t a, vbfloat16m2_t b, vfloat32m4_t c) {
     return __riscv_vfwmaccbf16_vv_f32m4(c, a, b, __riscv_vsetvlmax_e32m4());
 }
@@ -224,12 +528,28 @@ inline vfloat32m4_t madd(vbfloat16m2_t a, vbfloat16m2_t b, vfloat32m4_t c) {
 // VECTORIZED HORIZONTAL SUM
 
 #if defined(__ARM_NEON)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(float32x4_t x) {
     return vaddvq_f32(x);
 }
 #endif // __ARM_NEON
 
 #if defined(__ARM_FEATURE_FP16_VECTOR_ARITHMETIC) && !defined(_MSC_VER)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(float16x8_t x) {
     return vaddvq_f32(vaddq_f32(vcvt_f32_f16(vget_low_f16(x)),
                                 vcvt_f32_f16(vget_high_f16(x))));
@@ -237,6 +557,14 @@ inline float hsum(float16x8_t x) {
 #endif // __ARM_FEATURE_FP16_VECTOR_ARITHMETIC
 
 #if defined(__VXE__) || defined(__VXE2__)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(float32x4_t x) {
     float32x4_t tmp = x + vec_reve(x);
     return tmp[0] + tmp[1];
@@ -244,6 +572,14 @@ inline float hsum(float32x4_t x) {
 #endif
 
 #if defined(__SSE__) || defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(__m128 x) {
 #if defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
     x = _mm_add_ps(x, _mm_movehl_ps(x, x));
@@ -260,6 +596,14 @@ inline float hsum(__m128 x) {
 #endif
 
 #if defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(__m256 x) {
     return hsum(_mm_add_ps(_mm256_extractf128_ps(x, 1),
                            _mm256_castps256_ps128(x)));
@@ -267,24 +611,64 @@ inline float hsum(__m256 x) {
 #endif // __AVX__
 
 #if defined(__AVX512F__)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(__m512 x) {
     return _mm512_reduce_add_ps(x);
 }
 #endif // __AVX512F__
 
 #if defined(__riscv_zvfh)
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(vfloat32m1_t x) {
     return __riscv_vfmv_f_s_f32m1_f32(
         __riscv_vfredusum_vs_f32m1_f32m1(x, __riscv_vfmv_v_f_f32m1(0, 1), __riscv_vsetvlmax_e32m1()));
 }
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(vfloat32m2_t x) {
     return __riscv_vfmv_f_s_f32m1_f32(
         __riscv_vfredusum_vs_f32m2_f32m1(x, __riscv_vfmv_v_f_f32m1(0, 1), __riscv_vsetvlmax_e32m2()));
 }
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(vfloat32m4_t x) {
     return __riscv_vfmv_f_s_f32m1_f32(
         __riscv_vfredusum_vs_f32m4_f32m1(x, __riscv_vfmv_v_f_f32m1(0, 1), __riscv_vsetvlmax_e32m4()));
 }
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hsum
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline float hsum(vfloat32m8_t x) {
     return __riscv_vfmv_f_s_f32m1_f32(
         __riscv_vfredusum_vs_f32m8_f32m1(x, __riscv_vfmv_v_f_f32m1(0, 1), __riscv_vsetvlmax_e32m8()));
@@ -298,14 +682,38 @@ template <typename T, typename U> T load(const U *);
 
 #if defined(__ARM_NEON)
 template <> inline float32x4_t load(const float *p) {
+    // 函数: vld1q_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vld1q_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vld1q_f32(p);
 }
 #if !defined(_MSC_VER)
 // FIXME: this should check for __ARM_FEATURE_FP16_VECTOR_ARITHMETIC
 template <> inline float16x8_t load(const ggml_fp16_t *p) {
+    // 函数: vld1q_f16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vld1q_f16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vld1q_f16((const float16_t *)p);
 }
 template <> inline float32x4_t load(const ggml_fp16_t *p) {
+    // 函数: vcvt_f32_f16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vcvt_f32_f16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vcvt_f32_f16(vld1_f16((const float16_t *)p));
 }
 #endif // _MSC_VER
@@ -319,21 +727,53 @@ template <> inline float32x4_t load(const ggml_fp16_t * p) {
         tmp[i] = GGML_CPU_FP16_TO_FP32(p[i]);
     }
 
+    // 函数: vec_xl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_xl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_xl(0, (const float *)(tmp));
 }
 template <> inline float32x4_t load(const float * p) {
+    // 函数: vec_xl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_xl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_xl(0, p);
 }
 #endif
 
 #if defined(__SSE__) || defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
 template <> inline __m128 load(const float *p) {
+    // 函数: _mm_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm_loadu_ps(p);
 }
 #endif  // __SSE__
 
 #if defined(__AVX__) || defined(__AVX2__) || defined(__AVX512F__)
 template <> inline __m256 load(const float *p) {
+    // 函数: _mm256_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm256_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm256_loadu_ps(p);
 }
 #endif // __AVX__
@@ -347,15 +787,39 @@ template <> inline __m256 load(const ggml_bf16_t *p) {
 
 #if defined(__F16C__)
 template <> inline __m256 load(const ggml_fp16_t *p) {
+    // 函数: _mm256_cvtph_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm256_cvtph_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm256_cvtph_ps(_mm_loadu_si128((const __m128i *)p));
 }
 #endif // __F16C__
 
 #if defined(__AVX512F__)
 template <> inline __m512 load(const float *p) {
+    // 函数: _mm512_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm512_loadu_ps
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm512_loadu_ps(p);
 }
 template <> inline __m512 load(const ggml_fp16_t *p) {
+    // 函数: _mm512_cvtph_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm512_cvtph_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm512_cvtph_ps(_mm256_loadu_si256((const __m256i *)p));
 }
 template <> inline __m512 load(const ggml_bf16_t *p) {
@@ -372,48 +836,152 @@ template <> inline __m256bh load(const ggml_bf16_t *p) {
     return (__m256bh)_mm256_loadu_ps((const float *)p);
 }
 template <> inline __m512bh load(const float *p) {
+    // 函数: _mm512_cvtne2ps_pbh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm512_cvtne2ps_pbh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm512_cvtne2ps_pbh(_mm512_loadu_ps(p + 16), _mm512_loadu_ps(p));
 }
 template <> inline __m256bh load(const float *p) {
+    // 函数: _mm512_cvtneps_pbh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm512_cvtneps_pbh
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm512_cvtneps_pbh(_mm512_loadu_ps(p));
 }
 #endif
 
 #if defined(__riscv_zvfh)
 template <> inline vfloat16mf2_t load(const ggml_fp16_t *p) {
+    // 函数: __riscv_vle16_v_f16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_f16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_f16mf2(reinterpret_cast<const _Float16 *>(p), __riscv_vsetvlmax_e16mf2());
 }
 template <> inline vfloat16m1_t load(const ggml_fp16_t *p) {
+    // 函数: __riscv_vle16_v_f16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_f16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_f16m1(reinterpret_cast<const _Float16 *>(p), __riscv_vsetvlmax_e16m1());
 }
 template <> inline vfloat16m2_t load(const ggml_fp16_t *p) {
+    // 函数: __riscv_vle16_v_f16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_f16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_f16m2(reinterpret_cast<const _Float16 *>(p), __riscv_vsetvlmax_e16m2());
 }
 template <> inline vfloat16m4_t load(const ggml_fp16_t *p) {
+    // 函数: __riscv_vle16_v_f16m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_f16m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_f16m4(reinterpret_cast<const _Float16 *>(p), __riscv_vsetvlmax_e16m4());
 }
 template <> inline vfloat32m1_t load(const float *p) {
+    // 函数: __riscv_vle32_v_f32m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle32_v_f32m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle32_v_f32m1(p, __riscv_vsetvlmax_e32m1());
 }
 template <> inline vfloat32m2_t load(const float *p) {
+    // 函数: __riscv_vle32_v_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle32_v_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle32_v_f32m2(p, __riscv_vsetvlmax_e32m2());
 }
 template <> inline vfloat32m4_t load(const float *p) {
+    // 函数: __riscv_vle32_v_f32m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle32_v_f32m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle32_v_f32m4(p, __riscv_vsetvlmax_e32m4());
 }
 template <> inline vfloat32m8_t load(const float *p) {
+    // 函数: __riscv_vle32_v_f32m8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle32_v_f32m8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle32_v_f32m8(p, __riscv_vsetvlmax_e32m8());
 }
 #endif
 
 #if defined(__riscv_zvfbfwma)
 template <> inline vbfloat16mf2_t load(const ggml_bf16_t *p) {
+    // 函数: __riscv_vle16_v_bf16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_bf16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_bf16mf2(reinterpret_cast<const __bf16*>(p), __riscv_vsetvlmax_e16mf2());
 }
 template <> inline vbfloat16m1_t load(const ggml_bf16_t *p) {
+    // 函数: __riscv_vle16_v_bf16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_bf16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_bf16m1(reinterpret_cast<const __bf16*>(p), __riscv_vsetvlmax_e16m1());
 }
 template <> inline vbfloat16m2_t load(const ggml_bf16_t *p) {
+    // 函数: __riscv_vle16_v_bf16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vle16_v_bf16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vle16_v_bf16m2(reinterpret_cast<const __bf16*>(p), __riscv_vsetvlmax_e16m2());
 }
 #endif
@@ -422,33 +990,105 @@ template <> inline vbfloat16m2_t load(const ggml_bf16_t *p) {
 template <typename T> T set_zero();
 
 template <> inline vfloat16mf2_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f16mf2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f16mf2(0, __riscv_vsetvlmax_e16mf2());
 }
 template <> inline vfloat16m1_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f16m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f16m1(0, __riscv_vsetvlmax_e16m1());
 }
 template <> inline vfloat16m2_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f16m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f16m2(0, __riscv_vsetvlmax_e16m2());
 }
 template <> inline vfloat16m4_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f16m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f16m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f16m4(0, __riscv_vsetvlmax_e16m4());
 }
 template <> inline vfloat32m1_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f32m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f32m1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f32m1(0.0f, __riscv_vsetvlmax_e32m1());
 }
 template <> inline vfloat32m2_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f32m2(0, __riscv_vsetvlmax_e32m2());
 }
 template <> inline vfloat32m4_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f32m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f32m4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f32m4(0, __riscv_vsetvlmax_e32m4());
 }
 template <> inline vfloat32m8_t set_zero() {
+    // 函数: __riscv_vfmv_v_f_f32m8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfmv_v_f_f32m8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfmv_v_f_f32m8(0, __riscv_vsetvlmax_e32m8());
 }
 #endif
 
 #if defined(__riscv_v_intrinsic)
 template <typename T> size_t vlmax() {
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (std::is_same_v<T, vfloat16mf2_t>) { return  __riscv_vsetvlmax_e16mf2(); }
     else if constexpr (std::is_same_v<T, vfloat16m1_t>) { return  __riscv_vsetvlmax_e16m1(); }
     else if constexpr (std::is_same_v<T, vfloat16m2_t>) { return  __riscv_vsetvlmax_e16m2(); }
@@ -465,6 +1105,14 @@ template <typename T> size_t vlmax() {
 // FLOATING POINT MATRIX MULTIPLICATION
 
 template <int M>
+// 函数: BLOCK_SIZE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: BLOCK_SIZE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int64_t BLOCK_SIZE(size_t m) {
     const int64_t NB_BLOC_M = (m + M - 1) / M;
     return (m % NB_BLOC_M == 0) ? m / NB_BLOC_M : (m / NB_BLOC_M) + 1;
@@ -475,6 +1123,12 @@ static constexpr inline int64_t BLOC_POS(int64_t ib, int64_t ibN, int64_t bloc_s
 }
 
 template <int KN, typename D, typename V, typename TA, typename TB, typename TC>
+// 类: tinyBLAS
+// 描述: tinyBLAS类提供相关功能
+// 用途: 用于处理tinyblas相关的操作
+// 类: tinyBLAS
+// 描述: tinyBLAS类提供相关功能
+// 用途: 用于处理tinyblas相关的操作
 class tinyBLAS {
   public:
     tinyBLAS(const ggml_compute_params * params, int64_t k,
@@ -484,6 +1138,14 @@ class tinyBLAS {
         : params(params), A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool matmul(int64_t m, int64_t n) {
         if (k % KN != 0)
             return false;
@@ -526,6 +1188,14 @@ class tinyBLAS {
 
   private:
     template <int RM, int RN, int BM>
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void mnpack(int64_t m, int64_t n, int64_t SIZE_N, int64_t BN) {
         if (SIZE_N == RN) {
             return gemm<RM, RN, BM>(m, n, BN);
@@ -539,6 +1209,14 @@ class tinyBLAS {
     }
 
     template <int RM, int RN>
+    // 函数: gemm_bloc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc(int64_t ii, int64_t jj) {
         D Cv[RN][RM] = {};
         for (int64_t l = 0; l < k; l += KN) {
@@ -609,6 +1287,14 @@ class tinyBLAS {
                 for (; jj < jj1; jj += RN) {
                     gemm_bloc<RM, RN>(ii + bi, jj);
                 }
+                // 函数: constexpr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: constexpr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 if constexpr (RN > 1) {
                     for (; jj < jj2; jj += RN - 1) {
                         gemm_bloc<RM, RN-1>(ii + bi, jj);
@@ -636,6 +1322,12 @@ class tinyBLAS {
 
 #if defined(__riscv_v_intrinsic)
 template <typename D, typename V, typename TA, typename TB, typename TC>
+// 类: tinyBLAS_RVV
+// 描述: tinyBLAS_RVV类提供相关功能
+// 用途: 用于处理tinyblas_rvv相关的操作
+// 类: tinyBLAS_RVV
+// 描述: tinyBLAS_RVV类提供相关功能
+// 用途: 用于处理tinyblas_rvv相关的操作
 class tinyBLAS_RVV {
   public:
     tinyBLAS_RVV(const ggml_compute_params * params, int64_t k,
@@ -645,6 +1337,14 @@ class tinyBLAS_RVV {
         : params(params), A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool matmul(int64_t m, int64_t n) {
         if (k % vlmax<V>() != 0) {
             return false;
@@ -704,6 +1404,14 @@ class tinyBLAS_RVV {
 
   private:
     template<int RM, int RN, int BM>
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void mnpack(int64_t m, int64_t n, int64_t SIZE_N, int64_t BN) {
         if (SIZE_N == RN) {
             return gemm<RM, RN, BM>(m, n, BN);
@@ -716,6 +1424,14 @@ class tinyBLAS_RVV {
         }
     }
 
+    // 函数: gemm_bloc_4x6
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x6
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x6(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -810,6 +1526,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 5) + (ii + 3)] = hsum(Cv53);
     }
 
+    // 函数: gemm_bloc_4x5
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x5
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x5(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -891,6 +1615,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 4) + (ii + 3)] = hsum(Cv43);
     }
 
+    // 函数: gemm_bloc_4x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x4(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -959,6 +1691,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 3) + (ii + 3)] = hsum(Cv33);
     }
 
+    // 函数: gemm_bloc_4x3
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x3
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x3(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -1013,6 +1753,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 2) + (ii + 3)] = hsum(Cv23);
     }
 
+    // 函数: gemm_bloc_4x2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x2(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -1053,6 +1801,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 1) + (ii + 3)] = hsum(Cv13);
     }
 
+    // 函数: gemm_bloc_4x1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_4x1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_4x1(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -1079,6 +1835,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 0) + (ii + 3)] = hsum(Cv03);
     }
 
+    // 函数: gemm_bloc_2x2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_2x2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_2x2(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -1105,6 +1869,14 @@ class tinyBLAS_RVV {
         C[ldc * (jj + 1) + (ii + 1)] = hsum(Cv11);
     }
 
+    // 函数: gemm_bloc_2x1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc_2x1
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc_2x1(int64_t ii, int64_t jj) {
         size_t vl = vlmax<V>();
         D Cv00 = set_zero<D>();
@@ -1124,6 +1896,14 @@ class tinyBLAS_RVV {
     }
 
     template <int RM, int RN>
+    // 函数: gemm_bloc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_bloc
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void gemm_bloc(int64_t ii, int64_t jj) {
         if constexpr (RM == 4) {
             if constexpr (RN == 6) { return gemm_bloc_4x6(ii, jj); }
@@ -1175,6 +1955,14 @@ class tinyBLAS_RVV {
                 for (; jj < jj1; jj += RN) {
                     gemm_bloc<RM, RN>(ii + bi, jj);
                 }
+                // 函数: constexpr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: constexpr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 if constexpr (RN > 1) {
                     for (; jj < jj2; jj += RN - 1) {
                         gemm_bloc<RM, RN-1>(ii + bi, jj);
@@ -1206,6 +1994,12 @@ class tinyBLAS_RVV {
 
 #if defined(__ARM_FEATURE_DOTPROD)
 template <typename TA>
+// 类: tinyBLAS_Q0_ARM
+// 描述: tinyBLAS_Q0_ARM类提供相关功能
+// 用途: 用于处理tinyblas_q0_arm相关的操作
+// 类: tinyBLAS_Q0_ARM
+// 描述: tinyBLAS_Q0_ARM类提供相关功能
+// 用途: 用于处理tinyblas_q0_arm相关的操作
 class tinyBLAS_Q0_ARM {
   public:
     tinyBLAS_Q0_ARM(int64_t k,
@@ -1216,6 +2010,14 @@ class tinyBLAS_Q0_ARM {
         : A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc), ith(ith), nth(nth) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul(int64_t m, int64_t n) {
         mnpack(0, m, 0, n);
     }
@@ -1310,20 +2112,52 @@ class tinyBLAS_Q0_ARM {
         }
     }
 
+    // 函数: load_lo
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_lo
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline int8x16_t load_lo(const block_q8_0 *b) {
         return vld1q_s8(b->qs);
     }
 
+    // 函数: load_hi
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_hi
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline int8x16_t load_hi(const block_q8_0 *b) {
         return vld1q_s8(b->qs + 16);
     }
 
+    // 函数: load_lo
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_lo
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline int8x16_t load_lo(const block_q4_0 *b) {
         return vsubq_s8(vreinterpretq_s8_u8(vandq_u8(vld1q_u8(b->qs),
                                                      vdupq_n_u8(0x0f))),
                         vdupq_n_s8(0x8));
     }
 
+    // 函数: load_hi
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_hi
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline int8x16_t load_hi(const block_q4_0 *b) {
         return vsubq_s8(vreinterpretq_s8_u8(vshrq_n_u8(vld1q_u8(b->qs), 4)),
                         vdupq_n_s8(0x8));
@@ -1343,6 +2177,12 @@ class tinyBLAS_Q0_ARM {
 
 #if defined(__AVX2__) || defined(__AVX512F__) || defined(__AVX__)
 template <typename TA, typename TB, typename TC>
+// 类: tinyBLAS_Q0_AVX
+// 描述: tinyBLAS_Q0_AVX类提供相关功能
+// 用途: 用于处理tinyblas_q0_avx相关的操作
+// 类: tinyBLAS_Q0_AVX
+// 描述: tinyBLAS_Q0_AVX类提供相关功能
+// 用途: 用于处理tinyblas_q0_avx相关的操作
 class tinyBLAS_Q0_AVX {
   public:
     tinyBLAS_Q0_AVX(int64_t k,
@@ -1361,11 +2201,27 @@ class tinyBLAS_Q0_AVX {
         iq4nlt = _mm_loadu_si128((const __m128i *)kvalues_iq4nl);
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul(int64_t m, int64_t n) {
         mnpack(0, m, 0, n);
     }
 
   private:
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void mnpack(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int64_t mc, nc, mp, np;
         switch ((MIN(m - m0, 4) << 4) | MIN(n - n0, 4)) {
@@ -1674,36 +2530,100 @@ class tinyBLAS_Q0_AVX {
         }
     }
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m256i load(const block_q8_0 *b) {
         return _mm256_loadu_si256((const __m256i *)b->qs);
     }
 
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load0(const block_q8_0 *b) {
         return _mm_loadu_si128((const __m128i *)b->qs);
     }
 
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load1(const block_q8_0 *b) {
         return _mm_loadu_si128(((const __m128i *)b->qs) + 1);
     }
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m256i load(const block_q4_0 *b) {
         return _mm256_sub_epi8(denibble(b->qs), _mm256_set1_epi8(8));
     }
 
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load0(const block_q4_0 *b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         return _mm_sub_epi8(_mm_and_si128(_mm_set1_epi8(15), x), _mm_set1_epi8(8));
     }
 
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load1(const block_q4_0 *b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         return _mm_sub_epi8(_mm_and_si128(_mm_set1_epi8(15), _mm_srli_epi16(x, 4)), _mm_set1_epi8(8));
     }
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m256i load(const block_q5_0 *b) {
         return _mm256_or_si256(denibble(b->qs), bittobyte(b->qh));
     }
 
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load0(const block_q5_0* b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         uint32_t x32;
@@ -1717,6 +2637,14 @@ class tinyBLAS_Q0_AVX {
         return _mm_or_si128(qxl, bytesl);
     }
 
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load1(const block_q5_0* b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         uint32_t x32;
@@ -1730,20 +2658,52 @@ class tinyBLAS_Q0_AVX {
         return _mm_or_si128(qxh, bytesh);
     }
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m256i load(const block_iq4_nl *b) {
         return MM256_SET_M128I(load1(b), load0(b));
     }
 
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load0
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load0(const block_iq4_nl *b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         return _mm_shuffle_epi8(iq4nlt, _mm_and_si128(_mm_set1_epi8(15), x));
     }
 
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load1
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m128i load1(const block_iq4_nl *b) {
         const __m128i x = _mm_loadu_si128((const __m128i *)(b->qs));
         return _mm_shuffle_epi8(iq4nlt, _mm_and_si128(_mm_set1_epi8(15), _mm_srli_epi16(x, 4)));
     }
 
+    // 函数: updot
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: updot
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline __m256 updot(__m256i u, __m256i s) {
         __m256i res;
 #if defined(__AVX512VNNI__) && defined(__AVX512VL__)
@@ -1756,6 +2716,14 @@ class tinyBLAS_Q0_AVX {
         return _mm256_cvtepi32_ps(res);
     }
 
+    // 函数: denibble
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: denibble
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline __m256i denibble(const uint8_t *p) {
         __m128i x = _mm_loadu_si128((const __m128i *)p);
         return _mm256_and_si256(_mm256_set1_epi8(15),
@@ -1763,6 +2731,14 @@ class tinyBLAS_Q0_AVX {
                                                         _mm_srli_epi16(x, 4), 1));
     }
 
+    // 函数: bittobyte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: bittobyte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline __m256i bittobyte(const uint8_t *p) {
         uint32_t x32;
         memcpy(&x32, p, sizeof(uint32_t));
@@ -1799,23 +2775,99 @@ class tinyBLAS_Q0_AVX {
    } \
 
 template<typename T>
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
 struct mma_instr;
 
 template<>
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
 struct mma_instr<ggml_bf16_t> {
+    // 函数: outer_product
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: outer_product
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline void outer_product(acc_t *acc, vec_t a, vec_t b) {
         __builtin_mma_xvbf16ger2pp(acc, a, b);
     }
 };
 
 template<>
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+// 类: mma_instr
+// 描述: mma_instr类提供相关功能
+// 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
+    // 结构体: mma_instr
+    // 描述: mma_instr结构体提供相关功能
+    // 用途: 用于处理mma_instr相关的操作
 struct mma_instr<ggml_fp16_t> {
+    // 函数: outer_product
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: outer_product
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline void outer_product(acc_t *acc, vec_t a, vec_t b) {
         __builtin_mma_xvf16ger2pp(acc, a, b);
     }
 };
 
 template <typename TA, typename TB, typename TC>
+// 类: tinyBLAS_HP16_PPC
+// 描述: tinyBLAS_HP16_PPC类提供相关功能
+// 用途: 用于处理tinyblas_hp16_ppc相关的操作
+// 类: tinyBLAS_HP16_PPC
+// 描述: tinyBLAS_HP16_PPC类提供相关功能
+// 用途: 用于处理tinyblas_hp16_ppc相关的操作
 class tinyBLAS_HP16_PPC {
   public:
     tinyBLAS_HP16_PPC(int64_t k,
@@ -1826,11 +2878,27 @@ class tinyBLAS_HP16_PPC {
         : A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc), ith(ith), nth(nth) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul(int64_t m, int64_t n) {
         mnpack(0, m, 0, n);
     }
 
   private:
+    // 函数: vector_permute_store
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vector_permute_store
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void vector_permute_store(vec_t *c, int numVec, unsigned char *vecOffset) {
         vec_t t[8], s[8];
         vec_t swiz1 = {0, 1, 2, 3, 16, 17, 18, 19, 4, 5, 6, 7, 20, 21, 22, 23};
@@ -1878,6 +2946,14 @@ class tinyBLAS_HP16_PPC {
         }
     }
 
+    // 函数: packNormal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packNormal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packNormal(const TA* a, int64_t lda, int rows, int cols, unsigned char* vec) {
         int64_t i, j;
         TA *aoffset = NULL;
@@ -1982,6 +3058,14 @@ class tinyBLAS_HP16_PPC {
         }
     }
 
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void mnpack(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int64_t mc, nc, mp, np;
         int m_rem = MIN(m - m0, 8);
@@ -2127,6 +3211,14 @@ class tinyBLAS_HP16_PPC {
         mnpack(m0, m, np, n);
     }
 
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_4x8(int64_t ii, int64_t jj) {
         vec_t vec_A[4], vec_B[8] , vec_C[4];
         acc_t acc_0, acc_1;
@@ -2144,6 +3236,14 @@ class tinyBLAS_HP16_PPC {
         SAVE_ACC(&acc_1, ii, jj+4);
     }
 
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x4(int64_t ii, int64_t jj) {
         vec_t vec_A[8], vec_B[4] , vec_C[4];
         acc_t acc_0, acc_1;
@@ -2162,6 +3262,14 @@ class tinyBLAS_HP16_PPC {
     }
 
 
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x8(int64_t ii, int64_t jj) {
         vec_t vec_A[8], vec_B[8], vec_C[4];
         acc_t acc_0, acc_1, acc_2, acc_3;
@@ -2187,6 +3295,14 @@ class tinyBLAS_HP16_PPC {
     }
 
     template<int RM, int RN>
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void gemm_small(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int64_t ytiles = (m - m0) / RM;
         int64_t xtiles = (n - n0) / RN;
@@ -2220,6 +3336,14 @@ class tinyBLAS_HP16_PPC {
     }
 
     template<int RM>
+    // 函数: gemm_Mx8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_Mx8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void gemm_Mx8(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int RN = 8;
         int64_t ytiles = (m - m0) / RM;
@@ -2262,6 +3386,14 @@ class tinyBLAS_HP16_PPC {
     }
 
     template<int RM, int RN>
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void kernel(int64_t ii, int64_t jj) {
        if constexpr(RM == 4 && RN == 8) {
           KERNEL_4x8(ii,jj);
@@ -2303,6 +3435,12 @@ class tinyBLAS_HP16_PPC {
 };
 
 template <typename TA>
+// 类: tinyBLAS_Q0_PPC
+// 描述: tinyBLAS_Q0_PPC类提供相关功能
+// 用途: 用于处理tinyblas_q0_ppc相关的操作
+// 类: tinyBLAS_Q0_PPC
+// 描述: tinyBLAS_Q0_PPC类提供相关功能
+// 用途: 用于处理tinyblas_q0_ppc相关的操作
 class tinyBLAS_Q0_PPC {
   public:
     tinyBLAS_Q0_PPC(int64_t k,
@@ -2313,6 +3451,14 @@ class tinyBLAS_Q0_PPC {
         : A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc), ith(ith), nth(nth) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul(int64_t m, int64_t n) {
         const int64_t mc = 64;
         const int64_t kc = 64;
@@ -2348,6 +3494,14 @@ class tinyBLAS_Q0_PPC {
     }
 
   private:
+    // 函数: save_res
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_res
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void save_res(int ii, int jj, int idx, vector float * fin_res, int RM = 4, int RN = 4) {
         for (int I = 0; I < RM; I++) {
             for (int J = 0; J < RN; J++) {
@@ -2356,6 +3510,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void save_acc(acc_t * ACC, int64_t ii, int64_t jj) {
         vec_t vec_C[4];
         __builtin_mma_disassemble_acc(vec_C, ACC);
@@ -2366,6 +3528,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: add_save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void add_save_acc(acc_t * ACC, int64_t ii, int64_t jj) {
         vec_t vec_C[4];
         __builtin_mma_disassemble_acc(vec_C, ACC);
@@ -2378,6 +3548,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template<typename ArrayType>
+    // 函数: compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: compute
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void compute(acc_t * ACC, int c_idx, int s_idx, ArrayType & comparray, vector float * vs, vector float * fin_res) {
         vector signed int vec_C[4];
         vector float CA[4] = {0};
@@ -2390,6 +3568,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: process_q4_elements
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: process_q4_elements
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void process_q4_elements(vector signed char (&c)[2], int * ca) {
         const vector signed char lowMask = vec_splats((signed char)0xF);
         const vector unsigned char v4 = vec_splats((unsigned char)0x4);
@@ -2407,6 +3593,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template <typename V1, typename V2>
+    // 函数: vector_permute_store
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vector_permute_store
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void vector_permute_store(V2 & s1, V2 & s2, V2 & s3, V2 & s4, V1 * vecOffset, bool flip) {
         vector unsigned char swiz1 = {0, 1, 2, 3, 4, 5, 6, 7, 16, 17, 18, 19, 20, 21, 22, 23};
         vector unsigned char swiz2 = {8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31};
@@ -2436,6 +3630,14 @@ class tinyBLAS_Q0_PPC {
         vec_xst(t8, 0, vecOffset + 48);
     }
 
+    // 函数: unpack_q4_to_q8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unpack_q4_to_q8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void unpack_q4_to_q8(vector signed char packed, vector signed char & lo, vector signed char & hi) {
         const vector signed char lowMask = vec_splats((signed char)0x0F);
         const vector signed char v8      = vec_splats((signed char)0x08);
@@ -2446,6 +3648,14 @@ class tinyBLAS_Q0_PPC {
         hi = vec_sub(hi, v8);
     }
 
+    // 函数: vector_permute_store_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vector_permute_store_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void vector_permute_store_fp16(vec_t * c, unsigned char * vecOffset) {
         vec_t t[8], s[8];
         vec_t swiz1 = {0, 1, 2, 3, 16, 17, 18, 19, 4, 5, 6, 7, 20, 21, 22, 23};
@@ -2473,6 +3683,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: convert_and_scale_q8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: convert_and_scale_q8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline void convert_and_scale_q8(vector signed char raw, vector float v_scale, vector unsigned short & out_hi, vector unsigned short & out_lo) {
         vector signed short i16_hi = vec_unpackh(raw);
         vector signed short i16_lo = vec_unpackl(raw);
@@ -2485,6 +3703,14 @@ class tinyBLAS_Q0_PPC {
         out_lo = vec_pack_to_short_fp32(vec_mul(f_lo_h, v_scale), vec_mul(f_lo_l, v_scale));
     }
 
+    // 函数: packNormal_q4_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packNormal_q4_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packNormal_q4_fp16(const block_q4_0 * a, int64_t lda, int rows, int blocks, unsigned char * vec) {
         unsigned char * vecOffset = vec;
         for (int i = 0; i < rows; i += 8) {
@@ -2516,6 +3742,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template <int chunk_size>
+    // 函数: pack_q8_block
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pack_q8_block
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline void pack_q8_block(const block_q8_0 * a, int64_t lda, int rows, int blocks, unsigned char * vec) {
         unsigned char * vecOffset = vec;
         const vec_t swiz1 = {0, 1, 2, 3, 16, 17, 18, 19, 4, 5, 6, 7, 20, 21, 22, 23};
@@ -2577,6 +3811,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: packNormal_q8_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packNormal_q8_fp16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packNormal_q8_fp16(const block_q8_0 * a, int64_t lda, int rows, int blocks, unsigned char * vec) {
         if (rows == 4) {
             pack_q8_block<4>(a, lda, rows, blocks, vec);
@@ -2586,6 +3828,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template<int size>
+    // 函数: packNormalInt4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packNormalInt4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packNormalInt4(const TA * a, int64_t lda, int rows, int cols, int8_t * vec, std::array<int, size> & comparray) {
         int64_t i, j;
         TA * aoffset = NULL;
@@ -2708,6 +3958,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template<typename VA, typename VB>
+    // 函数: packNormal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packNormal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packNormal(const block_q8_0 * a, int64_t lda, int rows, int cols, VA * vec, bool flip) {
         int64_t i, j;
         block_q8_0 * aoffset = NULL;
@@ -2803,6 +4061,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void mnpack(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int m_rem = MIN(m - m0, 16);
         int n_rem = MIN(n - n0, 16);
@@ -2840,6 +4106,14 @@ class tinyBLAS_Q0_PPC {
     }
 
 
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_4x8(int64_t ii, int64_t jj) {
         vec_t vec_A[8], vec_B[16] = {0};
         acc_t acc_0, acc_1;
@@ -2885,6 +4159,14 @@ class tinyBLAS_Q0_PPC {
         save_res(ii, jj + 4, 4, fin_res);
     }
 
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x4(int64_t ii, int64_t jj) {
         vec_t vec_A[16], vec_B[8] = {0};
         acc_t acc_0, acc_1;
@@ -2929,6 +4211,14 @@ class tinyBLAS_Q0_PPC {
         save_res(ii + 4, jj, 4, fin_res);
     }
 
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x8(int64_t ii, int64_t jj) {
         vec_t vec_A[16], vec_B[16] = {0};
         acc_t acc_0, acc_1, acc_2, acc_3;
@@ -2983,6 +4273,14 @@ class tinyBLAS_Q0_PPC {
         save_res(ii + 4, jj + 4, 12, fin_res);
     }
 
+    // 函数: KERNEL_Q0
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_Q0
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_Q0(int64_t ii, int64_t jj, int64_t mc, int64_t nc, int64_t kc, int64_t l, vec_t * vec_A, vec_t * vec_B) {
         acc_t acc[8];
         for (int i = 0; i < mc ; i += 16) {
@@ -3036,6 +4334,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: matmul_tiled
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul_tiled
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul_tiled(int64_t m, int64_t n, int64_t mc, int64_t nc, int64_t kc) {
         vec_t A_pack[mc * kc * 4];
         vec_t B_pack[nc * kc * 4];
@@ -3064,6 +4370,14 @@ class tinyBLAS_Q0_PPC {
         }
     }
 
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void gemm_small(int64_t m0, int64_t m, int64_t n0, int64_t n, int RM, int RN) {
         int64_t ytiles = (m - m0) / RM;
         int64_t xtiles = (n - n0) / RN;
@@ -3133,6 +4447,14 @@ class tinyBLAS_Q0_PPC {
     }
 
     template<int RM, int RN>
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void kernel(int64_t ii, int64_t jj) {
         if constexpr(RM == 4 && RN == 8) {
             KERNEL_4x8(ii,jj);
@@ -3173,6 +4495,12 @@ class tinyBLAS_Q0_PPC {
     const int nth;
 };
 
+// 类: tinyBLAS_PPC
+// 描述: tinyBLAS_PPC类提供相关功能
+// 用途: 用于处理tinyblas_ppc相关的操作
+// 类: tinyBLAS_PPC
+// 描述: tinyBLAS_PPC类提供相关功能
+// 用途: 用于处理tinyblas_ppc相关的操作
 class tinyBLAS_PPC {
   public:
     tinyBLAS_PPC(int64_t k,
@@ -3183,6 +4511,14 @@ class tinyBLAS_PPC {
         : A(A), B(B), C(C), k(k), lda(lda), ldb(ldb), ldc(ldc), ith(ith), nth(nth) {
     }
 
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul(int64_t m, int64_t n) {
         int64_t mc = 256; int64_t nc = 256; int64_t kc = 256;
         if (m % mc == 0 && n % nc == 0 && k % kc == 0) {
@@ -3194,6 +4530,14 @@ class tinyBLAS_PPC {
 
   private:
 
+    // 函数: save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void save_acc(acc_t * ACC, int64_t ii, int64_t jj) {
         vec_t vec_C[4];
         __builtin_mma_disassemble_acc(vec_C, ACC);
@@ -3204,6 +4548,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: add_save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_save_acc
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void add_save_acc(acc_t * ACC, int64_t ii, int64_t jj) {
         vec_t vec_C[4];
         __builtin_mma_disassemble_acc(vec_C, ACC);
@@ -3215,6 +4567,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: vector_permute_store_4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vector_permute_store_4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void vector_permute_store_4(vector float * src, float * vecOffset) {
         vector float t1, t2, t3, t4, t5, t6, t7, t8;
         t1 = vec_mergeh(src[0], src[1]);
@@ -3233,6 +4593,14 @@ class tinyBLAS_PPC {
         vec_xst(t8, 0, vecOffset + 12);
     }
 
+    // 函数: vector_permute_store_8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vector_permute_store_8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void vector_permute_store_8(vector float * src, float * vecOffset) {
         vector float t1, t2, t3, t4, t5, t6, t7, t8;
         t1 = vec_mergeh(src[0], src[1]);
@@ -3266,6 +4634,14 @@ class tinyBLAS_PPC {
         vec_xst(t8, 0, vecOffset + 28);
     }
 
+    // 函数: packTranspose
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: packTranspose
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void packTranspose(const float * a, int64_t lda, int rows, int cols, float * vec) {
         int64_t i, j;
         float * aoffsets[8];
@@ -3354,6 +4730,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: KERNEL_4x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_4x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_4x4(int64_t ii, int64_t jj) {
         vec_t vec_A[4], vec_B[4], vec_C[4];
         acc_t acc_0;
@@ -3369,6 +4753,14 @@ class tinyBLAS_PPC {
         save_acc(&acc_0, ii, jj);
     }
 
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_4x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_4x8(int64_t ii, int64_t jj) {
         vec_t vec_A[4], vec_B[8], vec_C[4];
         acc_t acc_0, acc_1;
@@ -3390,6 +4782,14 @@ class tinyBLAS_PPC {
         save_acc(&acc_1, ii, jj + 4);
     }
 
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x4
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x4(int64_t ii, int64_t jj) {
         vec_t vec_A[8], vec_B[4], vec_C[4];
         acc_t acc_0, acc_1;
@@ -3411,6 +4811,14 @@ class tinyBLAS_PPC {
         save_acc(&acc_1, ii + 4, jj);
     }
 
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL_8x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL_8x8(int64_t ii, int64_t jj) {
         vec_t vec_A[16], vec_B[16], vec_C[4];
         acc_t acc_0, acc_1, acc_2, acc_3;
@@ -3434,6 +4842,14 @@ class tinyBLAS_PPC {
         save_acc(&acc_3, ii + 4, jj + 4);
     }
 
+    // 函数: MMA_16x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: MMA_16x8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void MMA_16x8(vec_t * vec_A0, vec_t * vec_A1, vec_t * vec_B, acc_t * acc) {
         for (int x = 0; x < 16; x += 2) {
             __builtin_mma_xvf32gerpp(&acc[0], vec_A0[x + 0], vec_B[x]);
@@ -3447,6 +4863,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: KERNEL
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: KERNEL
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void KERNEL(int64_t ii, int64_t jj, int64_t mc, int64_t nc, int64_t kc, vec_t * vec_A, vec_t * vec_B, int64_t kk) {
         for (int64_t i = 0; i < mc; i += 16) {
             int A_base_addr = (mc / 8) * (i / 8) * 16;
@@ -3488,6 +4912,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: matmul_tiled
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matmul_tiled
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void matmul_tiled(int64_t m , int64_t n, int64_t mc, int64_t nc, int64_t kc) {
         int64_t ytiles = m / mc;
         int64_t xtiles = n / nc;
@@ -3511,6 +4943,14 @@ class tinyBLAS_PPC {
         }
     }
 
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: mnpack
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void mnpack(int64_t m0, int64_t m, int64_t n0, int64_t n) {
         int m_rem = MIN(m - m0, 8);
         int n_rem = MIN(n - n0, 8);
@@ -3544,6 +4984,14 @@ class tinyBLAS_PPC {
         mnpack(m0, m, np, n);
     }
 
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gemm_small
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void gemm_small(int64_t m0, int64_t m, int64_t n0, int64_t n, int RM, int RN) {
         int64_t ytiles = (m - m0) / RM;
         int64_t xtiles = (n - n0) / RN;
@@ -3599,6 +5047,14 @@ class tinyBLAS_PPC {
     }
 
     template<int RM, int RN>
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: kernel
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     inline void kernel(int64_t ii, int64_t jj) {
         if constexpr(RM == 4 && RN == 4) {
             KERNEL_4x4(ii, jj);

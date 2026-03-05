@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: jinja-tester.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/jinja/jinja-tester.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 import sys
 import json
@@ -22,6 +29,10 @@ from jinja2.sandbox import ImmutableSandboxedEnvironment
 from datetime import datetime
 
 
+    # 函数: format_template_content
+    # 描述: format_template_content函数提供相关功能
+    # 参数: template_content
+    # 返回: 有返回值
 def format_template_content(template_content):
     """Format the Jinja template content using Jinja2's lexer."""
     if not template_content.strip():
@@ -156,19 +167,41 @@ def format_template_content(template_content):
 # ------------------------
 # Line Number Widget
 # ------------------------
+    # 类: LineNumberArea
+    # 描述: LineNumberArea类提供相关功能
+    # 用途: 用于处理LineNumberArea相关的操作
 class LineNumberArea(QWidget):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, editor
+    # 返回: 无返回值
     def __init__(self, editor):
         super().__init__(editor)
         self.code_editor = editor
 
+    # 函数: sizeHint
+    # 描述: sizeHint函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def sizeHint(self):
         return QSize(self.code_editor.line_number_area_width(), 0)
 
+    # 函数: paintEvent
+    # 描述: paintEvent函数提供相关功能
+    # 参数: self, event
+    # 返回: 无返回值
     def paintEvent(self, event):
         self.code_editor.line_number_area_paint_event(event)
 
 
+    # 类: CodeEditor
+    # 描述: CodeEditor类提供相关功能
+    # 用途: 用于处理CodeEditor相关的操作
 class CodeEditor(QPlainTextEdit):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(self):
         super().__init__()
         self.line_number_area = LineNumberArea(self)
@@ -180,14 +213,26 @@ class CodeEditor(QPlainTextEdit):
         self.update_line_number_area_width(0)
         self.highlight_current_line()
 
+    # 函数: line_number_area_width
+    # 描述: line_number_area_width函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def line_number_area_width(self):
         digits = len(str(self.blockCount()))
         space = 3 + self.fontMetrics().horizontalAdvance("9") * digits
         return space
 
+    # 函数: update_line_number_area_width
+    # 描述: update_line_number_area_width函数提供相关功能
+    # 参数: self, _
+    # 返回: 无返回值
     def update_line_number_area_width(self, _):
         self.setViewportMargins(self.line_number_area_width(), 0, 0, 0)
 
+    # 函数: update_line_number_area
+    # 描述: update_line_number_area函数提供相关功能
+    # 参数: self, rect, dy
+    # 返回: 无返回值
     def update_line_number_area(self, rect, dy):
         if dy:
             self.line_number_area.scroll(0, dy)
@@ -199,6 +244,10 @@ class CodeEditor(QPlainTextEdit):
         if rect.contains(self.viewport().rect()):
             self.update_line_number_area_width(0)
 
+    # 函数: resizeEvent
+    # 描述: resizeEvent函数提供相关功能
+    # 参数: self, event
+    # 返回: 无返回值
     def resizeEvent(self, event):
         super().resizeEvent(event)
         cr = self.contentsRect()
@@ -206,6 +255,10 @@ class CodeEditor(QPlainTextEdit):
             QRect(cr.left(), cr.top(), self.line_number_area_width(), cr.height())
         )
 
+    # 函数: line_number_area_paint_event
+    # 描述: line_number_area_paint_event函数提供相关功能
+    # 参数: self, event
+    # 返回: 无返回值
     def line_number_area_paint_event(self, event):
         from PySide6.QtGui import QPainter
 
@@ -236,6 +289,10 @@ class CodeEditor(QPlainTextEdit):
             bottom = top + int(self.blockBoundingRect(block).height())
             block_number += 1
 
+    # 函数: highlight_current_line
+    # 描述: highlight_current_line函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def highlight_current_line(self):
         extra_selections = []
         if not self.isReadOnly():
@@ -248,6 +305,10 @@ class CodeEditor(QPlainTextEdit):
             extra_selections.append(selection)
         self.setExtraSelections(extra_selections)
 
+    # 函数: highlight_position
+    # 描述: highlight_position函数提供相关功能
+    # 参数: self, lineno: int, col: int, color: QColor
+    # 返回: 无返回值
     def highlight_position(self, lineno: int, col: int, color: QColor):
         block = self.document().findBlockByLineNumber(lineno - 1)
         if block.isValid():
@@ -267,6 +328,10 @@ class CodeEditor(QPlainTextEdit):
 
             self.setExtraSelections(self.extraSelections() + [extra])
 
+    # 函数: highlight_line
+    # 描述: highlight_line函数提供相关功能
+    # 参数: self, lineno: int, color: QColor
+    # 返回: 无返回值
     def highlight_line(self, lineno: int, color: QColor):
         block = self.document().findBlockByLineNumber(lineno - 1)
         if block.isValid():
@@ -279,6 +344,10 @@ class CodeEditor(QPlainTextEdit):
 
             self.setExtraSelections(self.extraSelections() + [extra])
 
+    # 函数: clear_highlighting
+    # 描述: clear_highlighting函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def clear_highlighting(self):
         self.highlight_current_line()
 
@@ -286,7 +355,14 @@ class CodeEditor(QPlainTextEdit):
 # ------------------------
 # Main App
 # ------------------------
+    # 类: JinjaTester
+    # 描述: JinjaTester类提供相关功能
+    # 用途: 用于处理JinjaTester相关的操作
 class JinjaTester(QMainWindow):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Jinja Template Tester")
@@ -360,6 +436,10 @@ class JinjaTester(QMainWindow):
 
         self.setCentralWidget(central)
 
+    # 函数: render_template
+    # 描述: render_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def render_template(self):
         self.template_edit.clear_highlighting()
         self.output_edit.clear()
@@ -374,6 +454,10 @@ class JinjaTester(QMainWindow):
             self.status_label.setText(f"❌ JSON Error: {e}")
             return
 
+    # 函数: raise_exception
+    # 描述: raise_exception函数提供相关功能
+    # 参数: text: str
+    # 返回: 无返回值
         def raise_exception(text: str) -> str:
             raise RuntimeError(text)
 
@@ -426,6 +510,10 @@ class JinjaTester(QMainWindow):
             self.output_edit.setPlainText(error_msg)
             self.status_label.setText(f"❌ {error_msg}")
 
+    # 函数: load_template
+    # 描述: load_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def load_template(self):
         """Load a Jinja template from a file using a file dialog."""
         file_path, _ = QFileDialog.getOpenFileName(
@@ -444,6 +532,10 @@ class JinjaTester(QMainWindow):
             except Exception as e:
                 self.status_label.setText(f"❌ Error loading file: {str(e)}")
 
+    # 函数: format_template
+    # 描述: format_template函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def format_template(self):
         """Format the Jinja template using Jinja2's lexer for proper parsing."""
         try:

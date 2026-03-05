@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: imatrix.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/imatrix/imatrix.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "log.h"
@@ -23,6 +30,14 @@
 #pragma warning(disable: 4244 4267) // possible loss of data
 #endif
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int, char ** argv) {
     LOG("\nexample usage:\n");
     LOG("\n    %s \\\n"
@@ -37,11 +52,59 @@ static const char * const LLM_KV_IMATRIX_DATASETS    = "imatrix.datasets";
 static const char * const LLM_KV_IMATRIX_CHUNK_COUNT = "imatrix.chunk_count";
 static const char * const LLM_KV_IMATRIX_CHUNK_SIZE  = "imatrix.chunk_size";
 
+// 类: Stats
+// 描述: Stats类提供相关功能
+// 用途: 用于处理stats相关的操作
+// 类: Stats
+// 描述: Stats类提供相关功能
+// 用途: 用于处理stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
+    // 结构体: Stats
+    // 描述: Stats结构体提供相关功能
+    // 用途: 用于处理Stats相关的操作
 struct Stats {
     std::vector<float>   values;
     std::vector<int64_t> counts;
 };
 
+// 类: tensor_statistics
+// 描述: tensor_statistics类提供相关功能
+// 用途: 用于处理tensor_statistics相关的操作
+// 类: tensor_statistics
+// 描述: tensor_statistics类提供相关功能
+// 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
+    // 结构体: tensor_statistics
+    // 描述: tensor_statistics结构体提供相关功能
+    // 用途: 用于处理tensor_statistics相关的操作
 struct tensor_statistics {
     std::string tensor;
     Stats stats;
@@ -57,14 +120,68 @@ struct tensor_statistics {
     float cossim       = 0.0f;
 };
 
+// 类: IMatrixCollector
+// 描述: IMatrixCollector类提供相关功能
+// 用途: 用于处理imatrixcollector相关的操作
+// 类: IMatrixCollector
+// 描述: IMatrixCollector类提供相关功能
+// 用途: 用于处理imatrixcollector相关的操作
 class IMatrixCollector {
 public:
     IMatrixCollector() = default;
+    // 函数: set_params
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_params
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_params(common_params params) { m_params = std::move(params); }
+    // 函数: collect_imatrix
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: collect_imatrix
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool collect_imatrix(struct ggml_tensor * t, bool ask, void * user_data);
+    // 函数: save_imatrix_legacy
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_imatrix_legacy
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     void save_imatrix_legacy(int32_t ncall = -1) const;
+    // 函数: save_imatrix
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: save_imatrix
+    // 描述: 保存: 保存数据到文件或内存
+    // 参数: 无参数
+    // 返回: 无返回值
     void save_imatrix(int32_t n_chunk = -1) const;
+    // 函数: load_imatrix_legacy
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_imatrix_legacy
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load_imatrix_legacy(const char * fname);
+    // 函数: load_imatrix
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_imatrix
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     bool load_imatrix(const char * file_name);
     const std::unordered_map<std::string, Stats> & get_mstats() const { return m_stats; }
 private:
@@ -79,6 +196,14 @@ private:
 
 // remove any prefix and suffixes from the name
 // CUDA0#blk.0.attn_k.weight#0 => blk.0.attn_k.weight
+// 函数: filter_tensor_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: filter_tensor_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string filter_tensor_name(const char * name) {
     std::string wname;
     const char * p = strchr(name, '#');
@@ -96,6 +221,14 @@ static std::string filter_tensor_name(const char * name) {
     return wname;
 }
 
+// 函数: process_tensor_name
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_tensor_name
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void process_tensor_name(const std::string & input, std::string & layer, std::string & tensor) {
     std::vector<std::string> name;
     std::istringstream stream(input);
@@ -125,6 +258,14 @@ static void process_tensor_name(const std::string & input, std::string & layer, 
     }
 }
 
+// 函数: compute_statistics
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: compute_statistics
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void compute_statistics(std::vector<tensor_statistics> & tstats, const std::string & name, const Stats & e) {
     if (e.values.size() % e.counts.size() != 0) {
         LOG_ERR("%s: activation size mismatch for tensor %s (%zu vs %zu)\n", __func__, name.c_str(), e.counts.size(), e.values.size());
@@ -191,6 +332,14 @@ static void compute_statistics(std::vector<tensor_statistics> & tstats, const st
     ts.zd         = static_cast<float>(z_score) / ts.elements;
 }
 
+// 函数: compute_cossim
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: compute_cossim
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void compute_cossim(std::vector<tensor_statistics> & tstats) {
     static const std::regex pattern(R"(blk\.(\d+)\.)");
     for (auto & ts : tstats) {
@@ -284,10 +433,26 @@ bool IMatrixCollector::collect_imatrix(struct ggml_tensor * t, bool ask, void * 
             e.values.resize(src1->ne[0]*n_as, 0);
             e.counts.resize(n_as, 0);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (e.values.size() != (size_t)src1->ne[0]*n_as) {
             LOG_ERR("%s: inconsistent size for %s (%d vs %d)\n", __func__, wname.c_str(), (int)e.values.size(), (int)(src1->ne[0]*n_as));
             exit(1); //GGML_ABORT("fatal error");
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (e.counts.size() != (size_t)n_as) {
             LOG_ERR("%s: inconsistent expert count for %s (%d vs %d)\n", __func__, wname.c_str(), (int)e.counts.size(), (int)n_as);
             exit(1); //GGML_ABORT("fatal error");
@@ -354,6 +519,14 @@ bool IMatrixCollector::collect_imatrix(struct ggml_tensor * t, bool ask, void * 
             e.values.resize(src1->ne[0] * n_mat, 0);
             e.counts.resize(1, 0);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (e.values.size() != (size_t)(src1->ne[0] * n_mat)) {
             LOG_ERR("%s: inconsistent size for %s (%d vs %d)\n", __func__, wname.c_str(), (int)e.values.size(), (int)(src1->ne[0] * n_mat));
             exit(1); //GGML_ABORT("fatal error");
@@ -454,6 +627,14 @@ void IMatrixCollector::save_imatrix_legacy(int32_t ncall) const {
 
     const int32_t chunk_size = m_params.n_ctx / m_params.n_parallel;
 
+    // 函数: out
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: out
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ofstream out(fname, std::ios::binary);
     out.write((const char *) &n_entries, sizeof(n_entries));
     for (const auto & name : to_store) {
@@ -557,12 +738,84 @@ void IMatrixCollector::save_imatrix(int32_t n_chunk) const {
     // deterministic tensor name order
     std::sort(to_store.begin(), to_store.end());
 
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /* .mem_size   = */ data_size,
         /* .mem_buffer = */ NULL,
         /* .no_alloc   = */ false,
     };
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = ggml_init(params);
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = gguf_init_empty();
 
     {
@@ -588,7 +841,55 @@ void IMatrixCollector::save_imatrix(int32_t n_chunk) const {
         const int32_t nval = (int32_t) stat.values.size();
         const int32_t nmat = (int32_t) stat.counts.size();
         if (nval > 0 && nmat > 0) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * in_sum2 = ggml_new_tensor_2d(ctx, GGML_TYPE_F32, nval / nmat, nmat);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * counts  = ggml_new_tensor_2d(ctx, GGML_TYPE_F32, 1, nmat);
             ggml_format_name(in_sum2, "%s.in_sum2", name.c_str());
             ggml_format_name(counts, "%s.counts", name.c_str());
@@ -615,6 +916,14 @@ void IMatrixCollector::save_imatrix(int32_t n_chunk) const {
 }
 
 bool IMatrixCollector::load_imatrix_legacy(const char * fname) {
+    // 函数: in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: in
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::ifstream in(fname, std::ios::binary);
     if (!in) {
         LOG_ERR("%s: failed to open %s\n", __func__, fname);
@@ -714,11 +1023,83 @@ bool IMatrixCollector::load_imatrix_legacy(const char * fname) {
 
 // Using GGUF as the file format, for greater extensibility
 bool IMatrixCollector::load_imatrix(const char * file_name) {
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx = nullptr;
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params meta_gguf_params = {
         /* .no_alloc = */ false, // the data is needed
         /* .ctx      = */ &ctx,
     };
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = gguf_init_from_file(file_name, meta_gguf_params);
     if (!ctx_gguf) {
         return this->load_imatrix_legacy(file_name);
@@ -830,10 +1211,42 @@ bool IMatrixCollector::load_imatrix(const char * file_name) {
 
 static IMatrixCollector g_collector;
 
+// 函数: ik_collect_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ik_collect_imatrix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ik_collect_imatrix(struct ggml_tensor * t, bool ask, void * user_data) {
     return g_collector.collect_imatrix(t, ask, user_data);
 }
 
+// 类: results_log_softmax
+// 描述: results_log_softmax类提供相关功能
+// 用途: 用于处理results_log_softmax相关的操作
+// 类: results_log_softmax
+// 描述: results_log_softmax类提供相关功能
+// 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
+    // 结构体: results_log_softmax
+    // 描述: results_log_softmax结构体提供相关功能
+    // 用途: 用于处理results_log_softmax相关的操作
 struct results_log_softmax {
     double log_softmax;
     float  logit;
@@ -860,6 +1273,14 @@ static std::vector<float> softmax(const std::vector<float> & logits) {
     return probs;
 }
 
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static results_log_softmax log_softmax(int n_vocab, const float * logits, int tok) {
     float max_logit = logits[0];
     for (int i = 1; i < n_vocab; ++i) {
@@ -906,6 +1327,14 @@ static void process_logits(
     }
 }
 
+// 函数: compute_imatrix
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: compute_imatrix
+// 描述: 计算: 执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static bool compute_imatrix(llama_context * ctx, const common_params & params, const int32_t n_ctx) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -1083,6 +1512,14 @@ static bool compute_imatrix(llama_context * ctx, const common_params & params, c
     return true;
 }
 
+// 函数: show_statistics
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: show_statistics
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool show_statistics(const common_params & params) {
     std::vector<tensor_statistics> ts;
     if (params.in_files.empty() || params.in_files.size() > 1) {
@@ -1104,6 +1541,30 @@ static bool show_statistics(const common_params & params) {
         return false;
     }
 
+    // 类: tensor_comparer
+    // 描述: tensor_comparer类提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 类: tensor_comparer
+    // 描述: tensor_comparer类提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
+    // 结构体: tensor_comparer
+    // 描述: tensor_comparer结构体提供相关功能
+    // 用途: 用于处理tensor_comparer相关的操作
     struct tensor_comparer {
         bool operator()(const tensor_statistics & a, const tensor_statistics & b) const {
             std::string layer, name_a, name_b;
@@ -1115,6 +1576,30 @@ static bool show_statistics(const common_params & params) {
     };
     std::sort(ts.begin(), ts.end(), tensor_comparer());
 
+    // 类: weighted_stats
+    // 描述: weighted_stats类提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 类: weighted_stats
+    // 描述: weighted_stats类提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
+    // 结构体: weighted_stats
+    // 描述: weighted_stats结构体提供相关功能
+    // 用途: 用于处理weighted_stats相关的操作
     struct weighted_stats {
         float weighted_bias   = 0.0f;
         float weighted_zd     = 0.0f;
@@ -1190,6 +1675,14 @@ static bool show_statistics(const common_params & params) {
     return true;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 

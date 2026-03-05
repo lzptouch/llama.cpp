@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: rpc-server.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/rpc/rpc-server.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "ggml-rpc.h"
 #ifdef _WIN32
 #  define NOMINMAX
@@ -24,6 +31,14 @@
 
 // NOTE: this is copied from common.cpp to avoid linking with libcommon
 #ifdef _WIN32
+// 函数: utf8_to_wstring
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_to_wstring
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::wstring utf8_to_wstring(const std::string & str) {
     if (str.empty()) {
         return std::wstring();
@@ -44,6 +59,14 @@ static std::wstring utf8_to_wstring(const std::string & str) {
 
 // NOTE: this is copied from common.cpp to avoid linking with libcommon
 // returns true if successful, false otherwise
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 static bool fs_create_directory_with_parents(const std::string & path) {
 #ifdef _WIN32
     std::wstring wpath = utf8_to_wstring(path);
@@ -87,6 +110,30 @@ static bool fs_create_directory_with_parents(const std::string & path) {
     return true;
 #else
     // if the path already exists, check whether it's a directory
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
     struct stat info;
     if (stat(path.c_str(), &info) == 0) {
         return S_ISDIR(info.st_mode);
@@ -97,6 +144,30 @@ static bool fs_create_directory_with_parents(const std::string & path) {
     // process path from front to back, procedurally creating directories
     while ((pos_slash = path.find('/', pos_slash)) != std::string::npos) {
         const std::string subpath = path.substr(0, pos_slash);
+        // 类: stat
+        // 描述: stat类提供相关功能
+        // 用途: 用于处理stat相关的操作
+        // 类: stat
+        // 描述: stat类提供相关功能
+        // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
         struct stat info;
 
         // if the path already exists, ensure that it's a directory
@@ -120,6 +191,14 @@ static bool fs_create_directory_with_parents(const std::string & path) {
 }
 
 // NOTE: this is copied from common.cpp to avoid linking with libcommon
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static std::string fs_get_cache_directory() {
     std::string cache_directory = "";
     auto ensure_trailing_slash = [](std::string p) {
@@ -141,6 +220,30 @@ static std::string fs_get_cache_directory() {
         } else {
 #if defined(__linux__)
             /* no $HOME is defined, fallback to getpwuid */
+            // 类: passwd
+            // 描述: passwd类提供相关功能
+            // 用途: 用于处理passwd相关的操作
+            // 类: passwd
+            // 描述: passwd类提供相关功能
+            // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
             struct passwd *pw = getpwuid(getuid());
             if ((!pw) || (!pw->pw_dir)) {
                 throw std::runtime_error("Failed to find $HOME directory");
@@ -166,6 +269,30 @@ static std::string fs_get_cache_directory() {
     return ensure_trailing_slash(cache_directory);
 }
 
+// 类: rpc_server_params
+// 描述: rpc_server_params类提供相关功能
+// 用途: 用于处理rpc_server_params相关的操作
+// 类: rpc_server_params
+// 描述: rpc_server_params类提供相关功能
+// 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
+    // 结构体: rpc_server_params
+    // 描述: rpc_server_params结构体提供相关功能
+    // 用途: 用于处理rpc_server_params相关的操作
 struct rpc_server_params {
     std::string              host        = "127.0.0.1";
     int                      port        = 50052;
@@ -174,6 +301,14 @@ struct rpc_server_params {
     std::vector<std::string> devices;
 };
 
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_usage(int /*argc*/, char ** argv, rpc_server_params params) {
     fprintf(stderr, "Usage: %s [options]\n\n", argv[0]);
     fprintf(stderr, "options:\n");
@@ -186,6 +321,14 @@ static void print_usage(int /*argc*/, char ** argv, rpc_server_params params) {
     fprintf(stderr, "\n");
 }
 
+// 函数: rpc_server_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rpc_server_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool rpc_server_params_parse(int argc, char ** argv, rpc_server_params & params) {
     std::string arg;
     for (int i = 1; i < argc; i++) {
@@ -284,6 +427,14 @@ static std::vector<ggml_backend_dev_t> get_devices(const rpc_server_params & par
     return devices;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char * argv[]) {
     ggml_backend_load_all();
 

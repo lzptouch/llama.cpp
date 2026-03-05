@@ -78,6 +78,24 @@
 /**
  * @brief Contains information about CANN devices.
  */
+// 类: ggml_cann_device_info
+// 描述: ggml_cann_device_info类提供相关功能
+// 用途: 用于处理ggml_cann_device_info相关的操作
+// 类: ggml_cann_device_info
+// 描述: ggml_cann_device_info类提供相关功能
+// 用途: 用于处理ggml_cann_device_info相关的操作
+    // 结构体: ggml_cann_device_info
+    // 描述: ggml_cann_device_info结构体提供相关功能
+    // 用途: 用于处理ggml_cann_device_info相关的操作
+    // 结构体: ggml_cann_device_info
+    // 描述: ggml_cann_device_info结构体提供相关功能
+    // 用途: 用于处理ggml_cann_device_info相关的操作
+    // 结构体: ggml_cann_device_info
+    // 描述: ggml_cann_device_info结构体提供相关功能
+    // 用途: 用于处理ggml_cann_device_info相关的操作
+    // 结构体: ggml_cann_device_info
+    // 描述: ggml_cann_device_info结构体提供相关功能
+    // 用途: 用于处理ggml_cann_device_info相关的操作
 struct ggml_cann_device_info {
     /**
      * @brief Number of CANN devices available.
@@ -87,6 +105,24 @@ struct ggml_cann_device_info {
     /**
      * @brief Information about a single CANN device.
      */
+    // 类: cann_device_info
+    // 描述: cann_device_info类提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
+    // 类: cann_device_info
+    // 描述: cann_device_info类提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
+    // 结构体: cann_device_info
+    // 描述: cann_device_info结构体提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
+    // 结构体: cann_device_info
+    // 描述: cann_device_info结构体提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
+    // 结构体: cann_device_info
+    // 描述: cann_device_info结构体提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
+    // 结构体: cann_device_info
+    // 描述: cann_device_info结构体提供相关功能
+    // 用途: 用于处理cann_device_info相关的操作
     struct cann_device_info {
         int    cc;              /**< Compute capability.                   */
         size_t smpb;            /**< Maximum shared memory per block.      */
@@ -100,15 +136,57 @@ struct ggml_cann_device_info {
 
 const ggml_cann_device_info & ggml_cann_info();
 
+// 函数: ggml_cann_set_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_cann_set_device
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void    ggml_cann_set_device(int32_t device);
 
 std::optional<std::string> get_env_as_lowercase(const std::string & name);
+// 函数: parse_bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_bool
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool                       parse_bool(const std::string & value);
+// 函数: parse_integer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_integer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int                        parse_integer(const std::string & value);
 
 /**
  * @brief Abstract base class for memory pools used by CANN.
  */
+// 类: ggml_cann_pool
+// 描述: ggml_cann_pool类提供相关功能
+// 用途: 用于处理ggml_cann_pool相关的操作
+// 类: ggml_cann_pool
+// 描述: ggml_cann_pool类提供相关功能
+// 用途: 用于处理ggml_cann_pool相关的操作
+    // 结构体: ggml_cann_pool
+    // 描述: ggml_cann_pool结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool相关的操作
+    // 结构体: ggml_cann_pool
+    // 描述: ggml_cann_pool结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool相关的操作
+    // 结构体: ggml_cann_pool
+    // 描述: ggml_cann_pool结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool相关的操作
+    // 结构体: ggml_cann_pool
+    // 描述: ggml_cann_pool结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool相关的操作
 struct ggml_cann_pool {
     /**
      * @brief Virtual destructor for the memory pool.
@@ -123,6 +201,14 @@ struct ggml_cann_pool {
      *                     will be stored.
      * @return             Pointer to the allocated memory block.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual void * alloc(size_t size, size_t * actual_size) = 0;
 
     /**
@@ -133,12 +219,38 @@ struct ggml_cann_pool {
      * @note Note that all CANN opertors are running async. Make sure memory is
      *       still avaiable before this operator finished.
      */
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
+    // 函数: free
+    // 描述: 释放: 释放资源或销毁对象
+    // 参数: 要释放的对象或资源
+    // 返回: 无返回值
     virtual void free(void * ptr, size_t size) = 0;
 };
 
 /**
  * @brief RAII wrapper for managing memory allocations from a CANN memory pool.
  */
+// 类: ggml_cann_pool_alloc
+// 描述: ggml_cann_pool_alloc类提供相关功能
+// 用途: 用于处理ggml_cann_pool_alloc相关的操作
+// 类: ggml_cann_pool_alloc
+// 描述: ggml_cann_pool_alloc类提供相关功能
+// 用途: 用于处理ggml_cann_pool_alloc相关的操作
+    // 结构体: ggml_cann_pool_alloc
+    // 描述: ggml_cann_pool_alloc结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_alloc相关的操作
+    // 结构体: ggml_cann_pool_alloc
+    // 描述: ggml_cann_pool_alloc结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_alloc相关的操作
+    // 结构体: ggml_cann_pool_alloc
+    // 描述: ggml_cann_pool_alloc结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_alloc相关的操作
+    // 结构体: ggml_cann_pool_alloc
+    // 描述: ggml_cann_pool_alloc结构体提供相关功能
+    // 用途: 用于处理ggml_cann_pool_alloc相关的操作
 struct ggml_cann_pool_alloc {
     ggml_cann_pool * pool        = nullptr; /**< Pointer to the memory pool. */
     void *           ptr         = nullptr; /**< Pointer to the allocated memory block. */
@@ -153,6 +265,14 @@ struct ggml_cann_pool_alloc {
      * @brief Constructor that initializes the memory pool.
      * @param pool Reference to the memory pool.
      */
+    // 函数: ggml_cann_pool_alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_cann_pool_alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_cann_pool_alloc(ggml_cann_pool & pool) : pool(&pool) {}
 
     /**
@@ -176,6 +296,14 @@ struct ggml_cann_pool_alloc {
      * @param size Size of the memory block to allocate.
      * @return Pointer to the allocated memory block.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(size_t size) {
         GGML_ASSERT(pool != nullptr);
         GGML_ASSERT(ptr == nullptr);
@@ -189,6 +317,14 @@ struct ggml_cann_pool_alloc {
      * @param size Size of the memory block to allocate.
      * @return Pointer to the allocated memory block.
      */
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void * alloc(ggml_cann_pool & pool, size_t size) {
         this->pool = &pool;
         return alloc(size);
@@ -198,6 +334,14 @@ struct ggml_cann_pool_alloc {
      * @brief Gets the pointer to the allocated memory block.
      * @return Pointer to the allocated memory block.
      */
+    // 函数: get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: get
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void * get() { return ptr; }
 
     // Deleted copy constructor
@@ -214,6 +358,24 @@ struct ggml_cann_pool_alloc {
 };
 
 #ifdef USE_ACL_GRAPH
+// 类: ggml_graph_node_properties
+// 描述: ggml_graph_node_properties类提供相关功能
+// 用途: 用于处理ggml_graph_node_properties相关的操作
+// 类: ggml_graph_node_properties
+// 描述: ggml_graph_node_properties类提供相关功能
+// 用途: 用于处理ggml_graph_node_properties相关的操作
+    // 结构体: ggml_graph_node_properties
+    // 描述: ggml_graph_node_properties结构体提供相关功能
+    // 用途: 用于处理ggml_graph_node_properties相关的操作
+    // 结构体: ggml_graph_node_properties
+    // 描述: ggml_graph_node_properties结构体提供相关功能
+    // 用途: 用于处理ggml_graph_node_properties相关的操作
+    // 结构体: ggml_graph_node_properties
+    // 描述: ggml_graph_node_properties结构体提供相关功能
+    // 用途: 用于处理ggml_graph_node_properties相关的操作
+    // 结构体: ggml_graph_node_properties
+    // 描述: ggml_graph_node_properties结构体提供相关功能
+    // 用途: 用于处理ggml_graph_node_properties相关的操作
 struct ggml_graph_node_properties {
     // dst tensor
     void *  node_address;
@@ -238,6 +400,14 @@ struct ggml_graph_node_properties {
      * @param node The current ggml tensor node.
      * @return true if all fields match (excluding GGML_OP_VIEW); false otherwise.
      */
+    // 函数: has_matching_properties
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: has_matching_properties
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool has_matching_properties(ggml_tensor * node) {
         if (node->data != this->node_address && node->op != GGML_OP_VIEW) {
             return false;
@@ -284,6 +454,24 @@ struct ggml_graph_node_properties {
     }
 };
 
+// 类: ggml_cann_graph
+// 描述: ggml_cann_graph类提供相关功能
+// 用途: 用于处理ggml_cann_graph相关的操作
+// 类: ggml_cann_graph
+// 描述: ggml_cann_graph类提供相关功能
+// 用途: 用于处理ggml_cann_graph相关的操作
+    // 结构体: ggml_cann_graph
+    // 描述: ggml_cann_graph结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph相关的操作
+    // 结构体: ggml_cann_graph
+    // 描述: ggml_cann_graph结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph相关的操作
+    // 结构体: ggml_cann_graph
+    // 描述: ggml_cann_graph结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph相关的操作
+    // 结构体: ggml_cann_graph
+    // 描述: ggml_cann_graph结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph相关的操作
 struct ggml_cann_graph {
     ~ggml_cann_graph() {
         if (graph != nullptr) {
@@ -312,6 +500,14 @@ struct ggml_cann_graph {
      * @param cgraph The current ggml computation graph.
      * @return Pointer to the newly created ggml_cann_graph object.
      */
+    // 函数: create_from_cgraph
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: create_from_cgraph
+    // 描述: 创建: 创建新的对象或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     static ggml_cann_graph * create_from_cgraph(ggml_cgraph * cgraph) {
         ggml_cann_graph * new_graph = new ggml_cann_graph();
         new_graph->ggml_graph_properties.resize(cgraph->n_nodes);
@@ -354,6 +550,14 @@ struct ggml_cann_graph {
      * @param cgraph The current ggml computation graph.
      * @return true if this CANN graph matches the ggml graph; false otherwise.
      */
+    // 函数: matches_cgraph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: matches_cgraph
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool matches_cgraph(ggml_cgraph * cgraph) {
         if (this->ggml_graph_properties.size() != static_cast<size_t>(cgraph->n_nodes)) {
             return false;
@@ -376,6 +580,24 @@ struct ggml_cann_graph {
  * and enforces a maximum capacity. It provides methods to push new graphs,
  * move existing graphs to the front (most recently used), and clear the cache.
  */
+// 类: ggml_cann_graph_lru_cache
+// 描述: ggml_cann_graph_lru_cache类提供相关功能
+// 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
+// 类: ggml_cann_graph_lru_cache
+// 描述: ggml_cann_graph_lru_cache类提供相关功能
+// 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
+    // 结构体: ggml_cann_graph_lru_cache
+    // 描述: ggml_cann_graph_lru_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
+    // 结构体: ggml_cann_graph_lru_cache
+    // 描述: ggml_cann_graph_lru_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
+    // 结构体: ggml_cann_graph_lru_cache
+    // 描述: ggml_cann_graph_lru_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
+    // 结构体: ggml_cann_graph_lru_cache
+    // 描述: ggml_cann_graph_lru_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_graph_lru_cache相关的操作
 struct ggml_cann_graph_lru_cache {
     size_t capacity;                         /**< Maximum number of graphs in the cache. */
 
@@ -389,6 +611,14 @@ struct ggml_cann_graph_lru_cache {
      * @param new_node Pointer to the new ggml_cann_graph to cache.
      *        Ownership is transferred to the cache (cache will delete it).
      */
+    // 函数: push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push(ggml_cann_graph * new_node) {
         if (cache_list.size() >= capacity) {
             ggml_cann_graph * old = cache_list.back();
@@ -401,6 +631,14 @@ struct ggml_cann_graph_lru_cache {
     /**
      * @brief Clear all graphs from the cache (also frees memory).
      */
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear() {
         for (auto ptr : cache_list) {
             delete ptr;
@@ -424,6 +662,14 @@ struct ggml_cann_graph_lru_cache {
      * @param cgraph The current ggml computation graph.
      * @return true if found; false otherwise.
      */
+    // 函数: find_and_move_to_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: find_and_move_to_front
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool find_and_move_to_front(ggml_cgraph * cgraph) {
         for (auto & graph_ptr : this->cache_list) {
             if (graph_ptr->matches_cgraph(cgraph)) {
@@ -437,6 +683,24 @@ struct ggml_cann_graph_lru_cache {
 };
 #endif  // USE_ACL_GRAPH
 
+// 类: ggml_cann_rope_cache
+// 描述: ggml_cann_rope_cache类提供相关功能
+// 用途: 用于处理ggml_cann_rope_cache相关的操作
+// 类: ggml_cann_rope_cache
+// 描述: ggml_cann_rope_cache类提供相关功能
+// 用途: 用于处理ggml_cann_rope_cache相关的操作
+    // 结构体: ggml_cann_rope_cache
+    // 描述: ggml_cann_rope_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_rope_cache相关的操作
+    // 结构体: ggml_cann_rope_cache
+    // 描述: ggml_cann_rope_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_rope_cache相关的操作
+    // 结构体: ggml_cann_rope_cache
+    // 描述: ggml_cann_rope_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_rope_cache相关的操作
+    // 结构体: ggml_cann_rope_cache
+    // 描述: ggml_cann_rope_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_rope_cache相关的操作
 struct ggml_cann_rope_cache {
     ~ggml_cann_rope_cache() {
         if (theta_scale_cache) {
@@ -531,6 +795,24 @@ struct ggml_cann_rope_cache {
     bool    is_imrope                  = false;
 };
 
+// 类: ggml_cann_tensor_cache
+// 描述: ggml_cann_tensor_cache类提供相关功能
+// 用途: 用于处理ggml_cann_tensor_cache相关的操作
+// 类: ggml_cann_tensor_cache
+// 描述: ggml_cann_tensor_cache类提供相关功能
+// 用途: 用于处理ggml_cann_tensor_cache相关的操作
+    // 结构体: ggml_cann_tensor_cache
+    // 描述: ggml_cann_tensor_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_tensor_cache相关的操作
+    // 结构体: ggml_cann_tensor_cache
+    // 描述: ggml_cann_tensor_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_tensor_cache相关的操作
+    // 结构体: ggml_cann_tensor_cache
+    // 描述: ggml_cann_tensor_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_tensor_cache相关的操作
+    // 结构体: ggml_cann_tensor_cache
+    // 描述: ggml_cann_tensor_cache结构体提供相关功能
+    // 用途: 用于处理ggml_cann_tensor_cache相关的操作
 struct ggml_cann_tensor_cache {
     ~ggml_cann_tensor_cache() {
         if (cache != nullptr) {
@@ -545,6 +827,24 @@ struct ggml_cann_tensor_cache {
 /**
  * @brief Context for managing CANN backend operations.
  */
+// 类: ggml_backend_cann_context
+// 描述: ggml_backend_cann_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_context相关的操作
+// 类: ggml_backend_cann_context
+// 描述: ggml_backend_cann_context类提供相关功能
+// 用途: 用于处理ggml_backend_cann_context相关的操作
+    // 结构体: ggml_backend_cann_context
+    // 描述: ggml_backend_cann_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_context相关的操作
+    // 结构体: ggml_backend_cann_context
+    // 描述: ggml_backend_cann_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_context相关的操作
+    // 结构体: ggml_backend_cann_context
+    // 描述: ggml_backend_cann_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_context相关的操作
+    // 结构体: ggml_backend_cann_context
+    // 描述: ggml_backend_cann_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_cann_context相关的操作
 struct ggml_backend_cann_context {
     int32_t     device;               /**< Device ID. */
     std::string name;                 /**< Name of the device. */
@@ -568,6 +868,14 @@ struct ggml_backend_cann_context {
      * @brief Constructor for initializing the context with a given device.
      * @param device Device ID.
      */
+    // 函数: ggml_backend_cann_context
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ggml_backend_cann_context
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     explicit ggml_backend_cann_context(int device) : device(device), name("CANN" + std::to_string(device)) {
         ggml_cann_set_device(device);
         description = aclrtGetSocName();
@@ -599,6 +907,14 @@ struct ggml_backend_cann_context {
      * @param stream Index of the stream.
      * @return The stream corresponding to the given index.
      */
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     aclrtStream stream(int stream) {
         if (streams[stream] == nullptr) {
             // If the device is not set here, destroying the stream later may cause a mismatch
@@ -614,6 +930,14 @@ struct ggml_backend_cann_context {
      * @brief Get or create the default stream (index 0).
      * @return The default stream.
      */
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     aclrtStream stream() { return stream(0); }
 
     // TODO: each stream should have a memory pool.

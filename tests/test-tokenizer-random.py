@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-tokenizer-random.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-tokenizer-random.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 # Test libllama tokenizer == AutoTokenizer.
 # Brute force random words/text generation.
 #
@@ -26,12 +33,26 @@ from transformers import AutoTokenizer, PreTrainedTokenizer
 logger = logging.getLogger("test-tokenizer-random")
 
 
+    # 类: LibLlama
+    # 描述: LibLlama类提供相关功能
+    # 用途: 用于处理LibLlama相关的操作
+    # 类: LibLlama
+    # 描述: LibLlama类提供相关功能
+    # 用途: 用于处理LibLlama相关的操作
 class LibLlama:
 
     DEFAULT_PATH_LLAMA_H = "./include/llama.h"
     DEFAULT_PATH_INCLUDES = ["./ggml/include/", "./include/"]
     DEFAULT_PATH_LIBLLAMA = "./build/src/libllama.so"  # CMakeLists.txt: BUILD_SHARED_LIBS ON
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, path_llama_h: str | None = None, path_includes: list[str] = [], path_libllama: str | None = None
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, path_llama_h: str | None = None, path_includes: list[str] = [], path_libllama: str | None = None
+    # 返回: 无返回值
     def __init__(self, path_llama_h: str | None = None, path_includes: list[str] = [], path_libllama: str | None = None):
         path_llama_h = path_llama_h or self.DEFAULT_PATH_LLAMA_H
         path_includes = path_includes or self.DEFAULT_PATH_INCLUDES
@@ -39,6 +60,14 @@ class LibLlama:
         (self.ffi, self.lib) = self._load_libllama_cffi(path_llama_h, path_includes, path_libllama)
         self.lib.llama_backend_init()
 
+    # 函数: _load_libllama_cffi
+    # 描述: _load_libllama_cffi函数提供相关功能
+    # 参数: self, path_llama_h: str, path_includes: list[str], path_libllama: str
+    # 返回: 有返回值
+    # 函数: _load_libllama_cffi
+    # 描述: _load_libllama_cffi函数提供相关功能
+    # 参数: self, path_llama_h: str, path_includes: list[str], path_libllama: str
+    # 返回: 有返回值
     def _load_libllama_cffi(self, path_llama_h: str, path_includes: list[str], path_libllama: str) -> tuple[cffi.FFI, Any]:
         cmd = ["gcc", "-O0", "-E", "-P", "-D__restrict=", "-D__attribute__(x)=", "-D__asm__(x)="]
         cmd += ["-I" + path for path in path_includes] + [path_llama_h]
@@ -56,12 +85,28 @@ class LibLlama:
         lib = ffi.dlopen(path_libllama)
         return (ffi, lib)
 
+    # 函数: model_default_params
+    # 描述: model_default_params函数提供相关功能
+    # 参数: self, **kwargs
+    # 返回: 有返回值
+    # 函数: model_default_params
+    # 描述: model_default_params函数提供相关功能
+    # 参数: self, **kwargs
+    # 返回: 有返回值
     def model_default_params(self, **kwargs):
         mparams = self.lib.llama_model_default_params()
         for k, v in kwargs.items():
             setattr(mparams, k, v)
         return mparams
 
+    # 函数: context_default_params
+    # 描述: context_default_params函数提供相关功能
+    # 参数: self, **kwargs
+    # 返回: 有返回值
+    # 函数: context_default_params
+    # 描述: context_default_params函数提供相关功能
+    # 参数: self, **kwargs
+    # 返回: 有返回值
     def context_default_params(self, **kwargs):
         cparams = self.lib.llama_context_default_params()
         for k, v in kwargs.items():
@@ -69,8 +114,22 @@ class LibLlama:
         return cparams
 
 
+    # 类: LibLlamaModel
+    # 描述: LibLlamaModel类提供相关功能
+    # 用途: 用于处理LibLlamaModel相关的操作
+    # 类: LibLlamaModel
+    # 描述: LibLlamaModel类提供相关功能
+    # 用途: 用于处理LibLlamaModel相关的操作
 class LibLlamaModel:
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, libllama: LibLlama, path_model: str, mparams={}, cparams={}
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, libllama: LibLlama, path_model: str, mparams={}, cparams={}
+    # 返回: 无返回值
     def __init__(self, libllama: LibLlama, path_model: str, mparams={}, cparams={}):
         self.lib: Any = libllama.lib
         self.ffi = libllama.ffi
@@ -88,6 +147,14 @@ class LibLlamaModel:
         self.token_ids = self.ffi.new("llama_token[]", n_tokens_max)
         self.text_buff = self.ffi.new("uint8_t[]", 1024)
 
+    # 函数: free
+    # 描述: free函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: free
+    # 描述: free函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def free(self):
         if self.ctx:
             self.lib.llama_free(self.ctx)
@@ -97,6 +164,14 @@ class LibLlamaModel:
         self.model = None
         self.lib = None
 
+    # 函数: tokenize
+    # 描述: tokenize函数提供相关功能
+    # 参数: self, text: str, add_special: bool = False, parse_special: bool = False
+    # 返回: 无返回值
+    # 函数: tokenize
+    # 描述: tokenize函数提供相关功能
+    # 参数: self, text: str, add_special: bool = False, parse_special: bool = False
+    # 返回: 无返回值
     def tokenize(self, text: str, add_special: bool = False, parse_special: bool = False) -> list[int]:
         encoded_text: bytes = text.encode("utf-8")
         num = self.lib.llama_tokenize(self.model, encoded_text, len(encoded_text), self.token_ids, len(self.token_ids), add_special, parse_special)
@@ -105,6 +180,14 @@ class LibLlamaModel:
             num = self.lib.llama_tokenize(self.model, encoded_text, len(encoded_text), self.token_ids, len(self.token_ids), add_special, parse_special)
         return list(self.token_ids[0:num])
 
+    # 函数: detokenize
+    # 描述: detokenize函数提供相关功能
+    # 参数: self, ids: list[int], remove_special: bool = False, unparse_special: bool = False
+    # 返回: 无返回值
+    # 函数: detokenize
+    # 描述: detokenize函数提供相关功能
+    # 参数: self, ids: list[int], remove_special: bool = False, unparse_special: bool = False
+    # 返回: 无返回值
     def detokenize(self, ids: list[int], remove_special: bool = False, unparse_special: bool = False) -> str:
         if len(self.token_ids) < len(ids):
             self.token_ids = self.ffi.new("llama_token[]", 2 * len(ids))
@@ -117,17 +200,53 @@ class LibLlamaModel:
         return str(cast(Buffer, self.ffi.buffer(self.text_buff, num)), encoding="utf-8", errors="replace")  # replace errors with '\uFFFD'
 
 
+    # 类: Tokenizer
+    # 描述: Tokenizer类提供相关功能
+    # 用途: 用于处理Tokenizer相关的操作
+    # 类: Tokenizer
+    # 描述: Tokenizer类提供相关功能
+    # 用途: 用于处理Tokenizer相关的操作
 class Tokenizer:
 
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 无返回值
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 无返回值
     def encode(self, text: str) -> list[int]:
         raise NotImplementedError
 
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 无返回值
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 无返回值
     def decode(self, ids: list[int]) -> str:
         raise NotImplementedError
 
 
+    # 类: TokenizerGroundtruth
+    # 描述: TokenizerGroundtruth类提供相关功能
+    # 用途: 用于处理TokenizerGroundtruth相关的操作
+    # 类: TokenizerGroundtruth
+    # 描述: TokenizerGroundtruth类提供相关功能
+    # 用途: 用于处理TokenizerGroundtruth相关的操作
 class TokenizerGroundtruth (Tokenizer):
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, dir_tokenizer: str
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, dir_tokenizer: str
+    # 返回: 无返回值
     def __init__(self, dir_tokenizer: str):
         self.model: PreTrainedTokenizer = AutoTokenizer.from_pretrained(dir_tokenizer)
         # guess BOS and EOS
@@ -147,29 +266,83 @@ class TokenizerGroundtruth (Tokenizer):
         self.bos_token = self.model.bos_token
         self.eos_token = self.model.eos_token
 
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 有返回值
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 有返回值
     def encode(self, text: str) -> list[int]:
         return self.model.encode(text, add_special_tokens=True)
 
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 有返回值
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 有返回值
     def decode(self, ids: list[int]) -> str:
         return self.model.decode(ids, skip_special_tokens=False)
 
 
+    # 类: TokenizerLlamaCpp
+    # 描述: TokenizerLlamaCpp类提供相关功能
+    # 用途: 用于处理TokenizerLlamaCpp相关的操作
+    # 类: TokenizerLlamaCpp
+    # 描述: TokenizerLlamaCpp类提供相关功能
+    # 用途: 用于处理TokenizerLlamaCpp相关的操作
 class TokenizerLlamaCpp (Tokenizer):
 
     libllama: LibLlama | None = None
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, vocab_file: str
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, vocab_file: str
+    # 返回: 无返回值
     def __init__(self, vocab_file: str):
         if not self.libllama:
             self.libllama = LibLlama()
         self.model = LibLlamaModel(self.libllama, vocab_file, mparams=dict(vocab_only=True), cparams=dict(n_ctx=4096))
 
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 有返回值
+    # 函数: encode
+    # 描述: encode函数提供相关功能
+    # 参数: self, text: str
+    # 返回: 有返回值
     def encode(self, text: str) -> list[int]:
         return self.model.tokenize(text, add_special=True, parse_special=True)
 
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 有返回值
+    # 函数: decode
+    # 描述: decode函数提供相关功能
+    # 参数: self, ids: list[int]
+    # 返回: 有返回值
     def decode(self, ids: list[int]) -> str:
         return self.model.detokenize(ids, remove_special=False, unparse_special=True)
 
 
+    # 函数: generator_custom_text
+    # 描述: generator_custom_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generator_custom_text
+    # 描述: generator_custom_text函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generator_custom_text() -> Iterator[str]:
     """General tests"""
     yield from [
@@ -216,6 +389,14 @@ def generator_custom_text() -> Iterator[str]:
     ]
 
 
+    # 函数: generator_custom_text_edge_cases
+    # 描述: generator_custom_text_edge_cases函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generator_custom_text_edge_cases
+    # 描述: generator_custom_text_edge_cases函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generator_custom_text_edge_cases() -> Iterator[str]:
     """Edge cases found while debugging"""
     yield from [
@@ -248,11 +429,27 @@ def generator_custom_text_edge_cases() -> Iterator[str]:
     ]
 
 
+    # 函数: generator_vocab_words
+    # 描述: generator_vocab_words函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth
+    # 返回: 无返回值
+    # 函数: generator_vocab_words
+    # 描述: generator_vocab_words函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth
+    # 返回: 无返回值
 def generator_vocab_words(tokenizer: TokenizerGroundtruth) -> Iterator[str]:
     """Brute force check all vocab words"""
     yield from tokenizer.vocab
 
 
+    # 函数: generator_ascii_lr_strip
+    # 描述: generator_ascii_lr_strip函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generator_ascii_lr_strip
+    # 描述: generator_ascii_lr_strip函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generator_ascii_lr_strip() -> Iterator[str]:
     WHITESPACES = ["", " ", "  "]
     CHARACTERS = list(chr(i) for i in range(1, 0x80)) + [""]
@@ -265,6 +462,14 @@ def generator_ascii_lr_strip() -> Iterator[str]:
                     yield char1 + lstrip + char2 + rstrip
 
 
+    # 函数: generator_apostrophe
+    # 描述: generator_apostrophe函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generator_apostrophe
+    # 描述: generator_apostrophe函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generator_apostrophe() -> Iterator[str]:
     WHITESPACES = ["", " ", "  "]
     CHARACTERS = list(chr(i) for i in range(1, 0x80)) + [""]
@@ -277,6 +482,14 @@ def generator_apostrophe() -> Iterator[str]:
                     yield "a" + lstrip + "'" + rstrip + char1 + char2
 
 
+    # 函数: generator_added_lr_strip
+    # 描述: generator_added_lr_strip函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth
+    # 返回: 无返回值
+    # 函数: generator_added_lr_strip
+    # 描述: generator_added_lr_strip函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth
+    # 返回: 无返回值
 def generator_added_lr_strip(tokenizer: TokenizerGroundtruth) -> Iterator[str]:
     WHITESPACES = ["", " ", "  ", "\n", "\r\n", "\n\n", "\t", "\t\t"]
     all_tokens = list(sorted(set(tokenizer.special_tokens + tokenizer.added_tokens)))
@@ -289,6 +502,14 @@ def generator_added_lr_strip(tokenizer: TokenizerGroundtruth) -> Iterator[str]:
                 yield "a" + lstrip + token + rstrip + "z"
 
 
+    # 函数: generator_random_added_tokens
+    # 描述: generator_random_added_tokens函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
+    # 函数: generator_random_added_tokens
+    # 描述: generator_random_added_tokens函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
 def generator_random_added_tokens(tokenizer: TokenizerGroundtruth, iterations=100) -> Iterator[str]:
     separations = [" ", "\n", "\t", "-", "!", "one", "1", "<s>", "</s>"]
     all_tokens  = list(sorted(set(tokenizer.special_tokens + tokenizer.added_tokens + separations)))
@@ -309,6 +530,14 @@ def generator_random_added_tokens(tokenizer: TokenizerGroundtruth, iterations=10
         yield "".join(words)
 
 
+    # 函数: generator_random_chars
+    # 描述: generator_random_chars函数提供相关功能
+    # 参数: iterations=100
+    # 返回: 无返回值
+    # 函数: generator_random_chars
+    # 描述: generator_random_chars函数提供相关功能
+    # 参数: iterations=100
+    # 返回: 无返回值
 def generator_random_chars(iterations=100) -> Iterator[str]:
     """Brute force random text with simple characters"""
 
@@ -334,11 +563,27 @@ def generator_random_chars(iterations=100) -> Iterator[str]:
         yield "".join(text)
 
 
+    # 函数: generator_unicodes
+    # 描述: generator_unicodes函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: generator_unicodes
+    # 描述: generator_unicodes函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def generator_unicodes() -> Iterator[str]:
     """Iterate unicode characters"""
 
     MAX_CODEPOINTS = 0x30000  # 0x110000
 
+    # 函数: _valid
+    # 描述: _valid函数提供相关功能
+    # 参数: cpt
+    # 返回: 有返回值
+    # 函数: _valid
+    # 描述: _valid函数提供相关功能
+    # 参数: cpt
+    # 返回: 有返回值
     def _valid(cpt):
         if cpt >= 0x30000:  # unassigned and supplement­ary
             return False
@@ -353,6 +598,14 @@ def generator_unicodes() -> Iterator[str]:
     yield from characters
 
 
+    # 函数: generator_random_unicodes
+    # 描述: generator_random_unicodes函数提供相关功能
+    # 参数: iterations=100
+    # 返回: 无返回值
+    # 函数: generator_random_unicodes
+    # 描述: generator_random_unicodes函数提供相关功能
+    # 参数: iterations=100
+    # 返回: 无返回值
 def generator_random_unicodes(iterations=100) -> Iterator[str]:
     """Brute force random text with unicode characters"""
 
@@ -373,6 +626,14 @@ def generator_random_unicodes(iterations=100) -> Iterator[str]:
         yield "".join(text)
 
 
+    # 函数: generator_random_vocab_chars
+    # 描述: generator_random_vocab_chars函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
+    # 函数: generator_random_vocab_chars
+    # 描述: generator_random_vocab_chars函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
 def generator_random_vocab_chars(tokenizer: TokenizerGroundtruth, iterations=100) -> Iterator[str]:
     """Brute force random text with vocab characters"""
 
@@ -388,6 +649,14 @@ def generator_random_vocab_chars(tokenizer: TokenizerGroundtruth, iterations=100
         yield "".join(text)
 
 
+    # 函数: generator_random_vocab_words
+    # 描述: generator_random_vocab_words函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
+    # 函数: generator_random_vocab_words
+    # 描述: generator_random_vocab_words函数提供相关功能
+    # 参数: tokenizer: TokenizerGroundtruth, iterations=100
+    # 返回: 无返回值
 def generator_random_vocab_words(tokenizer: TokenizerGroundtruth, iterations=100) -> Iterator[str]:
     """Brute force random text from vocab words"""
 
@@ -407,8 +676,24 @@ def generator_random_vocab_words(tokenizer: TokenizerGroundtruth, iterations=100
         yield "".join(text)
 
 
+    # 函数: compare_tokenizers
+    # 描述: compare_tokenizers函数提供相关功能
+    # 参数: tokenizer1: TokenizerGroundtruth, tokenizer2: TokenizerLlamaCpp, generator: Iterator[str]
+    # 返回: 无返回值
+    # 函数: compare_tokenizers
+    # 描述: compare_tokenizers函数提供相关功能
+    # 参数: tokenizer1: TokenizerGroundtruth, tokenizer2: TokenizerLlamaCpp, generator: Iterator[str]
+    # 返回: 无返回值
 def compare_tokenizers(tokenizer1: TokenizerGroundtruth, tokenizer2: TokenizerLlamaCpp, generator: Iterator[str]):
 
+    # 函数: find_first_mismatch
+    # 描述: find_first_mismatch函数提供相关功能
+    # 参数: ids1: list[int] | str, ids2: list[int] | str
+    # 返回: 有返回值
+    # 函数: find_first_mismatch
+    # 描述: find_first_mismatch函数提供相关功能
+    # 参数: ids1: list[int] | str, ids2: list[int] | str
+    # 返回: 有返回值
     def find_first_mismatch(ids1: list[int] | str, ids2: list[int] | str):
         for i, (a, b) in enumerate(zip(ids1, ids2)):
             if a != b:
@@ -417,6 +702,14 @@ def compare_tokenizers(tokenizer1: TokenizerGroundtruth, tokenizer2: TokenizerLl
             return -1
         return min(len(ids1), len(ids2))
 
+    # 函数: check_detokenizer
+    # 描述: check_detokenizer函数提供相关功能
+    # 参数: text: str, text1: str, text2: str
+    # 返回: 有返回值
+    # 函数: check_detokenizer
+    # 描述: check_detokenizer函数提供相关功能
+    # 参数: text: str, text1: str, text2: str
+    # 返回: 有返回值
     def check_detokenizer(text: str, text1: str, text2: str) -> bool:
         if text1 == text2:  # equal to TokenizerGroundtruth?
             return True
@@ -480,6 +773,14 @@ def compare_tokenizers(tokenizer1: TokenizerGroundtruth, tokenizer2: TokenizerLl
     logger.info(f"{generator.__qualname__}: end,  {t_encode1=:.3f} {t_encode2=:.3f}  {t_decode1=:.3f} {t_decode2=:.3f}  {t_total=:.3f}")
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: argv: list[str] | None = None
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: argv: list[str] | None = None
+    # 返回: 无返回值
 def main(argv: list[str] | None = None):
     parser = argparse.ArgumentParser()
     parser.add_argument("vocab_file", type=str, help="path to vocab 'gguf' file")

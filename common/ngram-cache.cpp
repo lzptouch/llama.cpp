@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ngram-cache.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/ngram-cache.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "ngram-cache.h"
 #include "common.h"
 #include "log.h"
@@ -21,6 +28,14 @@ void common_ngram_cache_update(common_ngram_cache & ngram_cache, int ngram_min, 
         const int64_t i_start = std::max(inp_size - nnew, ngram_size);
         for (int64_t i = i_start; i < inp_size; ++i) {
             const int64_t ngram_start = i - ngram_size;
+            // 函数: ngram
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: ngram
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             common_ngram ngram(&inp[ngram_start], ngram_size);
             const llama_token token = inp[i];
 
@@ -52,6 +67,14 @@ void common_ngram_cache_update(common_ngram_cache & ngram_cache, int ngram_min, 
 }
 
 // Helper function to get a token from the combined, speculative sequence of inp and draft.
+// 函数: get_token
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_token
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static llama_token get_token(const std::vector<llama_token> & inp, const std::vector<llama_token> & draft, const size_t i) {
     return i < inp.size() ? inp[i] : draft[1 + i - inp.size()];
 }
@@ -63,6 +86,14 @@ constexpr int draft_min_sample_size_strict[LLAMA_NGRAM_MAX] = { 4,  3,  2,  2};
 constexpr int     draft_min_percent_strict[LLAMA_NGRAM_MAX] = {75, 66, 66, 66};
 
 // Helper function that tries to draft a token from only the static ngram cache:
+// 函数: try_draft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: try_draft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static llama_token try_draft(common_ngram_cache & nc_static, const common_ngram ngram_static) {
     common_ngram_cache::iterator part_static_it = nc_static.find(ngram_static);
     if (part_static_it == nc_static.end()) {
@@ -197,6 +228,14 @@ void common_ngram_cache_draft(
     }
 }
 
+// 函数: common_ngram_cache_save
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_cache_save
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 void common_ngram_cache_save(common_ngram_cache & ngram_cache, const std::string & filename) {
     std::ofstream file_out(filename, std::ios::binary);
     for (std::pair<common_ngram, common_ngram_cache_part> item : ngram_cache) {
@@ -219,6 +258,14 @@ void common_ngram_cache_save(common_ngram_cache & ngram_cache, const std::string
     }
 }
 
+// 函数: common_ngram_cache_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_cache_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 common_ngram_cache common_ngram_cache_load(const std::string & filename) {
     std::ifstream hashmap_file(filename, std::ios::binary);
     if (!hashmap_file) {
@@ -257,6 +304,14 @@ common_ngram_cache common_ngram_cache_load(const std::string & filename) {
     return ngram_cache;
 }
 
+// 函数: common_ngram_cache_merge
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_ngram_cache_merge
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void common_ngram_cache_merge(common_ngram_cache & ngram_cache_target, common_ngram_cache & ngram_cache_add) {
     for (std::pair<common_ngram, common_ngram_cache_part> ngram_part : ngram_cache_add) {
         const common_ngram      ngram = ngram_part.first;

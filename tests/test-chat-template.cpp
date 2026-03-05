@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-chat-template.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-chat-template.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include <string>
 #include <vector>
 #include <sstream>
@@ -21,9 +28,33 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: main_automated_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main_automated_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main_automated_tests(void);
 
+// 函数: run_multiple
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run_multiple
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void run_multiple(std::string dir_path, bool stop_on_first_failure, json input, bool use_common = false);
+// 函数: run_single
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run_single
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void run_single(std::string contents, json input, bool use_common = false, const std::string & output_path = "");
 
 
@@ -57,6 +88,14 @@ std::string DEFAULT_JSON = R"({
     "add_generation_prompt": true
 })";
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     std::vector<std::string> args(argv, argv + argc);
 
@@ -125,6 +164,14 @@ int main(int argc, char ** argv) {
     return 0;
 }
 
+// 函数: run_multiple
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run_multiple
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void run_multiple(std::string dir_path, bool stop_on_first_fail, json input, bool use_common) {
     std::vector<std::string> failed_tests;
 
@@ -160,6 +207,14 @@ void run_multiple(std::string dir_path, bool stop_on_first_fail, json input, boo
 }
 
 
+// 函数: normalize_newlines
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: normalize_newlines
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 static std::string normalize_newlines(const std::string & s) {
 #ifdef _WIN32
   static const std::regex nl_regex("\r\n");
@@ -203,10 +258,26 @@ static jinja::value_string format_using_direct_engine(
     jinja::caps_get(ast);
 
     std::cout << "\n=== RUN ===\n";
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ctx
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     jinja::context ctx(template_str);
 
     jinja::global_from_json(ctx, input, true);
 
+    // 函数: runtime
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: runtime
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     jinja::runtime runtime(ctx);
     const jinja::value results = runtime.execute(ast);
     auto parts = runtime.gather_string_parts(results);
@@ -220,6 +291,14 @@ static jinja::value_string format_using_direct_engine(
 }
 
 
+// 函数: run_single
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run_single
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void run_single(std::string contents, json input, bool use_common, const std::string & output_path) {
     jinja::enable_debug(true);
 
@@ -270,6 +349,14 @@ void run_single(std::string contents, json input, bool use_common, const std::st
 
 #define U8C(x) (const char*)(u8##x)
 
+// 函数: simple_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: simple_msg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static common_chat_msg simple_msg(const std::string & role, const std::string & content) {
     common_chat_msg msg;
     msg.role = role;
@@ -277,6 +364,14 @@ static common_chat_msg simple_msg(const std::string & role, const std::string & 
     return msg;
 }
 
+// 函数: main_automated_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main_automated_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main_automated_tests(void) {
     // jinja::enable_debug(true);
 
@@ -290,6 +385,24 @@ int main_automated_tests(void) {
     };
 
     // std::string wrong = /* .template_str= */ u8"[gMASK]<sop>{% for item in messages %}{% if item['tools'] is defined %}<|system|>\n你是一个名为 ChatGLM 的人工智能助手。你是基于智谱AI训练的语言模型 GLM-4 模型开发的，你的任务是针对用户的问题和要求提供适当的答复和支持。\n\n# 可用工具{% set tools = item['tools'] %}{% for tool in tools %}{% if tool['type'] == 'function' %}\n\n## {{ tool['function']['name'] }}\n\n{{ tool['function'] | tojson(indent=4) }}\n......{% endif %}{% endfor %}{% endif %}{% if item['content'] %}<|{{ item['role'] }}|>{{ item['metadata'] }}\n{{ item['content'] }}{% endif %}{% endfor %}{% if add_generation_prompt %}<|assistant|>{% endif %}";
+    // 类: TestCase
+    // 描述: TestCase类提供相关功能
+    // 用途: 用于处理testcase相关的操作
+    // 类: TestCase
+    // 描述: TestCase类提供相关功能
+    // 用途: 用于处理testcase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
     struct TestCase {
         std::string name;
         std::string template_str;
@@ -581,6 +694,14 @@ int main_automated_tests(void) {
             formatted_chat.size()
         );
         formatted_chat.resize(res);
+        // 函数: output
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: output
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::string output(formatted_chat.data(), formatted_chat.size());
         if (output != test_case.expected_output) {
             std::cout << "Expected:\n" << test_case.expected_output << "\n";

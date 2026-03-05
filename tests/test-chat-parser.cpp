@@ -15,6 +15,14 @@
 #include "regex-partial.h"
 
 template <class T>
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_equals(const std::string_view label, const T & expected, const T & actual) {
     if (expected != actual) {
         std::cerr << label << std::endl;
@@ -26,13 +34,37 @@ static void assert_equals(const std::string_view label, const T & expected, cons
 }
 
 template <class T>
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_equals(const T & expected, const T & actual) {
     assert_equals("", expected, actual);
 }
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_equals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_equals(const char * expected, const std::string & actual) {
   return assert_equals<std::string>(expected, actual);
 }
 
+// 函数: assert_throws
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: assert_throws
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void assert_throws(const std::function<void()> & fn, const std::string & expected_exception_pattern = "") {
     try {
         fn();
@@ -51,6 +83,14 @@ static void assert_throws(const std::function<void()> & fn, const std::string & 
     throw std::runtime_error("Exception was expected but not thrown");
 }
 
+// 函数: test_reasoning
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_reasoning
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_reasoning() {
   //common_log_set_verbosity_thold(LOG_DEFAULT_DEBUG);
   {
@@ -162,6 +202,14 @@ static void test_reasoning() {
   }
 }
 
+// 函数: test_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_regex() {
   auto test_throws = [](const std::string & input, const std::string & regex, const std::string & expected_exception_pattern = "") {
     common_chat_msg_parser builder(input, /* is_partial= */ false, {});
@@ -240,6 +288,14 @@ const std::vector<std::string> barely_healable_jsons = {
   "{\"name\":\"1",
 };
 
+// 函数: test
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test(const std::string & input, bool is_partial, const std::vector<std::vector<std::string>> & args_paths, const std::vector<std::vector<std::string>> & content_paths, const std::string & expected) {
   common_chat_msg_parser builder(input, is_partial, {});
   auto js = builder.try_consume_json_with_dumped_args(args_paths, content_paths);
@@ -248,6 +304,14 @@ static void test(const std::string & input, bool is_partial, const std::vector<s
   assert_equals(expected, args_paths.size() == 1 && args_paths[0].empty() ? js->value.get<std::string>() : js->value.dump());
 }
 
+// 函数: test_deepseek_v3_1_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_deepseek_v3_1_tool_calls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_deepseek_v3_1_tool_calls() {
     //common_log_set_verbosity_thold(LOG_DEFAULT_DEBUG);
     // variant: happy path for when it works as the model card says it should
@@ -392,6 +456,14 @@ static void test_deepseek_v3_1_tool_calls() {
     }
 }
 
+// 函数: test_with_args
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_with_args
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_with_args(const std::string & input, const std::string & expected, bool parse_as_partial = true, bool is_partial = true) {
   common_chat_msg_parser builder(input, parse_as_partial, {});
   auto js = builder.try_consume_json_with_dumped_args({{"args"}}, {});
@@ -400,6 +472,14 @@ static void test_with_args(const std::string & input, const std::string & expect
   assert_equals(expected, js->value.dump());
 }
 
+// 函数: test_json_with_dumped_args_no_args
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_json_with_dumped_args_no_args
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_json_with_dumped_args_no_args() {
   // Normal JSON, nothing to heal, nothing to dump
   test("{\"name\": \"python\"}", false, {}, {}, "{\"name\":\"python\"}");

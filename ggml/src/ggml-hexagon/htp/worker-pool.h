@@ -13,6 +13,14 @@ extern "C" {
 #endif
 
 /// signature of callbacks to be invoked by worker threads
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*worker_callback_t)(unsigned int n, unsigned int i, void *);
 
 /// Typedef of worker_pool context

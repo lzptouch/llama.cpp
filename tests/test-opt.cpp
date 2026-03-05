@@ -15,6 +15,14 @@
 
 #define TEST_LOG(...)       printf(__VA_ARGS__)
 
+// 函数: almost_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: almost_equal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool almost_equal(const double a, const double b, const double atol) {
     return fabs(a - b) < atol;
 }
@@ -23,18 +31,186 @@ constexpr int64_t ne_datapoint = 2;
 constexpr int64_t ne_label     = 1;
 constexpr int64_t ndata        = 6;
 
+// 类: helper_ctx_data
+// 描述: helper_ctx_data类提供相关功能
+// 用途: 用于处理helper_ctx_data相关的操作
+// 类: helper_ctx_data
+// 描述: helper_ctx_data类提供相关功能
+// 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
 struct helper_ctx_data {
     std::vector<ggml_opt_dataset_t>   datasets_supervised;
     std::vector<struct ggml_tensor *> data_batch;
     std::vector<struct ggml_tensor *> labels_batch;
 
     ggml_opt_dataset_t       dataset_unsupervised;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context    * ctx_static;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context    * ctx_compute;
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
     struct ggml_opt_params   opt_params;
     ggml_opt_context_t       opt_ctx;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor     * inputs;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor     * weights;
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor     * outputs;
     ggml_backend_buffer_t    buf;
     ggml_opt_result_t        result;
@@ -42,6 +218,14 @@ struct helper_ctx_data {
 };
 
 // These default values make it easier to check optimization results vs. expected values.
+// 函数: helper_get_test_opt_pars
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: helper_get_test_opt_pars
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_opt_optimizer_params helper_get_test_opt_pars(void * userdata) {
     ggml_opt_optimizer_params result = ggml_opt_get_default_optimizer_params(userdata);
 
@@ -94,9 +278,81 @@ static helper_ctx_data helper_get_ctx_data(
         data[idata] = idata;
     }
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_static;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_compute;
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size   =*/ (2*ndata + 2)*ggml_tensor_overhead(),
             /*.mem_buffer =*/ nullptr,
@@ -105,6 +361,30 @@ static helper_ctx_data helper_get_ctx_data(
         ctx_static = ggml_init(params);
     }
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size   =*/ GGML_DEFAULT_GRAPH_SIZE*ggml_tensor_overhead() + 3*ggml_graph_overhead(),
             /*.mem_buffer =*/ nullptr,
@@ -120,15 +400,111 @@ static helper_ctx_data helper_get_ctx_data(
         labels_batch[ndata_batch-1] = ggml_new_tensor_1d(ctx_static, GGML_TYPE_F32, ndata_batch*ne_label);
     }
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * inputs = ggml_new_tensor_1d(ctx_static, GGML_TYPE_F32, nbatch_physical);
     ggml_set_name(inputs, "inputs");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * weights = ggml_new_tensor_1d(ctx_static, GGML_TYPE_F32, 1);
     ggml_set_name(weights, "weights");
     ggml_set_param(weights);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * intermediary = ggml_add(ctx_compute, inputs, weights);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * outputs = ggml_scale(ctx_compute, intermediary, 1.0f);
     ggml_set_name(outputs, "outputs");
 
@@ -139,6 +515,30 @@ static helper_ctx_data helper_get_ctx_data(
     GGML_ASSERT(nbatch_logical % nbatch_physical == 0);
     const int32_t opt_period = nbatch_logical / nbatch_physical;
 
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
     struct ggml_opt_params opt_params = ggml_opt_default_params(backend_sched, loss_type);
     opt_params.ctx_compute = ctx_compute;
     opt_params.inputs      = inputs;
@@ -158,6 +558,14 @@ static helper_ctx_data helper_get_ctx_data(
     return {datasets, data_batch, labels_batch, dataset_unsupervised, ctx_static, ctx_compute, opt_params, opt_ctx, inputs, weights, outputs, buf, result, result2};
 }
 
+// 函数: helper_free_ctx_data
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: helper_free_ctx_data
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void helper_free_ctx_data(struct helper_ctx_data ctx_data) {
     ggml_opt_result_free(ctx_data.result);
     ggml_opt_result_free(ctx_data.result2);
@@ -171,6 +579,14 @@ static void helper_free_ctx_data(struct helper_ctx_data ctx_data) {
     ggml_opt_dataset_free(ctx_data.dataset_unsupervised);
 }
 
+// 函数: print_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_ok(bool subtest_ok) {
     printf(subtest_ok ? "\033[1;32mOK\033[0m\n" : "\033[1;31mFAIL\033[0m\n");
 }
@@ -187,6 +603,14 @@ static void helper_after_test(
     ntest++;
 }
 
+// 函数: print_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: print_ok
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void print_ok(const char * func, bool subtest_ok, int & npass, int & ntest, const char * args = "") {
     printf("  %s(%s): ", func, args);
     print_ok(subtest_ok);
@@ -201,6 +625,30 @@ static std::pair<int, int> test_dataset(
     int ntest = 0;
     int npass = 0;
 
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
     struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend);
 
     for (int64_t ndata_shard = 1; ndata_shard <= ndata; ++ndata_shard) {
@@ -216,7 +664,55 @@ static std::pair<int, int> test_dataset(
             }
             bool subtest_ok = true;
 
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor *   data_batch =   cd.data_batch[ndata_batch-1];
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * labels_batch = cd.labels_batch[ndata_batch-1];
 
             std::vector<float>   data(ggml_nelements(  data_batch));
@@ -286,6 +782,30 @@ static std::pair<int, int> test_grad(
     int ntest = 0;
     int npass = 0;
 
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
     struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend, /*init_opt_ctx =*/ true, /*optimizer_defaults =*/ false,
     /*nbatch_logical =*/ 999999, /*nbatch_physical =*/ 1);
 
@@ -340,7 +860,55 @@ static std::pair<int, int> test_forward_backward(
     int ntest = 0;
     int npass = 0;
 
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
     struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend, /*init_opt_ctx =*/ true, /*optimizer_defaults =*/ false);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * loss = ggml_opt_loss(cd.opt_ctx);
 
     std::vector<float> loss_history(ndata);
@@ -474,6 +1042,30 @@ static std::pair<int, int> test_epoch_vs_fit(
     float weights_fit;
 
     {
+        // 类: helper_ctx_data
+        // 描述: helper_ctx_data类提供相关功能
+        // 用途: 用于处理helper_ctx_data相关的操作
+        // 类: helper_ctx_data
+        // 描述: helper_ctx_data类提供相关功能
+        // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
         struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend, /*init_opt_ctx =*/ true);
         ggml_opt_dataset_t dataset = cd.dataset_unsupervised;
 
@@ -485,6 +1077,30 @@ static std::pair<int, int> test_epoch_vs_fit(
         helper_free_ctx_data(cd);
     }
     {
+        // 类: helper_ctx_data
+        // 描述: helper_ctx_data类提供相关功能
+        // 用途: 用于处理helper_ctx_data相关的操作
+        // 类: helper_ctx_data
+        // 描述: helper_ctx_data类提供相关功能
+        // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
         struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend, /*init_opt_ctx =*/ false);
         ggml_opt_dataset_t dataset = cd.dataset_unsupervised;
 
@@ -517,7 +1133,55 @@ static std::pair<int, int> test_idata_split(
     int ntest = 0;
     int npass = 0;
 
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
     struct helper_ctx_data cd = helper_get_ctx_data(optim, backend_sched, backend, /*init_opt_ctx =*/ true, /*optimizer_defaults =*/ false);
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * loss = ggml_opt_loss(cd.opt_ctx);
     const int idata_split = ndata * 2/3;
 
@@ -621,6 +1285,30 @@ static std::pair<int, int> test_gradient_accumulation(
     int ntest = 0;
     int npass = 0;
 
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 类: helper_ctx_data
+    // 描述: helper_ctx_data类提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
+    // 结构体: helper_ctx_data
+    // 描述: helper_ctx_data结构体提供相关功能
+    // 用途: 用于处理helper_ctx_data相关的操作
     struct helper_ctx_data cd = helper_get_ctx_data(
         optim,
         backend_sched, backend, /*init_opt_ctx =*/ true, /*optimizer_defaults =*/ false, /*nbatch_logical =*/ 6, nbatch_physical, loss_type);
@@ -734,6 +1422,14 @@ float constexpr g_sgd_lr = 1e-4f;
 
 int constexpr g_sgd_epochs = 900;
 
+// 函数: helper_get_regression_opt_pars
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: helper_get_regression_opt_pars
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_opt_optimizer_params helper_get_regression_opt_pars(void * userdata) {
     int64_t epoch = *(int64_t*)userdata;
     ggml_opt_optimizer_params result = ggml_opt_get_default_optimizer_params(nullptr);
@@ -755,6 +1451,14 @@ static std::pair<int, int> test_regression(
     constexpr float a_true = 1.2f;
     constexpr float b_true = 3.4f;
 
+    // 函数: gen
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: gen
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::mt19937 gen(12345);
     std::normal_distribution<float> nd{0.0f, 0.1f};
 
@@ -775,9 +1479,81 @@ static std::pair<int, int> test_regression(
         labels[idata] = y;
     }
 
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_static;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_compute;
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size   =*/ 3*ggml_tensor_overhead(),
             /*.mem_buffer =*/ nullptr,
@@ -786,6 +1562,30 @@ static std::pair<int, int> test_regression(
         ctx_static = ggml_init(params);
     }
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size   =*/ GGML_DEFAULT_GRAPH_SIZE*ggml_tensor_overhead() + 3*ggml_graph_overhead(),
             /*.mem_buffer =*/ nullptr,
@@ -795,17 +1595,113 @@ static std::pair<int, int> test_regression(
     }
 
     // The first dimension is the dimension of the datapoints, the second dimension is the number of datapoints.
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * x = ggml_new_tensor_2d(ctx_static, GGML_TYPE_F32, 1, ndata_regression);
     ggml_set_name(x, "x");
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * a = ggml_new_tensor_1d(ctx_static, GGML_TYPE_F32, 1);
     ggml_set_name(a, "a");
     ggml_set_param(a);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * b = ggml_new_tensor_1d(ctx_static, GGML_TYPE_F32, 1);
     ggml_set_name(b, "b");
     ggml_set_param(b);
 
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 类: ggml_tensor
+    // 描述: ggml_tensor类提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
     struct ggml_tensor * f = ggml_add(ctx_compute, ggml_mul(ctx_compute, x, a), b);
     ggml_set_name(f, "f");
 
@@ -896,6 +1792,14 @@ static std::pair<int, int> test_backend(
 }
 
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(void) {
     ggml_log_set(nullptr, nullptr);
     ggml_backend_load_all();
@@ -940,6 +1844,30 @@ int main(void) {
 
             bool skip;
             {
+                // 类: ggml_init_params
+                // 描述: ggml_init_params类提供相关功能
+                // 用途: 用于处理ggml_init_params相关的操作
+                // 类: ggml_init_params
+                // 描述: ggml_init_params类提供相关功能
+                // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
                 struct ggml_init_params params = {
                     /*.mem_size   =*/ 6*ggml_tensor_overhead(),
                     /*.mem_buffer =*/ nullptr,

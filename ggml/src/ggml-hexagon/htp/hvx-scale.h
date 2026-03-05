@@ -32,26 +32,66 @@
         }                                                                            \
     } while(0)
 
+// 函数: hvx_scale_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale) {
     assert((size_t) dst % 128 == 0);
     assert((size_t) src % 128 == 0);
     hvx_scale_f32_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_scale_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale) {
     assert((size_t) dst % 128 == 0);
     hvx_scale_f32_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_scale_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale) {
     assert((size_t) src % 128 == 0);
     hvx_scale_f32_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_scale_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale) {
     hvx_scale_f32_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_scale_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_f32(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale) {
     if (((size_t) dst & 127) == 0) {
         if (((size_t) src & 127) == 0) {
@@ -94,26 +134,66 @@ static inline void hvx_scale_f32(uint8_t * restrict dst, const uint8_t * restric
         }                                                                            \
     } while(0)
 
+// 函数: hvx_scale_offset_f32_aa
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_offset_f32_aa
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_offset_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale, const float offset) {
     assert((size_t) dst % 128 == 0);
     assert((size_t) src % 128 == 0);
     hvx_scale_offset_f32_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_scale_offset_f32_au
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_offset_f32_au
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_offset_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale, const float offset) {
     assert((size_t) dst % 128 == 0);
     hvx_scale_offset_f32_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_scale_offset_f32_ua
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_offset_f32_ua
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_offset_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale, const float offset) {
     assert((size_t) src % 128 == 0);
     hvx_scale_offset_f32_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_scale_offset_f32_uu
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_offset_f32_uu
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_offset_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale, const float offset) {
     hvx_scale_offset_f32_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_scale_offset_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_scale_offset_f32
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_scale_offset_f32(uint8_t * restrict dst, const uint8_t * restrict src, const int n, const float scale, const float offset) {
     if (((size_t) dst & 127) == 0) {
         if (((size_t) src & 127) == 0) {

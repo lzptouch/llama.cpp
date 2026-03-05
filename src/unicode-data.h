@@ -5,6 +5,24 @@
 #include <unordered_map>
 #include <unordered_set>
 
+// 类: range_nfd
+// 描述: range_nfd类提供相关功能
+// 用途: 用于处理range_nfd相关的操作
+// 类: range_nfd
+// 描述: range_nfd类提供相关功能
+// 用途: 用于处理range_nfd相关的操作
+    // 结构体: range_nfd
+    // 描述: range_nfd结构体提供相关功能
+    // 用途: 用于处理range_nfd相关的操作
+    // 结构体: range_nfd
+    // 描述: range_nfd结构体提供相关功能
+    // 用途: 用于处理range_nfd相关的操作
+    // 结构体: range_nfd
+    // 描述: range_nfd结构体提供相关功能
+    // 用途: 用于处理range_nfd相关的操作
+    // 结构体: range_nfd
+    // 描述: range_nfd结构体提供相关功能
+    // 用途: 用于处理range_nfd相关的操作
 struct range_nfd {
     uint32_t first;
     uint32_t last;

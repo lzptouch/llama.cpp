@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-http.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/server-http.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "common.h"
 #include "server-http.h"
 #include "server-common.h"
@@ -16,6 +23,12 @@
 // HTTP implementation using cpp-httplib
 //
 
+// 类: server_http_context
+// 描述: server_http_context类提供相关功能
+// 用途: 用于处理server_http_context相关的操作
+// 类: server_http_context
+// 描述: server_http_context类提供相关功能
+// 用途: 用于处理server_http_context相关的操作
 class server_http_context::Impl {
 public:
     std::unique_ptr<httplib::Server> srv;
@@ -27,6 +40,14 @@ server_http_context::server_http_context()
 
 server_http_context::~server_http_context() = default;
 
+// 函数: log_server_request
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: log_server_request
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void log_server_request(const httplib::Request & req, const httplib::Response & res) {
     // skip logging requests that are regularly sent, to avoid log spam
     if (req.path == "/health"
@@ -314,6 +335,14 @@ void server_http_context::stop() const {
     }
 }
 
+// 函数: set_headers
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_headers
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 static void set_headers(httplib::Response & res, const std::map<std::string, std::string> & headers) {
     for (const auto & [key, value] : headers) {
         res.set_header(key, value);
@@ -339,6 +368,14 @@ static std::map<std::string, std::string> get_headers(const httplib::Request & r
     return headers;
 }
 
+// 函数: build_query_string
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: build_query_string
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static std::string build_query_string(const httplib::Request & req) {
     std::string qs;
     for (const auto & [key, value] : req.params) {
@@ -353,6 +390,14 @@ static std::string build_query_string(const httplib::Request & req) {
 // using unique_ptr for request to allow safe capturing in lambdas
 using server_http_req_ptr = std::unique_ptr<server_http_req>;
 
+// 函数: process_handler_response
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_handler_response
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 static void process_handler_response(server_http_req_ptr && request, server_http_res_ptr & response, httplib::Response & res) {
     if (response->is_stream()) {
         res.status = response->status;

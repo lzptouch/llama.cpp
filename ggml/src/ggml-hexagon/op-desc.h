@@ -8,6 +8,24 @@
 #include <string>
 #include <stdio.h>
 
+// 类: op_desc
+// 描述: op_desc类提供相关功能
+// 用途: 用于处理op_desc相关的操作
+// 类: op_desc
+// 描述: op_desc类提供相关功能
+// 用途: 用于处理op_desc相关的操作
+    // 结构体: op_desc
+    // 描述: op_desc结构体提供相关功能
+    // 用途: 用于处理op_desc相关的操作
+    // 结构体: op_desc
+    // 描述: op_desc结构体提供相关功能
+    // 用途: 用于处理op_desc相关的操作
+    // 结构体: op_desc
+    // 描述: op_desc结构体提供相关功能
+    // 用途: 用于处理op_desc相关的操作
+    // 结构体: op_desc
+    // 描述: op_desc结构体提供相关功能
+    // 用途: 用于处理op_desc相关的操作
 struct op_desc {
     char strides[64 * GGML_MAX_SRC];
     char dims[64 * GGML_MAX_SRC];
@@ -15,6 +33,14 @@ struct op_desc {
     char buffs[64 * GGML_MAX_SRC];
     char names[64 * GGML_MAX_SRC];
 
+    // 函数: format_tensor_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_tensor_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int format_tensor_dims(char * str, const struct ggml_tensor * t) {
         if (t->ne[2] == 1 && t->ne[3] == 1) {
             return sprintf(str, "%d:%d", (int) t->ne[0], (int) t->ne[1]);
@@ -23,6 +49,14 @@ struct op_desc {
         }
     }
 
+    // 函数: format_op_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_op_dims
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format_op_dims(char * str, const struct ggml_tensor * t) {
         char * p = str;
 
@@ -45,6 +79,14 @@ struct op_desc {
         p += sprintf(p, "%s", self);
     }
 
+    // 函数: format_tensor_strides
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_tensor_strides
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int format_tensor_strides(char * str, const struct ggml_tensor * t) {
         const char * c = ggml_is_contiguous(t) ? "" : "!";
 
@@ -55,6 +97,14 @@ struct op_desc {
         }
     }
 
+    // 函数: format_op_strides
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_op_strides
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format_op_strides(char * str, const struct ggml_tensor * t) {
         char * p = str;
 
@@ -77,6 +127,14 @@ struct op_desc {
         p += sprintf(p, "%s", self);
     }
 
+    // 函数: format_op_types
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_op_types
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format_op_types(char * str, const struct ggml_tensor * t) {
         char * p = str;
 
@@ -95,6 +153,14 @@ struct op_desc {
         p += sprintf(p, "%s", ggml_type_name(t->type));
     }
 
+    // 函数: tensor_buff_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tensor_buff_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const char * tensor_buff_name(const struct ggml_tensor * t) {
         if (t->buffer) {
             return ggml_backend_buffer_name(t->buffer);
@@ -102,6 +168,14 @@ struct op_desc {
         return "NONE";
     }
 
+    // 函数: format_op_buffs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_op_buffs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format_op_buffs(char * str, const struct ggml_tensor * t) {
         char * p = str;
 
@@ -120,6 +194,14 @@ struct op_desc {
         p += sprintf(p, "%s", tensor_buff_name(t));
     }
 
+    // 函数: format_op_names
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format_op_names
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format_op_names(char * str, const struct ggml_tensor * t) {
         char * p = str;
 
@@ -138,6 +220,14 @@ struct op_desc {
         p += sprintf(p, "%s", t->name);
     }
 
+    // 函数: format
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: format
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void format(const ggml_tensor * op) {
         format_op_dims(dims, op);
         format_op_strides(strides, op);

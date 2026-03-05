@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: compare-logits.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/causal/compare-logits.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import sys
@@ -9,6 +16,14 @@ import os
 sys.path.insert(0, str(Path(__file__).parent.parent / "utils"))
 from common import get_model_name_from_env_path, compare_tokens, exit_with_warning  # type: ignore[import-not-found]
 
+    # 函数: quick_logits_check
+    # 描述: quick_logits_check函数提供相关功能
+    # 参数: pytorch_file, llamacpp_file
+    # 返回: 无返回值
+    # 函数: quick_logits_check
+    # 描述: quick_logits_check函数提供相关功能
+    # 参数: pytorch_file, llamacpp_file
+    # 返回: 无返回值
 def quick_logits_check(pytorch_file, llamacpp_file):
     """Lightweight sanity check before NMSE"""
 
@@ -38,6 +53,14 @@ def quick_logits_check(pytorch_file, llamacpp_file):
 
     return True
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     model_path = os.environ.get('MODEL_PATH')
     model_name = get_model_name_from_env_path('MODEL_PATH')

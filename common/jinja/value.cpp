@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: value.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/value.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "runtime.h"
 #include "value.h"
 
@@ -43,6 +50,14 @@ value func_args::get_pos(size_t pos) const {
     if (count() > pos) {
         return args[pos];
     }
+    // 函数: raised_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: raised_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     throw raised_exception("Function '" + func_name + "' expected at least " + std::to_string(pos + 1) + " arguments, got " + std::to_string(count()));
 }
 
@@ -69,6 +84,14 @@ const std::vector<value> & func_args::get_args() const {
  * Function that mimics Python's array slicing.
  */
 template<typename T>
+// 函数: slice
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: slice
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static T slice(const T & array, int64_t start, int64_t stop, int64_t step = 1) {
     int64_t len = static_cast<int64_t>(array.size());
     int64_t direction = (step > 0) ? 1 : ((step < 0) ? -1 : 0);
@@ -116,6 +139,14 @@ static T slice(const T & array, int64_t start, int64_t stop, int64_t step = 1) {
 }
 
 template<typename T>
+// 函数: empty_value_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: empty_value_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value empty_value_fn(const func_args &) {
     if constexpr (std::is_same_v<T, value_int>) {
         return mk_val<T>(0);
@@ -128,6 +159,14 @@ static value empty_value_fn(const func_args &) {
     }
 }
 template<typename T>
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value test_type_fn(const func_args & args) {
     args.ensure_count(1);
     bool is_type = is_val<T>(args.get_pos(0));
@@ -135,6 +174,14 @@ static value test_type_fn(const func_args & args) {
     return mk_val<value_bool>(is_type);
 }
 template<typename T, typename U>
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value test_type_fn(const func_args & args) {
     args.ensure_count(1);
     bool is_type = is_val<T>(args.get_pos(0)) || is_val<U>(args.get_pos(0));
@@ -142,6 +189,14 @@ static value test_type_fn(const func_args & args) {
     return mk_val<value_bool>(is_type);
 }
 template<typename T, typename U, typename V>
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_type_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value test_type_fn(const func_args & args) {
     args.ensure_count(1);
     bool is_type = is_val<T>(args.get_pos(0)) || is_val<U>(args.get_pos(0)) || is_val<V>(args.get_pos(0));
@@ -149,11 +204,27 @@ static value test_type_fn(const func_args & args) {
     return mk_val<value_bool>(is_type);
 }
 template<value_compare_op op>
+// 函数: test_compare_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_compare_fn
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value test_compare_fn(const func_args & args) {
     args.ensure_count(2, 2);
     return mk_val<value_bool>(value_compare(args.get_pos(0), args.get_pos(1), op));
 }
 
+// 函数: tojson
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tojson
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value tojson(const func_args & args) {
     args.ensure_count(1, 5);
     value val_ascii      = args.get_kwarg_or_pos("ensure_ascii", 1);
@@ -183,6 +254,14 @@ static value tojson(const func_args & args) {
 }
 
 template<bool is_reject>
+// 函数: selectattr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: selectattr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value selectattr(const func_args & args) {
     args.ensure_count(2, 4);
     args.ensure_vals<value_array, value_string, value_string, value_string>(true, true, false, false);
@@ -259,6 +338,14 @@ static value selectattr(const func_args & args) {
     return out;
 }
 
+// 函数: default_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: default_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value default_value(const func_args & args) {
     args.ensure_count(2, 3);
     value val_check = args.get_kwarg_or_pos("boolean", 2);
@@ -274,12 +361,28 @@ const func_builtins & global_builtins() {
         {"raise_exception", [](const func_args & args) -> value {
             args.ensure_vals<value_string>();
             std::string msg = args.get_pos(0)->as_string().str();
+            // 函数: raised_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: raised_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw raised_exception("Jinja Exception: " + msg);
         }},
         {"namespace", [](const func_args & args) -> value {
             auto out = mk_val<value_object>();
             for (const auto & arg : args.get_args()) {
                 if (!is_val<value_kwarg>(arg)) {
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw raised_exception("namespace() arguments must be kwargs");
                 }
                 auto kwarg = cast_val<value_kwarg>(arg);
@@ -297,6 +400,14 @@ const func_builtins & global_builtins() {
             if (std::strftime(buf, sizeof(buf), format.c_str(), std::localtime(&args.ctx.current_time))) {
                 return mk_val<value_string>(std::string(buf));
             } else {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("strftime_now: failed to format time");
             }
         }},
@@ -325,6 +436,14 @@ const func_builtins & global_builtins() {
 
             auto out = mk_val<value_array>();
             if (step == 0) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("range() step argument must not be zero");
             }
             if (step > 0) {
@@ -416,6 +535,14 @@ const func_builtins & global_builtins() {
             }
             if (is_val<value_string>(haystack)) {
                 if (!is_val<value_string>(needle)) {
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw raised_exception("'in' test expects args[1] as string when args[0] is string, got args[1] as " + needle->type());
                 }
                 return mk_val<value_bool>(
@@ -424,6 +551,14 @@ const func_builtins & global_builtins() {
             if (is_val<value_object>(haystack)) {
                 return mk_val<value_bool>(haystack->has_key(needle));
             }
+            // 函数: raised_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: raised_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw raised_exception("'in' test expects iterable as first argument, got " + haystack->type());
         }},
         {"test_is_test", [](const func_args & args) -> value {
@@ -437,14 +572,38 @@ const func_builtins & global_builtins() {
         {"test_is_sameas", [](const func_args & args) -> value {
             // Check if an object points to the same memory address as another object
             (void)args;
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("sameas test not implemented");
         }},
         {"test_is_escaped", [](const func_args & args) -> value {
             (void)args;
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("escaped test not implemented");
         }},
         {"test_is_filter", [](const func_args & args) -> value {
             (void)args;
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("filter test not implemented");
         }},
     };
@@ -491,11 +650,27 @@ const func_builtins & value_float_t::get_builtins() const {
     return builtins;
 }
 
+// 函数: string_startswith
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_startswith
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool string_startswith(const std::string & str, const std::string & prefix) {
     if (str.length() < prefix.length()) return false;
     return str.compare(0, prefix.length(), prefix) == 0;
 }
 
+// 函数: string_endswith
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_endswith
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool string_endswith(const std::string & str, const std::string & suffix) {
     if (str.length() < suffix.length()) return false;
     return str.compare(str.length() - suffix.length(), suffix.length(), suffix) == 0;
@@ -517,6 +692,14 @@ const func_builtins & value_string_t::get_builtins() const {
         {"strip", [](const func_args & args) -> value {
             value val_input = args.get_pos(0);
             if (!is_val<value_string>(val_input)) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("strip() first argument must be a string");
             }
             value val_chars = args.get_kwarg_or_pos("chars", 1);
@@ -575,6 +758,14 @@ const func_builtins & value_string_t::get_builtins() const {
             args.ensure_count(1, 3);
             value val_input = args.get_pos(0);
             if (!is_val<value_string>(val_input)) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("split() first argument must be a string");
             }
             std::string str = val_input->as_string().str();
@@ -599,6 +790,14 @@ const func_builtins & value_string_t::get_builtins() const {
             args.ensure_count(1, 3);
             value val_input = args.get_pos(0);
             if (!is_val<value_string>(val_input)) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("rsplit() first argument must be a string");
             }
             std::string str = val_input->as_string().str();
@@ -627,6 +826,14 @@ const func_builtins & value_string_t::get_builtins() const {
             std::string new_str = args.get_pos(2)->as_string().str();
             int64_t count = args.count() > 3 ? args.get_pos(3)->as_int() : -1;
             if (count > 0) {
+                // 函数: not_implemented_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: not_implemented_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw not_implemented_exception("String replace with count argument not implemented");
             }
             size_t pos = 0;
@@ -644,6 +851,14 @@ const func_builtins & value_string_t::get_builtins() const {
             value val_base    = args.get_kwarg_or_pos("base",    2);
             const int base = val_base->is_undefined() ? 10 : val_base->as_int();
             if (is_val<value_string>(val_input) == false) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("int() first argument must be a string");
             }
             std::string str = val_input->as_string().str();
@@ -671,6 +886,14 @@ const func_builtins & value_string_t::get_builtins() const {
         {"default", [](const func_args & args) -> value {
             value input = args.get_pos(0);
             if (!is_val<value_string>(input)) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("default() first argument must be a string");
             }
             value default_val = mk_val<value_string>("");
@@ -707,6 +930,14 @@ const func_builtins & value_string_t::get_builtins() const {
                 step = arg2->as_int();
             }
             if (step == 0) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("slice step cannot be zero");
             }
             auto input = args.get_pos(0);
@@ -728,6 +959,14 @@ const func_builtins & value_string_t::get_builtins() const {
             const bool first = args.get_kwarg_or_pos("first", 2)->as_bool(); // undefined == false
             const bool blank = args.get_kwarg_or_pos("blank", 3)->as_bool(); // undefined == false
             if (!is_val<value_string>(val_input)) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("indent() first argument must be a string");
             }
             std::string indent;
@@ -763,6 +1002,14 @@ const func_builtins & value_string_t::get_builtins() const {
             return res;
         }},
         {"join", [](const func_args &) -> value {
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("String join builtin not implemented");
         }},
     };
@@ -851,6 +1098,14 @@ const func_builtins & value_array_t::get_builtins() const {
                 step = arg2->as_int();
             }
             if (step == 0) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("slice step cannot be zero");
             }
             auto arr = slice(val->as_array(), start, stop, step);
@@ -863,6 +1118,14 @@ const func_builtins & value_array_t::get_builtins() const {
         {"join", [](const func_args & args) -> value {
             args.ensure_count(1, 3);
             if (!is_val<value_array>(args.get_pos(0))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("join() first argument must be an array");
             }
             value val_delim = args.get_kwarg_or_pos("d",         1);
@@ -870,6 +1133,14 @@ const func_builtins & value_array_t::get_builtins() const {
             const auto & arr = args.get_pos(0)->as_array();
             const bool attr_is_int = is_val<value_int>(attribute);
             if (!attribute->is_undefined() && !is_val<value_string>(attribute) && !attr_is_int) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("join() attribute must be string or integer");
             }
             const int64_t attr_int = attr_is_int ? attribute->as_int() : 0;
@@ -885,6 +1156,14 @@ const func_builtins & value_array_t::get_builtins() const {
                     }
                 }
                 if (!is_val<value_string>(val_arr) && !is_val<value_int>(val_arr) && !is_val<value_float>(val_arr)) {
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: raised_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw raised_exception("join() can only join arrays of strings or numerics");
                 }
                 result += val_arr->as_string().str();
@@ -907,15 +1186,39 @@ const func_builtins & value_array_t::get_builtins() const {
         {"map", [](const func_args & args) -> value {
             args.ensure_count(2);
             if (!is_val<value_array>(args.get_pos(0))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("map: first argument must be an array");
             }
             if (!is_val<value_kwarg>(args.get_args().at(1))) {
+                // 函数: not_implemented_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: not_implemented_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw not_implemented_exception("map: filter-mapping not implemented");
             }
             value val       = args.get_pos(0);
             value attribute = args.get_kwarg_or_pos("attribute", 1);
             const bool attr_is_int = is_val<value_int>(attribute);
             if (!is_val<value_string>(attribute) && !attr_is_int) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("map: attribute must be string or integer");
             }
             const int64_t attr_int = attr_is_int ? attribute->as_int() : 0;
@@ -936,6 +1239,14 @@ const func_builtins & value_array_t::get_builtins() const {
         {"append", [](const func_args & args) -> value {
             args.ensure_count(2);
             if (!is_val<value_array>(args.get_pos(0))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("append: first argument must be an array");
             }
             const value_array_t * arr = cast_val<value_array>(args.get_pos(0));
@@ -956,6 +1267,14 @@ const func_builtins & value_array_t::get_builtins() const {
         {"sort", [](const func_args & args) -> value {
             args.ensure_count(1, 4);
             if (!is_val<value_array>(args.get_pos(0))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("sort: first argument must be an array");
             }
             value val         = args.get_pos(0);
@@ -979,9 +1298,25 @@ const func_builtins & value_array_t::get_builtins() const {
                         val_a = a->at(attribute);
                         val_b = b->at(attribute);
                     } else {
+                        // 函数: raised_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: raised_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         throw raised_exception("sort: unsupported object attribute comparison between " + a->type() + " and " + b->type());
                     }
                 }
+                // 函数: value_compare
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: value_compare
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return value_compare(val_a, val_b, reverse ? value_compare_op::gt : value_compare_op::lt);
             });
             return is_val<value_tuple>(val) ? mk_val<value_tuple>(std::move(arr)) : mk_val<value_array>(std::move(arr));
@@ -994,6 +1329,14 @@ const func_builtins & value_array_t::get_builtins() const {
             return is_val<value_tuple>(val) ? mk_val<value_tuple>(std::move(arr)) : mk_val<value_array>(std::move(arr));
         }},
         {"unique", [](const func_args &) -> value {
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("Array unique builtin not implemented");
         }},
     };
@@ -1012,9 +1355,25 @@ const func_builtins & value_object_t::get_builtins() const {
         {"get", [](const func_args & args) -> value {
             args.ensure_count(2, 3);
             if (!is_val<value_object>(args.get_pos(0))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("get: first argument must be an object");
             }
             if (!is_val<value_string>(args.get_pos(1))) {
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: raised_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw raised_exception("get: second argument must be a string (key)");
             }
             value default_val = mk_val<value_none>();
@@ -1071,6 +1430,14 @@ const func_builtins & value_object_t::get_builtins() const {
         {"tojson", [](const func_args & args) -> value {
             args.ensure_vals<value_object>();
             // use global to_json
+            // 函数: global_builtins
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: global_builtins
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return global_builtins().at("tojson")(args);
         }},
         {"dictsort", [](const func_args & args) -> value {
@@ -1085,14 +1452,38 @@ const func_builtins & value_object_t::get_builtins() const {
             auto result = mk_val<value_object>(val_input); // copy
             std::sort(result->val_obj.begin(), result->val_obj.end(), [&](const auto & a, const auto & b) {
                 if (by_value) {
+                    // 函数: value_compare
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: value_compare
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return value_compare(a.second, b.second, reverse ? value_compare_op::gt : value_compare_op::lt);
                 } else {
+                    // 函数: value_compare
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: value_compare
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return value_compare(a.first, b.first, reverse ? value_compare_op::gt : value_compare_op::lt);
                 }
             });
             return result;
         }},
         {"join", [](const func_args &) -> value {
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: not_implemented_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw not_implemented_exception("object join not implemented");
         }},
     };
@@ -1162,6 +1553,14 @@ const func_builtins & value_undefined_t::get_builtins() const {
 //////////////////////////////////
 
 
+// 函数: from_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: from_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value from_json(const nlohmann::ordered_json & j, bool mark_input) {
     if (j.is_null()) {
         return mk_val<value_none>();
@@ -1195,6 +1594,14 @@ static value from_json(const nlohmann::ordered_json & j, bool mark_input) {
 }
 
 // compare operator for value_t
+// 函数: value_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: value_compare
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool value_compare(const value & a, const value & b, value_compare_op op) {
     auto cmp = [&]() {
         // compare numeric types
@@ -1259,6 +1666,14 @@ bool value_compare(const value & a, const value & b, value_compare_op op) {
 }
 
 template<>
+// 函数: global_from_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: global_from_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void global_from_json(context & ctx, const nlohmann::ordered_json & json_obj, bool mark_input) {
     // printf("global_from_json: %s\n" , json_obj.dump(2).c_str());
     if (json_obj.is_null() || !json_obj.is_object()) {
@@ -1272,6 +1687,14 @@ void global_from_json(context & ctx, const nlohmann::ordered_json & json_obj, bo
 
 // recursively convert value to JSON string
 // TODO: avoid circular references
+// 函数: value_to_json_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: value_to_json_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void value_to_json_internal(std::ostringstream & oss, const value & val, int curr_lvl, int indent, const std::string_view item_sep, const std::string_view key_sep) {
     auto indent_str = [indent, curr_lvl]() -> std::string {
         return (indent > 0) ? std::string(curr_lvl * indent, ' ') : "";
@@ -1351,6 +1774,14 @@ static void value_to_json_internal(std::ostringstream & oss, const value & val, 
     }
 }
 
+// 函数: value_to_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: value_to_json
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string value_to_json(const value & val, int indent, const std::string_view item_sep, const std::string_view key_sep) {
     std::ostringstream oss;
     value_to_json_internal(oss, val, 0, indent, item_sep, key_sep);
@@ -1359,6 +1790,14 @@ std::string value_to_json(const value & val, int indent, const std::string_view 
 }
 
 // TODO: avoid circular references
+// 函数: value_to_string_repr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: value_to_string_repr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string value_to_string_repr(const value & val) {
     if (is_val<value_string>(val)) {
         const std::string val_str = val->as_string().str();

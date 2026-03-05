@@ -19,6 +19,14 @@
 #define EXP_RANGE_R (0x41a00000)  // 20.0
 #define EXP_RANGE_L (0xc1a00000)  // -20.0
 
+// 函数: hvx_vec_exp_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_exp_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_exp_f32(HVX_Vector in_vec) {
     HVX_Vector z_qf32_v;
     HVX_Vector x_v;
@@ -137,6 +145,14 @@ static inline HVX_Vector hvx_vec_exp_f32(HVX_Vector in_vec) {
     return y_v;
 }
 
+// 函数: hvx_vec_exp_f32_guard
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_exp_f32_guard
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_exp_f32_guard(HVX_Vector in_vec, HVX_Vector max_exp, HVX_Vector inf) {
     const HVX_VectorPred pred0 = Q6_Q_vcmp_gt_VsfVsf(in_vec, max_exp);
 
@@ -145,6 +161,14 @@ static inline HVX_Vector hvx_vec_exp_f32_guard(HVX_Vector in_vec, HVX_Vector max
     return Q6_V_vmux_QVV(pred0, inf, out);
 }
 
+// 函数: hvx_exp_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_exp_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_exp_f32(const uint8_t * restrict src, uint8_t * restrict dst, const int num_elems, bool negate) {
     int left_over       = num_elems & (VLEN_FP32 - 1);
     int num_elems_whole = num_elems - left_over;

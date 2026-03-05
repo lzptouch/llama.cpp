@@ -11,6 +11,24 @@ typedef struct      ggml_backend_buffer * ggml_backend_buffer_t;
 typedef struct             ggml_backend * ggml_backend_t;
 
 // Tensor allocator
+// 类: ggml_tallocr
+// 描述: ggml_tallocr类提供相关功能
+// 用途: 用于处理ggml_tallocr相关的操作
+// 类: ggml_tallocr
+// 描述: ggml_tallocr类提供相关功能
+// 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
+    // 结构体: ggml_tallocr
+    // 描述: ggml_tallocr结构体提供相关功能
+    // 用途: 用于处理ggml_tallocr相关的操作
 struct ggml_tallocr {
     ggml_backend_buffer_t buffer;
     void * base;
@@ -30,6 +48,24 @@ GGML_API enum ggml_status    ggml_tallocr_alloc(struct ggml_tallocr * talloc, st
     ggml_gallocr_reserve(galloc, build_graph(max_batch));
 
     // allocate the graph
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph = build_graph(batch);
     ggml_gallocr_alloc_graph(galloc, graph);
 
@@ -57,12 +93,48 @@ GGML_API void           ggml_gallocr_free(ggml_gallocr_t galloc);
 GGML_API bool ggml_gallocr_reserve(ggml_gallocr_t galloc, struct ggml_cgraph * graph);
 GGML_API void ggml_gallocr_reserve_n_size(
     ggml_gallocr_t galloc,
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph,
     const int * node_buffer_ids,
     const int * leaf_buffer_ids,
     size_t * sizes);
 GGML_API bool ggml_gallocr_reserve_n(
     ggml_gallocr_t galloc,
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 类: ggml_cgraph
+    // 描述: ggml_cgraph类提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
     struct ggml_cgraph * graph,
     const int * node_buffer_ids,
     const int * leaf_buffer_ids);

@@ -28,6 +28,30 @@
 #define L3_SIZE    32*20480
 #define MEM_SIZE 32*2048000
 
+// 类: quantize_perf_params
+// 描述: quantize_perf_params类提供相关功能
+// 用途: 用于处理quantize_perf_params相关的操作
+// 类: quantize_perf_params
+// 描述: quantize_perf_params类提供相关功能
+// 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
+    // 结构体: quantize_perf_params
+    // 描述: quantize_perf_params结构体提供相关功能
+    // 用途: 用于处理quantize_perf_params相关的操作
 struct quantize_perf_params {
     std::vector<std::string> include_types;
     std::vector<size_t> test_sizes;
@@ -43,6 +67,14 @@ struct quantize_perf_params {
 #if defined(__x86_64__) || defined(__i386__)
 
 #include <x86intrin.h>
+// 函数: cpu_cycles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpu_cycles
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline int64_t cpu_cycles() {
 // Rough way to detect new-ish CPUs
 #ifdef __POPCNT__
@@ -61,21 +93,53 @@ inline int64_t cpu_cycles() {
 
 
 // Generate synthetic data
+// 函数: generate_data
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: generate_data
+// 描述: 生成: 生成输出数据
+// 参数: 无参数
+// 返回: 无返回值
 static void generate_data(float offset, size_t n, float * dst) {
     for (size_t i = 0; i < n; i++) {
         dst[i] = 0.1 + 2*cosf(i + offset);
     }
 }
 
+// 函数: gigabytes_per_second
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gigabytes_per_second
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static float gigabytes_per_second(size_t bytes, int64_t usecs) {
     return bytes / (float) usecs * 1000000 / (1024*1024*1024);
 }
 
+// 函数: align_with_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: align_with_offset
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void * align_with_offset(void * ptr, int offset) {
     size_t dummy_size = MAX_ALIGNMENT * 4;
     return (char *) std::align(MAX_ALIGNMENT, MAX_ALIGNMENT, ptr, dummy_size) + offset;
 }
 
+// 函数: benchmark_function
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: benchmark_function
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void benchmark_function(size_t size, size_t q_size, int64_t iterations, const std::function<float(void)> & func) {
     int64_t min_time_us = INT64_MAX;
     int64_t total_time_us = 0;
@@ -107,6 +171,14 @@ static void benchmark_function(size_t size, size_t q_size, int64_t iterations, c
     printf("      quantized throughput : %9.2f GB/s\n",  gigabytes_per_second(q_size * iterations, total_time_us));
 }
 
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void usage(char * argv[]) {
     printf("Benchmark quantization specific functions on synthetic data\n");
     printf("\n");
@@ -137,6 +209,14 @@ static void usage(char * argv[]) {
     printf("                        set test iteration number (%d)\n", ITERATIONS);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char * argv[]) {
     quantize_perf_params params {};
 

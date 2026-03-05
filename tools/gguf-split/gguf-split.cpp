@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: gguf-split.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/gguf-split/gguf-split.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "ggml.h"
 #include "gguf.h"
 #include "llama.h"
@@ -34,6 +41,30 @@ enum split_mode : uint8_t {
     MODE_SIZE,
 };
 
+// 类: split_params
+// 描述: split_params类提供相关功能
+// 用途: 用于处理split_params相关的操作
+// 类: split_params
+// 描述: split_params类提供相关功能
+// 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
+    // 结构体: split_params
+    // 描述: split_params结构体提供相关功能
+    // 用途: 用于处理split_params相关的操作
 struct split_params {
     split_operation operation = OP_NONE;
     split_mode mode = MODE_NONE;
@@ -45,6 +76,14 @@ struct split_params {
     bool dry_run = false;
 };
 
+// 函数: split_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: split_print_usage
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void split_print_usage(const char * executable) {
     const split_params default_params;
     printf("\n");
@@ -65,6 +104,14 @@ static void split_print_usage(const char * executable) {
 }
 
 // return convert string, for example "128M" or "4G" to number of bytes
+// 函数: split_str_to_n_bytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: split_str_to_n_bytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static size_t split_str_to_n_bytes(std::string str) {
     size_t n_bytes = 0;
     int n;
@@ -83,6 +130,14 @@ static size_t split_str_to_n_bytes(std::string str) {
     return n_bytes;
 }
 
+// 函数: split_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: split_params_parse_ex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void split_params_parse_ex(int argc, const char ** argv, split_params & params) {
     std::string arg;
     const std::string arg_prefix = "--";
@@ -171,6 +226,14 @@ static void split_params_parse_ex(int argc, const char ** argv, split_params & p
     params.output = argv[arg_idx++];
 }
 
+// 函数: split_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: split_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool split_params_parse(int argc, const char ** argv, split_params & params) {
     bool result = true;
     try {
@@ -184,6 +247,14 @@ static bool split_params_parse(int argc, const char ** argv, split_params & para
     return result;
 }
 
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: zeros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void zeros(std::ofstream & file, size_t n) {
     char zero = 0;
     for (size_t i = 0; i < n; ++i) {
@@ -191,10 +262,82 @@ static void zeros(std::ofstream & file, size_t n) {
     }
 }
 
+// 类: split_strategy
+// 描述: split_strategy类提供相关功能
+// 用途: 用于处理split_strategy相关的操作
+// 类: split_strategy
+// 描述: split_strategy类提供相关功能
+// 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
+    // 结构体: split_strategy
+    // 描述: split_strategy结构体提供相关功能
+    // 用途: 用于处理split_strategy相关的操作
 struct split_strategy {
     const split_params params;
     std::ifstream & f_input;
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf;
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_meta = NULL;
     const int n_tensors;
 
@@ -206,7 +349,55 @@ struct split_strategy {
 
     split_strategy(const split_params & params,
             std::ifstream & f_input,
+            // 类: gguf_context
+            // 描述: gguf_context类提供相关功能
+            // 用途: 用于处理gguf_context相关的操作
+            // 类: gguf_context
+            // 描述: gguf_context类提供相关功能
+            // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
             struct gguf_context * ctx_gguf,
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx_meta) :
         params(params),
         f_input(f_input),
@@ -216,6 +407,30 @@ struct split_strategy {
 
         // because we need to know list of tensors for each file in advance, we will build all the ctx_out for all output splits
         int i_split = -1;
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+        // 类: gguf_context
+        // 描述: gguf_context类提供相关功能
+        // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
         struct gguf_context * ctx_out = NULL;
         auto new_ctx_out = [&](bool allow_no_tensors) {
             i_split++;
@@ -247,6 +462,30 @@ struct split_strategy {
         // process tensors one by one
         size_t curr_tensors_size = 0; // current size by counting only tensors size (without metadata)
         for (int i = 0; i < n_tensors; ++i) {
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * t = ggml_get_tensor(ctx_meta, gguf_get_tensor_name(ctx_gguf, i));
             // calculate the "imaginary" size = the current size + next tensor size
             size_t n_bytes = GGML_PAD(ggml_nbytes(t), GGUF_DEFAULT_ALIGNMENT);
@@ -275,6 +514,14 @@ struct split_strategy {
         }
     }
 
+    // 函数: should_split
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: should_split
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool should_split(int i_tensor, size_t next_size) {
         if (params.mode == MODE_SIZE) {
             // split by max size per file
@@ -287,6 +534,14 @@ struct split_strategy {
         GGML_ABORT("invalid mode");
     }
 
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_info() {
         printf("n_split: %zu\n", ctx_outs.size());
         int i_split = 0;
@@ -294,6 +549,30 @@ struct split_strategy {
             // re-calculate the real gguf size for each split (= metadata size + total size of all tensors)
             size_t total_size = gguf_get_meta_size(ctx_out);
             for (int i = 0; i < gguf_get_n_tensors(ctx_out); ++i) {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * t = ggml_get_tensor(ctx_meta, gguf_get_tensor_name(ctx_out, i));
                 total_size += ggml_nbytes(t);
             }
@@ -303,6 +582,14 @@ struct split_strategy {
         }
     }
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write() {
         int i_split = 0;
         int n_split = ctx_outs.size();
@@ -326,6 +613,30 @@ struct split_strategy {
             for (int i = 0; i < gguf_get_n_tensors(ctx_out); ++i) {
                 // read tensor meta and prepare buffer
                 const char * t_name = gguf_get_tensor_name(ctx_out, i);
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * t = ggml_get_tensor(ctx_meta, t_name);
                 auto n_bytes = ggml_nbytes(t);
                 read_buf.resize(n_bytes);
@@ -346,6 +657,14 @@ struct split_strategy {
         }
     }
 
+    // 函数: copy_file_to_file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: copy_file_to_file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void copy_file_to_file(std::ifstream & f_in, std::ofstream & f_out, const size_t in_offset, const size_t len) {
         // TODO: detect OS and use copy_file_range() here for better performance
         if (read_buf.size() < len) {
@@ -357,9 +676,65 @@ struct split_strategy {
     }
 };
 
+// 函数: gguf_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_split
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gguf_split(const split_params & split_params) {
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 类: ggml_context
+    // 描述: ggml_context类提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
     struct ggml_context * ctx_meta = NULL;
 
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params params = {
         /*.no_alloc = */ true,
         /*.ctx      = */ &ctx_meta,
@@ -395,6 +770,14 @@ static void gguf_split(const split_params & split_params) {
             __func__, n_split, strategy.n_tensors);
 }
 
+// 函数: gguf_merge
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_merge
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gguf_merge(const split_params & split_params) {
     fprintf(stderr, "%s: %s -> %s\n",
             __func__, split_params.input.c_str(),
@@ -421,8 +804,56 @@ static void gguf_merge(const split_params & split_params) {
 
     // First pass to find KV and tensors metadata
     for (int i_split = 0; i_split < n_split; i_split++) {
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_meta = NULL;
 
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
         struct gguf_init_params params = {
             /*.no_alloc = */ true,
             /*.ctx      = */ &ctx_meta,
@@ -488,6 +919,30 @@ static void gguf_merge(const split_params & split_params) {
         auto n_tensors = gguf_get_n_tensors(ctx_gguf);
         for (int i_tensor = 0; i_tensor < n_tensors; i_tensor++) {
             const char * t_name = gguf_get_tensor_name(ctx_gguf, i_tensor);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * t = ggml_get_tensor(ctx_meta, t_name);
             gguf_add_tensor(ctx_out, t);
         }
@@ -528,6 +983,30 @@ static void gguf_merge(const split_params & split_params) {
         auto n_tensors = gguf_get_n_tensors(ctx_gguf);
         for (int i_tensor = 0; i_tensor < n_tensors; i_tensor++) {
             const char * t_name = gguf_get_tensor_name(ctx_gguf, i_tensor);
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * t = ggml_get_tensor(ctx_meta, t_name);
 
             auto n_bytes = ggml_nbytes(t);
@@ -566,6 +1045,14 @@ static void gguf_merge(const split_params & split_params) {
             __func__, split_params.output.c_str(), n_split, total_tensors);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, const char ** argv) {
     split_params params;
     split_params_parse(argc, argv, params);

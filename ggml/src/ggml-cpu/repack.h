@@ -8,12 +8,36 @@
 
 // GGML internal header
 
+// 函数: ggml_backend_cpu_repack_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_cpu_repack_buffer_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_buffer_type_t ggml_backend_cpu_repack_buffer_type(void);
 
 template <int K> constexpr int QK_0() {
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (K == 4) {
         return QK4_0;
     }
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (K == 8) {
         return QK8_0;
     }
@@ -36,6 +60,24 @@ using block_q4_0x8 = block<4, 8>;
 using block_q8_0x4 = block<8, 4>;
 using block_q8_0x8 = block<8, 8>;
 
+// 类: block_q4_Kx8
+// 描述: block_q4_Kx8类提供相关功能
+// 用途: 用于处理block_q4_kx8相关的操作
+// 类: block_q4_Kx8
+// 描述: block_q4_Kx8类提供相关功能
+// 用途: 用于处理block_q4_kx8相关的操作
+    // 结构体: block_q4_Kx8
+    // 描述: block_q4_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q4_Kx8相关的操作
+    // 结构体: block_q4_Kx8
+    // 描述: block_q4_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q4_Kx8相关的操作
+    // 结构体: block_q4_Kx8
+    // 描述: block_q4_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q4_Kx8相关的操作
+    // 结构体: block_q4_Kx8
+    // 描述: block_q4_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q4_Kx8相关的操作
 struct block_q4_Kx8 {
     ggml_half d[8];      // super-block scale for quantized scales
     ggml_half dmin[8];   // super-block scale for quantized mins
@@ -45,6 +87,24 @@ struct block_q4_Kx8 {
 
 static_assert(sizeof(block_q4_Kx8) == sizeof(ggml_half) * 16 + K_SCALE_SIZE * 8 + QK_K * 4, "wrong q4_K block size/padding");
 
+// 类: block_q2_Kx8
+// 描述: block_q2_Kx8类提供相关功能
+// 用途: 用于处理block_q2_kx8相关的操作
+// 类: block_q2_Kx8
+// 描述: block_q2_Kx8类提供相关功能
+// 用途: 用于处理block_q2_kx8相关的操作
+    // 结构体: block_q2_Kx8
+    // 描述: block_q2_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q2_Kx8相关的操作
+    // 结构体: block_q2_Kx8
+    // 描述: block_q2_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q2_Kx8相关的操作
+    // 结构体: block_q2_Kx8
+    // 描述: block_q2_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q2_Kx8相关的操作
+    // 结构体: block_q2_Kx8
+    // 描述: block_q2_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q2_Kx8相关的操作
 struct block_q2_Kx8 {
     ggml_half d[8];      // super-block scale for quantized scales
     ggml_half dmin[8];   // super-block scale for quantized mins
@@ -54,6 +114,24 @@ struct block_q2_Kx8 {
 
 static_assert(sizeof(block_q2_Kx8) == sizeof(ggml_half) * 16 + QK_K/2 + QK_K * 2, "wrong q2_K block size/padding");
 
+// 类: block_q5_Kx8
+// 描述: block_q5_Kx8类提供相关功能
+// 用途: 用于处理block_q5_kx8相关的操作
+// 类: block_q5_Kx8
+// 描述: block_q5_Kx8类提供相关功能
+// 用途: 用于处理block_q5_kx8相关的操作
+    // 结构体: block_q5_Kx8
+    // 描述: block_q5_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q5_Kx8相关的操作
+    // 结构体: block_q5_Kx8
+    // 描述: block_q5_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q5_Kx8相关的操作
+    // 结构体: block_q5_Kx8
+    // 描述: block_q5_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q5_Kx8相关的操作
+    // 结构体: block_q5_Kx8
+    // 描述: block_q5_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q5_Kx8相关的操作
 struct block_q5_Kx8 {
     ggml_half d[8];              // super-block scale for quantized scales
     ggml_half dmin[8];           // super-block scale for quantized mins
@@ -65,6 +143,24 @@ struct block_q5_Kx8 {
 static_assert(sizeof(block_q5_Kx8) == sizeof(ggml_half) * 16 + K_SCALE_SIZE * 8 + QK_K * 5,
               "wrong q5_K block size/padding");
 
+// 类: block_q6_Kx8
+// 描述: block_q6_Kx8类提供相关功能
+// 用途: 用于处理block_q6_kx8相关的操作
+// 类: block_q6_Kx8
+// 描述: block_q6_Kx8类提供相关功能
+// 用途: 用于处理block_q6_kx8相关的操作
+    // 结构体: block_q6_Kx8
+    // 描述: block_q6_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q6_Kx8相关的操作
+    // 结构体: block_q6_Kx8
+    // 描述: block_q6_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q6_Kx8相关的操作
+    // 结构体: block_q6_Kx8
+    // 描述: block_q6_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q6_Kx8相关的操作
+    // 结构体: block_q6_Kx8
+    // 描述: block_q6_Kx8结构体提供相关功能
+    // 用途: 用于处理block_q6_Kx8相关的操作
 struct block_q6_Kx8 {
     ggml_half d[8];
     int8_t    scales[QK_K / 16 * 8];
@@ -75,6 +171,24 @@ struct block_q6_Kx8 {
 static_assert(sizeof(block_q6_Kx8) == sizeof(ggml_half) * 8 + QK_K / 16 * 8 + 3 * QK_K / 4 * 8,
               "wrong q6_K block size/padding");
 
+// 类: block_q8_Kx4
+// 描述: block_q8_Kx4类提供相关功能
+// 用途: 用于处理block_q8_kx4相关的操作
+// 类: block_q8_Kx4
+// 描述: block_q8_Kx4类提供相关功能
+// 用途: 用于处理block_q8_kx4相关的操作
+    // 结构体: block_q8_Kx4
+    // 描述: block_q8_Kx4结构体提供相关功能
+    // 用途: 用于处理block_q8_Kx4相关的操作
+    // 结构体: block_q8_Kx4
+    // 描述: block_q8_Kx4结构体提供相关功能
+    // 用途: 用于处理block_q8_Kx4相关的操作
+    // 结构体: block_q8_Kx4
+    // 描述: block_q8_Kx4结构体提供相关功能
+    // 用途: 用于处理block_q8_Kx4相关的操作
+    // 结构体: block_q8_Kx4
+    // 描述: block_q8_Kx4结构体提供相关功能
+    // 用途: 用于处理block_q8_Kx4相关的操作
 struct block_q8_Kx4 {
     float d[4];              // delta
     int8_t qs[QK_K * 4];     // quants
@@ -83,6 +197,24 @@ struct block_q8_Kx4 {
 
 static_assert(sizeof(block_q8_Kx4) == sizeof(float) * 4 + QK_K * 4 + (QK_K / 4) * sizeof(int16_t), "wrong q8_K block size/padding");
 
+// 类: block_iq4_nlx4
+// 描述: block_iq4_nlx4类提供相关功能
+// 用途: 用于处理block_iq4_nlx4相关的操作
+// 类: block_iq4_nlx4
+// 描述: block_iq4_nlx4类提供相关功能
+// 用途: 用于处理block_iq4_nlx4相关的操作
+    // 结构体: block_iq4_nlx4
+    // 描述: block_iq4_nlx4结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx4相关的操作
+    // 结构体: block_iq4_nlx4
+    // 描述: block_iq4_nlx4结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx4相关的操作
+    // 结构体: block_iq4_nlx4
+    // 描述: block_iq4_nlx4结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx4相关的操作
+    // 结构体: block_iq4_nlx4
+    // 描述: block_iq4_nlx4结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx4相关的操作
 struct block_iq4_nlx4 {
     ggml_half d[4];            // deltas for 4 iq4_nl blocks
     uint8_t   qs[QK4_NL * 2];  // nibbles / quants for 4 iq4_nl blocks
@@ -90,6 +222,24 @@ struct block_iq4_nlx4 {
 
 static_assert(sizeof(block_iq4_nlx4) == 4 * sizeof(ggml_half) + QK4_NL * 2, "wrong iq4_nlx4 block size/padding");
 
+// 类: block_iq4_nlx8
+// 描述: block_iq4_nlx8类提供相关功能
+// 用途: 用于处理block_iq4_nlx8相关的操作
+// 类: block_iq4_nlx8
+// 描述: block_iq4_nlx8类提供相关功能
+// 用途: 用于处理block_iq4_nlx8相关的操作
+    // 结构体: block_iq4_nlx8
+    // 描述: block_iq4_nlx8结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx8相关的操作
+    // 结构体: block_iq4_nlx8
+    // 描述: block_iq4_nlx8结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx8相关的操作
+    // 结构体: block_iq4_nlx8
+    // 描述: block_iq4_nlx8结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx8相关的操作
+    // 结构体: block_iq4_nlx8
+    // 描述: block_iq4_nlx8结构体提供相关功能
+    // 用途: 用于处理block_iq4_nlx8相关的操作
 struct block_iq4_nlx8 {
     ggml_half d[8];            // deltas for 8 iq4_nl blocks
     uint8_t   qs[QK4_NL * 4];  // nibbles / quants for 8 iq4_nl blocks
@@ -97,12 +247,48 @@ struct block_iq4_nlx8 {
 
 static_assert(sizeof(block_iq4_nlx8) == 8 * sizeof(ggml_half) + QK4_NL * 4, "wrong iq4_nlx8 block size/padding");
 
+// 类: block_mxfp4x4
+// 描述: block_mxfp4x4类提供相关功能
+// 用途: 用于处理block_mxfp4x4相关的操作
+// 类: block_mxfp4x4
+// 描述: block_mxfp4x4类提供相关功能
+// 用途: 用于处理block_mxfp4x4相关的操作
+    // 结构体: block_mxfp4x4
+    // 描述: block_mxfp4x4结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x4相关的操作
+    // 结构体: block_mxfp4x4
+    // 描述: block_mxfp4x4结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x4相关的操作
+    // 结构体: block_mxfp4x4
+    // 描述: block_mxfp4x4结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x4相关的操作
+    // 结构体: block_mxfp4x4
+    // 描述: block_mxfp4x4结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x4相关的操作
 struct block_mxfp4x4 {
     uint8_t e[4];
     uint8_t qs[QK_MXFP4 * 2];
 };
 static_assert(sizeof(block_mxfp4x4) == 4 + QK_MXFP4 * 2, "wrong mxfp4x4 block size/padding");
 
+// 类: block_mxfp4x8
+// 描述: block_mxfp4x8类提供相关功能
+// 用途: 用于处理block_mxfp4x8相关的操作
+// 类: block_mxfp4x8
+// 描述: block_mxfp4x8类提供相关功能
+// 用途: 用于处理block_mxfp4x8相关的操作
+    // 结构体: block_mxfp4x8
+    // 描述: block_mxfp4x8结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x8相关的操作
+    // 结构体: block_mxfp4x8
+    // 描述: block_mxfp4x8结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x8相关的操作
+    // 结构体: block_mxfp4x8
+    // 描述: block_mxfp4x8结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x8相关的操作
+    // 结构体: block_mxfp4x8
+    // 描述: block_mxfp4x8结构体提供相关功能
+    // 用途: 用于处理block_mxfp4x8相关的操作
 struct block_mxfp4x8 {
     uint8_t e[8];
     uint8_t qs[QK_MXFP4 * 4];
@@ -114,79 +300,655 @@ static_assert(sizeof(block_mxfp4x8) == 8 + QK_MXFP4 * 4, "wrong mxfp4x8 block si
 extern "C" {
 #endif
 
+// 函数: ggml_quantize_mat_q8_0_4x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x4(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_0_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x8(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_K_4x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x4
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x4(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_K_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x8(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_gemv_q4_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q2_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q5_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q5_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q6_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q6_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_mxfp4_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q2_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q5_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q5_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q6_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x4_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x4_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q6_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_mxfp4_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q8_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q8_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q8_0_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q8_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q8_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q8_0_4x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q8_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q8_0_4x4_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q8_0_4x4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q8_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q8_0_4x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q8_0_4x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
 
 // Native implementations
+// 函数: ggml_quantize_mat_q8_0_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x4_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_0_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x8_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_K_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x4_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x4_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_quantize_mat_q8_K_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x8_generic
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x8_generic(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k);
+// 函数: ggml_gemv_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q5_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q6_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q2_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q2_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q5_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q5_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x4_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x4_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q6_K_8x8_q8_K_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q6_K_8x8_q8_K_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_8x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_8x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q8_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q8_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q8_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemv_q8_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q8_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q8_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q8_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q8_0_4x4_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q8_0_4x4_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
+// 函数: ggml_gemm_q8_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q8_0_4x8_q8_0_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q8_0_4x8_q8_0_generic(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc);
 
 #if defined(__cplusplus)

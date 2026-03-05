@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: json_schema_pydantic_example.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/json_schema_pydantic_example.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 # Usage:
 #! ./llama-server -m some-model.gguf &
 #! pip install pydantic
@@ -10,6 +17,14 @@ import json, requests
 
 if True:
 
+    # 函数: create_completion
+    # 描述: create_completion函数提供相关功能
+    # 参数: *, response_model=None, endpoint="http://localhost:8080/v1/chat/completions", messages, **kwargs
+    # 返回: 无返回值
+    # 函数: create_completion
+    # 描述: create_completion函数提供相关功能
+    # 参数: *, response_model=None, endpoint="http://localhost:8080/v1/chat/completions", messages, **kwargs
+    # 返回: 无返回值
     def create_completion(*, response_model=None, endpoint="http://localhost:8080/v1/chat/completions", messages, **kwargs):
         '''
         Creates a chat completion using an OpenAI-compatible endpoint w/ JSON schema support
@@ -52,7 +67,19 @@ else:
 
 if __name__ == '__main__':
 
+    # 类: QAPair
+    # 描述: QAPair类提供相关功能
+    # 用途: 用于处理QAPair相关的操作
+    # 类: QAPair
+    # 描述: QAPair类提供相关功能
+    # 用途: 用于处理QAPair相关的操作
     class QAPair(BaseModel):
+    # 类: Config
+    # 描述: Config类提供相关功能
+    # 用途: 用于处理Config相关的操作
+    # 类: Config
+    # 描述: Config类提供相关功能
+    # 用途: 用于处理Config相关的操作
         class Config:
             extra = 'forbid'  # triggers additionalProperties: false in the JSON schema
         question: str
@@ -60,7 +87,19 @@ if __name__ == '__main__':
         justification: str
         stars: Annotated[int, Field(ge=1, le=5)]
 
+    # 类: PyramidalSummary
+    # 描述: PyramidalSummary类提供相关功能
+    # 用途: 用于处理PyramidalSummary相关的操作
+    # 类: PyramidalSummary
+    # 描述: PyramidalSummary类提供相关功能
+    # 用途: 用于处理PyramidalSummary相关的操作
     class PyramidalSummary(BaseModel):
+    # 类: Config
+    # 描述: Config类提供相关功能
+    # 用途: 用于处理Config相关的操作
+    # 类: Config
+    # 描述: Config类提供相关功能
+    # 用途: 用于处理Config相关的操作
         class Config:
             extra = 'forbid'  # triggers additionalProperties: false in the JSON schema
         title: str

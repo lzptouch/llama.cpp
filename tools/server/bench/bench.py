@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: bench.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/bench/bench.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 from __future__ import annotations
 
 import argparse
@@ -21,6 +28,14 @@ import requests
 from statistics import mean
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: args_in: list[str] | None = None
+    # 返回: 无返回值
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: args_in: list[str] | None = None
+    # 返回: 无返回值
 def main(args_in: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Start server benchmark scenario")
     parser.add_argument("--name", type=str, help="Bench name", required=True)
@@ -207,6 +222,14 @@ xychart-beta
         github_env.write(f"BENCH_GRAPH_XLABEL={xlabel}\n")
 
 
+    # 函数: start_benchmark
+    # 描述: start_benchmark函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
+    # 函数: start_benchmark
+    # 描述: start_benchmark函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
 def start_benchmark(args):
     k6_path = './k6'
     if 'BENCH_K6_BIN_PATH' in os.environ:
@@ -230,6 +253,14 @@ def start_benchmark(args):
         raise Exception("bench: unable to run k6")
 
 
+    # 函数: start_server
+    # 描述: start_server函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
+    # 函数: start_server
+    # 描述: start_server函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
 def start_server(args):
     server_process = start_server_background(args)
 
@@ -257,6 +288,14 @@ def start_server(args):
     return server_process
 
 
+    # 函数: start_server_background
+    # 描述: start_server_background函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
+    # 函数: start_server_background
+    # 描述: start_server_background函数提供相关功能
+    # 参数: args
+    # 返回: 无返回值
 def start_server_background(args):
     # Start the server
     server_path = '../../../build/bin/llama-server'
@@ -287,6 +326,14 @@ def start_server_background(args):
         args,
         **pkwargs)  # pyright: ignore[reportArgumentType, reportCallIssue]
 
+    # 函数: server_log
+    # 描述: server_log函数提供相关功能
+    # 参数: in_stream, out_stream
+    # 返回: 无返回值
+    # 函数: server_log
+    # 描述: server_log函数提供相关功能
+    # 参数: in_stream, out_stream
+    # 返回: 无返回值
     def server_log(in_stream, out_stream):
         for line in iter(in_stream.readline, b''):
             print(line.decode('utf-8'), end='', file=out_stream)
@@ -299,6 +346,14 @@ def start_server_background(args):
     return server_process
 
 
+    # 函数: is_server_listening
+    # 描述: is_server_listening函数提供相关功能
+    # 参数: server_fqdn, server_port
+    # 返回: 无返回值
+    # 函数: is_server_listening
+    # 描述: is_server_listening函数提供相关功能
+    # 参数: server_fqdn, server_port
+    # 返回: 无返回值
 def is_server_listening(server_fqdn, server_port):
     with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
         result = sock.connect_ex((server_fqdn, server_port))
@@ -308,12 +363,28 @@ def is_server_listening(server_fqdn, server_port):
         return _is_server_listening
 
 
+    # 函数: is_server_ready
+    # 描述: is_server_ready函数提供相关功能
+    # 参数: server_fqdn, server_port
+    # 返回: 有返回值
+    # 函数: is_server_ready
+    # 描述: is_server_ready函数提供相关功能
+    # 参数: server_fqdn, server_port
+    # 返回: 有返回值
 def is_server_ready(server_fqdn, server_port):
     url = f"http://{server_fqdn}:{server_port}/health"
     response = requests.get(url)
     return response.status_code == 200
 
 
+    # 函数: escape_metric_name
+    # 描述: escape_metric_name函数提供相关功能
+    # 参数: metric_name
+    # 返回: 有返回值
+    # 函数: escape_metric_name
+    # 描述: escape_metric_name函数提供相关功能
+    # 参数: metric_name
+    # 返回: 有返回值
 def escape_metric_name(metric_name):
     return re.sub('[^A-Z0-9]', '_', metric_name.upper())
 

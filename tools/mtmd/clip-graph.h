@@ -11,6 +11,30 @@
 
 #define DEFAULT_INTERPOLATION_MODE (GGML_SCALE_MODE_BILINEAR | GGML_SCALE_FLAG_ANTIALIAS)
 
+// 类: clip_graph
+// 描述: clip_graph类提供相关功能
+// 用途: 用于处理clip_graph相关的操作
+// 类: clip_graph
+// 描述: clip_graph类提供相关功能
+// 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
+    // 结构体: clip_graph
+    // 描述: clip_graph结构体提供相关功能
+    // 用途: 用于处理clip_graph相关的操作
 struct clip_graph {
     const clip_model & model;
     const clip_hparams & hparams;
@@ -39,14 +63,38 @@ struct clip_graph {
     clip_graph(clip_ctx * ctx, const clip_image_f32 & img);
 
     virtual ~clip_graph() = default;
+    // 函数: build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     virtual ggml_cgraph * build() = 0;
 
     //
     // utility functions
     //
+    // 函数: cb
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: cb
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void cb(ggml_tensor * cur0, const char * name, int il) const;
 
     // siglip2 naflex
+    // 函数: resize_position_embeddings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resize_position_embeddings
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * resize_position_embeddings(uint32_t interpolation_mode = DEFAULT_INTERPOLATION_MODE);
 
     // build vision transformer (ViT) cgraph
@@ -62,8 +110,24 @@ struct clip_graph {
 
     // build the input after conv2d (inp_raw --> patches)
     // returns tensor with shape [n_embd, n_patches]
+    // 函数: build_inp
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp();
 
+    // 函数: build_inp_raw
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_inp_raw
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_inp_raw(int channels = 3);
 
     ggml_tensor * build_norm(
@@ -109,9 +173,25 @@ struct clip_graph {
 
     // aka pixel_shuffle / pixel_unshuffle / patch_merger (Kimi-VL)
     // support dynamic resolution
+    // 函数: build_patch_merge_permute
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_patch_merge_permute
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_patch_merge_permute(ggml_tensor * cur, int scale_factor);
 
     // Generic function to stack frames for audio processing
     // Abstracts out the StackAudioFrames logic used by ultravox
+    // 函数: build_stack
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build_stack
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     ggml_tensor * build_stack(ggml_tensor * cur, int32_t stack_factor, int32_t n_embed);
 };

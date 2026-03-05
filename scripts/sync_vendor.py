@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: sync_vendor.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/sync_vendor.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import urllib.request

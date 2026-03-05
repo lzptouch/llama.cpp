@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: add-id.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/add-id.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <sycl/sycl.hpp>
 #include "common.hpp"
 #include "add-id.hpp"
@@ -34,6 +41,14 @@ static void add_id_kernel(
   }
 }
 
+// 函数: ggml_sycl_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_add_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_add_id(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
   const ggml_tensor* src0 = dst->src[0];
   const ggml_tensor* src1 = dst->src[1];

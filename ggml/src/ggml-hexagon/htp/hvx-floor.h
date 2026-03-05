@@ -13,6 +13,14 @@
 #define IEEE_VSF_MANTMASK (0x7FFFFF)
 #define IEEE_VSF_MIMPMASK (0x800000)
 
+// 函数: hvx_vec_truncate_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_truncate_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_truncate_f32(HVX_Vector in_vec) {
     HVX_Vector mask_mant_v  = Q6_V_vsplat_R(IEEE_VSF_MANTMASK);
     HVX_Vector mask_impl_v  = Q6_V_vsplat_R(IEEE_VSF_MIMPMASK);
@@ -42,6 +50,14 @@ static inline HVX_Vector hvx_vec_truncate_f32(HVX_Vector in_vec) {
     return (vout);
 }
 
+// 函数: hvx_vec_floor_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_floor_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_floor_f32(HVX_Vector in_vec) {
     HVX_Vector mask_mant_v    = Q6_V_vsplat_R(IEEE_VSF_MANTMASK);
     HVX_Vector mask_impl_v    = Q6_V_vsplat_R(IEEE_VSF_MIMPMASK);

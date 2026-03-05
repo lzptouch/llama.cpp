@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: plamo3.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/plamo3.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 
 template <bool iswa>
@@ -13,6 +20,14 @@ llm_build_plamo3<iswa>::llm_build_plamo3(const llama_model & model, const llm_gr
     using inp_attn_type = std::conditional_t<iswa, llm_graph_input_attn_kv_iswa, llm_graph_input_attn_kv>;
     inp_attn_type * inp_attn = nullptr;
 
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: constexpr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     if constexpr (iswa) {
         inp_attn = build_attn_inp_kv_iswa();
     } else {
@@ -26,6 +41,14 @@ llm_build_plamo3<iswa>::llm_build_plamo3(const llama_model & model, const llm_gr
 
         float freq_base_l  = 0.0f;
         float freq_scale_l = 0.0f;
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: constexpr
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         if constexpr (iswa) {
             freq_base_l  = model.get_rope_freq_base (cparams, il);
             freq_scale_l = model.get_rope_freq_scale(cparams, il);
@@ -48,10 +71,34 @@ llm_build_plamo3<iswa>::llm_build_plamo3(const llama_model & model, const llm_gr
         const int64_t v_offset = k_offset + head_dim_q * n_head_kv;
 
         ggml_tensor * Qcur = ggml_view_3d(ctx0, qkv, head_dim_q, n_head, n_tokens,
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 head_dim_q * sizeof(float), qkv->nb[1], q_offset * ggml_element_size(qkv));
         ggml_tensor * Kcur = ggml_view_3d(ctx0, qkv, head_dim_q, n_head_kv, n_tokens,
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 head_dim_q * sizeof(float), qkv->nb[1], k_offset * ggml_element_size(qkv));
         ggml_tensor * Vcur = ggml_view_3d(ctx0, qkv, head_dim_v, n_head_kv, n_tokens,
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: sizeof
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 head_dim_v * sizeof(float), qkv->nb[1], v_offset * ggml_element_size(qkv));
 
         cb(Qcur, "Qcur", il);

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-jinja.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-jinja.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include <string>
 #include <iostream>
 #include <random>
@@ -15,28 +22,180 @@
 
 using json = nlohmann::ordered_json;
 
+// 函数: test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_template(testing & t, const std::string & name, const std::string & tmpl, const json & vars, const std::string & expect);
 
+// 函数: test_whitespace_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_whitespace_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_whitespace_control(testing & t);
+// 函数: test_conditionals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_conditionals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_conditionals(testing & t);
+// 函数: test_loops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_loops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_loops(testing & t);
+// 函数: test_expressions
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_expressions
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_expressions(testing & t);
+// 函数: test_set_statement
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_set_statement
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void test_set_statement(testing & t);
+// 函数: test_filters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_filters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_filters(testing & t);
+// 函数: test_literals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_literals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_literals(testing & t);
+// 函数: test_comments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_comments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_comments(testing & t);
+// 函数: test_macros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_macros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_macros(testing & t);
+// 函数: test_namespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_namespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_namespace(testing & t);
+// 函数: test_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_tests(testing & t);
+// 函数: test_string_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_string_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_string_methods(testing & t);
+// 函数: test_array_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_array_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_array_methods(testing & t);
+// 函数: test_object_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_object_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_object_methods(testing & t);
+// 函数: test_hasher
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_hasher
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_hasher(testing & t);
+// 函数: test_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_stats(testing & t);
+// 函数: test_fuzzing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_fuzzing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_fuzzing(testing & t);
 
 static bool g_python_mode = false;
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char *argv[]) {
     testing t(std::cout);
     t.verbose = true;
@@ -78,6 +237,14 @@ int main(int argc, char *argv[]) {
     return t.summary();
 }
 
+// 函数: test_whitespace_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_whitespace_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_whitespace_control(testing & t) {
     test_template(t, "trim_blocks removes newline after tag",
         "{% if true %}\n"
@@ -124,6 +291,14 @@ static void test_whitespace_control(testing & t) {
     );
 }
 
+// 函数: test_conditionals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_conditionals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_conditionals(testing & t) {
     test_template(t, "if true",
         "{% if cond %}yes{% endif %}",
@@ -300,6 +475,14 @@ static void test_conditionals(testing & t) {
     );
 }
 
+// 函数: test_loops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_loops
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_loops(testing & t) {
     test_template(t, "simple for",
         "{% for i in items %}{{ i }}{% endfor %}",
@@ -362,6 +545,14 @@ static void test_loops(testing & t) {
     );
 }
 
+// 函数: test_expressions
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_expressions
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_expressions(testing & t) {
     test_template(t, "simple variable",
         "{{ x }}",
@@ -436,6 +627,14 @@ static void test_expressions(testing & t) {
     );
 }
 
+// 函数: test_set_statement
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_set_statement
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void test_set_statement(testing & t) {
     test_template(t, "simple set",
         "{% set x = 5 %}{{ x }}",
@@ -492,6 +691,14 @@ static void test_set_statement(testing & t) {
     );
 }
 
+// 函数: test_filters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_filters
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_filters(testing & t) {
     test_template(t, "upper",
         "{{ 'hello'|upper }}",
@@ -748,6 +955,14 @@ static void test_filters(testing & t) {
     );
 }
 
+// 函数: test_literals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_literals
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_literals(testing & t) {
     test_template(t, "integer",
         "{{ 42 }}",
@@ -858,6 +1073,14 @@ static void test_literals(testing & t) {
     );
 }
 
+// 函数: test_comments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_comments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_comments(testing & t) {
     test_template(t, "inline comment",
         "before{# comment #}after",
@@ -872,6 +1095,14 @@ static void test_comments(testing & t) {
     );
 }
 
+// 函数: test_macros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_macros
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_macros(testing & t) {
     test_template(t, "simple macro",
         "{% macro greet(name) %}Hello {{ name }}{% endmacro %}{{ greet('World') }}",
@@ -886,6 +1117,14 @@ static void test_macros(testing & t) {
     );
 }
 
+// 函数: test_namespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_namespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_namespace(testing & t) {
     test_template(t, "namespace counter",
         "{% set ns = namespace(count=0) %}{% for i in range(3) %}{% set ns.count = ns.count + 1 %}{% endfor %}{{ ns.count }}",
@@ -894,6 +1133,14 @@ static void test_namespace(testing & t) {
     );
 }
 
+// 函数: test_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_tests(testing & t) {
     test_template(t, "is odd",
         "{% if 3 is odd %}yes{% endif %}",
@@ -1130,6 +1377,14 @@ static void test_tests(testing & t) {
     );
 }
 
+// 函数: test_string_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_string_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_string_methods(testing & t) {
     test_template(t, "string.upper()",
         "{{ s.upper() }}",
@@ -1282,6 +1537,14 @@ static void test_string_methods(testing & t) {
     );
 }
 
+// 函数: test_array_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_array_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_array_methods(testing & t) {
     test_template(t, "array|selectattr by attribute",
         "{% for item in items|selectattr('active') %}{{ item.name }} {% endfor %}",
@@ -1551,6 +1814,14 @@ static void test_array_methods(testing & t) {
     );
 }
 
+// 函数: test_object_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_object_methods
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_object_methods(testing & t) {
     test_template(t, "object.get() existing key",
         "{{ obj.get('a') }}",
@@ -1661,6 +1932,14 @@ static void test_object_methods(testing & t) {
     );
 }
 
+// 函数: test_hasher
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_hasher
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_hasher(testing & t) {
     static const std::vector<std::pair<size_t, size_t>> chunk_sizes = {
         {1, 2},
@@ -1797,6 +2076,14 @@ static void test_hasher(testing & t) {
     });
 }
 
+// 函数: test_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_stats
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_stats(testing & t) {
     static auto get_stats = [](const std::string & tmpl, const json & vars) -> jinja::value {
         jinja::lexer lexer;
@@ -1854,6 +2141,14 @@ static void test_stats(testing & t) {
     });
 }
 
+// 函数: test_template_cpp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_template_cpp
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_template_cpp(testing & t, const std::string & name, const std::string & tmpl, const json & vars, const std::string & expect) {
     t.test(name, [&tmpl, &vars, &expect](testing & t) {
         jinja::lexer lexer;
@@ -1906,6 +2201,14 @@ env = SandboxedEnvironment(
     extensions=[jinja2_ext.loopcontrols],
 )
 
+// 函数: raise_exception
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: raise_exception
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 def raise_exception(message):
     raise jinja2.exceptions.TemplateError(message)
 
@@ -1918,6 +2221,14 @@ result = template.render(**vars_json)
 print(result, end='')
 )";
 
+// 函数: test_template_py
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_template_py
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_template_py(testing & t, const std::string & name, const std::string & tmpl, const json & vars, const std::string & expect) {
     t.test(name, [&tmpl, &vars, &expect](testing & t) {
         // Prepare arguments
@@ -1932,6 +2243,30 @@ static void test_template_py(testing & t, const std::string & name, const std::s
 
         const char * command_line[] = {python_executable, "-c", py_script.c_str(), tmpl_json.c_str(), vars_json.c_str(), NULL};
 
+        // 类: subprocess_s
+        // 描述: subprocess_s类提供相关功能
+        // 用途: 用于处理subprocess_s相关的操作
+        // 类: subprocess_s
+        // 描述: subprocess_s类提供相关功能
+        // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
+    // 结构体: subprocess_s
+    // 描述: subprocess_s结构体提供相关功能
+    // 用途: 用于处理subprocess_s相关的操作
         struct subprocess_s subprocess;
         int options = subprocess_option_combined_stdout_stderr
                     | subprocess_option_no_window
@@ -1972,6 +2307,14 @@ static void test_template_py(testing & t, const std::string & name, const std::s
     });
 }
 
+// 函数: test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_template(testing & t, const std::string & name, const std::string & tmpl, const json & vars, const std::string & expect) {
     if (g_python_mode) {
         test_template_py(t, name, tmpl, vars, expect);
@@ -1987,6 +2330,14 @@ static void test_template(testing & t, const std::string & name, const std::stri
 constexpr int JINJA_FUZZ_ITERATIONS = 100;
 
 // Helper to generate random string
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string random_string(std::mt19937 & rng, size_t max_len) {
     static const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
     std::uniform_int_distribution<size_t> len_dist(0, max_len);
@@ -2001,6 +2352,14 @@ static std::string random_string(std::mt19937 & rng, size_t max_len) {
 }
 
 // Helper to execute a fuzz test case - returns true if no crash occurred
+// 函数: fuzz_test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fuzz_test_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool fuzz_test_template(const std::string & tmpl, const json & vars) {
     try {
         // printf("Fuzz testing template: %s\n", tmpl.c_str());
@@ -2020,6 +2379,14 @@ static bool fuzz_test_template(const std::string & tmpl, const json & vars) {
     }
 }
 
+// 函数: test_fuzzing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_fuzzing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_fuzzing(testing & t) {
     const int num_iterations = JINJA_FUZZ_ITERATIONS;
     const unsigned int seed = 42; // fixed seed for reproducibility

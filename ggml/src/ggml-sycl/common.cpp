@@ -15,6 +15,14 @@
 #include "ggml-backend-impl.h"
 #include "ggml-impl.h"
 
+// 函数: get_current_device_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_current_device_id
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 int get_current_device_id() {
   return dpct::dev_mgr::instance().current_device_id();
 }
@@ -42,6 +50,14 @@ void* ggml_sycl_host_malloc(size_t size) try {
   std::exit(1);
 }
 
+// 函数: ggml_sycl_host_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_host_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_host_free(void* ptr) try {
   // allow to use dpct::get_in_order_queue() for host malloc
   SYCL_CHECK(CHECK_TRY_ERROR(sycl::free(ptr, dpct::get_in_order_queue())));
@@ -51,10 +67,26 @@ void ggml_sycl_host_free(void* ptr) try {
   std::exit(1);
 }
 
+// 函数: gpu_has_xmx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gpu_has_xmx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool gpu_has_xmx(sycl::device &dev) {
     return dev.has(sycl::aspect::ext_intel_matrix);
 }
 
+// 函数: downsample_sycl_global_range
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: downsample_sycl_global_range
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 int64_t downsample_sycl_global_range(int64_t accumulate_block_num, int64_t block_size) {
   const int64_t max_range = std::numeric_limits<int>::max();
   int64_t sycl_down_blk_size = block_size;
@@ -66,6 +98,14 @@ int64_t downsample_sycl_global_range(int64_t accumulate_block_num, int64_t block
   return sycl_down_blk_size;
 }
 
+// 函数: release_extra_gpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: release_extra_gpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void release_extra_gpu(ggml_tensor_extra_gpu * extra, std::vector<queue_ptr> streams) {
     for (int i = 0; i < ggml_sycl_info().device_count; ++i) {
         for (int64_t is = 0; is < GGML_SYCL_MAX_STREAMS; ++is) {

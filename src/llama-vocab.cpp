@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-vocab.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-vocab.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-vocab.h"
 
 #include "ggml.h"
@@ -25,9 +32,35 @@
 // helpers
 //
 
+// 类: naive_trie
+// 描述: naive_trie类提供相关功能
+// 用途: 用于处理naive_trie相关的操作
+// 类: naive_trie
+// 描述: naive_trie类提供相关功能
+// 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
 struct naive_trie {
     naive_trie() : has_value(false), value(0) {
     }
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void insert(const char * key, size_t len, int32_t value = 0) {
         if (len == 0) {
             this->has_value = true;
@@ -72,11 +105,47 @@ struct naive_trie {
 // tokenizers
 //
 
+// 类: llm_tokenizer
+// 描述: llm_tokenizer类提供相关功能
+// 用途: 用于处理llm_tokenizer相关的操作
+// 类: llm_tokenizer
+// 描述: llm_tokenizer类提供相关功能
+// 用途: 用于处理llm_tokenizer相关的操作
+    // 结构体: llm_tokenizer
+    // 描述: llm_tokenizer结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer相关的操作
+    // 结构体: llm_tokenizer
+    // 描述: llm_tokenizer结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer相关的操作
+    // 结构体: llm_tokenizer
+    // 描述: llm_tokenizer结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer相关的操作
+    // 结构体: llm_tokenizer
+    // 描述: llm_tokenizer结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer相关的操作
 struct llm_tokenizer {
     llm_tokenizer() {}
     virtual ~llm_tokenizer() = default;
 };
 
+// 类: llm_symbol
+// 描述: llm_symbol类提供相关功能
+// 用途: 用于处理llm_symbol相关的操作
+// 类: llm_symbol
+// 描述: llm_symbol类提供相关功能
+// 用途: 用于处理llm_symbol相关的操作
+    // 结构体: llm_symbol
+    // 描述: llm_symbol结构体提供相关功能
+    // 用途: 用于处理llm_symbol相关的操作
+    // 结构体: llm_symbol
+    // 描述: llm_symbol结构体提供相关功能
+    // 用途: 用于处理llm_symbol相关的操作
+    // 结构体: llm_symbol
+    // 描述: llm_symbol结构体提供相关功能
+    // 用途: 用于处理llm_symbol相关的操作
+    // 结构体: llm_symbol
+    // 描述: llm_symbol结构体提供相关功能
+    // 用途: 用于处理llm_symbol相关的操作
 struct llm_symbol {
     using index = int;
     index prev;
@@ -93,8 +162,52 @@ static_assert(std::is_trivially_copyable<llm_symbol>::value, "llm_symbol is not 
 // https://github.com/ggml-org/llama.cpp/commit/074bea2eb1f1349a0118239c4152914aecaa1be4
 //
 
+// 类: llm_bigram_spm
+// 描述: llm_bigram_spm类提供相关功能
+// 用途: 用于处理llm_bigram_spm相关的操作
+// 类: llm_bigram_spm
+// 描述: llm_bigram_spm类提供相关功能
+// 用途: 用于处理llm_bigram_spm相关的操作
+    // 结构体: llm_bigram_spm
+    // 描述: llm_bigram_spm结构体提供相关功能
+    // 用途: 用于处理llm_bigram_spm相关的操作
+    // 结构体: llm_bigram_spm
+    // 描述: llm_bigram_spm结构体提供相关功能
+    // 用途: 用于处理llm_bigram_spm相关的操作
+    // 结构体: llm_bigram_spm
+    // 描述: llm_bigram_spm结构体提供相关功能
+    // 用途: 用于处理llm_bigram_spm相关的操作
+    // 结构体: llm_bigram_spm
+    // 描述: llm_bigram_spm结构体提供相关功能
+    // 用途: 用于处理llm_bigram_spm相关的操作
 struct llm_bigram_spm {
+    // 类: comparator
+    // 描述: comparator类提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 类: comparator
+    // 描述: comparator类提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
     struct comparator {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(llm_bigram_spm & l, llm_bigram_spm & r) {
             return (l.score < r.score) || (l.score == r.score && l.left > r.left);
         }
@@ -107,13 +220,57 @@ struct llm_bigram_spm {
     size_t size;
 };
 
+// 类: llm_tokenizer_spm
+// 描述: llm_tokenizer_spm类提供相关功能
+// 用途: 用于处理llm_tokenizer_spm相关的操作
+// 类: llm_tokenizer_spm
+// 描述: llm_tokenizer_spm类提供相关功能
+// 用途: 用于处理llm_tokenizer_spm相关的操作
+    // 结构体: llm_tokenizer_spm
+    // 描述: llm_tokenizer_spm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm相关的操作
+    // 结构体: llm_tokenizer_spm
+    // 描述: llm_tokenizer_spm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm相关的操作
+    // 结构体: llm_tokenizer_spm
+    // 描述: llm_tokenizer_spm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm相关的操作
+    // 结构体: llm_tokenizer_spm
+    // 描述: llm_tokenizer_spm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm相关的操作
 struct llm_tokenizer_spm : llm_tokenizer {
     llm_tokenizer_spm(const llama_vocab & /*vocab*/) {}
 };
 
+// 类: llm_tokenizer_spm_session
+// 描述: llm_tokenizer_spm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_spm_session相关的操作
+// 类: llm_tokenizer_spm_session
+// 描述: llm_tokenizer_spm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_spm_session相关的操作
+    // 结构体: llm_tokenizer_spm_session
+    // 描述: llm_tokenizer_spm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm_session相关的操作
+    // 结构体: llm_tokenizer_spm_session
+    // 描述: llm_tokenizer_spm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm_session相关的操作
+    // 结构体: llm_tokenizer_spm_session
+    // 描述: llm_tokenizer_spm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm_session相关的操作
+    // 结构体: llm_tokenizer_spm_session
+    // 描述: llm_tokenizer_spm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_spm_session相关的操作
 struct llm_tokenizer_spm_session {
     llm_tokenizer_spm_session(const llama_vocab & vocab) : vocab(vocab) {}
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         // split string into utf8 chars
         int index = 0;
@@ -173,6 +330,14 @@ struct llm_tokenizer_spm_session {
     }
 
 private:
+    // 函数: resegment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resegment
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void resegment(llm_symbol & symbol, std::vector<llama_token> & output) {
         auto text = std::string(symbol.text, symbol.n);
         auto token = vocab.text_to_token(text);
@@ -199,6 +364,14 @@ private:
         resegment(symbols[p->second.second], output);
     }
 
+    // 函数: try_add_bigram
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: try_add_bigram
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void try_add_bigram(int left, int right) {
         if (left == -1 || right == -1) {
             return;
@@ -246,10 +419,24 @@ private:
 // TODO: there are a lot of common parts between spm and bpe tokenizers, should be refactored and reused
 
 template<typename T, typename Container = std::vector<T>, typename Compare = std::less<typename Container::value_type>>
+// 类: llama_priority_queue
+// 描述: llama_priority_queue类提供相关功能
+// 用途: 用于处理llama_priority_queue相关的操作
+// 类: llama_priority_queue
+// 描述: llama_priority_queue类提供相关功能
+// 用途: 用于处理llama_priority_queue相关的操作
 class llama_priority_queue : public std::priority_queue<T, Container, Compare> {
 public:
     using std::priority_queue<T, Container, Compare>::priority_queue;
 
+    // 函数: pop_move
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pop_move
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     T pop_move() {
         T item = std::move(this->c.front());
         std::pop_heap(this->c.begin(), this->c.end(), this->comp);
@@ -257,11 +444,63 @@ public:
         return item;
     }
 
+    // 函数: pop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void pop() =  delete;
 };
 
+// 类: llm_bigram_bpe
+// 描述: llm_bigram_bpe类提供相关功能
+// 用途: 用于处理llm_bigram_bpe相关的操作
+// 类: llm_bigram_bpe
+// 描述: llm_bigram_bpe类提供相关功能
+// 用途: 用于处理llm_bigram_bpe相关的操作
+    // 结构体: llm_bigram_bpe
+    // 描述: llm_bigram_bpe结构体提供相关功能
+    // 用途: 用于处理llm_bigram_bpe相关的操作
+    // 结构体: llm_bigram_bpe
+    // 描述: llm_bigram_bpe结构体提供相关功能
+    // 用途: 用于处理llm_bigram_bpe相关的操作
+    // 结构体: llm_bigram_bpe
+    // 描述: llm_bigram_bpe结构体提供相关功能
+    // 用途: 用于处理llm_bigram_bpe相关的操作
+    // 结构体: llm_bigram_bpe
+    // 描述: llm_bigram_bpe结构体提供相关功能
+    // 用途: 用于处理llm_bigram_bpe相关的操作
 struct llm_bigram_bpe {
+    // 类: comparator
+    // 描述: comparator类提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 类: comparator
+    // 描述: comparator类提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
+    // 结构体: comparator
+    // 描述: comparator结构体提供相关功能
+    // 用途: 用于处理comparator相关的操作
     struct comparator {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         bool operator()(const llm_bigram_bpe & l, const llm_bigram_bpe & r) const {
             return l.rank > r.rank || (l.rank == r.rank && l.left > r.left);
         }
@@ -276,6 +515,24 @@ struct llm_bigram_bpe {
     size_t size;
 };
 
+// 类: llm_tokenizer_bpe
+// 描述: llm_tokenizer_bpe类提供相关功能
+// 用途: 用于处理llm_tokenizer_bpe相关的操作
+// 类: llm_tokenizer_bpe
+// 描述: llm_tokenizer_bpe类提供相关功能
+// 用途: 用于处理llm_tokenizer_bpe相关的操作
+    // 结构体: llm_tokenizer_bpe
+    // 描述: llm_tokenizer_bpe结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe相关的操作
+    // 结构体: llm_tokenizer_bpe
+    // 描述: llm_tokenizer_bpe结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe相关的操作
+    // 结构体: llm_tokenizer_bpe
+    // 描述: llm_tokenizer_bpe结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe相关的操作
+    // 结构体: llm_tokenizer_bpe
+    // 描述: llm_tokenizer_bpe结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe相关的操作
 struct llm_tokenizer_bpe : llm_tokenizer {
     llm_tokenizer_bpe(const llama_vocab & vocab) {
         GGML_ASSERT(vocab.get_type() == LLAMA_VOCAB_TYPE_BPE);
@@ -508,13 +765,47 @@ struct llm_tokenizer_bpe : llm_tokenizer {
     std::vector<std::string> regex_exprs;
 };
 
+// 类: llm_tokenizer_bpe_session
+// 描述: llm_tokenizer_bpe_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_bpe_session相关的操作
+// 类: llm_tokenizer_bpe_session
+// 描述: llm_tokenizer_bpe_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_bpe_session相关的操作
+    // 结构体: llm_tokenizer_bpe_session
+    // 描述: llm_tokenizer_bpe_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe_session相关的操作
+    // 结构体: llm_tokenizer_bpe_session
+    // 描述: llm_tokenizer_bpe_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe_session相关的操作
+    // 结构体: llm_tokenizer_bpe_session
+    // 描述: llm_tokenizer_bpe_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe_session相关的操作
+    // 结构体: llm_tokenizer_bpe_session
+    // 描述: llm_tokenizer_bpe_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_bpe_session相关的操作
 struct llm_tokenizer_bpe_session {
     llm_tokenizer_bpe_session(const llama_vocab & vocab, const llm_tokenizer_bpe & tokenizer) : vocab(vocab), tokenizer(tokenizer) {}
 
+    // 函数: append
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: append
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void append(const llama_token token_id, std::vector<llama_token> & output)  {
         output.push_back(token_id);
     }
 
+    // 函数: append_bos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: append_bos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool append_bos(std::vector<llama_token> & output) const {
         if (vocab.get_add_bos()) {
             GGML_ASSERT(vocab.token_bos() != LLAMA_TOKEN_NULL);
@@ -524,6 +815,14 @@ struct llm_tokenizer_bpe_session {
         return false;
     }
 
+    // 函数: append_eos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: append_eos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool append_eos(std::vector<llama_token> & output) const {
         if (vocab.get_add_eos()) {
             GGML_ASSERT(vocab.token_eos() != LLAMA_TOKEN_NULL);
@@ -533,6 +832,14 @@ struct llm_tokenizer_bpe_session {
         return false;
     }
 
+    // 函数: check_double_bos_eos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: check_double_bos_eos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void check_double_bos_eos(const std::vector<llama_token> & output) const {
         if (vocab.get_add_bos() && output.size() >= 2 && output[1] == vocab.token_bos()) {
             LLAMA_LOG_WARN(
@@ -548,6 +855,14 @@ struct llm_tokenizer_bpe_session {
         }
     }
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         int final_prev_index = -1;
         const auto word_collection = unicode_regex_split(text, tokenizer.regex_exprs);
@@ -692,13 +1007,57 @@ private:
 // WPM tokenizer
 //
 
+// 类: llm_tokenizer_wpm
+// 描述: llm_tokenizer_wpm类提供相关功能
+// 用途: 用于处理llm_tokenizer_wpm相关的操作
+// 类: llm_tokenizer_wpm
+// 描述: llm_tokenizer_wpm类提供相关功能
+// 用途: 用于处理llm_tokenizer_wpm相关的操作
+    // 结构体: llm_tokenizer_wpm
+    // 描述: llm_tokenizer_wpm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm相关的操作
+    // 结构体: llm_tokenizer_wpm
+    // 描述: llm_tokenizer_wpm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm相关的操作
+    // 结构体: llm_tokenizer_wpm
+    // 描述: llm_tokenizer_wpm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm相关的操作
+    // 结构体: llm_tokenizer_wpm
+    // 描述: llm_tokenizer_wpm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm相关的操作
 struct llm_tokenizer_wpm : llm_tokenizer {
     llm_tokenizer_wpm(const llama_vocab & /*vocab*/) {}
 };
 
+// 类: llm_tokenizer_wpm_session
+// 描述: llm_tokenizer_wpm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_wpm_session相关的操作
+// 类: llm_tokenizer_wpm_session
+// 描述: llm_tokenizer_wpm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_wpm_session相关的操作
+    // 结构体: llm_tokenizer_wpm_session
+    // 描述: llm_tokenizer_wpm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm_session相关的操作
+    // 结构体: llm_tokenizer_wpm_session
+    // 描述: llm_tokenizer_wpm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm_session相关的操作
+    // 结构体: llm_tokenizer_wpm_session
+    // 描述: llm_tokenizer_wpm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm_session相关的操作
+    // 结构体: llm_tokenizer_wpm_session
+    // 描述: llm_tokenizer_wpm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_wpm_session相关的操作
 struct llm_tokenizer_wpm_session {
     llm_tokenizer_wpm_session(const llama_vocab & vocab) : vocab(vocab) {}
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         // normalize and split by whitespace
         std::vector<std::string> words = preprocess(text);
@@ -784,6 +1143,14 @@ struct llm_tokenizer_wpm_session {
         return words;
     }
 
+    // 函数: is_chinese_char
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_chinese_char
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool is_chinese_char(uint32_t cpt) {
         return
             (cpt >= 0x04E00 && cpt <= 0x09FFF) ||
@@ -808,6 +1175,24 @@ private:
 // UGM tokenizer
 //
 
+// 类: llm_tokenizer_ugm
+// 描述: llm_tokenizer_ugm类提供相关功能
+// 用途: 用于处理llm_tokenizer_ugm相关的操作
+// 类: llm_tokenizer_ugm
+// 描述: llm_tokenizer_ugm类提供相关功能
+// 用途: 用于处理llm_tokenizer_ugm相关的操作
+    // 结构体: llm_tokenizer_ugm
+    // 描述: llm_tokenizer_ugm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm相关的操作
+    // 结构体: llm_tokenizer_ugm
+    // 描述: llm_tokenizer_ugm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm相关的操作
+    // 结构体: llm_tokenizer_ugm
+    // 描述: llm_tokenizer_ugm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm相关的操作
+    // 结构体: llm_tokenizer_ugm
+    // 描述: llm_tokenizer_ugm结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm相关的操作
 struct llm_tokenizer_ugm : llm_tokenizer {
     llm_tokenizer_ugm(const llama_vocab & vocab, const std::vector<char> & precompiled_charsmap) {
         if (precompiled_charsmap.size() > 0) {
@@ -864,6 +1249,24 @@ struct llm_tokenizer_ugm : llm_tokenizer {
     const uint32_t * xcda_array = NULL;
     size_t xcda_array_size = 0;
 
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
     struct naive_trie user_defined_token_matcher;
 
     float min_score = FLT_MAX;
@@ -872,9 +1275,45 @@ struct llm_tokenizer_ugm : llm_tokenizer {
     float unknown_token_score_penalty = 10.0;
     float unknown_token_score;
 
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
     struct naive_trie token_matcher;
 };
 
+// 类: llm_tokenizer_ugm_session
+// 描述: llm_tokenizer_ugm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_ugm_session相关的操作
+// 类: llm_tokenizer_ugm_session
+// 描述: llm_tokenizer_ugm_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_ugm_session相关的操作
+    // 结构体: llm_tokenizer_ugm_session
+    // 描述: llm_tokenizer_ugm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm_session相关的操作
+    // 结构体: llm_tokenizer_ugm_session
+    // 描述: llm_tokenizer_ugm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm_session相关的操作
+    // 结构体: llm_tokenizer_ugm_session
+    // 描述: llm_tokenizer_ugm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm_session相关的操作
+    // 结构体: llm_tokenizer_ugm_session
+    // 描述: llm_tokenizer_ugm_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_ugm_session相关的操作
 struct llm_tokenizer_ugm_session {
     llm_tokenizer_ugm_session(const llama_vocab & vocab, const llm_tokenizer_ugm & tokenizer) : vocab(vocab), tokenizer(tokenizer) {}
 
@@ -891,6 +1330,14 @@ struct llm_tokenizer_ugm_session {
      * After processing the whole sequence we backtrack from the end to get
      * the best tokenization.
     */
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         // get current size of output (for reversal later)
         size_t output_size = output.size();
@@ -934,8 +1381,44 @@ struct llm_tokenizer_ugm_session {
                     // the same as in the HF tokenizer using SentencePiece
                     const double token_score = vocab.is_user_defined(token_id) ? 0.0 : token_data.score;
                     const double challenger_score = current_best.score_sum + token_score;
+                    // 类: best_tokenization
+                    // 描述: best_tokenization类提供相关功能
+                    // 用途: 用于处理best_tokenization相关的操作
+                    // 类: best_tokenization
+                    // 描述: best_tokenization类提供相关功能
+                    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
                     struct best_tokenization & current_champ = tokenization_results[prefix_offset];
                     if (challenger_score > current_champ.score_sum) {
+                        // 类: best_tokenization
+                        // 描述: best_tokenization类提供相关功能
+                        // 用途: 用于处理best_tokenization相关的操作
+                        // 类: best_tokenization
+                        // 描述: best_tokenization类提供相关功能
+                        // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
                         struct best_tokenization challenger = { token_id, input_offset, challenger_score };
                         current_champ = challenger;
                     }
@@ -948,8 +1431,44 @@ struct llm_tokenizer_ugm_session {
             if (!single_codepoint_token_found) {
                 const double challenger_score = current_best.score_sum + tokenizer.unknown_token_score;
                 prefix_offset = input_offset + n_utf8_code_units;
+                // 类: best_tokenization
+                // 描述: best_tokenization类提供相关功能
+                // 用途: 用于处理best_tokenization相关的操作
+                // 类: best_tokenization
+                // 描述: best_tokenization类提供相关功能
+                // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
                 struct best_tokenization & current_champ = tokenization_results[prefix_offset];
                 if (challenger_score > current_champ.score_sum) {
+                    // 类: best_tokenization
+                    // 描述: best_tokenization类提供相关功能
+                    // 用途: 用于处理best_tokenization相关的操作
+                    // 类: best_tokenization
+                    // 描述: best_tokenization类提供相关功能
+                    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
                     struct best_tokenization challenger = { vocab.token_unk(), input_offset, challenger_score };
                     current_champ = challenger;
                 }
@@ -980,12 +1499,38 @@ struct llm_tokenizer_ugm_session {
 private:
 
     // helper structure for returning normalization results
+    // 类: normalization_result
+    // 描述: normalization_result类提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 类: normalization_result
+    // 描述: normalization_result类提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
     struct normalization_result {
         const char * normalized;
         size_t normalized_len;
         size_t consumed_input;
     };
 
+    // 函数: normalize
+    // 描述: 归一化: 归一化数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: normalize
+    // 描述: 归一化: 归一化数据
+    // 参数: 无参数
+    // 返回: 无返回值
     void normalize(const std::string& input, std::string * normalized) {
         normalized->clear();
         normalized->reserve(input.size() * 3);
@@ -1041,27 +1586,85 @@ private:
      * - LEAF array value in bit 9
      * Entries containing indexes of replacement sequences have set bit 31
      */
+    // 类: xcda_array_view
+    // 描述: xcda_array_view类提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 类: xcda_array_view
+    // 描述: xcda_array_view类提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
     struct xcda_array_view {
     public:
         xcda_array_view(const uint32_t * xcda_array, size_t xcda_array_size) : xcda_array(xcda_array), xcda_array_size(xcda_array_size) {
         }
+        // 函数: get_base
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_base
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         uint32_t get_base(size_t index) {
             uint32_t packed_node = get_node(index);
             return (packed_node >> 10) << ((packed_node & (1U << 9)) >> 6);
         }
+        // 函数: get_lcheck
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_lcheck
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         uint32_t get_lcheck(size_t index) {
             uint32_t packed_node = get_node(index);
             return packed_node & ((1U << 31) | 0xff);
         }
+        // 函数: get_leaf
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_leaf
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         bool get_leaf(size_t index) {
             uint32_t packed_node = get_node(index);
             return (packed_node >> 8) & 1;
         }
+        // 函数: get_value
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_value
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         uint32_t get_value(size_t index) {
             uint32_t packed_node = get_node(index);
             return packed_node & ((1U << 31) - 1);
         }
     private:
+        // 函数: get_node
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
+        // 函数: get_node
+        // 描述: 获取: 获取某个属性、值或资源
+        // 参数: 无参数或索引参数
+        // 返回: 返回请求的属性或值
         uint32_t get_node(size_t index) {
             if (index >= xcda_array_size) {
                 throw std::runtime_error("Index out of array bounds in XCDA array!");
@@ -1073,12 +1676,48 @@ private:
     };
 
     // this structure stores the best tokenization so far at input_offset
+    // 类: best_tokenization
+    // 描述: best_tokenization类提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 类: best_tokenization
+    // 描述: best_tokenization类提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
+    // 结构体: best_tokenization
+    // 描述: best_tokenization结构体提供相关功能
+    // 用途: 用于处理best_tokenization相关的操作
     struct best_tokenization {
         llama_token token_id;
         size_t input_offset;
         double score_sum;
     };
 
+    // 类: normalization_result
+    // 描述: normalization_result类提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 类: normalization_result
+    // 描述: normalization_result类提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
+    // 结构体: normalization_result
+    // 描述: normalization_result结构体提供相关功能
+    // 用途: 用于处理normalization_result相关的操作
     struct normalization_result normalize_prefix(const std::string & input, size_t input_offset) {
         if (input_offset == input.size()) {
             return { &input[input_offset], 0, 0 };
@@ -1095,6 +1734,24 @@ private:
         size_t longest_prefix_offset = 0;
 
         if (tokenizer.xcda_array_size > 0) {
+            // 类: xcda_array_view
+            // 描述: xcda_array_view类提供相关功能
+            // 用途: 用于处理xcda_array_view相关的操作
+            // 类: xcda_array_view
+            // 描述: xcda_array_view类提供相关功能
+            // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
+    // 结构体: xcda_array_view
+    // 描述: xcda_array_view结构体提供相关功能
+    // 用途: 用于处理xcda_array_view相关的操作
             struct xcda_array_view xcda_view(tokenizer.xcda_array, tokenizer.xcda_array_size);
 
             // Find the longest normalized sequence matching the input prefix by walking
@@ -1212,6 +1869,24 @@ static std::vector<uint8_t> llama_unescape_rwkv_token(const std::string & escape
     return output;
 }
 
+// 类: llm_tokenizer_rwkv
+// 描述: llm_tokenizer_rwkv类提供相关功能
+// 用途: 用于处理llm_tokenizer_rwkv相关的操作
+// 类: llm_tokenizer_rwkv
+// 描述: llm_tokenizer_rwkv类提供相关功能
+// 用途: 用于处理llm_tokenizer_rwkv相关的操作
+    // 结构体: llm_tokenizer_rwkv
+    // 描述: llm_tokenizer_rwkv结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv相关的操作
+    // 结构体: llm_tokenizer_rwkv
+    // 描述: llm_tokenizer_rwkv结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv相关的操作
+    // 结构体: llm_tokenizer_rwkv
+    // 描述: llm_tokenizer_rwkv结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv相关的操作
+    // 结构体: llm_tokenizer_rwkv
+    // 描述: llm_tokenizer_rwkv结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv相关的操作
 struct llm_tokenizer_rwkv : llm_tokenizer {
     llm_tokenizer_rwkv(const llama_vocab & vocab) {
         // RWKV supports arbitrary byte tokens, but the vocab struct only supports string tokens.
@@ -1225,12 +1900,56 @@ struct llm_tokenizer_rwkv : llm_tokenizer {
         }
     }
 
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 类: naive_trie
+    // 描述: naive_trie类提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
+    // 结构体: naive_trie
+    // 描述: naive_trie结构体提供相关功能
+    // 用途: 用于处理naive_trie相关的操作
     struct naive_trie token_matcher;
 };
 
+// 类: llm_tokenizer_rwkv_session
+// 描述: llm_tokenizer_rwkv_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
+// 类: llm_tokenizer_rwkv_session
+// 描述: llm_tokenizer_rwkv_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
+    // 结构体: llm_tokenizer_rwkv_session
+    // 描述: llm_tokenizer_rwkv_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
+    // 结构体: llm_tokenizer_rwkv_session
+    // 描述: llm_tokenizer_rwkv_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
+    // 结构体: llm_tokenizer_rwkv_session
+    // 描述: llm_tokenizer_rwkv_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
+    // 结构体: llm_tokenizer_rwkv_session
+    // 描述: llm_tokenizer_rwkv_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_rwkv_session相关的操作
 struct llm_tokenizer_rwkv_session {
     llm_tokenizer_rwkv_session(const llama_vocab & vocab, const llm_tokenizer_rwkv & tokenizer) : vocab(vocab), tokenizer(tokenizer) {}
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         uint32_t position = 0;
         while (position < text.size()) {
@@ -1264,11 +1983,37 @@ private:
     const llm_tokenizer_rwkv & tokenizer;
 };
 
+// 类: llm_tokenizer_plamo2
+// 描述: llm_tokenizer_plamo2类提供相关功能
+// 用途: 用于处理llm_tokenizer_plamo2相关的操作
+// 类: llm_tokenizer_plamo2
+// 描述: llm_tokenizer_plamo2类提供相关功能
+// 用途: 用于处理llm_tokenizer_plamo2相关的操作
+    // 结构体: llm_tokenizer_plamo2
+    // 描述: llm_tokenizer_plamo2结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2相关的操作
+    // 结构体: llm_tokenizer_plamo2
+    // 描述: llm_tokenizer_plamo2结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2相关的操作
+    // 结构体: llm_tokenizer_plamo2
+    // 描述: llm_tokenizer_plamo2结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2相关的操作
+    // 结构体: llm_tokenizer_plamo2
+    // 描述: llm_tokenizer_plamo2结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2相关的操作
 struct llm_tokenizer_plamo2 : llm_tokenizer {
     llm_tokenizer_plamo2(const llama_vocab & vocab) {
         build(vocab);
     }
 
+    // 函数: build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: build
+    // 描述: 构建: 构建数据结构或对象
+    // 参数: 无参数
+    // 返回: 无返回值
     void build(const llama_vocab & vocab) {
         // Reset internal structures
         tokens_.clear();
@@ -1531,9 +2276,35 @@ private:
     std::vector<std::vector<int32_t>> table_;
 };
 
+// 类: llm_tokenizer_plamo2_session
+// 描述: llm_tokenizer_plamo2_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
+// 类: llm_tokenizer_plamo2_session
+// 描述: llm_tokenizer_plamo2_session类提供相关功能
+// 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
+    // 结构体: llm_tokenizer_plamo2_session
+    // 描述: llm_tokenizer_plamo2_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
+    // 结构体: llm_tokenizer_plamo2_session
+    // 描述: llm_tokenizer_plamo2_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
+    // 结构体: llm_tokenizer_plamo2_session
+    // 描述: llm_tokenizer_plamo2_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
+    // 结构体: llm_tokenizer_plamo2_session
+    // 描述: llm_tokenizer_plamo2_session结构体提供相关功能
+    // 用途: 用于处理llm_tokenizer_plamo2_session相关的操作
 struct llm_tokenizer_plamo2_session {
     llm_tokenizer_plamo2_session(const llm_tokenizer_plamo2 & tokenizer) : tokenizer(tokenizer) {}
 
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenize(const std::string & text, std::vector<llama_token> & output) {
         std::vector<llama_token> tokens = tokenizer.encode(text);
         output.insert(output.end(), tokens.begin(), tokens.end());
@@ -1552,6 +2323,24 @@ typedef enum FRAGMENT_BUFFER_VARIANT_TYPE {
     FRAGMENT_BUFFER_VARIANT_TYPE_RAW_TEXT
 } FRAGMENT_BUFFER_VARIANT_TYPE;
 
+// 类: fragment_buffer_variant
+// 描述: fragment_buffer_variant类提供相关功能
+// 用途: 用于处理fragment_buffer_variant相关的操作
+// 类: fragment_buffer_variant
+// 描述: fragment_buffer_variant类提供相关功能
+// 用途: 用于处理fragment_buffer_variant相关的操作
+    // 结构体: fragment_buffer_variant
+    // 描述: fragment_buffer_variant结构体提供相关功能
+    // 用途: 用于处理fragment_buffer_variant相关的操作
+    // 结构体: fragment_buffer_variant
+    // 描述: fragment_buffer_variant结构体提供相关功能
+    // 用途: 用于处理fragment_buffer_variant相关的操作
+    // 结构体: fragment_buffer_variant
+    // 描述: fragment_buffer_variant结构体提供相关功能
+    // 用途: 用于处理fragment_buffer_variant相关的操作
+    // 结构体: fragment_buffer_variant
+    // 描述: fragment_buffer_variant结构体提供相关功能
+    // 用途: 用于处理fragment_buffer_variant相关的操作
 struct fragment_buffer_variant {
     fragment_buffer_variant(llama_token _token)
     :
@@ -1581,6 +2370,24 @@ struct fragment_buffer_variant {
     const uint64_t length;
 };
 
+// 类: llama_vocab
+// 描述: llama_vocab类提供相关功能
+// 用途: 用于处理llama_vocab相关的操作
+// 类: llama_vocab
+// 描述: llama_vocab类提供相关功能
+// 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
+    // 结构体: llama_vocab
+    // 描述: llama_vocab结构体提供相关功能
+    // 用途: 用于处理llama_vocab相关的操作
 struct llama_vocab::impl {
     uint32_t n_token_types = 0; // for BERT-style token types
 
@@ -1629,7 +2436,33 @@ struct llama_vocab::impl {
 
     std::vector<llama_token> cache_special_tokens;
     std::vector<std::string> cache_token_to_piece; // llama_token_to_piece(special = true);
+    // 类: pair_hash
+    // 描述: pair_hash类提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
+    // 类: pair_hash
+    // 描述: pair_hash类提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
+    // 结构体: pair_hash
+    // 描述: pair_hash结构体提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
+    // 结构体: pair_hash
+    // 描述: pair_hash结构体提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
+    // 结构体: pair_hash
+    // 描述: pair_hash结构体提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
+    // 结构体: pair_hash
+    // 描述: pair_hash结构体提供相关功能
+    // 用途: 用于处理pair_hash相关的操作
     struct pair_hash {
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: operator
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         size_t operator()(const std::pair<std::string, std::string> & p) const {
             return std::hash<std::string>{}(p.first) ^  //create some hash for pair
                    (std::hash<std::string>{}(p.second) << 1);
@@ -1649,26 +2482,130 @@ struct llama_vocab::impl {
 
     ~impl() = default;
 
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     void load(llama_model_loader & ml, const LLM_KV & kv);
 
     enum llama_vocab_type get_type() const;
 
+    // 函数: type_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: type_name
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string type_name() const;
 
+    // 函数: is_normal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_normal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_normal      (llama_token id) const;
+    // 函数: is_unknown
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_unknown
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_unknown     (llama_token id) const;
+    // 函数: is_control
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_control
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_control     (llama_token id) const;
+    // 函数: is_byte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_byte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_byte        (llama_token id) const;
+    // 函数: is_user_defined
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_user_defined
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_user_defined(llama_token id) const;
+    // 函数: is_unused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_unused
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_unused      (llama_token id) const;
+    // 函数: is_eog
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: is_eog
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool is_eog         (llama_token id) const;
 
+    // 函数: token_to_byte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: token_to_byte
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     uint8_t token_to_byte(llama_token id) const;
 
+    // 函数: token_get_attr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: token_get_attr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_token_attr token_get_attr(llama_token id) const;
 
+    // 函数: init_tokenizer
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
+    // 函数: init_tokenizer
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 初始化参数
+    // 返回: 成功返回0或true,失败返回错误码
     void init_tokenizer(enum llama_vocab_type type);
 
+    // 函数: tokenizer_st_partition
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: tokenizer_st_partition
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void tokenizer_st_partition(std::forward_list<fragment_buffer_variant> & buffer, bool parse_special) const;
 
     std::string token_to_piece_for_cache(
@@ -1712,6 +2649,14 @@ struct llama_vocab::impl {
             const std::vector<llama_token> & tokens,
                                       bool   special) const;
 
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: print_info
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void print_info() const;
 
 private:
@@ -1719,6 +2664,24 @@ private:
 };
 
 void llama_vocab::impl::load(llama_model_loader & ml, const LLM_KV & kv) {
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx = ml.meta.get();
 
     // determine vocab type
@@ -2729,6 +3692,14 @@ uint8_t llama_vocab::impl::token_to_byte(llama_token id) const {
         case LLAMA_VOCAB_TYPE_SPM:
         case LLAMA_VOCAB_TYPE_UGM: {
             auto buf = token_data.text.substr(3, 2);
+            // 函数: strtol
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: strtol
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return strtol(buf.c_str(), NULL, 16);
         }
         case LLAMA_VOCAB_TYPE_BPE: {
@@ -2915,14 +3886,38 @@ std::string llama_vocab::impl::token_to_piece_for_cache(llama_token token, bool 
     return piece;
 }
 
+// 函数: llama_escape_whitespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_escape_whitespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_escape_whitespace(std::string & text) {
     replace_all(text, " ", "\xe2\x96\x81");
 }
 
+// 函数: llama_unescape_whitespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_unescape_whitespace
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_unescape_whitespace(std::string & word) {
     replace_all(word, "\xe2\x96\x81", " ");
 }
 
+// 函数: llama_decode_text
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_decode_text
+// 描述: 解码: 解码数据或生成输出结果
+// 参数: 无参数
+// 返回: 无返回值
 static std::string llama_decode_text(const std::string & text) {
     std::string decoded_text;
 
@@ -2988,6 +3983,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
                         LLAMA_LOG_WARN("TT: (%ld %ld %ld) '%s'\n", text.length(), fragment.offset, fragment.length, text.c_str());
 #endif
                         llama_escape_whitespace(text);
+                        // 函数: session
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: session
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         llm_tokenizer_spm_session session(vocab);
                         session.tokenize(text, output);
                         is_prev_special = false;
@@ -3011,6 +4014,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
             } break;
         case LLAMA_VOCAB_TYPE_BPE:
             {
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llm_tokenizer_bpe_session session(vocab, *static_cast<const llm_tokenizer_bpe *>(tokenizer.get()));
                 // it calls some other methods that are not exist in llm_tokenizer,
                 // here just cast it to bpe tokenizer object
@@ -3042,6 +4053,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
                     output.push_back(special_bos_id);
                 }
 
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llm_tokenizer_wpm_session session(vocab);
 
                 for (const auto & fragment : fragment_buffer) {
@@ -3068,6 +4087,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
                     GGML_ASSERT(special_bos_id != LLAMA_TOKEN_NULL);
                     output.push_back(special_bos_id);
                 }
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llm_tokenizer_ugm_session session(vocab, *static_cast<const llm_tokenizer_ugm *>(tokenizer.get()));
 
                 for (const auto & fragment : fragment_buffer) {
@@ -3096,6 +4123,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
             } break;
         case LLAMA_VOCAB_TYPE_RWKV:
             {
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llm_tokenizer_rwkv_session session(vocab, *static_cast<const llm_tokenizer_rwkv *>(tokenizer.get()));
                 for (const auto & fragment : fragment_buffer) {
                     if (fragment.type == FRAGMENT_BUFFER_VARIANT_TYPE_RAW_TEXT) {
@@ -3113,6 +4148,14 @@ std::vector<llama_token> llama_vocab::impl::tokenize(
             } break;
         case LLAMA_VOCAB_TYPE_PLAMO2:
             {
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: session
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 llm_tokenizer_plamo2_session session(*static_cast<const llm_tokenizer_plamo2 *>(tokenizer.get()));
                 for (const auto & fragment : fragment_buffer) {
                     if (fragment.type == FRAGMENT_BUFFER_VARIANT_TYPE_RAW_TEXT) {
@@ -3167,6 +4210,14 @@ int32_t llama_vocab::impl::token_to_piece(llama_token token, char * buf, int32_t
 
         if (!cache.empty()) {
             const auto & result = cache.at(token);
+            // 函数: _try_copy
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: _try_copy
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return _try_copy(result.data(), result.size());
         }
     }
@@ -3180,15 +4231,39 @@ int32_t llama_vocab::impl::token_to_piece(llama_token token, char * buf, int32_t
                 // NOTE: we accept all unsupported token types,
                 // suppressing them like CONTROL tokens.
                 if (attr & (attr_special | LLAMA_TOKEN_ATTR_USER_DEFINED)) {
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return _try_copy(token_text.data(), token_text.size());
                 }
                 if (attr & LLAMA_TOKEN_ATTR_NORMAL) {
                     std::string result = token_text;
                     llama_unescape_whitespace(result);
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return _try_copy(result.data(), result.size());
                 }
                 if (attr & LLAMA_TOKEN_ATTR_BYTE) {
                     char byte = (char) token_to_byte(token);
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return _try_copy((char*) &byte, 1);
                 }
                 break;
@@ -3197,10 +4272,26 @@ int32_t llama_vocab::impl::token_to_piece(llama_token token, char * buf, int32_t
                 // NOTE: we accept all unsupported token types,
                 // suppressing them like CONTROL tokens.
                 if (attr & (attr_special | LLAMA_TOKEN_ATTR_USER_DEFINED)) {
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return _try_copy(token_text.data(), token_text.size());
                 }
                 if (attr & LLAMA_TOKEN_ATTR_NORMAL) {
                     std::string result = llama_decode_text(token_text);
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: _try_copy
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     return _try_copy(result.data(), result.size());
                 }
                 break;
@@ -3232,6 +4323,14 @@ int32_t llama_vocab::impl::token_to_piece(llama_token token, char * buf, int32_t
 
                 // Normal token - just copy the text
                 std::string result = token_text;
+                // 函数: _try_copy
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: _try_copy
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 return _try_copy(result.data(), result.size());
             }
             default:
@@ -3730,11 +4829,27 @@ void llama_vocab::print_info() const {
 // interface implementation
 //
 
+// 函数: llama_vocab_n_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_n_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_vocab_n_tokens(const struct llama_vocab * vocab) {
     return vocab->n_tokens();
 }
 
 // deprecated
+// 函数: llama_n_vocab
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_vocab
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_vocab(const struct llama_vocab * vocab) {
     return llama_vocab_n_tokens(vocab);
 }
@@ -3743,10 +4858,26 @@ enum llama_vocab_type llama_vocab_type(const struct llama_vocab * vocab) {
     return vocab->get_type();
 }
 
+// 函数: llama_vocab_get_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_get_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_vocab_get_text(const struct llama_vocab * vocab, llama_token token) {
     return vocab->token_get_text(token);
 }
 
+// 函数: llama_vocab_get_score
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_get_score
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float llama_vocab_get_score(const struct llama_vocab * vocab, llama_token token) {
     return vocab->token_get_score(token);
 }
@@ -3755,180 +4886,492 @@ enum llama_token_attr llama_vocab_get_attr(const struct llama_vocab * vocab, lla
     return vocab->token_get_attr(token);
 }
 
+// 函数: llama_vocab_is_eog
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_is_eog
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_vocab_is_eog(const struct llama_vocab * vocab, llama_token token) {
     return vocab->is_eog(token);
 }
 
+// 函数: llama_vocab_is_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_is_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_vocab_is_control(const struct llama_vocab * vocab, llama_token token) {
     return vocab->is_control(token);
 }
 
+// 函数: llama_vocab_bos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_bos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_bos(const struct llama_vocab * vocab) {
     return vocab->token_bos();
 }
 
+// 函数: llama_vocab_eos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_eos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_eos(const struct llama_vocab * vocab) {
     return vocab->token_eos();
 }
 
+// 函数: llama_vocab_eot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_eot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_eot(const struct llama_vocab * vocab) {
     return vocab->token_eot();
 }
 
 // deprecated
+// 函数: llama_vocab_cls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_cls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_cls(const struct llama_vocab * vocab) {
     return vocab->token_bos();
 }
 
+// 函数: llama_vocab_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_sep(const struct llama_vocab * vocab) {
     return vocab->token_sep();
 }
 
+// 函数: llama_vocab_nl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_nl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_nl (const struct llama_vocab * vocab) {
     return vocab->token_nl();
 }
 
+// 函数: llama_vocab_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_pad(const struct llama_vocab * vocab) {
     return vocab->token_pad();
 }
 
+// 函数: llama_vocab_get_add_bos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_get_add_bos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_vocab_get_add_bos(const struct llama_vocab * vocab) {
     return vocab->get_add_bos();
 }
 
+// 函数: llama_vocab_get_add_eos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_get_add_eos
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_vocab_get_add_eos(const struct llama_vocab * vocab) {
     return vocab->get_add_eos();
 }
 
+// 函数: llama_vocab_get_add_sep
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_get_add_sep
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_vocab_get_add_sep(const struct llama_vocab * vocab) {
     return vocab->get_add_sep();
 }
 
+// 函数: llama_vocab_fim_pre
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_pre
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_pre(const struct llama_vocab * vocab) {
     return vocab->token_fim_pre();
 }
 
+// 函数: llama_vocab_fim_suf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_suf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_suf(const struct llama_vocab * vocab) {
     return vocab->token_fim_suf();
 }
 
+// 函数: llama_vocab_fim_mid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_mid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_mid(const struct llama_vocab * vocab) {
     return vocab->token_fim_mid();
 }
 
+// 函数: llama_vocab_fim_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_pad(const struct llama_vocab * vocab) {
     return vocab->token_fim_pad();
 }
 
+// 函数: llama_vocab_fim_rep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_rep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_rep(const struct llama_vocab * vocab) {
     return vocab->token_fim_rep();
 }
 
+// 函数: llama_vocab_fim_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_fim_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_fim_sep(const struct llama_vocab * vocab) {
     return vocab->token_fim_sep();
 }
 
+// 函数: llama_vocab_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_vocab_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_vocab_mask(const struct llama_vocab* vocab) {
     return vocab->token_mask();
 }
 
 // deprecated
+// 函数: llama_token_get_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_get_text
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_token_get_text(const struct llama_vocab * vocab, llama_token token) {
     return llama_vocab_get_text(vocab, token);
 }
 
 // deprecated
+// 函数: llama_token_get_score
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_get_score
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float llama_token_get_score(const struct llama_vocab * vocab, llama_token token) {
     return llama_vocab_get_score(vocab, token);
 }
 
 // deprecated
 enum llama_token_attr llama_token_get_attr(const struct llama_vocab * vocab, llama_token token) {
+    // 函数: llama_vocab_get_attr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_vocab_get_attr
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_vocab_get_attr(vocab, token);
 }
 
 // deprecated
+// 函数: llama_token_is_eog
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_is_eog
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_token_is_eog(const struct llama_vocab * vocab, llama_token token) {
     return llama_vocab_is_eog(vocab, token);
 }
 
 // deprecated
+// 函数: llama_token_is_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_is_control
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_token_is_control(const struct llama_vocab * vocab, llama_token token) {
     return llama_vocab_is_control(vocab, token);
 }
 
 // deprecated
+// 函数: llama_token_bos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_bos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_bos(const struct llama_vocab * vocab) {
     return llama_vocab_bos(vocab);
 }
 
 // deprecated
+// 函数: llama_token_eos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_eos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_eos(const struct llama_vocab * vocab) {
     return llama_vocab_eos(vocab);
 }
 
 // deprecated
+// 函数: llama_token_eot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_eot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_eot(const struct llama_vocab * vocab) {
     return llama_vocab_eot(vocab);
 }
 
 // deprecated
+// 函数: llama_token_cls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_cls
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_cls(const struct llama_vocab * vocab) {
     //return llama_vocab_cls(vocab);
     return llama_vocab_bos(vocab); // avoid deprecation warning
 }
 
 // deprecated
+// 函数: llama_token_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_sep(const struct llama_vocab * vocab) {
     return llama_vocab_sep(vocab);
 }
 
 // deprecated
+// 函数: llama_token_nl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_nl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_nl (const struct llama_vocab * vocab) {
     return llama_vocab_nl(vocab);
 }
 
 // deprecated
+// 函数: llama_token_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_pad(const struct llama_vocab * vocab) {
     return llama_vocab_pad(vocab);
 }
 
 // deprecated
+// 函数: llama_add_bos_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_add_bos_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_add_bos_token(const struct llama_vocab * vocab) {
     return llama_vocab_get_add_bos(vocab);
 }
 
 // deprecated
+// 函数: llama_add_eos_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_add_eos_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_add_eos_token(const struct llama_vocab * vocab) {
     return llama_vocab_get_add_eos(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_pre
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_pre
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_pre(const struct llama_vocab * vocab) {
     return llama_vocab_fim_pre(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_suf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_suf
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_suf(const struct llama_vocab * vocab) {
     return llama_vocab_fim_suf(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_mid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_mid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_mid(const struct llama_vocab * vocab) {
     return llama_vocab_fim_mid(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_pad
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_pad(const struct llama_vocab * vocab) {
     return llama_vocab_fim_pad(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_rep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_rep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_rep(const struct llama_vocab * vocab) {
     return llama_vocab_fim_rep(vocab);
 }
 
 // deprecated
+// 函数: llama_token_fim_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_token_fim_sep
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_token_fim_sep(const struct llama_vocab * vocab) {
     return llama_vocab_fim_sep(vocab);
 }

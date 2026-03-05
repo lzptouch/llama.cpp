@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: speculative.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/speculative/speculative.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "sampling.h"
@@ -15,6 +22,24 @@
 #define SPEC_VOCAB_MAX_SIZE_DIFFERENCE  128
 #define SPEC_VOCAB_CHECK_START_TOKEN_ID 5
 
+// 类: seq_draft
+// 描述: seq_draft类提供相关功能
+// 用途: 用于处理seq_draft相关的操作
+// 类: seq_draft
+// 描述: seq_draft类提供相关功能
+// 用途: 用于处理seq_draft相关的操作
+    // 结构体: seq_draft
+    // 描述: seq_draft结构体提供相关功能
+    // 用途: 用于处理seq_draft相关的操作
+    // 结构体: seq_draft
+    // 描述: seq_draft结构体提供相关功能
+    // 用途: 用于处理seq_draft相关的操作
+    // 结构体: seq_draft
+    // 描述: seq_draft结构体提供相关功能
+    // 用途: 用于处理seq_draft相关的操作
+    // 结构体: seq_draft
+    // 描述: seq_draft结构体提供相关功能
+    // 用途: 用于处理seq_draft相关的操作
 struct seq_draft {
     bool active   = false;
     bool drafting = false;
@@ -26,9 +51,35 @@ struct seq_draft {
     std::vector<llama_token> tokens;
     std::vector<std::vector<llama_token_data>> dists;
 
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = nullptr;
 };
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -193,6 +244,24 @@ int main(int argc, char ** argv) {
     bool has_eos = false;
 
     // target model sampling context (reuse the llama_context's sampling instance)
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = common_sampler_init(model_tgt, params.sampling);
 
     // draft sequence data

@@ -15,8 +15,62 @@
 extern "C" {
 #endif
 
+    // 类: ggml_opt_dataset
+    // 描述: ggml_opt_dataset类提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
+    // 类: ggml_opt_dataset
+    // 描述: ggml_opt_dataset类提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
+    // 结构体: ggml_opt_dataset
+    // 描述: ggml_opt_dataset结构体提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
+    // 结构体: ggml_opt_dataset
+    // 描述: ggml_opt_dataset结构体提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
+    // 结构体: ggml_opt_dataset
+    // 描述: ggml_opt_dataset结构体提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
+    // 结构体: ggml_opt_dataset
+    // 描述: ggml_opt_dataset结构体提供相关功能
+    // 用途: 用于处理ggml_opt_dataset相关的操作
     struct ggml_opt_dataset;
+    // 类: ggml_opt_context
+    // 描述: ggml_opt_context类提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
+    // 类: ggml_opt_context
+    // 描述: ggml_opt_context类提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
+    // 结构体: ggml_opt_context
+    // 描述: ggml_opt_context结构体提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
+    // 结构体: ggml_opt_context
+    // 描述: ggml_opt_context结构体提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
+    // 结构体: ggml_opt_context
+    // 描述: ggml_opt_context结构体提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
+    // 结构体: ggml_opt_context
+    // 描述: ggml_opt_context结构体提供相关功能
+    // 用途: 用于处理ggml_opt_context相关的操作
     struct ggml_opt_context;
+    // 类: ggml_opt_result
+    // 描述: ggml_opt_result类提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
+    // 类: ggml_opt_result
+    // 描述: ggml_opt_result类提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
+    // 结构体: ggml_opt_result
+    // 描述: ggml_opt_result结构体提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
+    // 结构体: ggml_opt_result
+    // 描述: ggml_opt_result结构体提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
+    // 结构体: ggml_opt_result
+    // 描述: ggml_opt_result结构体提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
+    // 结构体: ggml_opt_result
+    // 描述: ggml_opt_result结构体提供相关功能
+    // 用途: 用于处理ggml_opt_result相关的操作
     struct ggml_opt_result;
 
     typedef struct ggml_opt_dataset * ggml_opt_dataset_t;
@@ -56,7 +110,43 @@ extern "C" {
     // get batch at position ibatch from dataset and copy the data to data_batch and labels_batch
     GGML_API void ggml_opt_dataset_get_batch(
             ggml_opt_dataset_t   dataset,
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * data_batch,   // shape = [ne_datapoint, ndata_batch]
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor * labels_batch, // shape = [ne_label,     ndata_batch]
             int64_t              ibatch);
     GGML_API void ggml_opt_dataset_get_batch_host(
@@ -82,6 +172,24 @@ extern "C" {
     };
 
     // parameters that control which optimizer is used and how said optimizer tries to find the minimal loss
+    // 类: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params类提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 类: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params类提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
     struct ggml_opt_optimizer_params {
         struct {
             float alpha; // learning rate
@@ -108,13 +216,85 @@ extern "C" {
     GGML_API struct ggml_opt_optimizer_params ggml_opt_get_constant_optimizer_params(void * userdata);
 
     // parameters for initializing a new optimization context
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 类: ggml_opt_params
+    // 描述: ggml_opt_params类提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
+    // 结构体: ggml_opt_params
+    // 描述: ggml_opt_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_params相关的操作
     struct ggml_opt_params {
         ggml_backend_sched_t backend_sched; // defines which backends are used to construct the compute graphs
 
         // by default the forward graph needs to be reconstructed for each eval
         // if ctx_compute, inputs, and outputs are set the graphs are instead allocated statically
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_compute;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor  * inputs;
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor  * outputs;
 
         enum ggml_opt_loss_type  loss_type;
@@ -176,9 +356,81 @@ extern "C" {
     // if not using static graphs, this function must be called prior to ggml_opt_alloc
     GGML_API void ggml_opt_prepare_alloc(
         ggml_opt_context_t    opt_ctx,
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx_compute,
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+        // 类: ggml_cgraph
+        // 描述: ggml_cgraph类提供相关功能
+        // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
+    // 结构体: ggml_cgraph
+    // 描述: ggml_cgraph结构体提供相关功能
+    // 用途: 用于处理ggml_cgraph相关的操作
         struct ggml_cgraph  * gf,
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor  * inputs,
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor  * outputs);
 
     // allocate the next graph for evaluation, either forward or forward + backward
@@ -206,6 +458,14 @@ extern "C" {
     // 4. Call ggml_opt_fit. If you need more control you can use ggml_opt_epoch instead.
 
     // signature for a callback while evaluating opt_ctx on dataset, called after an evaluation
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: void
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef void (*ggml_opt_epoch_callback)(
             bool               train,       // true after training evaluation, false after validation evaluation
             ggml_opt_context_t opt_ctx,
@@ -238,8 +498,62 @@ extern "C" {
     // fit model defined by inputs and outputs to dataset
     GGML_API void ggml_opt_fit(
             ggml_backend_sched_t            backend_sched,  // backend scheduler for constructing the compute graphs
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context           * ctx_compute,    // context with temporarily allocated tensors to calculate the outputs
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor            * inputs,         // input tensor with shape [ne_datapoint, ndata_batch]
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+            // 类: ggml_tensor
+            // 描述: ggml_tensor类提供相关功能
+            // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
             struct ggml_tensor            * outputs,        // output tensor, must have shape [ne_label, ndata_batch] if labels are used
             ggml_opt_dataset_t              dataset,        // dataset with data and optionally also labels
             enum ggml_opt_loss_type         loss_type,      // loss to minimize

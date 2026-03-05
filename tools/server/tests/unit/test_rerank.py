@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_rerank.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_rerank.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
@@ -5,6 +12,14 @@ server = ServerPreset.jina_reranker_tiny()
 
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.jina_reranker_tiny()
@@ -18,6 +33,14 @@ TEST_DOCUMENTS = [
 ]
 
 
+    # 函数: test_rerank
+    # 描述: test_rerank函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_rerank
+    # 描述: test_rerank函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_rerank():
     global server
     server.start()
@@ -41,6 +64,14 @@ def test_rerank():
     assert least_relevant["index"] == 3
 
 
+    # 函数: test_rerank_tei_format
+    # 描述: test_rerank_tei_format函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_rerank_tei_format
+    # 描述: test_rerank_tei_format函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_rerank_tei_format():
     global server
     server.start()
@@ -70,6 +101,14 @@ def test_rerank_tei_format():
     123,
     [1, 2, 3],
 ])
+    # 函数: test_invalid_rerank_req
+    # 描述: test_invalid_rerank_req函数提供相关功能
+    # 参数: documents
+    # 返回: 无返回值
+    # 函数: test_invalid_rerank_req
+    # 描述: test_invalid_rerank_req函数提供相关功能
+    # 参数: documents
+    # 返回: 无返回值
 def test_invalid_rerank_req(documents):
     global server
     server.start()
@@ -88,6 +127,14 @@ def test_invalid_rerank_req(documents):
         ("Which city?", "Machine learning is ", "Paris, capitale de la", 26),
     ]
 )
+    # 函数: test_rerank_usage
+    # 描述: test_rerank_usage函数提供相关功能
+    # 参数: query, doc1, doc2, n_tokens
+    # 返回: 无返回值
+    # 函数: test_rerank_usage
+    # 描述: test_rerank_usage函数提供相关功能
+    # 参数: query, doc1, doc2, n_tokens
+    # 返回: 无返回值
 def test_rerank_usage(query, doc1, doc2, n_tokens):
     global server
     server.start()
@@ -110,6 +157,14 @@ def test_rerank_usage(query, doc1, doc2, n_tokens):
     (4, 4),
     (99, len(TEST_DOCUMENTS)),    # higher than available docs
 ])
+    # 函数: test_rerank_top_n
+    # 描述: test_rerank_top_n函数提供相关功能
+    # 参数: top_n, expected_len
+    # 返回: 无返回值
+    # 函数: test_rerank_top_n
+    # 描述: test_rerank_top_n函数提供相关功能
+    # 参数: top_n, expected_len
+    # 返回: 无返回值
 def test_rerank_top_n(top_n, expected_len):
     global server
     server.start()
@@ -131,6 +186,14 @@ def test_rerank_top_n(top_n, expected_len):
     (4, 4),
     (99, len(TEST_DOCUMENTS)),    # higher than available docs
 ])
+    # 函数: test_rerank_tei_top_n
+    # 描述: test_rerank_tei_top_n函数提供相关功能
+    # 参数: top_n, expected_len
+    # 返回: 无返回值
+    # 函数: test_rerank_tei_top_n
+    # 描述: test_rerank_tei_top_n函数提供相关功能
+    # 参数: top_n, expected_len
+    # 返回: 无返回值
 def test_rerank_tei_top_n(top_n, expected_len):
     global server
     server.start()

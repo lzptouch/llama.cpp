@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llava.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/llava.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 // this graph is used by llava, granite and glm
@@ -173,6 +180,14 @@ ggml_cgraph * clip_graph_llava::build() {
                 embeddings = ggml_add(ctx0, embeddings, model.mm_2_b);
             }
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (proj_type == PROJECTOR_TYPE_MLP_NORM) {
             embeddings = ggml_mul_mat(ctx0, model.mm_0_w, embeddings);
             embeddings = ggml_add(ctx0, embeddings, model.mm_0_b);
@@ -194,6 +209,14 @@ ggml_cgraph * clip_graph_llava::build() {
             embeddings = ggml_add(ctx0, ggml_mul(ctx0, embeddings, model.mm_4_w),
                                 model.mm_4_b);
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (proj_type == PROJECTOR_TYPE_LDP) {
             // MobileVLM projector
             int n_patch = 24;
@@ -304,6 +327,14 @@ ggml_cgraph * clip_graph_llava::build() {
             }
             embeddings = block_1;
         }
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: if
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         else if (proj_type == PROJECTOR_TYPE_LDPV2)
         {
             int n_patch = 24;
@@ -334,6 +365,14 @@ ggml_cgraph * clip_graph_llava::build() {
     }
 
     // glm projector
+    // 函数: if
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: if
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     else if (proj_type == PROJECTOR_TYPE_GLM_EDGE) {
         size_t gridsz = (size_t)sqrt(embeddings->ne[1]);
         embeddings = ggml_permute(ctx0,embeddings,1,0,2,3);

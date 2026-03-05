@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: common.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/common.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "ggml.h"
 #include "gguf.h"
 
@@ -68,6 +75,14 @@ common_time_meas::~common_time_meas() {
 // CPU utils
 //
 
+// 函数: cpu_get_num_physical_cores
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpu_get_num_physical_cores
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t cpu_get_num_physical_cores() {
 #ifdef __linux__
     // enumerate the set of thread siblings, num entries is num cores
@@ -142,6 +157,14 @@ static void cpuid(unsigned leaf, unsigned subleaf,
             : "0"(leaf), "2"(subleaf));
 }
 
+// 函数: pin_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: pin_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int pin_cpu(int cpu) {
     cpu_set_t mask;
     CPU_ZERO(&mask);
@@ -149,12 +172,28 @@ static int pin_cpu(int cpu) {
     return pthread_setaffinity_np(pthread_self(), sizeof(mask), &mask);
 }
 
+// 函数: is_hybrid_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_hybrid_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_hybrid_cpu(void) {
     unsigned eax, ebx, ecx, edx;
     cpuid(7, 0, &eax, &ebx, &ecx, &edx);
     return !!(edx & (1u << 15));
 }
 
+// 函数: is_running_on_efficiency_core
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_running_on_efficiency_core
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool is_running_on_efficiency_core(void) {
     unsigned eax, ebx, ecx, edx;
     cpuid(0x1a, 0, &eax, &ebx, &ecx, &edx);
@@ -163,6 +202,14 @@ static bool is_running_on_efficiency_core(void) {
     return core_type == intel_atom;
 }
 
+// 函数: cpu_count_math_cpus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpu_count_math_cpus
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int cpu_count_math_cpus(int n_cpu) {
     int result = 0;
     for (int cpu = 0; cpu < n_cpu; ++cpu) {
@@ -183,6 +230,14 @@ static int cpu_count_math_cpus(int n_cpu) {
 /**
  * Returns number of CPUs on system that are useful for math.
  */
+// 函数: cpu_get_num_math
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpu_get_num_math
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t cpu_get_num_math() {
 #if defined(__x86_64__) && defined(__linux__) && !defined(__ANDROID__)
     int n_cpu = sysconf(_SC_NPROCESSORS_ONLN);
@@ -207,6 +262,14 @@ int32_t cpu_get_num_math() {
 
 #if defined(_WIN32)
 
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 bool set_process_priority(enum ggml_sched_priority prio) {
     if (prio == GGML_SCHED_PRIO_NORMAL) {
         return true;
@@ -233,6 +296,14 @@ bool set_process_priority(enum ggml_sched_priority prio) {
 #include <sys/types.h>
 #include <sys/resource.h>
 
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 bool set_process_priority(enum ggml_sched_priority prio) {
     if (prio == GGML_SCHED_PRIO_NORMAL) {
         return true;
@@ -261,6 +332,14 @@ bool set_process_priority(enum ggml_sched_priority prio) {
 //
 
 
+// 函数: postprocess_cpu_params
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: postprocess_cpu_params
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void postprocess_cpu_params(cpu_params& cpuparams, const cpu_params* role_model) {
     int32_t n_set = 0;
 
@@ -285,6 +364,14 @@ void postprocess_cpu_params(cpu_params& cpuparams, const cpu_params* role_model)
     }
 }
 
+// 函数: parse_cpu_range
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cpu_range
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool parse_cpu_range(const std::string & range, bool (&boolmask)[GGML_MAX_N_THREADS]) {
     size_t dash_loc = range.find('-');
     if (dash_loc == std::string::npos) {
@@ -322,6 +409,14 @@ bool parse_cpu_range(const std::string & range, bool (&boolmask)[GGML_MAX_N_THRE
     return true;
 }
 
+// 函数: parse_cpu_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cpu_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool parse_cpu_mask(const std::string & mask, bool (&boolmask)[GGML_MAX_N_THREADS]) {
     // Discard potential 0x prefix
     size_t start_i = 0;
@@ -358,6 +453,14 @@ bool parse_cpu_mask(const std::string & mask, bool (&boolmask)[GGML_MAX_N_THREAD
     return true;
 }
 
+// 函数: common_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void common_init() {
     llama_log_set(common_log_default_callback, NULL);
 
@@ -370,6 +473,14 @@ void common_init() {
     LOG_INF("build: %d (%s) with %s for %s%s\n", LLAMA_BUILD_NUMBER, LLAMA_COMMIT, LLAMA_COMPILER, LLAMA_BUILD_TARGET, build_type);
 }
 
+// 函数: common_params_get_system_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_get_system_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_params_get_system_info(const common_params & params) {
     std::ostringstream os;
 
@@ -392,6 +503,14 @@ std::string common_params_get_system_info(const common_params & params) {
 // String utils
 //
 
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_format(const char * fmt, ...) {
     va_list ap;
     va_list ap2;
@@ -407,6 +526,14 @@ std::string string_format(const char * fmt, ...) {
     return std::string(buf.data(), size);
 }
 
+// 函数: string_strip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_strip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_strip(const std::string & str) {
     size_t start = 0;
     size_t end = str.size();
@@ -419,6 +546,14 @@ std::string string_strip(const std::string & str) {
     return str.substr(start, end - start);
 }
 
+// 函数: string_get_sortable_timestamp
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_get_sortable_timestamp
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_get_sortable_timestamp() {
     using clock = std::chrono::system_clock;
 
@@ -435,6 +570,14 @@ std::string string_get_sortable_timestamp() {
     return std::string(timestamp_no_ns) + "." + std::string(timestamp_ns);
 }
 
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void string_replace_all(std::string & s, const std::string & search, const std::string & replace) {
     if (search.empty()) {
         return;
@@ -452,11 +595,27 @@ void string_replace_all(std::string & s, const std::string & search, const std::
     s = std::move(builder);
 }
 
+// 函数: regex_escape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: regex_escape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string regex_escape(const std::string & s) {
     static const std::regex special_chars("[.^$|()*+?\\[\\]{}\\\\]");
     return std::regex_replace(s, special_chars, "\\$&");
 }
 
+// 函数: string_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_join(const std::vector<std::string> & values, const std::string & separator) {
     std::ostringstream result;
     for (size_t i = 0; i < values.size(); ++i) {
@@ -484,6 +643,14 @@ std::vector<std::string> string_split(const std::string & str, const std::string
     return parts;
 }
 
+// 函数: string_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_repeat(const std::string & str, size_t n) {
     if (n == 0) {
         return "";
@@ -499,10 +666,26 @@ std::string string_repeat(const std::string & str, size_t n) {
     return result;
 }
 
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(bool value) {
     return value ? "true" : "false";
 }
 
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const std::vector<int> & values) {
     std::stringstream buf;
 
@@ -521,6 +704,14 @@ std::string string_from(const std::vector<int> & values) {
     return buf.str();
 }
 
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const struct llama_context * ctx, const std::vector<llama_token> & tokens) {
     std::stringstream buf;
 
@@ -545,6 +736,14 @@ std::string string_from(const struct llama_context * ctx, const std::vector<llam
     return buf.str();
 }
 
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const struct llama_context * ctx, const struct llama_batch & batch) {
     std::stringstream buf;
 
@@ -573,6 +772,14 @@ std::string string_from(const struct llama_context * ctx, const struct llama_bat
     return buf.str();
 }
 
+// 函数: string_process_escapes
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_process_escapes
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void string_process_escapes(std::string & input) {
     std::size_t input_len = input.length();
     std::size_t output_idx = 0;
@@ -610,6 +817,14 @@ void string_process_escapes(std::string & input) {
     input.resize(output_idx);
 }
 
+// 函数: string_parse_kv_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_parse_kv_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool string_parse_kv_override(const char * data, std::vector<llama_model_kv_override> & overrides) {
     const char * sep = strchr(data, '=');
     if (sep == nullptr || sep - data >= 128) {
@@ -662,6 +877,14 @@ bool string_parse_kv_override(const char * data, std::vector<llama_model_kv_over
 
 // Validate if a filename is safe to use
 // To validate a full path, split the path by the OS-specific path separator, and validate each part with this function
+// 函数: fs_validate_filename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_validate_filename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_validate_filename(const std::string & filename, bool allow_subdirs) {
     if (!filename.length()) {
         // Empty filename invalid
@@ -740,6 +963,14 @@ bool fs_validate_filename(const std::string & filename, bool allow_subdirs) {
 
 
 #ifdef _WIN32
+// 函数: utf8_to_wstring
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_to_wstring
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::wstring utf8_to_wstring(const std::string & str) {
     if (str.empty()) {
         return std::wstring();
@@ -759,6 +990,14 @@ static std::wstring utf8_to_wstring(const std::string & str) {
 #endif
 
 // returns true if successful, false otherwise
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_create_directory_with_parents(const std::string & path) {
 #ifdef _WIN32
     std::wstring wpath = utf8_to_wstring(path);
@@ -802,6 +1041,24 @@ bool fs_create_directory_with_parents(const std::string & path) {
     return true;
 #else
     // if the path already exists, check whether it's a directory
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 类: stat
+    // 描述: stat类提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
     struct stat info;
     if (stat(path.c_str(), &info) == 0) {
         return S_ISDIR(info.st_mode);
@@ -812,6 +1069,24 @@ bool fs_create_directory_with_parents(const std::string & path) {
     // process path from front to back, procedurally creating directories
     while ((pos_slash = path.find('/', pos_slash)) != std::string::npos) {
         const std::string subpath = path.substr(0, pos_slash);
+        // 类: stat
+        // 描述: stat类提供相关功能
+        // 用途: 用于处理stat相关的操作
+        // 类: stat
+        // 描述: stat类提供相关功能
+        // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
+    // 结构体: stat
+    // 描述: stat结构体提供相关功能
+    // 用途: 用于处理stat相关的操作
         struct stat info;
 
         // if the path already exists, ensure that it's a directory
@@ -834,11 +1109,27 @@ bool fs_create_directory_with_parents(const std::string & path) {
 #endif // _WIN32
 }
 
+// 函数: fs_is_directory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_is_directory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_is_directory(const std::string & path) {
     std::filesystem::path dir(path);
     return std::filesystem::exists(dir) && std::filesystem::is_directory(dir);
 }
 
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string fs_get_cache_directory() {
     std::string cache_directory = "";
     auto ensure_trailing_slash = [](std::string p) {
@@ -860,6 +1151,24 @@ std::string fs_get_cache_directory() {
         } else {
 #if defined(__linux__)
             /* no $HOME is defined, fallback to getpwuid */
+            // 类: passwd
+            // 描述: passwd类提供相关功能
+            // 用途: 用于处理passwd相关的操作
+            // 类: passwd
+            // 描述: passwd类提供相关功能
+            // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
+    // 结构体: passwd
+    // 描述: passwd结构体提供相关功能
+    // 用途: 用于处理passwd相关的操作
             struct passwd *pw = getpwuid(getuid());
             if ((!pw) || (!pw->pw_dir)) {
                 throw std::runtime_error("Failed to find $HOME directory");
@@ -885,6 +1194,14 @@ std::string fs_get_cache_directory() {
     return ensure_trailing_slash(cache_directory);
 }
 
+// 函数: fs_get_cache_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_get_cache_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string fs_get_cache_file(const std::string & filename) {
     GGML_ASSERT(filename.find(DIRECTORY_SEPARATOR) == std::string::npos);
     std::string cache_directory = fs_get_cache_directory();
@@ -899,6 +1216,14 @@ std::vector<common_file_info> fs_list(const std::string & path, bool include_dir
     std::vector<common_file_info> files;
     if (path.empty()) return files;
 
+    // 函数: dir
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: dir
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::filesystem::path dir(path);
     if (!std::filesystem::exists(dir) || !std::filesystem::is_directory(dir)) {
         return files;
@@ -940,6 +1265,14 @@ std::vector<common_file_info> fs_list(const std::string & path, bool include_dir
 // TTY utils
 //
 
+// 函数: tty_can_use_colors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tty_can_use_colors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool tty_can_use_colors() {
     // Check NO_COLOR environment variable (https://no-color.org/)
     if (const char * no_color = std::getenv("NO_COLOR")) {
@@ -1028,6 +1361,24 @@ static void common_init_sampler_from_model(
     get_float(llama_model_meta_key_str(LLAMA_MODEL_META_KEY_SAMPLING_MIROSTAT_ETA),    sparams.mirostat_eta,    common_params_sampling_config::COMMON_PARAMS_SAMPLING_CONFIG_MIROSTAT_ETA);
 }
 
+// 类: common_init_result
+// 描述: common_init_result类提供相关功能
+// 用途: 用于处理common_init_result相关的操作
+// 类: common_init_result
+// 描述: common_init_result类提供相关功能
+// 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
 struct common_init_result::impl {
     impl() = default;
     ~impl() = default;
@@ -1165,6 +1516,14 @@ std::vector<llama_adapter_lora_ptr> & common_init_result::lora() {
     return pimpl->lora;
 }
 
+// 函数: common_init_from_params
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_init_from_params
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 common_init_result_ptr common_init_from_params(common_params & params) {
     common_init_result_ptr res(new common_init_result(params));
 
@@ -1282,6 +1641,14 @@ common_init_result_ptr common_init_from_params(common_params & params) {
 
 common_init_result::~common_init_result() = default;
 
+// 函数: get_model_endpoint
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_model_endpoint
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 std::string get_model_endpoint() {
     const char * model_endpoint_env = getenv("MODEL_ENDPOINT");
     // We still respect the use of environment-variable "HF_ENDPOINT" for backward-compatibility.
@@ -1297,6 +1664,14 @@ std::string get_model_endpoint() {
     return model_endpoint;
 }
 
+// 函数: common_set_adapter_lora
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_set_adapter_lora
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_set_adapter_lora(struct llama_context * ctx, std::vector<common_adapter_lora_info> & lora) {
     std::vector<llama_adapter_lora *> loras;
     std::vector<float> scales;
@@ -1309,6 +1684,24 @@ void common_set_adapter_lora(struct llama_context * ctx, std::vector<common_adap
     llama_set_adapters_lora(ctx, loras.data(), loras.size(), scales.data());
 }
 
+// 类: llama_model_params
+// 描述: llama_model_params类提供相关功能
+// 用途: 用于处理llama_model_params相关的操作
+// 类: llama_model_params
+// 描述: llama_model_params类提供相关功能
+// 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
 struct llama_model_params common_model_params_to_llama(common_params & params) {
     auto mparams = llama_model_default_params();
 
@@ -1347,6 +1740,24 @@ struct llama_model_params common_model_params_to_llama(common_params & params) {
     return mparams;
 }
 
+// 类: llama_context_params
+// 描述: llama_context_params类提供相关功能
+// 用途: 用于处理llama_context_params相关的操作
+// 类: llama_context_params
+// 描述: llama_context_params类提供相关功能
+// 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
 struct llama_context_params common_context_params_to_llama(const common_params & params) {
     auto cparams = llama_context_default_params();
 
@@ -1383,7 +1794,43 @@ struct llama_context_params common_context_params_to_llama(const common_params &
     return cparams;
 }
 
+// 类: ggml_threadpool_params
+// 描述: ggml_threadpool_params类提供相关功能
+// 用途: 用于处理ggml_threadpool_params相关的操作
+// 类: ggml_threadpool_params
+// 描述: ggml_threadpool_params类提供相关功能
+// 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
 struct ggml_threadpool_params ggml_threadpool_params_from_cpu_params(const cpu_params & params) {
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 类: ggml_threadpool_params
+    // 描述: ggml_threadpool_params类提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
     struct ggml_threadpool_params tpp;
 
     ggml_threadpool_params_init(&tpp, params.n_threads); // setup the defaults
@@ -1403,11 +1850,37 @@ struct ggml_threadpool_params ggml_threadpool_params_from_cpu_params(const cpu_p
 // Batch utils
 //
 
+// 函数: common_batch_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_batch_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void common_batch_clear(struct llama_batch & batch) {
     batch.n_tokens = 0;
 }
 
 void common_batch_add(
+                 // 类: llama_batch
+                 // 描述: llama_batch类提供相关功能
+                 // 用途: 用于处理llama_batch相关的操作
+                 // 类: llama_batch
+                 // 描述: llama_batch类提供相关功能
+                 // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
                  struct llama_batch & batch,
                         llama_token   id,
                           llama_pos   pos,
@@ -1437,6 +1910,14 @@ std::vector<llama_token> common_tokenize(
                         bool   parse_special) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
+    // 函数: common_tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_tokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return common_tokenize(vocab, text, add_special, parse_special);
 }
 
@@ -1462,12 +1943,28 @@ std::vector<llama_token> common_tokenize(
     return result;
 }
 
+// 函数: common_token_to_piece
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_token_to_piece
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_token_to_piece(const struct llama_context * ctx, llama_token token, bool special) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
     return common_token_to_piece(vocab, token, special);
 }
 
+// 函数: common_token_to_piece
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_token_to_piece
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_token_to_piece(const struct llama_vocab * vocab, llama_token token, bool special) {
     std::string piece;
     piece.resize(piece.capacity());  // using string internal cache, 15 bytes + '\n'
@@ -1484,12 +1981,28 @@ std::string common_token_to_piece(const struct llama_vocab * vocab, llama_token 
     return piece;
 }
 
+// 函数: common_detokenize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_detokenize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_detokenize(const struct llama_context * ctx, const std::vector<llama_token> & tokens, bool special) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
     return common_detokenize(vocab, tokens, special);
 }
 
+// 函数: common_detokenize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_detokenize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_detokenize(const struct llama_vocab * vocab, const std::vector<llama_token> & tokens, bool special) {
     std::string text;
     text.resize(std::max(text.capacity(), tokens.size()));
@@ -1510,6 +2023,14 @@ std::string common_detokenize(const struct llama_vocab * vocab, const std::vecto
 // Embedding utils
 //
 
+// 函数: common_embd_normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_embd_normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 void common_embd_normalize(const float * inp, float * out, int n, int embd_norm) {
     double sum = 0.0;
 
@@ -1546,6 +2067,14 @@ void common_embd_normalize(const float * inp, float * out, int n, int embd_norm)
     }
 }
 
+// 函数: common_embd_similarity_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_embd_similarity_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 float common_embd_similarity_cos(const float * embd1, const float * embd2, int n){
     double sum  = 0.0;
     double sum1 = 0.0;
@@ -1572,14 +2101,58 @@ float common_embd_similarity_cos(const float * embd1, const float * embd2, int n
 // Control vector utils
 //
 
+// 函数: common_control_vector_load_one
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_control_vector_load_one
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static common_control_vector_data common_control_vector_load_one(const common_control_vector_load_info & load_info) {
     common_control_vector_data result = { -1, {} };
 
     ggml_context * ctx = nullptr;
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 类: gguf_init_params
+    // 描述: gguf_init_params类提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
     struct gguf_init_params meta_gguf_params = {
         /* .no_alloc = */ false,
         /* .ctx      = */ &ctx,
     };
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 类: gguf_context
+    // 描述: gguf_context类提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
+    // 结构体: gguf_context
+    // 描述: gguf_context结构体提供相关功能
+    // 用途: 用于处理gguf_context相关的操作
     struct gguf_context * ctx_gguf = gguf_init_from_file(load_info.fname.c_str(), meta_gguf_params);
     if (!ctx_gguf) {
         LOG_ERR("%s: failed to load control vector file from %s\n", __func__, load_info.fname.c_str());
@@ -1615,6 +2188,24 @@ static common_control_vector_data common_control_vector_load_one(const common_co
             break;
         }
 
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * tensor = ggml_get_tensor(ctx, name.c_str());
         if (tensor->type != GGML_TYPE_F32) {
             LOG_ERR("%s: invalid (non-F32) direction tensor type in %s\n", __func__, load_info.fname.c_str());
@@ -1657,6 +2248,14 @@ static common_control_vector_data common_control_vector_load_one(const common_co
     return result;
 }
 
+// 函数: common_control_vector_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_control_vector_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 common_control_vector_data common_control_vector_load(const std::vector<common_control_vector_load_info> & load_infos) {
     common_control_vector_data result = { -1, {} };
 
@@ -1691,6 +2290,14 @@ common_control_vector_data common_control_vector_load(const std::vector<common_c
     return result;
 }
 
+// 函数: common_opt_dataset_init
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_opt_dataset_init
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 ggml_opt_dataset_t common_opt_dataset_init(struct llama_context * ctx, const std::vector<llama_token> & tokens, int64_t stride) {
     const int64_t ne_datapoint = llama_n_ctx(ctx);
     const int64_t ndata        = (tokens.size() - ne_datapoint - 1) / stride;
@@ -1708,6 +2315,14 @@ ggml_opt_dataset_t common_opt_dataset_init(struct llama_context * ctx, const std
     return result;
 }
 
+// 函数: common_opt_lr_pars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_opt_lr_pars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_opt_optimizer_params common_opt_lr_pars(void * userdata) {
     ggml_opt_optimizer_params result = ggml_opt_get_default_optimizer_params(nullptr);
     const lr_opt &            d      = *(lr_opt *) userdata;
@@ -1717,6 +2332,14 @@ ggml_opt_optimizer_params common_opt_lr_pars(void * userdata) {
 }
 
 // TODO make all command line args case-insensitive
+// 函数: eq_case_insensitive
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: eq_case_insensitive
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline bool eq_case_insensitive(char const* a, char const* b) {
     return !
 #if defined(_MSC_VER)
@@ -1761,6 +2384,14 @@ float lr_opt::get_lr(float epoch) const {
     return r;
 }
 
+// 函数: common_replay_last_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_replay_last_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_replay_last_token(struct llama_context * ctx, llama_token last_token, int32_t pos) {
     llama_batch batch = llama_batch_get_one(&last_token, 1);
     batch.pos = &pos;
@@ -1772,6 +2403,24 @@ bool common_replay_last_token(struct llama_context * ctx, llama_token last_token
 }
 
 bool common_prompt_batch_decode(
+              // 类: llama_context
+              // 描述: llama_context类提供相关功能
+              // 用途: 用于处理llama_context相关的操作
+              // 类: llama_context
+              // 描述: llama_context类提供相关功能
+              // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
               struct llama_context * ctx,
     const std::vector<llama_token> & tokens,
                                int & n_past,

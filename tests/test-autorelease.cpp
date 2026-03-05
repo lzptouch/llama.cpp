@@ -8,6 +8,14 @@
 #include "get-model.h"
 
 // This creates a new context inside a pthread and then tries to exit cleanly.
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     auto * model_path = get_model_or_exit(argc, argv);
 

@@ -9,6 +9,14 @@
 
 #include <cassert>
 
+// 函数: type_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: type_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static const char * type_str(llama_gretype type) {
     switch (type) {
         case LLAMA_GRETYPE_CHAR: return "LLAMA_GRETYPE_CHAR";
@@ -22,6 +30,14 @@ static const char * type_str(llama_gretype type) {
     }
 }
 
+// 函数: verify_parsing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: verify_parsing
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void verify_parsing(const char *grammar_bytes, const std::vector<std::pair<std::string, uint32_t>> expected, const std::vector<llama_grammar_element> &expected_rules) {
     uint32_t index = 0;
     llama_grammar_parser parsed_grammar;
@@ -132,6 +148,14 @@ static void verify_parsing(const char *grammar_bytes, const std::vector<std::pai
     }
 }
 
+// 函数: verify_failure
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: verify_failure
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void verify_failure(const char * grammar_bytes) {
     fprintf(stderr, "Testing expected failure:%s\n", grammar_bytes);
     llama_grammar_parser result;
@@ -139,6 +163,14 @@ static void verify_failure(const char * grammar_bytes) {
     assert(result.rules.empty() && "should have failed");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main()
 {
     verify_failure(R"""(

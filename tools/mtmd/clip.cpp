@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: clip.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/clip.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "clip.h"
 #include "clip-impl.h"
 #include "clip-model.h"
@@ -25,11 +32,43 @@
 #include <array>
 #include <functional>
 
+// 类: clip_logger_state
+// 描述: clip_logger_state类提供相关功能
+// 用途: 用于处理clip_logger_state相关的操作
+// 类: clip_logger_state
+// 描述: clip_logger_state类提供相关功能
+// 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
+    // 结构体: clip_logger_state
+    // 描述: clip_logger_state结构体提供相关功能
+    // 用途: 用于处理clip_logger_state相关的操作
 struct clip_logger_state g_logger_state = {clip_log_callback_default, NULL};
 
 //#define CLIP_DEBUG_FUNCTIONS
 
 #ifdef CLIP_DEBUG_FUNCTIONS
+// 函数: clip_image_write_image_to_ppm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_write_image_to_ppm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_image_write_image_to_ppm(const clip_image_u8& img, const std::string& filename) {
     std::ofstream file(filename, std::ios::binary);
     if (!file.is_open()) {
@@ -49,6 +88,14 @@ static void clip_image_write_image_to_ppm(const clip_image_u8& img, const std::s
     file.close();
 }
 
+// 函数: clip_image_save_to_bmp
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_save_to_bmp
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_image_save_to_bmp(const clip_image_u8& img, const std::string& filename) {
     std::ofstream file(filename, std::ios::binary);
     if (!file.is_open()) {
@@ -127,6 +174,14 @@ static void clip_image_save_to_bmp(const clip_image_u8& img, const std::string& 
 }
 
 // debug function to convert f32 to u8
+// 函数: clip_image_convert_f32_to_u8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_convert_f32_to_u8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void clip_image_convert_f32_to_u8(const clip_image_f32& src, clip_image_u8& dst) {
     dst.nx = src.nx;
     dst.ny = src.ny;
@@ -138,6 +193,30 @@ static void clip_image_convert_f32_to_u8(const clip_image_f32& src, clip_image_u
 #endif
 
 
+// 类: clip_ctx
+// 描述: clip_ctx类提供相关功能
+// 用途: 用于处理clip_ctx相关的操作
+// 类: clip_ctx
+// 描述: clip_ctx类提供相关功能
+// 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
+    // 结构体: clip_ctx
+    // 描述: clip_ctx结构体提供相关功能
+    // 用途: 用于处理clip_ctx相关的操作
 struct clip_ctx {
     clip_model model;
 
@@ -215,6 +294,14 @@ struct clip_ctx {
     }
 
     // this function is added so that we don't change too much of the existing code
+    // 函数: proj_type
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: proj_type
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     projector_type proj_type() const {
         return model.proj_type;
     }
@@ -241,6 +328,30 @@ clip_graph::clip_graph(clip_ctx * ctx, const clip_image_f32 & img) :
         eps(hparams.eps),
         kq_scale(1.0f / sqrtf((float)d_head)),
         flash_attn_type(ctx->flash_attn_type) {
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 类: ggml_init_params
+    // 描述: ggml_init_params类提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
     struct ggml_init_params params = {
         /*.mem_size   =*/ ctx->buf_compute_meta.size(),
         /*.mem_buffer =*/ ctx->buf_compute_meta.data(),
@@ -781,6 +892,14 @@ ggml_tensor * clip_graph::build_patch_merge_permute(ggml_tensor * cur, int scale
     return cur;
 }
 
+// 函数: clip_image_build_graph
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_build_graph
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_cgraph * clip_image_build_graph(clip_ctx * ctx, const clip_image_f32_batch & imgs) {
     GGML_ASSERT(imgs.entries.size() == 1 && "n_batch > 1 is not supported");
 
@@ -884,6 +1003,30 @@ static ggml_cgraph * clip_image_build_graph(clip_ctx * ctx, const clip_image_f32
 // clip_model_loader
 //
 
+// 类: clip_model_loader
+// 描述: clip_model_loader类提供相关功能
+// 用途: 用于处理clip_model_loader相关的操作
+// 类: clip_model_loader
+// 描述: clip_model_loader类提供相关功能
+// 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
+    // 结构体: clip_model_loader
+    // 描述: clip_model_loader结构体提供相关功能
+    // 用途: 用于处理clip_model_loader相关的操作
 struct clip_model_loader {
     ggml_context_ptr ctx_meta;
     gguf_context_ptr ctx_gguf;
@@ -897,8 +1040,56 @@ struct clip_model_loader {
 
     // TODO @ngxson : we should not pass clip_ctx here, it should be clip_model
     clip_model_loader(const char * fname) : fname(fname) {
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * meta = nullptr;
 
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+        // 类: gguf_init_params
+        // 描述: gguf_init_params类提供相关功能
+        // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
+    // 结构体: gguf_init_params
+    // 描述: gguf_init_params结构体提供相关功能
+    // 用途: 用于处理gguf_init_params相关的操作
         struct gguf_init_params params = {
             /*.no_alloc = */ true,
             /*.ctx      = */ &meta,
@@ -956,6 +1147,14 @@ struct clip_model_loader {
         }
     }
 
+    // 函数: load_hparams
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_hparams
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     void load_hparams(clip_model & model, clip_modality modality) {
         auto & hparams = model.hparams;
         std::string log_ffn_op; // for logging
@@ -1332,6 +1531,14 @@ struct clip_model_loader {
         }
     }
 
+    // 函数: load_tensors
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: load_tensors
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     void load_tensors(clip_ctx & ctx_clip) {
         auto & model = ctx_clip.model;
         auto & hparams = model.hparams;
@@ -1348,6 +1555,30 @@ struct clip_model_loader {
         }
 
         // create data context
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = {
             /*.mem_size =*/ static_cast<size_t>(gguf_get_n_tensors(ctx_gguf.get()) + 1) * ggml_tensor_overhead(),
             /*.mem_buffer =*/ NULL,
@@ -1928,6 +2159,30 @@ struct clip_model_loader {
         }
     }
 
+    // 类: support_info_op
+    // 描述: support_info_op类提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 类: support_info_op
+    // 描述: support_info_op类提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
+    // 结构体: support_info_op
+    // 描述: support_info_op结构体提供相关功能
+    // 用途: 用于处理support_info_op相关的操作
     struct support_info_op {
         ggml_tensor * op;
 
@@ -1935,6 +2190,30 @@ struct clip_model_loader {
         bool is_accel = true;
     };
 
+    // 类: support_info_graph
+    // 描述: support_info_graph类提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 类: support_info_graph
+    // 描述: support_info_graph类提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
+    // 结构体: support_info_graph
+    // 描述: support_info_graph结构体提供相关功能
+    // 用途: 用于处理support_info_graph相关的操作
     struct support_info_graph {
         // whether the clip_ctx.backend supports flash attention
         bool fattn = true;
@@ -1943,6 +2222,14 @@ struct clip_model_loader {
         std::vector<support_info_op> ops;
     };
 
+    // 函数: warmup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: warmup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void warmup(clip_ctx & ctx_clip) {
         // create a fake batch
         const auto & hparams = ctx_clip.model.hparams;
@@ -1961,6 +2248,14 @@ struct clip_model_loader {
         warmup(ctx_clip, batch);
     }
 
+    // 函数: warmup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: warmup
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void warmup(clip_ctx & ctx_clip, const clip_image_f32_batch & batch) {
         support_info_graph info;
 
@@ -2028,6 +2323,14 @@ struct clip_model_loader {
         }
     }
 
+    // 函数: alloc_compute_meta
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: alloc_compute_meta
+    // 描述: 计算: 执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     static support_info_graph alloc_compute_meta(clip_ctx & ctx_clip, const clip_image_f32_batch & batch) {
         ctx_clip.buf_compute_meta.resize(ctx_clip.max_nodes * ggml_tensor_overhead() + ggml_graph_overhead());
 
@@ -2072,6 +2375,14 @@ struct clip_model_loader {
         return res;
     }
 
+    // 函数: get_bool
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_bool
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_bool(const std::string & key, bool & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2083,6 +2394,14 @@ struct clip_model_loader {
         output = gguf_get_val_bool(ctx_gguf.get(), i);
     }
 
+    // 函数: get_i32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_i32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_i32(const std::string & key, int & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2094,6 +2413,14 @@ struct clip_model_loader {
         output = gguf_get_val_i32(ctx_gguf.get(), i);
     }
 
+    // 函数: get_u32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_u32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_u32(const std::string & key, int & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2105,6 +2432,14 @@ struct clip_model_loader {
         output = gguf_get_val_u32(ctx_gguf.get(), i);
     }
 
+    // 函数: get_f32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_f32
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_f32(const std::string & key, float & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2116,6 +2451,14 @@ struct clip_model_loader {
         output = gguf_get_val_f32(ctx_gguf.get(), i);
     }
 
+    // 函数: get_string
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_string
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_string(const std::string & key, std::string & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2127,6 +2470,14 @@ struct clip_model_loader {
         output = std::string(gguf_get_val_str(ctx_gguf.get(), i));
     }
 
+    // 函数: get_arr_int
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_arr_int
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     void get_arr_int(const std::string & key, std::vector<int> & output, bool required = true) const {
         const int i = gguf_find_key(ctx_gguf.get(), key.c_str());
         if (i < 0) {
@@ -2143,6 +2494,14 @@ struct clip_model_loader {
         }
     }
 
+    // 函数: set_llava_uhd_res_candidates
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_llava_uhd_res_candidates
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     static void set_llava_uhd_res_candidates(clip_model & model, const int max_patches_per_side) {
         auto & hparams = model.hparams;
         for (int x = 1; x <= max_patches_per_side; x++) {
@@ -2159,11 +2518,43 @@ struct clip_model_loader {
     }
 };
 
+// 类: clip_init_result
+// 描述: clip_init_result类提供相关功能
+// 用途: 用于处理clip_init_result相关的操作
+// 类: clip_init_result
+// 描述: clip_init_result类提供相关功能
+// 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
+    // 结构体: clip_init_result
+    // 描述: clip_init_result结构体提供相关功能
+    // 用途: 用于处理clip_init_result相关的操作
 struct clip_init_result clip_init(const char * fname, struct clip_context_params ctx_params) {
     clip_ctx * ctx_vision = nullptr;
     clip_ctx * ctx_audio = nullptr;
 
     try {
+        // 函数: loader
+        // 描述: 加载: 从文件或内存加载数据
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: loader
+        // 描述: 加载: 从文件或内存加载数据
+        // 参数: 无参数
+        // 返回: 无返回值
         clip_model_loader loader(fname);
         bool skip_audio = false;
 
@@ -2203,21 +2594,141 @@ struct clip_init_result clip_init(const char * fname, struct clip_context_params
     return {ctx_vision, ctx_audio};
 }
 
+// 类: clip_image_size
+// 描述: clip_image_size类提供相关功能
+// 用途: 用于处理clip_image_size相关的操作
+// 类: clip_image_size
+// 描述: clip_image_size类提供相关功能
+// 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
 struct clip_image_size * clip_image_size_init() {
+    // 类: clip_image_size
+    // 描述: clip_image_size类提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 类: clip_image_size
+    // 描述: clip_image_size类提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
+    // 结构体: clip_image_size
+    // 描述: clip_image_size结构体提供相关功能
+    // 用途: 用于处理clip_image_size相关的操作
     struct clip_image_size * load_image_size = new struct clip_image_size();
     load_image_size->width = 448;
     load_image_size->height = 448;
     return load_image_size;
 }
 
+// 类: clip_image_u8
+// 描述: clip_image_u8类提供相关功能
+// 用途: 用于处理clip_image_u8相关的操作
+// 类: clip_image_u8
+// 描述: clip_image_u8类提供相关功能
+// 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
+    // 结构体: clip_image_u8
+    // 描述: clip_image_u8结构体提供相关功能
+    // 用途: 用于处理clip_image_u8相关的操作
 struct clip_image_u8 * clip_image_u8_init() {
     return new clip_image_u8();
 }
 
+// 类: clip_image_f32
+// 描述: clip_image_f32类提供相关功能
+// 用途: 用于处理clip_image_f32相关的操作
+// 类: clip_image_f32
+// 描述: clip_image_f32类提供相关功能
+// 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
+    // 结构体: clip_image_f32
+    // 描述: clip_image_f32结构体提供相关功能
+    // 用途: 用于处理clip_image_f32相关的操作
 struct clip_image_f32 * clip_image_f32_init() {
     return new clip_image_f32();
 }
 
+// 类: clip_image_f32_batch
+// 描述: clip_image_f32_batch类提供相关功能
+// 用途: 用于处理clip_image_f32_batch相关的操作
+// 类: clip_image_f32_batch
+// 描述: clip_image_f32_batch类提供相关功能
+// 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
+    // 结构体: clip_image_f32_batch
+    // 描述: clip_image_f32_batch结构体提供相关功能
+    // 用途: 用于处理clip_image_f32_batch相关的操作
 struct clip_image_f32_batch * clip_image_f32_batch_init() {
     return new clip_image_f32_batch();
 }
@@ -2228,21 +2739,77 @@ unsigned char * clip_image_u8_get_data(struct clip_image_u8 * img, uint32_t * nx
     return img->buf.data();
 }
 
+// 函数: clip_image_size_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_size_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_size_free(struct clip_image_size * load_image_size) {
     if (load_image_size == nullptr) {
         return;
     }
     delete load_image_size;
 }
+// 函数: clip_image_u8_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_u8_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_u8_free(struct clip_image_u8  * img) { delete img; }
+// 函数: clip_image_f32_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_f32_free(struct clip_image_f32 * img) { delete img; }
+// 函数: clip_image_u8_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_u8_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_u8_batch_free(struct clip_image_u8_batch * batch) { delete batch; }
+// 函数: clip_image_f32_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_batch_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_f32_batch_free(struct clip_image_f32_batch * batch) { delete batch; }
 
+// 函数: clip_image_f32_batch_n_images
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_batch_n_images
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t clip_image_f32_batch_n_images(const struct clip_image_f32_batch * batch) {
     return batch->entries.size();
 }
 
+// 函数: clip_image_f32_batch_nx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_batch_nx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t clip_image_f32_batch_nx(const struct clip_image_f32_batch * batch, int idx) {
     if (idx < 0 || idx >= (int)batch->entries.size()) {
         LOG_ERR("%s: invalid index %d\n", __func__, idx);
@@ -2251,6 +2818,14 @@ size_t clip_image_f32_batch_nx(const struct clip_image_f32_batch * batch, int id
     return batch->entries[idx]->nx;
 }
 
+// 函数: clip_image_f32_batch_ny
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_batch_ny
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t clip_image_f32_batch_ny(const struct clip_image_f32_batch * batch, int idx) {
     if (idx < 0 || idx >= (int)batch->entries.size()) {
         LOG_ERR("%s: invalid index %d\n", __func__, idx);
@@ -2259,6 +2834,14 @@ size_t clip_image_f32_batch_ny(const struct clip_image_f32_batch * batch, int id
     return batch->entries[idx]->ny;
 }
 
+// 函数: clip_image_f32_get_img
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_get_img
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 clip_image_f32 * clip_image_f32_get_img(const struct clip_image_f32_batch * batch, int idx) {
     if (idx < 0 || idx >= (int)batch->entries.size()) {
         LOG_ERR("%s: invalid index %d\n", __func__, idx);
@@ -2267,6 +2850,14 @@ clip_image_f32 * clip_image_f32_get_img(const struct clip_image_f32_batch * batc
     return batch->entries[idx].get();
 }
 
+// 函数: clip_build_img_from_pixels
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_build_img_from_pixels
+// 描述: 构建: 构建数据结构或对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_build_img_from_pixels(const unsigned char * rgb_pixels, int nx, int ny, clip_image_u8 * img) {
     img->nx = nx;
     img->ny = ny;
@@ -2275,6 +2866,14 @@ void clip_build_img_from_pixels(const unsigned char * rgb_pixels, int nx, int ny
 }
 
 // Normalize image to float32 - careful with pytorch .to(model.device, dtype=torch.float16) - this sometimes reduces precision (32>16>32), sometimes not
+// 函数: normalize_image_u8_to_f32
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: normalize_image_u8_to_f32
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 static void normalize_image_u8_to_f32(const clip_image_u8 & src, clip_image_f32 & dst, const float mean[3], const float std[3]) {
     dst.nx = src.nx;
     dst.ny = src.ny;
@@ -2289,6 +2888,30 @@ static void normalize_image_u8_to_f32(const clip_image_u8 & src, clip_image_f32 
 
 // set of tools to manupulate images
 // in the future, we can have HW acceleration by allowing this struct to access 3rd party lib like imagick or opencv
+// 类: img_tool
+// 描述: img_tool类提供相关功能
+// 用途: 用于处理img_tool相关的操作
+// 类: img_tool
+// 描述: img_tool类提供相关功能
+// 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
+    // 结构体: img_tool
+    // 描述: img_tool结构体提供相关功能
+    // 用途: 用于处理img_tool相关的操作
 struct img_tool {
     enum resize_algo {
         RESIZE_ALGO_BILINEAR,
@@ -2355,6 +2978,14 @@ struct img_tool {
         }
     }
 
+    // 函数: crop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: crop
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void crop(const clip_image_u8 & image, clip_image_u8 & dst, int x, int y, int w, int h) {
         dst.nx = w;
         dst.ny = h;
@@ -2374,6 +3005,14 @@ struct img_tool {
     // calculate the size of the **resized** image, while preserving the aspect ratio
     // the calculated size will be aligned to the nearest multiple of align_size
     // if H or W size is larger than longest_edge, it will be resized to longest_edge
+    // 函数: calc_size_preserved_ratio
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: calc_size_preserved_ratio
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
     static clip_image_size calc_size_preserved_ratio(const clip_image_size & inp_size, const int align_size, const int longest_edge) {
         GGML_ASSERT(align_size > 0);
         if (inp_size.width <= 0 || inp_size.height <= 0 || longest_edge <= 0) {
@@ -2396,6 +3035,14 @@ struct img_tool {
     // calculate the size of the **resized** image, while preserving the aspect ratio
     // the calculated size will have min_pixels <= W*H <= max_pixels
     // this is referred as "smart_resize" in transformers code
+    // 函数: calc_size_preserved_ratio
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: calc_size_preserved_ratio
+    // 描述: 预留: 预留资源或空间
+    // 参数: 无参数
+    // 返回: 无返回值
     static clip_image_size calc_size_preserved_ratio(const clip_image_size & inp_size, const int align_size, const int min_pixels, const int max_pixels) {
         GGML_ASSERT(align_size > 0);
         const int width  = inp_size.width;
@@ -2423,6 +3070,14 @@ struct img_tool {
     }
 
     // draw src image into dst image at offset (offset_x, offset_y)
+    // 函数: composite
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: composite
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void composite(clip_image_u8 & dst, const clip_image_u8 & src, int offset_x, int offset_y) {
         for (int y = 0; y < src.ny; ++y) {
             for (int x = 0; x < src.nx; ++x) {
@@ -2442,6 +3097,14 @@ struct img_tool {
     }
 
     // fill the image with a solid color
+    // 函数: fill
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: fill
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void fill(clip_image_u8 & img, const std::array<uint8_t, 3> & color) {
         for (size_t i = 0; i < img.buf.size(); i += 3) {
             img.buf[i]     = color[0];
@@ -2452,6 +3115,14 @@ struct img_tool {
 
 private:
     // Bilinear resize function
+    // 函数: resize_bilinear
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resize_bilinear
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static void resize_bilinear(const clip_image_u8 & src, clip_image_u8 & dst, int target_width, int target_height) {
         dst.nx = target_width;
         dst.ny = target_height;
@@ -2488,6 +3159,14 @@ private:
 
     // Bicubic resize function
     // part of image will be cropped if the aspect ratio is different
+    // 函数: resize_bicubic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resize_bicubic
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static bool resize_bicubic(const clip_image_u8 & img, clip_image_u8 & dst, int target_width, int target_height) {
         const int nx = img.nx;
         const int ny = img.ny;
@@ -2551,11 +3230,27 @@ private:
         return true;
     }
 
+    // 函数: clip
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clip
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline int clip(int x, int lower, int upper) {
         return std::max(lower, std::min(x, upper));
     }
 
     // Linear interpolation between two points
+    // 函数: lerp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: lerp
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static inline float lerp(float s, float e, float t) {
         return s + (e - s) * t;
     }
@@ -2578,13 +3273,85 @@ private:
  *           |                |
  *           +--> [slice 3] --> [slice 4]
  */
+// 类: llava_uhd
+// 描述: llava_uhd类提供相关功能
+// 用途: 用于处理llava_uhd相关的操作
+// 类: llava_uhd
+// 描述: llava_uhd类提供相关功能
+// 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
+    // 结构体: llava_uhd
+    // 描述: llava_uhd结构体提供相关功能
+    // 用途: 用于处理llava_uhd相关的操作
 struct llava_uhd {
+    // 类: slice_coordinates
+    // 描述: slice_coordinates类提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 类: slice_coordinates
+    // 描述: slice_coordinates类提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
+    // 结构体: slice_coordinates
+    // 描述: slice_coordinates结构体提供相关功能
+    // 用途: 用于处理slice_coordinates相关的操作
     struct slice_coordinates {
         int x;
         int y;
         clip_image_size size;
     };
 
+    // 类: slice_instructions
+    // 描述: slice_instructions类提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 类: slice_instructions
+    // 描述: slice_instructions类提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
+    // 结构体: slice_instructions
+    // 描述: slice_instructions结构体提供相关功能
+    // 用途: 用于处理slice_instructions相关的操作
     struct slice_instructions {
         clip_image_size overview_size; // size of downscaled image
         clip_image_size refined_size;  // size of image right before slicing (must be multiple of slice size)
@@ -2600,6 +3367,14 @@ struct llava_uhd {
         std::array<uint8_t, 3> pad_color_refined = {0, 0, 0};
     };
 
+    // 函数: get_slice_instructions
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_slice_instructions
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static slice_instructions get_slice_instructions(struct clip_ctx * ctx, const clip_image_size & original_size) {
         slice_instructions res;
         const int patch_size      = clip_get_patch_size(ctx);
@@ -2709,6 +3484,14 @@ struct llava_uhd {
         std::vector<clip_image_u8_ptr> output;
 
         // resize to overview size
+        // 函数: resized_img
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: resized_img
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         clip_image_u8_ptr resized_img(clip_image_u8_init());
         img_tool::resize(*img, *resized_img, inst.overview_size, inst.interpolation_overview,
                          inst.padding_overview, inst.pad_color_overview);
@@ -2720,6 +3503,14 @@ struct llava_uhd {
         }
 
         // resize to refined size
+        // 函数: refined_img
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: refined_img
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         clip_image_u8_ptr refined_img(clip_image_u8_init());
         img_tool::resize(*img, *refined_img, inst.refined_size, inst.interpolation_refined,
                          inst.padding_refined, inst.pad_color_refined);
@@ -2731,6 +3522,14 @@ struct llava_uhd {
             int w = slice.size.width;
             int h = slice.size.height;
 
+            // 函数: img_slice
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: img_slice
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             clip_image_u8_ptr img_slice(clip_image_u8_init());
             img_tool::crop(*refined_img, *img_slice, x, y, w, h);
             output.push_back(std::move(img_slice));
@@ -2740,6 +3539,14 @@ struct llava_uhd {
     }
 
 private:
+    // 函数: get_best_resize
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_best_resize
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static clip_image_size get_best_resize(const clip_image_size & original_size, int scale_resolution, int patch_size, bool allow_upscale = false) {
         int width  = original_size.width;
         int height = original_size.height;
@@ -2754,6 +3561,14 @@ private:
         return res;
     }
 
+    // 函数: resize_maintain_aspect_ratio
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: resize_maintain_aspect_ratio
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static clip_image_size resize_maintain_aspect_ratio(const clip_image_size & orig, const clip_image_size & target_max) {
         float scale_width  = static_cast<float>(target_max.width)  / orig.width;
         float scale_height = static_cast<float>(target_max.height) / orig.height;
@@ -2779,6 +3594,14 @@ private:
      * @param possible_resolutions A list of possible resolutions
      * @return The best fit resolution
      */
+    // 函数: select_best_resolution
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: select_best_resolution
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static clip_image_size select_best_resolution(const clip_image_size & original_size, const std::vector<clip_image_size> & possible_resolutions) {
         clip_image_size best_fit;
         int min_wasted_area = std::numeric_limits<int>::max();
@@ -2803,10 +3626,26 @@ private:
         return best_fit;
     }
 
+    // 函数: ensure_divide
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: ensure_divide
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     static int ensure_divide(int length, int patch_size) {
         return std::max(static_cast<int>(std::round(static_cast<float>(length) / patch_size) * patch_size), patch_size);
     }
 
+    // 函数: get_refine_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_refine_size
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static clip_image_size get_refine_size(const clip_image_size & original_size, const clip_image_size & grid, int scale_resolution, int patch_size, bool allow_upscale = false) {
         int width  = original_size.width;
         int height = original_size.height;
@@ -2830,6 +3669,14 @@ private:
         return refine_size;
     }
 
+    // 函数: get_best_grid
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_best_grid
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static clip_image_size get_best_grid(const int max_slice_nums, const int multiple, const float log_ratio) {
         std::vector<int> candidate_split_grids_nums;
         for (int i : {multiple - 1, multiple, multiple + 1}) {
@@ -2865,6 +3712,30 @@ private:
 
 // ref: https://github.com/huggingface/transformers/blob/v5.1.0/src/transformers/models/lfm2_vl/image_processing_lfm2_vl_fast.py
 // some of the logic is similar to llava_uhd, but with different hyperparameters and some logic is unique (e.g. grid layout)
+// 类: lfm2_vl_image_processor
+// 描述: lfm2_vl_image_processor类提供相关功能
+// 用途: 用于处理lfm2_vl_image_processor相关的操作
+// 类: lfm2_vl_image_processor
+// 描述: lfm2_vl_image_processor类提供相关功能
+// 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
+    // 结构体: lfm2_vl_image_processor
+    // 描述: lfm2_vl_image_processor结构体提供相关功能
+    // 用途: 用于处理lfm2_vl_image_processor相关的操作
 struct lfm2_vl_image_processor {
     // ref: https://huggingface.co/LiquidAI/LFM2.5-VL-1.6B/blob/main/processor_config.json
     static constexpr int   min_tiles            = 2;
@@ -2872,6 +3743,14 @@ struct lfm2_vl_image_processor {
     static constexpr float max_pixels_tolerance = 2.0f;
     static constexpr int   tile_size            = 512;
 
+    // 函数: get_slice_instructions
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_slice_instructions
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static llava_uhd::slice_instructions get_slice_instructions(struct clip_ctx * ctx, const clip_image_size & original_size) {
         llava_uhd::slice_instructions inst;
         const auto & params  = ctx->model.hparams;
@@ -2969,6 +3848,14 @@ private:
         return ratios;
     }
 
+    // 函数: get_grid_layout
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_grid_layout
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     static clip_image_size get_grid_layout(int height, int width) {
         const float aspect_ratio = static_cast<float>(width) / height;
         const auto ratios = get_target_ratios();
@@ -2978,6 +3865,14 @@ private:
 
 // returns the normalized float tensor for llava-1.5, for spatial_unpad with anyres processing for llava-1.6 it returns the normalized image patch tensors as a vector
 // res_imgs memory is being allocated here, previous allocations will be freed if found
+// 函数: clip_image_preprocess
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_preprocess
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_image_preprocess(struct clip_ctx * ctx, const clip_image_u8 * img, struct clip_image_f32_batch * res_imgs) {
     clip_image_size original_size{img->nx, img->ny};
     auto & params = ctx->model.hparams;
@@ -3294,10 +4189,26 @@ bool clip_image_preprocess(struct clip_ctx * ctx, const clip_image_u8 * img, str
     return true;
 }
 
+// 函数: clip_get_newline_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_newline_tensor
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 ggml_tensor * clip_get_newline_tensor(const struct clip_ctx * ctx) {
     return ctx->model.image_newline;
 }
 
+// 函数: clip_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void clip_free(clip_ctx * ctx) {
     if (ctx == nullptr) {
         return;
@@ -3306,12 +4217,28 @@ void clip_free(clip_ctx * ctx) {
 }
 
 // deprecated
+// 函数: clip_embd_nbytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_embd_nbytes
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t clip_embd_nbytes(const struct clip_ctx * ctx) {
     const int32_t nx = ctx->model.hparams.image_size;
     const int32_t ny = ctx->model.hparams.image_size;
     return clip_embd_nbytes_by_img(ctx, nx, ny);
 }
 
+// 函数: clip_embd_nbytes_by_img
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_embd_nbytes_by_img
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t clip_embd_nbytes_by_img(const struct clip_ctx * ctx, int img_w, int img_h) {
     clip_image_f32 img;
     img.nx = img_w;
@@ -3319,22 +4246,62 @@ size_t clip_embd_nbytes_by_img(const struct clip_ctx * ctx, int img_w, int img_h
     return clip_n_output_tokens(ctx, &img) * clip_n_mmproj_embd(ctx) * sizeof(float);
 }
 
+// 函数: clip_get_image_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_image_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t clip_get_image_size(const struct clip_ctx * ctx) {
     return ctx->model.hparams.image_size;
 }
 
+// 函数: clip_get_patch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_patch_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t clip_get_patch_size(const struct clip_ctx * ctx) {
     return ctx->model.hparams.patch_size;
 }
 
+// 函数: clip_get_hidden_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_hidden_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 int32_t clip_get_hidden_size(const struct clip_ctx * ctx) {
     return ctx->model.hparams.n_embd;
 }
 
+// 函数: clip_patch_merge_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_patch_merge_type
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * clip_patch_merge_type(const struct clip_ctx * ctx) {
     return ctx->model.hparams.mm_patch_merge_type == PATCH_MERGE_SPATIAL_UNPAD ? "spatial_unpad" : "flat";
 }
 
+// 函数: clip_n_output_tokens_x
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_n_output_tokens_x
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int clip_n_output_tokens_x(const struct clip_ctx * ctx, struct clip_image_f32 * img) {
     const auto & params = ctx->model.hparams;
     const int n_total = clip_n_output_tokens(ctx, img);
@@ -3353,6 +4320,14 @@ int clip_n_output_tokens_x(const struct clip_ctx * ctx, struct clip_image_f32 * 
     return n_total;
 }
 
+// 函数: clip_n_output_tokens_y
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_n_output_tokens_y
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int clip_n_output_tokens_y(const struct clip_ctx * ctx, struct clip_image_f32 * img) {
     const auto & params = ctx->model.hparams;
     const auto & proj = ctx->proj_type();
@@ -3370,6 +4345,14 @@ int clip_n_output_tokens_y(const struct clip_ctx * ctx, struct clip_image_f32 * 
     return 1;
 }
 
+// 函数: clip_n_output_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_n_output_tokens
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int clip_n_output_tokens(const struct clip_ctx * ctx, struct clip_image_f32 * img) {
     const auto & params = ctx->model.hparams;
 
@@ -3526,6 +4509,14 @@ int clip_n_output_tokens(const struct clip_ctx * ctx, struct clip_image_f32 * im
     return n_patches;
 }
 
+// 函数: clip_image_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_image_encode(struct clip_ctx * ctx, const int n_threads, clip_image_f32 * img, float * vec) {
     clip_image_f32_batch imgs;
     clip_image_f32_ptr img_copy(clip_image_f32_init());
@@ -3535,6 +4526,14 @@ bool clip_image_encode(struct clip_ctx * ctx, const int n_threads, clip_image_f3
     return clip_image_batch_encode(ctx, n_threads, &imgs, vec);
 }
 
+// 函数: clip_image_batch_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_batch_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_image_batch_encode(clip_ctx * ctx, const int n_threads, const clip_image_f32_batch * imgs_c_ptr, float * vec) {
     const clip_image_f32_batch & imgs = *imgs_c_ptr;
     int batch_size = imgs.entries.size();
@@ -4006,6 +5005,14 @@ bool clip_image_batch_encode(clip_ctx * ctx, const int n_threads, const clip_ima
     return true;
 }
 
+// 函数: clip_n_mmproj_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_n_mmproj_embd
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int clip_n_mmproj_embd(const struct clip_ctx * ctx) {
     switch (ctx->model.proj_type) {
         case PROJECTOR_TYPE_LDP:
@@ -4064,6 +5071,14 @@ int clip_n_mmproj_embd(const struct clip_ctx * ctx) {
     }
 }
 
+// 函数: clip_is_minicpmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_is_minicpmv
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int clip_is_minicpmv(const struct clip_ctx * ctx) {
     // TODO: remove this function
     if (ctx->proj_type() == PROJECTOR_TYPE_MINICPMV) {
@@ -4072,23 +5087,63 @@ int clip_is_minicpmv(const struct clip_ctx * ctx) {
     return 0;
 }
 
+// 函数: clip_is_glm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_is_glm
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_is_glm(const struct clip_ctx * ctx) {
     // TODO: remove this function
     return ctx->proj_type() == PROJECTOR_TYPE_GLM_EDGE;
 }
 
+// 函数: clip_is_llava
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_is_llava
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_is_llava(const struct clip_ctx * ctx) {
     return ctx->model.hparams.has_llava_projector;
 }
 
+// 函数: clip_has_vision_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_has_vision_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_has_vision_encoder(const struct clip_ctx * ctx) {
     return ctx->model.modality == CLIP_MODALITY_VISION;
 }
 
+// 函数: clip_has_audio_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_has_audio_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_has_audio_encoder(const struct clip_ctx * ctx) {
     return ctx->model.modality == CLIP_MODALITY_AUDIO;
 }
 
+// 函数: clip_has_whisper_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_has_whisper_encoder
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_has_whisper_encoder(const struct clip_ctx * ctx) {
     switch (ctx->proj_type()) {
         case PROJECTOR_TYPE_ULTRAVOX:
@@ -4102,6 +5157,14 @@ bool clip_has_whisper_encoder(const struct clip_ctx * ctx) {
     }
 }
 
+// 函数: clip_encode_float_image
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_encode_float_image
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 bool clip_encode_float_image (struct clip_ctx * ctx, int n_threads, float * img, int h, int w, float * vec) {
     clip_image_f32 clip_img;
     clip_img.buf.resize(h * w * 3);
@@ -4119,10 +5182,26 @@ bool clip_encode_float_image (struct clip_ctx * ctx, int n_threads, float * img,
 // API used internally with mtmd
 //
 
+// 函数: clip_get_projector_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_projector_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 projector_type clip_get_projector_type(const struct clip_ctx * ctx) {
     return ctx->proj_type();
 }
 
+// 函数: clip_image_f32_batch_add_mel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_image_f32_batch_add_mel
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void clip_image_f32_batch_add_mel(struct clip_image_f32_batch * batch, int n_mel, int n_frames, float * mel) {
     clip_image_f32 * audio = new clip_image_f32;
     audio->nx = n_frames;
@@ -4134,6 +5213,14 @@ void clip_image_f32_batch_add_mel(struct clip_image_f32_batch * batch, int n_mel
     batch->is_audio = true;
 }
 
+// 函数: clip_get_hparams
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_get_hparams
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const clip_hparams * clip_get_hparams(const struct clip_ctx * ctx) {
     return &ctx->model.hparams;
 }
@@ -4141,6 +5228,14 @@ const clip_hparams * clip_get_hparams(const struct clip_ctx * ctx) {
 //
 // API for debugging
 //
+// 函数: clip_debug_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: clip_debug_encode
+// 描述: 编码: 将输入数据编码为内部表示
+// 参数: 无参数
+// 返回: 无返回值
 void clip_debug_encode(clip_ctx * ctx, int h, int w, float fill_value) {
     clip_image_f32 img;
     img.nx = w;

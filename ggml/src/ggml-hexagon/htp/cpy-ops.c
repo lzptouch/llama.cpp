@@ -15,7 +15,43 @@
 #include "htp-ops.h"
 #include "hvx-utils.h"
 
+// 类: htp_copy_context
+// 描述: htp_copy_context类提供相关功能
+// 用途: 用于处理htp_copy_context相关的操作
+// 类: htp_copy_context
+// 描述: htp_copy_context类提供相关功能
+// 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
 struct htp_copy_context {
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
 
     uint32_t          src0_type_size;
@@ -33,7 +69,43 @@ struct htp_copy_context {
 };
 
 #define cpy_preamble                       \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *src0 = &octx->src0; \
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *dst  = &octx->dst;  \
                                            \
     const uint32_t ne00 = src0->ne[0];     \
@@ -58,6 +130,14 @@ struct htp_copy_context {
                                            \
     const uint32_t   nr = ne01;
 
+// 函数: cpy_thread_sametype_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_thread_sametype_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_thread_sametype_sameshape(struct htp_copy_context * ct, struct htp_ops_context * octx, const int nth, const int ith) {
     cpy_preamble;
 
@@ -80,6 +160,14 @@ static void cpy_thread_sametype_sameshape(struct htp_copy_context * ct, struct h
     }
 }
 
+// 函数: cpy_thread_sametype_reshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_thread_sametype_reshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_thread_sametype_reshape(struct htp_copy_context * ct, struct htp_ops_context * octx, int nth, int ith) {
     cpy_preamble;
 
@@ -150,6 +238,14 @@ static void cpy_thread_sametype_reshape(struct htp_copy_context * ct, struct htp
     }
 }
 
+// 函数: cpy_thread_f16_f32_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_thread_f16_f32_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_thread_f16_f32_sameshape(struct htp_copy_context * ct, struct htp_ops_context * octx, const int nth, const int ith) {
     cpy_preamble;
 
@@ -172,6 +268,14 @@ static void cpy_thread_f16_f32_sameshape(struct htp_copy_context * ct, struct ht
     }
 }
 
+// 函数: cpy_thread_f32_f16_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_thread_f32_f16_sameshape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_thread_f32_f16_sameshape(struct htp_copy_context * ct, struct htp_ops_context * octx, const int nth, const int ith) {
     cpy_preamble;
 
@@ -194,14 +298,66 @@ static void cpy_thread_f32_f16_sameshape(struct htp_copy_context * ct, struct ht
     }
 }
 
+// 函数: cpy_work_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: cpy_work_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void cpy_work_func(unsigned int n, unsigned int i, void *data) {
+    // 类: htp_copy_context
+    // 描述: htp_copy_context类提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 类: htp_copy_context
+    // 描述: htp_copy_context类提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
     struct htp_copy_context *ct = (struct htp_copy_context *) data;
     ct->copy(ct, ct->octx, n, i);
 }
 
+// 函数: op_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_cpy
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_cpy(struct htp_ops_context * octx) {
     cpy_preamble;
 
+    // 类: htp_copy_context
+    // 描述: htp_copy_context类提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 类: htp_copy_context
+    // 描述: htp_copy_context类提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
+    // 结构体: htp_copy_context
+    // 描述: htp_copy_context结构体提供相关功能
+    // 用途: 用于处理htp_copy_context相关的操作
     struct htp_copy_context ct;
     ct.octx = octx;
 

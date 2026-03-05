@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: apir_cs_ggml-rpc-back.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/apir_cs_ggml-rpc-back.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-backend-impl.h"
 #include "ggml-impl.h"
 #include "shared/apir_cs_rpc.h"
@@ -9,10 +16,26 @@
 
 std::unordered_set<ggml_backend_buffer_t> backend_buffers;
 
+// 函数: apir_track_backend_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_track_backend_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void apir_track_backend_buffer(ggml_backend_buffer_t buffer) {
     backend_buffers.insert(buffer);
 }
 
+// 函数: apir_untrack_backend_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_untrack_backend_buffer
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool apir_untrack_backend_buffer(ggml_backend_buffer_t buffer) {
     auto it = backend_buffers.find(buffer);
     if (it == backend_buffers.end()) {
@@ -27,6 +50,14 @@ std::unordered_set<ggml_backend_buffer_t> apir_get_track_backend_buffers() {
     return backend_buffers;
 }
 
+// 函数: apir_deserialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_deserialize_tensor
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_tensor * apir_deserialize_tensor(ggml_context * ctx, const apir_rpc_tensor * tensor) {
     ggml_tensor * result =
         ggml_new_tensor_4d(ctx, (ggml_type) tensor->type, tensor->ne[0], tensor->ne[1], tensor->ne[2], tensor->ne[3]);

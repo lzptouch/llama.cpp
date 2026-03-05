@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_completion.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_completion.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 import requests
 import time
@@ -12,6 +19,14 @@ JSON_MULTIMODAL_KEY = "multimodal_data"
 JSON_PROMPT_STRING_KEY = "prompt_string"
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -20,6 +35,14 @@ def create_server():
     ("I believe the meaning of life is", 8, "(going|bed)+", 18, 8, False, False),
     ("Write a joke about AI from a very long prompt which will not be truncated", 64, "(princesses|everyone|kids|Anna|forest)+", 46, 64, False, True),
 ])
+    # 函数: test_completion
+    # 描述: test_completion函数提供相关功能
+    # 参数: prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool, return_tokens: bool
+    # 返回: 无返回值
+    # 函数: test_completion
+    # 描述: test_completion函数提供相关功能
+    # 参数: prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool, return_tokens: bool
+    # 返回: 无返回值
 def test_completion(prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool, return_tokens: bool):
     global server
     server.start()
@@ -45,6 +68,14 @@ def test_completion(prompt: str, n_predict: int, re_content: str, n_prompt: int,
     ("I believe the meaning of life is", 8, "(going|bed)+", 18, 8, False),
     ("Write a joke about AI from a very long prompt which will not be truncated", 64, "(princesses|everyone|kids|Anna|forest)+", 46, 64, False),
 ])
+    # 函数: test_completion_stream
+    # 描述: test_completion_stream函数提供相关功能
+    # 参数: prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool
+    # 返回: 无返回值
+    # 函数: test_completion_stream
+    # 描述: test_completion_stream函数提供相关功能
+    # 参数: prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool
+    # 返回: 无返回值
 def test_completion_stream(prompt: str, n_predict: int, re_content: str, n_prompt: int, n_predicted: int, truncated: bool):
     global server
     server.start()
@@ -73,6 +104,14 @@ def test_completion_stream(prompt: str, n_predict: int, re_content: str, n_promp
             content += data["content"]
 
 
+    # 函数: test_completion_stream_vs_non_stream
+    # 描述: test_completion_stream_vs_non_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_stream_vs_non_stream
+    # 描述: test_completion_stream_vs_non_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_stream_vs_non_stream():
     global server
     server.start()
@@ -91,6 +130,14 @@ def test_completion_stream_vs_non_stream():
     assert content_stream == res_non_stream.body["content"]
 
 
+    # 函数: test_completion_with_openai_library
+    # 描述: test_completion_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_with_openai_library
+    # 描述: test_completion_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_with_openai_library():
     global server
     server.start()
@@ -106,6 +153,14 @@ def test_completion_with_openai_library():
     assert match_regex("(going|bed)+", res.choices[0].text)
 
 
+    # 函数: test_completion_stream_with_openai_library
+    # 描述: test_completion_stream_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_stream_with_openai_library
+    # 描述: test_completion_stream_with_openai_library函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_stream_with_openai_library():
     global server
     server.start()
@@ -127,6 +182,14 @@ def test_completion_stream_with_openai_library():
 
 # Test case from https://github.com/ggml-org/llama.cpp/issues/13780
 @pytest.mark.slow
+    # 函数: test_completion_stream_with_openai_library_stops
+    # 描述: test_completion_stream_with_openai_library_stops函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_stream_with_openai_library_stops
+    # 描述: test_completion_stream_with_openai_library_stops函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_stream_with_openai_library_stops():
     global server
     server.model_hf_repo = "bartowski/Phi-3.5-mini-instruct-GGUF:Q4_K_M"
@@ -150,6 +213,14 @@ def test_completion_stream_with_openai_library_stops():
 
 
 @pytest.mark.parametrize("n_slots", [1, 2])
+    # 函数: test_consistent_result_same_seed
+    # 描述: test_consistent_result_same_seed函数提供相关功能
+    # 参数: n_slots: int
+    # 返回: 无返回值
+    # 函数: test_consistent_result_same_seed
+    # 描述: test_consistent_result_same_seed函数提供相关功能
+    # 参数: n_slots: int
+    # 返回: 无返回值
 def test_consistent_result_same_seed(n_slots: int):
     global server
     server.n_slots = n_slots
@@ -168,6 +239,14 @@ def test_consistent_result_same_seed(n_slots: int):
 
 
 @pytest.mark.parametrize("n_slots", [1, 2])
+    # 函数: test_different_result_different_seed
+    # 描述: test_different_result_different_seed函数提供相关功能
+    # 参数: n_slots: int
+    # 返回: 无返回值
+    # 函数: test_different_result_different_seed
+    # 描述: test_different_result_different_seed函数提供相关功能
+    # 参数: n_slots: int
+    # 返回: 无返回值
 def test_different_result_different_seed(n_slots: int):
     global server
     server.n_slots = n_slots
@@ -188,6 +267,14 @@ def test_different_result_different_seed(n_slots: int):
 # @pytest.mark.parametrize("temperature", [0.0, 1.0])
 @pytest.mark.parametrize("n_batch", [16, 32])
 @pytest.mark.parametrize("temperature", [0.0])
+    # 函数: test_consistent_result_different_batch_size
+    # 描述: test_consistent_result_different_batch_size函数提供相关功能
+    # 参数: n_batch: int, temperature: float
+    # 返回: 无返回值
+    # 函数: test_consistent_result_different_batch_size
+    # 描述: test_consistent_result_different_batch_size函数提供相关功能
+    # 参数: n_batch: int, temperature: float
+    # 返回: 无返回值
 def test_consistent_result_different_batch_size(n_batch: int, temperature: float):
     global server
     server.n_batch = n_batch
@@ -206,6 +293,14 @@ def test_consistent_result_different_batch_size(n_batch: int, temperature: float
 
 
 @pytest.mark.skip(reason="This test fails on linux, need to be fixed")
+    # 函数: test_cache_vs_nocache_prompt
+    # 描述: test_cache_vs_nocache_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_cache_vs_nocache_prompt
+    # 描述: test_cache_vs_nocache_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_cache_vs_nocache_prompt():
     global server
     server.start()
@@ -224,6 +319,14 @@ def test_cache_vs_nocache_prompt():
     assert res_cache.body["content"] == res_no_cache.body["content"]
 
 
+    # 函数: test_nocache_long_input_prompt
+    # 描述: test_nocache_long_input_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_nocache_long_input_prompt
+    # 描述: test_nocache_long_input_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_nocache_long_input_prompt():
     global server
     server.start()
@@ -235,6 +338,14 @@ def test_nocache_long_input_prompt():
     })
     assert res.status_code == 400
 
+    # 函数: test_json_prompt_no_mtmd
+    # 描述: test_json_prompt_no_mtmd函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_json_prompt_no_mtmd
+    # 描述: test_json_prompt_no_mtmd函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_json_prompt_no_mtmd():
     global server
     server.start()
@@ -246,6 +357,14 @@ def test_json_prompt_no_mtmd():
     })
     assert res.status_code == 200
 
+    # 函数: test_json_prompt_mtm_error_when_not_supported
+    # 描述: test_json_prompt_mtm_error_when_not_supported函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_json_prompt_mtm_error_when_not_supported
+    # 描述: test_json_prompt_mtm_error_when_not_supported函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_json_prompt_mtm_error_when_not_supported():
     global server
     server.start()
@@ -258,6 +377,14 @@ def test_json_prompt_mtm_error_when_not_supported():
     # MTMD is disabled on this model, so this should fail.
     assert res.status_code != 200
 
+    # 函数: test_completion_with_tokens_input
+    # 描述: test_completion_with_tokens_input函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_with_tokens_input
+    # 描述: test_completion_with_tokens_input函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_with_tokens_input():
     global server
     server.temperature = 0.0
@@ -324,6 +451,14 @@ def test_completion_with_tokens_input():
     (4, 2), # some slots must be idle
     (4, 6),
 ])
+    # 函数: test_completion_parallel_slots
+    # 描述: test_completion_parallel_slots函数提供相关功能
+    # 参数: n_slots: int, n_requests: int
+    # 返回: 无返回值
+    # 函数: test_completion_parallel_slots
+    # 描述: test_completion_parallel_slots函数提供相关功能
+    # 参数: n_slots: int, n_requests: int
+    # 返回: 无返回值
 def test_completion_parallel_slots(n_slots: int, n_requests: int):
     global server
     server.n_slots = n_slots
@@ -338,6 +473,14 @@ def test_completion_parallel_slots(n_slots: int, n_requests: int):
         ("Write another very long music lyrics.", "(friends|step|sky)+"),
         ("Write a very long joke.", "(cat|Whiskers)+"),
     ]
+    # 函数: check_slots_status
+    # 描述: check_slots_status函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: check_slots_status
+    # 描述: check_slots_status函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def check_slots_status():
         should_all_slots_busy = n_requests >= n_slots
         time.sleep(0.1)
@@ -379,6 +522,14 @@ def test_completion_parallel_slots(n_slots: int, n_requests: int):
         (256, 4, [90, 90, 40, 75], [True,  True,  True,  True]),
     ],
 )
+    # 函数: test_completion_unified
+    # 描述: test_completion_unified函数提供相关功能
+    # 参数: n_ctx, n_slots, n_predict_vals, expected_success
+    # 返回: 无返回值
+    # 函数: test_completion_unified
+    # 描述: test_completion_unified函数提供相关功能
+    # 参数: n_ctx, n_slots, n_predict_vals, expected_success
+    # 返回: 无返回值
 def test_completion_unified(n_ctx, n_slots, n_predict_vals, expected_success):
     global server
     server.n_slots = n_slots
@@ -408,6 +559,14 @@ def test_completion_unified(n_ctx, n_slots, n_predict_vals, expected_success):
         ("I believe the meaning of life is", 32, ["content", "generation_settings/n_predict", "prompt"]),
     ],
 )
+    # 函数: test_completion_response_fields
+    # 描述: test_completion_response_fields函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_response_fields
+    # 描述: test_completion_response_fields函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_response_fields(
     prompt: str, n_predict: int, response_fields: list[str]
 ):
@@ -435,6 +594,14 @@ def test_completion_response_fields(
         assert "generation_settings" in res.body
 
 
+    # 函数: test_n_probs
+    # 描述: test_n_probs函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_n_probs
+    # 描述: test_n_probs函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_n_probs():
     global server
     server.start()
@@ -460,6 +627,14 @@ def test_n_probs():
             assert "bytes" in prob and type(prob["bytes"]) == list
 
 
+    # 函数: test_n_probs_stream
+    # 描述: test_n_probs_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_n_probs_stream
+    # 描述: test_n_probs_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_n_probs_stream():
     global server
     server.start()
@@ -487,6 +662,14 @@ def test_n_probs_stream():
                     assert "bytes" in prob and type(prob["bytes"]) == list
 
 
+    # 函数: test_n_probs_post_sampling
+    # 描述: test_n_probs_post_sampling函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_n_probs_post_sampling
+    # 描述: test_n_probs_post_sampling函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_n_probs_post_sampling():
     global server
     server.start()
@@ -516,6 +699,14 @@ def test_n_probs_post_sampling():
 
 
 @pytest.mark.parametrize("tokenize,openai_style", [(False, False), (False, True), (True, False), (True, True)])
+    # 函数: test_logit_bias
+    # 描述: test_logit_bias函数提供相关功能
+    # 参数: tokenize, openai_style
+    # 返回: 无返回值
+    # 函数: test_logit_bias
+    # 描述: test_logit_bias函数提供相关功能
+    # 参数: tokenize, openai_style
+    # 返回: 无返回值
 def test_logit_bias(tokenize, openai_style):
     global server
     server.start()
@@ -548,6 +739,14 @@ def test_logit_bias(tokenize, openai_style):
     assert all(output_text.find(" " + tok + " ") == -1 for tok in exclude)
 
 
+    # 函数: test_cancel_request
+    # 描述: test_cancel_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_cancel_request
+    # 描述: test_cancel_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_cancel_request():
     global server
     server.n_ctx = 4096
@@ -571,6 +770,14 @@ def test_cancel_request():
 # this test exercises the host-memory prompt cache
 # ref: https://github.com/ggml-org/llama.cpp/pull/16391
 # ref: https://github.com/ggml-org/llama.cpp/pull/17078
+    # 函数: test_completion_prompt_cache
+    # 描述: test_completion_prompt_cache函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_completion_prompt_cache
+    # 描述: test_completion_prompt_cache函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_completion_prompt_cache():
     global server
     server.n_slots = 2

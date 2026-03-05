@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-context.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-context.cpp
+// 描述: llama_context 类的实现文件，负责模型上下文管理、内存管理和推理
+// 作用: 实现了模型推理的上下文环境，包括KV缓存管理、线程池管理、图计算等核心功能
+// ============================================================================
+
 #include "llama-context.h"
 
 #include "llama-arch.h"
@@ -18,6 +25,12 @@
 // llama_context
 //
 
+// 构造函数: llama_context
+// 描述: 初始化llama_context对象
+// 参数:
+//   - model: 模型对象，包含模型的权重和配置
+//   - params: 上下文参数，控制推理过程的各种配置
+// 作用: 创建并初始化模型推理的上下文环境，包括设置参数、初始化后端、分配内存等
 llama_context::llama_context(
         const llama_model & model,
               llama_context_params params) :
@@ -34,11 +47,13 @@ llama_context::llama_context(
 
     const auto & hparams = model.hparams;
 
+    // 设置序列最大数量
     cparams.n_seq_max = std::max(1u, params.n_seq_max);
     if (cparams.n_seq_max > LLAMA_MAX_SEQ) {
         throw std::runtime_error("n_seq_max must be <= " + std::to_string(LLAMA_MAX_SEQ));
     }
 
+    // 设置线程数和YARN参数
     cparams.n_threads        = params.n_threads;
     cparams.n_threads_batch  = params.n_threads_batch;
     cparams.yarn_ext_factor  = params.yarn_ext_factor  >= 0.0f ? params.yarn_ext_factor  : hparams.yarn_ext_factor;
@@ -51,20 +66,21 @@ llama_context::llama_context(
     cparams.pooling_type     = params.pooling_type;
     cparams.warmup           = false;
 
+    // 设置上下文大小和RoPE参数
     cparams.n_ctx            = params.n_ctx           == 0    ? hparams.n_ctx_train           : params.n_ctx;
     cparams.rope_freq_base   = params.rope_freq_base  == 0.0f ? hparams.rope_freq_base_train  : params.rope_freq_base;
     cparams.rope_freq_scale  = params.rope_freq_scale == 0.0f ? hparams.rope_freq_scale_train : params.rope_freq_scale;
 
+    // 设置YARN原始上下文大小
     cparams.n_ctx_orig_yarn  = params.yarn_orig_ctx    != 0 ? params.yarn_orig_ctx    :
                                hparams.n_ctx_orig_yarn != 0 ? hparams.n_ctx_orig_yarn :
                                                               hparams.n_ctx_train;
 
+    // 设置回调函数
     cparams.cb_eval           = params.cb_eval;
     cparams.cb_eval_user_data = params.cb_eval_user_data;
 
-    // Initialize backend samplers here so they are part of the sampling graph
-    // before the reserve passes run later in this function. This avoids a later
-    // re-reserve when graph nodes change.
+    // 初始化后端采样器
     if (params.samplers != nullptr && params.n_samplers > 0) {
         for (size_t i = 0; i < params.n_samplers; ++i) {
             const auto & config = params.samplers[i];
@@ -81,19 +97,22 @@ llama_context::llama_context(
         }
     }
 
+    // 设置RoPE缩放类型
     auto rope_scaling_type = params.rope_scaling_type;
     if (rope_scaling_type == LLAMA_ROPE_SCALING_TYPE_UNSPECIFIED) {
         rope_scaling_type = hparams.rope_scaling_type_train;
     }
 
     if (rope_scaling_type == LLAMA_ROPE_SCALING_TYPE_NONE) {
-        cparams.rope_freq_scale = 1.0f; // never scale if scaling type is none
+        cparams.rope_freq_scale = 1.0f; // 当缩放类型为none时不缩放
     }
 
+    // 设置YARN扩展因子
     if (cparams.yarn_ext_factor < 0.0f) { // negative indicates 'not set'
         cparams.yarn_ext_factor = rope_scaling_type == LLAMA_ROPE_SCALING_TYPE_YARN ? 1.0f : 0.0f;
     }
 
+    // 计算YARN注意力因子
     if (cparams.yarn_ext_factor != 0) {
         static auto get_mscale = [](float scale, float mscale) {
             return scale <= 1.0f ? 1.0f : (0.1f * mscale * logf(scale) + 1.0f);
@@ -133,6 +152,7 @@ llama_context::llama_context(
 
     cparams.yarn_attn_factor *= hparams.rope_attn_factor;
 
+    // 设置池化类型
     if (cparams.pooling_type == LLAMA_POOLING_TYPE_UNSPECIFIED) {
         if (hparams.pooling_type == LLAMA_POOLING_TYPE_UNSPECIFIED) {
             cparams.pooling_type = LLAMA_POOLING_TYPE_NONE;
@@ -141,26 +161,30 @@ llama_context::llama_context(
         }
     }
 
+    // 设置注意力类型
     if (params.attention_type == LLAMA_ATTENTION_TYPE_UNSPECIFIED) {
         cparams.causal_attn = hparams.causal_attn;
     } else {
         cparams.causal_attn = params.attention_type == LLAMA_ATTENTION_TYPE_CAUSAL;
     }
 
+    // 设置Flash Attention
     cparams.flash_attn = params.flash_attn_type != LLAMA_FLASH_ATTN_TYPE_DISABLED;
     cparams.auto_fa    = params.flash_attn_type == LLAMA_FLASH_ATTN_TYPE_AUTO;
 
-    // with causal attention, the batch size is limited by the context size
+    // 因果注意力的批处理大小受上下文大小限制
     cparams.n_batch = cparams.causal_attn ? std::min(cparams.n_ctx, params.n_batch) : params.n_batch;
 
+    // 设置实际批处理大小
     cparams.n_ubatch = std::min(cparams.n_batch, params.n_ubatch == 0 ? params.n_batch : params.n_ubatch);
 
     cparams.op_offload = params.op_offload;
     cparams.kv_unified = params.kv_unified;
 
-    // intialized later
+    // 稍后初始化
     cparams.pipeline_parallel = false;
 
+    // 检查是否禁用图重用
     {
         const char * LLAMA_GRAPH_REUSE_DISABLE = getenv("LLAMA_GRAPH_REUSE_DISABLE");
         graph_reuse_disable = LLAMA_GRAPH_REUSE_DISABLE ? (atoi(LLAMA_GRAPH_REUSE_DISABLE) != 0) : graph_reuse_disable;
@@ -173,6 +197,7 @@ llama_context::llama_context(
     // ref: https://github.com/ggml-org/llama.cpp/pull/17046#discussion_r2503085732
     cparams.n_ctx = GGML_PAD(cparams.n_ctx, 256);
 
+    // 计算每个序列的上下文大小
     if (cparams.kv_unified) {
         cparams.n_ctx_seq = cparams.n_ctx;
     } else {
@@ -189,6 +214,7 @@ llama_context::llama_context(
         }
     }
 
+    // 记录配置信息
     LLAMA_LOG_INFO("%s: n_seq_max     = %u\n",   __func__, cparams.n_seq_max);
     LLAMA_LOG_INFO("%s: n_ctx         = %u\n",   __func__, cparams.n_ctx);
     LLAMA_LOG_INFO("%s: n_ctx_seq     = %u\n",   __func__, cparams.n_ctx_seq);
@@ -200,6 +226,7 @@ llama_context::llama_context(
     LLAMA_LOG_INFO("%s: freq_base     = %.1f\n", __func__, cparams.rope_freq_base);
     LLAMA_LOG_INFO("%s: freq_scale    = %g\n",   __func__, cparams.rope_freq_scale);
 
+    // 检查上下文大小是否合理
     if (cparams.n_ctx_seq < hparams.n_ctx_train) {
         LLAMA_LOG_WARN("%s: n_ctx_seq (%u) < n_ctx_train (%u) -- the full capacity of the model will not be utilized\n",
                 __func__, cparams.n_ctx_seq, hparams.n_ctx_train);
@@ -210,6 +237,7 @@ llama_context::llama_context(
                 __func__, cparams.n_ctx_seq, hparams.n_ctx_train);
     }
 
+    // 初始化后端
     if (!hparams.vocab_only) {
         // GPU backends
         for (auto * dev : model.devices) {
@@ -251,9 +279,10 @@ llama_context::llama_context(
             }
         }
 
+        // 设置中止回调
         llama_set_abort_callback(this, params.abort_callback, params.abort_callback_data);
 
-        // graph outputs buffer
+        // 分配图输出缓冲区
         {
             if (output_reserve(params.n_seq_max) < params.n_seq_max) {
                 throw std::runtime_error("failed to reserve initial output buffer");
@@ -265,7 +294,7 @@ llama_context::llama_context(
         }
     }
 
-    // init the memory module
+    // 初始化内存模块
     if (!hparams.vocab_only) {
         llama_memory_params params_mem = {
             /*.type_k   =*/ params.type_k,
@@ -276,7 +305,7 @@ llama_context::llama_context(
         memory.reset(model.create_memory(params_mem, cparams));
     }
 
-    // init backends
+    // 初始化后端
     if (!hparams.vocab_only) {
         LLAMA_LOG_DEBUG("%s: enumerating backends\n", __func__);
 
@@ -304,8 +333,7 @@ llama_context::llama_context(
 
         LLAMA_LOG_DEBUG("%s: backend_ptrs.size() = %zu\n", __func__, backend_ptrs.size());
 
-        // TODO: move these checks to ggml_backend_sched
-        // enabling pipeline parallelism in the scheduler increases memory usage, so it is only done when necessary
+        // 检查是否启用管道并行
         bool pipeline_parallel =
             model.n_devices() > 1 &&
             model.n_gpu_layers() > model.hparams.n_layer &&
@@ -313,7 +341,7 @@ llama_context::llama_context(
             cparams.offload_kqv &&
             !model.has_tensor_overrides();
 
-        // pipeline parallelism requires support for async compute and events in all devices
+        // 管道并行需要所有设备支持异步计算和事件
         if (pipeline_parallel) {
             for (auto & backend : backends) {
                 auto dev_type = ggml_backend_dev_type(ggml_backend_get_device(backend.get()));
@@ -339,8 +367,10 @@ llama_context::llama_context(
             LLAMA_LOG_INFO("%s: pipeline parallelism enabled\n", __func__);
         }
 
+        // 预留调度器资源
         sched_reserve();
 
+        // 检查量化V缓存是否需要Flash Attention
         if (!cparams.flash_attn) {
             if (ggml_is_quantized(params.type_v)) {
                 throw std::runtime_error("quantized V cache was requested, but this requires Flash Attention");
@@ -348,7 +378,7 @@ llama_context::llama_context(
         }
     }
 
-    // Initialize the full vocabulary token ids for backend samplers.
+    // 初始化后端采样器的完整词汇表token ID
     {
         const int n_vocab = model.vocab.n_tokens();
 
@@ -359,6 +389,9 @@ llama_context::llama_context(
     }
 }
 
+// 析构函数: ~llama_context
+// 描述: 清理llama_context对象的资源
+// 作用: 释放分配的内存和后端资源，确保资源正确释放
 llama_context::~llama_context() {
     if (!model.hparams.no_alloc) {
         for (size_t i = 0; i < backend_ptrs.size(); ++i) {
@@ -379,6 +412,9 @@ llama_context::~llama_context() {
     ggml_opt_free(opt_ctx);
 }
 
+// 方法: sched_reserve
+// 描述: 预留调度器资源
+// 作用: 初始化后端调度器，设置线程数，分配缓冲区，初始化序列数据和批处理分配器
 void llama_context::sched_reserve() {
     if (!sched_need_reserve) {
         return;
@@ -1401,6 +1437,14 @@ static void copy_tensor_async_candidates(
     }
 }
 
+// 函数: needs_raw_logits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: needs_raw_logits
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool needs_raw_logits(const llama_ubatch & ubatch, const std::map<llama_seq_id, llama_sampler *> & samplers) {
     for (uint32_t i = 0; i < ubatch.n_tokens; i++) {
         if (!ubatch.output[i]) {
@@ -1423,6 +1467,14 @@ int llama_context::decode(const llama_batch & batch_inp) {
 
     if (!memory) {
         LLAMA_LOG_DEBUG("%s: cannot decode batches with this context (calling encode() instead)\n", __func__);
+        // 函数: encode
+        // 描述: 编码: 将输入数据编码为内部表示
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: encode
+        // 描述: 编码: 将输入数据编码为内部表示
+        // 参数: 无参数
+        // 返回: 无返回值
         return encode(batch_inp);
     }
 
@@ -1990,6 +2042,14 @@ ggml_cgraph * llama_context::graph_reserve(
 
     this->n_outputs = n_outputs;
 
+    // 函数: balloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: balloc
+    // 描述: 分配: 分配内存或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_batch_allocr balloc(model.hparams.n_pos_per_embd());
     llama_ubatch ubatch = balloc.ubatch_reserve(n_tokens/n_seqs, n_seqs);
 
@@ -2111,18 +2171,48 @@ llm_graph_cb llama_context::graph_get_cb() const {
 // state save/load
 //
 
+// 类: llama_io_write_dummy
+// 描述: llama_io_write_dummy类提供相关功能
+// 用途: 用于处理llama_io_write_dummy相关的操作
+// 类: llama_io_write_dummy
+// 描述: llama_io_write_dummy类提供相关功能
+// 用途: 用于处理llama_io_write_dummy相关的操作
 class llama_io_write_dummy : public llama_io_write_i {
 public:
     llama_io_write_dummy() = default;
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const void * /* src */, size_t size) override {
         size_written += size;
     }
 
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor(const ggml_tensor * /* tensor */, size_t /* offset */, size_t size) override {
         size_written += size;
     }
 
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() override {
         return size_written;
     }
@@ -2131,11 +2221,25 @@ private:
     size_t size_written = 0;
 };
 
+// 类: llama_io_write_buffer
+// 描述: llama_io_write_buffer类提供相关功能
+// 用途: 用于处理llama_io_write_buffer相关的操作
+// 类: llama_io_write_buffer
+// 描述: llama_io_write_buffer类提供相关功能
+// 用途: 用于处理llama_io_write_buffer相关的操作
 class llama_io_write_buffer : public llama_io_write_i {
 public:
     llama_io_write_buffer(
             uint8_t * p, size_t len) : ptr(p), buf_size(len) {}
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const void * src, size_t size) override {
         if (size > buf_size) {
             throw std::runtime_error("unexpectedly reached end of buffer");
@@ -2146,6 +2250,14 @@ public:
         buf_size -= size;
     }
 
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor(const ggml_tensor * tensor, size_t offset, size_t size) override {
         if (size > buf_size) {
             throw std::runtime_error("unexpectedly reached end of buffer");
@@ -2156,6 +2268,14 @@ public:
         buf_size -= size;
     }
 
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() override {
         return size_written;
     }
@@ -2166,10 +2286,24 @@ private:
     size_t size_written = 0;
 };
 
+// 类: llama_io_read_buffer
+// 描述: llama_io_read_buffer类提供相关功能
+// 用途: 用于处理llama_io_read_buffer相关的操作
+// 类: llama_io_read_buffer
+// 描述: llama_io_read_buffer类提供相关功能
+// 用途: 用于处理llama_io_read_buffer相关的操作
 class llama_io_read_buffer : public llama_io_read_i {
 public:
     llama_io_read_buffer(const uint8_t * p, size_t len) : ptr(p), buf_size(len) {}
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const uint8_t * read(size_t size) override {
         const uint8_t * base_ptr = ptr;
         if (size > buf_size) {
@@ -2181,10 +2315,26 @@ public:
         return base_ptr;
     }
 
+    // 函数: read_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_to(void * dst, size_t size) override {
         memcpy(dst, read(size), size);
     }
 
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() override {
         return size_read;
     }
@@ -2195,21 +2345,51 @@ private:
     size_t size_read = 0;
 };
 
+// 类: llama_io_write_file
+// 描述: llama_io_write_file类提供相关功能
+// 用途: 用于处理llama_io_write_file相关的操作
+// 类: llama_io_write_file
+// 描述: llama_io_write_file类提供相关功能
+// 用途: 用于处理llama_io_write_file相关的操作
 class llama_io_write_file : public llama_io_write_i {
 public:
     llama_io_write_file(llama_file * f) : file(f) {}
 
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write(const void * src, size_t size) override {
         file->write_raw(src, size);
         size_written += size;
     }
 
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: write_tensor
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void write_tensor(const ggml_tensor * tensor, size_t offset, size_t size) override {
         temp_buffer.resize(size);
         ggml_backend_tensor_get(tensor, temp_buffer.data(), offset, size);
         write(temp_buffer.data(), temp_buffer.size());
     }
 
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() override {
         return size_written;
     }
@@ -2220,21 +2400,51 @@ private:
     std::vector<uint8_t> temp_buffer;
 };
 
+// 类: llama_io_read_file
+// 描述: llama_io_read_file类提供相关功能
+// 用途: 用于处理llama_io_read_file相关的操作
+// 类: llama_io_read_file
+// 描述: llama_io_read_file类提供相关功能
+// 用途: 用于处理llama_io_read_file相关的操作
 class llama_io_read_file : public llama_io_read_i {
 public:
     llama_io_read_file(llama_file * f) : file(f) {}
 
+    // 函数: read_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read_to
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void read_to(void * dst, size_t size) override {
         file->read_raw(dst, size);
         size_read += size;
     }
 
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: read
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const uint8_t * read(size_t size) override {
         temp_buffer.resize(size);
         read_to(temp_buffer.data(), size);
         return temp_buffer.data();
     }
 
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: n_bytes
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t n_bytes() override {
         return size_read;
     }
@@ -2248,6 +2458,14 @@ private:
 size_t llama_context::state_get_size() {
     llama_io_write_dummy io;
     try {
+        // 函数: state_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_write_data(io);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error getting state size: %s\n", __func__, err.what());
@@ -2256,8 +2474,24 @@ size_t llama_context::state_get_size() {
 }
 
 size_t llama_context::state_get_data(uint8_t * dst, size_t size) {
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_write_buffer io(dst, size);
     try {
+        // 函数: state_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_write_data(io);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error saving state: %s\n", __func__, err.what());
@@ -2266,8 +2500,24 @@ size_t llama_context::state_get_data(uint8_t * dst, size_t size) {
 }
 
 size_t llama_context::state_set_data(const uint8_t * src, size_t size) {
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_read_buffer io(src, size);
     try {
+        // 函数: state_read_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_read_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_read_data(io);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error loading state: %s\n", __func__, err.what());
@@ -2278,6 +2528,14 @@ size_t llama_context::state_set_data(const uint8_t * src, size_t size) {
 size_t llama_context::state_seq_get_size(llama_seq_id seq_id, llama_state_seq_flags flags) {
     llama_io_write_dummy io;
     try {
+        // 函数: state_seq_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_seq_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_seq_write_data(io, seq_id, flags);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error getting state size: %s\n", __func__, err.what());
@@ -2286,8 +2544,24 @@ size_t llama_context::state_seq_get_size(llama_seq_id seq_id, llama_state_seq_fl
 }
 
 size_t llama_context::state_seq_get_data(llama_seq_id seq_id, uint8_t * dst, size_t size, llama_state_seq_flags flags) {
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_write_buffer io(dst, size);
     try {
+        // 函数: state_seq_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_seq_write_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_seq_write_data(io, seq_id, flags);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error saving state: %s\n", __func__, err.what());
@@ -2296,8 +2570,24 @@ size_t llama_context::state_seq_get_data(llama_seq_id seq_id, uint8_t * dst, siz
 }
 
 size_t llama_context::state_seq_set_data(llama_seq_id seq_id, const uint8_t * src, size_t size, llama_state_seq_flags flags) {
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_read_buffer io(src, size);
     try {
+        // 函数: state_seq_read_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: state_seq_read_data
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return state_seq_read_data(io, seq_id, flags);
     } catch (const std::exception & err) {
         LLAMA_LOG_ERROR("%s: error loading state: %s\n", __func__, err.what());
@@ -2306,6 +2596,14 @@ size_t llama_context::state_seq_set_data(llama_seq_id seq_id, const uint8_t * sr
 }
 
 bool llama_context::state_load_file(const char * filepath, llama_token * tokens_out, size_t n_token_capacity, size_t * n_token_count_out) {
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_file file(filepath, "rb");
 
     // sanity checks
@@ -2336,6 +2634,14 @@ bool llama_context::state_load_file(const char * filepath, llama_token * tokens_
     {
         const size_t n_state_size_cur = file.size() - file.tell();
 
+        // 函数: io
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: io
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_io_read_file io( &file);
         const size_t n_read = state_read_data(io);
 
@@ -2349,6 +2655,14 @@ bool llama_context::state_load_file(const char * filepath, llama_token * tokens_
 }
 
 bool llama_context::state_save_file(const char * filepath, const llama_token * tokens, size_t n_token_count) {
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_file file(filepath, "wb");
 
     file.write_u32(LLAMA_SESSION_MAGIC);
@@ -2359,6 +2673,14 @@ bool llama_context::state_save_file(const char * filepath, const llama_token * t
     file.write_raw(tokens, sizeof(llama_token) * n_token_count);
 
     // save the context state using stream saving
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_write_file io(&file);
     state_write_data(io);
 
@@ -2366,6 +2688,14 @@ bool llama_context::state_save_file(const char * filepath, const llama_token * t
 }
 
 size_t llama_context::state_seq_load_file(llama_seq_id seq_id, const char * filepath, llama_token * tokens_out, size_t n_token_capacity, size_t * n_token_count_out) {
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_file file(filepath, "rb");
 
     // version checks
@@ -2395,6 +2725,14 @@ size_t llama_context::state_seq_load_file(llama_seq_id seq_id, const char * file
     // restore the context state
     {
         const size_t state_size = file.size() - file.tell();
+        // 函数: io
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: io
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         llama_io_read_file io(&file);
         const size_t nread = state_seq_read_data(io, seq_id, 0);
         if (!nread) {
@@ -2409,6 +2747,14 @@ size_t llama_context::state_seq_load_file(llama_seq_id seq_id, const char * file
 }
 
 size_t llama_context::state_seq_save_file(llama_seq_id seq_id, const char * filepath, const llama_token * tokens, size_t n_token_count) {
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: file
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_file file(filepath, "wb");
 
     file.write_u32(LLAMA_STATE_SEQ_MAGIC);
@@ -2419,6 +2765,14 @@ size_t llama_context::state_seq_save_file(llama_seq_id seq_id, const char * file
     file.write_raw(tokens, sizeof(llama_token) * n_token_count);
 
     // save the context state using stream saving
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: io
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_io_write_file io(&file);
     state_seq_write_data(io, seq_id, 0);
 
@@ -2549,6 +2903,14 @@ std::map<ggml_backend_buffer_type_t, llama_memory_breakdown_data> llama_context:
 // training
 //
 
+// 函数: llama_set_param
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_param
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_set_param(struct ggml_tensor * tensor, llama_opt_param_filter param_filter, void * userdata) {
     if (!tensor || tensor->type != GGML_TYPE_F32) {
         return;
@@ -2678,10 +3040,46 @@ void llama_context::opt_epoch_iter(
 
             auto * gf = model.build_graph(gparams);
 
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+            // 类: ggml_context
+            // 描述: ggml_context类提供相关功能
+            // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
             struct ggml_context * ctx_compute_opt;
             {
                 const size_t size_gf = ggml_graph_size(gf);
                 const size_t size_meta = 4*size_gf*ggml_tensor_overhead() + 2*ggml_graph_overhead_custom(size_gf, /*grads = */ true);
+                // 类: ggml_init_params
+                // 描述: ggml_init_params类提供相关功能
+                // 用途: 用于处理ggml_init_params相关的操作
+                // 类: ggml_init_params
+                // 描述: ggml_init_params类提供相关功能
+                // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
                 struct ggml_init_params params = {
                     /*.mem_size   =*/ size_meta,
                     /*.mem_buffer =*/ nullptr,
@@ -2694,6 +3092,24 @@ void llama_context::opt_epoch_iter(
 
             res->set_inputs(&ubatch);
             {
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+                // 类: ggml_tensor
+                // 描述: ggml_tensor类提供相关功能
+                // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
                 struct ggml_tensor * labels = ggml_opt_labels(opt_ctx);
                 GGML_ASSERT(labels->ne[1] == n_ubatch);
                 ggml_set_zero(labels);
@@ -2732,6 +3148,24 @@ void llama_context::opt_epoch(
 
     const uint32_t ubatch_per_ctx = n_ctx / n_ubatch;
 
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 类: llama_batch
+    // 描述: llama_batch类提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
     struct llama_batch batch = llama_batch_init(n_batch, 0, 1);
     std::vector<llama_token>        tokens(n_ctx);
     std::vector<llama_token> labels_sparse(n_ctx);
@@ -2767,6 +3201,14 @@ void llama_context::opt_epoch(
 // interface implementation
 //
 
+// 函数: llama_context_default_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_context_default_params
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_context_params llama_context_default_params() {
     llama_context_params result = {
         /*.n_ctx                       =*/ 512,
@@ -2873,33 +3315,97 @@ llama_context * llama_init_from_model(
 llama_context * llama_new_context_with_model(
                  llama_model * model,
         llama_context_params   params) {
+    // 函数: llama_init_from_model
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_init_from_model
+    // 描述: 初始化: 初始化对象、资源或环境
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_init_from_model(model, params);
 }
 
+// 函数: llama_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_free(llama_context * ctx) {
     delete ctx;
 }
 
+// 函数: llama_n_ctx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_ctx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_n_ctx(const llama_context * ctx) {
     return ctx->n_ctx();
 }
 
+// 函数: llama_n_ctx_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_ctx_seq
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_n_ctx_seq(const llama_context * ctx) {
     return ctx->n_ctx_seq();
 }
 
+// 函数: llama_n_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_n_batch(const llama_context * ctx) {
     return ctx->n_batch();
 }
 
+// 函数: llama_n_ubatch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_ubatch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_n_ubatch(const llama_context * ctx) {
     return ctx->n_ubatch();
 }
 
+// 函数: llama_n_seq_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_seq_max
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_n_seq_max(const llama_context * ctx) {
     return ctx->n_seq_max();
 }
 
+// 函数: llama_get_model
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_model
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 const llama_model * llama_get_model(const llama_context * ctx) {
     return &ctx->get_model();
 }
@@ -2915,48 +3421,136 @@ void llama_attach_threadpool(
     ctx->attach_threadpool(threadpool, threadpool_batch);
 }
 
+// 函数: llama_detach_threadpool
+// 描述: 分离: 分离已附加的资源或回调
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_detach_threadpool
+// 描述: 分离: 分离已附加的资源或回调
+// 参数: 无参数
+// 返回: 无返回值
 void llama_detach_threadpool(llama_context * ctx) {
     ctx->detach_threadpool();
 }
 
+// 函数: llama_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void llama_set_n_threads(llama_context * ctx, int32_t n_threads, int32_t n_threads_batch) {
     ctx->set_n_threads(n_threads, n_threads_batch);
 }
 
+// 函数: llama_n_threads
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_threads
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_threads(llama_context * ctx) {
     return ctx->n_threads();
 }
 
+// 函数: llama_n_threads_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_n_threads_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int32_t llama_n_threads_batch(llama_context * ctx) {
     return ctx->n_threads_batch();
 }
 
+// 函数: llama_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_abort_callback
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void llama_set_abort_callback(llama_context * ctx, bool (*abort_callback)(void * data), void * abort_callback_data) {
     ctx->set_abort_callback(abort_callback, abort_callback_data);
 }
 
+// 函数: llama_set_embeddings
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_embeddings
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void llama_set_embeddings(llama_context * ctx, bool embeddings) {
     ctx->set_embeddings(embeddings);
 }
 
+// 函数: llama_set_causal_attn
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_causal_attn
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void llama_set_causal_attn(llama_context * ctx, bool causal_attn) {
     ctx->set_causal_attn(causal_attn);
 }
 
+// 函数: llama_set_warmup
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_warmup
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void llama_set_warmup(llama_context * ctx, bool warmup) {
     ctx->set_warmup(warmup);
 }
 
+// 函数: llama_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_synchronize
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_synchronize(llama_context * ctx) {
     ctx->synchronize();
 }
 
+// 函数: llama_get_logits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_logits
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_logits(llama_context * ctx) {
     ctx->synchronize();
 
     return ctx->get_logits();
 }
 
+// 函数: llama_get_logits_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_logits_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_logits_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
@@ -2971,64 +3565,152 @@ float * llama_get_logits_ith(llama_context * ctx, int32_t i) {
     return res;
 }
 
+// 函数: llama_get_embeddings
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_embeddings
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_embeddings(llama_context * ctx) {
     ctx->synchronize();
 
     return ctx->get_embeddings();
 }
 
+// 函数: llama_get_embeddings_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_embeddings_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_embeddings_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return ctx->get_embeddings_ith(i);
 }
 
+// 函数: llama_get_embeddings_seq
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_embeddings_seq
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_embeddings_seq(llama_context * ctx, llama_seq_id seq_id) {
     ctx->synchronize();
 
     return ctx->get_embeddings_seq(seq_id);
 }
 
+// 函数: llama_set_sampler
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_sampler
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_set_sampler(llama_context * ctx, llama_seq_id seq_id, llama_sampler * smpl) {
     return ctx->set_sampler(seq_id, smpl);
 }
 
+// 函数: llama_get_sampled_token_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_token_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_token llama_get_sampled_token_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return ctx->get_sampled_token_ith(i);
 }
 
+// 函数: llama_get_sampled_probs_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_probs_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_sampled_probs_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return ctx->get_sampled_probs_ith(i);
 }
 
+// 函数: llama_get_sampled_logits_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_logits_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 float * llama_get_sampled_logits_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return ctx->get_sampled_logits_ith(i);
 }
 
+// 函数: llama_get_sampled_candidates_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_candidates_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_token * llama_get_sampled_candidates_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return const_cast<llama_token *>(ctx->get_sampled_candidates_ith(i));
 }
 
+// 函数: llama_get_sampled_candidates_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_candidates_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_get_sampled_candidates_count_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return static_cast<uint32_t>(ctx->get_sampled_candidates_count(i));
 }
 
+// 函数: llama_get_sampled_logits_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_logits_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_get_sampled_logits_count_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
     return static_cast<uint32_t>(ctx->get_sampled_logits_count(i));
 }
 
+// 函数: llama_get_sampled_probs_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_sampled_probs_count_ith
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t llama_get_sampled_probs_count_ith(llama_context * ctx, int32_t i) {
     ctx->synchronize();
 
@@ -3067,10 +3749,26 @@ int32_t llama_set_adapter_cvec(
 // memory
 //
 
+// 函数: llama_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 llama_memory_t llama_get_memory(const struct llama_context * ctx) {
     return ctx->get_memory();
 }
 
+// 函数: llama_memory_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_memory_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void llama_memory_clear(llama_memory_t mem, bool data) {
     if (!mem) {
         return;
@@ -3160,6 +3858,14 @@ llama_pos llama_memory_seq_pos_max(
     return mem->seq_pos_max(seq_id);
 }
 
+// 函数: llama_memory_can_shift
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_memory_can_shift
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_memory_can_shift(llama_memory_t mem) {
     if (!mem) {
         return false;
@@ -3171,36 +3877,92 @@ bool llama_memory_can_shift(llama_memory_t mem) {
 // llama state API
 
 // deprecated
+// 函数: llama_get_state_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_get_state_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_get_state_size(llama_context * ctx) {
     return llama_state_get_size(ctx);
 }
 
 // deprecated
+// 函数: llama_copy_state_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_copy_state_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_copy_state_data(llama_context * ctx, uint8_t * dst) {
     return llama_state_get_data(ctx, dst, -1);
 }
 
 // deprecated
+// 函数: llama_set_state_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_set_state_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_set_state_data(llama_context * ctx, const uint8_t * src) {
     return llama_state_set_data(ctx, src, -1);
 }
 
 // deprecated
+// 函数: llama_load_session_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_load_session_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_load_session_file(llama_context * ctx, const char * path_session, llama_token * tokens_out, size_t n_token_capacity, size_t * n_token_count_out) {
     return llama_state_load_file(ctx, path_session, tokens_out, n_token_capacity, n_token_count_out);
 }
 
 // deprecated
+// 函数: llama_save_session_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_save_session_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_save_session_file(llama_context * ctx, const char * path_session, const llama_token * tokens, size_t n_token_count) {
     return llama_state_save_file(ctx, path_session, tokens, n_token_count);
 }
 
 // Returns the *actual* size of the state.
 // Intended to be used when saving to state to a buffer.
+// 函数: llama_state_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_get_size(llama_context * ctx) {
     return ctx->state_get_size();
 }
 
+// 函数: llama_state_get_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_get_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_get_data(llama_context * ctx, uint8_t * dst, size_t size) {
     ctx->synchronize();
 
@@ -3208,12 +3970,28 @@ size_t llama_state_get_data(llama_context * ctx, uint8_t * dst, size_t size) {
 }
 
 // Sets the state reading from the specified source address
+// 函数: llama_state_set_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_set_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_set_data(llama_context * ctx, const uint8_t * src, size_t size) {
     ctx->synchronize();
 
     return ctx->state_set_data(src, size);
 }
 
+// 函数: llama_state_load_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_load_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_state_load_file(llama_context * ctx, const char * path_session, llama_token * tokens_out, size_t n_token_capacity, size_t * n_token_count_out) {
     ctx->synchronize();
 
@@ -3225,6 +4003,14 @@ bool llama_state_load_file(llama_context * ctx, const char * path_session, llama
     }
 }
 
+// 函数: llama_state_save_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_save_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_state_save_file(llama_context * ctx, const char * path_session, const llama_token * tokens, size_t n_token_count) {
     ctx->synchronize();
 
@@ -3236,34 +4022,90 @@ bool llama_state_save_file(llama_context * ctx, const char * path_session, const
     }
 }
 
+// 函数: llama_state_seq_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_get_size
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_get_size(llama_context * ctx, llama_seq_id seq_id) {
     return llama_state_seq_get_size_ext(ctx, seq_id, 0);
 }
 
+// 函数: llama_state_seq_get_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_get_data
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_get_data(llama_context * ctx, uint8_t * dst, size_t size, llama_seq_id seq_id) {
     return llama_state_seq_get_data_ext(ctx, dst, size, seq_id, 0);
 }
 
+// 函数: llama_state_seq_set_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_set_data
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_set_data(llama_context * ctx, const uint8_t * src, size_t size, llama_seq_id seq_id) {
     return llama_state_seq_set_data_ext(ctx, src, size, seq_id, 0);
 }
 
+// 函数: llama_state_seq_get_size_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_get_size_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_get_size_ext(llama_context * ctx, llama_seq_id seq_id, llama_state_seq_flags flags) {
     return ctx->state_seq_get_size(seq_id, flags);
 }
 
+// 函数: llama_state_seq_get_data_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_get_data_ext
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_get_data_ext(llama_context * ctx, uint8_t * dst, size_t size, llama_seq_id seq_id, llama_state_seq_flags flags) {
     ctx->synchronize();
 
     return ctx->state_seq_get_data(seq_id, dst, size, flags);
 }
 
+// 函数: llama_state_seq_set_data_ext
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_set_data_ext
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_set_data_ext(llama_context * ctx, const uint8_t * src, size_t size, llama_seq_id seq_id, llama_state_seq_flags flags) {
     ctx->synchronize();
 
     return ctx->state_seq_set_data(seq_id, src, size, flags);
 }
 
+// 函数: llama_state_seq_save_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_save_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_save_file(llama_context * ctx, const char * filepath, llama_seq_id seq_id, const llama_token * tokens, size_t n_token_count) {
     ctx->synchronize();
 
@@ -3275,6 +4117,14 @@ size_t llama_state_seq_save_file(llama_context * ctx, const char * filepath, lla
     }
 }
 
+// 函数: llama_state_seq_load_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_state_seq_load_file
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_state_seq_load_file(llama_context * ctx, const char * filepath, llama_seq_id dest_seq_id, llama_token * tokens_out, size_t n_token_capacity, size_t * n_token_count_out) {
     ctx->synchronize();
 
@@ -3314,6 +4164,14 @@ int32_t llama_decode(
 // perf
 //
 
+// 函数: llama_perf_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_perf_context
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_perf_context_data llama_perf_context(const llama_context * ctx) {
     llama_perf_context_data data = {};
 
@@ -3326,6 +4184,14 @@ llama_perf_context_data llama_perf_context(const llama_context * ctx) {
     return data;
 }
 
+// 函数: llama_perf_context_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_perf_context_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_perf_context_print(const llama_context * ctx) {
     const auto data = llama_perf_context(ctx);
 
@@ -3340,10 +4206,26 @@ void llama_perf_context_print(const llama_context * ctx) {
     LLAMA_LOG_INFO("%s:    graphs reused = %10d\n", __func__, data.n_reused);
 }
 
+// 函数: llama_perf_context_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_perf_context_reset
+// 描述: 重置: 重置对象或状态到初始值
+// 参数: 无参数
+// 返回: 无返回值
 void llama_perf_context_reset(llama_context * ctx) {
     ctx->perf_reset();
 }
 
+// 函数: llama_memory_breakdown_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_memory_breakdown_print
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_memory_breakdown_print(const struct llama_context * ctx) {
     const std::vector<ggml_backend_dev_t> & devices = ctx->get_model().devices;
 
@@ -3484,17 +4366,51 @@ void llama_memory_breakdown_print(const struct llama_context * ctx) {
 // training
 //
 
+// 函数: llama_opt_param_filter_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_opt_param_filter_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_opt_param_filter_all(const struct ggml_tensor * tensor, void * userdata) {
     GGML_UNUSED(tensor);
     GGML_UNUSED(userdata);
     return true;
 }
 
+// 函数: llama_opt_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_opt_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void llama_opt_init(struct llama_context * ctx, struct llama_model * model, struct llama_opt_params lopt_params) {
     ctx->opt_init(model, lopt_params);
 }
 
 void llama_opt_epoch(
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+        // 类: llama_context
+        // 描述: llama_context类提供相关功能
+        // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
         struct llama_context    * ctx,
         ggml_opt_dataset_t        dataset,
         ggml_opt_result_t         result_train,

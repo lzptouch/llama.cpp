@@ -39,13 +39,69 @@ extern ggml_fp16_t ggml_table_gelu_quick_f16[1 << 16];
 // fundamental operations
 //
 
+// 函数: ggml_vec_dot_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_f32(int n, float * GGML_RESTRICT s, size_t bs, const float * GGML_RESTRICT x, size_t bx, const float * GGML_RESTRICT y, size_t by, int nrc);
+// 函数: ggml_vec_dot_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_bf16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_bf16(int n, float * GGML_RESTRICT s, size_t bs, ggml_bf16_t * GGML_RESTRICT x, size_t bx, ggml_bf16_t * GGML_RESTRICT y, size_t by, int nrc);
+// 函数: ggml_vec_dot_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_dot_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_dot_f16(int n, float * GGML_RESTRICT s, size_t bs, ggml_fp16_t * GGML_RESTRICT x, size_t bx, ggml_fp16_t * GGML_RESTRICT y, size_t by, int nrc);
 
+// 函数: ggml_vec_silu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_silu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_silu_f32(const int n, float * y, const float * x);
+// 函数: ggml_vec_cvar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_cvar_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_cvar_f32(const int n, float * y, const float * x, const float mean); //it will also center y ( y = y - mean )
+// 函数: ggml_vec_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_soft_max_f32(const int n, float * y, const float * x, float max);
+// 函数: ggml_vec_log_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_log_soft_max_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_float ggml_vec_log_soft_max_f32(const int n, float * y, const float * x, float max);
 
 inline static void ggml_vec_set_i8(const int n, int8_t * x, const int8_t v) { for (int i = 0; i < n; ++i) x[i] = v; }
@@ -547,12 +603,28 @@ inline static void ggml_vec_mad_f16(const int n, ggml_fp16_t * GGML_RESTRICT y, 
         vfloat16m4_t ay0 = __riscv_vle16_v_f16m4((const _Float16*)y + i, epr);
         ay0 = __riscv_vfmacc_vf_f16m4(ay0, scale, ax0, epr);
         __riscv_vse16_v_f16m4((_Float16*)y + i, ay0, epr);
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         __asm__ __volatile__ ("" ::: "memory");
 
         vfloat16m4_t ax1 = __riscv_vle16_v_f16m4((const _Float16*)x + i + epr, epr);
         vfloat16m4_t ay1 = __riscv_vle16_v_f16m4((const _Float16*)y + i + epr, epr);
         ay1 = __riscv_vfmacc_vf_f16m4(ay1, scale, ax1, epr);
         __riscv_vse16_v_f16m4((_Float16*)y + i + epr, ay1, epr);
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         __asm__ __volatile__ ("" ::: "memory");
     }
 
@@ -819,11 +891,27 @@ inline static void ggml_vec_scale_f16(const int n, ggml_fp16_t * y, const float 
         vfloat16m4_t ay0 = __riscv_vle16_v_f16m4((const _Float16*)y + i, epr);
         ay0 = __riscv_vfmul_vf_f16m4(ay0, scale, epr);
         __riscv_vse16_v_f16m4((_Float16*)y + i, ay0, epr);
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         __asm__ __volatile__ ("" ::: "memory");
 
         vfloat16m4_t ay1 = __riscv_vle16_v_f16m4((const _Float16*)y + i + epr, epr);
         ay1 = __riscv_vfmul_vf_f16m4(ay1, scale, epr);
         __riscv_vse16_v_f16m4((_Float16*)y + i + epr, ay1, epr);
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: __volatile__
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         __asm__ __volatile__ ("" ::: "memory");
     }
 
@@ -1063,6 +1151,14 @@ inline static float ggml_silu_f32(float x) {
 }
 inline static ggml_fp16_t ggml_silu_f16(ggml_fp16_t x) {
     float v = GGML_CPU_FP16_TO_FP32(x);
+    // 函数: GGML_CPU_FP32_TO_FP16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: GGML_CPU_FP32_TO_FP16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return GGML_CPU_FP32_TO_FP16(v/(1.0f + expf(-v)));
 }
 
@@ -1125,6 +1221,14 @@ inline static svfloat32_t ggml_v_expf(svbool_t pg, svfloat32_t x) {
     const svuint32_t d = svdup_n_u32_z(svcmple_n_f32(pg, n, 0.0), 0x82000000);
     const svfloat32_t s1 = svreinterpret_f32_u32(svadd_n_u32_x(pg, d, 0x7f000000));
     const svfloat32_t s2 = svreinterpret_f32_u32(svsub_u32_x(pg, e, d));
+    // 函数: svsel_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: svsel_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return svsel_f32(svacgt_f32(pg, n, svdup_n_f32_x(pg, 192)), svmul_f32_x(pg, s1, s1),
                      svsel_f32(c, svmul_f32_x(pg, svmla_f32_x(pg, s2, s2, j), s1), svmla_f32_x(pg, k, k, j)));
 }
@@ -1136,6 +1240,14 @@ inline static svfloat32_t ggml_v_silu(svbool_t pg, svfloat32_t x) {
     const svfloat32_t neg_x = svsub_f32_x(pg, zero, x);
     const svfloat32_t exp_neg_x = ggml_v_expf(pg, neg_x);
     const svfloat32_t one_plus_exp_neg_x = svadd_f32_x(pg, one, exp_neg_x);
+    // 函数: svdiv_f32_x
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: svdiv_f32_x
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return svdiv_f32_x(pg, x, one_plus_exp_neg_x);
 }
 
@@ -1160,10 +1272,26 @@ inline static float32x4_t ggml_v_expf(float32x4_t x) {
         vfmaq_f32(vfmaq_f32(vdupq_n_f32(0x1.fffdb6p-2f), vdupq_n_f32(0x1.555e66p-3f), b),
                   vfmaq_f32(vdupq_n_f32(0x1.573e2ep-5f), vdupq_n_f32(0x1.0e4020p-7f), b), u), u);
     if (!vpaddd_u64(vreinterpretq_u64_u32(c)))
+        // 函数: vfmaq_f32
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: vfmaq_f32
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return vfmaq_f32(k, j, k);
     const uint32x4_t d = vandq_u32(vclezq_f32(n), vdupq_n_u32(0x82000000));
     const float32x4_t s1 = vreinterpretq_f32_u32(vaddq_u32(d, vdupq_n_u32(0x7f000000)));
     const float32x4_t s2 = vreinterpretq_f32_u32(vsubq_u32(e, d));
+    // 函数: vbslq_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vbslq_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vbslq_f32(vcagtq_f32(n, vdupq_n_f32(192)), vmulq_f32(s1, s1),
                      vbslq_f32(c, vmulq_f32(vfmaq_f32(s2, s2, j), s1), vfmaq_f32(k, k, j)));
 }
@@ -1175,6 +1303,14 @@ inline static float32x4_t ggml_v_silu(float32x4_t x) {
     const float32x4_t neg_x = vsubq_f32(zero, x);
     const float32x4_t exp_neg_x = ggml_v_expf(neg_x);
     const float32x4_t one_plus_exp_neg_x = vaddq_f32(one, exp_neg_x);
+    // 函数: vdivq_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vdivq_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vdivq_f32(x, one_plus_exp_neg_x);
 }
 
@@ -1208,6 +1344,14 @@ inline static __m512 ggml_v_expf(__m512 x) {
   const __m512 zero = _mm512_setzero_ps();
   const __m512 alt = _mm512_mask_blend_ps(
       _mm512_cmp_ps_mask(n, zero, _CMP_LE_OQ), _mm512_set1_ps(INFINITY), zero);
+  // 函数: _mm512_mask_blend_ps
+  // 描述: 执行主要功能
+  // 参数: 无参数
+  // 返回: 无返回值
+  // 函数: _mm512_mask_blend_ps
+  // 描述: 执行主要功能
+  // 参数: 无参数
+  // 返回: 无返回值
   return _mm512_mask_blend_ps(d, res, alt);
 }
 
@@ -1218,6 +1362,14 @@ inline static __m512 ggml_v_silu(__m512 x) {
     const __m512 neg_x = _mm512_sub_ps(zero, x);
     const __m512 exp_neg_x = ggml_v_expf(neg_x);
     const __m512 one_plus_exp_neg_x = _mm512_add_ps(one, exp_neg_x);
+    // 函数: _mm512_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm512_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm512_div_ps(x, one_plus_exp_neg_x);
 }
 
@@ -1246,6 +1398,14 @@ inline static __m256 ggml_v_expf(__m256 x) {
                                                                    _mm256_set1_ps(0x1.fffdb6p-2f))),
                                    u, _mm256_mul_ps(_mm256_set1_ps(0x1.ffffecp-1f), b));
   if (!_mm256_movemask_ps(_mm256_castsi256_ps(c)))
+    // 函数: _mm256_fmadd_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm256_fmadd_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm256_fmadd_ps(j, k, k);
   const __m256i g = _mm256_and_si256(
       _mm256_castps_si256(_mm256_cmp_ps(n, _mm256_setzero_ps(), _CMP_LE_OQ)),
@@ -1273,6 +1433,14 @@ inline static __m256 ggml_v_silu(__m256 x) {
     const __m256 neg_x = _mm256_sub_ps(zero, x);
     const __m256 exp_neg_x = ggml_v_expf(neg_x);
     const __m256 one_plus_exp_neg_x = _mm256_add_ps(one, exp_neg_x);
+    // 函数: _mm256_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm256_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm256_div_ps(x, one_plus_exp_neg_x);
 }
 
@@ -1306,6 +1474,14 @@ inline static __m128 ggml_v_expf(__m128 x) {
                         MADD128(_mm_set1_ps(0x1.555e66p-3f), b, _mm_set1_ps(0x1.fffdb6p-2f))),
                 u, _mm_mul_ps(_mm_set1_ps(0x1.ffffecp-1f), b));
     if (!_mm_movemask_epi8(c))
+        // 函数: MADD128
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: MADD128
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return MADD128(j, k, k);
     const __m128i g = _mm_and_si128(_mm_castps_si128(_mm_cmple_ps(n, _mm_setzero_ps())),
                                     _mm_set1_epi32(0x82000000u));
@@ -1327,6 +1503,14 @@ inline static __m128 ggml_v_silu(__m128 x) {
     const __m128 neg_x = _mm_sub_ps(zero, x);
     const __m128 exp_neg_x = ggml_v_expf(neg_x);
     const __m128 one_plus_exp_neg_x = _mm_add_ps(one, exp_neg_x);
+    // 函数: _mm_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _mm_div_ps
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return _mm_div_ps(x, one_plus_exp_neg_x);
 }
 
@@ -1359,6 +1543,14 @@ inline static vfloat32m2_t ggml_v_expf_m2(vfloat32m2_t x, int vl) {
             __riscv_vfmacc_vf_f32m2(__riscv_vfmv_v_f_f32m2(0x1.573e2ep-5f, vl), 0x1.0e4020p-7f, b, vl),
             u, vl), u, vl);
     if (!__riscv_vcpop_m_b16(c, vl))
+        // 函数: __riscv_vfmacc_vv_f32m2
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: __riscv_vfmacc_vv_f32m2
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return __riscv_vfmacc_vv_f32m2(k, j, k, vl);
     const vbool16_t  dm = __riscv_vmfle_vf_f32m2_b16(n, 0.0f, vl);
     const vuint32m2_t d = __riscv_vmerge_vxm_u32m2(__riscv_vmv_v_x_u32m2(0, vl), 0x82000000, dm, vl);
@@ -1379,6 +1571,14 @@ inline static vfloat32m2_t ggml_v_silu_m2(vfloat32m2_t x, int vl) {
     const vfloat32m2_t neg_x = __riscv_vfneg_v_f32m2(x, vl);
     const vfloat32m2_t exp_neg_x = ggml_v_expf_m2(neg_x, vl);
     const vfloat32m2_t one_plus_exp_neg_x = __riscv_vfadd_vf_f32m2(exp_neg_x, 1.0f, vl);
+    // 函数: __riscv_vfdiv_vv_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __riscv_vfdiv_vv_f32m2
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return __riscv_vfdiv_vv_f32m2(x, one_plus_exp_neg_x, vl);
 }
 
@@ -1398,6 +1598,14 @@ inline static float ggml_silu_backward_f32(float x, float dy) {
 inline static ggml_fp16_t ggml_silu_backward_f16(ggml_fp16_t x, ggml_fp16_t dy) {
     const float v = GGML_CPU_FP16_TO_FP32(x);
     const float s = 1.0f/(1.0f + expf(-v));
+    // 函数: GGML_CPU_FP32_TO_FP16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: GGML_CPU_FP32_TO_FP16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return GGML_CPU_FP32_TO_FP16(GGML_CPU_FP16_TO_FP32(dy)*s*(1.0f + v*(1.0f - s)));
 }
 
@@ -1457,6 +1665,14 @@ inline static void ggml_vec_geglu_f16(const int n, ggml_fp16_t * y, const ggml_f
     }
 }
 
+// 函数: ggml_vec_swiglu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_vec_swiglu_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_vec_swiglu_f32(const int n, float * y, const float * x, const float * g);
 
 inline static void ggml_vec_swiglu_f16(const int n, ggml_fp16_t * y, const ggml_fp16_t * x, const ggml_fp16_t * g) {

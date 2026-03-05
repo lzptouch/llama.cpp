@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: utils.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/utils.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -30,18 +37,44 @@ import wget
 DEFAULT_HTTP_TIMEOUT = 60
 
 
+    # 类: ServerResponse
+    # 描述: ServerResponse类提供相关功能
+    # 用途: 用于处理ServerResponse相关的操作
+    # 类: ServerResponse
+    # 描述: ServerResponse类提供相关功能
+    # 用途: 用于处理ServerResponse相关的操作
 class ServerResponse:
     headers: dict
     status_code: int
     body: dict | Any
 
 
+    # 类: ServerError
+    # 描述: ServerError类提供相关功能
+    # 用途: 用于处理ServerError相关的操作
+    # 类: ServerError
+    # 描述: ServerError类提供相关功能
+    # 用途: 用于处理ServerError相关的操作
 class ServerError(Exception):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, code, body
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, code, body
+    # 返回: 无返回值
     def __init__(self, code, body):
         self.code = code
         self.body = body
 
 
+    # 类: ServerProcess
+    # 描述: ServerProcess类提供相关功能
+    # 用途: 用于处理ServerProcess相关的操作
+    # 类: ServerProcess
+    # 描述: ServerProcess类提供相关功能
+    # 用途: 用于处理ServerProcess相关的操作
 class ServerProcess:
     # default options
     debug: bool = False
@@ -106,6 +139,14 @@ class ServerProcess:
     # session variables
     process: subprocess.Popen | None = None
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def __init__(self):
         if "N_GPU_LAYERS" in os.environ:
             self.n_gpu_layer = int(os.environ["N_GPU_LAYERS"])
@@ -115,6 +156,14 @@ class ServerProcess:
             self.server_port = int(os.environ["PORT"])
         self.external_server = "DEBUG_EXTERNAL" in os.environ
 
+    # 函数: start
+    # 描述: start函数提供相关功能
+    # 参数: self, timeout_seconds: int | None = DEFAULT_HTTP_TIMEOUT
+    # 返回: 有返回值
+    # 函数: start
+    # 描述: start函数提供相关功能
+    # 参数: self, timeout_seconds: int | None = DEFAULT_HTTP_TIMEOUT
+    # 返回: 有返回值
     def start(self, timeout_seconds: int | None = DEFAULT_HTTP_TIMEOUT) -> None:
         if self.external_server:
             print(f"[external_server]: Assuming external server running on {self.server_host}:{self.server_port}")
@@ -277,6 +326,14 @@ class ServerProcess:
             time.sleep(0.5)
         raise TimeoutError(f"Server did not start within {timeout_seconds} seconds")
 
+    # 函数: stop
+    # 描述: stop函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: stop
+    # 描述: stop函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def stop(self) -> None:
         if self.external_server:
             print("[external_server]: Not stopping external server")
@@ -288,6 +345,14 @@ class ServerProcess:
             self.process.kill()
             self.process = None
 
+    # 函数: make_request
+    # 描述: make_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: make_request
+    # 描述: make_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def make_request(
         self,
         method: str,
@@ -321,6 +386,14 @@ class ServerProcess:
         print("Response from server", json.dumps(result.body, indent=2))
         return result
 
+    # 函数: make_stream_request
+    # 描述: make_stream_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: make_stream_request
+    # 描述: make_stream_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def make_stream_request(
         self,
         method: str,
@@ -344,6 +417,14 @@ class ServerProcess:
                 print("Partial response from server", json.dumps(data, indent=2))
                 yield data
 
+    # 函数: make_any_request
+    # 描述: make_any_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: make_any_request
+    # 描述: make_any_request函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def make_any_request(
         self,
         method: str,
@@ -439,8 +520,22 @@ class ServerProcess:
 server_instances: Set[ServerProcess] = set()
 
 
+    # 类: ServerPreset
+    # 描述: ServerPreset类提供相关功能
+    # 用途: 用于处理ServerPreset相关的操作
+    # 类: ServerPreset
+    # 描述: ServerPreset类提供相关功能
+    # 用途: 用于处理ServerPreset相关的操作
 class ServerPreset:
     @staticmethod
+    # 函数: load_all
+    # 描述: load_all函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: load_all
+    # 描述: load_all函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def load_all() -> None:
         """ Load all server presets to ensure model files are cached. """
         servers: List[ServerProcess] = [
@@ -454,6 +549,14 @@ class ServerPreset:
             server.stop()
 
     @staticmethod
+    # 函数: tinyllama2
+    # 描述: tinyllama2函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: tinyllama2
+    # 描述: tinyllama2函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def tinyllama2() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -468,6 +571,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: bert_bge_small
+    # 描述: bert_bge_small函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: bert_bge_small
+    # 描述: bert_bge_small函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def bert_bge_small() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -483,6 +594,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: bert_bge_small_with_fa
+    # 描述: bert_bge_small_with_fa函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: bert_bge_small_with_fa
+    # 描述: bert_bge_small_with_fa函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def bert_bge_small_with_fa() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -499,6 +618,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: tinyllama_infill
+    # 描述: tinyllama_infill函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: tinyllama_infill
+    # 描述: tinyllama_infill函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def tinyllama_infill() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -514,6 +641,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: stories15m_moe
+    # 描述: stories15m_moe函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: stories15m_moe
+    # 描述: stories15m_moe函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def stories15m_moe() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -529,6 +664,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: jina_reranker_tiny
+    # 描述: jina_reranker_tiny函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: jina_reranker_tiny
+    # 描述: jina_reranker_tiny函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def jina_reranker_tiny() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -543,6 +686,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: tinygemma3
+    # 描述: tinygemma3函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: tinygemma3
+    # 描述: tinygemma3函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def tinygemma3() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -558,6 +709,14 @@ class ServerPreset:
         return server
 
     @staticmethod
+    # 函数: router
+    # 描述: router函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: router
+    # 描述: router函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def router() -> ServerProcess:
         server = ServerProcess()
         server.offline = True # will be downloaded by load_all()
@@ -574,6 +733,14 @@ class ServerPreset:
         return server
 
 
+    # 函数: parallel_function_calls
+    # 描述: parallel_function_calls函数提供相关功能
+    # 参数: function_list: List[Tuple[Callable[..., Any], Tuple[Any, ...]]]
+    # 返回: 有返回值
+    # 函数: parallel_function_calls
+    # 描述: parallel_function_calls函数提供相关功能
+    # 参数: function_list: List[Tuple[Callable[..., Any], Tuple[Any, ...]]]
+    # 返回: 有返回值
 def parallel_function_calls(function_list: List[Tuple[Callable[..., Any], Tuple[Any, ...]]]) -> List[Any]:
     """
     Run multiple functions in parallel and return results in the same order as calls. Equivalent to Promise.all in JS.
@@ -588,6 +755,14 @@ def parallel_function_calls(function_list: List[Tuple[Callable[..., Any], Tuple[
     results = [None] * len(function_list)
     exceptions = []
 
+    # 函数: worker
+    # 描述: worker函数提供相关功能
+    # 参数: index, func, args
+    # 返回: 无返回值
+    # 函数: worker
+    # 描述: worker函数提供相关功能
+    # 参数: index, func, args
+    # 返回: 无返回值
     def worker(index, func, args):
         try:
             result = func(*args)
@@ -614,6 +789,14 @@ def parallel_function_calls(function_list: List[Tuple[Callable[..., Any], Tuple[
     return results
 
 
+    # 函数: match_regex
+    # 描述: match_regex函数提供相关功能
+    # 参数: regex: str, text: str
+    # 返回: 有返回值
+    # 函数: match_regex
+    # 描述: match_regex函数提供相关功能
+    # 参数: regex: str, text: str
+    # 返回: 有返回值
 def match_regex(regex: str, text: str) -> bool:
     return (
         re.compile(
@@ -623,6 +806,14 @@ def match_regex(regex: str, text: str) -> bool:
     )
 
 
+    # 函数: download_file
+    # 描述: download_file函数提供相关功能
+    # 参数: url: str, output_file_path: str | None = None
+    # 返回: 无返回值
+    # 函数: download_file
+    # 描述: download_file函数提供相关功能
+    # 参数: url: str, output_file_path: str | None = None
+    # 返回: 无返回值
 def download_file(url: str, output_file_path: str | None = None) -> str:
     """
     Download a file from a URL to a local path. If the file already exists, it will not be downloaded again.
@@ -642,5 +833,13 @@ def download_file(url: str, output_file_path: str | None = None) -> str:
     return output_file
 
 
+    # 函数: is_slow_test_allowed
+    # 描述: is_slow_test_allowed函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: is_slow_test_allowed
+    # 描述: is_slow_test_allowed函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
 def is_slow_test_allowed():
     return os.environ.get("SLOW_TESTS") == "1" or os.environ.get("SLOW_TESTS") == "ON"

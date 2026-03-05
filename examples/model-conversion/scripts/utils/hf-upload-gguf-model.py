@@ -1,9 +1,20 @@
+// ============================================================================
+// 文件: hf-upload-gguf-model.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/hf-upload-gguf-model.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 from huggingface_hub import HfApi
 import argparse
 import os
 
+    # 函数: upload_gguf_file
+    # 描述: upload_gguf_file函数提供相关功能
+    # 参数: local_file_path, repo_id, filename_in_repo=None
+    # 返回: 无返回值
 def upload_gguf_file(local_file_path, repo_id, filename_in_repo=None):
     """
     Upload a GGUF file to a Hugging Face model repository

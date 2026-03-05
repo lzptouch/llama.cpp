@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_vision_api.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_vision_api.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 import base64
@@ -5,6 +12,14 @@ import requests
 
 server: ServerProcess
 
+    # 函数: get_img_url
+    # 描述: get_img_url函数提供相关功能
+    # 参数: id: str
+    # 返回: 有返回值
+    # 函数: get_img_url
+    # 描述: get_img_url函数提供相关功能
+    # 参数: id: str
+    # 返回: 有返回值
 def get_img_url(id: str) -> str:
     IMG_URL_0 = "https://huggingface.co/ggml-org/tinygemma3-GGUF/resolve/main/test/11_truck.png"
     IMG_URL_1 = "https://huggingface.co/ggml-org/tinygemma3-GGUF/resolve/main/test/91_cat.png"
@@ -35,10 +50,26 @@ JSON_MULTIMODAL_KEY = "multimodal_data"
 JSON_PROMPT_STRING_KEY = "prompt_string"
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinygemma3()
 
+    # 函数: test_models_supports_multimodal_capability
+    # 描述: test_models_supports_multimodal_capability函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_models_supports_multimodal_capability
+    # 描述: test_models_supports_multimodal_capability函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_models_supports_multimodal_capability():
     global server
     server.start()
@@ -49,6 +80,14 @@ def test_models_supports_multimodal_capability():
     assert "completion" in model_info["capabilities"]
     assert "multimodal" in model_info["capabilities"]
 
+    # 函数: test_v1_models_supports_multimodal_capability
+    # 描述: test_v1_models_supports_multimodal_capability函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_v1_models_supports_multimodal_capability
+    # 描述: test_v1_models_supports_multimodal_capability函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_v1_models_supports_multimodal_capability():
     global server
     server.start()
@@ -73,6 +112,14 @@ def test_v1_models_supports_multimodal_capability():
         # TODO @ngxson : test with multiple images, no images and with audio
     ]
 )
+    # 函数: test_vision_chat_completion
+    # 描述: test_vision_chat_completion函数提供相关功能
+    # 参数: prompt, image_url, success, re_content
+    # 返回: 无返回值
+    # 函数: test_vision_chat_completion
+    # 描述: test_vision_chat_completion函数提供相关功能
+    # 参数: prompt, image_url, success, re_content
+    # 返回: 无返回值
 def test_vision_chat_completion(prompt, image_url, success, re_content):
     global server
     server.start()
@@ -107,6 +154,14 @@ def test_vision_chat_completion(prompt, image_url, success, re_content):
         ("What is this:\n",             "",                     False, None), # empty string
     ]
 )
+    # 函数: test_vision_completion
+    # 描述: test_vision_completion函数提供相关功能
+    # 参数: prompt, image_data, success, re_content
+    # 返回: 无返回值
+    # 函数: test_vision_completion
+    # 描述: test_vision_completion函数提供相关功能
+    # 参数: prompt, image_data, success, re_content
+    # 返回: 无返回值
 def test_vision_completion(prompt, image_data, success, re_content):
     global server
     server.start()
@@ -136,6 +191,14 @@ def test_vision_completion(prompt, image_data, success, re_content):
         ("What is this:\n",             "base64",               False), # non-image data
     ]
 )
+    # 函数: test_vision_embeddings
+    # 描述: test_vision_embeddings函数提供相关功能
+    # 参数: prompt, image_data, success
+    # 返回: 无返回值
+    # 函数: test_vision_embeddings
+    # 描述: test_vision_embeddings函数提供相关功能
+    # 参数: prompt, image_data, success
+    # 返回: 无返回值
 def test_vision_embeddings(prompt, image_data, success):
     global server
     server.server_embeddings = True

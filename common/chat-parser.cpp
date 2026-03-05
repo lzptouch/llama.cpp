@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: chat-parser.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/chat-parser.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "chat-parser.h"
 #include "chat-peg-parser.h"
 #include "common.h"
@@ -23,6 +30,14 @@ static void parse_prefixed_json_tool_call_array(common_chat_msg_parser & builder
         builder.move_back(rstrip_prefix);
         auto tool_calls = builder.consume_json_with_dumped_args(args_paths);
         if (!builder.add_tool_calls(tool_calls.value) || tool_calls.is_partial) {
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw common_chat_msg_partial_exception("incomplete tool call array");
         }
     } else {
@@ -30,6 +45,14 @@ static void parse_prefixed_json_tool_call_array(common_chat_msg_parser & builder
     }
 }
 
+// 函数: wrap_code_as_arguments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: wrap_code_as_arguments
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string wrap_code_as_arguments(common_chat_msg_parser & builder, const std::string & code) {
     std::string arguments;
     if (builder.is_partial()) {
@@ -93,6 +116,14 @@ static void parse_json_tool_calls(
                 if (builder.input()[builder.pos()] == '{' || !maybe_raw_python) {
                     if (auto arguments = builder.try_consume_json_with_dumped_args({ {} })) {
                         if (!builder.add_tool_call(name, "", arguments->value) || arguments->is_partial) {
+                            // 函数: common_chat_msg_partial_exception
+                            // 描述: 执行主要功能
+                            // 参数: 无参数
+                            // 返回: 无返回值
+                            // 函数: common_chat_msg_partial_exception
+                            // 描述: 执行主要功能
+                            // 参数: 无参数
+                            // 返回: 无返回值
                             throw common_chat_msg_partial_exception("incomplete tool call");
                         }
                         builder.consume_regex(close_regex);
@@ -102,10 +133,26 @@ static void parse_json_tool_calls(
                 if (maybe_raw_python) {
                     auto arguments = wrap_code_as_arguments(builder, builder.consume_rest());
                     if (!builder.add_tool_call(name, "", arguments)) {
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
+                        // 函数: common_chat_msg_partial_exception
+                        // 描述: 执行主要功能
+                        // 参数: 无参数
+                        // 返回: 无返回值
                         throw common_chat_msg_partial_exception("incomplete tool call");
                     }
                     return;
                 }
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: common_chat_msg_partial_exception
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 throw common_chat_msg_partial_exception("incomplete tool call");
             } else {
                 builder.move_to(start_pos);
@@ -183,6 +230,14 @@ bool common_chat_msg_parser::add_tool_call(const json & tool_call) {
         }
     }
 
+    // 函数: add_tool_call
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_tool_call
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return add_tool_call(name, id, arguments);
 }
 
@@ -221,6 +276,14 @@ bool common_chat_msg_parser::add_tool_call_short_form(const json & tool_call) {
         arguments = args_json.dump();
     }
 
+    // 函数: add_tool_call
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: add_tool_call
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return add_tool_call(name, "", arguments);
 }
 void common_chat_msg_parser::finish() {
@@ -280,6 +343,14 @@ std::optional<common_chat_msg_parser::find_regex_result>  common_chat_msg_parser
 
 void common_chat_msg_parser::consume_literal(const std::string & literal) {
     if (!try_consume_literal(literal)) {
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw common_chat_msg_partial_exception(literal);
     }
 }
@@ -386,6 +457,14 @@ bool common_chat_msg_parser::try_parse_reasoning(const std::string & start_think
 
         size_t end_pos = input_.find(end_think, cursor);
         if (end_pos == std::string::npos) {
+            // 函数: remaining_view
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: remaining_view
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             std::string_view remaining_view(input_.data() + cursor, input_.size() - cursor);
             size_t partial_off = string_find_partial_stop(remaining_view, end_think);
             size_t reasoning_end = partial_off == std::string::npos ? input_.size() : cursor + partial_off;
@@ -450,6 +529,14 @@ std::optional<common_chat_msg_parser::find_regex_result> common_chat_msg_parser:
     }
     if (m.type == COMMON_REGEX_MATCH_TYPE_PARTIAL) {
         if (is_partial()) {
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw common_chat_msg_partial_exception(regex.str());
         }
         return std::nullopt;
@@ -461,6 +548,14 @@ common_chat_msg_parser::find_regex_result common_chat_msg_parser::consume_regex(
     if (auto result = try_consume_regex(regex)) {
         return *result;
     }
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     throw common_chat_msg_partial_exception(regex.str());
 }
 
@@ -471,6 +566,14 @@ std::optional<common_chat_msg_parser::find_regex_result> common_chat_msg_parser:
     }
     if (m.type == COMMON_REGEX_MATCH_TYPE_PARTIAL) {
         if (is_partial()) {
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: common_chat_msg_partial_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw common_chat_msg_partial_exception(regex.str());
         }
         return std::nullopt;
@@ -500,6 +603,14 @@ std::optional<common_json> common_chat_msg_parser::try_consume_json() {
         return result;
     }
     if (!is_partial()) {
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: common_chat_msg_partial_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw common_chat_msg_partial_exception("JSON");
     }
     return result;
@@ -509,6 +620,14 @@ common_json common_chat_msg_parser::consume_json() {
     if (auto result = try_consume_json()) {
         return *result;
     }
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     throw common_chat_msg_partial_exception("JSON");
 }
 
@@ -519,6 +638,14 @@ common_chat_msg_parser::consume_json_result common_chat_msg_parser::consume_json
     if (auto result = try_consume_json_with_dumped_args(args_paths, content_paths)) {
         return *result;
     }
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: common_chat_msg_partial_exception
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     throw common_chat_msg_partial_exception("JSON");
 }
 
@@ -653,6 +780,14 @@ void common_chat_msg_parser::clear_tools() {
  * All common_chat_parse_* moved from chat.cpp to chat-parser.cpp below
  * to reduce incremental compile time for parser changes.
  */
+// 函数: common_chat_parse_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_generic
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_generic(common_chat_msg_parser & builder) {
     if (!builder.syntax().parse_tool_calls) {
         builder.add_content(builder.consume_rest());
@@ -685,6 +820,14 @@ static void common_chat_parse_generic(common_chat_msg_parser & builder) {
     }
 }
 
+// 函数: common_chat_parse_mistral_nemo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_mistral_nemo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_mistral_nemo(common_chat_msg_parser & builder) {
     if (!builder.syntax().parse_tool_calls) {
         builder.add_content(builder.consume_rest());
@@ -695,6 +838,14 @@ static void common_chat_parse_mistral_nemo(common_chat_msg_parser & builder) {
     parse_prefixed_json_tool_call_array(builder, prefix);
 }
 
+// 函数: common_chat_parse_magistral
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_magistral
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_magistral(common_chat_msg_parser & builder) {
     builder.try_parse_reasoning("[THINK]", "[/THINK]");
 
@@ -707,6 +858,14 @@ static void common_chat_parse_magistral(common_chat_msg_parser & builder) {
     parse_prefixed_json_tool_call_array(builder, prefix);
 }
 
+// 函数: common_chat_parse_command_r7b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_command_r7b
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_command_r7b(common_chat_msg_parser & builder) {
     builder.try_parse_reasoning("<|START_THINKING|>", "<|END_THINKING|>");
 
@@ -740,6 +899,14 @@ static void common_chat_parse_command_r7b(common_chat_msg_parser & builder) {
     }
 }
 
+// 函数: common_chat_parse_llama_3_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_llama_3_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_llama_3_1(common_chat_msg_parser & builder, bool with_builtin_tools = false) {
     builder.try_parse_reasoning("<think>", "</think>");
 
@@ -798,6 +965,14 @@ static void common_chat_parse_llama_3_1(common_chat_msg_parser & builder, bool w
 
 }
 
+// 函数: common_chat_parse_deepseek_r1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_deepseek_r1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_deepseek_r1(common_chat_msg_parser & builder) {
     builder.try_parse_reasoning("<think>", "</think>");
     if (!builder.syntax().parse_tool_calls) {
@@ -819,6 +994,14 @@ static void common_chat_parse_deepseek_r1(common_chat_msg_parser & builder) {
         tool_calls_end);
 }
 
+// 函数: common_chat_parse_deepseek_v3_1_content
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_deepseek_v3_1_content
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_deepseek_v3_1_content(common_chat_msg_parser & builder) {
     static const common_regex function_regex("(?:<｜tool▁call▁begin｜>)?([^\\n<]+)(?:<｜tool▁sep｜>)");
 
@@ -843,6 +1026,14 @@ static void common_chat_parse_deepseek_v3_1_content(common_chat_msg_parser & bui
         tool_calls_end);
 }
 
+// 函数: common_chat_parse_deepseek_v3_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_deepseek_v3_1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_deepseek_v3_1(common_chat_msg_parser & builder) {
     // DeepSeek V3.1 outputs reasoning content between "<think>" and "</think>" tags, followed by regular content
     // First try to parse using the standard reasoning parsing method
@@ -879,6 +1070,14 @@ static void common_chat_parse_deepseek_v3_1(common_chat_msg_parser & builder) {
     }
 }
 
+// 函数: common_chat_parse_minimax_m2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_minimax_m2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_minimax_m2(common_chat_msg_parser & builder) {
     static const xml_tool_call_format form {
         /* form.scope_start = */ "<minimax:tool_call>",
@@ -893,6 +1092,14 @@ static void common_chat_parse_minimax_m2(common_chat_msg_parser & builder) {
     builder.consume_reasoning_with_xml_tool_calls(form, "<think>", "</think>");
 }
 
+// 函数: common_chat_parse_kimi_k2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_kimi_k2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_kimi_k2(common_chat_msg_parser & builder) {
     static const xml_tool_call_format form = ([]() {
         xml_tool_call_format form {};
@@ -912,6 +1119,14 @@ static void common_chat_parse_kimi_k2(common_chat_msg_parser & builder) {
     builder.consume_reasoning_with_xml_tool_calls(form, "<think>", "</think>");
 }
 
+// 函数: common_chat_parse_apriel_1_5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_apriel_1_5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_apriel_1_5(common_chat_msg_parser & builder) {
     static const xml_tool_call_format form = ([]() {
         xml_tool_call_format form {};
@@ -931,6 +1146,14 @@ static void common_chat_parse_apriel_1_5(common_chat_msg_parser & builder) {
     builder.consume_reasoning_with_xml_tool_calls(form, "<thinking>", "</thinking>");
 }
 
+// 函数: common_chat_parse_xiaomi_mimo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_chat_parse_xiaomi_mimo
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void common_chat_parse_xiaomi_mimo(common_chat_msg_parser & builder) {
     static const xml_tool_call_format form = ([]() {
         xml_tool_call_format form {};

@@ -12,6 +12,24 @@
 #define HTP_MAX_NTHREADS 10
 
 // Main context for htp DSP backend
+// 类: htp_context
+// 描述: htp_context类提供相关功能
+// 用途: 用于处理htp_context相关的操作
+// 类: htp_context
+// 描述: htp_context类提供相关功能
+// 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
+    // 结构体: htp_context
+    // 描述: htp_context结构体提供相关功能
+    // 用途: 用于处理htp_context相关的操作
 struct htp_context {
     dspqueue_t            queue;
     dma_queue *           dma[HTP_MAX_NTHREADS];

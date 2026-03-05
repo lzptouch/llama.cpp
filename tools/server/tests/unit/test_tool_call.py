@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_tool_call.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_tool_call.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #!/usr/bin/env python
 import pytest
 
@@ -16,6 +23,14 @@ TIMEOUT_START_SLOW = 15 * 60 # this is needed for real model tests
 TIMEOUT_HTTP_REQUEST = 60
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -25,6 +40,12 @@ def create_server():
     server.n_ctx = 8192
     server.n_batch = 2048
 
+    # 类: CompletionMode
+    # 描述: CompletionMode类提供相关功能
+    # 用途: 用于处理CompletionMode相关的操作
+    # 类: CompletionMode
+    # 描述: CompletionMode类提供相关功能
+    # 用途: 用于处理CompletionMode相关的操作
 class CompletionMode(Enum):
     NORMAL = "normal"
     STREAMED = "streamed"
@@ -80,6 +101,14 @@ WEATHER_TOOL = {
   }
 }
 
+    # 函数: do_test_completion_with_required_tool_tiny
+    # 描述: do_test_completion_with_required_tool_tiny函数提供相关功能
+    # 参数: server: ServerProcess, tool: dict, argument_key: str | None, n_predict, **kwargs
+    # 返回: 无返回值
+    # 函数: do_test_completion_with_required_tool_tiny
+    # 描述: do_test_completion_with_required_tool_tiny函数提供相关功能
+    # 参数: server: ServerProcess, tool: dict, argument_key: str | None, n_predict, **kwargs
+    # 返回: 无返回值
 def do_test_completion_with_required_tool_tiny(server: ServerProcess, tool: dict, argument_key: str | None, n_predict, **kwargs):
     body = server.make_any_request("POST", "/v1/chat/completions", data={
         "max_tokens": n_predict,
@@ -117,6 +146,14 @@ def do_test_completion_with_required_tool_tiny(server: ServerProcess, tool: dict
     ("meta-llama-Llama-3.3-70B-Instruct",             PYTHON_TOOL,          "code"),
     ("meta-llama-Llama-3.3-70B-Instruct",             PYTHON_TOOL,          "code"),
 ])
+    # 函数: test_completion_with_required_tool_tiny_fast
+    # 描述: test_completion_with_required_tool_tiny_fast函数提供相关功能
+    # 参数: template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_completion_with_required_tool_tiny_fast
+    # 描述: test_completion_with_required_tool_tiny_fast函数提供相关功能
+    # 参数: template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_completion_with_required_tool_tiny_fast(template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode):
     global server
     n_predict = 1024
@@ -161,6 +198,14 @@ def test_completion_with_required_tool_tiny_fast(template_name: str, tool: dict,
     # ("fireworks-ai-llama-3-firefunction-v2",          PYTHON_TOOL,          "code"),
 
 ])
+    # 函数: test_completion_with_required_tool_tiny_slow
+    # 描述: test_completion_with_required_tool_tiny_slow函数提供相关功能
+    # 参数: template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_completion_with_required_tool_tiny_slow
+    # 描述: test_completion_with_required_tool_tiny_slow函数提供相关功能
+    # 参数: template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_completion_with_required_tool_tiny_slow(template_name: str, tool: dict, argument_key: str | None, stream: CompletionMode):
     global server
     n_predict = 512
@@ -226,6 +271,14 @@ def test_completion_with_required_tool_tiny_slow(template_name: str, tool: dict,
     (TEST_TOOL,    "success",  "bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF:Q4_K_M", None),
     (PYTHON_TOOL,  "code",     "bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF:Q4_K_M", None),
 ])
+    # 函数: test_completion_with_required_tool_real_model
+    # 描述: test_completion_with_required_tool_real_model函数提供相关功能
+    # 参数: tool: dict, argument_key: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_completion_with_required_tool_real_model
+    # 描述: test_completion_with_required_tool_real_model函数提供相关功能
+    # 参数: tool: dict, argument_key: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_completion_with_required_tool_real_model(tool: dict, argument_key: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode):
     global server
     n_predict = 512
@@ -269,6 +322,14 @@ def test_completion_with_required_tool_real_model(tool: dict, argument_key: str 
         assert argument_key in actual_arguments, f"tool arguments: {json.dumps(actual_arguments)}, expected: {argument_key}"
 
 
+    # 函数: do_test_completion_without_tool_call
+    # 描述: do_test_completion_without_tool_call函数提供相关功能
+    # 参数: server: ServerProcess, n_predict: int, tools: list[dict], tool_choice: str | None, **kwargs
+    # 返回: 无返回值
+    # 函数: do_test_completion_without_tool_call
+    # 描述: do_test_completion_without_tool_call函数提供相关功能
+    # 参数: server: ServerProcess, n_predict: int, tools: list[dict], tool_choice: str | None, **kwargs
+    # 返回: 无返回值
 def do_test_completion_without_tool_call(server: ServerProcess, n_predict: int, tools: list[dict], tool_choice: str | None, **kwargs):
     body = server.make_any_request("POST", "/v1/chat/completions", data={
         "max_tokens": n_predict,
@@ -290,6 +351,14 @@ def do_test_completion_without_tool_call(server: ServerProcess, n_predict: int, 
     ("meta-llama-Llama-3.3-70B-Instruct",         128, [TEST_TOOL],   None),
     ("meta-llama-Llama-3.3-70B-Instruct",         128, [PYTHON_TOOL], 'none'),
 ])
+    # 函数: test_completion_without_tool_call_fast
+    # 描述: test_completion_without_tool_call_fast函数提供相关功能
+    # 参数: template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_completion_without_tool_call_fast
+    # 描述: test_completion_without_tool_call_fast函数提供相关功能
+    # 参数: template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_completion_without_tool_call_fast(template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode):
     global server
     server.n_predict = n_predict
@@ -312,6 +381,14 @@ def test_completion_without_tool_call_fast(template_name: str, n_predict: int, t
     ("meta-llama-Llama-3.2-3B-Instruct",              256, [TEST_TOOL],   None),
     ("meta-llama-Llama-3.2-3B-Instruct",              256, [PYTHON_TOOL], 'none'),
 ])
+    # 函数: test_completion_without_tool_call_slow
+    # 描述: test_completion_without_tool_call_slow函数提供相关功能
+    # 参数: template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_completion_without_tool_call_slow
+    # 描述: test_completion_without_tool_call_slow函数提供相关功能
+    # 参数: template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_completion_without_tool_call_slow(template_name: str, n_predict: int, tools: list[dict], tool_choice: str | None, stream: CompletionMode):
     global server
     server.n_predict = n_predict
@@ -363,6 +440,14 @@ def test_completion_without_tool_call_slow(template_name: str, n_predict: int, t
 
     # ("bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M", ("meta-llama/Llama-3.2-3B-Instruct", None)),
 ])
+    # 函数: test_weather
+    # 描述: test_weather函数提供相关功能
+    # 参数: hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_weather
+    # 描述: test_weather函数提供相关功能
+    # 参数: hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_weather(hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode):
     global server
     n_predict = 512
@@ -381,6 +466,14 @@ def test_weather(hf_repo: str, template_override: str | Tuple[str, str | None] |
     do_test_weather(server, stream=stream == CompletionMode.STREAMED, max_tokens=n_predict)
 
 
+    # 函数: do_test_weather
+    # 描述: do_test_weather函数提供相关功能
+    # 参数: server: ServerProcess, **kwargs
+    # 返回: 无返回值
+    # 函数: do_test_weather
+    # 描述: do_test_weather函数提供相关功能
+    # 参数: server: ServerProcess, **kwargs
+    # 返回: 无返回值
 def do_test_weather(server: ServerProcess, **kwargs):
     body = server.make_any_request("POST", "/v1/chat/completions", data={
         "messages": [
@@ -423,6 +516,14 @@ def do_test_weather(server: ServerProcess, **kwargs):
     # (None,                                           128,  "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M",  None),
     # ("[\\s\\S]*?\\*\\*\\s*0.5($|\\*\\*)",            8192, "bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF:Q4_K_M", None),
 ])
+    # 函数: test_calc_result
+    # 描述: test_calc_result函数提供相关功能
+    # 参数: result_override: str | None, n_predict: int, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_calc_result
+    # 描述: test_calc_result函数提供相关功能
+    # 参数: result_override: str | None, n_predict: int, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_calc_result(result_override: str | None, n_predict: int, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode):
     global server
     server.jinja = True
@@ -440,6 +541,14 @@ def test_calc_result(result_override: str | None, n_predict: int, hf_repo: str, 
     do_test_calc_result(server, result_override, n_predict, stream=stream == CompletionMode.STREAMED)
 
 
+    # 函数: do_test_calc_result
+    # 描述: do_test_calc_result函数提供相关功能
+    # 参数: server: ServerProcess, result_override: str | None, n_predict: int, **kwargs
+    # 返回: 无返回值
+    # 函数: do_test_calc_result
+    # 描述: do_test_calc_result函数提供相关功能
+    # 参数: server: ServerProcess, result_override: str | None, n_predict: int, **kwargs
+    # 返回: 无返回值
 def do_test_calc_result(server: ServerProcess, result_override: str | None, n_predict: int, **kwargs):
     body = server.make_any_request("POST", "/v1/chat/completions", data={
         "max_tokens": n_predict,
@@ -510,6 +619,14 @@ def do_test_calc_result(server: ServerProcess, result_override: str | None, n_pr
     # (1024, 'none',      CompletionMode.NORMAL,   None, "^(<think>\\s*)?I need[\\s\\S]*?</think>\\s*To find[\\s\\S]*",                 "bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF:Q4_K_M", None),
     # (128,  'deepseek',  None, "^Okay, let me figure out the sum of 102 and 7[\\s\\S]*",                      "bartowski/Qwen_QwQ-32B-GGUF:Q4_K_M",                None),
 ])
+    # 函数: test_thoughts
+    # 描述: test_thoughts函数提供相关功能
+    # 参数: n_predict: int, reasoning_format: Literal['deepseek', 'none'] | None, expect_content: str | None, expect_reasoning_content: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_thoughts
+    # 描述: test_thoughts函数提供相关功能
+    # 参数: n_predict: int, reasoning_format: Literal['deepseek', 'none'] | None, expect_content: str | None, expect_reasoning_content: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_thoughts(n_predict: int, reasoning_format: Literal['deepseek', 'none'] | None, expect_content: str | None, expect_reasoning_content: str | None, hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode):
     global server
     server.reasoning_format = reasoning_format
@@ -583,6 +700,14 @@ def test_thoughts(n_predict: int, reasoning_format: Literal['deepseek', 'none'] 
     ("bartowski/gemma-2-2b-it-GGUF:Q4_K_M",              None),
     ("bartowski/gemma-2-2b-it-GGUF:Q4_K_M",              "chatml"),
 ])
+    # 函数: test_hello_world
+    # 描述: test_hello_world函数提供相关功能
+    # 参数: hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
+    # 函数: test_hello_world
+    # 描述: test_hello_world函数提供相关功能
+    # 参数: hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode
+    # 返回: 无返回值
 def test_hello_world(hf_repo: str, template_override: str | Tuple[str, str | None] | None, stream: CompletionMode):
     global server
     n_predict = 512 # High because of DeepSeek R1
@@ -602,6 +727,14 @@ def test_hello_world(hf_repo: str, template_override: str | Tuple[str, str | Non
     do_test_hello_world(server, stream=stream == CompletionMode.STREAMED, max_tokens=n_predict)
 
 
+    # 函数: do_test_hello_world
+    # 描述: do_test_hello_world函数提供相关功能
+    # 参数: server: ServerProcess, **kwargs
+    # 返回: 无返回值
+    # 函数: do_test_hello_world
+    # 描述: do_test_hello_world函数提供相关功能
+    # 参数: server: ServerProcess, **kwargs
+    # 返回: 无返回值
 def do_test_hello_world(server: ServerProcess, **kwargs):
     body = server.make_any_request("POST", "/v1/chat/completions", data={
         "messages": [

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: ggml-blas.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-blas/ggml-blas.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "ggml-impl.h"
 #include "ggml-blas.h"
 #include "ggml-backend-impl.h"
@@ -18,6 +25,24 @@
 #   include <cblas.h>
 #endif
 
+// 类: ggml_backend_blas_context
+// 描述: ggml_backend_blas_context类提供相关功能
+// 用途: 用于处理ggml_backend_blas_context相关的操作
+// 类: ggml_backend_blas_context
+// 描述: ggml_backend_blas_context类提供相关功能
+// 用途: 用于处理ggml_backend_blas_context相关的操作
+    // 结构体: ggml_backend_blas_context
+    // 描述: ggml_backend_blas_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_blas_context相关的操作
+    // 结构体: ggml_backend_blas_context
+    // 描述: ggml_backend_blas_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_blas_context相关的操作
+    // 结构体: ggml_backend_blas_context
+    // 描述: ggml_backend_blas_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_blas_context相关的操作
+    // 结构体: ggml_backend_blas_context
+    // 描述: ggml_backend_blas_context结构体提供相关功能
+    // 用途: 用于处理ggml_backend_blas_context相关的操作
 struct ggml_backend_blas_context {
     int n_threads = GGML_DEFAULT_N_THREADS;
     std::unique_ptr<char[]> work_data;
@@ -27,6 +52,14 @@ struct ggml_backend_blas_context {
 #endif
 };
 
+// 函数: ggml_backend_blas_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_mul_mat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_blas_mul_mat(ggml_backend_blas_context * ctx, struct ggml_tensor * dst) {
     const struct ggml_tensor * src0 = dst->src[0];
     const struct ggml_tensor * src1 = dst->src[1];
@@ -145,6 +178,14 @@ static void ggml_backend_blas_mul_mat(ggml_backend_blas_context * ctx, struct gg
     }
 }
 
+// 函数: ggml_backend_blas_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_out_prod
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_blas_out_prod(ggml_backend_blas_context * ctx, struct ggml_tensor * dst) {
     const struct ggml_tensor * src0 = dst->src[0];
     const struct ggml_tensor * src1 = dst->src[1];
@@ -208,12 +249,28 @@ static void ggml_backend_blas_out_prod(ggml_backend_blas_context * ctx, struct g
 
 // backend interface
 
+// 函数: ggml_backend_blas_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_blas_get_name(ggml_backend_t backend) {
     return "BLAS";
 
     GGML_UNUSED(backend);
 }
 
+// 函数: ggml_backend_blas_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_blas_free(ggml_backend_t backend) {
     ggml_backend_blas_context * ctx = (ggml_backend_blas_context *)backend->context;
     delete ctx;
@@ -224,6 +281,24 @@ static enum ggml_status ggml_backend_blas_graph_compute(ggml_backend_t backend, 
     ggml_backend_blas_context * ctx = (ggml_backend_blas_context *)backend->context;
 
     for (int i = 0; i < cgraph->n_nodes; i++) {
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+        // 类: ggml_tensor
+        // 描述: ggml_tensor类提供相关功能
+        // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
+    // 结构体: ggml_tensor
+    // 描述: ggml_tensor结构体提供相关功能
+    // 用途: 用于处理ggml_tensor相关的操作
         struct ggml_tensor * node = cgraph->nodes[i];
 
         if ((node->flags & GGML_TENSOR_FLAG_COMPUTE) == 0) {
@@ -273,11 +348,27 @@ static struct ggml_backend_i blas_backend_i = {
     /* .graph_optimize          = */ NULL,
 };
 
+// 函数: ggml_backend_blas_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_guid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_guid_t ggml_backend_blas_guid(void) {
     static ggml_guid guid = { 0x12, 0xa8, 0xae, 0xf4, 0xc0, 0x1e, 0x61, 0x97, 0x8f, 0xeb, 0x33, 0x04, 0xa1, 0x33, 0x51, 0x2d };
     return &guid;
 }
 
+// 函数: ggml_backend_blas_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_t ggml_backend_blas_init(void) {
     ggml_backend_blas_context * ctx = new ggml_backend_blas_context;
 
@@ -301,10 +392,26 @@ ggml_backend_t ggml_backend_blas_init(void) {
     return backend;
 }
 
+// 函数: ggml_backend_is_blas
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_is_blas
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool ggml_backend_is_blas(ggml_backend_t backend) {
     return backend != NULL && ggml_guid_matches(backend->guid, ggml_backend_blas_guid());
 }
 
+// 函数: ggml_backend_blas_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_set_n_threads
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_backend_blas_set_n_threads(ggml_backend_t backend_blas, int n_threads) {
     GGML_ASSERT(ggml_backend_is_blas(backend_blas));
 
@@ -314,12 +421,28 @@ void ggml_backend_blas_set_n_threads(ggml_backend_t backend_blas, int n_threads)
 
 // device interface
 
+// 函数: ggml_backend_blas_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_blas_device_get_name(ggml_backend_dev_t dev) {
     return "BLAS";
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_blas_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_blas_device_get_description(ggml_backend_dev_t dev) {
     #if defined(GGML_BLAS_USE_ACCELERATE)
         return "Accelerate";
@@ -338,6 +461,14 @@ static const char * ggml_backend_blas_device_get_description(ggml_backend_dev_t 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_blas_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_blas_device_get_memory(ggml_backend_dev_t dev, size_t * free, size_t * total) {
     // TODO
     *free = 0;
@@ -352,6 +483,14 @@ static enum ggml_backend_dev_type ggml_backend_blas_device_get_type(ggml_backend
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_blas_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void ggml_backend_blas_device_get_props(ggml_backend_dev_t dev, struct ggml_backend_dev_props * props) {
     props->name        = ggml_backend_blas_device_get_name(dev);
     props->description = ggml_backend_blas_device_get_description(dev);
@@ -365,6 +504,14 @@ static void ggml_backend_blas_device_get_props(ggml_backend_dev_t dev, struct gg
     };
 }
 
+// 函数: ggml_backend_blas_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_init_backend
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_t ggml_backend_blas_device_init_backend(ggml_backend_dev_t dev, const char * params) {
     return ggml_backend_blas_init();
 
@@ -372,12 +519,28 @@ static ggml_backend_t ggml_backend_blas_device_init_backend(ggml_backend_dev_t d
     GGML_UNUSED(params);
 }
 
+// 函数: ggml_backend_blas_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_type_t ggml_backend_blas_device_get_buffer_type(ggml_backend_dev_t dev) {
     return ggml_backend_cpu_buffer_type();
 
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_blas_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_buffer_from_host_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_buffer_t ggml_backend_blas_device_buffer_from_host_ptr(ggml_backend_dev_t dev, void * ptr, size_t size, size_t max_tensor_size) {
     return ggml_backend_cpu_buffer_from_ptr(ptr, size);
 
@@ -385,6 +548,14 @@ static ggml_backend_buffer_t ggml_backend_blas_device_buffer_from_host_ptr(ggml_
     GGML_UNUSED(max_tensor_size);
 }
 
+// 函数: ggml_backend_blas_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_blas_device_supports_op(ggml_backend_dev_t dev, const struct ggml_tensor * op) {
     const struct ggml_tensor * src0 = op->src[0];
     const struct ggml_tensor * src1 = op->src[1];
@@ -435,6 +606,14 @@ static bool ggml_backend_blas_device_supports_op(ggml_backend_dev_t dev, const s
     GGML_UNUSED(dev);
 }
 
+// 函数: ggml_backend_blas_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_device_supports_buft
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool ggml_backend_blas_device_supports_buft(ggml_backend_dev_t dev, ggml_backend_buffer_type_t buft) {
     return ggml_backend_buft_is_host(buft);
 
@@ -461,18 +640,42 @@ static const struct ggml_backend_device_i ggml_backend_blas_device_i = {
 
 // backend reg interface
 
+// 函数: ggml_backend_blas_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_reg_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static const char * ggml_backend_blas_reg_get_name(ggml_backend_reg_t reg) {
     return "BLAS";
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_blas_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_reg_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static size_t ggml_backend_blas_reg_get_device_count(ggml_backend_reg_t reg) {
     return 1;
 
     GGML_UNUSED(reg);
 }
 
+// 函数: ggml_backend_blas_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_reg_get_device
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_backend_dev_t ggml_backend_blas_reg_get_device(ggml_backend_reg_t reg, size_t index) {
     GGML_ASSERT(index == 0);
 
@@ -488,6 +691,14 @@ static ggml_backend_dev_t ggml_backend_blas_reg_get_device(ggml_backend_reg_t re
     GGML_UNUSED(index);
 }
 
+// 函数: ggml_backend_blas_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_get_proc_address
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 static void * ggml_backend_blas_get_proc_address(ggml_backend_reg_t reg, const char * name) {
     if (std::strcmp(name, "ggml_backend_set_n_threads") == 0) {
         return (void *)ggml_backend_blas_set_n_threads;
@@ -505,6 +716,14 @@ static const struct ggml_backend_reg_i ggml_backend_blas_reg_i = {
     /* .get_proc_address = */ ggml_backend_blas_get_proc_address,
 };
 
+// 函数: ggml_backend_blas_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_backend_blas_reg
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_backend_reg_t ggml_backend_blas_reg(void) {
     static struct ggml_backend_reg ggml_backend_blas_reg = {
         /* .api_version = */ GGML_BACKEND_API_VERSION,

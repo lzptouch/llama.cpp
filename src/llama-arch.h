@@ -544,12 +544,38 @@ enum llm_tensor_layer {
     LLM_TENSOR_LAYER_OUTPUT,
 };
 
+// 类: LLM_KV
+// 描述: LLM_KV类提供相关功能
+// 用途: 用于处理llm_kv相关的操作
+// 类: LLM_KV
+// 描述: LLM_KV类提供相关功能
+// 用途: 用于处理llm_kv相关的操作
+    // 结构体: LLM_KV
+    // 描述: LLM_KV结构体提供相关功能
+    // 用途: 用于处理LLM_KV相关的操作
+    // 结构体: LLM_KV
+    // 描述: LLM_KV结构体提供相关功能
+    // 用途: 用于处理LLM_KV相关的操作
+    // 结构体: LLM_KV
+    // 描述: LLM_KV结构体提供相关功能
+    // 用途: 用于处理LLM_KV相关的操作
+    // 结构体: LLM_KV
+    // 描述: LLM_KV结构体提供相关功能
+    // 用途: 用于处理LLM_KV相关的操作
 struct LLM_KV {
     LLM_KV(llm_arch arch, const char * suffix = nullptr);
 
     llm_arch arch;
     const char * suffix;
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string operator()(llm_kv kv) const;
 };
 
@@ -562,6 +588,24 @@ struct LLM_KV {
 //   std::string name = tn(LLM_TENSOR_TOKEN_EMBD, "bias");         -> "token_embd.bias"
 //   std::string name = tn(LLM_TENSOR_ATTN_NORM, "weight", 3);     -> "blk.3.attn_norm.weight"
 //
+// 类: LLM_TN_IMPL
+// 描述: LLM_TN_IMPL类提供相关功能
+// 用途: 用于处理llm_tn_impl相关的操作
+// 类: LLM_TN_IMPL
+// 描述: LLM_TN_IMPL类提供相关功能
+// 用途: 用于处理llm_tn_impl相关的操作
+    // 结构体: LLM_TN_IMPL
+    // 描述: LLM_TN_IMPL结构体提供相关功能
+    // 用途: 用于处理LLM_TN_IMPL相关的操作
+    // 结构体: LLM_TN_IMPL
+    // 描述: LLM_TN_IMPL结构体提供相关功能
+    // 用途: 用于处理LLM_TN_IMPL相关的操作
+    // 结构体: LLM_TN_IMPL
+    // 描述: LLM_TN_IMPL结构体提供相关功能
+    // 用途: 用于处理LLM_TN_IMPL相关的操作
+    // 结构体: LLM_TN_IMPL
+    // 描述: LLM_TN_IMPL结构体提供相关功能
+    // 用途: 用于处理LLM_TN_IMPL相关的操作
 struct LLM_TN_IMPL {
     const llm_arch arch;
     const llm_tensor tensor;
@@ -573,9 +617,25 @@ struct LLM_TN_IMPL {
 
     LLM_TN_IMPL(llm_arch arch, llm_tensor tensor, const char * suffix, int bid, int xid);
 
+    // 函数: str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string str() const;
 
     operator std::string() const {
+        // 函数: str
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: str
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return str();
     }
 
@@ -588,32 +648,124 @@ struct LLM_TN_IMPL {
     }
 };
 
+// 类: LLM_TN
+// 描述: LLM_TN类提供相关功能
+// 用途: 用于处理llm_tn相关的操作
+// 类: LLM_TN
+// 描述: LLM_TN类提供相关功能
+// 用途: 用于处理llm_tn相关的操作
+    // 结构体: LLM_TN
+    // 描述: LLM_TN结构体提供相关功能
+    // 用途: 用于处理LLM_TN相关的操作
+    // 结构体: LLM_TN
+    // 描述: LLM_TN结构体提供相关功能
+    // 用途: 用于处理LLM_TN相关的操作
+    // 结构体: LLM_TN
+    // 描述: LLM_TN结构体提供相关功能
+    // 用途: 用于处理LLM_TN相关的操作
+    // 结构体: LLM_TN
+    // 描述: LLM_TN结构体提供相关功能
+    // 用途: 用于处理LLM_TN相关的操作
 struct LLM_TN {
     LLM_TN(llm_arch arch) : arch(arch) {}
 
     llm_arch arch;
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     LLM_TN_IMPL operator()(llm_tensor tensor, const char * suffix, int bid = -1, int xid = -1) const {
         return LLM_TN_IMPL(arch, tensor, suffix, bid, xid);
     }
 
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: operator
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     LLM_TN_IMPL operator()(llm_tensor tensor, int bid = -1, int xid = -1) const {
         return LLM_TN_IMPL(arch, tensor, nullptr, bid, xid);
     }
 };
 
 
+// 类: llm_tensor_info
+// 描述: llm_tensor_info类提供相关功能
+// 用途: 用于处理llm_tensor_info相关的操作
+// 类: llm_tensor_info
+// 描述: llm_tensor_info类提供相关功能
+// 用途: 用于处理llm_tensor_info相关的操作
+    // 结构体: llm_tensor_info
+    // 描述: llm_tensor_info结构体提供相关功能
+    // 用途: 用于处理llm_tensor_info相关的操作
+    // 结构体: llm_tensor_info
+    // 描述: llm_tensor_info结构体提供相关功能
+    // 用途: 用于处理llm_tensor_info相关的操作
+    // 结构体: llm_tensor_info
+    // 描述: llm_tensor_info结构体提供相关功能
+    // 用途: 用于处理llm_tensor_info相关的操作
+    // 结构体: llm_tensor_info
+    // 描述: llm_tensor_info结构体提供相关功能
+    // 用途: 用于处理llm_tensor_info相关的操作
 struct llm_tensor_info {
     llm_tensor_layer layer;
     ggml_op op;
 };
 
+// 函数: llm_arch_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llm_arch_name(llm_arch arch);
 
+// 函数: llm_arch_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llm_arch llm_arch_from_string(const std::string & name);
 
 const llm_tensor_info & llm_tensor_info_for(llm_tensor tensor);
 
+// 函数: llm_arch_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_recurrent(const llm_arch & arch);
+// 函数: llm_arch_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_hybrid   (const llm_arch & arch);
+// 函数: llm_arch_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_diffusion(const llm_arch & arch);

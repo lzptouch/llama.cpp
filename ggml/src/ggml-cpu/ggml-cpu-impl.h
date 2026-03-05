@@ -15,6 +15,24 @@
 extern "C" {
 #endif
 
+// 类: ggml_compute_params
+// 描述: ggml_compute_params类提供相关功能
+// 用途: 用于处理ggml_compute_params相关的操作
+// 类: ggml_compute_params
+// 描述: ggml_compute_params类提供相关功能
+// 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
+    // 结构体: ggml_compute_params
+    // 描述: ggml_compute_params结构体提供相关功能
+    // 用途: 用于处理ggml_compute_params相关的操作
 struct ggml_compute_params {
     // ith = thread index, nth = number of threads
     int ith, nth;
@@ -23,6 +41,24 @@ struct ggml_compute_params {
     size_t wsize;
     void * wdata;
 
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 类: ggml_threadpool
+    // 描述: ggml_threadpool类提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
+    // 结构体: ggml_threadpool
+    // 描述: ggml_threadpool结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool相关的操作
     struct ggml_threadpool * threadpool;
 
     // use reference implementation
@@ -100,26 +136,66 @@ struct ggml_compute_params {
 
 inline static int32_t vaddlvq_s16(int16x8_t v) {
     int32x4_t v0 = vreinterpretq_s32_s64(vpaddlq_s32(vpaddlq_s16(v)));
+    // 函数: vgetq_lane_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vgetq_lane_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vgetq_lane_s32(v0, 0) + vgetq_lane_s32(v0, 2);
 }
 
 inline static int16x8_t vpaddq_s16(int16x8_t a, int16x8_t b) {
     int16x4_t a0 = vpadd_s16(vget_low_s16(a), vget_high_s16(a));
     int16x4_t b0 = vpadd_s16(vget_low_s16(b), vget_high_s16(b));
+    // 函数: vcombine_s16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vcombine_s16
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vcombine_s16(a0, b0);
 }
 
 inline static int32x4_t vpaddq_s32(int32x4_t a, int32x4_t b) {
     int32x2_t a0 = vpadd_s32(vget_low_s32(a), vget_high_s32(a));
     int32x2_t b0 = vpadd_s32(vget_low_s32(b), vget_high_s32(b));
+    // 函数: vcombine_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vcombine_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vcombine_s32(a0, b0);
 }
 
 inline static int32_t vaddvq_s32(int32x4_t v) {
+    // 函数: vgetq_lane_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vgetq_lane_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vgetq_lane_s32(v, 0) + vgetq_lane_s32(v, 1) + vgetq_lane_s32(v, 2) + vgetq_lane_s32(v, 3);
 }
 
 inline static float vaddvq_f32(float32x4_t v) {
+    // 函数: vgetq_lane_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vgetq_lane_f32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vgetq_lane_f32(v, 0) + vgetq_lane_f32(v, 1) + vgetq_lane_f32(v, 2) + vgetq_lane_f32(v, 3);
 }
 
@@ -310,6 +386,14 @@ inline static int32x4_t ggml_vdotq_s32(int32x4_t acc, int8x16_t a, int8x16_t b) 
     const int16x8_t p0 = vmull_s8(vget_low_s8 (a), vget_low_s8 (b));
     const int16x8_t p1 = vmull_s8(vget_high_s8(a), vget_high_s8(b));
 
+    // 函数: vaddq_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vaddq_s32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vaddq_s32(acc, vaddq_s32(vpaddlq_s16(p0), vpaddlq_s16(p1)));
 }
 
@@ -505,6 +589,14 @@ inline static int32x4_t ggml_vec_dot(int32x4_t acc, int8x16_t a, int8x16_t b) {
 
 #if defined(__loongarch_sx)
 /* float type data load instructions */
+// 函数: __lsx_vreplfr2vr_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lsx_vreplfr2vr_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m128 __lsx_vreplfr2vr_s(const float val) {
     v4f32 res = {val, val, val, val};
     return (__m128)res;
@@ -512,6 +604,14 @@ static __m128 __lsx_vreplfr2vr_s(const float val) {
 #endif
 
 #if defined(__loongarch_asx)
+// 函数: __lasx_xvreplfr2vr_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __lasx_xvreplfr2vr_s
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static __m256 __lasx_xvreplfr2vr_s(const float val) {
     v8f32 res = {val, val, val, val, val, val, val, val};
     return (__m256)res;
@@ -519,9 +619,33 @@ static __m256 __lasx_xvreplfr2vr_s(const float val) {
 #endif
 
 // TODO: move to ggml-threading
+// 函数: ggml_barrier
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_barrier
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_barrier(struct ggml_threadpool * tp);
 
+// 函数: ggml_threadpool_chunk_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_chunk_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_threadpool_chunk_set(struct ggml_threadpool * tp, int value);
+// 函数: ggml_threadpool_chunk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_threadpool_chunk_add
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int  ggml_threadpool_chunk_add(struct ggml_threadpool * tp, int value);
 
 #ifdef __cplusplus

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: apir_backend.gen.h
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/shared/apir_backend.gen.h
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 typedef enum ApirBackendCommandType {
 
     /* device */
@@ -35,6 +42,14 @@ typedef enum ApirBackendCommandType {
     APIR_BACKEND_DISPATCH_TABLE_COUNT = 23,
 } ApirBackendCommandType;
 
+// 函数: apir_dispatch_command_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_dispatch_command_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline const char * apir_dispatch_command_name(ApirBackendCommandType type) {
     switch (type) {
         /* device */

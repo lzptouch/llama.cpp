@@ -10,6 +10,14 @@
 
 static const llama_vocab * vocab;
 
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: match_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool match_string(const std::string & input, llama_sampler * grammar) {
     llama_sampler_reset(grammar);
     auto tokens = common_tokenize(vocab, input, false, false);
@@ -125,6 +133,14 @@ static void test_schema(const std::string & test_desc, const std::string & schem
          failing_strings);
 }
 
+// 函数: test_simple_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_simple_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_simple_grammar() {
     test_schema("min 0",
                 R"""({
@@ -365,6 +381,14 @@ static void test_simple_grammar() {
                  });
 }
 
+// 函数: test_complex_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_complex_grammar
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_complex_grammar() {
     // Test case for a more complex grammar, with both failure strings and success strings
     test_grammar("medium complexity grammar",
@@ -422,6 +446,14 @@ static void test_complex_grammar() {
                  });
 }
 
+// 函数: test_special_chars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_special_chars
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_special_chars() {
     // A collection of tests to exercise special characters such as "."
     test_grammar("special characters",
@@ -437,6 +469,14 @@ static void test_special_chars() {
                  { "aaabcccc", "aaaaabcccc", "aaaabccc", "aaaabccccc", "🔵🟠✅❌abc❌✅🟠🔵", "🔵🟠abc🟠🔵" });
 }
 
+// 函数: test_quantifiers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_quantifiers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_quantifiers() {
     // A collection of tests to exercise * + and ? quantifiers
 
@@ -561,6 +601,14 @@ static void test_quantifiers() {
     //              });
 }
 
+// 函数: test_json_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_json_schema
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_json_schema() {
     // Note that this is similar to the regular grammar tests,
     //  but we convert each json schema to a grammar before parsing.
@@ -1085,6 +1133,14 @@ static void test_json_schema() {
         });
 }
 
+// 函数: one_hot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: one_hot
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void one_hot(llama_token_data_array & tok_arr, llama_token selected) {
     auto n_vocab = tok_arr.size;
 
@@ -1098,6 +1154,14 @@ static void one_hot(llama_token_data_array & tok_arr, llama_token selected) {
     tok_arr.data[selected].logit = 100.0f;
 }
 
+// 函数: test_sampler_chain
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_sampler_chain
+// 描述: 采样: 从概率分布中采样
+// 参数: 无参数
+// 返回: 无返回值
 static void test_sampler_chain(void) {
     auto sparams            = llama_sampler_chain_default_params();
     sparams.no_perf         = false;
@@ -1144,6 +1208,14 @@ start: /[A-Z ]*/)";
     assert(cur[tok_arr.selected].id == tok_eos);
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, const char ** argv) {
     fprintf(stdout, "Running llguidance integration tests...\n");
 

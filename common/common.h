@@ -1,4 +1,8 @@
-// Various helper functions and utilities
+// 文件: common.h
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/common.h
+// 描述: 通用工具函数和辅助功能定义
+// 作用: 为整个项目提供通用的工具函数、数据结构和辅助功能
+// 包含: 时间测量、CPU参数、采样参数、模型参数等通用组件
 
 #pragma once
 
@@ -30,23 +34,45 @@
     fprintf(stderr, "%s: built with %s for %s\n", __func__, LLAMA_COMPILER, LLAMA_BUILD_TARGET);    \
 } while(0)
 
+// 结构体: common_time_meas
+// 描述: 时间测量工具结构体
+// 作用: 用于测量代码执行时间，自动累加时间到指定变量
+// 成员:
+//   - t_start_us: 开始时间（微秒）
+//   - t_acc: 累加时间的引用
 struct common_time_meas {
+    // 构造函数: common_time_meas
+    // 描述: 初始化时间测量
+    // 参数:
+    //   - t_acc: 用于累加时间的变量引用
+    //   - disable: 是否禁用时间测量
     common_time_meas(int64_t & t_acc, bool disable = false);
+    
+    // 析构函数: ~common_time_meas
+    // 描述: 结束时间测量并累加时间
     ~common_time_meas();
 
-    const int64_t t_start_us;
-
-    int64_t & t_acc;
+    const int64_t t_start_us; // 开始时间（微秒）
+    int64_t & t_acc;          // 累加时间的引用
 };
 
+// 结构体: common_adapter_lora_info
+// 描述: LoRA适配器信息结构体
+// 作用: 存储LoRA适配器的配置信息和指针
+// 成员:
+//   - path: LoRA适配器文件路径
+//   - scale: LoRA适配器缩放因子
+//   - task_name: 任务名称
+//   - prompt_prefix: 提示前缀
+//   - ptr: LoRA适配器指针
 struct common_adapter_lora_info {
-    std::string path;
-    float scale;
+    std::string path;           // LoRA适配器文件路径
+    float scale;                // LoRA适配器缩放因子
 
-    std::string task_name;
-    std::string prompt_prefix;
+    std::string task_name;      // 任务名称
+    std::string prompt_prefix;  // 提示前缀
 
-    struct llama_adapter_lora * ptr;
+    struct llama_adapter_lora * ptr; // LoRA适配器指针
 };
 
 using llama_tokens = std::vector<llama_token>;
@@ -59,22 +85,47 @@ extern const char * LLAMA_BUILD_TARGET;
 
 const static std::string build_info("b" + std::to_string(LLAMA_BUILD_NUMBER) + "-" + LLAMA_COMMIT);
 
+// 结构体: common_control_vector_load_info
+// 描述: 控制向量加载信息结构体
+// 作用: 存储控制向量的加载信息
+// 成员:
+//   - path: 控制向量文件路径
+//   - scale: 控制向量缩放因子
 struct common_control_vector_load_info;
 
 //
 // CPU utils
 //
 
+// 结构体: cpu_params
+// 描述: CPU参数结构体
+// 作用: 存储CPU相关的配置参数
+// 成员:
+//   - n_threads: 线程数
+//   - cpumask: CPU亲和性掩码
+//   - mask_valid: 掩码是否有效
+//   - priority: 调度优先级
+//   - strict_cpu: 是否使用严格的CPU放置
+//   - poll: 轮询（忙等待）级别
 struct cpu_params {
-    int      n_threads                   = -1;
-    bool     cpumask[GGML_MAX_N_THREADS] = {false}; // CPU affinity mask.
-    bool     mask_valid                  = false;   // Default: any CPU
-    enum ggml_sched_priority  priority   = GGML_SCHED_PRIO_NORMAL;  // Scheduling prio : (0 - normal, 1 - medium, 2 - high, 3 - realtime)
-    bool     strict_cpu                  = false;   // Use strict CPU placement
-    uint32_t poll                        = 50;      // Polling (busywait) level (0 - no polling, 100 - mostly polling)
+    int      n_threads                   = -1;     // 线程数
+    bool     cpumask[GGML_MAX_N_THREADS] = {false}; // CPU亲和性掩码
+    bool     mask_valid                  = false;   // 默认: 任何CPU
+    enum ggml_sched_priority  priority   = GGML_SCHED_PRIO_NORMAL;  // 调度优先级: (0 - 正常, 1 - 中等, 2 - 高, 3 - 实时)
+    bool     strict_cpu                  = false;   // 使用严格的CPU放置
+    uint32_t poll                        = 50;      // 轮询（忙等待）级别 (0 - 无轮询, 100 - 主要轮询)
 };
 
+// 函数: cpu_get_num_physical_cores
+// 描述: 获取物理CPU核心数
+// 参数: 无
+// 返回: 物理CPU核心数
 int32_t cpu_get_num_physical_cores();
+
+// 函数: cpu_get_num_math
+// 描述: 获取数学核心数
+// 参数: 无
+// 返回: 数学核心数
 int32_t cpu_get_num_math();
 
 //
@@ -143,10 +194,17 @@ enum common_grammar_trigger_type {
     COMMON_GRAMMAR_TRIGGER_TYPE_PATTERN_FULL,
 };
 
+// 结构体: common_grammar_trigger
+// 描述: 语法触发器结构体
+// 作用: 存储语法触发器的类型、值和令牌
+// 成员:
+//   - type: 触发器类型
+//   - value: 触发器值
+//   - token: 触发器令牌
 struct common_grammar_trigger {
-    common_grammar_trigger_type type;
-    std::string value;
-    llama_token token = LLAMA_TOKEN_NULL;
+    common_grammar_trigger_type type; // 触发器类型
+    std::string value;                // 触发器值
+    llama_token token = LLAMA_TOKEN_NULL; // 触发器令牌
 };
 
 enum common_params_sampling_config : uint64_t {
@@ -177,42 +235,86 @@ enum common_speculative_type {
 };
 
 // sampling parameters
+// 结构体: common_params_sampling
+// 描述: 采样参数结构体
+// 作用: 存储模型采样相关的配置参数
+// 成员:
+//   - seed: 随机种子
+//   - n_prev: 要记住的前一个令牌数量
+//   - n_probs: 输出前n个概率的令牌数
+//   - min_keep: 采样器应返回的最小令牌数
+//   - top_k: 顶部k个令牌
+//   - top_p: 顶部p概率
+//   - min_p: 最小p概率
+//   - xtc_probability: XTC概率
+//   - xtc_threshold: XTC阈值
+//   - typ_p: 典型p值
+//   - temp: 温度
+//   - dynatemp_range: 动态温度范围
+//   - dynatemp_exponent: 动态温度指数
+//   - penalty_last_n: 惩罚的最后n个令牌
+//   - penalty_repeat: 重复惩罚
+//   - penalty_freq: 频率惩罚
+//   - penalty_present: 存在惩罚
+//   - dry_multiplier: DRY重复惩罚乘数
+//   - dry_base: DRY重复惩罚基数
+//   - dry_allowed_length: 允许的重复长度
+//   - dry_penalty_last_n: DRY惩罚的最后n个令牌
+//   - adaptive_target: 自适应目标概率
+//   - adaptive_decay: 自适应衰减
+//   - mirostat: Mirostat模式
+//   - top_n_sigma: 顶部n sigma
+//   - mirostat_tau: Mirostat目标熵
+//   - mirostat_eta: Mirostat学习率
+//   - ignore_eos: 是否忽略EOS令牌
+//   - no_perf: 是否禁用性能指标
+//   - timing_per_token: 是否按令牌计时
+//   - user_sampling_config: 用户指定的采样器位域
+//   - dry_sequence_breakers: DRY序列断路器
+//   - samplers: 采样器列表
+//   - grammar: 约束采样的BNF类语法
+//   - grammar_lazy: 是否使用惰性语法
+//   - grammar_triggers: 语法触发器
+//   - preserved_tokens: 保留的令牌
+//   - logit_bias: 应用的logit偏差
+//   - logit_bias_eog: EOG令牌的预计算logit偏差
+//   - backend_sampling: 是否使用后端采样
 struct common_params_sampling {
-    uint32_t seed = LLAMA_DEFAULT_SEED; // the seed used to initialize llama_sampler
+    uint32_t seed = LLAMA_DEFAULT_SEED; // 用于初始化llama_sampler的种子
 
-    int32_t n_prev             = 64;     // number of previous tokens to remember
-    int32_t n_probs            = 0;      // if greater than 0, output the probabilities of top n_probs tokens.
-    int32_t min_keep           = 0;      // 0 = disabled, otherwise samplers should return at least min_keep tokens
-    int32_t top_k              = 40;     // <= 0 to use vocab size
-    float   top_p              = 0.95f;  // 1.0 = disabled
-    float   min_p              = 0.05f;  // 0.0 = disabled
-    float   xtc_probability    = 0.00f;  // 0.0 = disabled
-    float   xtc_threshold      = 0.10f;  // > 0.5 disables XTC
-    float   typ_p              = 1.00f;  // typical_p, 1.0 = disabled
-    float   temp               = 0.80f;  // <= 0.0 to sample greedily, 0.0 to not output probabilities
-    float   dynatemp_range     = 0.00f;  // 0.0 = disabled
-    float   dynatemp_exponent  = 1.00f;  // controls how entropy maps to temperature in dynamic temperature sampler
-    int32_t penalty_last_n     = 64;     // last n tokens to penalize (0 = disable penalty, -1 = context size)
-    float   penalty_repeat     = 1.00f;  // 1.0 = disabled
-    float   penalty_freq       = 0.00f;  // 0.0 = disabled
-    float   penalty_present    = 0.00f;  // 0.0 = disabled
-    float   dry_multiplier     = 0.0f;   // 0.0 = disabled;      DRY repetition penalty for tokens extending repetition:
-    float   dry_base           = 1.75f;  // 0.0 = disabled;      multiplier * base ^ (length of sequence before token - allowed length)
-    int32_t dry_allowed_length = 2;      // tokens extending repetitions beyond this receive penalty
-    int32_t dry_penalty_last_n = -1;     // how many tokens to scan for repetitions (0 = disable penalty, -1 = context size)
-    float   adaptive_target    = -1.0f;  // select tokens near this probability (valid range 0.0 to 1.0; negative = disabled)
-    float   adaptive_decay     = 0.90f;  // EMA decay for adaptation; history ≈ 1/(1-decay) tokens (0.0 - 0.99)
-    int32_t mirostat           = 0;      // 0 = disabled, 1 = mirostat, 2 = mirostat 2.0
-    float   top_n_sigma        = -1.00f; // -1.0 = disabled
-    float   mirostat_tau       = 5.00f;  // target entropy
-    float   mirostat_eta       = 0.10f;  // learning rate
-    bool    ignore_eos         = false;
-    bool    no_perf            = false;  // disable performance metrics
-    bool    timing_per_token   = false;
+    int32_t n_prev             = 64;     // 要记住的前一个令牌数量
+    int32_t n_probs            = 0;      // 如果大于0，输出前n_probs个令牌的概率
+    int32_t min_keep           = 0;      // 0 = 禁用，否则采样器应返回至少min_keep个令牌
+    int32_t top_k              = 40;     // <= 0 使用词汇表大小
+    float   top_p              = 0.95f;  // 1.0 = 禁用
+    float   min_p              = 0.05f;  // 0.0 = 禁用
+    float   xtc_probability    = 0.00f;  // 0.0 = 禁用
+    float   xtc_threshold      = 0.10f;  // > 0.5 禁用XTC
+    float   typ_p              = 1.00f;  // typical_p, 1.0 = 禁用
+    float   temp               = 0.80f;  // <= 0.0 贪婪采样，0.0 不输出概率
+    float   dynatemp_range     = 0.00f;  // 0.0 = 禁用
+    float   dynatemp_exponent  = 1.00f;  // 控制动态温度采样器中熵如何映射到温度
+    int32_t penalty_last_n     = 64;     // 要惩罚的最后n个令牌 (0 = 禁用惩罚, -1 = 上下文大小)
+    float   penalty_repeat     = 1.00f;  // 1.0 = 禁用
+    float   penalty_freq       = 0.00f;  // 0.0 = 禁用
+    float   penalty_present    = 0.00f;  // 0.0 = 禁用
+    float   dry_multiplier     = 0.0f;   // 0.0 = 禁用; DRY重复惩罚，用于扩展重复的令牌
+    float   dry_base           = 1.75f;  // 0.0 = 禁用; multiplier * base ^ (令牌前序列长度 - 允许长度)
+    int32_t dry_allowed_length = 2;      // 超过此长度的重复会受到惩罚
+    int32_t dry_penalty_last_n = -1;     // 扫描重复的令牌数 (0 = 禁用惩罚, -1 = 上下文大小)
+    float   adaptive_target    = -1.0f;  // 选择接近此概率的令牌 (有效范围 0.0 到 1.0; 负值 = 禁用)
+    float   adaptive_decay     = 0.90f;  // 自适应的EMA衰减; 历史 ≈ 1/(1-decay) 令牌 (0.0 - 0.99)
+    int32_t mirostat           = 0;      // 0 = 禁用, 1 = mirostat, 2 = mirostat 2.0
+    float   top_n_sigma        = -1.00f; // -1.0 = 禁用
+    float   mirostat_tau       = 5.00f;  // 目标熵
+    float   mirostat_eta       = 0.10f;  // 学习率
+    bool    ignore_eos         = false;  // 是否忽略EOS令牌
+    bool    no_perf            = false;  // 禁用性能指标
+    bool    timing_per_token   = false;  // 是否按令牌计时
 
-    uint64_t user_sampling_config = 0; // bitfield to track user-specified samplers
+    uint64_t user_sampling_config = 0; // 跟踪用户指定采样器的位域
 
-    std::vector<std::string> dry_sequence_breakers = {"\n", ":", "\"", "*"};     // default sequence breakers for DRY
+    std::vector<std::string> dry_sequence_breakers = {"\n", ":", "\"", "*"};     // DRY的默认序列断路器
 
     std::vector<enum common_sampler_type> samplers = {
         COMMON_SAMPLER_TYPE_PENALTIES,
@@ -226,103 +328,173 @@ struct common_params_sampling {
         COMMON_SAMPLER_TYPE_TEMPERATURE,
     };
 
-    std::string                         grammar; // optional BNF-like grammar to constrain sampling
-    bool                                grammar_lazy = false;
-    std::vector<common_grammar_trigger> grammar_triggers; // optional triggers (for lazy grammars)
-    std::set<llama_token>               preserved_tokens;
+    std::string                         grammar; // 约束采样的可选BNF类语法
+    bool                                grammar_lazy = false; // 是否使用惰性语法
+    std::vector<common_grammar_trigger> grammar_triggers; // 可选触发器（用于惰性语法）
+    std::set<llama_token>               preserved_tokens; // 保留的令牌
 
-    std::vector<llama_logit_bias> logit_bias;     // logit biases to apply
-    std::vector<llama_logit_bias> logit_bias_eog; // pre-calculated logit biases for EOG tokens
+    std::vector<llama_logit_bias> logit_bias;     // 要应用的logit偏差
+    std::vector<llama_logit_bias> logit_bias_eog; // EOG令牌的预计算logit偏差
 
-    bool backend_sampling = false;
+    bool backend_sampling = false; // 是否使用后端采样
 
+    // 函数: has_logit_bias
+    // 描述: 检查是否有logit偏差
+    // 参数: 无
+    // 返回: 如果有logit偏差则返回true
     bool has_logit_bias() const {
         return !logit_bias.empty();
     }
 
-    // print the parameters into a string
+    // 函数: print
+    // 描述: 将参数打印到字符串
+    // 参数: 无
+    // 返回: 包含参数的字符串
     std::string print() const;
 };
 
+// 结构体: common_params_model
+// 描述: 模型参数结构体
+// 作用: 存储模型相关的配置参数
+// 成员:
+//   - path: 模型本地路径
+//   - url: 模型下载URL
+//   - hf_repo: Hugging Face仓库
+//   - hf_file: Hugging Face文件
+//   - docker_repo: Docker仓库
+//   - name: 模型名称，格式为 <user>/<model>[:<tag>] (标签可选)
 struct common_params_model {
-    std::string path        = ""; // model local path                                       // NOLINT
-    std::string url         = ""; // model url to download                                  // NOLINT
-    std::string hf_repo     = ""; // HF repo                                                // NOLINT
-    std::string hf_file     = ""; // HF file                                                // NOLINT
-    std::string docker_repo = ""; // Docker repo                                            // NOLINT
-    std::string name        = ""; // in format <user>/<model>[:<tag>] (tag is optional)     // NOLINT
+    std::string path        = ""; // 模型本地路径                                       // NOLINT
+    std::string url         = ""; // 模型下载URL                                  // NOLINT
+    std::string hf_repo     = ""; // HF仓库                                                // NOLINT
+    std::string hf_file     = ""; // HF文件                                                // NOLINT
+    std::string docker_repo = ""; // Docker仓库                                            // NOLINT
+    std::string name        = ""; // 格式为 <user>/<model>[:<tag>] (标签可选)     // NOLINT
 };
 
+// 结构体: common_ngram_mod
+// 描述: ngram修改器结构体
+// 作用: 用于ngram-based的推测解码
 struct common_ngram_mod;
 
+// 结构体: common_params_speculative
+// 描述: 推测解码参数结构体
+// 作用: 存储推测解码相关的配置参数
+// 成员:
+//   - type: 推测解码类型
+//   - n_max: 推测解码期间要起草的最大令牌数
+//   - n_min: 用于推测解码的最小草稿令牌数
+//   - p_split: 推测解码分裂概率
+//   - p_min: 最小推测解码概率（贪婪）
+//   - ngram_size_n: 查找的ngram大小
+//   - ngram_size_m: 推测令牌的mgram大小
+//   - ngram_min_hits: mgram被提议所需的ngram/mgram查找的最小命中数
+//   - ngram_mod: ngram修改器
+//   - lookup_cache_static: 用于查找解码的静态ngram缓存文件路径
+//   - lookup_cache_dynamic: 用于查找解码的动态ngram缓存文件路径
+//   - mparams_dft: 草稿模型参数
+//   - model_dft: 可由多个推测上下文共享的llama_model
+//   - cparams_dft: 草稿llama_context的参数
+//   - n_ctx: 草稿上下文大小
+//   - n_gpu_layers: 存储在VRAM中的草稿模型层数
+//   - cache_type_k: K的KV缓存数据类型
+//   - cache_type_v: V的KV缓存数据类型
+//   - cpuparams: CPU参数
+//   - cpuparams_batch: 批处理CPU参数
+//   - devices: 用于卸载的设备
+//   - replacements: 主模型到推测模型的替换
+//   - tensor_buft_overrides: 张量缓冲区类型覆盖
 struct common_params_speculative {
-    common_speculative_type type = COMMON_SPECULATIVE_TYPE_NONE; // type of speculative decoding
+    common_speculative_type type = COMMON_SPECULATIVE_TYPE_NONE; // 推测解码类型
 
-    // general-purpose speculative decoding parameters
+    // 通用推测解码参数
 
-    int32_t n_max   = 16; // maximum number of tokens to draft during speculative decoding
-    int32_t n_min   = 0; // minimum number of draft tokens to use for speculative decoding
-    float   p_split = 0.1f; // speculative decoding split probability
-    float   p_min   = 0.75f; // minimum speculative decoding probability (greedy)
+    int32_t n_max   = 16; // 推测解码期间要起草的最大令牌数
+    int32_t n_min   = 0; // 用于推测解码的最小草稿令牌数
+    float   p_split = 0.1f; // 推测解码分裂概率
+    float   p_min   = 0.75f; // 最小推测解码概率（贪婪）
 
-    // ngram-based speculative decoding
+    // 基于ngram的推测解码
 
-    uint16_t ngram_size_n     = 12; // ngram size for lookup
-    uint16_t ngram_size_m     = 48; // mgram size for speculative tokens
-    uint16_t ngram_min_hits   =  1; // minimum hits at ngram/mgram lookup for mgram to be proposed
+    uint16_t ngram_size_n     = 12; // 查找的ngram大小
+    uint16_t ngram_size_m     = 48; // 推测令牌的mgram大小
+    uint16_t ngram_min_hits   =  1; // mgram被提议所需的ngram/mgram查找的最小命中数
 
-    std::shared_ptr<common_ngram_mod> ngram_mod;
+    std::shared_ptr<common_ngram_mod> ngram_mod; // ngram修改器
 
-    std::string lookup_cache_static;  // path of static ngram cache file for lookup decoding           // NOLINT
-    std::string lookup_cache_dynamic; // path of dynamic ngram cache file for lookup decoding          // NOLINT
+    std::string lookup_cache_static;  // 用于查找解码的静态ngram缓存文件路径           // NOLINT
+    std::string lookup_cache_dynamic; // 用于查找解码的动态ngram缓存文件路径          // NOLINT
 
-    // draft-model speculative decoding
+    // 草稿模型推测解码
 
-    struct common_params_model mparams_dft;
+    struct common_params_model mparams_dft; // 草稿模型参数
 
-    llama_model * model_dft = nullptr; // a llama_model that can be shared by multiple speculative contexts
+    llama_model * model_dft = nullptr; // 可由多个推测上下文共享的llama_model
 
-    llama_context_params cparams_dft; // these are the parameters for the draft llama_context
+    llama_context_params cparams_dft; // 草稿llama_context的参数
 
-    int32_t n_ctx        = 0;  // draft context size
-    int32_t n_gpu_layers = -1; // number of layers to store in VRAM for the draft model (-1 - use default)
+    int32_t n_ctx        = 0;  // 草稿上下文大小
+    int32_t n_gpu_layers = -1; // 存储在VRAM中的草稿模型层数 (-1 - 使用默认值)
 
-    ggml_type cache_type_k = GGML_TYPE_F16; // KV cache data type for the K
-    ggml_type cache_type_v = GGML_TYPE_F16; // KV cache data type for the V
+    ggml_type cache_type_k = GGML_TYPE_F16; // K的KV缓存数据类型
+    ggml_type cache_type_v = GGML_TYPE_F16; // V的KV缓存数据类型
 
-    struct cpu_params cpuparams;
-    struct cpu_params cpuparams_batch;
+    struct cpu_params cpuparams; // CPU参数
+    struct cpu_params cpuparams_batch; // 批处理CPU参数
 
-    std::vector<ggml_backend_dev_t> devices; // devices to use for offloading
+    std::vector<ggml_backend_dev_t> devices; // 用于卸载的设备
 
-    std::vector<std::pair<std::string, std::string>> replacements; // main to speculative model replacements
-    std::vector<llama_model_tensor_buft_override> tensor_buft_overrides;
+    std::vector<std::pair<std::string, std::string>> replacements; // 主模型到推测模型的替换
+    std::vector<llama_model_tensor_buft_override> tensor_buft_overrides; // 张量缓冲区类型覆盖
 
+    // 函数: has_dft
+    // 描述: 检查是否有草稿模型
+    // 参数: 无
+    // 返回: 如果有草稿模型则返回true
     bool has_dft() const {
         return !mparams_dft.path.empty() || !mparams_dft.hf_repo.empty();
     }
 };
 
+// 结构体: common_params_vocoder
+// 描述: 声码器参数结构体
+// 作用: 存储声码器相关的配置参数
+// 成员:
+//   - model: 声码器模型参数
+//   - speaker_file: 说话人文件路径
+//   - use_guide_tokens: 是否启用引导令牌以提高TTS准确性
 struct common_params_vocoder {
-    struct common_params_model model;
+    struct common_params_model model; // 声码器模型参数
 
-    std::string speaker_file = ""; // speaker file path                                      // NOLINT
+    std::string speaker_file = ""; // 说话人文件路径                                      // NOLINT
 
-    bool use_guide_tokens = false; // enable guide tokens to improve TTS accuracy            // NOLINT
+    bool use_guide_tokens = false; // 启用引导令牌以提高TTS准确性            // NOLINT
 };
 
+// 结构体: common_params_diffusion
+// 描述: 扩散模型参数结构体
+// 作用: 存储扩散模型相关的配置参数
+// 成员:
+//   - steps: 扩散步数
+//   - visual_mode: 是否使用视觉模式
+//   - eps: 时间步的epsilon值
+//   - block_length: 生成的块长度
+//   - algorithm: 算法类型，默认: low-confidence
+//   - alg_temp: 算法温度
+//   - cfg_scale: 无分类器引导尺度
+//   - add_gumbel_noise: 如果temp > 0.0，是否向logits添加gumbel噪声
 struct common_params_diffusion {
-    int32_t steps         = 128;
-    bool    visual_mode   = false;
+    int32_t steps         = 128;      // 扩散步数
+    bool    visual_mode   = false;    // 是否使用视觉模式
 
-    float   eps           = 0;        // epsilon for timesteps
-    int32_t block_length  = 0;        // block length for generation
+    float   eps           = 0;        // 时间步的epsilon值
+    int32_t block_length  = 0;        // 生成的块长度
 
-    int32_t algorithm     = 4;        // default algorithm: low-confidence
-    float   alg_temp      = 0.0f;     // algorithm temperature
+    int32_t algorithm     = 4;        // 默认算法: low-confidence
+    float   alg_temp      = 0.0f;     // 算法温度
 
-    float   cfg_scale     = 0;        // classifier-free guidance scale
-    bool    add_gumbel_noise = false; // add gumbel noise to the logits if temp > 0.0
+    float   cfg_scale     = 0;        // 无分类器引导尺度
+    bool    add_gumbel_noise = false; // 如果temp > 0.0，是否向logits添加gumbel噪声
 };
 
 // reasoning API response format (not to be confused as chat template's reasoning format)
@@ -338,6 +510,17 @@ enum common_reasoning_format {
 };
 
 
+// 结构体: lr_opt
+// 描述: 学习率优化器参数结构体
+// 作用: 存储和管理学习率优化相关的参数
+// 成员:
+//   - lr0: 初始学习率
+//   - lr_min: 最小学习率
+//   - decay_epochs: 学习率衰减的轮数
+//   - scale_epoch: 轮数缩放因子
+//   - wd: 权重衰减
+//   - epochs: 训练轮数
+//   - epoch: 当前轮数
 struct lr_opt {
     float    lr0          = 1e-5; // learning rate at first epoch
     float    lr_min       = -1;
@@ -348,14 +531,62 @@ struct lr_opt {
 
     unsigned epoch; // set by optimizer outer (epochs) loop
     // learning rate decay - constant LR per epoch only for now
+    // 函数: get_lr
+    // 描述: 获取学习率
+    // 参数: e - 轮数
+    // 返回: 计算得到的学习率
     float get_lr(float e) const;
+    // 函数: get_lr
+    // 描述: 获取当前轮数的学习率
+    // 参数: 无
+    // 返回: 当前轮数的学习率
     float get_lr() const { return get_lr(epoch); }
     // must call after arg parse, before get_lr
+    // 函数: init
+    // 描述: 初始化学习率优化器
+    // 参数: 无
+    // 返回: 无
     void init();
 };
 
+// 类: ggml_opt_optimizer_params
+// 描述: ggml_opt_optimizer_params类提供相关功能
+// 用途: 用于处理ggml_opt_optimizer_params相关的操作
+// 类: ggml_opt_optimizer_params
+// 描述: ggml_opt_optimizer_params类提供相关功能
+// 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
+    // 结构体: ggml_opt_optimizer_params
+    // 描述: ggml_opt_optimizer_params结构体提供相关功能
+    // 用途: 用于处理ggml_opt_optimizer_params相关的操作
 struct ggml_opt_optimizer_params common_opt_lr_pars(void * userdata);
 
+// 类: common_params
+// 描述: common_params类提供相关功能
+// 用途: 用于处理common_params相关的操作
+// 类: common_params
+// 描述: common_params类提供相关功能
+// 用途: 用于处理common_params相关的操作
+    // 结构体: common_params
+    // 描述: common_params结构体提供相关功能
+    // 用途: 用于处理common_params相关的操作
+    // 结构体: common_params
+    // 描述: common_params结构体提供相关功能
+    // 用途: 用于处理common_params相关的操作
+    // 结构体: common_params
+    // 描述: common_params结构体提供相关功能
+    // 用途: 用于处理common_params相关的操作
+    // 结构体: common_params
+    // 描述: common_params结构体提供相关功能
+    // 用途: 用于处理common_params相关的操作
 struct common_params {
     int32_t n_predict             =    -1; // max. number of new tokens to predict, -1 == no limit
     int32_t n_ctx                 =     0; // context size, 0 == context the model was trained with
@@ -390,7 +621,43 @@ struct common_params {
 
     enum llama_split_mode split_mode = LLAMA_SPLIT_MODE_LAYER; // how to split the model across GPUs
 
+    // 类: cpu_params
+    // 描述: cpu_params类提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 类: cpu_params
+    // 描述: cpu_params类提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
     struct cpu_params cpuparams;
+    // 类: cpu_params
+    // 描述: cpu_params类提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 类: cpu_params
+    // 描述: cpu_params类提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
+    // 结构体: cpu_params
+    // 描述: cpu_params结构体提供相关功能
+    // 用途: 用于处理cpu_params相关的操作
     struct cpu_params cpuparams_batch;
 
     ggml_backend_sched_eval_callback cb_eval = nullptr;
@@ -403,11 +670,101 @@ struct common_params {
     enum llama_attention_type    attention_type    = LLAMA_ATTENTION_TYPE_UNSPECIFIED; // attention type for embeddings
     enum llama_flash_attn_type   flash_attn_type   = LLAMA_FLASH_ATTN_TYPE_AUTO; // whether to use Flash Attention
 
+    // 类: common_params_sampling
+    // 描述: common_params_sampling类提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 类: common_params_sampling
+    // 描述: common_params_sampling类提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
+    // 结构体: common_params_sampling
+    // 描述: common_params_sampling结构体提供相关功能
+    // 用途: 用于处理common_params_sampling相关的操作
     struct common_params_sampling    sampling;
+    // 类: common_params_speculative
+    // 描述: common_params_speculative类提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 类: common_params_speculative
+    // 描述: common_params_speculative类提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
+    // 结构体: common_params_speculative
+    // 描述: common_params_speculative结构体提供相关功能
+    // 用途: 用于处理common_params_speculative相关的操作
     struct common_params_speculative speculative;
+    // 类: common_params_vocoder
+    // 描述: common_params_vocoder类提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
+    // 类: common_params_vocoder
+    // 描述: common_params_vocoder类提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
+    // 结构体: common_params_vocoder
+    // 描述: common_params_vocoder结构体提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
+    // 结构体: common_params_vocoder
+    // 描述: common_params_vocoder结构体提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
+    // 结构体: common_params_vocoder
+    // 描述: common_params_vocoder结构体提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
+    // 结构体: common_params_vocoder
+    // 描述: common_params_vocoder结构体提供相关功能
+    // 用途: 用于处理common_params_vocoder相关的操作
     struct common_params_vocoder     vocoder;
+    // 类: common_params_diffusion
+    // 描述: common_params_diffusion类提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
+    // 类: common_params_diffusion
+    // 描述: common_params_diffusion类提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
+    // 结构体: common_params_diffusion
+    // 描述: common_params_diffusion结构体提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
+    // 结构体: common_params_diffusion
+    // 描述: common_params_diffusion结构体提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
+    // 结构体: common_params_diffusion
+    // 描述: common_params_diffusion结构体提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
+    // 结构体: common_params_diffusion
+    // 描述: common_params_diffusion结构体提供相关功能
+    // 用途: 用于处理common_params_diffusion相关的操作
     struct common_params_diffusion   diffusion;
 
+    // 类: common_params_model
+    // 描述: common_params_model类提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 类: common_params_model
+    // 描述: common_params_model类提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
     struct common_params_model model;
 
     std::set<std::string> model_alias;     // model aliases                                                 // NOLINT
@@ -496,6 +853,24 @@ struct common_params {
     common_conversation_mode conversation_mode = COMMON_CONVERSATION_MODE_AUTO;
 
     // multimodal models (see tools/mtmd)
+    // 类: common_params_model
+    // 描述: common_params_model类提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 类: common_params_model
+    // 描述: common_params_model类提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
+    // 结构体: common_params_model
+    // 描述: common_params_model结构体提供相关功能
+    // 用途: 用于处理common_params_model相关的操作
     struct common_params_model mmproj;
     bool mmproj_use_gpu = true;     // use GPU for multimodal model
     bool no_mmproj = false;         // explicitly disable multimodal model
@@ -504,6 +879,24 @@ struct common_params {
     int image_max_tokens = -1;
 
     // finetune
+    // 类: lr_opt
+    // 描述: lr_opt类提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 类: lr_opt
+    // 描述: lr_opt类提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
     struct lr_opt lr;
     enum ggml_opt_optimizer_type optimizer = GGML_OPT_OPTIMIZER_TYPE_ADAMW;
     float val_split = 0.05f; // fraction of the data used for the validation set
@@ -618,13 +1011,61 @@ struct common_params {
 
 // call once at the start of a program if it uses libcommon
 // initializes the logging system and prints info about the build
+// 函数: common_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void common_init();
 
+// 函数: common_params_get_system_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_params_get_system_info
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string common_params_get_system_info(const common_params & params);
 
+// 函数: parse_cpu_range
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cpu_range
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool parse_cpu_range(const std::string & range, bool(&boolmask)[GGML_MAX_N_THREADS]);
+// 函数: parse_cpu_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cpu_mask
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool parse_cpu_mask(const std::string & mask, bool(&boolmask)[GGML_MAX_N_THREADS]);
+// 函数: postprocess_cpu_params
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: postprocess_cpu_params
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void postprocess_cpu_params(cpu_params & cpuparams, const cpu_params * role_model = nullptr);
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
+// 函数: set_process_priority
+// 描述: 设置: 设置某个属性或配置
+// 参数: 设置参数和值
+// 返回: 无返回值
 bool set_process_priority(enum ggml_sched_priority prio);
 
 //
@@ -642,27 +1083,99 @@ bool set_process_priority(enum ggml_sched_priority prio);
 #endif
 
 LLAMA_COMMON_ATTRIBUTE_FORMAT(1, 2)
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_format(const char * fmt, ...);
 
+// 函数: string_strip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_strip
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_strip(const std::string & str);
+// 函数: string_get_sortable_timestamp
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_get_sortable_timestamp
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_get_sortable_timestamp();
 
+// 函数: string_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_join
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_join(const std::vector<std::string> & values, const std::string & separator);
 std::vector<std::string> string_split(const std::string & str, const std::string & delimiter);
+// 函数: string_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_repeat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_repeat(const std::string & str, size_t n);
 
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void string_replace_all(std::string & s, const std::string & search, const std::string & replace);
 
+// 函数: regex_escape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: regex_escape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string regex_escape(const std::string & s);
 
 template<class T>
 static std::vector<T> string_split(const std::string & str, char delim) {
     static_assert(!std::is_same<T, std::string>::value, "Please use the specialized version for std::string");
     std::vector<T> values;
+    // 函数: str_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: str_stream
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::istringstream str_stream(str);
     std::string token;
     while (std::getline(str_stream, token, delim)) {
         T value;
+        // 函数: token_stream
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: token_stream
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         std::istringstream token_stream(token);
         token_stream >> value;
         values.push_back(value);
@@ -687,17 +1200,41 @@ inline std::vector<std::string> string_split<std::string>(const std::string & st
 }
 
 // remove when moving to c++20
+// 函数: string_starts_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_starts_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool string_starts_with(std::string_view str, std::string_view prefix) {
     return str.size() >= prefix.size() &&
            str.compare(0, prefix.size(), prefix) == 0;
 }
 
 // remove when moving to c++20
+// 函数: string_ends_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_ends_with
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool string_ends_with(std::string_view str, std::string_view suffix) {
     return str.size() >= suffix.size() &&
            str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
+// 函数: string_remove_suffix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_remove_suffix
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline bool string_remove_suffix(std::string & str, std::string_view suffix) {
     if (string_ends_with(str, suffix)) {
         str.resize(str.size() - suffix.size());
@@ -706,6 +1243,14 @@ inline bool string_remove_suffix(std::string & str, std::string_view suffix) {
     return false;
 }
 
+// 函数: string_find_partial_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_find_partial_stop
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline size_t string_find_partial_stop(std::string_view str, std::string_view stop) {
     if (!str.empty() && !stop.empty()) {
         const size_t max_len = std::min(str.size(), stop.size());
@@ -721,25 +1266,131 @@ inline size_t string_find_partial_stop(std::string_view str, std::string_view st
     return std::string::npos;
 }
 
+// 函数: string_parse_kv_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_parse_kv_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool string_parse_kv_override(const char * data, std::vector<llama_model_kv_override> & overrides);
+// 函数: string_process_escapes
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_process_escapes
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 void string_process_escapes(std::string & input);
 
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(bool value);
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const std::vector<int> & values);
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const struct llama_context * ctx, const std::vector<llama_token> & tokens);
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: string_from
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string string_from(const struct llama_context * ctx, const struct llama_batch & batch);
 
 //
 // Filesystem utils
 //
 
+// 函数: fs_validate_filename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_validate_filename
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_validate_filename(const std::string & filename, bool allow_subdirs = false);
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_create_directory_with_parents
+// 描述: 创建: 创建新的对象或资源
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_create_directory_with_parents(const std::string & path);
+// 函数: fs_is_directory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_is_directory
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool fs_is_directory(const std::string & path);
 
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_get_cache_directory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string fs_get_cache_directory();
+// 函数: fs_get_cache_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: fs_get_cache_file
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 std::string fs_get_cache_file(const std::string & filename);
 
+// 类: common_file_info
+// 描述: common_file_info类提供相关功能
+// 用途: 用于处理common_file_info相关的操作
+// 类: common_file_info
+// 描述: common_file_info类提供相关功能
+// 用途: 用于处理common_file_info相关的操作
+    // 结构体: common_file_info
+    // 描述: common_file_info结构体提供相关功能
+    // 用途: 用于处理common_file_info相关的操作
+    // 结构体: common_file_info
+    // 描述: common_file_info结构体提供相关功能
+    // 用途: 用于处理common_file_info相关的操作
+    // 结构体: common_file_info
+    // 描述: common_file_info结构体提供相关功能
+    // 用途: 用于处理common_file_info相关的操作
+    // 结构体: common_file_info
+    // 描述: common_file_info结构体提供相关功能
+    // 用途: 用于处理common_file_info相关的操作
 struct common_file_info {
     std::string path;
     std::string name;
@@ -753,52 +1404,250 @@ std::vector<common_file_info> fs_list(const std::string & path, bool include_dir
 //
 
 // Auto-detect if colors can be enabled based on terminal and environment
+// 函数: tty_can_use_colors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tty_can_use_colors
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool tty_can_use_colors();
 
 //
 // Model utils
 //
 
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+// 类: common_sampler
+// 描述: common_sampler类提供相关功能
+// 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
 struct common_sampler;
 
 // note: defines the model, context, samplers, ets. lifetimes
+// 类: common_init_result
+// 描述: common_init_result类提供相关功能
+// 用途: 用于处理common_init_result相关的操作
+// 类: common_init_result
+// 描述: common_init_result类提供相关功能
+// 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
+    // 结构体: common_init_result
+    // 描述: common_init_result结构体提供相关功能
+    // 用途: 用于处理common_init_result相关的操作
 struct common_init_result {
     common_init_result(common_params & params);
     ~common_init_result();
 
+    // 函数: model
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: model
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_model * model();
+    // 函数: context
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: context
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_context * context();
 
+    // 函数: sampler
+    // 描述: 采样: 从概率分布中采样
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: sampler
+    // 描述: 采样: 从概率分布中采样
+    // 参数: 无参数
+    // 返回: 无返回值
     common_sampler * sampler(llama_seq_id seq_id);
+    // 函数: reset_samplers
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: reset_samplers
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     void reset_samplers();
 
     std::vector<llama_adapter_lora_ptr> & lora();
 
 private:
+    // 类: impl
+    // 描述: impl类提供相关功能
+    // 用途: 用于处理impl相关的操作
+    // 类: impl
+    // 描述: impl类提供相关功能
+    // 用途: 用于处理impl相关的操作
+    // 结构体: impl
+    // 描述: impl结构体提供相关功能
+    // 用途: 用于处理impl相关的操作
+    // 结构体: impl
+    // 描述: impl结构体提供相关功能
+    // 用途: 用于处理impl相关的操作
+    // 结构体: impl
+    // 描述: impl结构体提供相关功能
+    // 用途: 用于处理impl相关的操作
+    // 结构体: impl
+    // 描述: impl结构体提供相关功能
+    // 用途: 用于处理impl相关的操作
     struct impl;
     std::unique_ptr<impl> pimpl;
 };
 
 using common_init_result_ptr = std::unique_ptr<common_init_result>;
 
+// 函数: common_init_from_params
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_init_from_params
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 common_init_result_ptr common_init_from_params(common_params & params);
 
+// 类: llama_model_params
+// 描述: llama_model_params类提供相关功能
+// 用途: 用于处理llama_model_params相关的操作
+// 类: llama_model_params
+// 描述: llama_model_params类提供相关功能
+// 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
 struct llama_model_params     common_model_params_to_llama  (      common_params & params);
+// 类: llama_context_params
+// 描述: llama_context_params类提供相关功能
+// 用途: 用于处理llama_context_params相关的操作
+// 类: llama_context_params
+// 描述: llama_context_params类提供相关功能
+// 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
+    // 结构体: llama_context_params
+    // 描述: llama_context_params结构体提供相关功能
+    // 用途: 用于处理llama_context_params相关的操作
 struct llama_context_params   common_context_params_to_llama(const common_params & params);
+// 类: ggml_threadpool_params
+// 描述: ggml_threadpool_params类提供相关功能
+// 用途: 用于处理ggml_threadpool_params相关的操作
+// 类: ggml_threadpool_params
+// 描述: ggml_threadpool_params类提供相关功能
+// 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
+    // 结构体: ggml_threadpool_params
+    // 描述: ggml_threadpool_params结构体提供相关功能
+    // 用途: 用于处理ggml_threadpool_params相关的操作
 struct ggml_threadpool_params ggml_threadpool_params_from_cpu_params(const cpu_params & params);
 
 // clear LoRA adapters from context, then apply new list of adapters
+// 函数: common_set_adapter_lora
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_set_adapter_lora
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 void common_set_adapter_lora(struct llama_context * ctx, std::vector<common_adapter_lora_info> & lora);
 
+// 函数: get_model_endpoint
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_model_endpoint
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 std::string                   get_model_endpoint();
 
 //
 // Batch utils
 //
 
+// 函数: common_batch_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_batch_clear
+// 描述: 清空: 清空数据或资源
+// 参数: 无参数
+// 返回: 无返回值
 void common_batch_clear(struct llama_batch & batch);
 
 void common_batch_add(
+                 // 类: llama_batch
+                 // 描述: llama_batch类提供相关功能
+                 // 用途: 用于处理llama_batch相关的操作
+                 // 类: llama_batch
+                 // 描述: llama_batch类提供相关功能
+                 // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
+    // 结构体: llama_batch
+    // 描述: llama_batch结构体提供相关功能
+    // 用途: 用于处理llama_batch相关的操作
                  struct llama_batch & batch,
                         llama_token   id,
                           llama_pos   pos,
@@ -811,6 +1660,24 @@ void common_batch_add(
 // compatibility with all memory types. Recurrent/hybrid models cannot remove
 // tokens from memory, so this approach works across all model architectures.
 bool common_prompt_batch_decode(
+              // 类: llama_context
+              // 描述: llama_context类提供相关功能
+              // 用途: 用于处理llama_context相关的操作
+              // 类: llama_context
+              // 描述: llama_context类提供相关功能
+              // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
+    // 结构体: llama_context
+    // 描述: llama_context结构体提供相关功能
+    // 用途: 用于处理llama_context相关的操作
               struct llama_context * ctx,
     const std::vector<llama_token> & embd,
                                int & n_past,
@@ -820,6 +1687,14 @@ bool common_prompt_batch_decode(
 
 // replays the last token after loading state to regenerate logits
 // used after loading session state to ensure the sampling context has valid logits
+// 函数: common_replay_last_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_replay_last_token
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool common_replay_last_token(struct llama_context * ctx, llama_token last_token, int32_t pos);
 
 //
@@ -870,14 +1745,48 @@ std::string common_detokenize(
 //
 
 // TODO: repace embd_norm with an enum
+// 函数: common_embd_normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_embd_normalize
+// 描述: 归一化: 归一化数据
+// 参数: 无参数
+// 返回: 无返回值
 void common_embd_normalize(const float * inp, float * out, int n, int embd_norm);
 
+// 函数: common_embd_similarity_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_embd_similarity_cos
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 float common_embd_similarity_cos(const float * embd1, const float * embd2, int n);
 
 //
 // Control vector utils
 //
 
+// 类: common_control_vector_data
+// 描述: common_control_vector_data类提供相关功能
+// 用途: 用于处理common_control_vector_data相关的操作
+// 类: common_control_vector_data
+// 描述: common_control_vector_data类提供相关功能
+// 用途: 用于处理common_control_vector_data相关的操作
+    // 结构体: common_control_vector_data
+    // 描述: common_control_vector_data结构体提供相关功能
+    // 用途: 用于处理common_control_vector_data相关的操作
+    // 结构体: common_control_vector_data
+    // 描述: common_control_vector_data结构体提供相关功能
+    // 用途: 用于处理common_control_vector_data相关的操作
+    // 结构体: common_control_vector_data
+    // 描述: common_control_vector_data结构体提供相关功能
+    // 用途: 用于处理common_control_vector_data相关的操作
+    // 结构体: common_control_vector_data
+    // 描述: common_control_vector_data结构体提供相关功能
+    // 用途: 用于处理common_control_vector_data相关的操作
 struct common_control_vector_data {
     int n_embd;
 
@@ -885,6 +1794,24 @@ struct common_control_vector_data {
     std::vector<float> data;
 };
 
+// 类: common_control_vector_load_info
+// 描述: common_control_vector_load_info类提供相关功能
+// 用途: 用于处理common_control_vector_load_info相关的操作
+// 类: common_control_vector_load_info
+// 描述: common_control_vector_load_info类提供相关功能
+// 用途: 用于处理common_control_vector_load_info相关的操作
+    // 结构体: common_control_vector_load_info
+    // 描述: common_control_vector_load_info结构体提供相关功能
+    // 用途: 用于处理common_control_vector_load_info相关的操作
+    // 结构体: common_control_vector_load_info
+    // 描述: common_control_vector_load_info结构体提供相关功能
+    // 用途: 用于处理common_control_vector_load_info相关的操作
+    // 结构体: common_control_vector_load_info
+    // 描述: common_control_vector_load_info结构体提供相关功能
+    // 用途: 用于处理common_control_vector_load_info相关的操作
+    // 结构体: common_control_vector_load_info
+    // 描述: common_control_vector_load_info结构体提供相关功能
+    // 用途: 用于处理common_control_vector_load_info相关的操作
 struct common_control_vector_load_info {
     float strength;
 
@@ -893,6 +1820,14 @@ struct common_control_vector_load_info {
 
 // Load control vectors, scale each by strength, and add them together.
 // On error, returns {-1, empty}
+// 函数: common_control_vector_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_control_vector_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 common_control_vector_data common_control_vector_load(const std::vector<common_control_vector_load_info> & load_infos);
 
 //
@@ -913,10 +1848,26 @@ const char * const LLM_KV_SPLIT_TENSORS_COUNT = "split.tensors.count";
 
 const char * const LLM_FFN_EXPS_REGEX = "\\.ffn_(up|down|gate)_(ch|)exps";
 
+// 函数: llm_ffn_exps_block_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_ffn_exps_block_regex
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline std::string llm_ffn_exps_block_regex(int idx) {
     return string_format("blk\\.%d%s", idx, LLM_FFN_EXPS_REGEX);
 }
 
+// 函数: llm_ffn_exps_cpu_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_ffn_exps_cpu_override
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 inline llama_model_tensor_buft_override llm_ffn_exps_cpu_override() {
     return { LLM_FFN_EXPS_REGEX, ggml_backend_cpu_buffer_type() };
 }
@@ -925,6 +1876,14 @@ inline llama_model_tensor_buft_override llm_ffn_exps_cpu_override() {
 // training utils
 //
 
+// 函数: common_opt_dataset_init
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: common_opt_dataset_init
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 ggml_opt_dataset_t common_opt_dataset_init(struct llama_context * ctx, const std::vector<llama_token> & tokens, int64_t stride);
 
 // "adamw" or "sgd" (case insensitive)

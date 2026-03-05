@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: compare-llama-bench.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/compare-llama-bench.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse
@@ -209,6 +216,9 @@ if not input_file:
     sys.exit(1)
 
 
+    # 类: LlamaBenchData
+    # 描述: LlamaBenchData类提供相关功能
+    # 用途: 用于处理LlamaBenchData相关的操作
 class LlamaBenchData:
     repo: Optional[git.Repo]
     build_len_min: int
@@ -217,6 +227,10 @@ class LlamaBenchData:
     builds: list[str] = []
     tool: str = "llama-bench"  # Tool type: "llama-bench" or "test-backend-ops"
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, tool: str = "llama-bench"
+    # 返回: 无返回值
     def __init__(self, tool: str = "llama-bench"):
         self.tool = tool
         try:
@@ -232,15 +246,27 @@ class LlamaBenchData:
         else:
             assert False
 
+    # 函数: _builds_init
+    # 描述: _builds_init函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
     def _builds_init(self):
         self.build_len = self.build_len_min
 
+    # 函数: _check_keys
+    # 描述: _check_keys函数提供相关功能
+    # 参数: self, keys: set
+    # 返回: 有返回值
     def _check_keys(self, keys: set) -> Optional[set]:
         """Private helper method that checks against required data keys and returns missing ones."""
         if not keys >= self.check_keys:
             return self.check_keys - keys
         return None
 
+    # 函数: find_parent_in_data
+    # 描述: find_parent_in_data函数提供相关功能
+    # 参数: self, commit: git.Commit
+    # 返回: 无返回值
     def find_parent_in_data(self, commit: git.Commit) -> Optional[str]:
         """Helper method to find the most recent parent measured in number of commits for which there is data."""
         heap: list[tuple[int, git.Commit]] = [(0, commit)]
@@ -257,6 +283,10 @@ class LlamaBenchData:
                     heapq.heappush(heap, (depth + 1, parent))
         return None
 
+    # 函数: get_all_parent_hexsha8s
+    # 描述: get_all_parent_hexsha8s函数提供相关功能
+    # 参数: self, commit: git.Commit
+    # 返回: 无返回值
     def get_all_parent_hexsha8s(self, commit: git.Commit) -> Sequence[str]:
         """Helper method to recursively get hexsha8 values for all parents of a commit."""
         unvisited = [commit]
@@ -271,6 +301,10 @@ class LlamaBenchData:
 
         return visited
 
+    # 函数: get_commit_name
+    # 描述: get_commit_name函数提供相关功能
+    # 参数: self, hexsha8: str
+    # 返回: 有返回值
     def get_commit_name(self, hexsha8: str) -> str:
         """Helper method to find a human-readable name for a commit if possible."""
         if self.repo is None:
@@ -283,6 +317,10 @@ class LlamaBenchData:
                 return t.name
         return hexsha8
 
+    # 函数: get_commit_hexsha8
+    # 描述: get_commit_hexsha8函数提供相关功能
+    # 参数: self, name: str
+    # 返回: 有返回值
     def get_commit_hexsha8(self, name: str) -> Optional[str]:
         """Helper method to search for a commit given a human-readable name."""
         if self.repo is None:
@@ -298,10 +336,18 @@ class LlamaBenchData:
                 return c.hexsha[:self.build_len]
         return None
 
+    # 函数: builds_timestamp
+    # 描述: builds_timestamp函数提供相关功能
+    # 参数: self, reverse: bool = False
+    # 返回: 有返回值
     def builds_timestamp(self, reverse: bool = False) -> Union[Iterator[tuple], Sequence[tuple]]:
         """Helper method that gets rows of (build_commit, test_time) sorted by the latter."""
         return []
 
+    # 函数: get_rows
+    # 描述: get_rows函数提供相关功能
+    # 参数: self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str
+    # 返回: 无返回值
     def get_rows(self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str) -> Sequence[tuple]:
         """
         Helper method that gets table rows for some list of properties.
@@ -312,11 +358,18 @@ class LlamaBenchData:
         return []
 
 
+    # 类: LlamaBenchDataSQLite3
+    # 描述: LlamaBenchDataSQLite3类提供相关功能
+    # 用途: 用于处理LlamaBenchDataSQLite3相关的操作
 class LlamaBenchDataSQLite3(LlamaBenchData):
     connection: Optional[sqlite3.Connection] = None
     cursor: sqlite3.Cursor
     table_name: str
 
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, tool: str = "llama-bench"
+    # 返回: 无返回值
     def __init__(self, tool: str = "llama-bench"):
         super().__init__(tool)
         if self.connection is None:
@@ -337,6 +390,10 @@ class LlamaBenchDataSQLite3(LlamaBenchData):
 
             self.cursor.execute(f"CREATE TABLE {self.table_name}({', '.join(' '.join(x) for x in zip(db_fields, db_types))});")
 
+    # 函数: _builds_init
+    # 描述: _builds_init函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
     def _builds_init(self):
         if self.connection:
             self.build_len_min = self.cursor.execute(f"SELECT MIN(LENGTH(build_commit)) from {self.table_name};").fetchone()[0]
@@ -351,11 +408,19 @@ class LlamaBenchDataSQLite3(LlamaBenchData):
             self.builds = list(map(lambda b: b[0], builds))  # list[tuple[str]] -> list[str]
         super()._builds_init()
 
+    # 函数: builds_timestamp
+    # 描述: builds_timestamp函数提供相关功能
+    # 参数: self, reverse: bool = False
+    # 返回: 有返回值
     def builds_timestamp(self, reverse: bool = False) -> Union[Iterator[tuple], Sequence[tuple]]:
         data = self.cursor.execute(
             f"SELECT build_commit, test_time FROM {self.table_name} ORDER BY test_time;").fetchall()
         return reversed(data) if reverse else data
 
+    # 函数: get_rows
+    # 描述: get_rows函数提供相关功能
+    # 参数: self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str
+    # 返回: 有返回值
     def get_rows(self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str) -> Sequence[tuple]:
         if self.tool == "llama-bench":
             return self._get_rows_llama_bench(properties, hexsha8_baseline, hexsha8_compare)
@@ -364,6 +429,10 @@ class LlamaBenchDataSQLite3(LlamaBenchData):
         else:
             assert False
 
+    # 函数: _get_rows_llama_bench
+    # 描述: _get_rows_llama_bench函数提供相关功能
+    # 参数: self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str
+    # 返回: 无返回值
     def _get_rows_llama_bench(self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str) -> Sequence[tuple]:
         select_string = ", ".join(
             [f"tb.{p}" for p in properties] + ["tb.n_prompt", "tb.n_gen", "tb.n_depth", "AVG(tb.avg_ts)", "AVG(tc.avg_ts)"])
@@ -376,6 +445,10 @@ class LlamaBenchDataSQLite3(LlamaBenchData):
                  f"GROUP BY {group_order_string} ORDER BY {group_order_string};")
         return self.cursor.execute(query).fetchall()
 
+    # 函数: _get_rows_test_backend_ops
+    # 描述: _get_rows_test_backend_ops函数提供相关功能
+    # 参数: self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str
+    # 返回: 无返回值
     def _get_rows_test_backend_ops(self, properties: list[str], hexsha8_baseline: str, hexsha8_compare: str) -> Sequence[tuple]:
         # For test-backend-ops, we compare FLOPS and bandwidth metrics (prioritizing FLOPS over bandwidth)
         select_string = ", ".join(
@@ -394,7 +467,14 @@ class LlamaBenchDataSQLite3(LlamaBenchData):
         return self.cursor.execute(query).fetchall()
 
 
+    # 类: LlamaBenchDataSQLite3File
+    # 描述: LlamaBenchDataSQLite3File类提供相关功能
+    # 用途: 用于处理LlamaBenchDataSQLite3File相关的操作
 class LlamaBenchDataSQLite3File(LlamaBenchDataSQLite3):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, data_file: str, tool: Any
+    # 返回: 无返回值
     def __init__(self, data_file: str, tool: Any):
         self.connection = sqlite3.connect(data_file)
         self.cursor = self.connection.cursor()
@@ -432,6 +512,10 @@ class LlamaBenchDataSQLite3File(LlamaBenchDataSQLite3):
         self._builds_init()
 
     @staticmethod
+    # 函数: valid_format
+    # 描述: valid_format函数提供相关功能
+    # 参数: data_file: str
+    # 返回: 无返回值
     def valid_format(data_file: str) -> bool:
         connection = sqlite3.connect(data_file)
         cursor = connection.cursor()
@@ -447,7 +531,14 @@ class LlamaBenchDataSQLite3File(LlamaBenchDataSQLite3):
         return True if cursor else False
 
 
+    # 类: LlamaBenchDataJSONL
+    # 描述: LlamaBenchDataJSONL类提供相关功能
+    # 用途: 用于处理LlamaBenchDataJSONL相关的操作
 class LlamaBenchDataJSONL(LlamaBenchDataSQLite3):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, data_file: str, tool: str = "llama-bench"
+    # 返回: 无返回值
     def __init__(self, data_file: str, tool: str = "llama-bench"):
         super().__init__(tool)
 
@@ -469,6 +560,10 @@ class LlamaBenchDataJSONL(LlamaBenchDataSQLite3):
         self._builds_init()
 
     @staticmethod
+    # 函数: valid_format
+    # 描述: valid_format函数提供相关功能
+    # 参数: data_file: str
+    # 返回: 无返回值
     def valid_format(data_file: str) -> bool:
         try:
             with open(data_file, "r", encoding="utf-8") as fp:
@@ -482,7 +577,14 @@ class LlamaBenchDataJSONL(LlamaBenchDataSQLite3):
         return True
 
 
+    # 类: LlamaBenchDataJSON
+    # 描述: LlamaBenchDataJSON类提供相关功能
+    # 用途: 用于处理LlamaBenchDataJSON相关的操作
 class LlamaBenchDataJSON(LlamaBenchDataSQLite3):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, data_files: list[str], tool: str = "llama-bench"
+    # 返回: 无返回值
     def __init__(self, data_files: list[str], tool: str = "llama-bench"):
         super().__init__(tool)
 
@@ -505,6 +607,10 @@ class LlamaBenchDataJSON(LlamaBenchDataSQLite3):
         self._builds_init()
 
     @staticmethod
+    # 函数: valid_format
+    # 描述: valid_format函数提供相关功能
+    # 参数: data_files: list[str]
+    # 返回: 有返回值
     def valid_format(data_files: list[str]) -> bool:
         if not data_files:
             return False
@@ -520,7 +626,14 @@ class LlamaBenchDataJSON(LlamaBenchDataSQLite3):
         return True
 
 
+    # 类: LlamaBenchDataCSV
+    # 描述: LlamaBenchDataCSV类提供相关功能
+    # 用途: 用于处理LlamaBenchDataCSV相关的操作
 class LlamaBenchDataCSV(LlamaBenchDataSQLite3):
+    # 函数: __init__
+    # 描述: __init__函数提供相关功能
+    # 参数: self, data_files: list[str], tool: str = "llama-bench"
+    # 返回: 无返回值
     def __init__(self, data_files: list[str], tool: str = "llama-bench"):
         super().__init__(tool)
 
@@ -543,6 +656,10 @@ class LlamaBenchDataCSV(LlamaBenchDataSQLite3):
         self._builds_init()
 
     @staticmethod
+    # 函数: valid_format
+    # 描述: valid_format函数提供相关功能
+    # 参数: data_files: list[str]
+    # 返回: 有返回值
     def valid_format(data_files: list[str]) -> bool:
         if not data_files:
             return False
@@ -559,6 +676,10 @@ class LlamaBenchDataCSV(LlamaBenchDataSQLite3):
         return True
 
 
+    # 函数: format_flops
+    # 描述: format_flops函数提供相关功能
+    # 参数: flops_value: float
+    # 返回: 有返回值
 def format_flops(flops_value: float) -> str:
     """Format FLOPS values with appropriate units for better readability."""
     if flops_value == 0:
@@ -585,6 +706,10 @@ def format_flops(flops_value: float) -> str:
     return f"{flops_value:.2f}"
 
 
+    # 函数: format_flops_for_table
+    # 描述: format_flops_for_table函数提供相关功能
+    # 参数: flops_value: float, target_unit: str
+    # 返回: 有返回值
 def format_flops_for_table(flops_value: float, target_unit: str) -> str:
     """Format FLOPS values for table display without unit suffix (since unit is in header)."""
     if flops_value == 0:
@@ -608,6 +733,10 @@ def format_flops_for_table(flops_value: float, target_unit: str) -> str:
         return f"{formatted_value:.2f}"
 
 
+    # 函数: get_flops_unit_name
+    # 描述: get_flops_unit_name函数提供相关功能
+    # 参数: flops_values: list
+    # 返回: 有返回值
 def get_flops_unit_name(flops_values: list) -> str:
     """Determine the best FLOPS unit name based on the magnitude of values."""
     if not flops_values or all(v == 0 for v in flops_values):
@@ -923,6 +1052,10 @@ else:
     assert False
 
 if known_args.plot:
+    # 函数: create_performance_plot
+    # 描述: create_performance_plot函数提供相关功能
+    # 参数: table_data: list[list[str]], headers: list[str], baseline_name: str, compare_name: str, output_file: str, plot_x_param: str, log_scale: bool = False, tool_type: str = "llama-bench", metric_name: str = "t/s"
+    # 返回: 无返回值
     def create_performance_plot(table_data: list[list[str]], headers: list[str], baseline_name: str, compare_name: str, output_file: str, plot_x_param: str, log_scale: bool = False, tool_type: str = "llama-bench", metric_name: str = "t/s"):
         try:
             import matplotlib
@@ -1003,6 +1136,10 @@ if known_args.plot:
             logger.error("No data available for plotting")
             return
 
+    # 函数: make_axes
+    # 描述: make_axes函数提供相关功能
+    # 参数: num_groups, max_cols=2, base_size=(8, 4)
+    # 返回: 无返回值
         def make_axes(num_groups, max_cols=2, base_size=(8, 4)):
             from math import ceil
             cols = 1 if num_groups == 1 else min(max_cols, num_groups)

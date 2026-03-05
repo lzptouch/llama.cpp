@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: kimivl.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/kimivl.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 ggml_cgraph * clip_graph_kimivl::build() {
@@ -15,6 +22,14 @@ ggml_cgraph * clip_graph_kimivl::build() {
     // build ViT with 2D position embeddings
     auto add_pos = [&](ggml_tensor * cur, const clip_layer &) {
         // first half is X axis and second half is Y axis
+        // 函数: build_rope_2d
+        // 描述: 构建: 构建数据结构或对象
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: build_rope_2d
+        // 描述: 构建: 构建数据结构或对象
+        // 参数: 无参数
+        // 返回: 无返回值
         return build_rope_2d(ctx0, cur, pos_w, pos_h, hparams.rope_theta, false);
     };
 

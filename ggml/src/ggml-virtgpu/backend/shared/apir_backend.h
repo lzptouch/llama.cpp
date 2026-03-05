@@ -26,6 +26,14 @@
 typedef uintptr_t apir_buffer_type_host_handle_t;
 typedef uintptr_t apir_buffer_host_handle_t;
 
+// 函数: apir_backend_initialize_error
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: apir_backend_initialize_error
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 static const char * apir_backend_initialize_error(int code) {
 #define APIR_BACKEND_INITIALIZE_ERROR(code_name) \
     do {                                         \

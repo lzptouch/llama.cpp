@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: server-bench.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/server-bench.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import argparse
@@ -21,6 +28,10 @@ logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger("server-bench")
 
 
+    # 函数: get_prompts_text
+    # 描述: get_prompts_text函数提供相关功能
+    # 参数: dataset_name: str, n_prompts: int
+    # 返回: 无返回值
 def get_prompts_text(dataset_name: str, n_prompts: int) -> Optional[list[str]]:
     ret = []
     if dataset_name.lower() == "mmlu":
@@ -33,6 +44,10 @@ def get_prompts_text(dataset_name: str, n_prompts: int) -> Optional[list[str]]:
     return ret
 
 
+    # 函数: get_prompt_lengths_rng
+    # 描述: get_prompt_lengths_rng函数提供相关功能
+    # 参数: n_prompts: int, prompt_length_min: int, prompt_length_max: int, seed_offset: int
+    # 返回: 无返回值
 def get_prompt_lengths_rng(n_prompts: int, prompt_length_min: int, prompt_length_max: int, seed_offset: int) -> list[int]:
     assert n_prompts >= 0
     ret: list[int] = []
@@ -43,10 +58,18 @@ def get_prompt_lengths_rng(n_prompts: int, prompt_length_min: int, prompt_length
     return ret
 
 
+    # 函数: get_prompts_rng
+    # 描述: get_prompts_rng函数提供相关功能
+    # 参数: prompt_lengths: list[int]
+    # 返回: 有返回值
 def get_prompts_rng(prompt_lengths: list[int]) -> list[list[int]]:
     return [[random.randint(100, 10000) for _ in range(pl)] for pl in prompt_lengths]
 
 
+    # 函数: get_server
+    # 描述: get_server函数提供相关功能
+    # 参数: path_server: str, path_log: Optional[str]
+    # 返回: 有返回值
 def get_server(path_server: str, path_log: Optional[str]) -> dict:
     if path_server.startswith("http://") or path_server.startswith("https://"):
         return {"process": None, "address": path_server, "fout": None}
@@ -84,6 +107,10 @@ def get_server(path_server: str, path_log: Optional[str]) -> dict:
     return {"process": process, "address": address, "fout": fout}
 
 
+    # 函数: get_prompt_length
+    # 描述: get_prompt_length函数提供相关功能
+    # 参数: data: dict
+    # 返回: 无返回值
 def get_prompt_length(data: dict) -> int:
     session = data["session"]
     server_address: str = data["server_address"]
@@ -103,6 +130,10 @@ def get_prompt_length(data: dict) -> int:
     return len(tokens)
 
 
+    # 函数: send_prompt
+    # 描述: send_prompt函数提供相关功能
+    # 参数: data: dict
+    # 返回: 无返回值
 def send_prompt(data: dict) -> tuple[float, list[float]]:
     session = data["session"]
     server_address: str = data["server_address"]
@@ -144,6 +175,10 @@ def send_prompt(data: dict) -> tuple[float, list[float]]:
     return (t_submit, token_arrival_times)
 
 
+    # 函数: benchmark
+    # 描述: benchmark函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def benchmark(
         path_server: str, path_log: Optional[str], path_db: Optional[str], name: Optional[str], prompt_source: str, n_prompts: int,
         n_predict: int, n_predict_min: int, seed_offset: int):

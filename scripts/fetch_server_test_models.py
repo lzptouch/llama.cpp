@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: fetch_server_test_models.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/fetch_server_test_models.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 #!/usr/bin/env python
 '''
     This script fetches all the models used in the server tests.
@@ -20,14 +27,24 @@ from typing import Optional
 import subprocess
 
 
+    # 类: HuggingFaceModel
+    # 描述: HuggingFaceModel类提供相关功能
+    # 用途: 用于处理HuggingFaceModel相关的操作
 class HuggingFaceModel(BaseModel):
     hf_repo: str
     hf_file: Optional[str] = None
 
+    # 类: Config
+    # 描述: Config类提供相关功能
+    # 用途: 用于处理Config相关的操作
     class Config:
         frozen = True
 
 
+    # 函数: collect_hf_model_test_parameters
+    # 描述: collect_hf_model_test_parameters函数提供相关功能
+    # 参数: test_file
+    # 返回: 无返回值
 def collect_hf_model_test_parameters(test_file) -> Generator[HuggingFaceModel, None, None]:
     try:
         with open(test_file) as f:

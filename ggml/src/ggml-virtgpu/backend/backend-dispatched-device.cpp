@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: backend-dispatched-device.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/backend/backend-dispatched-device.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "backend-dispatched.h"
 #include "backend-virgl-apir.h"
 #include "ggml-backend-impl.h"
@@ -6,6 +13,14 @@
 
 #include <cstdint>
 
+// 函数: backend_device_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_device_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_device_count(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(ctx);
@@ -17,6 +32,14 @@ uint32_t backend_device_get_device_count(apir_encoder * enc, apir_decoder * dec,
     return 0;
 }
 
+// 函数: backend_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_count
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_count(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(ctx);
@@ -28,6 +51,14 @@ uint32_t backend_device_get_count(apir_encoder * enc, apir_decoder * dec, virgl_
     return 0;
 }
 
+// 函数: backend_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_name
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_name(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -41,6 +72,14 @@ uint32_t backend_device_get_name(apir_encoder * enc, apir_decoder * dec, virgl_a
     return 0;
 }
 
+// 函数: backend_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_description
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_description(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -54,6 +93,14 @@ uint32_t backend_device_get_description(apir_encoder * enc, apir_decoder * dec, 
     return 0;
 }
 
+// 函数: backend_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_type(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -64,6 +111,14 @@ uint32_t backend_device_get_type(apir_encoder * enc, apir_decoder * dec, virgl_a
     return 0;
 }
 
+// 函数: backend_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_memory
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_memory(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -77,6 +132,14 @@ uint32_t backend_device_get_memory(apir_encoder * enc, apir_decoder * dec, virgl
     return 0;
 }
 
+// 函数: backend_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_supports_op
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_supports_op(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
 
@@ -89,6 +152,14 @@ uint32_t backend_device_supports_op(apir_encoder * enc, apir_decoder * dec, virg
     return 0;
 }
 
+// 函数: backend_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_buffer_type
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_buffer_type(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -100,6 +171,14 @@ uint32_t backend_device_get_buffer_type(apir_encoder * enc, apir_decoder * dec, 
     return 0;
 }
 
+// 函数: backend_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_get_props
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_get_props(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);
@@ -115,6 +194,14 @@ uint32_t backend_device_get_props(apir_encoder * enc, apir_decoder * dec, virgl_
     return 0;
 }
 
+// 函数: backend_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: backend_device_buffer_from_ptr
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t backend_device_buffer_from_ptr(apir_encoder * enc, apir_decoder * dec, virgl_apir_context * ctx) {
     GGML_UNUSED(ctx);
     GGML_UNUSED(dec);

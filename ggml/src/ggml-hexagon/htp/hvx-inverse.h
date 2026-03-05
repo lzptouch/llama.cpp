@@ -21,6 +21,14 @@
 //      32066  -27505   16481   -2348
 //      31205  -24054   11849   -1306
 
+// 函数: hvx_vec_recip_xp1_O3_unsigned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_recip_xp1_O3_unsigned
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_recip_xp1_O3_unsigned(HVX_Vector vx) {
     // input is 0..0xffff representing 0.0  .. 1.0
     HVX_Vector p;
@@ -41,6 +49,14 @@ static inline HVX_Vector hvx_vec_recip_xp1_O3_unsigned(HVX_Vector vx) {
 // (4) convert that to fp16
 // (5) put sign back in. Also, if the original value (w/o sign) was <0x81, replace
 //     the result with the max value.
+// 函数: hvx_vec_inverse_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_inverse_f16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_inverse_f16(HVX_Vector vals) {
     HVX_Vector     em_mask  = Q6_Vh_vsplat_R(0x7FFF);
     HVX_Vector     avals    = Q6_V_vand_VV(vals, em_mask);
@@ -86,6 +102,14 @@ static inline HVX_Vector hvx_vec_inverse_f16(HVX_Vector vals) {
     return recip;
 }
 
+// 函数: hvx_vec_inverse_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_inverse_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_inverse_f32(HVX_Vector v_sf) {
     HVX_Vector inv_aprox_sf = Q6_V_vsplat_R(0x7EEEEBB3);
     HVX_Vector two_sf       = hvx_vec_splat_f32(2.0);
@@ -106,6 +130,14 @@ static inline HVX_Vector hvx_vec_inverse_f32(HVX_Vector v_sf) {
     return Q6_Vsf_equals_Vqf32(r_qf);
 }
 
+// 函数: hvx_vec_inverse_f32_guard
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_vec_inverse_f32_guard
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline HVX_Vector hvx_vec_inverse_f32_guard(HVX_Vector v_sf, HVX_Vector nan_inf_mask) {
     HVX_Vector out = hvx_vec_inverse_f32(v_sf);
 
@@ -137,26 +169,66 @@ static inline HVX_Vector hvx_vec_inverse_f32_guard(HVX_Vector v_sf, HVX_Vector n
         }                                                                    \
     } while(0)
 
+// 函数: hvx_inverse_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_inverse_f32_aa
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_inverse_f32_aa(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     assert((unsigned long) src % 128 == 0);
     hvx_inverse_f32_loop_body(HVX_Vector, HVX_Vector, hvx_vec_store_a);
 }
 
+// 函数: hvx_inverse_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_inverse_f32_au
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_inverse_f32_au(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) dst % 128 == 0);
     hvx_inverse_f32_loop_body(HVX_Vector, HVX_UVector, hvx_vec_store_a);
 }
 
+// 函数: hvx_inverse_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_inverse_f32_ua
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_inverse_f32_ua(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     assert((unsigned long) src % 128 == 0);
     hvx_inverse_f32_loop_body(HVX_UVector, HVX_Vector, hvx_vec_store_u);
 }
 
+// 函数: hvx_inverse_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_inverse_f32_uu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_inverse_f32_uu(uint8_t * restrict dst, const uint8_t * restrict src, uint32_t n) {
     hvx_inverse_f32_loop_body(HVX_UVector, HVX_UVector, hvx_vec_store_u);
 }
 
+// 函数: hvx_inverse_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: hvx_inverse_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void hvx_inverse_f32(uint8_t * restrict dst, uint8_t * restrict src, const int num_elems) {
     if ((unsigned long) dst % 128 == 0) {
         if ((unsigned long) src % 128 == 0) {

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_basic.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_basic.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 import requests
 from utils import *
@@ -6,11 +13,27 @@ server = ServerPreset.tinyllama2()
 
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
 
 
+    # 函数: test_server_start_simple
+    # 描述: test_server_start_simple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_server_start_simple
+    # 描述: test_server_start_simple函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_server_start_simple():
     global server
     server.start()
@@ -18,6 +41,14 @@ def test_server_start_simple():
     assert res.status_code == 200
 
 
+    # 函数: test_server_props
+    # 描述: test_server_props函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_server_props
+    # 描述: test_server_props函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_server_props():
     global server
     server.start()
@@ -31,6 +62,14 @@ def test_server_props():
     assert default_val["params"]["seed"] == server.seed
 
 
+    # 函数: test_server_models
+    # 描述: test_server_models函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_server_models
+    # 描述: test_server_models函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_server_models():
     global server
     server.start()
@@ -40,6 +79,14 @@ def test_server_models():
     assert res.body["data"][0]["id"] == server.model_alias
 
 
+    # 函数: test_server_slots
+    # 描述: test_server_slots函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
+    # 函数: test_server_slots
+    # 描述: test_server_slots函数提供相关功能
+    # 参数: 无参数
+    # 返回: 有返回值
 def test_server_slots():
     global server
 
@@ -63,6 +110,14 @@ def test_server_slots():
     assert "params" not in res.body[0]
 
 
+    # 函数: test_load_split_model
+    # 描述: test_load_split_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_load_split_model
+    # 描述: test_load_split_model函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_load_split_model():
     global server
     server.offline = False
@@ -79,6 +134,14 @@ def test_load_split_model():
     assert match_regex("(little|girl)+", res.body["content"])
 
 
+    # 函数: test_no_webui
+    # 描述: test_no_webui函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_no_webui
+    # 描述: test_no_webui函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_no_webui():
     global server
     # default: webui enabled
@@ -96,6 +159,14 @@ def test_no_webui():
     assert res.status_code == 404
 
 
+    # 函数: test_server_model_aliases_and_tags
+    # 描述: test_server_model_aliases_and_tags函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_server_model_aliases_and_tags
+    # 描述: test_server_model_aliases_and_tags函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_server_model_aliases_and_tags():
     global server
     server.model_alias = "tinyllama-2,fim,code"

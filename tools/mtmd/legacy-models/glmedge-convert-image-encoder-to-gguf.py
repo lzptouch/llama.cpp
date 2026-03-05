@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: glmedge-convert-image-encoder-to-gguf.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/legacy-models/glmedge-convert-image-encoder-to-gguf.py
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 import argparse
 import os
 import json
@@ -11,10 +18,26 @@ TEXT = "clip.text"
 VISION = "clip.vision"
 from transformers import SiglipVisionModel, SiglipVisionConfig
 
+    # 函数: k
+    # 描述: k函数提供相关功能
+    # 参数: raw_key: str, arch: str
+    # 返回: 有返回值
+    # 函数: k
+    # 描述: k函数提供相关功能
+    # 参数: raw_key: str, arch: str
+    # 返回: 有返回值
 def k(raw_key: str, arch: str) -> str:
     return raw_key.format(arch=arch)
 
 
+    # 函数: should_skip_tensor
+    # 描述: should_skip_tensor函数提供相关功能
+    # 参数: name: str, has_text: bool, has_vision: bool, has_llava: bool
+    # 返回: 无返回值
+    # 函数: should_skip_tensor
+    # 描述: should_skip_tensor函数提供相关功能
+    # 参数: name: str, has_text: bool, has_vision: bool, has_llava: bool
+    # 返回: 无返回值
 def should_skip_tensor(name: str, has_text: bool, has_vision: bool, has_llava: bool) -> bool:
     if name in (
         "logit_scale",
@@ -47,6 +70,14 @@ def should_skip_tensor(name: str, has_text: bool, has_vision: bool, has_llava: b
     return False
 
 
+    # 函数: get_tensor_name
+    # 描述: get_tensor_name函数提供相关功能
+    # 参数: name: str
+    # 返回: 有返回值
+    # 函数: get_tensor_name
+    # 描述: get_tensor_name函数提供相关功能
+    # 参数: name: str
+    # 返回: 有返回值
 def get_tensor_name(name: str) -> str:
     if "projection" in name:
         return name
@@ -59,6 +90,14 @@ def get_tensor_name(name: str) -> str:
     return name.replace("text_model", "t").replace("vision_model", "v").replace("encoder.layers", "blk").replace("embeddings.", "").replace("_proj", "").replace("self_attn.", "attn_").replace("layer_norm", "ln").replace("layernorm", "ln").replace("mlp.fc1", "ffn_down").replace("mlp.fc2", "ffn_up").replace("embedding", "embd").replace("final", "post").replace("layrnorm", "ln")
 
 
+    # 函数: bytes_to_unicode
+    # 描述: bytes_to_unicode函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: bytes_to_unicode
+    # 描述: bytes_to_unicode函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def bytes_to_unicode():
     """
     Returns list of utf-8 byte and a corresponding list of unicode strings.

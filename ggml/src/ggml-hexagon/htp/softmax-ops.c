@@ -49,6 +49,24 @@
     const uint32_t nb2 = dst->nb[2];                       \
     const uint32_t nb3 = dst->nb[3];
 
+// 类: htp_softmax_context
+// 描述: htp_softmax_context类提供相关功能
+// 用途: 用于处理htp_softmax_context相关的操作
+// 类: htp_softmax_context
+// 描述: htp_softmax_context类提供相关功能
+// 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
 struct htp_softmax_context {
     bool     use_f16;
     bool     use_src1;
@@ -61,15 +79,113 @@ struct htp_softmax_context {
     float m1;
 
     uint32_t src0_nrows_per_thread;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values fastdiv_ne01;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values fastdiv_ne02;
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values fastdiv_ne12; // For mask broadcasting
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 类: fastdiv_values
+    // 描述: fastdiv_values类提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
+    // 结构体: fastdiv_values
+    // 描述: fastdiv_values结构体提供相关功能
+    // 用途: 用于处理fastdiv_values相关的操作
     struct fastdiv_values fastdiv_ne13; // For mask broadcasting
     size_t spad_stride;
 
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx;
 };
 
+// 函数: init_softmax_ctx
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
+// 函数: init_softmax_ctx
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 初始化参数
+// 返回: 成功返回0或true,失败返回错误码
 static void init_softmax_ctx(struct htp_softmax_context * smctx, struct htp_ops_context * octx) {
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
@@ -202,12 +318,74 @@ static float hvx_softmax_f32(const uint8_t * restrict src,
     return sum;
 }
 
+// 函数: softmax_job_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: softmax_job_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void softmax_job_f32(unsigned int nth, unsigned int ith, void * data) {
+    // 类: htp_softmax_context
+    // 描述: htp_softmax_context类提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 类: htp_softmax_context
+    // 描述: htp_softmax_context类提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
     struct htp_softmax_context * smctx = (struct htp_softmax_context *) data;
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 类: htp_ops_context
+    // 描述: htp_ops_context类提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
+    // 结构体: htp_ops_context
+    // 描述: htp_ops_context结构体提供相关功能
+    // 用途: 用于处理htp_ops_context相关的操作
     struct htp_ops_context * octx = smctx->octx;
 
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
     htp_softmax_preamble3;
@@ -333,13 +511,57 @@ static void softmax_job_f32(unsigned int nth, unsigned int ith, void * data) {
          ne0, ne1, ne2, ne3, (unsigned) HAP_perf_qtimer_count_to_us(t2 - t1));
 }
 
+// 函数: execute_op_softmax_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: execute_op_softmax_f32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int execute_op_softmax_f32(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 
     const struct htp_tensor * src0 = &octx->src0;
     const struct htp_tensor * src1 = &octx->src1;
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 类: htp_tensor
+    // 描述: htp_tensor类提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
+    // 结构体: htp_tensor
+    // 描述: htp_tensor结构体提供相关功能
+    // 用途: 用于处理htp_tensor相关的操作
     struct htp_tensor *       dst  = &octx->dst;
 
+    // 类: htp_softmax_context
+    // 描述: htp_softmax_context类提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 类: htp_softmax_context
+    // 描述: htp_softmax_context类提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
+    // 结构体: htp_softmax_context
+    // 描述: htp_softmax_context结构体提供相关功能
+    // 用途: 用于处理htp_softmax_context相关的操作
     struct htp_softmax_context smctx;
     const char * op_type = "softmax-f32";
 
@@ -404,6 +626,14 @@ static int execute_op_softmax_f32(struct htp_ops_context * octx) {
     return err;
 }
 
+// 函数: op_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: op_softmax
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int op_softmax(struct htp_ops_context * octx) {
     int err = HTP_STATUS_OK;
 

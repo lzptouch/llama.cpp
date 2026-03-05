@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-impl.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-impl.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-impl.h"
 
 #include "gguf.h"
@@ -10,6 +17,24 @@
 #include <vector>
 #include <sstream>
 
+// 类: llama_logger_state
+// 描述: llama_logger_state类提供相关功能
+// 用途: 用于处理llama_logger_state相关的操作
+// 类: llama_logger_state
+// 描述: llama_logger_state类提供相关功能
+// 用途: 用于处理llama_logger_state相关的操作
+    // 结构体: llama_logger_state
+    // 描述: llama_logger_state结构体提供相关功能
+    // 用途: 用于处理llama_logger_state相关的操作
+    // 结构体: llama_logger_state
+    // 描述: llama_logger_state结构体提供相关功能
+    // 用途: 用于处理llama_logger_state相关的操作
+    // 结构体: llama_logger_state
+    // 描述: llama_logger_state结构体提供相关功能
+    // 用途: 用于处理llama_logger_state相关的操作
+    // 结构体: llama_logger_state
+    // 描述: llama_logger_state结构体提供相关功能
+    // 用途: 用于处理llama_logger_state相关的操作
 struct llama_logger_state {
     ggml_log_callback log_callback = llama_log_callback_default;
     void * log_callback_user_data = nullptr;
@@ -25,16 +50,40 @@ time_meas::~time_meas() {
     }
 }
 
+// 函数: llama_log_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_log_get(ggml_log_callback * log_callback, void ** user_data) {
     ggml_log_get(log_callback, user_data);
 }
 
+// 函数: llama_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_set
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_log_set(ggml_log_callback log_callback, void * user_data) {
     ggml_log_set(log_callback, user_data);
     g_logger_state.log_callback = log_callback ? log_callback : llama_log_callback_default;
     g_logger_state.log_callback_user_data = user_data;
 }
 
+// 函数: llama_log_internal_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_internal_v
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void llama_log_internal_v(ggml_log_level level, const char * format, va_list args) {
     va_list args_copy;
     va_copy(args_copy, args);
@@ -52,6 +101,14 @@ static void llama_log_internal_v(ggml_log_level level, const char * format, va_l
     va_end(args_copy);
 }
 
+// 函数: llama_log_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_internal
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_log_internal(ggml_log_level level, const char * format, ...) {
     va_list args;
     va_start(args, format);
@@ -59,6 +116,14 @@ void llama_log_internal(ggml_log_level level, const char * format, ...) {
     va_end(args);
 }
 
+// 函数: llama_log_callback_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_log_callback_default
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void llama_log_callback_default(ggml_log_level level, const char * text, void * user_data) {
     (void) level;
     (void) user_data;
@@ -66,6 +131,14 @@ void llama_log_callback_default(ggml_log_level level, const char * text, void * 
     fflush(stderr);
 }
 
+// 函数: replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: replace_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void replace_all(std::string & s, const std::string & search, const std::string & replace) {
     if (search.empty()) {
         return;
@@ -83,6 +156,14 @@ void replace_all(std::string & s, const std::string & search, const std::string 
     s = std::move(builder);
 }
 
+// 函数: format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format(const char * fmt, ...) {
     va_list ap;
     va_list ap2;
@@ -98,6 +179,14 @@ std::string format(const char * fmt, ...) {
     return std::string(buf.data(), size);
 }
 
+// 函数: llama_format_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_format_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string llama_format_tensor_shape(const std::vector<int64_t> & ne) {
     char buf[256];
     snprintf(buf, sizeof(buf), "%5" PRId64, ne.at(0));
@@ -107,6 +196,14 @@ std::string llama_format_tensor_shape(const std::vector<int64_t> & ne) {
     return buf;
 }
 
+// 函数: llama_format_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_format_tensor_shape
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string llama_format_tensor_shape(const struct ggml_tensor * t) {
     char buf[256];
     snprintf(buf, sizeof(buf), "%6" PRId64, t->ne[0]);
@@ -116,6 +213,14 @@ std::string llama_format_tensor_shape(const struct ggml_tensor * t) {
     return buf;
 }
 
+// 函数: gguf_data_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_data_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string gguf_data_to_str(enum gguf_type type, const void * data, int i) {
     switch (type) {
         case GGUF_TYPE_UINT8:   return std::to_string(((const uint8_t  *)data)[i]);
@@ -133,6 +238,14 @@ static std::string gguf_data_to_str(enum gguf_type type, const void * data, int 
     }
 }
 
+// 函数: gguf_kv_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gguf_kv_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gguf_kv_to_str(const struct gguf_context * ctx_gguf, int i) {
     const enum gguf_type type = gguf_get_kv_type(ctx_gguf, i);
 

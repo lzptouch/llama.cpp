@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama-arch.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama-arch.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "llama-arch.h"
 
 #include "llama-impl.h"
@@ -2786,6 +2793,14 @@ std::string LLM_TN_IMPL::str() const {
     return name;
 }
 
+// 函数: llm_arch_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_name
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llm_arch_name(llm_arch arch) {
     auto it = LLM_ARCH_NAMES.find(arch);
     if (it == LLM_ARCH_NAMES.end()) {
@@ -2794,6 +2809,14 @@ const char * llm_arch_name(llm_arch arch) {
     return it->second;
 }
 
+// 函数: llm_arch_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_from_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llm_arch llm_arch_from_string(const std::string & name) {
     for (const auto & kv : LLM_ARCH_NAMES) { // NOLINT
         if (kv.second == name) {
@@ -2808,6 +2831,14 @@ const llm_tensor_info & llm_tensor_info_for(llm_tensor tensor) {
     return LLM_TENSOR_INFOS.at(tensor);
 }
 
+// 函数: llm_arch_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_recurrent
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_recurrent(const llm_arch & arch) {
     switch (arch) {
         case LLM_ARCH_MAMBA:
@@ -2822,6 +2853,14 @@ bool llm_arch_is_recurrent(const llm_arch & arch) {
     }
 }
 
+// 函数: llm_arch_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_hybrid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_hybrid(const llm_arch & arch) {
     switch (arch) {
         case LLM_ARCH_JAMBA:
@@ -2842,6 +2881,14 @@ bool llm_arch_is_hybrid(const llm_arch & arch) {
     }
 }
 
+// 函数: llm_arch_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_arch_is_diffusion
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llm_arch_is_diffusion(const llm_arch & arch) {
     switch (arch) {
         case LLM_ARCH_DREAM:

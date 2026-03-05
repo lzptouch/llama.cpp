@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: repack.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-cpu/arch/x86/repack.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #define GGML_COMMON_IMPL_CPP
 #define GGML_COMMON_DECL_CPP
 #include "ggml-common.h"
@@ -36,6 +43,14 @@
 #define GGML_F32Cx8_REARRANGE_LOAD(x, arrangeMask)     _mm256_cvtph_ps(_mm_shuffle_epi8(_mm_loadu_si128((const __m128i *) x), arrangeMask))
 #else
 #if defined(__AVX512F__)
+// 函数: __avx512_f32cx8x2_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx512_f32cx8x2_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m512 __avx512_f32cx8x2_load(ggml_fp16_t *x, ggml_fp16_t *y) {
     float tmp[16];
 
@@ -49,6 +64,14 @@ static inline __m512 __avx512_f32cx8x2_load(ggml_fp16_t *x, ggml_fp16_t *y) {
 
     return _mm512_loadu_ps(tmp);
 }
+// 函数: __avx512_repeat_f32cx16_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx512_repeat_f32cx16_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m512 __avx512_repeat_f32cx16_load(__m128i x) {
     float tmp[16];
     uint16_t tmphalf[8];
@@ -64,6 +87,14 @@ static inline __m512 __avx512_repeat_f32cx16_load(__m128i x) {
     return _mm512_loadu_ps(tmp);
 }
 #endif
+// 函数: __avx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 __avx_f32cx8_load(ggml_fp16_t *x) {
     float tmp[8];
 
@@ -73,6 +104,14 @@ static inline __m256 __avx_f32cx8_load(ggml_fp16_t *x) {
 
     return _mm256_loadu_ps(tmp);
 }
+// 函数: __avx_repeat_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx_repeat_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 __avx_repeat_f32cx8_load(ggml_fp16_t *x) {
     float tmp[8];
 
@@ -83,6 +122,14 @@ static inline __m256 __avx_repeat_f32cx8_load(ggml_fp16_t *x) {
 
     return _mm256_loadu_ps(tmp);
 }
+// 函数: __avx_rearranged_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: __avx_rearranged_f32cx8_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256 __avx_rearranged_f32cx8_load(ggml_fp16_t *x, __m128i arrangeMask) {
     uint16_t tmphalf[8];
     float tmp[8];
@@ -105,6 +152,14 @@ static inline __m256 __avx_rearranged_f32cx8_load(ggml_fp16_t *x, __m128i arrang
 #endif
 #endif
 
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: nearest_int
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline int nearest_int(float fval) {
     assert(fabsf(fval) <= 4194303.f);
     float val = fval + 12582912.f;
@@ -115,11 +170,27 @@ static inline int nearest_int(float fval) {
 #if defined(__AVX2__) || defined(__AVX512F__)
 #if defined(__AVX512F__)
 // add int16_t pairwise and return as 512 bit int vector, then add the accumulator
+// 函数: sum_i16_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sum_i16_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m512i sum_i16_pairs_acc_int32x16(const __m512i acc, const __m512i x) {
     const __m512i ones = _mm512_set1_epi16(1);
     return _mm512_add_epi32(acc, _mm512_madd_epi16(ones, x));
 }
 
+// 函数: mul_sum_us8_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_us8_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m512i mul_sum_us8_pairs_acc_int32x16(const __m512i acc, const __m512i ax, const __m512i sy) {
 #if defined(__AVX512VNNI__)
     return _mm512_dpbusd_epi32(acc, ax, sy);
@@ -131,6 +202,14 @@ static inline __m512i mul_sum_us8_pairs_acc_int32x16(const __m512i acc, const __
 }
 
 // multiply int8_t, add results pairwise twice and return as 512 bit int vector，then add the accumulator
+// 函数: mul_sum_i8_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_i8_pairs_acc_int32x16
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m512i mul_sum_i8_pairs_acc_int32x16(const __m512i acc, const __m512i x, const __m512i y) {
     const __m512i zero = _mm512_setzero_si512();
     // Get absolute values of x vectors
@@ -143,11 +222,27 @@ static inline __m512i mul_sum_i8_pairs_acc_int32x16(const __m512i acc, const __m
 #endif
 
 // add int16_t pairwise and return as 256 bit int vector, then add the accumulator
+// 函数: sum_i16_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: sum_i16_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i sum_i16_pairs_acc_int32x8(const __m256i acc, const __m256i x) {
     const __m256i ones = _mm256_set1_epi16(1);
     return _mm256_add_epi32(acc, _mm256_madd_epi16(ones, x));
 }
 
+// 函数: mul_sum_us8_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_us8_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i mul_sum_us8_pairs_acc_int32x8(const __m256i acc, const __m256i ax, const __m256i sy) {
 #if defined(__AVX512VNNI__) && defined(__AVX512VL__)
     return _mm256_dpbusd_epi32(acc, ax, sy);
@@ -162,6 +257,14 @@ static inline __m256i mul_sum_us8_pairs_acc_int32x8(const __m256i acc, const __m
 
 // Integer variant of the function defined in ggml-quants.c
 // multiply int8_t, add results pairwise twice and return as 256 bit int vector, then add the accumulator
+// 函数: mul_sum_i8_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: mul_sum_i8_pairs_acc_int32x8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline __m256i mul_sum_i8_pairs_acc_int32x8(const __m256i acc, const __m256i x, const __m256i y) {
 #if defined(__AVXVNNIINT8__)
     return _mm256_dpbssd_epi32(acc, x, y);
@@ -175,6 +278,14 @@ static inline __m256i mul_sum_i8_pairs_acc_int32x8(const __m256i acc, const __m2
 }
 #endif
 
+// 函数: ggml_quantize_mat_q8_0_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_0_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_0_4x8(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK8_0 == 32);
     assert(k % QK8_0 == 0);
@@ -287,6 +398,14 @@ void ggml_quantize_mat_q8_0_4x8(const float * GGML_RESTRICT x, void * GGML_RESTR
 #endif
 }
 
+// 函数: ggml_quantize_mat_q8_K_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_quantize_mat_q8_K_4x8
+// 描述: 量化: 对数据进行量化处理
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_quantize_mat_q8_K_4x8(const float * GGML_RESTRICT x, void * GGML_RESTRICT vy, int64_t k) {
     assert(QK_K == 256);
     assert(k % QK_K == 0);
@@ -519,6 +638,14 @@ void ggml_quantize_mat_q8_K_4x8(const float * GGML_RESTRICT x, void * GGML_RESTR
 
 // GEMV for 8x blocks of 32 4-bit quants with a single scale factor per block
 template<typename block_tx8>
+// 函数: gemv_q4_b32_8x8_q8_0_lut_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gemv_q4_b32_8x8_q8_0_lut_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gemv_q4_b32_8x8_q8_0_lut_avx(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc, __m256i signextendlut) {
     static_assert(
             std::is_same_v<block_tx8, block_q4_0x8> ||
@@ -638,6 +765,14 @@ static void gemv_q4_b32_8x8_q8_0_lut_avx(int n, float * GGML_RESTRICT s, size_t 
 
 // GEMM for 8x blocks of 32 4-bit quants with a single scale factor per block
 template<typename block_tx8>
+// 函数: gemm_q4_b32_8x8_q8_0_lut_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gemm_q4_b32_8x8_q8_0_lut_avx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void gemm_q4_b32_8x8_q8_0_lut_avx(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc, __m256i signextendlut) {
     static_assert(
             std::is_same_v<block_tx8, block_q4_0x8> ||
@@ -1445,6 +1580,14 @@ static void gemm_q4_b32_8x8_q8_0_lut_avx(int n, float * GGML_RESTRICT s, size_t 
 
 #endif // defined(__AVX2__) || defined(__AVX512F__)
 
+// 函数: ggml_gemv_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__) || defined(__AVX512F__)
     {
@@ -1461,6 +1604,14 @@ void ggml_gemv_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const vo
     ggml_gemv_q4_0_8x8_q8_0_generic(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -1684,6 +1835,14 @@ void ggml_gemv_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 #endif
 }
 
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__)
     __m256i signextendlut = _mm256_castsi128_si256(_mm_loadu_si128((const __m128i*)kvalues_iq4nl));
@@ -1697,6 +1856,14 @@ void ggml_gemv_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const 
     ggml_gemv_iq4_nl_8x8_q8_0_generic(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__)
     __m256i signextendlut = _mm256_castsi128_si256(_mm_loadu_si128((const __m128i*)kvalues_mxfp4));
@@ -1710,6 +1877,14 @@ void ggml_gemv_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const v
     ggml_gemv_mxfp4_8x8_q8_0_generic(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemv_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemv_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemv_q2_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -2023,6 +2198,14 @@ void ggml_gemv_q2_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 #endif
 }
 
+// 函数: ggml_gemm_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_0_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__) || defined(__AVX512F__)
     {
@@ -2039,6 +2222,14 @@ void ggml_gemm_q4_0_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const vo
     ggml_gemm_q4_0_8x8_q8_0_generic(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q4_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;
@@ -3493,6 +3684,14 @@ void ggml_gemm_q4_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const vo
 #endif
 }
 
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_iq4_nl_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__) || defined(__AVX512F__)
     {
@@ -3508,6 +3707,14 @@ void ggml_gemm_iq4_nl_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const 
     ggml_gemm_iq4_nl_4x4_q8_0(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_mxfp4_8x8_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
 #if defined(__AVX2__) || defined(__AVX512F__)
     {
@@ -3523,6 +3730,14 @@ void ggml_gemm_mxfp4_8x8_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const v
     ggml_gemm_mxfp4_8x8_q8_0_generic(n, s, bs, vx, vy, nr, nc);
 }
 
+// 函数: ggml_gemm_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_gemm_q2_K_8x8_q8_K
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_gemm_q2_K_8x8_q8_K(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, const void * GGML_RESTRICT vy, int nr, int nc) {
     const int qk = QK_K;
     const int nb = n / qk;

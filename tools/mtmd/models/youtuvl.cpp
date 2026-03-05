@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: youtuvl.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/youtuvl.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 
 ggml_cgraph * clip_graph_youtuvl::build() {

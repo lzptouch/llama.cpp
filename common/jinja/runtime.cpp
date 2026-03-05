@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: runtime.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/jinja/runtime.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "lexer.h"
 #include "runtime.h"
 #include "value.h"
@@ -14,10 +21,26 @@ bool g_jinja_debug = false;
 
 namespace jinja {
 
+// 函数: enable_debug
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: enable_debug
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void enable_debug(bool enable) {
     g_jinja_debug = enable;
 }
 
+// 函数: exec_statements
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: exec_statements
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value_string exec_statements(const statements & stmts, context & ctx) {
     auto result = mk_val<value_array>();
     for (const auto & stmt : stmts) {
@@ -30,6 +53,14 @@ static value_string exec_statements(const statements & stmts, context & ctx) {
     return str;
 }
 
+// 函数: get_line_col
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
+// 函数: get_line_col
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数或索引参数
+// 返回: 返回请求的属性或值
 static std::string get_line_col(const std::string & source, size_t pos) {
     size_t line = 1;
     size_t col = 1;
@@ -44,6 +75,14 @@ static std::string get_line_col(const std::string & source, size_t pos) {
     return "line " + std::to_string(line) + ", column " + std::to_string(col);
 }
 
+// 函数: ensure_key_type_allowed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ensure_key_type_allowed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void ensure_key_type_allowed(const value & val) {
     if (!val->is_hashable()) {
         throw std::runtime_error("Type: " + val->type() + " is not allowed as object key");
@@ -53,6 +92,14 @@ static void ensure_key_type_allowed(const value & val) {
 // execute with error handling
 value statement::execute(context & ctx) {
     try {
+        // 函数: execute_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: execute_impl
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return execute_impl(ctx);
     } catch (const continue_statement::signal & /* ex */) {
         throw;
@@ -67,6 +114,14 @@ value statement::execute(context & ctx) {
         if (source.empty()) {
             std::ostringstream oss;
             oss << "\nError executing " << type() << " at position " << pos << ": " << e.what();
+            // 函数: rethrown_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: rethrown_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw rethrown_exception(oss.str());
         } else {
             std::ostringstream oss;
@@ -75,6 +130,14 @@ value statement::execute(context & ctx) {
             oss << peak_source(source, pos) << "\n";
             oss << "Error: " << e.what();
             // throw as another exception to avoid repeated formatting
+            // 函数: rethrown_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: rethrown_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw rethrown_exception(oss.str());
         }
     }
@@ -145,9 +208,25 @@ value binary_expression::execute_impl(context & ctx) {
     };
 
     auto test_is_in = [&]() -> bool {
+        // 函数: args
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: args
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         func_args args(ctx);
         args.push_back(left_val);
         args.push_back(right_val);
+        // 函数: global_builtins
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: global_builtins
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return global_builtins().at("test_is_in")(args)->as_bool();
     };
 
@@ -274,6 +353,14 @@ value binary_expression::execute_impl(context & ctx) {
     throw std::runtime_error("Unknown operator \"" + op.value + "\" between " + left_val->type() + " and " + right_val->type());
 }
 
+// 函数: try_builtin_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: try_builtin_func
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static value try_builtin_func(context & ctx, const std::string & name, value & input, bool undef_on_missing = false) {
     JJ_DEBUG("Trying built-in function '%s' for type %s", name.c_str(), input->type().c_str());
     if (ctx.is_get_stats) {
@@ -304,6 +391,14 @@ value filter_expression::execute_impl(context & ctx) {
             filter_id = "strip"; // alias
         }
         JJ_DEBUG("Applying filter '%s' to %s", filter_id.c_str(), input->type().c_str());
+        // 函数: try_builtin_func
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: try_builtin_func
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return try_builtin_func(ctx, filter_id, input)->invoke(func_args(ctx));
 
     } else if (is_stmt<call_expression>(filter)) {
@@ -317,11 +412,27 @@ value filter_expression::execute_impl(context & ctx) {
             filter_id = "strip"; // alias
         }
         JJ_DEBUG("Applying filter '%s' with arguments to %s", filter_id.c_str(), input->type().c_str());
+        // 函数: args
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: args
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         func_args args(ctx);
         for (const auto & arg_expr : call->args) {
             args.push_back(arg_expr->execute(ctx));
         }
 
+        // 函数: try_builtin_func
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: try_builtin_func
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return try_builtin_func(ctx, filter_id, input)->invoke(args);
 
     } else {
@@ -336,6 +447,14 @@ value filter_statement::execute_impl(context & ctx) {
     gather_string_parts_recursive(body_val, parts);
 
     JJ_DEBUG("FilterStatement: applying filter to body string of length %zu", parts->val_str.length());
+    // 函数: filter_expr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: filter_expr
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     filter_expression filter_expr(std::move(parts), std::move(filter));
     value out = filter_expr.execute(ctx);
 
@@ -351,6 +470,14 @@ value test_expression::execute_impl(context & ctx) {
     std::string test_id;
     value input = operand->execute(ctx);
 
+    // 函数: args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     func_args args(ctx);
     args.push_back(input);
 
@@ -428,6 +555,14 @@ value if_statement::execute_impl(context & ctx) {
 }
 
 value for_statement::execute_impl(context & ctx) {
+    // 函数: scope
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: scope
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     context scope(ctx); // new scope for loop variables
 
     jinja::select_expression * select_expr = cast_stmt<select_expression>(iterable);
@@ -489,6 +624,14 @@ value for_statement::execute_impl(context & ctx) {
 
     std::vector<value> filtered_items;
     for (size_t i = 0; i < items.size(); ++i) {
+        // 函数: loop_scope
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: loop_scope
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         context loop_scope(scope);
 
         value current = items[i];
@@ -657,6 +800,14 @@ value macro_statement::execute_impl(context & ctx) {
         size_t input_count = args.count();
 
         JJ_DEBUG("Invoking macro '%s' with %zu input arguments (expected %zu)", name.c_str(), input_count, expected_count);
+        // 函数: macro_ctx
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: macro_ctx
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         context macro_ctx(ctx); // new scope for macro execution
 
         // bind parameters
@@ -737,6 +888,14 @@ value member_expression::execute_impl(context & ctx) {
                      stop_val->as_repr().c_str(),
                      step_val->as_repr().c_str());
             auto slice_func = try_builtin_func(ctx, "slice", object);
+            // 函数: args
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: args
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             func_args args(ctx);
             args.push_back(start_val);
             args.push_back(stop_val);
@@ -834,6 +993,14 @@ value member_expression::execute_impl(context & ctx) {
 
 value call_expression::execute_impl(context & ctx) {
     // gather arguments
+    // 函数: args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: args
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     func_args args(ctx);
     for (auto & arg_stmt : this->args) {
         auto arg_val = arg_stmt->execute(ctx);

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: kimik25.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/mtmd/models/kimik25.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "models.h"
 #include <cstring>
 #include <cmath>
@@ -21,6 +28,14 @@ ggml_tensor * clip_graph_kimik25::resize_position_embeddings_3d(uint32_t interpo
 
     if (height == (int)orig_h && width == (int)orig_w) {
         // No interpolation needed, just flatten to [C, H*W]
+        // 函数: ggml_cont_2d
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: ggml_cont_2d
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return ggml_cont_2d(ctx0, pos_embd, n_embd, width * height);
     }
 

@@ -12,6 +12,14 @@
 
 #include "concat.hpp"
 
+// 函数: elem_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: elem_size
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t elem_size(ggml_type t) {
     return ggml_type_size(t) / ggml_blck_size(t);
 }
@@ -151,6 +159,14 @@ static void concat_T_sycl_non_cont(
 }
 
 template <typename T>
+// 函数: concat_impl_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: concat_impl_sycl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void concat_impl_sycl(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/2);
     const ggml_tensor *  src0   = dst->src[0];
@@ -186,6 +202,14 @@ void concat_impl_sycl(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
     }
 }
 
+// 函数: ggml_sycl_op_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_concat
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_concat(ggml_backend_sycl_context & ctx, ggml_tensor *dst) {
 
     switch (dst->type) {

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: finetune.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/training/finetune.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "log.h"
@@ -13,6 +20,14 @@
 #pragma warning(disable: 4244 4267)  // possible loss of data
 #endif
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
     params.escape = false;
@@ -58,11 +73,47 @@ int main(int argc, char ** argv) {
     std::vector<llama_token> tokens  = common_tokenize(ctx, params.prompt, true);
     ggml_opt_dataset_t       dataset = common_opt_dataset_init(ctx, tokens, llama_n_ctx(ctx) / 2);
 
+    // 类: lr_opt
+    // 描述: lr_opt类提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 类: lr_opt
+    // 描述: lr_opt类提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
+    // 结构体: lr_opt
+    // 描述: lr_opt结构体提供相关功能
+    // 用途: 用于处理lr_opt相关的操作
     struct lr_opt & lr = params.lr;
     LOG_INF("-optimizer %s -lr0 %.2g -wd %.2g -lr-min %.2g -min-epochs %.2g -epochs %d -period %.2g -val %.2g\n",
             ggml_opt_optimizer_name(params.optimizer), (double) lr.lr0, (double) lr.wd, (double) lr.lr_min, (double) lr.decay_epochs,
             (unsigned) lr.epochs, (double) params.n_batch / params.n_ubatch, (double) params.val_split);
 
+    // 类: llama_opt_params
+    // 描述: llama_opt_params类提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 类: llama_opt_params
+    // 描述: llama_opt_params类提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
+    // 结构体: llama_opt_params
+    // 描述: llama_opt_params结构体提供相关功能
+    // 用途: 用于处理llama_opt_params相关的操作
     struct llama_opt_params lopt_params{
         /*n_ctx_train     =*/0,
         /*param_filter    =*/llama_opt_param_filter_all,

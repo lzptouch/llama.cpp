@@ -59,10 +59,44 @@ enum llm_chat_template {
     LLM_CHAT_TEMPLATE_UNKNOWN,
 };
 
+// 类: llama_chat_message
+// 描述: llama_chat_message类提供相关功能
+// 用途: 用于处理llama_chat_message相关的操作
+// 类: llama_chat_message
+// 描述: llama_chat_message类提供相关功能
+// 用途: 用于处理llama_chat_message相关的操作
+    // 结构体: llama_chat_message
+    // 描述: llama_chat_message结构体提供相关功能
+    // 用途: 用于处理llama_chat_message相关的操作
+    // 结构体: llama_chat_message
+    // 描述: llama_chat_message结构体提供相关功能
+    // 用途: 用于处理llama_chat_message相关的操作
+    // 结构体: llama_chat_message
+    // 描述: llama_chat_message结构体提供相关功能
+    // 用途: 用于处理llama_chat_message相关的操作
+    // 结构体: llama_chat_message
+    // 描述: llama_chat_message结构体提供相关功能
+    // 用途: 用于处理llama_chat_message相关的操作
 struct llama_chat_message;
 
+// 函数: llm_chat_template_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_chat_template_from_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llm_chat_template llm_chat_template_from_str(const std::string & name);
 
+// 函数: llm_chat_detect_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llm_chat_detect_template
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llm_chat_template llm_chat_detect_template(const std::string & tmpl);
 
 int32_t llm_chat_apply_template(

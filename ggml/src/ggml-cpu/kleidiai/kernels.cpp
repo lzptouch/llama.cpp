@@ -44,11 +44,27 @@
 #define NELEMS(x) (sizeof(x) / sizeof(*x))
 
 template<size_t(*Fn)(size_t,size_t,size_t)>
+// 函数: kernel_offs_fn3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: kernel_offs_fn3
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t kernel_offs_fn3(size_t a, size_t b, size_t c) {
     return Fn(a, b, c);
 }
 
 template<size_t(*Fn)(size_t,size_t)>
+// 函数: kernel_offs_fn2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: kernel_offs_fn2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t kernel_offs_fn2(size_t a, size_t b, size_t) {
     return Fn(a, b);
 }
@@ -78,21 +94,53 @@ static inline void kernel_run_float_fn10(size_t m, size_t n, size_t k, size_t /*
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t,size_t,size_t)>
+// 函数: lhs_ps_fn6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lhs_ps_fn6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t lhs_ps_fn6(size_t m, size_t k, size_t bl, size_t mr, size_t kr, size_t sr) {
     return Fn(m, k, bl, mr, kr, sr);
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t,size_t)>
+// 函数: lhs_ps_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lhs_ps_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t lhs_ps_fn5(size_t m, size_t k, size_t /*bl*/, size_t mr, size_t kr, size_t sr) {
     return Fn(m, k, mr, kr, sr);
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t,size_t,size_t)>
+// 函数: lhs_offs_fn6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lhs_offs_fn6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t lhs_offs_fn6(size_t m_idx, size_t k, size_t bl, size_t mr, size_t kr, size_t sr) {
     return Fn(m_idx, k, bl, mr, kr, sr);
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t,size_t)>
+// 函数: lhs_offs_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lhs_offs_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t lhs_offs_fn5(size_t m_idx, size_t k, size_t /*bl*/, size_t mr, size_t kr, size_t sr) {
     return Fn(m_idx, k, mr, kr, sr);
 }
@@ -122,21 +170,53 @@ static inline void lhs_pack_float_fn9_no_bl(size_t m, size_t k, size_t /*bl*/, s
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t,size_t)>
+// 函数: rhs_ps_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rhs_ps_fn5
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t rhs_ps_fn5(size_t n, size_t k, size_t nr, size_t kr, size_t bl) {
     return Fn(n, k, nr, kr, bl);
 }
 
 template<size_t(*Fn)(size_t,size_t)>
+// 函数: rhs_ps_fn2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rhs_ps_fn2
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t rhs_ps_fn2(size_t n, size_t k, size_t /*nr*/, size_t /*kr*/, size_t /*bl*/) {
     return Fn(n, k);
 }
 
 template<size_t(*Fn)(size_t,size_t,size_t,size_t)>
+// 函数: rhs_stride_fn4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rhs_stride_fn4
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t rhs_stride_fn4(size_t k, size_t nr, size_t kr, size_t bl) {
     return Fn(k, nr, kr, bl);
 }
 
 template<size_t(*Fn)(size_t)>
+// 函数: rhs_stride_fn1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: rhs_stride_fn1
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline size_t rhs_stride_fn1(size_t k, size_t /*nr*/, size_t /*kr*/, size_t /*bl*/) {
     return Fn(k);
 }
@@ -864,6 +944,14 @@ static ggml_kleidiai_kernels gemm_gemv_kernels_q8[] = {
     { /* Sentinel */ }
 };
 
+// 函数: ggml_kleidiai_select_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_kleidiai_select_kernels
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_kleidiai_kernels * ggml_kleidiai_select_kernels(cpu_feature cpu_features, const ggml_tensor * tensor) {
     ggml_kleidiai_kernels * kernel = nullptr;
 
@@ -900,6 +988,14 @@ ggml_kleidiai_kernels * ggml_kleidiai_select_kernels(cpu_feature cpu_features, c
     return kernel;
 }
 
+// 函数: ggml_kleidiai_select_kernels_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_kleidiai_select_kernels_q4_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_kleidiai_kernels * ggml_kleidiai_select_kernels_q4_0(cpu_feature features) {
     ggml_kleidiai_kernels * kernels = nullptr;
 
@@ -920,6 +1016,14 @@ ggml_kleidiai_kernels * ggml_kleidiai_select_kernels_q4_0(cpu_feature features) 
     return kernels;
 }
 
+// 函数: ggml_kleidiai_select_kernels_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_kleidiai_select_kernels_q8_0
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 ggml_kleidiai_kernels * ggml_kleidiai_select_kernels_q8_0(cpu_feature features) {
     ggml_kleidiai_kernels * kernels = nullptr;
 

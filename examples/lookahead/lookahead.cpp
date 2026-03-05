@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: lookahead.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/lookahead/lookahead.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "sampling.h"
@@ -9,6 +16,24 @@
 #include <vector>
 #include <algorithm>
 
+// 类: ngram_data
+// 描述: ngram_data类提供相关功能
+// 用途: 用于处理ngram_data相关的操作
+// 类: ngram_data
+// 描述: ngram_data类提供相关功能
+// 用途: 用于处理ngram_data相关的操作
+    // 结构体: ngram_data
+    // 描述: ngram_data结构体提供相关功能
+    // 用途: 用于处理ngram_data相关的操作
+    // 结构体: ngram_data
+    // 描述: ngram_data结构体提供相关功能
+    // 用途: 用于处理ngram_data相关的操作
+    // 结构体: ngram_data
+    // 描述: ngram_data结构体提供相关功能
+    // 用途: 用于处理ngram_data相关的操作
+    // 结构体: ngram_data
+    // 描述: ngram_data结构体提供相关功能
+    // 用途: 用于处理ngram_data相关的操作
 struct ngram_data {
     bool active = false;
 
@@ -20,6 +45,24 @@ struct ngram_data {
 };
 
 // n-gram container
+// 类: ngram_container
+// 描述: ngram_container类提供相关功能
+// 用途: 用于处理ngram_container相关的操作
+// 类: ngram_container
+// 描述: ngram_container类提供相关功能
+// 用途: 用于处理ngram_container相关的操作
+    // 结构体: ngram_container
+    // 描述: ngram_container结构体提供相关功能
+    // 用途: 用于处理ngram_container相关的操作
+    // 结构体: ngram_container
+    // 描述: ngram_container结构体提供相关功能
+    // 用途: 用于处理ngram_container相关的操作
+    // 结构体: ngram_container
+    // 描述: ngram_container结构体提供相关功能
+    // 用途: 用于处理ngram_container相关的操作
+    // 结构体: ngram_container
+    // 描述: ngram_container结构体提供相关功能
+    // 用途: 用于处理ngram_container相关的操作
 struct ngram_container {
     ngram_container(int n_vocab, int N, int G) {
         cnt.resize(n_vocab);
@@ -37,6 +80,14 @@ struct ngram_container {
     std::vector<llama_token> tokens;
 };
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -124,6 +175,24 @@ int main(int argc, char ** argv) {
     llama_batch batch = llama_batch_init(llama_n_ctx(ctx), 0, W + G + 1);
 
     // target model sampling context
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 类: common_sampler
+    // 描述: common_sampler类提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
+    // 结构体: common_sampler
+    // 描述: common_sampler结构体提供相关功能
+    // 用途: 用于处理common_sampler相关的操作
     struct common_sampler * smpl = common_sampler_init(model, params.sampling);
 
     // verification n-grams

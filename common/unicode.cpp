@@ -1,13 +1,36 @@
+// ============================================================================
+// 文件: unicode.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/common/unicode.cpp
+// 作者: 自动注释工具
+// 描述: 通用工具文件,包含常用功能和辅助类
+// ============================================================================
+
 #include "unicode.h"
 
 // implementation adopted from src/unicode.cpp
 
+// 函数: utf8_sequence_length
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: utf8_sequence_length
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t utf8_sequence_length(unsigned char first_byte) {
     const size_t lookup[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4 };
     uint8_t highbits = static_cast<uint8_t>(first_byte) >> 4;
     return lookup[highbits];
 }
 
+// 函数: parse_utf8_codepoint
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_utf8_codepoint
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 utf8_parse_result parse_utf8_codepoint(std::string_view input, size_t offset) {
     if (offset >= input.size()) {
         return utf8_parse_result(utf8_parse_result::INCOMPLETE);

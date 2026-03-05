@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: semantic_check.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/model-conversion/scripts/utils/semantic_check.py
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #!/usr/bin/env python3
 
 import numpy as np
@@ -11,6 +18,10 @@ from common import compare_tokens, exit_with_warning  # type: ignore[import-not-
 
 unreleased_model_name = os.getenv('UNRELEASED_MODEL_NAME')
 
+    # 函数: cosine_similarity
+    # 描述: cosine_similarity函数提供相关功能
+    # 参数: a, b=None
+    # 返回: 无返回值
 def cosine_similarity(a, b=None):
     a = np.asarray(a)
     if b is None:
@@ -35,6 +46,10 @@ def cosine_similarity(a, b=None):
     # Compute cosine similarity
     return np.dot(a_normalized, b_normalized.T)
 
+    # 函数: load_embeddings_from_file
+    # 描述: load_embeddings_from_file函数提供相关功能
+    # 参数: filename, n_tokens, n_embd
+    # 返回: 有返回值
 def load_embeddings_from_file(filename, n_tokens, n_embd):
     embeddings = np.fromfile(filename, dtype=np.float32)
     # Check if this is pooled (single embedding) or per-token embeddings
@@ -43,6 +58,10 @@ def load_embeddings_from_file(filename, n_tokens, n_embd):
     else:
         return embeddings.reshape(n_tokens, n_embd)
 
+    # 函数: test_single_prompt_similarity
+    # 描述: test_single_prompt_similarity函数提供相关功能
+    # 参数: python_emb, cpp_emb, tokens, prompt
+    # 返回: 无返回值
 def test_single_prompt_similarity(python_emb, cpp_emb, tokens, prompt):
     np.set_printoptions(suppress=True, precision=6)
     print("pytorch embeddings:");
@@ -132,6 +151,10 @@ def test_single_prompt_similarity(python_emb, cpp_emb, tokens, prompt):
             'rms_diff': np.sqrt(np.mean(diff_matrix**2))
         }
 
+    # 函数: read_prompt_from_file
+    # 描述: read_prompt_from_file函数提供相关功能
+    # 参数: file_path
+    # 返回: 有返回值
 def read_prompt_from_file(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -143,6 +166,10 @@ def read_prompt_from_file(file_path):
         print(f"Error reading prompts file: {e}")
         exit(1)
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     parser = argparse.ArgumentParser(description='Test semantic similarity between Python and llama.cpp embeddings')
     parser.add_argument('--model-path', '-m', required=True, help='Path to the original Python model')

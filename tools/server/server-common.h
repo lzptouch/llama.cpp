@@ -30,6 +30,14 @@ using json = nlohmann::ordered_json;
 using raw_buffer = std::vector<uint8_t>;
 
 template <typename T>
+// 函数: json_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_value
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static T json_value(const json & body, const std::string & key, const T & default_value) {
     // Fallback null to default value
     if (body.contains(key) && !body.at(key).is_null()) {
@@ -57,6 +65,30 @@ enum error_type {
 };
 
 // thin wrapper around common_grammar_trigger with (de)serialization functions
+// 类: server_grammar_trigger
+// 描述: server_grammar_trigger类提供相关功能
+// 用途: 用于处理server_grammar_trigger相关的操作
+// 类: server_grammar_trigger
+// 描述: server_grammar_trigger类提供相关功能
+// 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
+    // 结构体: server_grammar_trigger
+    // 描述: server_grammar_trigger结构体提供相关功能
+    // 用途: 用于处理server_grammar_trigger相关的操作
 struct server_grammar_trigger {
     common_grammar_trigger value;
 
@@ -70,6 +102,14 @@ struct server_grammar_trigger {
         }
     }
 
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: to_json
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     json to_json() const {
         json out {
             {"type", (int) value.type},
@@ -82,14 +122,46 @@ struct server_grammar_trigger {
     }
 };
 
+// 函数: format_error_response
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_error_response
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json format_error_response(const std::string & message, const enum error_type type);
 
 //
 // random string / id
 //
 
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: random_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string random_string();
+// 函数: gen_chatcmplid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gen_chatcmplid
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gen_chatcmplid();
+// 函数: gen_tool_call_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: gen_tool_call_id
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string gen_tool_call_id();
 
 //
@@ -97,6 +169,14 @@ std::string gen_tool_call_id();
 //
 
 // check whether the given lora set has only aloras activated (empty => false)
+// 函数: lora_all_alora
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: lora_all_alora
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool lora_all_alora(const std::vector<common_adapter_lora_info> & loras);
 
 // if the two sets of loras are different, they require a cache clear unless the
@@ -122,6 +202,30 @@ std::vector<size_t> lora_get_enabled_ids(const std::vector<common_adapter_lora_i
  * server_tokens is a helper to manage the input tokens and image for the server.
  * it is made this way to simplify the logic of KV cache management.
  */
+// 类: server_tokens
+// 描述: server_tokens类提供相关功能
+// 用途: 用于处理server_tokens相关的操作
+// 类: server_tokens
+// 描述: server_tokens类提供相关功能
+// 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
+    // 结构体: server_tokens
+    // 描述: server_tokens结构体提供相关功能
+    // 用途: 用于处理server_tokens相关的操作
 struct server_tokens {
     bool has_mtmd = false;
 
@@ -165,49 +269,169 @@ public:
     server_tokens(const llama_tokens & tokens, bool has_mtmd);
 
     // for debugging
+    // 函数: str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: str
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string str() const;
 
     // the next position after n_tokens. if n_tokens < 0, return the next position after all tokens.
+    // 函数: pos_next
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: pos_next
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     llama_pos pos_next(int64_t n_tokens = -1) const;
 
     // number of tokens with position <= max_pos
+    // 函数: size_up_to_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size_up_to_pos
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size_up_to_pos(llama_pos max_pos) const;
 
     const mtmd::input_chunk_ptr & find_chunk(size_t idx) const;
 
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push_back(llama_token tok);
 
     // will create a copy of the chunk if it contains non-text data
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push_back(const mtmd_input_chunk * chunk);
 
     // appends server tokens, updates the media map. copies media chunks.
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: push_back
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void push_back(server_tokens & tokens);
 
     // for compatibility with context shift and prompt truncation
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: insert
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void insert(const llama_tokens & inp_tokens);
 
     // for compatibility with speculative decoding, ctx shift, slot save/load
     const llama_tokens & get_text_tokens() const;
 
     // for compatibility with speculative decoding
+    // 函数: set_token
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
+    // 函数: set_token
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 设置参数和值
+    // 返回: 无返回值
     void set_token(llama_pos pos, llama_token id);
 
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: size
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     size_t size() const { return tokens.size(); }
 
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: empty
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool empty() const { return tokens.empty(); }
 
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clear
+    // 描述: 清空: 清空数据或资源
+    // 参数: 无参数
+    // 返回: 无返回值
     void clear() {
         map_idx_to_media.clear();
         tokens.clear();
     }
 
+    // 函数: keep_first
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: keep_first
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void keep_first(size_t n);
 
+    // 函数: detokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: detokenize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string detokenize(const llama_context * ctx, bool special) const;
 
+    // 函数: get_common_prefix
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
+    // 函数: get_common_prefix
+    // 描述: 获取: 获取某个属性、值或资源
+    // 参数: 无参数或索引参数
+    // 返回: 返回请求的属性或值
     size_t get_common_prefix(const server_tokens & b) const;
 
     // make sure all text tokens are within the vocab range
+    // 函数: validate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: validate
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     bool validate(const struct llama_context * ctx) const;
 
     // encode and decode the image chunk
@@ -219,6 +443,14 @@ public:
                 int32_t seq_id,
                 size_t & n_tokens_out) const;
 
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: clone
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     server_tokens clone() const;
 };
 
@@ -227,15 +459,47 @@ public:
 // tokenizer and input processing utils
 //
 
+// 函数: json_is_array_of_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_of_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_of_numbers(const json & data);
 
 // is array having BOTH numbers & strings?
+// 函数: json_is_array_of_mixed_numbers_strings
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_of_mixed_numbers_strings
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_of_mixed_numbers_strings(const json & data);
 
 // does array have any individual integers/tokens?
+// 函数: json_is_array_and_contains_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_is_array_and_contains_numbers
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool json_is_array_and_contains_numbers(const json & data);
 
 // get value by path(key1 / key2)
+// 函数: json_get_nested_values
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: json_get_nested_values
+// 描述: 获取: 获取某个属性、值或资源
+// 参数: 无参数
+// 返回: 无返回值
 json json_get_nested_values(const std::vector<std::string> & paths, const json & js);
 
 /**
@@ -243,14 +507,38 @@ json json_get_nested_values(const std::vector<std::string> & paths, const json &
  * - only string, example: "string"
  * - mixed string and tokens, example: [12, 34, "string", 56, 78]
  */
+// 函数: tokenize_mixed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokenize_mixed
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 llama_tokens tokenize_mixed(const llama_vocab * vocab, const json & json_prompt, bool add_special, bool parse_special);
 
 // return the last index of character that can form a valid string
 // if the last character is potentially cut in half, return the index before the cut
 // if validate_utf8(text) == text.size(), then the whole text is valid utf8
+// 函数: validate_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: validate_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t validate_utf8(const std::string& text);
 
 // process mtmd prompt, return the server_tokens containing both text tokens and media chunks
+// 函数: process_mtmd_prompt
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: process_mtmd_prompt
+// 描述: 处理: 处理输入数据或执行计算操作
+// 参数: 无参数
+// 返回: 无返回值
 server_tokens process_mtmd_prompt(mtmd_context * mctx, std::string prompt, std::vector<raw_buffer> files);
 
 /**
@@ -278,6 +566,30 @@ std::vector<server_tokens> tokenize_input_prompts(
 //
 
 // global server parameters for chat formatting / parsing
+// 类: server_chat_params
+// 描述: server_chat_params类提供相关功能
+// 用途: 用于处理server_chat_params相关的操作
+// 类: server_chat_params
+// 描述: server_chat_params类提供相关功能
+// 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
+    // 结构体: server_chat_params
+    // 描述: server_chat_params结构体提供相关功能
+    // 用途: 用于处理server_chat_params相关的操作
 struct server_chat_params {
     bool use_jinja;
     bool prefill_assistant;
@@ -291,6 +603,14 @@ struct server_chat_params {
 };
 
 // used by /completions endpoint
+// 函数: oaicompat_completion_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: oaicompat_completion_params_parse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json oaicompat_completion_params_parse(const json & body);
 
 // used by /chat/completions endpoint
@@ -300,9 +620,25 @@ json oaicompat_chat_params_parse(
     std::vector<raw_buffer> & out_files);
 
 // convert OpenAI Responses API format to OpenAI Chat Completions API format
+// 函数: convert_responses_to_chatcmpl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_responses_to_chatcmpl
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json convert_responses_to_chatcmpl(const json & body);
 
 // convert Anthropic Messages API format to OpenAI Chat Completions API format
+// 函数: convert_anthropic_to_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: convert_anthropic_to_oai
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 json convert_anthropic_to_oai(const json & body);
 
 // TODO: move it to server-task.cpp
@@ -327,23 +663,87 @@ json format_response_rerank(
 
 std::vector<llama_token_data> get_token_probabilities(llama_context * ctx, int idx);
 
+// 函数: safe_json_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: safe_json_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string safe_json_to_str(const json & data);
 
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_str(llama_context * ctx, const llama_tokens & tokens);
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_str
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_str(const llama_vocab * vocab, const llama_tokens & tokens);
 
 // format incomplete utf-8 multibyte character for output
+// 函数: tokens_to_output_formatted_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: tokens_to_output_formatted_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string tokens_to_output_formatted_string(const llama_context * ctx, const llama_token token);
 
 // format server-sent event (SSE), return the formatted string to send
 // note: if data is a json array, it will be sent as multiple events, one per item
+// 函数: format_oai_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_oai_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_oai_sse(const json & data);
 
+// 函数: format_oai_resp_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_oai_resp_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_oai_resp_sse(const json & data);
 
 // format Anthropic-style SSE with event types
+// 函数: format_anthropic_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: format_anthropic_sse
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string format_anthropic_sse(const json & data);
 
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: is_valid_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool is_valid_utf8(const std::string & str);
 
 //

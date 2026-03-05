@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: wkv.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-sycl/wkv.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include <sycl/sycl.hpp>
 #include "wkv.hpp"
 
@@ -179,6 +186,14 @@ static void rwkv_wkv7_f32_kernel(
     }
 }
 
+// 函数: ggml_sycl_op_rwkv_wkv6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_rwkv_wkv6
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_rwkv_wkv6(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/6);
     const float* k_d = (const float*)dst->src[0]->data;
@@ -235,6 +250,14 @@ void ggml_sycl_op_rwkv_wkv6(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     }
 }
 
+// 函数: ggml_sycl_op_rwkv_wkv7
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: ggml_sycl_op_rwkv_wkv7
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void ggml_sycl_op_rwkv_wkv7(ggml_backend_sycl_context& ctx, ggml_tensor* dst) {
     scope_op_debug_print scope_dbg_print(__func__, dst, /*num_src=*/7);
     const float* r_d = (const float*)dst->src[0]->data;

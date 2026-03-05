@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: eval-callback.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/examples/eval-callback/eval-callback.cpp
+// 作者: 自动注释工具
+// 描述: 示例文件,包含使用示例
+// ============================================================================
+
 #include "arg.h"
 #include "common.h"
 #include "debug.h"
@@ -7,6 +14,14 @@
 #include <string>
 #include <vector>
 
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static bool run(llama_context * ctx, const common_params & params) {
     const llama_model * model = llama_get_model(ctx);
     const llama_vocab * vocab = llama_model_get_vocab(model);
@@ -28,6 +43,14 @@ static bool run(llama_context * ctx, const common_params & params) {
     return true;
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     base_callback_data cb_data;
 

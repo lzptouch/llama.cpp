@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: llama.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/llama.cpp
+// 描述: llama.cpp 核心实现文件，包含模型加载、内存管理、推理等核心功能
+// 作用: 实现了 llama 模型的主要接口和功能，是整个项目的核心文件
+// ============================================================================
+
 #include "llama.h"
 
 #include "llama-impl.h"
@@ -31,6 +38,11 @@
 // interface implementation
 //
 
+// 函数: llama_flash_attn_type_name
+// 描述: 将 flash attention 类型枚举转换为字符串表示
+// 参数: flash_attn_type - flash attention 类型枚举值
+// 返回: 对应的字符串表示
+// 作用: 用于日志和调试时显示 flash attention 类型
 const char * llama_flash_attn_type_name(enum llama_flash_attn_type flash_attn_type) {
     switch (flash_attn_type) {
         case LLAMA_FLASH_ATTN_TYPE_AUTO:
@@ -43,117 +55,173 @@ const char * llama_flash_attn_type_name(enum llama_flash_attn_type flash_attn_ty
     GGML_ABORT("fatal error");
 }
 
+// 结构体: llama_device_memory_data
+// 描述: 设备内存数据结构，用于存储设备的内存使用情况
+// 成员: 
+//   - total: 设备总内存
+//   - free: 设备可用内存
+//   - mb: 内存使用细分数据
+// 作用: 用于跟踪和管理设备内存使用情况
 struct llama_device_memory_data {
-    int64_t total;
-    int64_t free;
-    llama_memory_breakdown_data mb;
+    int64_t total;    // 设备总内存（字节）
+    int64_t free;     // 设备可用内存（字节）
+    llama_memory_breakdown_data mb;  // 内存使用细分数据
 };
 
+// 函数: llama_get_device_memory_data
+// 描述: 获取设备内存数据，包括总内存、可用内存和内存使用细分
+// 参数:
+//   - path_model: 模型文件路径
+//   - mparams: 模型参数
+//   - cparams: 上下文参数
+//   - devs: 输出参数，存储设备列表
+//   - hp_ngl: 输出参数，模型层数
+//   - hp_n_ctx_train: 输出参数，训练上下文大小
+//   - hp_n_expert: 输出参数，专家数量
+//   - log_level: 日志级别
+// 返回: 设备内存数据向量
+// 作用: 用于分析设备内存使用情况，为模型加载和推理做准备
 static std::vector<llama_device_memory_data> llama_get_device_memory_data(
         const char * path_model, const llama_model_params * mparams, const llama_context_params * cparams,
         std::vector<ggml_backend_dev_t> & devs, uint32_t & hp_ngl, uint32_t & hp_n_ctx_train, uint32_t & hp_n_expert,
         const ggml_log_level log_level) {
+    // 结构体: user_data_t
+    // 描述: 用于存储原始日志记录器和最小日志级别
+    // 成员:
+    //   - original_logger: 原始日志记录器
+    //   - min_level: 最小日志级别
+    // 作用: 用于临时修改日志级别，确保低于指定级别的日志进入调试日志
     struct user_data_t {
         struct {
-            ggml_log_callback callback;
-            void * user_data;
-        } original_logger;
-        ggml_log_level min_level; // prints below this log level go to debug log
+            ggml_log_callback callback;  // 日志回调函数
+            void * user_data;           // 日志回调用户数据
+        } original_logger;              // 原始日志记录器
+        ggml_log_level min_level;       // 最小日志级别，低于此级别的日志进入调试日志
     };
     user_data_t ud;
+    // 获取当前日志记录器
     llama_log_get(&ud.original_logger.callback, &ud.original_logger.user_data);
     ud.min_level = log_level;
 
+    // 设置临时日志记录器，将低于指定级别的日志重定向到调试日志
     llama_log_set([](ggml_log_level level, const char * text, void * user_data) {
         const user_data_t * ud = (const user_data_t *) user_data;
+        // 计算实际日志级别
         const ggml_log_level level_eff = level >= ud->min_level ? level : GGML_LOG_LEVEL_DEBUG;
+        // 调用原始日志记录器
         ud->original_logger.callback(level_eff, text, ud->original_logger.user_data);
     }, &ud);
 
+    // 创建模型参数副本，禁用内存分配、内存映射和内存锁定
     llama_model_params mparams_copy = *mparams;
-    mparams_copy.no_alloc  = true;
-    mparams_copy.use_mmap  = false;
-    mparams_copy.use_mlock = false;
+    mparams_copy.no_alloc  = true;  // 禁用内存分配
+    mparams_copy.use_mmap  = false; // 禁用内存映射
+    mparams_copy.use_mlock = false; // 禁用内存锁定
 
+    // 加载模型文件
     llama_model * model = llama_model_load_from_file(path_model, mparams_copy);
     if (model == nullptr) {
+        // 恢复原始日志记录器
         llama_log_set(ud.original_logger.callback, ud.original_logger.user_data);
         throw std::runtime_error("failed to load model");
     }
 
+    // 从模型创建上下文
     llama_context * ctx = llama_init_from_model(model, *cparams);
     if (ctx == nullptr) {
+        // 释放模型并恢复原始日志记录器
         llama_model_free(model);
         llama_log_set(ud.original_logger.callback, ud.original_logger.user_data);
         throw std::runtime_error("failed to create llama_context from model");
     }
 
+    // 创建设备内存数据向量，大小为设备数量
     std::vector<llama_device_memory_data> ret(model->devices.size());
 
+    // 获取内存使用细分数据
     std::map<ggml_backend_buffer_type_t, llama_memory_breakdown_data> memory_breakdown = ctx->memory_breakdown();
 
+    // 遍历内存使用细分数据，统计每个设备的内存使用情况
     for (const auto & [buft, mb] : memory_breakdown) {
+        // 跳过主机内存
         if (ggml_backend_buft_is_host(buft)) {
             continue;
         }
 
+        // 获取缓冲区类型对应的设备
         ggml_backend_dev_t dev = ggml_backend_buft_get_device(buft);
         if (!dev) {
             continue;
         }
+        // 找到对应的设备并更新内存使用数据
         for (size_t i = 0; i < ret.size(); i++) {
             if (model->devices[i] == dev) {
-                ret[i].mb.model   += mb.model;
-                ret[i].mb.context += mb.context;
-                ret[i].mb.compute += mb.compute;
+                ret[i].mb.model   += mb.model;   // 模型内存
+                ret[i].mb.context += mb.context; // 上下文内存
+                ret[i].mb.compute += mb.compute; // 计算内存
                 break;
             }
         }
     }
+    
+    // 获取每个设备的总内存和可用内存
     for (size_t i = 0; i < ret.size(); i++) {
         size_t free;
         size_t total;
+        // 获取设备内存信息
         ggml_backend_dev_memory(model->devices[i], &free, &total);
 
-        // devices can return 0 bytes for free and total memory if they do not
-        // have any to report. in this case, we will use the host memory as a fallback
-        // fixes: https://github.com/ggml-org/llama.cpp/issues/18577
+        // 设备可能返回 0 字节的可用内存和总内存，如果没有可报告的内存
+        // 在这种情况下，我们将使用主机内存作为回退
+        // 修复: https://github.com/ggml-org/llama.cpp/issues/18577
         if (free == 0 && total == 0) {
+            // 获取 CPU 设备
             ggml_backend_dev_t cpu_dev = ggml_backend_dev_by_type(GGML_BACKEND_DEVICE_TYPE_CPU);
             if (cpu_dev == nullptr) {
                 throw std::runtime_error(format("%s: no CPU backend found", __func__));
             }
+            // 获取 CPU 内存信息
             ggml_backend_dev_memory(cpu_dev, &free, &total);
         }
+        // 更新设备内存数据
         ret[i].free  = free;
         ret[i].total = total;
     }
 
-    devs           = model->devices;
-    hp_ngl         = model->hparams.n_layer;
-    hp_n_ctx_train = model->hparams.n_ctx_train;
-    hp_n_expert    = model->hparams.n_expert;
+    // 设置输出参数
+    devs           = model->devices;           // 设备列表
+    hp_ngl         = model->hparams.n_layer;   // 模型层数
+    hp_n_ctx_train = model->hparams.n_ctx_train; // 训练上下文大小
+    hp_n_expert    = model->hparams.n_expert;    // 专家数量
 
-    llama_memory_breakdown_print(ctx); // goes to debug log
+    // 打印内存使用细分（进入调试日志）
+    llama_memory_breakdown_print(ctx);
 
-    llama_free(ctx);
-    llama_model_free(model);
-    llama_log_set(ud.original_logger.callback, ud.original_logger.user_data);
-    return ret;
+    // 释放资源
+    llama_free(ctx);           // 释放上下文
+    llama_model_free(model);   // 释放模型
+    llama_log_set(ud.original_logger.callback, ud.original_logger.user_data); // 恢复原始日志记录器
+    
+    return ret; // 返回设备内存数据
 }
 
-// enum to identify part of a layer for distributing its tensors:
+// 枚举: layer_fraction_t
+// 描述: 用于标识层的部分，用于分配张量
+// 作用: 在模型加载和内存分配时，用于确定哪些层部分应该分配到哪些设备
 enum layer_fraction_t {
-    LAYER_FRACTION_NONE = 0, // nothing
-    LAYER_FRACTION_ATTN = 1, // attention
-    LAYER_FRACTION_UP   = 2, // attention + up
-    LAYER_FRACTION_GATE = 3, // attention + up + gate
-    LAYER_FRACTION_MOE  = 4, // everything but sparse MoE weights
+    LAYER_FRACTION_NONE = 0, // 无
+    LAYER_FRACTION_ATTN = 1, // 注意力层
+    LAYER_FRACTION_UP   = 2, // 注意力层 + 上投影
+    LAYER_FRACTION_GATE = 3, // 注意力层 + 上投影 + 门控
+    LAYER_FRACTION_MOE  = 4, // 除了稀疏 MoE 权重之外的所有内容
 };
 // this enum is only used in llama_params_fit_impl but needs to be defined outside of it to fix a Windows compilation issue
 
+// 类: llama_params_fit_exception
+// 描述: 参数拟合异常类，继承自 std::runtime_error
+// 作用: 在参数拟合过程中遇到错误时抛出的异常
 class llama_params_fit_exception : public std::runtime_error {
-    using std::runtime_error::runtime_error;
+    using std::runtime_error::runtime_error; // 使用基类的构造函数
 };
 
 static void llama_params_fit_impl(
@@ -325,27 +393,75 @@ static void llama_params_fit_impl(
     }
 
     if (mparams->n_gpu_layers != default_mparams.n_gpu_layers) {
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw llama_params_fit_exception("n_gpu_layers already set by user to " + std::to_string(mparams->n_gpu_layers) + ", abort");
     }
     if (nd > 1) {
         if (!tensor_split) {
+            // 函数: llama_params_fit_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: llama_params_fit_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw llama_params_fit_exception("did not provide a buffer to write the tensor_split to, abort");
         }
         if (mparams->tensor_split) {
             for (size_t id = 0; id < nd; id++) {
                 if (mparams->tensor_split[id] != 0.0f) {
+                    // 函数: llama_params_fit_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: llama_params_fit_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw llama_params_fit_exception("model_params::tensor_split already set by user, abort");
                 }
             }
         }
         if (mparams->split_mode == LLAMA_SPLIT_MODE_ROW) {
+            // 函数: llama_params_fit_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: llama_params_fit_exception
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             throw llama_params_fit_exception("changing weight allocation for LLAMA_SPLIT_MODE_ROW not implemented, abort");
         }
     }
     if (!tensor_buft_overrides) {
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw llama_params_fit_exception("did not provide buffer to set tensor_buft_overrides, abort");
     }
     if (mparams->tensor_buft_overrides && (mparams->tensor_buft_overrides->pattern || mparams->tensor_buft_overrides->buft)) {
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: llama_params_fit_exception
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         throw llama_params_fit_exception("model_params::tensor_buft_overrides already set by user, abort");
     }
 
@@ -393,6 +509,24 @@ static void llama_params_fit_impl(
         }
     };
 
+    // 类: ngl_t
+    // 描述: ngl_t类提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
+    // 类: ngl_t
+    // 描述: ngl_t类提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
+    // 结构体: ngl_t
+    // 描述: ngl_t结构体提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
+    // 结构体: ngl_t
+    // 描述: ngl_t结构体提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
+    // 结构体: ngl_t
+    // 描述: ngl_t结构体提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
+    // 结构体: ngl_t
+    // 描述: ngl_t结构体提供相关功能
+    // 用途: 用于处理ngl_t相关的操作
     struct ngl_t {
         uint32_t n_layer = 0; // number of total layers
         uint32_t n_part  = 0; // number of partial layers, <= n_layer
@@ -400,6 +534,14 @@ static void llama_params_fit_impl(
         // for the first partial layer varying parts can overflow, all further layers use LAYER_FRACTION_MOE:
         layer_fraction_t overflow_type = LAYER_FRACTION_MOE;
 
+        // 函数: n_full
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: n_full
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         uint32_t n_full() const {
             assert(n_layer >= n_part);
             return n_layer - n_part;
@@ -434,6 +576,14 @@ static void llama_params_fit_impl(
                     tensor_buft_overrides[itbo].buft    = nullptr;
                     itbo++;
                     mparams.tensor_buft_overrides = tensor_buft_overrides;
+                    // 函数: llama_params_fit_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
+                    // 函数: llama_params_fit_exception
+                    // 描述: 执行主要功能
+                    // 参数: 无参数
+                    // 返回: 无返回值
                     throw llama_params_fit_exception("llama_max_tensor_buft_overrides() == "
                         + std::to_string(ntbo) + " is insufficient for model");
                 }
@@ -759,7 +909,43 @@ enum llama_params_fit_status llama_params_fit(
     return status;
 }
 
+// 类: llama_sampler_chain_params
+// 描述: llama_sampler_chain_params类提供相关功能
+// 用途: 用于处理llama_sampler_chain_params相关的操作
+// 类: llama_sampler_chain_params
+// 描述: llama_sampler_chain_params类提供相关功能
+// 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
 struct llama_sampler_chain_params llama_sampler_chain_default_params() {
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params result = {
         /*.no_perf =*/ true,
     };
@@ -767,43 +953,143 @@ struct llama_sampler_chain_params llama_sampler_chain_default_params() {
     return result;
 }
 
+// 函数: llama_max_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_max_devices
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_max_devices(void) {
     return 16;
 }
 
+// 函数: llama_max_tensor_buft_overrides
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_max_tensor_buft_overrides
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t llama_max_tensor_buft_overrides() {
     return 4096;
 }
 
+// 函数: llama_supports_mmap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_supports_mmap
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_supports_mmap(void) {
     return llama_mmap::SUPPORTED;
 }
 
+// 函数: llama_supports_mlock
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_supports_mlock
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_supports_mlock(void) {
     return llama_mlock::SUPPORTED;
 }
 
+// 函数: llama_supports_gpu_offload
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_supports_gpu_offload
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_supports_gpu_offload(void) {
     return ggml_backend_dev_by_type(GGML_BACKEND_DEVICE_TYPE_GPU) != nullptr ||
            ggml_backend_dev_by_type(GGML_BACKEND_DEVICE_TYPE_IGPU) != nullptr ||
            llama_supports_rpc();
 }
 
+// 函数: llama_supports_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_supports_rpc
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool llama_supports_rpc(void) {
     return ggml_backend_reg_by_name("RPC") != nullptr;
 }
 
+// 函数: llama_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_backend_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void llama_backend_init(void) {
     ggml_time_init();
 
     // needed to initialize f16 tables
     {
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+        // 类: ggml_init_params
+        // 描述: ggml_init_params类提供相关功能
+        // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
+    // 结构体: ggml_init_params
+    // 描述: ggml_init_params结构体提供相关功能
+    // 用途: 用于处理ggml_init_params相关的操作
         struct ggml_init_params params = { 0, NULL, false };
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+        // 类: ggml_context
+        // 描述: ggml_context类提供相关功能
+        // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
+    // 结构体: ggml_context
+    // 描述: ggml_context结构体提供相关功能
+    // 用途: 用于处理ggml_context相关的操作
         struct ggml_context * ctx = ggml_init(params);
         ggml_free(ctx);
     }
 }
 
+// 函数: llama_numa_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_numa_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void llama_numa_init(enum ggml_numa_strategy numa) {
     if (numa != GGML_NUMA_STRATEGY_DISABLED) {
         auto * dev = ggml_backend_dev_by_type(GGML_BACKEND_DEVICE_TYPE_CPU);
@@ -816,15 +1102,39 @@ void llama_numa_init(enum ggml_numa_strategy numa) {
     }
 }
 
+// 函数: llama_backend_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_backend_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 void llama_backend_free(void) {
     ggml_quantize_free();
 }
 
+// 函数: llama_time_us
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_time_us
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int64_t llama_time_us(void) {
     return ggml_time_us();
 }
 
 // Returns 0 on success, -1 on error, and -2 on cancellation via llama_progress_callback
+// 函数: llama_model_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_load
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static int llama_model_load(const std::string & fname, std::vector<std::string> & splits, llama_model & model, llama_model_params & params) {
     // loading time will be recalculated after the first eval, so
     // we take page faults deferred by mmap() into consideration
@@ -882,6 +1192,24 @@ static int llama_model_load(const std::string & fname, std::vector<std::string> 
 static struct llama_model * llama_model_load_from_file_impl(
         const std::string & path_model,
         std::vector<std::string> & splits,
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
         struct llama_model_params params) {
     ggml_time_init();
 
@@ -942,6 +1270,14 @@ static struct llama_model * llama_model_load_from_file_impl(
                             ggml_backend_dev_props d_props;
                             ggml_backend_dev_get_props(d, &d_props);
                             if (props.device_id && d_props.device_id) {
+                                // 函数: strcmp
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
+                                // 函数: strcmp
+                                // 描述: 执行主要功能
+                                // 参数: 无参数
+                                // 返回: 无返回值
                                 return strcmp(props.device_id, d_props.device_id) == 0;
                             }
                             return false;
@@ -1020,22 +1356,146 @@ static struct llama_model * llama_model_load_from_file_impl(
 }
 
 // deprecated
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
 struct llama_model * llama_load_model_from_file(
         const char * path_model,
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
         struct llama_model_params params) {
+    // 函数: llama_model_load_from_file
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_model_load_from_file
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_model_load_from_file(path_model, params);
 }
 
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
 struct llama_model * llama_model_load_from_file(
         const char * path_model,
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
         struct llama_model_params params) {
     std::vector<std::string> splits = {};
+    // 函数: llama_model_load_from_file_impl
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_model_load_from_file_impl
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_model_load_from_file_impl(path_model, splits, params);
 }
 
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+// 类: llama_model
+// 描述: llama_model类提供相关功能
+// 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
+    // 结构体: llama_model
+    // 描述: llama_model结构体提供相关功能
+    // 用途: 用于处理llama_model相关的操作
 struct llama_model * llama_model_load_from_splits(
         const char ** paths,
         size_t n_paths,
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+        // 类: llama_model_params
+        // 描述: llama_model_params类提供相关功能
+        // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
+    // 结构体: llama_model_params
+    // 描述: llama_model_params结构体提供相关功能
+    // 用途: 用于处理llama_model_params相关的操作
         struct llama_model_params params) {
     std::vector<std::string> splits;
     if (n_paths == 0) {
@@ -1046,9 +1506,25 @@ struct llama_model * llama_model_load_from_splits(
     for (size_t i = 0; i < n_paths; ++i) {
         splits.push_back(paths[i]);
     }
+    // 函数: llama_model_load_from_file_impl
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: llama_model_load_from_file_impl
+    // 描述: 加载: 从文件或内存加载数据
+    // 参数: 无参数
+    // 返回: 无返回值
     return llama_model_load_from_file_impl(splits.front(), splits, params);
 }
 
+// 函数: llama_model_save_to_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_model_save_to_file
+// 描述: 保存: 保存数据到文件或内存
+// 参数: 无参数
+// 返回: 无返回值
 void llama_model_save_to_file(const struct llama_model * model, const char * path_model) {
     llama_model_saver ms(*model);
     ms.add_kv_from_model();
@@ -1067,6 +1543,14 @@ int32_t llama_chat_apply_template(
                                     bool   add_ass,
                                     char * buf,
                                  int32_t   length) {
+    // 函数: curr_tmpl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: curr_tmpl
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const std::string curr_tmpl(tmpl == nullptr ? "chatml" : tmpl);
 
     // format the chat to string
@@ -1127,11 +1611,27 @@ int32_t llama_split_prefix(
     int32_t split_no,
     int32_t split_count) {
 
+    // 函数: str_split_path
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: str_split_path
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const std::string str_split_path(split_path);
 
     char postfix[32];
     snprintf(postfix, sizeof(postfix), "-%05d-of-%05d.gguf", split_no + 1, split_count);
 
+    // 函数: str_postfix
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: str_postfix
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     const std::string str_postfix(postfix);
     if (str_split_path.size() <= str_postfix.size()) {
         return 0;
@@ -1149,6 +1649,14 @@ int32_t llama_split_prefix(
     return 0;
 }
 
+// 函数: llama_print_system_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: llama_print_system_info
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 const char * llama_print_system_info(void) {
     static std::string s;
     s.clear(); // Clear the string, since it's static, otherwise it will accumulate data from previous calls.

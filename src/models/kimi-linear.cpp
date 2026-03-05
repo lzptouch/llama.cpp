@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: kimi-linear.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/models/kimi-linear.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "models.h"
 #include "ggml.h"
 
@@ -5,6 +12,14 @@
 
 // Causal Conv1d function for Q,K,V
 // When qkv is 0, it is Q, 1 is K, 2 is V
+// 函数: causal_conv1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: causal_conv1d
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static ggml_tensor * causal_conv1d(ggml_cgraph * gf, ggml_context * ctx0, ggml_tensor * conv_states_all, ggml_tensor * conv_state_all, int64_t qkv, ggml_tensor * x, ggml_tensor * proj_w, ggml_tensor * conv_w, int64_t d_conv, int64_t head_dim, int64_t n_head, int64_t n_seq_tokens, int64_t n_seqs, int64_t n_tokens, int64_t kv_head) {
     const int64_t d_inner = head_dim * n_head;
     const int64_t conv_state_size = (d_conv - 1) * d_inner;

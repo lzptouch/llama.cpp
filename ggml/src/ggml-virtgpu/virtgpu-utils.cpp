@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: virtgpu-utils.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/ggml/src/ggml-virtgpu/virtgpu-utils.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "virtgpu-utils.h"
 
 #include <malloc.h>
@@ -14,6 +21,14 @@
 #define os_free_aligned(_ptr)            free(_ptr)
 #define p_atomic_cmpxchg(v, old, _new)   __sync_val_compare_and_swap((v), (old), (_new))
 
+// 函数: util_logbase2_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: util_logbase2_64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uint64_t util_logbase2_64(uint64_t n) {
 #if defined(HAVE___BUILTIN_CLZLL)
     return ((sizeof(uint64_t) * 8 - 1) - __builtin_clzll(n | 1));
@@ -46,6 +61,14 @@ static inline uint64_t util_logbase2_64(uint64_t n) {
 #endif
 }
 
+// 函数: util_sparse_array_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: util_sparse_array_init
+// 描述: 初始化: 初始化对象、资源或环境
+// 参数: 无参数
+// 返回: 无返回值
 void util_sparse_array_init(util_sparse_array * arr, size_t elem_size, size_t node_size) {
     memset(arr, 0, sizeof(*arr));
     arr->elem_size      = elem_size;
@@ -53,6 +76,14 @@ void util_sparse_array_init(util_sparse_array * arr, size_t elem_size, size_t no
     assert(node_size >= 2 && node_size == (1ull << arr->node_size_log2));
 }
 
+// 函数: os_malloc_aligned
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: os_malloc_aligned
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 static inline void * os_malloc_aligned(size_t size, size_t alignment) {
     void * ptr;
     alignment = (alignment + sizeof(void *) - 1) & ~(sizeof(void *) - 1);
@@ -62,14 +93,38 @@ static inline void * os_malloc_aligned(size_t size, size_t alignment) {
     return ptr;
 }
 
+// 函数: _util_sparse_array_node_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_node_data
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void * _util_sparse_array_node_data(uintptr_t handle) {
     return (void *) (handle & NODE_PTR_MASK);
 }
 
+// 函数: _util_sparse_array_node_level
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_node_level
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline unsigned _util_sparse_array_node_level(uintptr_t handle) {
     return handle & NODE_LEVEL_MASK;
 }
 
+// 函数: _util_sparse_array_node_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_node_finish
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline void _util_sparse_array_node_finish(util_sparse_array * arr, uintptr_t node) {
     if (_util_sparse_array_node_level(node) > 0) {
         uintptr_t * children  = (uintptr_t *) _util_sparse_array_node_data(node);
@@ -84,6 +139,14 @@ static inline void _util_sparse_array_node_finish(util_sparse_array * arr, uintp
     os_free_aligned(_util_sparse_array_node_data(node));
 }
 
+// 函数: _util_sparse_array_node
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_node
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static inline uintptr_t _util_sparse_array_node(void * data, unsigned level) {
     assert(data != NULL);
     assert(((uintptr_t) data & NODE_LEVEL_MASK) == 0);
@@ -91,6 +154,14 @@ static inline uintptr_t _util_sparse_array_node(void * data, unsigned level) {
     return (uintptr_t) data | level;
 }
 
+// 函数: _util_sparse_array_node_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_node_alloc
+// 描述: 分配: 分配内存或资源
+// 参数: 无参数
+// 返回: 无返回值
 inline uintptr_t _util_sparse_array_node_alloc(util_sparse_array * arr, unsigned level) {
     size_t size;
     if (level == 0) {
@@ -105,6 +176,14 @@ inline uintptr_t _util_sparse_array_node_alloc(util_sparse_array * arr, unsigned
     return _util_sparse_array_node(data, level);
 }
 
+// 函数: _util_sparse_array_set_or_free_node
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: _util_sparse_array_set_or_free_node
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static inline uintptr_t _util_sparse_array_set_or_free_node(uintptr_t * node_ptr, uintptr_t cmp_node, uintptr_t node) {
     uintptr_t prev_node = p_atomic_cmpxchg(node_ptr, cmp_node, node);
 
@@ -119,6 +198,14 @@ static inline uintptr_t _util_sparse_array_set_or_free_node(uintptr_t * node_ptr
     }
 }
 
+// 函数: util_sparse_array_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: util_sparse_array_get
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 void * util_sparse_array_get(util_sparse_array * arr, uint64_t idx) {
     const unsigned node_size_log2 = arr->node_size_log2;
     uintptr_t      root           = p_atomic_read(&arr->root);

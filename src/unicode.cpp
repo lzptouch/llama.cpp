@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: unicode.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/src/unicode.cpp
+// 作者: 自动注释工具
+// 描述: 源文件,包含核心实现
+// ============================================================================
+
 #include "unicode.h"
 #include "unicode-data.h"
 
@@ -13,12 +20,28 @@
 #include <utility>
 #include <vector>
 
+// 函数: unicode_len_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_len_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 size_t unicode_len_utf8(char src) {
     const size_t lookup[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 4 };
     uint8_t highbits = static_cast<uint8_t>(src) >> 4;
     return lookup[highbits];
 }
 
+// 函数: unicode_cpts_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpts_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string unicode_cpts_to_utf8(const std::vector<uint32_t> & cps) {
     std::string result;
     for (size_t i = 0; i < cps.size(); ++i) {
@@ -27,6 +50,14 @@ static std::string unicode_cpts_to_utf8(const std::vector<uint32_t> & cps) {
     return result;
 }
 
+// 函数: unicode_cpt_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t unicode_cpt_from_utf8(const std::string & utf8, size_t & offset) {
     assert(offset < utf8.size());
     if (!(utf8[offset + 0] & 0x80)) {
@@ -784,6 +815,14 @@ static std::vector<size_t> unicode_regex_split_custom(const std::string & text, 
 // interface
 //
 
+// 函数: unicode_cpt_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string unicode_cpt_to_utf8(uint32_t cpt) {
     std::string result;
 
@@ -843,12 +882,28 @@ std::vector<uint32_t> unicode_cpts_from_utf8(const std::string & utf8) {
     return result;
 }
 
+// 函数: unicode_cpt_flags_from_cpt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_flags_from_cpt
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 unicode_cpt_flags unicode_cpt_flags_from_cpt(const uint32_t cpt) {
     static const unicode_cpt_flags undef(unicode_cpt_flags::UNDEFINED);
     static const auto cpt_flags = unicode_cpt_flags_array();
     return cpt < cpt_flags.size() ? cpt_flags[cpt] : undef;
 }
 
+// 函数: unicode_cpt_flags_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_flags_from_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 unicode_cpt_flags unicode_cpt_flags_from_utf8(const std::string & utf8) {
     static const unicode_cpt_flags undef(unicode_cpt_flags::UNDEFINED);
     if (utf8.empty()) {
@@ -858,16 +913,40 @@ unicode_cpt_flags unicode_cpt_flags_from_utf8(const std::string & utf8) {
     return unicode_cpt_flags_from_cpt(unicode_cpt_from_utf8(utf8, offset));
 }
 
+// 函数: unicode_byte_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_byte_to_utf8
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 std::string unicode_byte_to_utf8(uint8_t byte) {
     static std::unordered_map<uint8_t, std::string> map = unicode_byte_to_utf8_map();
     return map.at(byte);
 }
 
+// 函数: unicode_utf8_to_byte
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_utf8_to_byte
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint8_t unicode_utf8_to_byte(const std::string & utf8) {
     static std::unordered_map<std::string, uint8_t> map = unicode_utf8_to_byte_map();
     return map.at(utf8);
 }
 
+// 函数: unicode_tolower
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_tolower
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 uint32_t unicode_tolower(uint32_t cpt) {
     // binary search
     auto it = std::lower_bound(unicode_map_lowercase.begin(), unicode_map_lowercase.end(), cpt,
@@ -880,6 +959,14 @@ uint32_t unicode_tolower(uint32_t cpt) {
     return cpt;  // Return the original code point if no lowercase mapping is found
 }
 
+// 函数: unicode_cpt_is_han
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: unicode_cpt_is_han
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 bool unicode_cpt_is_han(uint32_t cpt) {
     // Han character ranges (Chinese/CJK characters)
     // CJK Unified Ideographs (most common)
@@ -1066,9 +1153,25 @@ std::vector<std::string> unicode_regex_split(const std::string & text, const std
                 bpe_offsets = unicode_regex_split_stl(text_collapsed, regex_expr_collapsed, bpe_offsets);
             } else {
                 // no unicode category used, we can use std::wregex directly
+                // 函数: wregex_expr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: wregex_expr
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 std::wstring wregex_expr(cpts_regex.begin(), cpts_regex.end());
 
                 // std::wregex \s does not mach non-ASCII whitespaces, using 0x0B as fallback
+                // 函数: wtext
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
+                // 函数: wtext
+                // 描述: 执行主要功能
+                // 参数: 无参数
+                // 返回: 无返回值
                 std::wstring wtext(cpts.begin(), cpts.end());
                 for (size_t i = 0; i < wtext.size(); ++i) {
                     if (wtext[i] > 0x7F && unicode_cpt_flags_from_cpt(wtext[i]).is_whitespace) {
@@ -1099,5 +1202,13 @@ std::vector<std::string> unicode_regex_split(const std::string & text, const std
         start += offset;
     }
 
+    // 函数: unicode_byte_encoding_process
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: unicode_byte_encoding_process
+    // 描述: 处理: 处理输入数据或执行计算操作
+    // 参数: 无参数
+    // 返回: 无返回值
     return unicode_byte_encoding_process(bpe_words);
 }

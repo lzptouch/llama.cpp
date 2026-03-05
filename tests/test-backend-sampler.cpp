@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test-backend-sampler.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tests/test-backend-sampler.cpp
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 #include "ggml.h"
 #include "llama.h"
 #include "llama-cpp.h"
@@ -17,16 +24,72 @@
 #include <unordered_map>
 #include <vector>
 
+// 类: test_args
+// 描述: test_args类提供相关功能
+// 用途: 用于处理test_args相关的操作
+// 类: test_args
+// 描述: test_args类提供相关功能
+// 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
+    // 结构体: test_args
+    // 描述: test_args结构体提供相关功能
+    // 用途: 用于处理test_args相关的操作
 struct test_args {
     std::string model;
     std::string test;
     std::string device = "auto";
 };
 
+// 类: test_params
+// 描述: test_params类提供相关功能
+// 用途: 用于处理test_params相关的操作
+// 类: test_params
+// 描述: test_params类提供相关功能
+// 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
+    // 结构体: test_params
+    // 描述: test_params结构体提供相关功能
+    // 用途: 用于处理test_params相关的操作
 struct test_params {
     llama_model_ptr model;
 };
 
+// 函数: load_model
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: load_model
+// 描述: 加载: 从文件或内存加载数据
+// 参数: 无参数
+// 返回: 无返回值
 static llama_model_ptr load_model(const test_args & args) {
     auto mparams = llama_model_default_params();
 
@@ -68,6 +131,30 @@ static llama_model_ptr load_model(const test_args & args) {
     return res;
 }
 
+// 类: test_context
+// 描述: test_context类提供相关功能
+// 用途: 用于处理test_context相关的操作
+// 类: test_context
+// 描述: test_context类提供相关功能
+// 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
+    // 结构体: test_context
+    // 描述: test_context结构体提供相关功能
+    // 用途: 用于处理test_context相关的操作
 struct test_context {
     llama_context_ptr ctx;
 
@@ -112,6 +199,14 @@ struct test_context {
         n_vocab = llama_vocab_n_tokens(vocab);
     }
 
+    // 函数: decode
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: decode
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
     bool decode(const std::map<llama_seq_id, std::string> & prompts) {
         GGML_ASSERT(ctx);
 
@@ -178,6 +273,14 @@ struct test_context {
         return true;
     }
 
+    // 函数: idx_for_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: idx_for_seq
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     int32_t idx_for_seq(llama_seq_id seq_id) {
         auto it = last_batch_info.find(seq_id);
         if (it == last_batch_info.end()) {
@@ -187,6 +290,14 @@ struct test_context {
         return it->second;
     }
 
+    // 函数: update_batch_info
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: update_batch_info
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     void update_batch_info(const llama_batch & batch) {
         last_batch_info.clear();
         for (int i = 0; i < batch.n_tokens; i++) {
@@ -197,6 +308,14 @@ struct test_context {
         }
     }
 
+    // 函数: decode_token
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: decode_token
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
     bool decode_token(llama_token token, llama_seq_id seq_id = 0) {
         GGML_ASSERT(ctx);
 
@@ -218,6 +337,14 @@ struct test_context {
         return true;
     }
 
+    // 函数: decode_tokens
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: decode_tokens
+    // 描述: 解码: 解码数据或生成输出结果
+    // 参数: 无参数
+    // 返回: 无返回值
     bool decode_tokens(const std::map<llama_seq_id, llama_token> & seq_tokens) {
         GGML_ASSERT(ctx);
 
@@ -245,6 +372,14 @@ struct test_context {
         return true;
     }
 
+    // 函数: token_to_piece
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: token_to_piece
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     std::string token_to_piece(llama_token token, bool special) const {
         std::string piece;
         piece.resize(piece.capacity());  // using string internal cache, 15 bytes + '\n'
@@ -261,9 +396,41 @@ struct test_context {
     }
 };
 
+// 函数: test_backend_greedy_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_greedy_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_greedy_sampling(const test_params & params) {
     const int seq_id = 0;
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_sampler_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_sampler_params));
 
@@ -296,9 +463,41 @@ static void test_backend_greedy_sampling(const test_params & params) {
     }
 }
 
+// 函数: test_backend_top_k_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_top_k_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_top_k_sampling(const test_params & params) {
     const int seq_id = 0;
     const int32_t k = 8;
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_top_k(k));
@@ -327,6 +526,30 @@ static void test_backend_top_k_sampling(const test_params & params) {
 
     // Sample using CPU sampler for verification that it is possible to do hybrid
     // sampling, first top_k on the backend and then dist on the CPU.
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
     GGML_ASSERT(chain->iface->backend_apply != nullptr);
@@ -338,14 +561,70 @@ static void test_backend_top_k_sampling(const test_params & params) {
     printf("backend top-k hybrid sampling test PASSED\n");
 }
 
+// 函数: test_backend_temp_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_temp_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_temp_sampling(const test_params & params) {
     {
         const float temp_0 = 0.8f;
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params backend_chain_params_0 = llama_sampler_chain_default_params();
         llama_sampler_ptr backend_sampler_chain_0(llama_sampler_chain_init(backend_chain_params_0));
         llama_sampler_chain_add(backend_sampler_chain_0.get(), llama_sampler_init_temp(temp_0));
 
         const float temp_1 = 0.1f;
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params backend_chain_params_1 = llama_sampler_chain_default_params();
         llama_sampler_ptr backend_sampler_chain_1(llama_sampler_chain_init(backend_chain_params_1));
         llama_sampler_chain_add(backend_sampler_chain_1.get(), llama_sampler_init_temp(temp_1));
@@ -368,6 +647,30 @@ static void test_backend_temp_sampling(const test_params & params) {
             GGML_ASSERT(n_logits == test_ctx.n_vocab);
 
             // Sample from sequence 0 using CPU sampler
+            // 类: llama_sampler_chain_params
+            // 描述: llama_sampler_chain_params类提供相关功能
+            // 用途: 用于处理llama_sampler_chain_params相关的操作
+            // 类: llama_sampler_chain_params
+            // 描述: llama_sampler_chain_params类提供相关功能
+            // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
             struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
             llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
             llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(18));
@@ -384,6 +687,30 @@ static void test_backend_temp_sampling(const test_params & params) {
             int32_t batch_idx = test_ctx.idx_for_seq(1);
 
             // Sample from sequence 1 using CPU sampler
+            // 类: llama_sampler_chain_params
+            // 描述: llama_sampler_chain_params类提供相关功能
+            // 用途: 用于处理llama_sampler_chain_params相关的操作
+            // 类: llama_sampler_chain_params
+            // 描述: llama_sampler_chain_params类提供相关功能
+            // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
             struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
             llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
             llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(18));
@@ -400,6 +727,30 @@ static void test_backend_temp_sampling(const test_params & params) {
         printf("\nTesting temperature = %.1f\n", temp);
 
         int seq_id = 0;
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
         llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_temp(temp));
@@ -426,12 +777,44 @@ static void test_backend_temp_sampling(const test_params & params) {
     printf("backend temp sampling test PASSED\n");
 }
 
+// 函数: test_backend_temp_ext_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_temp_ext_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_temp_ext_sampling(const test_params & params) {
     {
         int seq_id = 0;
         const float temp = 0.8f;
         const float delta = 0.5f;
         const float exponent = 1.5f;
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
         llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_temp_ext(temp, delta, exponent));
@@ -459,6 +842,30 @@ static void test_backend_temp_ext_sampling(const test_params & params) {
         printf("\nTesting temperature = %.1f, delta = %1.f, exponent = %1.f\n", temp, delta, exponent);
 
         int seq_id = 0;
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
         llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_temp_ext(temp, delta, exponent));
@@ -491,9 +898,41 @@ static void test_backend_temp_ext_sampling(const test_params & params) {
     printf("backend temp_ext sampling test PASSED\n");
 }
 
+// 函数: test_backend_min_p_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_min_p_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_min_p_sampling(const test_params & params) {
     const int seq_id = 0;
     const float p = 0.1;
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_min_p(p, 0));
@@ -521,6 +960,30 @@ static void test_backend_min_p_sampling(const test_params & params) {
     GGML_ASSERT(filtered_logits.size() < (size_t) test_ctx.n_vocab);
 
     // Sample using CPU sampler for verification to inspect they are reasonable
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
     llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(88));
@@ -543,9 +1006,41 @@ static void test_backend_min_p_sampling(const test_params & params) {
     printf("min-p sampling test PASSED\n");
 }
 
+// 函数: test_backend_top_p_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_top_p_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_top_p_sampling(const test_params & params) {
     const int seq_id = 0;
     const float p = 0.9;
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_top_p(p, 0));
@@ -573,6 +1068,30 @@ static void test_backend_top_p_sampling(const test_params & params) {
     GGML_ASSERT(filtered_logits.size() > 0);
 
     // Sample using CPU sampler for verification to inspect they are reasonable
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
     llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(88));
@@ -593,11 +1112,67 @@ static void test_backend_top_p_sampling(const test_params & params) {
     printf("top-p sampling test PASSED\n");
 }
 
+// 函数: test_backend_multi_sequence_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_multi_sequence_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_multi_sequence_sampling(const test_params & params) {
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params_0 = llama_sampler_chain_default_params();
     llama_sampler_ptr sampler_chain_0(llama_sampler_chain_init(chain_params_0));
     llama_sampler_chain_add(sampler_chain_0.get(), llama_sampler_init_greedy());
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params_1 = llama_sampler_chain_default_params();
     llama_sampler_ptr sampler_chain_1(llama_sampler_chain_init(chain_params_1));
     llama_sampler_chain_add(sampler_chain_1.get(), llama_sampler_init_temp(0.8f));
@@ -659,10 +1234,42 @@ static void test_backend_multi_sequence_sampling(const test_params & params) {
     printf("backend multi-sequence sampling test PASSED\n");
 }
 
+// 函数: test_backend_dist_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_dist_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_dist_sampling(const test_params & params) {
     const int seq_id = 189;
     const int32_t seed = 88;
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_dist(seed));
@@ -687,10 +1294,42 @@ static void test_backend_dist_sampling(const test_params & params) {
     printf("backend dist sampling test PASSED\n");
 }
 
+// 函数: test_backend_dist_sampling_and_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_dist_sampling_and_cpu
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_dist_sampling_and_cpu(const test_params & params) {
     const int seq_id = 0;
     const int32_t seed = 88;
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_dist(seed));
@@ -705,6 +1344,30 @@ static void test_backend_dist_sampling_and_cpu(const test_params & params) {
     int32_t batch_idx = test_ctx.idx_for_seq(seq_id);
 
     // Sample using CPU sampler
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
     llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(18));
@@ -717,6 +1380,14 @@ static void test_backend_dist_sampling_and_cpu(const test_params & params) {
     printf("backend dist & cpu sampling test PASSED\n");
 }
 
+// 函数: test_backend_logit_bias_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_logit_bias_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_logit_bias_sampling(const test_params & params) {
     const auto * model = params.model.get();
     const auto * vocab = llama_model_get_vocab(model);
@@ -738,6 +1409,30 @@ static void test_backend_logit_bias_sampling(const test_params & params) {
 
     printf("biasing token piece '%s' -> token id %d\n", piece.c_str(), bias_token);
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_logit_bias(
@@ -765,12 +1460,68 @@ static void test_backend_logit_bias_sampling(const test_params & params) {
 
 // This test verifies that it is possible to have two different backend samplers,
 // one that uses the backend dist sampler, and another that uses CPU dist sampler.
+// 函数: test_backend_mixed_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_mixed_sampling
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_mixed_sampling(const test_params & params) {
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params_0 = llama_sampler_chain_default_params();
     llama_sampler_ptr sampler_chain_0(llama_sampler_chain_init(chain_params_0));
     llama_sampler_chain_add(sampler_chain_0.get(), llama_sampler_init_dist(88));
 
     int k = 40;
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params_1 = llama_sampler_chain_default_params();
     llama_sampler_ptr sampler_chain_1(llama_sampler_chain_init(chain_params_1));
     llama_sampler_chain_add(sampler_chain_1.get(), llama_sampler_init_top_k(k));
@@ -815,10 +1566,42 @@ static void test_backend_mixed_sampling(const test_params & params) {
     printf("backend mixed sampling test PASSED\n");
 }
 
+// 函数: test_backend_set_sampler
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_set_sampler
+// 描述: 设置: 设置某个属性或配置
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_set_sampler(const test_params & params) {
     const int seq_id = 0;
     const int32_t seed = 88;
 
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr backend_sampler_chain(llama_sampler_chain_init(backend_chain_params));
     llama_sampler_chain_add(backend_sampler_chain.get(), llama_sampler_init_dist(seed));
@@ -842,6 +1625,30 @@ static void test_backend_set_sampler(const test_params & params) {
     printf("Cleared backend sampler for seq_id %d\n", seq_id);
 
     // Sample using CPU sampler
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
     llama_sampler_chain_add(chain.get(), llama_sampler_init_dist(18));
@@ -863,6 +1670,30 @@ static void test_backend_set_sampler(const test_params & params) {
     std::map<llama_seq_id, llama_token> tokens2 = { { seq_id, token2}, };
 
     // Set a new backend sampler for the sequence.
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params new_backend_chain_params = llama_sampler_chain_default_params();
     llama_sampler_ptr new_backend_sampler_chain(llama_sampler_chain_init(new_backend_chain_params));
     llama_sampler_chain_add(new_backend_sampler_chain.get(), llama_sampler_init_top_k(20));
@@ -880,8 +1711,40 @@ static void test_backend_set_sampler(const test_params & params) {
     printf("backend set sampler test PASSED\n");
 }
 
+// 函数: test_backend_cpu_mixed_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_cpu_mixed_batch
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_cpu_mixed_batch(const test_params & params) {
     // Sequence 0 uses backend sampling
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 类: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params类提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
     struct llama_sampler_chain_params chain_params_0 = llama_sampler_chain_default_params();
     llama_sampler_ptr sampler_chain_0(llama_sampler_chain_init(chain_params_0));
     llama_sampler_chain_add(sampler_chain_0.get(), llama_sampler_init_dist(88));
@@ -918,6 +1781,30 @@ static void test_backend_cpu_mixed_batch(const test_params & params) {
         llama_token backend_token = llama_get_sampled_token_ith(test_ctx.ctx.get(), batch_idx);
         GGML_ASSERT(backend_token == LLAMA_TOKEN_NULL);
 
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
         llama_sampler_chain_add(chain.get(), llama_sampler_init_greedy());
@@ -935,6 +1822,30 @@ static void test_backend_cpu_mixed_batch(const test_params & params) {
         llama_set_sampler(test_ctx.ctx.get(), 0, nullptr);
 
         // Create a CPU sampler and verify we can sample from it.
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr chain(llama_sampler_chain_init(chain_params));
         llama_sampler_chain_add(chain.get(), llama_sampler_init_greedy());
@@ -948,6 +1859,30 @@ static void test_backend_cpu_mixed_batch(const test_params & params) {
 
     // Set a backend sampler so that we can verify that it can be reset
     {
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+        // 类: llama_sampler_chain_params
+        // 描述: llama_sampler_chain_params类提供相关功能
+        // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
+    // 结构体: llama_sampler_chain_params
+    // 描述: llama_sampler_chain_params结构体提供相关功能
+    // 用途: 用于处理llama_sampler_chain_params相关的操作
         struct llama_sampler_chain_params chain_params = llama_sampler_chain_default_params();
         llama_sampler_ptr sampler_chain(llama_sampler_chain_init(chain_params));
         llama_sampler_chain_add(sampler_chain.get(), llama_sampler_init_dist(88));
@@ -968,6 +1903,14 @@ static void test_backend_cpu_mixed_batch(const test_params & params) {
     printf("backend-cpu mixed batch test PASSED\n");
 }
 
+// 函数: test_backend_max_outputs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_backend_max_outputs
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_backend_max_outputs(const test_params & params) {
     const int seq_id = 0;
     const int32_t seed = 88;
@@ -1007,6 +1950,30 @@ static void test_backend_max_outputs(const test_params & params) {
     printf("backend max outputs test PASSED\n");
 }
 
+// 类: backend_test_case
+// 描述: backend_test_case类提供相关功能
+// 用途: 用于处理backend_test_case相关的操作
+// 类: backend_test_case
+// 描述: backend_test_case类提供相关功能
+// 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
+    // 结构体: backend_test_case
+    // 描述: backend_test_case结构体提供相关功能
+    // 用途: 用于处理backend_test_case相关的操作
 struct backend_test_case {
     std::string name;
     void (*fn)(const test_params &);
@@ -1030,6 +1997,14 @@ static const backend_test_case BACKEND_TESTS[] = {
     { "top_p",           test_backend_top_p_sampling,          true  },
 };
 
+// 函数: parse_cli
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: parse_cli
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static test_args parse_cli(int argc, char ** argv) {
     test_args out;
 
@@ -1121,6 +2096,14 @@ static std::vector<const backend_test_case *> collect_tests_to_run(const std::st
     return selected;
 }
 
+// 函数: run_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: run_tests
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void run_tests(const std::vector<const backend_test_case *> & tests, const test_params & args) {
     for (const auto & test : tests) {
         fprintf(stderr, "\n=== %s ===\n", test->name.c_str());
@@ -1133,6 +2116,14 @@ static void run_tests(const std::vector<const backend_test_case *> & tests, cons
     }
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main(int argc, char ** argv) {
     test_args args = parse_cli(argc, argv);
 

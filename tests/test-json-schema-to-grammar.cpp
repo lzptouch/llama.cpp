@@ -13,6 +13,14 @@
 #include <sstream>
 #include <regex>
 
+// 函数: trim
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: trim
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string trim(const std::string & source) {
     std::string s(source);
     s.erase(0,s.find_first_not_of(" \n\r\t"));
@@ -25,15 +33,55 @@ enum TestCaseStatus {
     FAILURE
 };
 
+// 类: TestCase
+// 描述: TestCase类提供相关功能
+// 用途: 用于处理testcase相关的操作
+// 类: TestCase
+// 描述: TestCase类提供相关功能
+// 用途: 用于处理testcase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
+    // 结构体: TestCase
+    // 描述: TestCase结构体提供相关功能
+    // 用途: 用于处理TestCase相关的操作
 struct TestCase {
     TestCaseStatus expected_status;
     std::string name;
     std::string schema;
     std::string expected_grammar;
 
+    // 函数: _print_failure_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: _print_failure_header
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void _print_failure_header() const {
         fprintf(stderr, "#\n# Test '%s' failed.\n#\n%s\n", name.c_str(), schema.c_str());
     }
+    // 函数: verify
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: verify
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void verify(const std::string & actual_grammar) const {
         if (trim(actual_grammar) != trim(expected_grammar)) {
         _print_failure_header();
@@ -41,6 +89,14 @@ struct TestCase {
         assert(false);
         }
     }
+    // 函数: verify_expectation_parseable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: verify_expectation_parseable
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void verify_expectation_parseable() const {
         try {
             llama_grammar_parser state;
@@ -54,6 +110,14 @@ struct TestCase {
             assert(false);
         }
     }
+    // 函数: verify_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: verify_status
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     void verify_status(TestCaseStatus status) const {
         if (status != expected_status) {
             _print_failure_header();
@@ -64,6 +128,14 @@ struct TestCase {
     }
 };
 
+// 函数: write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: write
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void write(const std::string & file, const std::string & content) {
     std::ofstream f;
     f.open(file.c_str());
@@ -71,12 +143,28 @@ static void write(const std::string & file, const std::string & content) {
     f.close();
 }
 
+// 函数: read
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: read
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static std::string read(const std::string & file) {
     std::ostringstream actuals;
     actuals << std::ifstream(file.c_str()).rdbuf();
     return actuals.str();
 }
 
+// 函数: test_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_all
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_all(const std::string & lang, std::function<void(const TestCase &)> runner) {
     fprintf(stderr, "#\n# Testing JSON schema conversion (%s)\n#\n", lang.c_str());
     auto test = [&](const TestCase & tc) {
@@ -1367,6 +1455,14 @@ static void test_all(const std::string & lang, std::function<void(const TestCase
     });
 }
 
+// 函数: test_resolves_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: test_resolves_to_string
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static void test_resolves_to_string() {
     fprintf(stderr, "#\n# Testing resolves_to_string\n#\n");
 
@@ -1440,6 +1536,14 @@ static void test_resolves_to_string() {
     fprintf(stderr, "All resolves_to_string tests passed!\n");
 }
 
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: main
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 int main() {
     fprintf(stderr, "LLAMA_NODE_AVAILABLE = %s\n", getenv("LLAMA_NODE_AVAILABLE") ? "true" : "false");
     fprintf(stderr, "LLAMA_PYTHON_AVAILABLE = %s\n", getenv("LLAMA_PYTHON_AVAILABLE") ? "true" : "false");

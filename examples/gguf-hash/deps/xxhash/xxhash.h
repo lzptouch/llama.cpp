@@ -1652,6 +1652,12 @@ XXH_PUBLIC_API XXH_PUREF XXH128_hash_t XXH128_hashFromCanonical(XXH_NOESCAPE con
  * Do not access the members of this struct directly.
  * @see XXH64_state_s, XXH3_state_s
  */
+// 类: XXH32_state_s
+// 描述: XXH32_state_s类提供相关功能
+// 用途: 用于处理xxh32_state_s相关的操作
+// 类: XXH32_state_s
+// 描述: XXH32_state_s类提供相关功能
+// 用途: 用于处理xxh32_state_s相关的操作
 struct XXH32_state_s {
    XXH32_hash_t total_len_32; /*!< Total length hashed, modulo 2^32 */
    XXH32_hash_t large_len;    /*!< Whether the hash is >= 16 (handles @ref total_len_32 overflow) */
@@ -1676,6 +1682,12 @@ struct XXH32_state_s {
  * Do not access the members of this struct directly.
  * @see XXH32_state_s, XXH3_state_s
  */
+// 类: XXH64_state_s
+// 描述: XXH64_state_s类提供相关功能
+// 用途: 用于处理xxh64_state_s相关的操作
+// 类: XXH64_state_s
+// 描述: XXH64_state_s类提供相关功能
+// 用途: 用于处理xxh64_state_s相关的操作
 struct XXH64_state_s {
    XXH64_hash_t total_len;    /*!< Total length hashed. This is always 64-bit. */
    XXH64_hash_t v[4];         /*!< Accumulator lanes */
@@ -1755,6 +1767,12 @@ struct XXH64_state_s {
  * @see XXH3_createState(), XXH3_freeState().
  * @see XXH32_state_s, XXH64_state_s
  */
+// 类: XXH3_state_s
+// 描述: XXH3_state_s类提供相关功能
+// 用途: 用于处理xxh3_state_s相关的操作
+// 类: XXH3_state_s
+// 描述: XXH3_state_s类提供相关功能
+// 用途: 用于处理xxh3_state_s相关的操作
 struct XXH3_state_s {
    XXH_ALIGN_MEMBER(64, XXH64_hash_t acc[8]);
        /*!< The 8 accumulators. See @ref XXH32_state_s::v and @ref XXH64_state_s::v */
@@ -2355,6 +2373,14 @@ XXH3_128bits_reset_withSecretandSeed(XXH_NOESCAPE XXH3_state_t* statePtr,
  */
 
 static XXH_CONSTF void* XXH_malloc(size_t s) { (void)s; return NULL; }
+// 函数: XXH_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void XXH_free(void* p) { (void)p; }
 
 #else
@@ -2375,6 +2401,14 @@ static XXH_MALLOCF void* XXH_malloc(size_t s) { return malloc(s); }
  * @internal
  * @brief Modify this function to use a different routine than free().
  */
+// 函数: XXH_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_free
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void XXH_free(void* p) { free(p); }
 
 #endif  /* XXH_NO_STDLIB */
@@ -2387,6 +2421,14 @@ static void XXH_free(void* p) { free(p); }
  */
 static void* XXH_memcpy(void* dest, const void* src, size_t size)
 {
+    // 函数: memcpy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: memcpy
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return memcpy(dest,src,size);
 }
 
@@ -2589,6 +2631,14 @@ typedef XXH32_hash_t xxh_u32;
  * Force direct memory access. Only works on CPU which support unaligned memory
  * access in hardware.
  */
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH_read32(const void* memPtr) { return *(const xxh_u32*) memPtr; }
 
 #elif (defined(XXH_FORCE_MEMORY_ACCESS) && (XXH_FORCE_MEMORY_ACCESS==1))
@@ -2603,8 +2653,24 @@ static xxh_u32 XXH_read32(const void* memPtr) { return *(const xxh_u32*) memPtr;
 #ifdef XXH_OLD_NAMES
 typedef union { xxh_u32 u32; } __attribute__((__packed__)) unalign;
 #endif
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH_read32(const void* ptr)
 {
+    // 函数: __attribute__
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __attribute__
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef __attribute__((__aligned__(1))) xxh_u32 xxh_unalign32;
     return *((const xxh_unalign32*)ptr);
 }
@@ -2615,6 +2681,14 @@ static xxh_u32 XXH_read32(const void* ptr)
  * Portable and safe solution. Generally efficient.
  * see: https://fastcompression.blogspot.com/2015/08/accessing-unaligned-memory.html
  */
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH_read32(const void* memPtr)
 {
     xxh_u32 val;
@@ -2662,6 +2736,14 @@ static xxh_u32 XXH_read32(const void* memPtr)
  *
  * Most compilers will constant fold this.
  */
+// 函数: XXH_isLittleEndian
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_isLittleEndian
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static int XXH_isLittleEndian(void)
 {
     /*
@@ -2773,6 +2855,14 @@ static int XXH_isLittleEndian(void)
 #elif XXH_GCC_VERSION >= 403
 #  define XXH_swap32 __builtin_bswap32
 #else
+// 函数: XXH_swap32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_swap32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH_swap32 (xxh_u32 x)
 {
     return  ((x << 24) & 0xff000000 ) |
@@ -2827,6 +2917,14 @@ XXH_FORCE_INLINE xxh_u32 XXH_readLE32(const void* ptr)
     return XXH_CPU_LITTLE_ENDIAN ? XXH_read32(ptr) : XXH_swap32(XXH_read32(ptr));
 }
 
+// 函数: XXH_readBE32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_readBE32
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH_readBE32(const void* ptr)
 {
     return XXH_CPU_LITTLE_ENDIAN ? XXH_swap32(XXH_read32(ptr)) : XXH_read32(ptr);
@@ -2837,6 +2935,14 @@ XXH_FORCE_INLINE xxh_u32
 XXH_readLE32_align(const void* ptr, XXH_alignment align)
 {
     if (align==XXH_unaligned) {
+        // 函数: XXH_readLE32
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH_readLE32
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH_readLE32(ptr);
     } else {
         return XXH_CPU_LITTLE_ENDIAN ? *(const xxh_u32*)ptr : XXH_swap32(*(const xxh_u32*)ptr);
@@ -2888,6 +2994,14 @@ XXH_PUBLIC_API unsigned XXH_versionNumber (void) { return XXH_VERSION_NUMBER; }
  * @param input The stripe of input to mix.
  * @return The mixed accumulator lane.
  */
+// 函数: XXH32_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH32_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH32_round(xxh_u32 acc, xxh_u32 input)
 {
     acc += input * XXH_PRIME32_2;
@@ -2945,6 +3059,14 @@ static xxh_u32 XXH32_round(xxh_u32 acc, xxh_u32 input)
  * @param hash The hash to avalanche.
  * @return The avalanched hash.
  */
+// 函数: XXH32_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH32_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u32 XXH32_avalanche(xxh_u32 hash)
 {
     hash ^= hash >> 15;
@@ -2999,6 +3121,14 @@ XXH32_finalize(xxh_u32 hash, const xxh_u8* ptr, size_t len, XXH_alignment align)
             XXH_PROCESS1;
             --len;
         }
+        // 函数: XXH32_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH32_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH32_avalanche(hash);
     } else {
          switch(len&15) /* or switch(bEnd - p) */ {
@@ -3007,6 +3137,14 @@ XXH32_finalize(xxh_u32 hash, const xxh_u8* ptr, size_t len, XXH_alignment align)
            case 8:       XXH_PROCESS4;
                          XXH_FALLTHROUGH;  /* fallthrough */
            case 4:       XXH_PROCESS4;
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
                          return XXH32_avalanche(hash);
 
            case 13:      XXH_PROCESS4;
@@ -3015,6 +3153,14 @@ XXH32_finalize(xxh_u32 hash, const xxh_u8* ptr, size_t len, XXH_alignment align)
                          XXH_FALLTHROUGH;  /* fallthrough */
            case 5:       XXH_PROCESS4;
                          XXH_PROCESS1;
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
                          return XXH32_avalanche(hash);
 
            case 14:      XXH_PROCESS4;
@@ -3024,6 +3170,14 @@ XXH32_finalize(xxh_u32 hash, const xxh_u8* ptr, size_t len, XXH_alignment align)
            case 6:       XXH_PROCESS4;
                          XXH_PROCESS1;
                          XXH_PROCESS1;
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
+                         // 函数: XXH32_avalanche
+                         // 描述: 执行主要功能
+                         // 参数: 无参数
+                         // 返回: 无返回值
                          return XXH32_avalanche(hash);
 
            case 15:      XXH_PROCESS4;
@@ -3091,6 +3245,14 @@ XXH32_endian_align(const xxh_u8* input, size_t len, xxh_u32 seed, XXH_alignment 
 
     h32 += (xxh_u32)len;
 
+    // 函数: XXH32_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH32_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH32_finalize(h32, input, len&15, align);
 }
 
@@ -3102,13 +3264,37 @@ XXH_PUBLIC_API XXH32_hash_t XXH32 (const void* input, size_t len, XXH32_hash_t s
     XXH32_state_t state;
     XXH32_reset(&state, seed);
     XXH32_update(&state, (const xxh_u8*)input, len);
+    // 函数: XXH32_digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH32_digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH32_digest(&state);
 #else
     if (XXH_FORCE_ALIGN_CHECK) {
         if ((((size_t)input) & 3) == 0) {   /* Input is 4-bytes aligned, leverage the speed benefit */
+            // 函数: XXH32_endian_align
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: XXH32_endian_align
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return XXH32_endian_align((const xxh_u8*)input, len, seed, XXH_aligned);
     }   }
 
+    // 函数: XXH32_endian_align
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH32_endian_align
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH32_endian_align((const xxh_u8*)input, len, seed, XXH_unaligned);
 #endif
 }
@@ -3219,6 +3405,14 @@ XXH_PUBLIC_API XXH32_hash_t XXH32_digest(const XXH32_state_t* state)
 
     h32 += state->total_len_32;
 
+    // 函数: XXH32_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH32_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH32_finalize(h32, (const xxh_u8*)state->mem32, state->memsize, XXH_aligned);
 }
 #endif /* !XXH_NO_STREAM */
@@ -3235,6 +3429,14 @@ XXH_PUBLIC_API void XXH32_canonicalFromHash(XXH32_canonical_t* dst, XXH32_hash_t
 /*! @ingroup XXH32_family */
 XXH_PUBLIC_API XXH32_hash_t XXH32_hashFromCanonical(const XXH32_canonical_t* src)
 {
+    // 函数: XXH_readBE32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH_readBE32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH_readBE32(src);
 }
 
@@ -3265,6 +3467,14 @@ typedef XXH64_hash_t xxh_u64;
 #elif (defined(XXH_FORCE_MEMORY_ACCESS) && (XXH_FORCE_MEMORY_ACCESS==2))
 
 /* Force direct memory access. Only works on CPU which support unaligned memory access in hardware */
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH_read64(const void* memPtr)
 {
     return *(const xxh_u64*) memPtr;
@@ -3282,8 +3492,24 @@ static xxh_u64 XXH_read64(const void* memPtr)
 #ifdef XXH_OLD_NAMES
 typedef union { xxh_u32 u32; xxh_u64 u64; } __attribute__((__packed__)) unalign64;
 #endif
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH_read64(const void* ptr)
 {
+    // 函数: __attribute__
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: __attribute__
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     typedef __attribute__((__aligned__(1))) xxh_u64 xxh_unalign64;
     return *((const xxh_unalign64*)ptr);
 }
@@ -3294,6 +3520,14 @@ static xxh_u64 XXH_read64(const void* ptr)
  * Portable and safe solution. Generally efficient.
  * see: https://fastcompression.blogspot.com/2015/08/accessing-unaligned-memory.html
  */
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_read64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH_read64(const void* memPtr)
 {
     xxh_u64 val;
@@ -3308,6 +3542,14 @@ static xxh_u64 XXH_read64(const void* memPtr)
 #elif XXH_GCC_VERSION >= 403
 #  define XXH_swap64 __builtin_bswap64
 #else
+// 函数: XXH_swap64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_swap64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH_swap64(xxh_u64 x)
 {
     return  ((x << 56) & 0xff00000000000000ULL) |
@@ -3357,6 +3599,14 @@ XXH_FORCE_INLINE xxh_u64 XXH_readLE64(const void* ptr)
     return XXH_CPU_LITTLE_ENDIAN ? XXH_read64(ptr) : XXH_swap64(XXH_read64(ptr));
 }
 
+// 函数: XXH_readBE64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_readBE64
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH_readBE64(const void* ptr)
 {
     return XXH_CPU_LITTLE_ENDIAN ? XXH_swap64(XXH_read64(ptr)) : XXH_read64(ptr);
@@ -3367,6 +3617,14 @@ XXH_FORCE_INLINE xxh_u64
 XXH_readLE64_align(const void* ptr, XXH_alignment align)
 {
     if (align==XXH_unaligned)
+        // 函数: XXH_readLE64
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH_readLE64
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH_readLE64(ptr);
     else
         return XXH_CPU_LITTLE_ENDIAN ? *(const xxh_u64*)ptr : XXH_swap64(*(const xxh_u64*)ptr);
@@ -3398,6 +3656,14 @@ XXH_readLE64_align(const void* ptr, XXH_alignment align)
 #endif
 
 /*! @copydoc XXH32_round */
+// 函数: XXH64_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH64_round
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH64_round(xxh_u64 acc, xxh_u64 input)
 {
     acc += input * XXH_PRIME64_2;
@@ -3423,6 +3689,14 @@ static xxh_u64 XXH64_round(xxh_u64 acc, xxh_u64 input)
     return acc;
 }
 
+// 函数: XXH64_mergeRound
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH64_mergeRound
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH64_mergeRound(xxh_u64 acc, xxh_u64 val)
 {
     val  = XXH64_round(0, val);
@@ -3432,6 +3706,14 @@ static xxh_u64 XXH64_mergeRound(xxh_u64 acc, xxh_u64 val)
 }
 
 /*! @copydoc XXH32_avalanche */
+// 函数: XXH64_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH64_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static xxh_u64 XXH64_avalanche(xxh_u64 hash)
 {
     hash ^= hash >> 33;
@@ -3483,6 +3765,14 @@ XXH64_finalize(xxh_u64 hash, const xxh_u8* ptr, size_t len, XXH_alignment align)
         hash = XXH_rotl64(hash, 11) * XXH_PRIME64_1;
         --len;
     }
+    // 函数: XXH64_avalanche
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH64_avalanche
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return  XXH64_avalanche(hash);
 }
 
@@ -3537,6 +3827,14 @@ XXH64_endian_align(const xxh_u8* input, size_t len, xxh_u64 seed, XXH_alignment 
 
     h64 += (xxh_u64) len;
 
+    // 函数: XXH64_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH64_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH64_finalize(h64, input, len, align);
 }
 
@@ -3549,13 +3847,37 @@ XXH_PUBLIC_API XXH64_hash_t XXH64 (XXH_NOESCAPE const void* input, size_t len, X
     XXH64_state_t state;
     XXH64_reset(&state, seed);
     XXH64_update(&state, (const xxh_u8*)input, len);
+    // 函数: XXH64_digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH64_digest
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH64_digest(&state);
 #else
     if (XXH_FORCE_ALIGN_CHECK) {
         if ((((size_t)input) & 7)==0) {  /* Input is aligned, let's leverage the speed advantage */
+            // 函数: XXH64_endian_align
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
+            // 函数: XXH64_endian_align
+            // 描述: 执行主要功能
+            // 参数: 无参数
+            // 返回: 无返回值
             return XXH64_endian_align((const xxh_u8*)input, len, seed, XXH_aligned);
     }   }
 
+    // 函数: XXH64_endian_align
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH64_endian_align
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH64_endian_align((const xxh_u8*)input, len, seed, XXH_unaligned);
 
 #endif
@@ -3662,6 +3984,14 @@ XXH_PUBLIC_API XXH64_hash_t XXH64_digest(XXH_NOESCAPE const XXH64_state_t* state
 
     h64 += (xxh_u64) state->total_len;
 
+    // 函数: XXH64_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH64_finalize
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH64_finalize(h64, (const xxh_u8*)state->mem64, (size_t)state->total_len, XXH_aligned);
 }
 #endif /* !XXH_NO_STREAM */
@@ -3679,6 +4009,14 @@ XXH_PUBLIC_API void XXH64_canonicalFromHash(XXH_NOESCAPE XXH64_canonical_t* dst,
 /*! @ingroup XXH64_family */
 XXH_PUBLIC_API XXH64_hash_t XXH64_hashFromCanonical(XXH_NOESCAPE const XXH64_canonical_t* src)
 {
+    // 函数: XXH_readBE64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH_readBE64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH_readBE64(src);
 }
 
@@ -4034,6 +4372,14 @@ XXH_FORCE_INLINE uint64x2_t XXH_vld1q_u64(void const* ptr) /* silence -Wcast-ali
 #else
 XXH_FORCE_INLINE uint64x2_t XXH_vld1q_u64(void const* ptr)
 {
+    // 函数: vreinterpretq_u64_u8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vreinterpretq_u64_u8
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vreinterpretq_u64_u8(vld1q_u8((uint8_t const*)ptr));
 }
 #endif
@@ -4058,6 +4404,14 @@ XXH_FORCE_INLINE uint64x2_t
 XXH_vmlal_high_u32(uint64x2_t acc, uint32x4_t lhs, uint32x4_t rhs)
 {
     /* This intrinsic works as expected */
+    // 函数: vmlal_high_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vmlal_high_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vmlal_high_u32(acc, lhs, rhs);
 }
 #else
@@ -4065,6 +4419,14 @@ XXH_vmlal_high_u32(uint64x2_t acc, uint32x4_t lhs, uint32x4_t rhs)
 XXH_FORCE_INLINE uint64x2_t
 XXH_vmlal_low_u32(uint64x2_t acc, uint32x4_t lhs, uint32x4_t rhs)
 {
+    // 函数: vmlal_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vmlal_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vmlal_u32(acc, vget_low_u32(lhs), vget_low_u32(rhs));
 }
 /*! @copydoc XXH_vmlal_low_u32
@@ -4072,6 +4434,14 @@ XXH_vmlal_low_u32(uint64x2_t acc, uint32x4_t lhs, uint32x4_t rhs)
 XXH_FORCE_INLINE uint64x2_t
 XXH_vmlal_high_u32(uint64x2_t acc, uint32x4_t lhs, uint32x4_t rhs)
 {
+    // 函数: vmlal_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vmlal_u32
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vmlal_u32(acc, vget_high_u32(lhs), vget_high_u32(rhs));
 }
 #endif
@@ -4192,6 +4562,14 @@ XXH_FORCE_INLINE xxh_u64x2 XXH_vec_revb(xxh_u64x2 val)
 {
     xxh_u8x16 const vByteSwap = { 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00,
                                   0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x0A, 0x09, 0x08 };
+    // 函数: vec_perm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: vec_perm
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return vec_perm(val, val, vByteSwap);
 }
 #  endif
@@ -4504,6 +4882,14 @@ XXH_FORCE_INLINE XXH_CONSTF xxh_u64 XXH_xorshift64(xxh_u64 v64, int shift)
  * This is a fast avalanche stage,
  * suitable when input bits are already partially mixed
  */
+// 函数: XXH3_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH3_avalanche
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static XXH64_hash_t XXH3_avalanche(xxh_u64 h64)
 {
     h64 = XXH_xorshift64(h64, 37);
@@ -4517,6 +4903,14 @@ static XXH64_hash_t XXH3_avalanche(xxh_u64 h64)
  * inspired by Pelle Evensen's rrmxmx
  * preferable when input has not been previously mixed
  */
+// 函数: XXH3_rrmxmx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH3_rrmxmx
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 static XXH64_hash_t XXH3_rrmxmx(xxh_u64 h64, xxh_u64 len)
 {
     /* this mix is inspired by Pelle Evensen's rrmxmx */
@@ -4524,6 +4918,14 @@ static XXH64_hash_t XXH3_rrmxmx(xxh_u64 h64, xxh_u64 len)
     h64 *= PRIME_MX2;
     h64 ^= (h64 >> 35) + len ;
     h64 *= PRIME_MX2;
+    // 函数: XXH_xorshift64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH_xorshift64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH_xorshift64(h64, 28);
 }
 
@@ -4579,6 +4981,14 @@ XXH3_len_1to3_64b(const xxh_u8* input, size_t len, const xxh_u8* secret, XXH64_h
                                | ((xxh_u32)c3 <<  0) | ((xxh_u32)len << 8);
         xxh_u64 const bitflip = (XXH_readLE32(secret) ^ XXH_readLE32(secret+4)) + seed;
         xxh_u64 const keyed = (xxh_u64)combined ^ bitflip;
+        // 函数: XXH64_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH64_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH64_avalanche(keyed);
     }
 }
@@ -4595,6 +5005,14 @@ XXH3_len_4to8_64b(const xxh_u8* input, size_t len, const xxh_u8* secret, XXH64_h
         xxh_u64 const bitflip = (XXH_readLE64(secret+8) ^ XXH_readLE64(secret+16)) - seed;
         xxh_u64 const input64 = input2 + (((xxh_u64)input1) << 32);
         xxh_u64 const keyed = input64 ^ bitflip;
+        // 函数: XXH3_rrmxmx
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_rrmxmx
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_rrmxmx(keyed, len);
     }
 }
@@ -4612,6 +5030,14 @@ XXH3_len_9to16_64b(const xxh_u8* input, size_t len, const xxh_u8* secret, XXH64_
         xxh_u64 const acc = len
                           + XXH_swap64(input_lo) + input_hi
                           + XXH3_mul128_fold64(input_lo, input_hi);
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_avalanche(acc);
     }
 }
@@ -4623,6 +5049,14 @@ XXH3_len_0to16_64b(const xxh_u8* input, size_t len, const xxh_u8* secret, XXH64_
     {   if (XXH_likely(len >  8)) return XXH3_len_9to16_64b(input, len, secret, seed);
         if (XXH_likely(len >= 4)) return XXH3_len_4to8_64b(input, len, secret, seed);
         if (len) return XXH3_len_1to3_64b(input, len, secret, seed);
+        // 函数: XXH64_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH64_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH64_avalanche(seed ^ (XXH_readLE64(secret+56) ^ XXH_readLE64(secret+64)));
     }
 }
@@ -4718,6 +5152,14 @@ XXH3_len_17to128_64b(const xxh_u8* XXH_RESTRICT input, size_t len,
         acc += XXH3_mix16B(input+0, secret+0, seed);
         acc += XXH3_mix16B(input+len-16, secret+16, seed);
 #endif
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_avalanche(acc);
     }
 }
@@ -4777,6 +5219,14 @@ XXH3_len_129to240_64b(const xxh_u8* XXH_RESTRICT input, size_t len,
             XXH_COMPILER_GUARD(acc);
             acc_end += XXH3_mix16B(input+(16*i), secret+(16*(i-8)) + XXH3_MIDSIZE_STARTOFFSET, seed);
         }
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_avalanche
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_avalanche(acc + acc_end);
     }
 }
@@ -5355,6 +5805,14 @@ XXH3_accumulate_512_neon( void* XXH_RESTRICT acc,
         }
     }
 }
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 XXH_FORCE_INLINE XXH3_ACCUMULATE_TEMPLATE(neon)
 
 XXH_FORCE_INLINE void
@@ -5450,6 +5908,14 @@ XXH3_accumulate_512_vsx(  void* XXH_RESTRICT acc,
         xacc[i] = acc_vec;
     }
 }
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 XXH_FORCE_INLINE XXH3_ACCUMULATE_TEMPLATE(vsx)
 
 XXH_FORCE_INLINE void
@@ -5622,6 +6088,14 @@ XXH_mult32to64_add64(xxh_u64 lhs, xxh_u64 rhs, xxh_u64 acc)
 XXH_FORCE_INLINE xxh_u64
 XXH_mult32to64_add64(xxh_u64 lhs, xxh_u64 rhs, xxh_u64 acc)
 {
+    // 函数: XXH_mult32to64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH_mult32to64
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH_mult32to64((xxh_u32)lhs, (xxh_u32)rhs) + acc;
 }
 #endif
@@ -5673,6 +6147,14 @@ XXH3_accumulate_512_scalar(void* XXH_RESTRICT acc,
         XXH3_scalarRound(acc, input, secret, i);
     }
 }
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH3_ACCUMULATE_TEMPLATE
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 XXH_FORCE_INLINE XXH3_ACCUMULATE_TEMPLATE(scalar)
 
 /*!
@@ -5777,8 +6259,32 @@ XXH3_initCustomSecret_scalar(void* XXH_RESTRICT customSecret, xxh_u64 seed64)
 }
 
 
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*XXH3_f_accumulate)(xxh_u64* XXH_RESTRICT, const xxh_u8* XXH_RESTRICT, const xxh_u8* XXH_RESTRICT, size_t);
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*XXH3_f_scrambleAcc)(void* XXH_RESTRICT, const void*);
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: void
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef void (*XXH3_f_initCustomSecret)(void* XXH_RESTRICT, xxh_u64);
 
 
@@ -5902,6 +6408,14 @@ XXH3_mergeAccs(const xxh_u64* XXH_RESTRICT acc, const xxh_u8* XXH_RESTRICT secre
 #endif
     }
 
+    // 函数: XXH3_avalanche
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_avalanche
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_avalanche(result64);
 }
 
@@ -5923,6 +6437,14 @@ XXH3_hashLong_64b_internal(const void* XXH_RESTRICT input, size_t len,
     /* do not align on 8, so that the secret is different from the accumulator */
 #define XXH_SECRET_MERGEACCS_START 11
     XXH_ASSERT(secretSize >= sizeof(acc) + XXH_SECRET_MERGEACCS_START);
+    // 函数: XXH3_mergeAccs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_mergeAccs
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_mergeAccs(acc, (const xxh_u8*)secret + XXH_SECRET_MERGEACCS_START, (xxh_u64)len * XXH_PRIME64_1);
 }
 
@@ -5938,6 +6460,14 @@ XXH3_hashLong_64b_withSecret(const void* XXH_RESTRICT input, size_t len,
                              XXH64_hash_t seed64, const xxh_u8* XXH_RESTRICT secret, size_t secretLen)
 {
     (void)seed64;
+    // 函数: XXH3_hashLong_64b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_64b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_64b_internal(input, len, secret, secretLen, XXH3_accumulate, XXH3_scrambleAcc);
 }
 
@@ -5952,6 +6482,14 @@ XXH3_hashLong_64b_default(const void* XXH_RESTRICT input, size_t len,
                           XXH64_hash_t seed64, const xxh_u8* XXH_RESTRICT secret, size_t secretLen)
 {
     (void)seed64; (void)secret; (void)secretLen;
+    // 函数: XXH3_hashLong_64b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_64b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_64b_internal(input, len, XXH3_kSecret, sizeof(XXH3_kSecret), XXH3_accumulate, XXH3_scrambleAcc);
 }
 
@@ -5981,6 +6519,14 @@ XXH3_hashLong_64b_withSeed_internal(const void* input, size_t len,
 #endif
     {   XXH_ALIGN(XXH_SEC_ALIGN) xxh_u8 secret[XXH_SECRET_DEFAULT_SIZE];
         f_initSec(secret, seed);
+        // 函数: XXH3_hashLong_64b_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_hashLong_64b_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_hashLong_64b_internal(input, len, secret, sizeof(secret),
                                           f_acc, f_scramble);
     }
@@ -5999,6 +6545,14 @@ XXH3_hashLong_64b_withSeed(const void* XXH_RESTRICT input, size_t len,
 }
 
 
+// 函数: XXH64_hash_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH64_hash_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef XXH64_hash_t (*XXH3_hashLong64_f)(const void* XXH_RESTRICT, size_t,
                                           XXH64_hash_t, const xxh_u8* XXH_RESTRICT, size_t);
 
@@ -6016,11 +6570,43 @@ XXH3_64bits_internal(const void* XXH_RESTRICT input, size_t len,
      * Also, note that function signature doesn't offer room to return an error.
      */
     if (len <= 16)
+        // 函数: XXH3_len_0to16_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_0to16_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_0to16_64b((const xxh_u8*)input, len, (const xxh_u8*)secret, seed64);
     if (len <= 128)
+        // 函数: XXH3_len_17to128_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_17to128_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_17to128_64b((const xxh_u8*)input, len, (const xxh_u8*)secret, secretLen, seed64);
     if (len <= XXH3_MIDSIZE_MAX)
+        // 函数: XXH3_len_129to240_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_129to240_64b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_129to240_64b((const xxh_u8*)input, len, (const xxh_u8*)secret, secretLen, seed64);
+    // 函数: f_hashLong
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: f_hashLong
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return f_hashLong(input, len, seed64, (const xxh_u8*)secret, secretLen);
 }
 
@@ -6030,6 +6616,14 @@ XXH3_64bits_internal(const void* XXH_RESTRICT input, size_t len,
 /*! @ingroup XXH3_family */
 XXH_PUBLIC_API XXH64_hash_t XXH3_64bits(XXH_NOESCAPE const void* input, size_t length)
 {
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_internal(input, length, 0, XXH3_kSecret, sizeof(XXH3_kSecret), XXH3_hashLong_64b_default);
 }
 
@@ -6037,6 +6631,14 @@ XXH_PUBLIC_API XXH64_hash_t XXH3_64bits(XXH_NOESCAPE const void* input, size_t l
 XXH_PUBLIC_API XXH64_hash_t
 XXH3_64bits_withSecret(XXH_NOESCAPE const void* input, size_t length, XXH_NOESCAPE const void* secret, size_t secretSize)
 {
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_internal(input, length, 0, secret, secretSize, XXH3_hashLong_64b_withSecret);
 }
 
@@ -6044,6 +6646,14 @@ XXH3_64bits_withSecret(XXH_NOESCAPE const void* input, size_t length, XXH_NOESCA
 XXH_PUBLIC_API XXH64_hash_t
 XXH3_64bits_withSeed(XXH_NOESCAPE const void* input, size_t length, XXH64_hash_t seed)
 {
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_internal(input, length, seed, XXH3_kSecret, sizeof(XXH3_kSecret), XXH3_hashLong_64b_withSeed);
 }
 
@@ -6051,7 +6661,23 @@ XXH_PUBLIC_API XXH64_hash_t
 XXH3_64bits_withSecretandSeed(XXH_NOESCAPE const void* input, size_t length, XXH_NOESCAPE const void* secret, size_t secretSize, XXH64_hash_t seed)
 {
     if (length <= XXH3_MIDSIZE_MAX)
+        // 函数: XXH3_64bits_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_64bits_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_64bits_internal(input, length, seed, XXH3_kSecret, sizeof(XXH3_kSecret), NULL);
+    // 函数: XXH3_hashLong_64b_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_64b_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_64b_withSecret(input, length, seed, (const xxh_u8*)secret, secretSize);
 }
 
@@ -6112,6 +6738,14 @@ static XXH_MALLOCF void* XXH_alignedMalloc(size_t s, size_t align)
  * Frees an aligned pointer allocated by XXH_alignedMalloc(). Don't pass
  * normal malloc'd pointers, XXH_alignedMalloc has a specific data layout.
  */
+// 函数: XXH_alignedFree
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH_alignedFree
+// 描述: 释放: 释放资源或销毁对象
+// 参数: 无参数
+// 返回: 无返回值
 static void XXH_alignedFree(void* p)
 {
     if (p != NULL) {
@@ -6382,6 +7016,14 @@ XXH3_update(XXH3_state_t* XXH_RESTRICT const state,
 XXH_PUBLIC_API XXH_errorcode
 XXH3_64bits_update(XXH_NOESCAPE XXH3_state_t* state, XXH_NOESCAPE const void* input, size_t len)
 {
+    // 函数: XXH3_update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_update(state, (const xxh_u8*)input, len,
                        XXH3_accumulate, XXH3_scrambleAcc);
 }
@@ -6437,7 +7079,23 @@ XXH_PUBLIC_API XXH64_hash_t XXH3_64bits_digest (XXH_NOESCAPE const XXH3_state_t*
     }
     /* totalLen <= XXH3_MIDSIZE_MAX: digesting a short input */
     if (state->useSeed)
+        // 函数: XXH3_64bits_withSeed
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_64bits_withSeed
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_64bits_withSeed(state->buffer, (size_t)state->totalLen, state->seed);
+    // 函数: XXH3_64bits_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_withSecret(state->buffer, (size_t)(state->totalLen),
                                   secret, state->secretLimit + XXH_STRIPE_LEN);
 }
@@ -6759,6 +7417,14 @@ XXH3_hashLong_128b_default(const void* XXH_RESTRICT input, size_t len,
                            const void* XXH_RESTRICT secret, size_t secretLen)
 {
     (void)seed64; (void)secret; (void)secretLen;
+    // 函数: XXH3_hashLong_128b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_128b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_128b_internal(input, len, XXH3_kSecret, sizeof(XXH3_kSecret),
                                        XXH3_accumulate, XXH3_scrambleAcc);
 }
@@ -6776,6 +7442,14 @@ XXH3_hashLong_128b_withSecret(const void* XXH_RESTRICT input, size_t len,
                               const void* XXH_RESTRICT secret, size_t secretLen)
 {
     (void)seed64;
+    // 函数: XXH3_hashLong_128b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_128b_internal
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_128b_internal(input, len, (const xxh_u8*)secret, secretLen,
                                        XXH3_accumulate, XXH3_scrambleAcc);
 }
@@ -6793,6 +7467,14 @@ XXH3_hashLong_128b_withSeed_internal(const void* XXH_RESTRICT input, size_t len,
                                            f_acc, f_scramble);
     {   XXH_ALIGN(XXH_SEC_ALIGN) xxh_u8 secret[XXH_SECRET_DEFAULT_SIZE];
         f_initSec(secret, seed64);
+        // 函数: XXH3_hashLong_128b_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_hashLong_128b_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_hashLong_128b_internal(input, len, (const xxh_u8*)secret, sizeof(secret),
                                            f_acc, f_scramble);
     }
@@ -6810,6 +7492,14 @@ XXH3_hashLong_128b_withSeed(const void* input, size_t len,
                 XXH3_accumulate, XXH3_scrambleAcc, XXH3_initCustomSecret);
 }
 
+// 函数: XXH128_hash_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
+// 函数: XXH128_hash_t
+// 描述: 执行主要功能
+// 参数: 无参数
+// 返回: 无返回值
 typedef XXH128_hash_t (*XXH3_hashLong128_f)(const void* XXH_RESTRICT, size_t,
                                             XXH64_hash_t, const void* XXH_RESTRICT, size_t);
 
@@ -6826,11 +7516,43 @@ XXH3_128bits_internal(const void* input, size_t len,
      * Adding a check and a branch here would cost performance at every hash.
      */
     if (len <= 16)
+        // 函数: XXH3_len_0to16_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_0to16_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_0to16_128b((const xxh_u8*)input, len, (const xxh_u8*)secret, seed64);
     if (len <= 128)
+        // 函数: XXH3_len_17to128_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_17to128_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_17to128_128b((const xxh_u8*)input, len, (const xxh_u8*)secret, secretLen, seed64);
     if (len <= XXH3_MIDSIZE_MAX)
+        // 函数: XXH3_len_129to240_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_len_129to240_128b
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_len_129to240_128b((const xxh_u8*)input, len, (const xxh_u8*)secret, secretLen, seed64);
+    // 函数: f_hl128
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: f_hl128
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return f_hl128(input, len, seed64, secret, secretLen);
 }
 
@@ -6868,7 +7590,23 @@ XXH_PUBLIC_API XXH128_hash_t
 XXH3_128bits_withSecretandSeed(XXH_NOESCAPE const void* input, size_t len, XXH_NOESCAPE const void* secret, size_t secretSize, XXH64_hash_t seed)
 {
     if (len <= XXH3_MIDSIZE_MAX)
+        // 函数: XXH3_128bits_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_128bits_internal
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_128bits_internal(input, len, seed, XXH3_kSecret, sizeof(XXH3_kSecret), NULL);
+    // 函数: XXH3_hashLong_128b_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_hashLong_128b_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_hashLong_128b_withSecret(input, len, seed, secret, secretSize);
 }
 
@@ -6876,6 +7614,14 @@ XXH3_128bits_withSecretandSeed(XXH_NOESCAPE const void* input, size_t len, XXH_N
 XXH_PUBLIC_API XXH128_hash_t
 XXH128(XXH_NOESCAPE const void* input, size_t len, XXH64_hash_t seed)
 {
+    // 函数: XXH3_128bits_withSeed
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_128bits_withSeed
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_128bits_withSeed(input, len, seed);
 }
 
@@ -6891,6 +7637,14 @@ XXH128(XXH_NOESCAPE const void* input, size_t len, XXH64_hash_t seed)
 XXH_PUBLIC_API XXH_errorcode
 XXH3_128bits_reset(XXH_NOESCAPE XXH3_state_t* statePtr)
 {
+    // 函数: XXH3_64bits_reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_reset
+    // 描述: 重置: 重置对象或状态到初始值
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_reset(statePtr);
 }
 
@@ -6898,6 +7652,14 @@ XXH3_128bits_reset(XXH_NOESCAPE XXH3_state_t* statePtr)
 XXH_PUBLIC_API XXH_errorcode
 XXH3_128bits_reset_withSecret(XXH_NOESCAPE XXH3_state_t* statePtr, XXH_NOESCAPE const void* secret, size_t secretSize)
 {
+    // 函数: XXH3_64bits_reset_withSecret
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_reset_withSecret
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_reset_withSecret(statePtr, secret, secretSize);
 }
 
@@ -6905,6 +7667,14 @@ XXH3_128bits_reset_withSecret(XXH_NOESCAPE XXH3_state_t* statePtr, XXH_NOESCAPE 
 XXH_PUBLIC_API XXH_errorcode
 XXH3_128bits_reset_withSeed(XXH_NOESCAPE XXH3_state_t* statePtr, XXH64_hash_t seed)
 {
+    // 函数: XXH3_64bits_reset_withSeed
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_reset_withSeed
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_reset_withSeed(statePtr, seed);
 }
 
@@ -6912,6 +7682,14 @@ XXH3_128bits_reset_withSeed(XXH_NOESCAPE XXH3_state_t* statePtr, XXH64_hash_t se
 XXH_PUBLIC_API XXH_errorcode
 XXH3_128bits_reset_withSecretandSeed(XXH_NOESCAPE XXH3_state_t* statePtr, XXH_NOESCAPE const void* secret, size_t secretSize, XXH64_hash_t seed)
 {
+    // 函数: XXH3_64bits_reset_withSecretandSeed
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_reset_withSecretandSeed
+    // 描述: 设置: 设置某个属性或配置
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_reset_withSecretandSeed(statePtr, secret, secretSize, seed);
 }
 
@@ -6919,6 +7697,14 @@ XXH3_128bits_reset_withSecretandSeed(XXH_NOESCAPE XXH3_state_t* statePtr, XXH_NO
 XXH_PUBLIC_API XXH_errorcode
 XXH3_128bits_update(XXH_NOESCAPE XXH3_state_t* state, XXH_NOESCAPE const void* input, size_t len)
 {
+    // 函数: XXH3_64bits_update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_64bits_update
+    // 描述: 更新: 更新现有数据或状态
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_64bits_update(state, input, len);
 }
 
@@ -6943,7 +7729,23 @@ XXH_PUBLIC_API XXH128_hash_t XXH3_128bits_digest (XXH_NOESCAPE const XXH3_state_
     }
     /* len <= XXH3_MIDSIZE_MAX : short code */
     if (state->useSeed)
+        // 函数: XXH3_128bits_withSeed
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
+        // 函数: XXH3_128bits_withSeed
+        // 描述: 执行主要功能
+        // 参数: 无参数
+        // 返回: 无返回值
         return XXH3_128bits_withSeed(state->buffer, (size_t)state->totalLen, state->seed);
+    // 函数: XXH3_128bits_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
+    // 函数: XXH3_128bits_withSecret
+    // 描述: 执行主要功能
+    // 参数: 无参数
+    // 返回: 无返回值
     return XXH3_128bits_withSecret(state->buffer, (size_t)(state->totalLen),
                                    secret, state->secretLimit + XXH_STRIPE_LEN);
 }

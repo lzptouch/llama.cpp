@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: compare-logprobs.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/scripts/compare-logprobs.py
+// 作者: 自动注释工具
+// 描述: 配置或脚本文件
+// ============================================================================
+
 import argparse
 import requests
 import json
@@ -25,6 +32,10 @@ Example usage:
 """
 
 
+    # 函数: get_remote_corpus
+    # 描述: get_remote_corpus函数提供相关功能
+    # 参数: url: str, length: int
+    # 返回: 无返回值
 def get_remote_corpus(url: str, length: int) -> list[str]:
     response = requests.get(url)
     response.raise_for_status()
@@ -37,6 +48,10 @@ def get_remote_corpus(url: str, length: int) -> list[str]:
     return words[:length]
 
 
+    # 函数: dump_logits
+    # 描述: dump_logits函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def dump_logits(
     endpoint: str,
     output_path: Path,
@@ -88,6 +103,10 @@ def dump_logits(
     logger.info(f"Logits dumped to {output_path}")
 
 
+    # 函数: get_token_logprobs
+    # 描述: get_token_logprobs函数提供相关功能
+    # 参数: data: dict
+    # 返回: 无返回值
 def get_token_logprobs(data: dict):
     logprobs = data["choices"][0]["logprobs"]
     if "content" in logprobs:
@@ -101,6 +120,10 @@ def get_token_logprobs(data: dict):
         return tokens[0], token_logprobs[0]
 
 
+    # 函数: clean_text
+    # 描述: clean_text函数提供相关功能
+    # 参数: text: str
+    # 返回: 有返回值
 def clean_text(text: str) -> str:
     return (
         "'"
@@ -112,6 +135,10 @@ def clean_text(text: str) -> str:
     )
 
 
+    # 函数: compare_logits
+    # 描述: compare_logits函数提供相关功能
+    # 参数: input1: Path, input2: Path, output_path: Path
+    # 返回: 无返回值
 def compare_logits(input1: Path, input2: Path, output_path: Path):
     with input1.open("r") as f1, input2.open("r") as f2, output_path.open("w") as fout:
         lines1 = f1.readlines()
@@ -186,6 +213,10 @@ def compare_logits(input1: Path, input2: Path, output_path: Path):
         logger.info(f"Report written to {output_path}")
 
 
+    # 函数: parse_pattern
+    # 描述: parse_pattern函数提供相关功能
+    # 参数: pattern: str
+    # 返回: 无返回值
 def parse_pattern(pattern: str) -> list[tuple[bool, int]]:
     parts = pattern.split(",")
     result = []
@@ -198,6 +229,10 @@ def parse_pattern(pattern: str) -> list[tuple[bool, int]]:
     return result
 
 
+    # 函数: parse_args
+    # 描述: parse_args函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=DESCRIPTION, formatter_class=argparse.RawTextHelpFormatter
@@ -250,6 +285,10 @@ def parse_args() -> argparse.Namespace:
         raise e
 
 
+    # 函数: main
+    # 描述: main函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def main():
     args = parse_args()
 

@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: cli.cpp
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/cli/cli.cpp
+// 作者: 自动注释工具
+// 描述: 工具文件,包含各种实用工具
+// ============================================================================
+
 #include "common.h"
 #include "arg.h"
 #include "console.h"
@@ -29,16 +36,26 @@ const char * LLAMA_ASCII_LOGO = R"(
                                     ▀▀    ▀▀
 )";
 
-static std::atomic<bool> g_is_interrupted = false;
+static std::atomic<bool> g_is_interrupted = false; // 中断标志
+
+// 函数: should_stop
+// 描述: 检查是否应该停止执行
+// 参数: 无
+// 返回: 如果应该停止则返回true
 static bool should_stop() {
     return g_is_interrupted.load();
 }
 
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (_WIN32)
+// 函数: signal_handler
+// 描述: 信号处理函数，处理Ctrl+C等中断信号
+// 参数:
+//   - int: 信号类型（未使用）
+// 返回: 无
 static void signal_handler(int) {
     if (g_is_interrupted.load()) {
-        // second Ctrl+C - exit immediately
-        // make sure to clear colors before exiting (not using LOG or console.cpp here to avoid deadlock)
+        // 第二次Ctrl+C - 立即退出
+        // 确保在退出前清除颜色（不使用LOG或console.cpp以避免死锁）
         fprintf(stdout, "\033[0m\n");
         fflush(stdout);
         std::exit(130);
@@ -47,16 +64,29 @@ static void signal_handler(int) {
 }
 #endif
 
+// 结构体: cli_context
+// 描述: 命令行界面上下文结构体
+// 作用: 管理命令行界面的状态、消息和输入文件
+// 成员:
+//   - ctx_server: 服务器上下文
+//   - messages: 聊天消息数组
+//   - input_files: 输入文件缓冲区
+//   - defaults: 默认任务参数
+//   - verbose_prompt: 是否显示详细提示
+//   - loading_show: 加载动画标志
 struct cli_context {
-    server_context ctx_server;
-    json messages = json::array();
-    std::vector<raw_buffer> input_files;
-    task_params defaults;
-    bool verbose_prompt;
+    server_context ctx_server;                // 服务器上下文
+    json messages = json::array();            // 聊天消息数组
+    std::vector<raw_buffer> input_files;      // 输入文件缓冲区
+    task_params defaults;                     // 默认任务参数
+    bool verbose_prompt;                      // 是否显示详细提示
 
-    // thread for showing "loading" animation
-    std::atomic<bool> loading_show;
+    std::atomic<bool> loading_show;           // 加载动画标志
 
+    // 构造函数: cli_context
+    // 描述: 初始化命令行上下文
+    // 参数:
+    //   - params: 通用参数
     cli_context(const common_params & params) {
         defaults.sampling    = params.sampling;
         defaults.speculative = params.speculative;
@@ -64,13 +94,18 @@ struct cli_context {
         defaults.n_predict   = params.n_predict;
         defaults.antiprompt  = params.antiprompt;
 
-        defaults.stream = true; // make sure we always use streaming mode
-        defaults.timings_per_token = true; // in order to get timings even when we cancel mid-way
-        // defaults.return_progress = true; // TODO: show progress
+        defaults.stream = true; // 确保始终使用流模式
+        defaults.timings_per_token = true; // 以便在中途取消时也能获取计时
+        // defaults.return_progress = true; // TODO: 显示进度
 
         verbose_prompt = params.verbose_prompt;
     }
 
+    // 函数: generate_completion
+    // 描述: 生成模型完成内容
+    // 参数:
+    //   - out_timings: 输出计时信息
+    // 返回: 生成的内容字符串
     std::string generate_completion(result_timings & out_timings) {
         server_response_reader rd = ctx_server.get_response_reader();
         auto chat_params = format_chat();
@@ -158,7 +193,13 @@ struct cli_context {
         return curr_content;
     }
 
-    // TODO: support remote files in the future (http, https, etc)
+    // TODO: 将来支持远程文件 (http, https, 等)
+    // 函数: load_input_file
+    // 描述: 加载输入文件
+    // 参数:
+    //   - fname: 文件名
+    //   - is_media: 是否为媒体文件
+    // 返回: 文件内容或媒体标记
     std::string load_input_file(const std::string & fname, bool is_media) {
         std::ifstream file(fname, std::ios::binary);
         if (!file) {
@@ -175,6 +216,10 @@ struct cli_context {
         }
     }
 
+    // 函数: format_chat
+    // 描述: 格式化聊天消息
+    // 参数: 无
+    // 返回: 聊天参数
     common_chat_params format_chat() {
         auto meta = ctx_server.get_meta();
         auto & chat_params = meta.chat_params;
@@ -195,6 +240,12 @@ struct cli_context {
     }
 };
 
+// 函数: main
+// 描述: 命令行工具的主函数
+// 参数:
+//   - argc: 命令行参数数量
+//   - argv: 命令行参数数组
+// 返回: 0表示成功，非0表示失败
 int main(int argc, char ** argv) {
     common_params params;
 
@@ -225,6 +276,30 @@ int main(int argc, char ** argv) {
     console::set_display(DISPLAY_TYPE_RESET);
 
 #if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__))
+    // 类: sigaction
+    // 描述: sigaction类提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 类: sigaction
+    // 描述: sigaction类提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
+    // 结构体: sigaction
+    // 描述: sigaction结构体提供相关功能
+    // 用途: 用于处理sigaction相关的操作
     struct sigaction sigint_action;
     sigint_action.sa_handler = signal_handler;
     sigemptyset (&sigint_action.sa_mask);

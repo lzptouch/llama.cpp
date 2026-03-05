@@ -1,3 +1,10 @@
+// ============================================================================
+// 文件: test_ctx_shift.py
+// 路径: /Users/lzp/Library/Mobile Documents/com~apple~CloudDocs/workspace/llama.cpp/tools/server/tests/unit/test_ctx_shift.py
+// 作者: 自动注释工具
+// 描述: 测试文件,包含单元测试和验证
+// ============================================================================
+
 import pytest
 from utils import *
 
@@ -18,6 +25,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 """.strip()
 
 @pytest.fixture(autouse=True)
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: create_server
+    # 描述: create_server函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def create_server():
     global server
     server = ServerPreset.tinyllama2()
@@ -26,6 +41,14 @@ def create_server():
     server.n_predict = 128
 
 
+    # 函数: test_ctx_shift_enabled
+    # 描述: test_ctx_shift_enabled函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_ctx_shift_enabled
+    # 描述: test_ctx_shift_enabled函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_ctx_shift_enabled():
     # the prompt is 226 tokens
     # the slot context is 512/2 = 256 tokens
@@ -47,6 +70,14 @@ def test_ctx_shift_enabled():
     (64, 64, False),
     (-1, 248, True), # 8 tokens prompt + 248 tokens generated = 256 tokens total
 ])
+    # 函数: test_ctx_shift_disabled_short_prompt
+    # 描述: test_ctx_shift_disabled_short_prompt函数提供相关功能
+    # 参数: n_predict: int, n_token_output: int, truncated: bool
+    # 返回: 无返回值
+    # 函数: test_ctx_shift_disabled_short_prompt
+    # 描述: test_ctx_shift_disabled_short_prompt函数提供相关功能
+    # 参数: n_predict: int, n_token_output: int, truncated: bool
+    # 返回: 无返回值
 def test_ctx_shift_disabled_short_prompt(n_predict: int, n_token_output: int, truncated: bool):
     global server
     server.n_predict = -1
@@ -60,6 +91,14 @@ def test_ctx_shift_disabled_short_prompt(n_predict: int, n_token_output: int, tr
     assert res.body["truncated"] == truncated
 
 
+    # 函数: test_ctx_shift_disabled_long_prompt
+    # 描述: test_ctx_shift_disabled_long_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_ctx_shift_disabled_long_prompt
+    # 描述: test_ctx_shift_disabled_long_prompt函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_ctx_shift_disabled_long_prompt():
     global server
     server.start()
@@ -71,6 +110,14 @@ def test_ctx_shift_disabled_long_prompt():
     assert "error" in res.body
     assert "exceeds the available context size" in res.body["error"]["message"]
 
+    # 函数: test_ctx_shift_disabled_stream
+    # 描述: test_ctx_shift_disabled_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
+    # 函数: test_ctx_shift_disabled_stream
+    # 描述: test_ctx_shift_disabled_stream函数提供相关功能
+    # 参数: 无参数
+    # 返回: 无返回值
 def test_ctx_shift_disabled_stream():
     global server
     server.start()
